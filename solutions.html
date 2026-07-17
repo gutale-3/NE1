@@ -75,7 +75,7 @@
       <h2 style="font-size:30px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Built around how you operate</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
-      <sc-for list="{{ industries }}" as="ind" hint-placeholder-count="9">
+      <sc-for list="{{ industries }}" as="ind" hint-placeholder-count="11">
         <div ref="{{ ind.ref }}" style="{{ ind.style }}">
           <div style="height:180px;overflow:hidden">
             <img src="{{ ind.image }}" alt="{{ ind.title }} security solution" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.35s" style-hover="transform:scale(1.06)" />
@@ -88,7 +88,7 @@
                 <span style="font-size:11.5px;font-weight:600;color:#4A5B68;background:#F0F4F7;border-radius:6px;padding:4px 9px">{{ sc }}</span>
               </sc-for>
             </div>
-            <a href="{{ ind.link }}" style="font-size:13.5px;font-weight:700;color:#0B8FCB">Explore Products &rarr;</a>
+            <a href="{{ ind.link }}" style="font-size:13.5px;font-weight:700;color:#0B8FCB">{{ ind.cta }} &rarr;</a>
           </div>
         </div>
       </sc-for>
@@ -207,33 +207,39 @@ class Component extends DCLogic {
     };
 
     const industryData = [
-      { title: 'Retail', image: 'assets/solutions/retail.webp', link: 'products.html?cat=CCTV-IP',
+      { title: 'Retail', image: 'assets/solutions/retail.webp', link: 'solution-retail.html', cta: 'View Solution',
         desc: 'Cut shrinkage and keep checkout lines honest — IP cameras and people counting built for shops, supermarkets and malls.',
         scenarios: ['Supermarkets', 'Shopping Malls', 'Car Dealerships'] },
-      { title: 'Education', image: 'assets/solutions/education.webp', link: 'products.html?cat=Access%20Control',
+      { title: 'Education', image: 'assets/solutions/education.webp', link: 'solution-education.html', cta: 'View Solution',
         desc: 'Keep campuses secure and attendance accurate — access control and CCTV sized for schools, universities and classrooms.',
         scenarios: ['Schools', 'Classroom Hub', 'Campus Gates'] },
-      { title: 'Healthcare', image: 'assets/solutions/healthcare.webp', link: 'products.html?cat=CCTV-IP',
+      { title: 'Healthcare', image: 'assets/solutions/healthcare.webp', link: 'solution-healthcare.html', cta: 'View Solution',
         desc: 'Protect patients, staff and equipment around the clock with discreet, reliable surveillance built for clinical spaces.',
         scenarios: ['Hospitals', 'Clinics', 'Care Facilities'] },
-      { title: 'Logistics & Warehousing', image: 'assets/scroll-world/warehouse.webp', link: 'products.html?cat=CCTV-IP',
+      { title: 'Logistics & Warehousing', image: 'assets/scroll-world/warehouse.webp', link: 'solution-logistics.html', cta: 'View Solution',
         desc: 'Track stock and dock activity from arrival to dispatch — wide-coverage cameras built for warehouses and yards.',
         scenarios: ['Warehouses', 'Dock Management', 'Parking Lots'] },
-      { title: 'Manufacturing', image: 'assets/solutions/manufacturing.webp', link: 'products.html?cat=CCTV-IP',
+      { title: 'Manufacturing', image: 'assets/solutions/manufacturing.webp', link: 'solution-manufacturing.html', cta: 'View Solution',
         desc: 'Monitor production lines and enforce safety zones with rugged cameras that hold up on the factory floor.',
         scenarios: ['Factories', 'Construction Sites', 'Production Lines'] },
-      { title: 'Public Transport & Traffic', image: 'assets/scroll-world/dashcam.webp', link: 'products.html',
+      { title: 'Public Transport & Traffic', image: 'assets/scroll-world/dashcam.webp', link: 'solution-traffic.html', cta: 'View Solution',
         desc: 'From dashcams to roadside monitoring — coverage that keeps drivers, passengers and commuters accounted for.',
         scenarios: ['Bus Stops', 'Highways', 'Fleet Vehicles'] },
-      { title: 'Safe City & Government', image: 'assets/scroll-world/control.webp', link: 'products.html?cat=CCTV-IP',
+      { title: 'Safe City & Government', image: 'assets/scroll-world/control.webp', link: 'products.html?cat=CCTV-IP', cta: 'Explore Products',
         desc: 'Centralized monitoring for public spaces and facilities, backed by NE’s local installation and support.',
         scenarios: ['Monitoring Centers', 'Public Spaces', 'Municipal Sites'] },
-      { title: 'Buildings', image: 'assets/scroll-world/install.webp', link: 'products.html?cat=Access%20Control',
+      { title: 'Buildings', image: 'assets/scroll-world/install.webp', link: 'solution-buildings.html', cta: 'View Solution',
         desc: 'Apartments, offices and hotels — access control and video intercom that fit residential and commercial buildings alike.',
         scenarios: ['Apartments', 'Offices', 'Hotels'] },
-      { title: 'Energy', image: 'assets/solutions/energy.webp', link: 'products.html?cat=Networking',
+      { title: 'Energy', image: 'assets/solutions/energy.webp', link: 'solution-energy.html', cta: 'View Solution',
         desc: 'Secure remote sites without trenching cable — wireless bridges and solar-ready gear for substations and solar farms.',
         scenarios: ['Substations', 'Solar Farms', 'Remote Sites'] },
+      { title: 'Maritime & Stadiums', image: 'assets/solutions/stadium.webp', link: 'solution-maritime.html', cta: 'View Solution',
+        desc: 'High-traffic, high-stakes venues — ports and stadiums — with security that scales to thousands of people and vehicles.',
+        scenarios: ['Ports', 'Stadiums', 'Large Events'] },
+      { title: 'Small Business', image: 'assets/solutions/smallbiz.webp', link: 'solution-smb.html', cta: 'View Solution',
+        desc: 'Right-sized security for a single store, office or home — no enterprise complexity, fully remote-managed.',
+        scenarios: ['Small Offices', 'Single Stores', 'Homes'] },
     ];
     const industries = industryData.map((ind, i) => ({
       ...ind,
