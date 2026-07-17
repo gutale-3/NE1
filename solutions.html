@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solutions by Industry &amp; Scenario | Hikvision Security Solutions &ndash; Nashnaal Electronics (NE)</title>
+<meta name="description" content="NE designs Hikvision-based security solutions for retail, education, healthcare, logistics, manufacturing, safe city, buildings, energy and more &mdash; matched to real scenarios and the right product category.">
+<link rel="canonical" href="https://nashnaal.com/solutions.html">
+<link rel="icon" type="image/png" href="assets/nashnaal-favicon.png">
+<link rel="apple-touch-icon" href="assets/nashnaal-favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nashnaal Electronics (NE)">
+<meta property="og:title" content="Solutions by Industry & Scenario | Nashnaal Electronics (NE)">
+<meta property="og:description" content="NE designs Hikvision-based security solutions for retail, education, healthcare, logistics, manufacturing, safe city, buildings, energy and more.">
+<meta property="og:url" content="https://nashnaal.com/solutions.html">
+<meta property="og:image" content="https://nashnaal.com/assets/solutions/retail.webp">
+<meta property="og:locale" content="en_KE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Solutions by Industry & Scenario | Nashnaal Electronics (NE)">
+<meta name="twitter:description" content="NE designs Hikvision-based security solutions for retail, education, healthcare, logistics, manufacturing, safe city, buildings, energy and more.">
+<meta name="twitter:image" content="https://nashnaal.com/assets/solutions/retail.webp">
+<script src="js/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F6F8FA; color: #10202E; }
+    a { color: #0B8FCB; text-decoration: none; }
+    a:hover { color: #086E9E; }
+    @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(11,143,203,0.55); } 100% { box-shadow: 0 0 0 18px rgba(11,143,203,0); } }
+  </style>
+</helmet>
+
+<div style="width:100%;min-height:100vh;background:#F6F8FA;overflow-x:hidden">
+
+  <div style="{{ progressBarStyle }}"></div>
+
+  <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #E7ECF1">
+    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:24px">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+        <img src="assets/nashnaal-favicon.png" alt="NE" style="height:52px;width:auto;display:block" />
+      </a>
+      <nav style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
+        <a href="index.html" style="font-size:15px;font-weight:600;color:#10202E">Home</a>
+        <a href="world.html" style="font-size:15px;font-weight:600;color:#10202E">Explore</a>
+        <a href="products.html" style="font-size:15px;font-weight:600;color:#10202E">Products</a>
+        <a href="solutions.html" style="font-size:15px;font-weight:700;color:#0B8FCB">Solutions</a>
+        <a href="services.html" style="font-size:15px;font-weight:600;color:#10202E">Services</a>
+        <a href="about.html" style="font-size:15px;font-weight:600;color:#10202E">About</a>
+        <a href="contact.html" style="font-size:15px;font-weight:600;color:#10202E">Contact</a>
+      </nav>
+      <a href="tel:+254798131085" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#0B8FCB;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
+        Call 0798 131085
+      </a>
+    </div>
+  </header>
+
+  <section data-screen-label="Solutions Header" style="background:linear-gradient(135deg,#0B7EB5 0%,#0B8FCB 100%);padding:64px 24px;position:relative;overflow:hidden">
+    <div style="{{ headerParallaxStyle }}"></div>
+    <div style="max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:2">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:10px">Solutions</div>
+      <h1 style="font-size:40px;font-weight:800;margin:0 0 14px;color:#fff;letter-spacing:-0.01em">Solutions for every industry.</h1>
+      <p style="font-size:17px;color:rgba(255,255,255,0.88);margin:0;line-height:1.6">Genuine Hikvision hardware, matched by NE to the way your industry actually works &mdash; from a single retail store to a multi-site logistics operation.</p>
+    </div>
+  </section>
+
+  <section data-screen-label="Solutions by Industry" style="max-width:1240px;margin:0 auto;padding:64px 24px 20px">
+    <div style="text-align:center;margin-bottom:44px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">Solutions by Industry</div>
+      <h2 style="font-size:30px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Built around how you operate</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+      <sc-for list="{{ industries }}" as="ind" hint-placeholder-count="9">
+        <div ref="{{ ind.ref }}" style="{{ ind.style }}">
+          <div style="height:180px;overflow:hidden">
+            <img src="{{ ind.image }}" alt="{{ ind.title }} security solution" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.35s" style-hover="transform:scale(1.06)" />
+          </div>
+          <div style="padding:22px 22px 24px">
+            <div style="font-size:18px;font-weight:800;margin-bottom:8px;color:#10202E">{{ ind.title }}</div>
+            <div style="font-size:14px;line-height:1.65;color:#4A5B68;margin-bottom:14px;min-height:66px">{{ ind.desc }}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">
+              <sc-for list="{{ ind.scenarios }}" as="sc" hint-placeholder-count="3">
+                <span style="font-size:11.5px;font-weight:600;color:#4A5B68;background:#F0F4F7;border-radius:6px;padding:4px 9px">{{ sc }}</span>
+              </sc-for>
+            </div>
+            <a href="{{ ind.link }}" style="font-size:13.5px;font-weight:700;color:#0B8FCB">Explore Products &rarr;</a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-screen-label="Solutions by Scenario" style="max-width:1240px;margin:0 auto;padding:64px 24px 20px">
+    <div style="text-align:center;margin-bottom:36px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">Solutions by Scenario</div>
+      <h2 style="font-size:30px;font-weight:800;margin:0 0 12px;color:#10202E;letter-spacing:-0.01em">Every industry breaks down into real scenarios</h2>
+      <p style="font-size:15px;color:#7A8A96;max-width:640px;margin:0 auto;line-height:1.6">Tell NE your scenario and we'll recommend the right cameras, recorders and access control &mdash; not a generic package.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:980px;margin:0 auto">
+      <sc-for list="{{ scenarios }}" as="s" hint-placeholder-count="24">
+        <a href="{{ s.link }}" target="_blank" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#0B8FCB;color:#0B8FCB">{{ s.label }}</a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-screen-label="Solutions by Function" style="max-width:1240px;margin:0 auto;padding:64px 24px 20px">
+    <div style="text-align:center;margin-bottom:44px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">Solutions by Function</div>
+      <h2 style="font-size:30px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Pick the capability, NE finds the hardware</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+      <sc-for list="{{ functions }}" as="f" hint-placeholder-count="9">
+        <a href="{{ f.link }}" ref="{{ f.ref }}" style="{{ f.style }}">
+          <div style="width:46px;height:46px;border-radius:11px;background:#0B8FCB;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px;flex-shrink:0">{{ f.icon }}</div>
+          <div>
+            <div style="font-size:16px;font-weight:800;margin-bottom:4px;color:#10202E">{{ f.title }}</div>
+            <div style="font-size:13px;line-height:1.55;color:#7A8A96">{{ f.desc }}</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-screen-label="CTA" style="max-width:1100px;margin:64px auto 0;padding:0 24px 64px">
+    <div ref="{{ ctaRef }}" style="text-align:center;padding:44px;background:#0F2C3D;border-radius:18px;{{ ctaStyle }}">
+      <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">Not sure which solution fits?</div>
+      <div style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:24px">Tell NE about your site and we'll recommend the right cameras, recorders and access control.</div>
+      <a href="contact.html" style="background:#0B8FCB;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Talk to NE</a>
+    </div>
+  </section>
+
+  <footer style="background:#0F2C3D;padding:40px 24px">
+    <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <div style="font-size:13.5px;color:rgba(255,255,255,0.55)">&copy; 2026 NE &mdash; Nashnaal Electronics. Authorized Hikvision distributor &amp; retailer.</div>
+      <div style="display:flex;gap:22px">
+        <a href="index.html" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Home</a>
+        <a href="products.html" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Products</a>
+        <a href="solutions.html" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Solutions</a>
+        <a href="about.html" style="font-size:13.5px;color:rgba(255,255,255,0.75)">About</a>
+        <a href="contact.html" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/254798131085" target="_blank" style="position:fixed;bottom:26px;right:26px;width:58px;height:58px;border-radius:50%;background:#22C35E;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.2);z-index:60;animation:pulseRing 2.2s ease-out infinite" style-hover="background:#1CAD52">
+    <span style="font-size:26px;line-height:1">💬</span>
+  </a>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { scrollY: 0, scrollProgress: 0 };
+
+  componentDidMount() {
+    import('./revealFx.js').then(mod => {
+      this._fx = mod;
+      this._reveal = mod.makeRevealController(this);
+      this._untrackScroll = mod.makeScrollTracker((scrollY, progress) => {
+        this.setState({ scrollY, scrollProgress: progress });
+      });
+      this.forceUpdate();
+    });
+  }
+
+  componentWillUnmount() {
+    if (this._reveal) this._reveal.destroy();
+    if (this._untrackScroll) this._untrackScroll();
+  }
+
+  renderVals() {
+    const reveal = this._reveal;
+    const rref = (key) => reveal ? reveal.ref(key) : undefined;
+    const revealCss = (key, delay = 0) => {
+      const vis = reveal ? reveal.visible(key) : false;
+      return `opacity:${vis ? 1 : 0};transform:translateY(${vis ? 0 : 22}px);transition:opacity 0.6s ease ${delay}s, transform 0.6s cubic-bezier(.16,.84,.44,1) ${delay}s`;
+    };
+
+    const industryData = [
+      { title: 'Retail', image: 'assets/solutions/retail.webp', link: 'products.html?cat=CCTV-IP',
+        desc: 'Cut shrinkage and keep checkout lines honest — IP cameras and people counting built for shops, supermarkets and malls.',
+        scenarios: ['Supermarkets', 'Shopping Malls', 'Car Dealerships'] },
+      { title: 'Education', image: 'assets/solutions/education.webp', link: 'products.html?cat=Access%20Control',
+        desc: 'Keep campuses secure and attendance accurate — access control and CCTV sized for schools, universities and classrooms.',
+        scenarios: ['Schools', 'Classroom Hub', 'Campus Gates'] },
+      { title: 'Healthcare', image: 'assets/solutions/healthcare.webp', link: 'products.html?cat=CCTV-IP',
+        desc: 'Protect patients, staff and equipment around the clock with discreet, reliable surveillance built for clinical spaces.',
+        scenarios: ['Hospitals', 'Clinics', 'Care Facilities'] },
+      { title: 'Logistics & Warehousing', image: 'assets/scroll-world/warehouse.webp', link: 'products.html?cat=CCTV-IP',
+        desc: 'Track stock and dock activity from arrival to dispatch — wide-coverage cameras built for warehouses and yards.',
+        scenarios: ['Warehouses', 'Dock Management', 'Parking Lots'] },
+      { title: 'Manufacturing', image: 'assets/solutions/manufacturing.webp', link: 'products.html?cat=CCTV-IP',
+        desc: 'Monitor production lines and enforce safety zones with rugged cameras that hold up on the factory floor.',
+        scenarios: ['Factories', 'Construction Sites', 'Production Lines'] },
+      { title: 'Public Transport & Traffic', image: 'assets/scroll-world/dashcam.webp', link: 'products.html',
+        desc: 'From dashcams to roadside monitoring — coverage that keeps drivers, passengers and commuters accounted for.',
+        scenarios: ['Bus Stops', 'Highways', 'Fleet Vehicles'] },
+      { title: 'Safe City & Government', image: 'assets/scroll-world/control.webp', link: 'products.html?cat=CCTV-IP',
+        desc: 'Centralized monitoring for public spaces and facilities, backed by NE’s local installation and support.',
+        scenarios: ['Monitoring Centers', 'Public Spaces', 'Municipal Sites'] },
+      { title: 'Buildings', image: 'assets/scroll-world/install.webp', link: 'products.html?cat=Access%20Control',
+        desc: 'Apartments, offices and hotels — access control and video intercom that fit residential and commercial buildings alike.',
+        scenarios: ['Apartments', 'Offices', 'Hotels'] },
+      { title: 'Energy', image: 'assets/solutions/energy.webp', link: 'products.html?cat=Networking',
+        desc: 'Secure remote sites without trenching cable — wireless bridges and solar-ready gear for substations and solar farms.',
+        scenarios: ['Substations', 'Solar Farms', 'Remote Sites'] },
+    ];
+    const industries = industryData.map((ind, i) => ({
+      ...ind,
+      ref: rref(`ind-${i}`),
+      style: `background:#fff;border:1px solid #E7ECF1;border-radius:16px;overflow:hidden;${revealCss(`ind-${i}`, (i % 3) * 0.08)}`,
+    }));
+
+    const waLink = (label) => `https://wa.me/254798131085?text=${encodeURIComponent('Hi NE, I need a security solution for: ' + label)}`;
+    const scenarioLabels = [
+      'Apartments', 'Offices', 'Hotels', 'Schools', 'Classroom Hub', 'Construction Sites',
+      'Supermarkets', 'Shopping Malls', 'Car Dealerships', 'Gas Stations', 'Parking Lots',
+      'Warehouses', 'Factories', 'Dock Management', 'Bus Stops', 'Highways', 'Monitoring Centers',
+      'Electrical Substations', 'Solar Farms', 'Hospitals', 'Casinos', 'Conference Rooms', 'Data Centers',
+    ];
+    const scenarios = scenarioLabels.map(label => ({ label, link: waLink(label) }));
+
+    const functionData = [
+      { icon: '🔑', title: 'Access Control', desc: 'Card, fingerprint or mobile credential entry systems.', link: 'products.html?cat=Access%20Control' },
+      { icon: '📹', title: 'People Counting', desc: 'Footfall analytics for retail and public spaces.', link: 'products.html?cat=CCTV-IP' },
+      { icon: '🚧', title: 'Perimeter Protection', desc: 'IR and smart-hybrid cameras that flag intrusion.', link: 'products.html?cat=CCTV-Turbo%20HD' },
+      { icon: '🖥️', title: 'Information Display', desc: '4K interactive displays for meeting rooms and lobbies.', link: 'products.html?cat=Interactive%20Tablet' },
+      { icon: '☎️', title: 'Video Intercom', desc: 'Two-way video entry for gates, doors and reception.', link: 'products.html?cat=Video%20Intercom' },
+      { icon: '📢', title: 'Public Address', desc: 'Announcement and alert systems for campuses and sites.', link: 'products.html?cat=PA' },
+      { icon: '📶', title: 'Wireless Connectivity', desc: 'Access points and long-range wireless bridges.', link: 'products.html?cat=Networking' },
+      { icon: '🔌', title: 'Structured Cabling', desc: 'Patch panels, racks and UPS backup power.', link: 'products.html?cat=Accessories' },
+      { icon: '👋', title: 'Visitor Management', desc: 'Track who enters your site and when.', link: 'products.html?cat=Access%20Control' },
+    ];
+    const functions = functionData.map((f, i) => ({
+      ...f,
+      ref: rref(`fn-${i}`),
+      style: `display:flex;gap:14px;background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:20px;${revealCss(`fn-${i}`, (i % 3) * 0.07)}`,
+    }));
+
+    const sc = this.state.scrollY;
+    const progressBarStyle = `position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4FC3EC,#0B8FCB);width:${(this.state.scrollProgress * 100).toFixed(2)}%;z-index:200;transition:width 0.1s linear`;
+    const headerParallaxStyle = `position:absolute;inset:-10% -10% -30% -10%;background:radial-gradient(circle at 80% 20%, rgba(255,255,255,0.14) 0, transparent 45%);transform:translateY(${sc * 0.15}px);pointer-events:none`;
+
+    const ctaVis = reveal ? reveal.visible('cta') : false;
+
+    return {
+      industries,
+      scenarios,
+      functions,
+      progressBarStyle,
+      headerParallaxStyle,
+      ctaRef: rref('cta'),
+      ctaStyle: `opacity:${ctaVis ? 1 : 0};transform:translateY(${ctaVis ? 0 : 24}px);transition:opacity 0.7s ease, transform 0.7s cubic-bezier(.16,.84,.44,1)`,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
