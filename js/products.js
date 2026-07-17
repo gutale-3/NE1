@@ -1415,7 +1415,7 @@ export const PRODUCTS = [
     "pcsCtn": "1",
     "retail": 310000,
     "price": 341000,
-    "image": "images/placeholder-interactive-tablet.png",
+    "image": "images/imported/tablet-ds-d5b65rb-el.png",
     "id": 129
   },
   {
@@ -1426,7 +1426,7 @@ export const PRODUCTS = [
     "pcsCtn": "1",
     "retail": 400000,
     "price": 440000,
-    "image": "images/placeholder-interactive-tablet.png",
+    "image": "images/imported/tablet-ds-d5b75rb-el.png",
     "id": 130
   },
   {
@@ -1437,7 +1437,7 @@ export const PRODUCTS = [
     "pcsCtn": "10",
     "retail": 28000,
     "price": 30800,
-    "image": "images/placeholder-interactive-tablet.png",
+    "image": "images/imported/tablet-ds-d5sc3b-b.png",
     "id": 131
   },
   {
@@ -1448,7 +1448,7 @@ export const PRODUCTS = [
     "pcsCtn": "10",
     "retail": 28000,
     "price": 30800,
-    "image": "images/placeholder-interactive-tablet.png",
+    "image": "images/imported/tablet-ds-d5sc3b-w.png",
     "id": 132
   },
   {
@@ -1459,7 +1459,7 @@ export const PRODUCTS = [
     "pcsCtn": "1",
     "retail": 60000,
     "price": 66000,
-    "image": "images/placeholder-interactive-tablet.png",
+    "image": "images/imported/tablet-ds-d5abky2-s.png",
     "id": 133
   },
   {
@@ -1470,7 +1470,7 @@ export const PRODUCTS = [
     "pcsCtn": "1",
     "retail": 10000,
     "price": 11000,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-xs6404-s-b-o-std-overseas.png",
     "id": 134
   },
   {
@@ -1481,7 +1481,7 @@ export const PRODUCTS = [
     "pcsCtn": "1",
     "retail": 11500,
     "price": 12650,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-xs6406-s-b-o-std-overseas.png",
     "id": 135
   },
   {
@@ -1492,7 +1492,7 @@ export const PRODUCTS = [
     "pcsCtn": "1",
     "retail": 13000,
     "price": 14300,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-xs6409-s-b-o-std-overseas.png",
     "id": 136
   },
   {
@@ -1503,7 +1503,7 @@ export const PRODUCTS = [
     "pcsCtn": "1",
     "retail": 15000,
     "price": 16500,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-xs6412-s-b-o-std-overseas.png",
     "id": 137
   },
   {
@@ -1514,7 +1514,7 @@ export const PRODUCTS = [
     "pcsCtn": "4",
     "retail": 2000,
     "price": 2200,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-xspb04-s-b.png",
     "id": 138
   },
   {
@@ -1525,7 +1525,7 @@ export const PRODUCTS = [
     "pcsCtn": "4",
     "retail": 4000,
     "price": 4400,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-ups600-o-std-uk.png",
     "id": 139
   },
   {
@@ -1536,7 +1536,7 @@ export const PRODUCTS = [
     "pcsCtn": "4",
     "retail": 5500,
     "price": 6050,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-ups1000-o-std-uk.png",
     "id": 140
   },
   {
@@ -1547,7 +1547,7 @@ export const PRODUCTS = [
     "pcsCtn": "2",
     "retail": 15000,
     "price": 16500,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-ups2000-o-std-uk.png",
     "id": 141
   },
   {
@@ -1558,7 +1558,7 @@ export const PRODUCTS = [
     "pcsCtn": "1",
     "retail": 22000,
     "price": 24200,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-ups3000-o-std-uk.png",
     "id": 142
   },
   {
@@ -1569,7 +1569,7 @@ export const PRODUCTS = [
     "pcsCtn": "40",
     "retail": 1100,
     "price": 1210,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-2fa1225-c4-uk-o-std.png",
     "id": 143
   },
   {
@@ -1580,7 +1580,7 @@ export const PRODUCTS = [
     "pcsCtn": "40",
     "retail": 1500,
     "price": 1650,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-2fa1205-c8-uk-o-std.png",
     "id": 144
   },
   {
@@ -1591,7 +1591,7 @@ export const PRODUCTS = [
     "pcsCtn": "20",
     "retail": 2000,
     "price": 2200,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-2fa1208-c16-uk-africa.png",
     "id": 145
   },
   {
@@ -1602,7 +1602,7 @@ export const PRODUCTS = [
     "pcsCtn": "100",
     "retail": 380,
     "price": 418,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-adapter-ads-12fg-12n-12012epb-ce-12v-1a.png",
     "id": 146
   },
   {
@@ -1613,7 +1613,7 @@ export const PRODUCTS = [
     "pcsCtn": "8",
     "retail": 2700,
     "price": 2970,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-1lh1scam592c-o-std-90m.png",
     "id": 147
   },
   {
@@ -1624,7 +1624,7 @@ export const PRODUCTS = [
     "pcsCtn": "4",
     "retail": 5200,
     "price": 5720,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-1lh1scam592c-o-std-180m.png",
     "id": 148
   },
   {
@@ -1635,7 +1635,7 @@ export const PRODUCTS = [
     "pcsCtn": "300",
     "retail": 300,
     "price": 330,
-    "image": "images/placeholder-accessories.png",
+    "image": "images/imported/accessories-ds-1h18s-e-c-o-std.png",
     "id": 149
   },
   {
@@ -1646,7 +1646,7 @@ export const PRODUCTS = [
     "pcsCtn": "12",
     "retail": 7500,
     "price": 8250,
-    "image": "images/placeholder-data-communication.png",
+    "image": "images/imported/datacomm-ds-3wap522-si-o-std.png",
     "id": 150
   },
   {
@@ -1657,7 +1657,7 @@ export const PRODUCTS = [
     "pcsCtn": "12",
     "retail": 11500,
     "price": 12650,
-    "image": "images/placeholder-data-communication.png",
+    "image": "images/imported/datacomm-ds-3wap622g-si-o-std.png",
     "id": 151
   },
   {
@@ -1668,7 +1668,7 @@ export const PRODUCTS = [
     "pcsCtn": "12",
     "retail": 14000,
     "price": 15400,
-    "image": "images/placeholder-data-communication.png",
+    "image": "images/imported/datacomm-ds-3wap622e-si-o-std.png",
     "id": 152
   },
   {
@@ -1679,7 +1679,7 @@ export const PRODUCTS = [
     "pcsCtn": "30",
     "retail": 7000,
     "price": 7700,
-    "image": "images/placeholder-data-communication.png",
+    "image": "images/imported/datacomm-ds-3wap521-si-o-std.png",
     "id": 153
   },
   {
@@ -1690,7 +1690,7 @@ export const PRODUCTS = [
     "pcsCtn": "28",
     "retail": 11000,
     "price": 12100,
-    "image": "images/placeholder-data-communication.png",
+    "image": "images/imported/datacomm-ds-3wap621e-si-o-std.png",
     "id": 154
   },
   {
@@ -1701,7 +1701,7 @@ export const PRODUCTS = [
     "pcsCtn": "4",
     "retail": 19000,
     "price": 20900,
-    "image": "images/placeholder-data-communication.png",
+    "image": "images/imported/datacomm-ds-3wap623e-si-o-std.png",
     "id": 155
   },
   {
@@ -1712,7 +1712,7 @@ export const PRODUCTS = [
     "pcsCtn": "12",
     "retail": 8700,
     "price": 9570,
-    "image": "images/placeholder-data-communication.png",
+    "image": "images/imported/datacomm-ds-3wg105g-si-o-std.png",
     "id": 156
   },
   {
@@ -1723,7 +1723,7 @@ export const PRODUCTS = [
     "pcsCtn": "12",
     "retail": 10600,
     "price": 11660,
-    "image": "images/placeholder-data-communication.png",
+    "image": "images/imported/datacomm-ds-3wg105gp-si-o-std.png",
     "id": 157
   },
   {
@@ -1734,7 +1734,7 @@ export const PRODUCTS = [
     "pcsCtn": "12",
     "retail": 16500,
     "price": 18150,
-    "image": "images/placeholder-data-communication.png",
+    "image": "images/imported/datacomm-ds-3wg210gp-si-o-std.png",
     "id": 158
   },
   {
@@ -1745,7 +1745,7 @@ export const PRODUCTS = [
     "pcsCtn": "5",
     "retail": 25000,
     "price": 27500,
-    "image": "images/placeholder-data-communication.png",
+    "image": "images/imported/datacomm-ds-3wg507g-si-o-std.png",
     "id": 159
   },
   {
@@ -1756,7 +1756,7 @@ export const PRODUCTS = [
     "pcsCtn": "2",
     "retail": 17500,
     "price": 19250,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-1ln6-uu-o-std.png",
     "id": 160
   },
   {
@@ -1767,7 +1767,7 @@ export const PRODUCTS = [
     "pcsCtn": "2",
     "retail": 15500,
     "price": 17050,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-1ln6u-sc0-o-std.png",
     "id": 161
   },
   {
@@ -1778,7 +1778,7 @@ export const PRODUCTS = [
     "pcsCtn": "2",
     "retail": 13000,
     "price": 14300,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-1ln6uzc0-o-std-orange-305m.png",
     "id": 162
   },
   {
@@ -1789,7 +1789,7 @@ export const PRODUCTS = [
     "pcsCtn": "1",
     "retail": 21000,
     "price": 23100,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-1ln6auspe-o-std-black-305m.png",
     "id": 163
   },
   {
@@ -1800,7 +1800,7 @@ export const PRODUCTS = [
     "pcsCtn": "2",
     "retail": 7500,
     "price": 8250,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-nc-1ln6uu-cca-o-std-grey-305m.png",
     "id": 164
   },
   {
@@ -1811,7 +1811,7 @@ export const PRODUCTS = [
     "pcsCtn": "40",
     "retail": 1200,
     "price": 1320,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-1m6ua-15u-o-std-100pcs.png",
     "id": 165
   },
   {
@@ -1822,7 +1822,7 @@ export const PRODUCTS = [
     "pcsCtn": "",
     "retail": 1200,
     "price": 1320,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-1m6aua-o-std-100pcs.png",
     "id": 166
   },
   {
@@ -1833,7 +1833,7 @@ export const PRODUCTS = [
     "pcsCtn": "",
     "retail": 1800,
     "price": 1980,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-1m6apb-o-std-50pcs.png",
     "id": 167
   },
   {
@@ -1844,7 +1844,7 @@ export const PRODUCTS = [
     "pcsCtn": "20",
     "retail": 1200,
     "price": 1320,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3wr3n-o-std-uk.png",
     "id": 168
   },
   {
@@ -1855,7 +1855,7 @@ export const PRODUCTS = [
     "pcsCtn": "20",
     "retail": 4000,
     "price": 4400,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3wr4g3n-o-std-uk.png",
     "id": 169
   },
   {
@@ -1866,7 +1866,7 @@ export const PRODUCTS = [
     "pcsCtn": "10",
     "retail": 2500,
     "price": 2750,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3wr12c-o-std-uk.png",
     "id": 170
   },
   {
@@ -1877,7 +1877,7 @@ export const PRODUCTS = [
     "pcsCtn": "10",
     "retail": 5000,
     "price": 5500,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3wr15x-o-std-uk.png",
     "id": 171
   },
   {
@@ -1888,7 +1888,7 @@ export const PRODUCTS = [
     "pcsCtn": "60",
     "retail": 1500,
     "price": 1650,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3wre3n-o-std-uk.png",
     "id": 172
   },
   {
@@ -1899,7 +1899,7 @@ export const PRODUCTS = [
     "pcsCtn": "10",
     "retail": 6000,
     "price": 6600,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3wr4g12c-o-std-uk.png",
     "id": 173
   },
   {
@@ -1910,7 +1910,7 @@ export const PRODUCTS = [
     "pcsCtn": "80",
     "retail": 700,
     "price": 770,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0105d-o-o-std.png",
     "id": 174
   },
   {
@@ -1921,7 +1921,7 @@ export const PRODUCTS = [
     "pcsCtn": "80",
     "retail": 800,
     "price": 880,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0108d-o-o-std.png",
     "id": 175
   },
   {
@@ -1932,7 +1932,7 @@ export const PRODUCTS = [
     "pcsCtn": "12",
     "retail": 3800,
     "price": 4180,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0116r-o-o-std.png",
     "id": 176
   },
   {
@@ -1943,7 +1943,7 @@ export const PRODUCTS = [
     "pcsCtn": "12",
     "retail": 1500,
     "price": 1650,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0505-o-o-std.png",
     "id": 177
   },
   {
@@ -1954,7 +1954,7 @@ export const PRODUCTS = [
     "pcsCtn": "30",
     "retail": 2200,
     "price": 2420,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0508-o-o-std.png",
     "id": 178
   },
   {
@@ -1965,7 +1965,7 @@ export const PRODUCTS = [
     "pcsCtn": "4",
     "retail": 6300,
     "price": 6930,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0516r-o.png",
     "id": 179
   },
   {
@@ -1976,7 +1976,7 @@ export const PRODUCTS = [
     "pcsCtn": "4",
     "retail": 7500,
     "price": 8250,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0524r-o.png",
     "id": 180
   },
   {
@@ -1987,7 +1987,7 @@ export const PRODUCTS = [
     "pcsCtn": "12",
     "retail": 3300,
     "price": 3630,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0106p-e-m-b-o-std.png",
     "id": 181
   },
   {
@@ -1998,7 +1998,7 @@ export const PRODUCTS = [
     "pcsCtn": "8",
     "retail": 5300,
     "price": 5830,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0310p-e-m-b-o-std.png",
     "id": 182
   },
   {
@@ -2009,7 +2009,7 @@ export const PRODUCTS = [
     "pcsCtn": "12",
     "retail": 3400,
     "price": 3740,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0505p-e-m-o-std-b.png",
     "id": 183
   },
   {
@@ -2020,7 +2020,7 @@ export const PRODUCTS = [
     "pcsCtn": "8",
     "retail": 6300,
     "price": 6930,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0510p-e-m-o-std-b.png",
     "id": 184
   },
   {
@@ -2031,7 +2031,7 @@ export const PRODUCTS = [
     "pcsCtn": "4",
     "retail": 20000,
     "price": 22000,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0518p-e-o-std-b.png",
     "id": 185
   },
   {
@@ -2042,7 +2042,7 @@ export const PRODUCTS = [
     "pcsCtn": "4",
     "retail": 26500,
     "price": 29150,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e0526p-e-o-std-b.png",
     "id": 186
   },
   {
@@ -2053,7 +2053,7 @@ export const PRODUCTS = [
     "pcsCtn": "12",
     "retail": 3900,
     "price": 4290,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e1106p-ei-m-o-std.png",
     "id": 187
   },
   {
@@ -2064,7 +2064,7 @@ export const PRODUCTS = [
     "pcsCtn": "8",
     "retail": 6600,
     "price": 7260,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e1310p-ei-m-o-std.png",
     "id": 188
   },
   {
@@ -2075,7 +2075,7 @@ export const PRODUCTS = [
     "pcsCtn": "6",
     "retail": 17000,
     "price": 18700,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e1318p-ei-m-o-std.png",
     "id": 189
   },
   {
@@ -2086,7 +2086,7 @@ export const PRODUCTS = [
     "pcsCtn": "6",
     "retail": 22000,
     "price": 24200,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e1326p-ei-m-o-std.png",
     "id": 190
   },
   {
@@ -2097,7 +2097,7 @@ export const PRODUCTS = [
     "pcsCtn": "4",
     "retail": 25500,
     "price": 28050,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e1518p-ei-o-std-v2.png",
     "id": 191
   },
   {
@@ -2108,7 +2108,7 @@ export const PRODUCTS = [
     "pcsCtn": "4",
     "retail": 33500,
     "price": 36850,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e1526p-ei-o-std-v2.png",
     "id": 192
   },
   {
@@ -2119,7 +2119,7 @@ export const PRODUCTS = [
     "pcsCtn": "2",
     "retail": 74000,
     "price": 81400,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3e1552p-si-o-std.png",
     "id": 193
   },
   {
@@ -2130,7 +2130,7 @@ export const PRODUCTS = [
     "pcsCtn": "5",
     "retail": 4800,
     "price": 5280,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3wf0bc-2nt-b-o-std.png",
     "id": 194
   },
   {
@@ -2141,7 +2141,7 @@ export const PRODUCTS = [
     "pcsCtn": "5",
     "retail": 10800,
     "price": 11880,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3wf3000-ei-5ac-p-o-std.png",
     "id": 195
   },
   {
@@ -2152,7 +2152,7 @@ export const PRODUCTS = [
     "pcsCtn": "5",
     "retail": 12800,
     "price": 14080,
-    "image": "images/placeholder-networking.png",
+    "image": "images/imported/networking-ds-3wf02-5ac-d-o-std.png",
     "id": 196
   }
 ];
