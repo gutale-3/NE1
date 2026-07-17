@@ -126,6 +126,30 @@
     </div>
   </section>
 
+  <section data-screen-label="Solution Brochures" style="max-width:1100px;margin:0 auto;padding:64px 24px 20px">
+    <div style="text-align:center;margin-bottom:40px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">Resources</div>
+      <h2 style="font-size:30px;font-weight:800;margin:0 0 12px;color:#10202E;letter-spacing:-0.01em">Download official Hikvision solution brochures</h2>
+      <p style="font-size:15px;color:#7A8A96;max-width:640px;margin:0 auto;line-height:1.6">Detailed spec sheets and solution overviews, straight from Hikvision, for the industries NE supports.</p>
+    </div>
+    <sc-for list="{{ brochureGroups }}" as="grp" hint-placeholder-count="10">
+      <div style="margin-bottom:32px">
+        <div style="font-size:15px;font-weight:800;color:#10202E;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #E7ECF1">{{ grp.title }}</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
+          <sc-for list="{{ grp.items }}" as="doc" hint-placeholder-count="4">
+            <a href="{{ doc.file }}" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#0B8FCB">
+              <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0B8FCB;flex-shrink:0">{{ doc.ext }}</div>
+              <div style="min-width:0">
+                <div style="font-size:13.5px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ doc.title }}</div>
+                <div style="font-size:11.5px;color:#9AA9B4">{{ doc.size }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
   <section data-screen-label="CTA" style="max-width:1100px;margin:64px auto 0;padding:0 24px 64px">
     <div ref="{{ ctaRef }}" style="text-align:center;padding:44px;background:#0F2C3D;border-radius:18px;{{ ctaStyle }}">
       <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">Not sure which solution fits?</div>
@@ -243,6 +267,75 @@ class Component extends DCLogic {
       style: `display:flex;gap:14px;background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:20px;${revealCss(`fn-${i}`, (i % 3) * 0.07)}`,
     }));
 
+    const brochureGroups = [
+      { title: "Retail", items: [
+        { title: "Retail Solutions Overview", file: "assets/brochures/brochure-retail.pdf", ext: "PDF", size: "3.8 MB" },
+        { title: "Smart Supermarket Solution", file: "assets/brochures/brochure-smart-supermarket-solution.pdf", ext: "PDF", size: "1.4 MB" },
+        { title: "Shopping Malls Solution", file: "assets/brochures/leaflet-hikvision-solutions-for-shopping-malls.pdf", ext: "PDF", size: "2.1 MB" },
+        { title: "Cloud-Based Chain Store Solution", file: "assets/brochures/infographic-cloud-based-chain-store-solution.jpg", ext: "JPG", size: "2.3 MB" },
+      ] },
+      { title: "Education", items: [
+        { title: "Classroom Hub Solution", file: "assets/brochures/brochure-classroom-hub-solution.pdf", ext: "PDF", size: "2.5 MB" },
+        { title: "Smart Education Solution", file: "assets/brochures/brochure-smart-education-solution.pdf", ext: "PDF", size: "5.5 MB" },
+        { title: "Educational Digital Signage", file: "assets/brochures/flyer-educational-digital-signage.pdf", ext: "PDF", size: "895 KB" },
+        { title: "Education Course Recording", file: "assets/brochures/leaflet-education-course-recording.pdf", ext: "PDF", size: "2.0 MB" },
+        { title: "Remote Learning Solution", file: "assets/brochures/hikvision-remote-learning-solution-infor-2022.pdf", ext: "PDF", size: "1.4 MB" },
+        { title: "Remote Classroom Inspection", file: "assets/brochures/leaflet-remote-classroom-inspection-solution.pdf", ext: "PDF", size: "1.6 MB" },
+        { title: "Student Attendance Solution", file: "assets/brochures/leaflet-student-attendance-solution.pdf", ext: "PDF", size: "1.6 MB" },
+        { title: "Multi-Classroom Learning", file: "assets/brochures/inforgraphic-multi-classroom-learning.png", ext: "PNG", size: "1.6 MB" },
+        { title: "Educational Digital Signage (Infographic)", file: "assets/brochures/education-infographic-educational-digital-signage-20231122.jpg", ext: "JPG", size: "1.0 MB" },
+      ] },
+      { title: "Healthcare", items: [
+        { title: "Nursing Home Solution", file: "assets/brochures/brochure-nursing-home-solution.pdf", ext: "PDF", size: "1.8 MB" },
+      ] },
+      { title: "Logistics & Warehousing", items: [
+        { title: "Warehouse Solution", file: "assets/brochures/inforgraphic-warehouse-solution.pdf", ext: "PDF", size: "2.1 MB" },
+        { title: "Intelligent Logistics System", file: "assets/brochures/leaflet-intelligent-logistics-system-solution.pdf", ext: "PDF", size: "884 KB" },
+      ] },
+      { title: "Manufacturing", items: [
+        { title: "Manufacturing Solution", file: "assets/brochures/brochure-preview-manufacturing-solution-20231124.pdf", ext: "PDF", size: "3.6 MB" },
+        { title: "Manufacturing Solution (Leaflet)", file: "assets/brochures/leaflet-hikvision-manufacturing-solution.pdf", ext: "PDF", size: "1.7 MB" },
+        { title: "Industrial Inspection", file: "assets/brochures/infographic-preview-industrial-inspection-20231115.jpg", ext: "JPG", size: "2.9 MB" },
+        { title: "Construction Site Solution", file: "assets/brochures/inforgraphic-construction-site-solution.jpg", ext: "JPG", size: "2.4 MB" },
+      ] },
+      { title: "Public Transport & Traffic", items: [
+        { title: "Smart Bus Solution", file: "assets/brochures/leaflet-hikvision-smart-bus-solution.pdf", ext: "PDF", size: "1.1 MB" },
+        { title: "Intelligent Traffic System", file: "assets/brochures/leaflet-intelligent-traffic-system-solution.pdf", ext: "PDF", size: "1.7 MB" },
+        { title: "Highway Solutions", file: "assets/brochures/infographic-highway-solutions.jpg", ext: "JPG", size: "3.8 MB" },
+        { title: "Urban Roadways Solution", file: "assets/brochures/inforgraphic-urban-roadways-solution.jpg", ext: "JPG", size: "4.1 MB" },
+      ] },
+      { title: "Buildings", items: [
+        { title: "Visitor Management — Residential Buildings", file: "assets/brochures/building-sbf-inforgraphic-hikvision-visitor-management-solutions-for-residential-buildings-20230612.jpg", ext: "JPG", size: "4.1 MB" },
+        { title: "Visitor Management — Office Buildings", file: "assets/brochures/inforgraphic-visitor-management-solutions-for-office-buildings.jpg", ext: "JPG", size: "2.3 MB" },
+        { title: "Smart Lock Solution", file: "assets/brochures/building-sbf-inforgraphic-smart-lock-solution-20231019.jpg", ext: "JPG", size: "1.4 MB" },
+        { title: "Elevator Control Solution", file: "assets/brochures/inforgraphic-elevator-control-solution.jpg", ext: "JPG", size: "2.3 MB" },
+        { title: "Smart Hotel Solution", file: "assets/brochures/brochure-smart-hotel-solution.pdf", ext: "PDF", size: "2.3 MB" },
+      ] },
+      { title: "Energy", items: [
+        { title: "Solar Farm Solution", file: "assets/brochures/leaflet-hikvision-solar-farm-solution.pdf", ext: "PDF", size: "2.5 MB" },
+        { title: "Solar Farm Solution (Alt.)", file: "assets/brochures/leaflet-solar-farm-solution.pdf", ext: "PDF", size: "2.5 MB" },
+      ] },
+      { title: "Maritime & Stadiums", items: [
+        { title: "Smart Port & Maritime Solution", file: "assets/brochures/brochure-smart-port-maritime-solution.pdf", ext: "PDF", size: "919 KB" },
+        { title: "Stadiums Solution", file: "assets/brochures/brochure-stadiums-solution.pdf", ext: "PDF", size: "2.9 MB" },
+      ] },
+      { title: "Small Business", items: [
+        { title: "SMB Solutions Overview", file: "assets/brochures/leaflet-smb-solutions.pdf", ext: "PDF", size: "3.1 MB" },
+        { title: "SMB Solutions for Farms (1)", file: "assets/brochures/infographic-smb-solutions-for-farms-01.pdf", ext: "PDF", size: "2.5 MB" },
+        { title: "SMB Solutions for Farms (2)", file: "assets/brochures/infographic-smb-solutions-for-farms-02.pdf", ext: "PDF", size: "713 KB" },
+        { title: "SMB Solutions for Farms (3)", file: "assets/brochures/infographic-smb-solutions-for-farms-03.pdf", ext: "PDF", size: "385 KB" },
+        { title: "SMB Poster — Farms", file: "assets/brochures/poster-smb-solutions-for-farms.pdf", ext: "PDF", size: "205 KB" },
+        { title: "SMB Poster — Houses", file: "assets/brochures/poster-smb-solutions-for-houses.pdf", ext: "PDF", size: "176 KB" },
+        { title: "SMB Poster — Offices", file: "assets/brochures/poster-smb-solutions-for-offices.pdf", ext: "PDF", size: "183 KB" },
+        { title: "SMB Poster — Stores", file: "assets/brochures/poster-smb-solutions-for-stores.pdf", ext: "PDF", size: "206 KB" },
+        { title: "SMB Rollup — Farms", file: "assets/brochures/rollup-smb-solution-for-farms.pdf", ext: "PDF", size: "2.3 MB" },
+      ] },
+      { title: "General", items: [
+        { title: "AI Open Platform", file: "assets/brochures/flyer-ai-open-platform.pdf", ext: "PDF", size: "1.1 MB" },
+        { title: "Portable Products Catalog", file: "assets/brochures/brochure-portable-products-20260319.pdf", ext: "PDF", size: "3.9 MB" },
+      ] },
+    ];
+
     const sc = this.state.scrollY;
     const progressBarStyle = `position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4FC3EC,#0B8FCB);width:${(this.state.scrollProgress * 100).toFixed(2)}%;z-index:200;transition:width 0.1s linear`;
     const headerParallaxStyle = `position:absolute;inset:-10% -10% -30% -10%;background:radial-gradient(circle at 80% 20%, rgba(255,255,255,0.14) 0, transparent 45%);transform:translateY(${sc * 0.15}px);pointer-events:none`;
@@ -253,6 +346,7 @@ class Component extends DCLogic {
       industries,
       scenarios,
       functions,
+      brochureGroups,
       progressBarStyle,
       headerParallaxStyle,
       ctaRef: rref('cta'),
