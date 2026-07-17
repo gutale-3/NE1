@@ -1,0 +1,1 @@
+No stylesheet here — all styles are written inline on each element so pages render without waiting on a separate CSS request. This folder exists only as a placeholder if shared rules are ever extracted later.
