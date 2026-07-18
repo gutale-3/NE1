@@ -38,6 +38,20 @@
     },
     "geo": { "@type": "GeoCoordinates", "latitude": -1.2790893, "longitude": 36.8474745 },
     "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJL1wsUKARLxgRTEebeopQdiI",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Sunday",
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+254798131085",
@@ -107,6 +121,14 @@
           <div style="font-size:14px;color:#4A5B68;line-height:1.6">{{ c.sub }}</div>
         </a>
       </sc-for>
+    </div>
+  </section>
+
+  <section data-screen-label="Opening Hours" style="max-width:560px;margin:0 auto;padding:0 24px 64px">
+    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px 32px">
+      <div style="font-size:15px;font-weight:800;color:#10202E;margin-bottom:16px">Opening Hours</div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:14px;color:#4A5B68;border-bottom:1px dashed #EDF1F4"><span>Monday &ndash; Saturday</span><span style="font-weight:700;color:#10202E">08:00 &ndash; 20:00</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:14px;color:#4A5B68"><span>Sunday</span><span style="font-weight:700;color:#10202E">09:00 &ndash; 18:00</span></div>
     </div>
   </section>
 
