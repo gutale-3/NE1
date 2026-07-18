@@ -77,6 +77,38 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media=&#39;all&#39;">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 <script src="js/support.js" defer></script>
+<style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F6F8FA; color: #10202E; }
+    a { color: #086E9E; text-decoration: none; }
+    a:hover { color: #086E9E; }
+    @keyframes floatY { 0%, 100% { transform: translateY(0px) rotate(-1deg); } 50% { transform: translateY(-14px) rotate(1deg); } }
+    @keyframes blinkDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+    @keyframes scanSweep { 0% { transform: translateY(-100%); } 100% { transform: translateY(220%); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes pulseRing { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(1.6); opacity: 0; } }
+    .wa-pulse-btn::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(11,143,203,0.55); animation: pulseRing 2.2s ease-out infinite; pointer-events: none; }
+    @keyframes gradientShift { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(8%); } }
+    .hero-gradient-anim::before { content: ''; position: absolute; top: 0; bottom: 0; left: -15%; right: -15%; background: linear-gradient(120deg,#0B7EB5 0%,#0B8FCB 45%,#12A6DE 70%,#0B8FCB 100%); animation: gradientShift 10s ease-in-out infinite; will-change: transform; z-index: 0; }
+    .navtoggle-cb { display: none; }
+    .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
+    .hamburger-icon-close { display: none; }
+    .mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
+    .mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; }
+    @media (max-width: 860px) {
+      .nav-links, .call-btn { display: none !important; }
+      .hamburger-btn { display: flex !important; align-items: center; justify-content: center; }
+      .hero-grid { grid-template-columns: 1fr !important; padding: 48px 20px 56px !important; gap: 32px !important; }
+      .chip-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 560px) {
+      .stats-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
+    }
+    .navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
+    .navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
+    .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
+</style>
 </head>
 <body>
 <x-dc>
@@ -173,8 +205,8 @@
         </div>
       </div>
       <div style="position:relative">
-        <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);border-radius:20px;padding:28px;backdrop-filter:blur(6px);position:relative;overflow:hidden;animation:floatY 5s ease-in-out infinite">
-          <img src="images/007.webp" alt="Hikvision CCTV camera sold by Nashnaal Electronics in Kenya" fetchpriority="high" decoding="async" style="{{ heroImgStyle }}" />
+        <div style="background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.25);border-radius:20px;padding:28px;min-height:336px;box-sizing:border-box;position:relative;overflow:hidden;animation:floatY 5s ease-in-out infinite">
+          <img src="images/007.webp" alt="Hikvision CCTV camera sold by Nashnaal Electronics in Kenya" width="550" height="391" fetchpriority="high" decoding="async" style="width:100%;height:280px;object-fit:contain;display:block;{{ heroImgStyle }}" />
           <div style="position:absolute;left:0;right:0;height:36%;background:linear-gradient(180deg,transparent,rgba(79,195,236,0.35),transparent);animation:scanSweep 3.2s linear infinite;z-index:3;pointer-events:none"></div>
           <div style="position:absolute;top:44px;right:44px;display:flex;align-items:center;gap:6px;background:rgba(15,44,61,0.55);padding:6px 12px;border-radius:999px;z-index:4">
             <span style="width:7px;height:7px;border-radius:50%;background:#FF5C5C;display:inline-block;animation:blinkDot 1s ease-in-out infinite"></span>
@@ -488,7 +520,7 @@ class Component extends DCLogic {
     const parallaxCircle1 = `position:absolute;top:-60px;right:8%;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.08);filter:blur(2px);transform:translateY(${sc * 0.12}px);pointer-events:none`;
     const parallaxCircle2 = `position:absolute;bottom:-80px;left:4%;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.07);filter:blur(1px);transform:translateY(${sc * -0.08}px);pointer-events:none`;
     const heroZoom = 1 + Math.min(sc, 500) / 500 * 0.09;
-    const heroImgStyle = `width:100%;height:280px;object-fit:contain;display:block;filter:drop-shadow(0 20px 30px rgba(0,0,0,0.25));position:relative;z-index:2;transform:scale(${heroZoom.toFixed(3)});transition:transform 0.15s linear`;
+    const heroImgStyle = `filter:drop-shadow(0 20px 30px rgba(0,0,0,0.25));position:relative;z-index:2;transform:scale(${heroZoom.toFixed(3)});transition:transform 0.15s linear`;
     const progressBarStyle = `position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4FC3EC,#0B8FCB);width:${(this.state.scrollProgress * 100).toFixed(2)}%;z-index:200;transition:width 0.1s linear`;
 
     const trustBadges = [
