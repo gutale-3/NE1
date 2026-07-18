@@ -66,10 +66,22 @@
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F6F8FA; color: #10202E; }
-    a { color: #0B8FCB; text-decoration: none; }
+    a { color: #086E9E; text-decoration: none; }
     a:hover { color: #086E9E; }
     @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(11,143,203,0.55); } 100% { box-shadow: 0 0 0 18px rgba(11,143,203,0); } }
-  </style>
+    .navtoggle-cb { display: none; }
+    .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
+    .hamburger-icon-close { display: none; }
+    .mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
+    .mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; }
+    @media (max-width: 860px) {
+      .nav-links, .call-btn { display: none !important; }
+      .hamburger-btn { display: flex !important; align-items: center; justify-content: center; }
+    }
+    .navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
+    .navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
+    .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
+</style>
 </helmet>
 
 <div style="width:100%;min-height:100vh;background:#F6F8FA;overflow-x:hidden">
@@ -77,29 +89,44 @@
   <div style="{{ progressBarStyle }}"></div>
 
   <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #E7ECF1">
-    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:24px">
+    <input type="checkbox" id="navtoggle" class="navtoggle-cb">
+    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:16px">
       <a href="index.html" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
-        <img src="assets/nashnaal-logo-header.png" alt="NE" style="height:52px;width:auto;display:block" />
+        <img src="assets/nashnaal-logo-header.png" alt="NE" width="52" height="52" style="height:52px;width:auto;display:block" />
       </a>
-      <nav style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
+      <nav class="nav-links" style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
         <a href="index.html" style="font-size:15px;font-weight:600;color:#10202E">Home</a>
         <a href="world.html" style="font-size:15px;font-weight:600;color:#10202E">Explore</a>
         <a href="products.html" style="font-size:15px;font-weight:600;color:#10202E">Products</a>
-        <a href="solutions.html" style="font-size:15px;font-weight:700;color:#0B8FCB">Solutions</a>
+        <a href="solutions.html" style="font-size:15px;font-weight:600;color:#10202E">Solutions</a>
         <a href="services.html" style="font-size:15px;font-weight:600;color:#10202E">Services</a>
         <a href="about.html" style="font-size:15px;font-weight:600;color:#10202E">About</a>
         <a href="contact.html" style="font-size:15px;font-weight:600;color:#10202E">Contact</a>
       </nav>
-      <a href="tel:+254798131085" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#0B8FCB;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
+      <a href="tel:+254798131085" class="call-btn" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#086E9E;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
         Call 0798 131085
       </a>
+      <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
+        <span class="hamburger-icon-open">&#9776;</span>
+        <span class="hamburger-icon-close">&#10005;</span>
+      </label>
     </div>
+    <nav class="mobile-nav-panel">
+        <a href="index.html" style="display:block;font-weight:600;color:#10202E">Home</a>
+        <a href="world.html" style="display:block;font-weight:600;color:#10202E">Explore</a>
+        <a href="products.html" style="display:block;font-weight:600;color:#10202E">Products</a>
+        <a href="solutions.html" style="display:block;font-weight:600;color:#10202E">Solutions</a>
+        <a href="services.html" style="display:block;font-weight:600;color:#10202E">Services</a>
+        <a href="about.html" style="display:block;font-weight:600;color:#10202E">About</a>
+        <a href="contact.html" style="display:block;font-weight:600;color:#10202E">Contact</a>
+      <a href="tel:+254798131085" style="margin-top:12px;text-align:center;background:#086E9E;color:#fff;padding:15px;border-radius:8px;font-weight:700;font-size:16px">Call 0798 131085</a>
+    </nav>
   </header>
 
   <nav aria-label="Breadcrumb" style="max-width:1100px;margin:0 auto;padding:14px 24px 0">
-    <a href="index.html" style="font-size:13px;color:#7A8A96">Home</a>
+    <a href="index.html" style="font-size:13px;color:#4A5B68">Home</a>
     <span style="font-size:13px;color:#C3CDD4;margin:0 6px">/</span>
-    <a href="solutions.html" style="font-size:13px;color:#7A8A96">Solutions</a>
+    <a href="solutions.html" style="font-size:13px;color:#4A5B68">Solutions</a>
     <span style="font-size:13px;color:#C3CDD4;margin:0 6px">/</span>
     <span style="font-size:13px;color:#10202E;font-weight:600">Maritime & Stadiums</span>
   </nav>
@@ -110,7 +137,7 @@
     <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px 44px">
       <a href="solutions.html" style="font-size:13px;font-weight:700;color:#4FC3EC;margin-bottom:14px">&larr; All Solutions</a>
       <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:10px">Solutions · Maritime & Stadiums</div>
-      <h1 style="font-size:38px;font-weight:800;margin:0 0 14px;color:#fff;letter-spacing:-0.01em;max-width:760px">Maritime, Ports & Stadium Solutions</h1>
+      <h1 style="font-size:clamp(1.65rem, 4vw + 0.95rem, 2.375rem);font-weight:800;margin:0 0 14px;color:#fff;letter-spacing:-0.01em;max-width:760px">Maritime, Ports & Stadium Solutions</h1>
       <p style="font-size:16px;color:rgba(255,255,255,0.9);margin:0;line-height:1.6;max-width:680px">High-traffic, high-stakes venues — ports and stadiums — need security that scales to thousands of people and vehicles without slowing anything down.</p>
     </div>
   </section>
@@ -124,134 +151,134 @@
 
   <section data-screen-label="How It Works" style="max-width:1180px;margin:0 auto;padding:56px 24px 20px">
     <div style="text-align:center;margin-bottom:32px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">How It Works</div>
-      <h2 style="font-size:26px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">How does Hikvision's Maritime & Stadiums solution work?</h2>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">How It Works</div>
+      <h2 style="font-size:clamp(1.3rem, 2.8vw + 0.65rem, 1.625rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">How does Hikvision's Maritime & Stadiums solution work?</h2>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime.webp" alt="Hikvision Solutions for Stadiums" loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Hikvision Solutions for Stadiums</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Hikvision Solutions for Stadiums</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime2.webp" alt="Smart Port and Maritime Solution" loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Smart Port and Maritime Solution</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Smart Port and Maritime Solution</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/stadiums-01.webp" alt="Hikvision Solutions for Stadiums — engaging fans, securing games." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Hikvision Solutions for Stadiums — engaging fans, securing games.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Hikvision Solutions for Stadiums — engaging fans, securing games.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/stadiums-02.webp" alt="Boosted fan experience, secured and streamlined operations." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Boosted fan experience, secured and streamlined operations.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Boosted fan experience, secured and streamlined operations.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/stadiums-04.webp" alt="Convenient parking for everyone." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Convenient parking for everyone.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Convenient parking for everyone.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/stadiums-05.webp" alt="Visual engagement through LED screens; record and stream games." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Visual engagement through LED screens; record and stream games.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Visual engagement through LED screens; record and stream games.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/stadiums-06.webp" alt="Secure and streamline your stadium operations." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Secure and streamline your stadium operations.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Secure and streamline your stadium operations.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/stadiums-07.webp" alt="Efficient security inspection & access control." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Efficient security inspection & access control.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Efficient security inspection & access control.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/stadiums-08.webp" alt="Protect players, staff and fans on the move." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Protect players, staff and fans on the move.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Protect players, staff and fans on the move.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/stadiums-09.webp" alt="Automate perimeter protection with AI." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Automate perimeter protection with AI.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Automate perimeter protection with AI.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/stadiums-10.webp" alt="Digital management of security patrols." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Digital management of security patrols.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Digital management of security patrols.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/stadiums-11.webp" alt="Enhance situational awareness throughout the venue." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Enhance situational awareness throughout the venue.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Enhance situational awareness throughout the venue.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/stadiums-12.webp" alt="Engaging fans, securing games." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Engaging fans, securing games.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Engaging fans, securing games.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-04.webp" alt="Smart Solution for Port & Maritime." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Smart Solution for Port & Maritime.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Smart Solution for Port & Maritime.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-06.webp" alt="Vehicle Access Control, Parking & Warehouse." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Vehicle Access Control, Parking & Warehouse.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Vehicle Access Control, Parking & Warehouse.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-07.webp" alt="Parking Area Monitoring & Perimeter Protection." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Parking Area Monitoring & Perimeter Protection.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Parking Area Monitoring & Perimeter Protection.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-08.webp" alt="On-Board Monitoring & Security Center." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">On-Board Monitoring & Security Center.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">On-Board Monitoring & Security Center.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-09.webp" alt="Data Safety — redundancy and backup design." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Data Safety — redundancy and backup design.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Data Safety — redundancy and backup design.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-10.webp" alt="Alarm Management — RAID, notification and data recovery." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Alarm Management — RAID, notification and data recovery.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Alarm Management — RAID, notification and data recovery.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-11.webp" alt="Product Showcase — port & maritime cameras." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Product Showcase — port & maritime cameras.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Product Showcase — port & maritime cameras.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-12.webp" alt="Product Showcase — mobile NVRs and recorders." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Product Showcase — mobile NVRs and recorders.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Product Showcase — mobile NVRs and recorders.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-13.webp" alt="Product Showcase — mobile cameras." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Product Showcase — mobile cameras.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Product Showcase — mobile cameras.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-14.webp" alt="Product Showcase — storage systems." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Product Showcase — storage systems.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Product Showcase — storage systems.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-15.webp" alt="Product Showcase — displays and controllers." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Product Showcase — displays and controllers.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Product Showcase — displays and controllers.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/maritime-16.webp" alt="Minimize risk, maximize business at the retail port." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Minimize risk, maximize business at the retail port.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Minimize risk, maximize business at the retail port.</div>
     </div>
   </section>
 
   <section data-screen-label="Features" style="max-width:1100px;margin:0 auto;padding:56px 24px 20px">
     <div style="text-align:center;margin-bottom:36px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">Key Capabilities</div>
-      <h2 style="font-size:26px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">What does NE's Maritime & Stadiums solution include?</h2>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Key Capabilities</div>
+      <h2 style="font-size:clamp(1.3rem, 2.8vw + 0.65rem, 1.625rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">What does NE's Maritime & Stadiums solution include?</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
       <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#0B8FCB;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">⚓</div>
+        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">⚓</div>
         <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">Port Security</div>
         <div style="font-size:14px;line-height:1.65;color:#4A5B68">Technologically advanced cameras capture fine detail in the harshest conditions, with reliable recording for after-the-fact review.</div>
       </div>
       <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#0B8FCB;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">🅿️</div>
+        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">🅿️</div>
         <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">Guided Parking</div>
         <div style="font-size:14px;line-height:1.65;color:#4A5B68">Intelligent barriers and ANPR speed up authorized entry, while parking-guidance cameras direct drivers straight to an open space.</div>
       </div>
       <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#0B8FCB;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">🎉</div>
+        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">🎉</div>
         <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">Fan Experience</div>
         <div style="font-size:14px;line-height:1.65;color:#4A5B68">LED visual engagement and event live-streaming complement stadium security without adding friction.</div>
       </div>
       <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#0B8FCB;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">👥</div>
+        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">👥</div>
         <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">Crowd & Event Management</div>
         <div style="font-size:14px;line-height:1.65;color:#4A5B68">Coordinated camera coverage across parking, concourses and seating keeps large-scale events running smoothly.</div>
       </div>
@@ -261,12 +288,12 @@
   <section data-screen-label="Related Brochures" style="max-width:1100px;margin:0 auto;padding:20px 24px 20px">
     <div style="font-size:15px;font-weight:800;color:#10202E;margin-bottom:14px">Related Hikvision brochures</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px">
-      <a href="assets/brochures/brochure-smart-port-maritime-solution.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#0B8FCB">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0B8FCB;flex-shrink:0">PDF</div>
+      <a href="assets/brochures/brochure-smart-port-maritime-solution.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
+        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
         <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Smart Port & Maritime Solution</div>
       </a>
-      <a href="assets/brochures/brochure-stadiums-solution.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#0B8FCB">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0B8FCB;flex-shrink:0">PDF</div>
+      <a href="assets/brochures/brochure-stadiums-solution.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
+        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
         <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Stadiums Solution</div>
       </a>
     </div>
@@ -275,17 +302,17 @@
   <section data-screen-label="Related Solutions" style="max-width:1100px;margin:0 auto;padding:20px 24px 20px">
     <div style="font-size:15px;font-weight:800;color:#10202E;margin-bottom:14px">Related solutions</div>
     <div style="display:flex;flex-wrap:wrap;gap:10px">
-      <a href="solution-smb.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#0B8FCB;color:#0B8FCB">Small Business &rarr;</a>
-      <a href="solution-retail.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#0B8FCB;color:#0B8FCB">Retail &rarr;</a>
-      <a href="solution-education.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#0B8FCB;color:#0B8FCB">Education &rarr;</a>
-      <a href="solution-healthcare.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#0B8FCB;color:#0B8FCB">Healthcare &rarr;</a>
+      <a href="solution-smb.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Small Business &rarr;</a>
+      <a href="solution-retail.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Retail &rarr;</a>
+      <a href="solution-education.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Education &rarr;</a>
+      <a href="solution-healthcare.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Healthcare &rarr;</a>
     </div>
   </section>
 
   <section data-screen-label="FAQ" style="max-width:860px;margin:0 auto;padding:56px 24px 20px">
     <div style="text-align:center;margin-bottom:32px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">FAQ</div>
-      <h2 style="font-size:26px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Common questions about Maritime & Stadiums security</h2>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">FAQ</div>
+      <h2 style="font-size:clamp(1.3rem, 2.8vw + 0.65rem, 1.625rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Common questions about Maritime & Stadiums security</h2>
     </div>
     <div style="display:flex;flex-direction:column;gap:16px">
       <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
@@ -308,7 +335,7 @@
       <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">Want this for your site?</div>
       <div style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:24px">Tell NE about your maritime & stadiums project and we'll recommend the right cameras, recorders and access control.</div>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <a href="contact.html" style="background:#0B8FCB;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Talk to NE</a>
+        <a href="contact.html" style="background:#086E9E;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Talk to NE</a>
         <a href="products.html?cat=CCTV-IP" style="background:rgba(255,255,255,0.1);color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px;border:1.5px solid rgba(255,255,255,0.25)" style-hover="background:rgba(255,255,255,0.18)">Browse Products</a>
       </div>
     </div>

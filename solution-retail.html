@@ -66,10 +66,22 @@
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F6F8FA; color: #10202E; }
-    a { color: #0B8FCB; text-decoration: none; }
+    a { color: #086E9E; text-decoration: none; }
     a:hover { color: #086E9E; }
     @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(11,143,203,0.55); } 100% { box-shadow: 0 0 0 18px rgba(11,143,203,0); } }
-  </style>
+    .navtoggle-cb { display: none; }
+    .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
+    .hamburger-icon-close { display: none; }
+    .mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
+    .mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; }
+    @media (max-width: 860px) {
+      .nav-links, .call-btn { display: none !important; }
+      .hamburger-btn { display: flex !important; align-items: center; justify-content: center; }
+    }
+    .navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
+    .navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
+    .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
+</style>
 </helmet>
 
 <div style="width:100%;min-height:100vh;background:#F6F8FA;overflow-x:hidden">
@@ -77,29 +89,44 @@
   <div style="{{ progressBarStyle }}"></div>
 
   <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #E7ECF1">
-    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:24px">
+    <input type="checkbox" id="navtoggle" class="navtoggle-cb">
+    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:16px">
       <a href="index.html" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
-        <img src="assets/nashnaal-logo-header.png" alt="NE" style="height:52px;width:auto;display:block" />
+        <img src="assets/nashnaal-logo-header.png" alt="NE" width="52" height="52" style="height:52px;width:auto;display:block" />
       </a>
-      <nav style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
+      <nav class="nav-links" style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
         <a href="index.html" style="font-size:15px;font-weight:600;color:#10202E">Home</a>
         <a href="world.html" style="font-size:15px;font-weight:600;color:#10202E">Explore</a>
         <a href="products.html" style="font-size:15px;font-weight:600;color:#10202E">Products</a>
-        <a href="solutions.html" style="font-size:15px;font-weight:700;color:#0B8FCB">Solutions</a>
+        <a href="solutions.html" style="font-size:15px;font-weight:600;color:#10202E">Solutions</a>
         <a href="services.html" style="font-size:15px;font-weight:600;color:#10202E">Services</a>
         <a href="about.html" style="font-size:15px;font-weight:600;color:#10202E">About</a>
         <a href="contact.html" style="font-size:15px;font-weight:600;color:#10202E">Contact</a>
       </nav>
-      <a href="tel:+254798131085" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#0B8FCB;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
+      <a href="tel:+254798131085" class="call-btn" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#086E9E;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
         Call 0798 131085
       </a>
+      <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
+        <span class="hamburger-icon-open">&#9776;</span>
+        <span class="hamburger-icon-close">&#10005;</span>
+      </label>
     </div>
+    <nav class="mobile-nav-panel">
+        <a href="index.html" style="display:block;font-weight:600;color:#10202E">Home</a>
+        <a href="world.html" style="display:block;font-weight:600;color:#10202E">Explore</a>
+        <a href="products.html" style="display:block;font-weight:600;color:#10202E">Products</a>
+        <a href="solutions.html" style="display:block;font-weight:600;color:#10202E">Solutions</a>
+        <a href="services.html" style="display:block;font-weight:600;color:#10202E">Services</a>
+        <a href="about.html" style="display:block;font-weight:600;color:#10202E">About</a>
+        <a href="contact.html" style="display:block;font-weight:600;color:#10202E">Contact</a>
+      <a href="tel:+254798131085" style="margin-top:12px;text-align:center;background:#086E9E;color:#fff;padding:15px;border-radius:8px;font-weight:700;font-size:16px">Call 0798 131085</a>
+    </nav>
   </header>
 
   <nav aria-label="Breadcrumb" style="max-width:1100px;margin:0 auto;padding:14px 24px 0">
-    <a href="index.html" style="font-size:13px;color:#7A8A96">Home</a>
+    <a href="index.html" style="font-size:13px;color:#4A5B68">Home</a>
     <span style="font-size:13px;color:#C3CDD4;margin:0 6px">/</span>
-    <a href="solutions.html" style="font-size:13px;color:#7A8A96">Solutions</a>
+    <a href="solutions.html" style="font-size:13px;color:#4A5B68">Solutions</a>
     <span style="font-size:13px;color:#C3CDD4;margin:0 6px">/</span>
     <span style="font-size:13px;color:#10202E;font-weight:600">Retail</span>
   </nav>
@@ -110,7 +137,7 @@
     <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px 44px">
       <a href="solutions.html" style="font-size:13px;font-weight:700;color:#4FC3EC;margin-bottom:14px">&larr; All Solutions</a>
       <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:10px">Solutions · Retail</div>
-      <h1 style="font-size:38px;font-weight:800;margin:0 0 14px;color:#fff;letter-spacing:-0.01em;max-width:760px">Smart Retail Solutions</h1>
+      <h1 style="font-size:clamp(1.65rem, 4vw + 0.95rem, 2.375rem);font-weight:800;margin:0 0 14px;color:#fff;letter-spacing:-0.01em;max-width:760px">Smart Retail Solutions</h1>
       <p style="font-size:16px;color:rgba(255,255,255,0.9);margin:0;line-height:1.6;max-width:680px">Retail is shifting from fragmented cameras to unified, data-driven operations. NE deploys Hikvision's retail lineup to help shops, supermarkets and malls see what's happening on the floor — and act on it.</p>
     </div>
   </section>
@@ -124,66 +151,66 @@
 
   <section data-screen-label="How It Works" style="max-width:1180px;margin:0 auto;padding:56px 24px 20px">
     <div style="text-align:center;margin-bottom:32px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">How It Works</div>
-      <h2 style="font-size:26px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">How does Hikvision's Retail solution work?</h2>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">How It Works</div>
+      <h2 style="font-size:clamp(1.3rem, 2.8vw + 0.65rem, 1.625rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">How does Hikvision's Retail solution work?</h2>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/retail.webp" alt="Hikvision Smart Retail Solution — store-wide overview: control room, shopping floor, cashier, parking and loss prevention working together." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Hikvision Smart Retail Solution — store-wide overview: control room, shopping floor, cashier, parking and loss prevention working together.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Hikvision Smart Retail Solution — store-wide overview: control room, shopping floor, cashier, parking and loss prevention working together.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/retail-04.webp" alt="Central Management — HikCentral Professional dashboard across every store." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Central Management — HikCentral Professional dashboard across every store.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Central Management — HikCentral Professional dashboard across every store.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/retail-05.webp" alt="Remote Audit — standardized store inspection workflows." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Remote Audit — standardized store inspection workflows.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Remote Audit — standardized store inspection workflows.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/retail-06.webp" alt="In-Store Business Intelligence — customer flow and queue analytics." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">In-Store Business Intelligence — customer flow and queue analytics.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">In-Store Business Intelligence — customer flow and queue analytics.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/retail-07.webp" alt="Commercial Audio & Display — promotions, broadcast and in-store atmosphere." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Commercial Audio & Display — promotions, broadcast and in-store atmosphere.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Commercial Audio & Display — promotions, broadcast and in-store atmosphere.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/retail-08.webp" alt="Loss Prevention — goods, staff and customer safety." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Loss Prevention — goods, staff and customer safety.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Loss Prevention — goods, staff and customer safety.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/retail-09.webp" alt="Parking Management & Portable Monitoring." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Parking Management & Portable Monitoring.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Parking Management & Portable Monitoring.</div>
     </div>
     <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
       <img src="assets/solutions/diagrams/retail-10.webp" alt="Product Showcase — the Hikvision retail hardware line-up." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#7A8A96;border-top:1px solid #F0F3F5">Product Showcase — the Hikvision retail hardware line-up.</div>
+      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Product Showcase — the Hikvision retail hardware line-up.</div>
     </div>
   </section>
 
   <section data-screen-label="Features" style="max-width:1100px;margin:0 auto;padding:56px 24px 20px">
     <div style="text-align:center;margin-bottom:36px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">Key Capabilities</div>
-      <h2 style="font-size:26px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">What does NE's Retail solution include?</h2>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Key Capabilities</div>
+      <h2 style="font-size:clamp(1.3rem, 2.8vw + 0.65rem, 1.625rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">What does NE's Retail solution include?</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
       <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#0B8FCB;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">🖥️</div>
+        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">🖥️</div>
         <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">Central Management</div>
         <div style="font-size:14px;line-height:1.65;color:#4A5B68">HikCentral Professional connects every store's hardware into one dashboard — health monitoring, alerts and multi-site oversight from a single screen.</div>
       </div>
       <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#0B8FCB;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">📢</div>
+        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">📢</div>
         <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">Commercial Display & Audio</div>
         <div style="font-size:14px;line-height:1.65;color:#4A5B68">Digital signage and public address turn your CCTV infrastructure into a promotion and safety tool — announcements, two-way audio and alarm linkage in one system.</div>
       </div>
       <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#0B8FCB;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">✅</div>
+        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">✅</div>
         <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">Remote Audit</div>
         <div style="font-size:14px;line-height:1.65;color:#4A5B68">Standardized remote inspection workflows cut store-check time to minutes, with issues flagged automatically instead of manual walk-throughs.</div>
       </div>
       <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#0B8FCB;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">👁️</div>
+        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">👁️</div>
         <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">Loss Prevention</div>
         <div style="font-size:14px;line-height:1.65;color:#4A5B68">People-counting and video analytics turn footfall into actionable insight, while ANPR and access control secure entrances and back-of-house.</div>
       </div>
@@ -193,20 +220,20 @@
   <section data-screen-label="Related Brochures" style="max-width:1100px;margin:0 auto;padding:20px 24px 20px">
     <div style="font-size:15px;font-weight:800;color:#10202E;margin-bottom:14px">Related Hikvision brochures</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px">
-      <a href="assets/brochures/brochure-retail.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#0B8FCB">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0B8FCB;flex-shrink:0">PDF</div>
+      <a href="assets/brochures/brochure-retail.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
+        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
         <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Retail Solutions Overview</div>
       </a>
-      <a href="assets/brochures/brochure-smart-supermarket-solution.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#0B8FCB">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0B8FCB;flex-shrink:0">PDF</div>
+      <a href="assets/brochures/brochure-smart-supermarket-solution.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
+        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
         <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Smart Supermarket Solution</div>
       </a>
-      <a href="assets/brochures/leaflet-hikvision-solutions-for-shopping-malls.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#0B8FCB">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0B8FCB;flex-shrink:0">PDF</div>
+      <a href="assets/brochures/leaflet-hikvision-solutions-for-shopping-malls.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
+        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
         <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Shopping Malls Solution</div>
       </a>
-      <a href="assets/brochures/infographic-cloud-based-chain-store-solution.jpg" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#0B8FCB">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0B8FCB;flex-shrink:0">JPG</div>
+      <a href="assets/brochures/infographic-cloud-based-chain-store-solution.jpg" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
+        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">JPG</div>
         <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Cloud-Based Chain Store Solution</div>
       </a>
     </div>
@@ -215,17 +242,17 @@
   <section data-screen-label="Related Solutions" style="max-width:1100px;margin:0 auto;padding:20px 24px 20px">
     <div style="font-size:15px;font-weight:800;color:#10202E;margin-bottom:14px">Related solutions</div>
     <div style="display:flex;flex-wrap:wrap;gap:10px">
-      <a href="solution-education.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#0B8FCB;color:#0B8FCB">Education &rarr;</a>
-      <a href="solution-healthcare.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#0B8FCB;color:#0B8FCB">Healthcare &rarr;</a>
-      <a href="solution-logistics.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#0B8FCB;color:#0B8FCB">Logistics & Warehousing &rarr;</a>
-      <a href="solution-manufacturing.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#0B8FCB;color:#0B8FCB">Manufacturing &rarr;</a>
+      <a href="solution-education.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Education &rarr;</a>
+      <a href="solution-healthcare.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Healthcare &rarr;</a>
+      <a href="solution-logistics.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Logistics & Warehousing &rarr;</a>
+      <a href="solution-manufacturing.html" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Manufacturing &rarr;</a>
     </div>
   </section>
 
   <section data-screen-label="FAQ" style="max-width:860px;margin:0 auto;padding:56px 24px 20px">
     <div style="text-align:center;margin-bottom:32px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">FAQ</div>
-      <h2 style="font-size:26px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Common questions about Retail security</h2>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">FAQ</div>
+      <h2 style="font-size:clamp(1.3rem, 2.8vw + 0.65rem, 1.625rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Common questions about Retail security</h2>
     </div>
     <div style="display:flex;flex-direction:column;gap:16px">
       <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
@@ -248,7 +275,7 @@
       <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">Want this for your site?</div>
       <div style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:24px">Tell NE about your retail project and we'll recommend the right cameras, recorders and access control.</div>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <a href="contact.html" style="background:#0B8FCB;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Talk to NE</a>
+        <a href="contact.html" style="background:#086E9E;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Talk to NE</a>
         <a href="products.html?cat=CCTV-IP" style="background:rgba(255,255,255,0.1);color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px;border:1.5px solid rgba(255,255,255,0.25)" style-hover="background:rgba(255,255,255,0.18)">Browse Products</a>
       </div>
     </div>

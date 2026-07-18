@@ -32,10 +32,26 @@
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F6F8FA; color: #10202E; }
-    a { color: #0B8FCB; text-decoration: none; }
+    a { color: #086E9E; text-decoration: none; }
     a:hover { color: #086E9E; }
     @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(11,143,203,0.55); } 100% { box-shadow: 0 0 0 18px rgba(11,143,203,0); } }
-  </style>
+    .navtoggle-cb { display: none; }
+    .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
+    .hamburger-icon-close { display: none; }
+    .mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
+    .mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; }
+    @media (max-width: 860px) {
+      .nav-links, .call-btn { display: none !important; }
+      .hamburger-btn { display: flex !important; align-items: center; justify-content: center; }
+    }
+    .navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
+    .navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
+    .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
+    @media (max-width: 700px) {
+      .timeline-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .timeline-connector { display: none !important; }
+    }
+</style>
 </helmet>
 
 <div style="width:100%;min-height:100vh;background:#F6F8FA;overflow-x:hidden">
@@ -43,30 +59,45 @@
   <div style="{{ progressBarStyle }}"></div>
 
   <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #E7ECF1">
-    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:24px">
+    <input type="checkbox" id="navtoggle" class="navtoggle-cb">
+    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:16px">
       <a href="index.html" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
-        <img src="assets/nashnaal-logo-header.png" alt="NE" style="height:52px;width:auto;display:block" />
+        <img src="assets/nashnaal-logo-header.png" alt="NE" width="52" height="52" style="height:52px;width:auto;display:block" />
       </a>
-      <nav style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
+      <nav class="nav-links" style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
         <a href="index.html" style="font-size:15px;font-weight:600;color:#10202E">Home</a>
         <a href="world.html" style="font-size:15px;font-weight:600;color:#10202E">Explore</a>
         <a href="products.html" style="font-size:15px;font-weight:600;color:#10202E">Products</a>
         <a href="solutions.html" style="font-size:15px;font-weight:600;color:#10202E">Solutions</a>
-        <a href="services.html" style="font-size:15px;font-weight:700;color:#0B8FCB">Services</a>
+        <a href="services.html" style="font-size:15px;font-weight:700;color:#086E9E">Services</a>
         <a href="about.html" style="font-size:15px;font-weight:600;color:#10202E">About</a>
         <a href="contact.html" style="font-size:15px;font-weight:600;color:#10202E">Contact</a>
       </nav>
-      <a href="tel:+254798131085" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#0B8FCB;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
+      <a href="tel:+254798131085" class="call-btn" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#086E9E;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
         Call 0798 131085
       </a>
+      <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
+        <span class="hamburger-icon-open">&#9776;</span>
+        <span class="hamburger-icon-close">&#10005;</span>
+      </label>
     </div>
+    <nav class="mobile-nav-panel">
+        <a href="index.html" style="display:block;font-weight:600;color:#10202E">Home</a>
+        <a href="world.html" style="display:block;font-weight:600;color:#10202E">Explore</a>
+        <a href="products.html" style="display:block;font-weight:600;color:#10202E">Products</a>
+        <a href="solutions.html" style="display:block;font-weight:600;color:#10202E">Solutions</a>
+        <a href="services.html" style="display:block;font-weight:700;color:#086E9E">Services</a>
+        <a href="about.html" style="display:block;font-weight:600;color:#10202E">About</a>
+        <a href="contact.html" style="display:block;font-weight:600;color:#10202E">Contact</a>
+      <a href="tel:+254798131085" style="margin-top:12px;text-align:center;background:#086E9E;color:#fff;padding:15px;border-radius:8px;font-weight:700;font-size:16px">Call 0798 131085</a>
+    </nav>
   </header>
 
   <section data-screen-label="Services Header" style="background:linear-gradient(135deg,#0B7EB5 0%,#0B8FCB 100%);padding:64px 24px;position:relative;overflow:hidden">
     <div style="{{ headerParallaxStyle }}"></div>
     <div style="max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:2">
       <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:10px">What NE Does</div>
-      <h1 style="font-size:40px;font-weight:800;margin:0 0 14px;color:#fff;letter-spacing:-0.01em">More than a Hikvision supplier</h1>
+      <h1 style="font-size:clamp(1.7rem, 4vw + 1rem, 2.5rem);font-weight:800;margin:0 0 14px;color:#fff;letter-spacing:-0.01em">More than a Hikvision supplier</h1>
       <p style="font-size:17px;color:rgba(255,255,255,0.88);margin:0;line-height:1.6">NE pairs genuine Hikvision hardware with hands-on installation, support and system design &mdash; so your security investment actually works from day one.</p>
     </div>
   </section>
@@ -85,7 +116,7 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px">
       <sc-for list="{{ services }}" as="svc" hint-placeholder-count="4">
         <div ref="{{ svc.ref }}" style="{{ svc.style }}">
-          <div style="width:50px;height:50px;border-radius:12px;background:#0B8FCB;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:22px">{{ svc.icon }}</div>
+          <div style="width:50px;height:50px;border-radius:12px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:22px">{{ svc.icon }}</div>
           <div style="font-size:19px;font-weight:800;margin-bottom:10px">{{ svc.title }}</div>
           <div style="font-size:15px;line-height:1.7;color:#4A5B68">{{ svc.desc }}</div>
         </div>
@@ -95,17 +126,17 @@
 
   <section data-screen-label="How It Works" style="max-width:1100px;margin:0 auto;padding:20px 24px 64px">
     <div style="text-align:center;margin-bottom:48px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">How NE Works</div>
-      <h2 style="font-size:30px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">From enquiry to a working system</h2>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">How NE Works</div>
+      <h2 style="font-size:clamp(1.4rem, 3.2vw + 0.75rem, 1.875rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">From enquiry to a working system</h2>
     </div>
-    <div ref="{{ timelineRef }}" style="position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
-      <div style="position:absolute;top:23px;left:12.5%;right:12.5%;height:3px;background:#E7ECF1;z-index:1"></div>
-      <div style="{{ timelineFillStyle }}"></div>
+    <div ref="{{ timelineRef }}" class="timeline-grid" style="position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+      <div class="timeline-connector" style="position:absolute;top:23px;left:12.5%;right:12.5%;height:3px;background:#E7ECF1;z-index:1"></div>
+      <div class="timeline-connector" style="{{ timelineFillStyle }}"></div>
       <sc-for list="{{ milestones }}" as="m" hint-placeholder-count="4">
         <div style="{{ m.wrapStyle }}">
           <div style="{{ m.dotStyle }}">{{ m.num }}</div>
           <div style="font-size:15.5px;font-weight:800;margin:16px 0 6px;color:#10202E">{{ m.title }}</div>
-          <div style="font-size:13.5px;line-height:1.6;color:#7A8A96">{{ m.desc }}</div>
+          <div style="font-size:13.5px;line-height:1.6;color:#4A5B68">{{ m.desc }}</div>
         </div>
       </sc-for>
     </div>
@@ -115,7 +146,7 @@
     <div ref="{{ ctaRef }}" style="text-align:center;padding:44px;background:#0F2C3D;border-radius:18px;{{ ctaStyle }}">
       <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">Ready to start a project?</div>
       <div style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:24px">Tell NE what you need and we'll recommend the right setup.</div>
-      <a href="contact.html" style="background:#0B8FCB;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Contact NE</a>
+      <a href="contact.html" style="background:#086E9E;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Contact NE</a>
     </div>
   </section>
 
@@ -206,7 +237,7 @@ class Component extends DCLogic {
         dotStyle: `width:46px;height:46px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;background:${active ? '#0B8FCB' : '#fff'};color:${active ? '#fff' : '#7A8A96'};border:3px solid ${active ? '#0B8FCB' : '#E7ECF1'};transition:background 0.4s ease, border-color 0.4s ease, color 0.4s ease`,
       };
     });
-    const timelineFillStyle = `position:absolute;top:23px;left:12.5%;height:3px;width:${(tp * 75).toFixed(1)}%;background:#0B8FCB;z-index:1;transition:width 0.15s linear`;
+    const timelineFillStyle = `position:absolute;top:23px;left:12.5%;height:3px;width:${(tp * 75).toFixed(1)}%;background:#086E9E;z-index:1;transition:width 0.15s linear`;
 
     const ctaVis = reveal ? reveal.visible('cta') : false;
 

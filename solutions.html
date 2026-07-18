@@ -32,10 +32,22 @@
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F6F8FA; color: #10202E; }
-    a { color: #0B8FCB; text-decoration: none; }
+    a { color: #086E9E; text-decoration: none; }
     a:hover { color: #086E9E; }
     @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(11,143,203,0.55); } 100% { box-shadow: 0 0 0 18px rgba(11,143,203,0); } }
-  </style>
+    .navtoggle-cb { display: none; }
+    .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
+    .hamburger-icon-close { display: none; }
+    .mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
+    .mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; }
+    @media (max-width: 860px) {
+      .nav-links, .call-btn { display: none !important; }
+      .hamburger-btn { display: flex !important; align-items: center; justify-content: center; }
+    }
+    .navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
+    .navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
+    .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
+</style>
 </helmet>
 
 <div style="width:100%;min-height:100vh;background:#F6F8FA;overflow-x:hidden">
@@ -43,38 +55,53 @@
   <div style="{{ progressBarStyle }}"></div>
 
   <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #E7ECF1">
-    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:24px">
+    <input type="checkbox" id="navtoggle" class="navtoggle-cb">
+    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:16px">
       <a href="index.html" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
-        <img src="assets/nashnaal-logo-header.png" alt="NE" style="height:52px;width:auto;display:block" />
+        <img src="assets/nashnaal-logo-header.png" alt="NE" width="52" height="52" style="height:52px;width:auto;display:block" />
       </a>
-      <nav style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
+      <nav class="nav-links" style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
         <a href="index.html" style="font-size:15px;font-weight:600;color:#10202E">Home</a>
         <a href="world.html" style="font-size:15px;font-weight:600;color:#10202E">Explore</a>
         <a href="products.html" style="font-size:15px;font-weight:600;color:#10202E">Products</a>
-        <a href="solutions.html" style="font-size:15px;font-weight:700;color:#0B8FCB">Solutions</a>
+        <a href="solutions.html" style="font-size:15px;font-weight:700;color:#086E9E">Solutions</a>
         <a href="services.html" style="font-size:15px;font-weight:600;color:#10202E">Services</a>
         <a href="about.html" style="font-size:15px;font-weight:600;color:#10202E">About</a>
         <a href="contact.html" style="font-size:15px;font-weight:600;color:#10202E">Contact</a>
       </nav>
-      <a href="tel:+254798131085" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#0B8FCB;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
+      <a href="tel:+254798131085" class="call-btn" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#086E9E;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
         Call 0798 131085
       </a>
+      <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
+        <span class="hamburger-icon-open">&#9776;</span>
+        <span class="hamburger-icon-close">&#10005;</span>
+      </label>
     </div>
+    <nav class="mobile-nav-panel">
+        <a href="index.html" style="display:block;font-weight:600;color:#10202E">Home</a>
+        <a href="world.html" style="display:block;font-weight:600;color:#10202E">Explore</a>
+        <a href="products.html" style="display:block;font-weight:600;color:#10202E">Products</a>
+        <a href="solutions.html" style="display:block;font-weight:700;color:#086E9E">Solutions</a>
+        <a href="services.html" style="display:block;font-weight:600;color:#10202E">Services</a>
+        <a href="about.html" style="display:block;font-weight:600;color:#10202E">About</a>
+        <a href="contact.html" style="display:block;font-weight:600;color:#10202E">Contact</a>
+      <a href="tel:+254798131085" style="margin-top:12px;text-align:center;background:#086E9E;color:#fff;padding:15px;border-radius:8px;font-weight:700;font-size:16px">Call 0798 131085</a>
+    </nav>
   </header>
 
   <section data-screen-label="Solutions Header" style="background:linear-gradient(135deg,#0B7EB5 0%,#0B8FCB 100%);padding:64px 24px;position:relative;overflow:hidden">
     <div style="{{ headerParallaxStyle }}"></div>
     <div style="max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:2">
       <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:10px">Solutions</div>
-      <h1 style="font-size:40px;font-weight:800;margin:0 0 14px;color:#fff;letter-spacing:-0.01em">Hikvision solutions for every industry</h1>
+      <h1 style="font-size:clamp(1.7rem, 4vw + 1rem, 2.5rem);font-weight:800;margin:0 0 14px;color:#fff;letter-spacing:-0.01em">Hikvision solutions for every industry</h1>
       <p style="font-size:17px;color:rgba(255,255,255,0.88);margin:0;line-height:1.6">Genuine Hikvision hardware, matched by NE to the way your industry actually works &mdash; from a single retail store to a multi-site logistics operation.</p>
     </div>
   </section>
 
   <section data-screen-label="Solutions by Industry" style="max-width:1240px;margin:0 auto;padding:64px 24px 20px">
     <div style="text-align:center;margin-bottom:44px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">Solutions by Industry</div>
-      <h2 style="font-size:30px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Built around how you operate</h2>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Solutions by Industry</div>
+      <h2 style="font-size:clamp(1.4rem, 3.2vw + 0.75rem, 1.875rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Built around how you operate</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
       <sc-for list="{{ industries }}" as="ind" hint-placeholder-count="11">
@@ -90,7 +117,7 @@
                 <span style="font-size:11.5px;font-weight:600;color:#4A5B68;background:#F0F4F7;border-radius:6px;padding:4px 9px">{{ sc }}</span>
               </sc-for>
             </div>
-            <a href="{{ ind.link }}" style="font-size:13.5px;font-weight:700;color:#0B8FCB">{{ ind.cta }} &rarr;</a>
+            <a href="{{ ind.link }}" style="font-size:13.5px;font-weight:700;color:#086E9E">{{ ind.cta }} &rarr;</a>
           </div>
         </div>
       </sc-for>
@@ -99,29 +126,29 @@
 
   <section data-screen-label="Solutions by Scenario" style="max-width:1240px;margin:0 auto;padding:64px 24px 20px">
     <div style="text-align:center;margin-bottom:36px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">Solutions by Scenario</div>
-      <h2 style="font-size:30px;font-weight:800;margin:0 0 12px;color:#10202E;letter-spacing:-0.01em">Every industry breaks down into real scenarios</h2>
-      <p style="font-size:15px;color:#7A8A96;max-width:640px;margin:0 auto;line-height:1.6">Tell NE your scenario and we'll recommend the right cameras, recorders and access control &mdash; not a generic package.</p>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Solutions by Scenario</div>
+      <h2 style="font-size:clamp(1.4rem, 3.2vw + 0.75rem, 1.875rem);font-weight:800;margin:0 0 12px;color:#10202E;letter-spacing:-0.01em">Every industry breaks down into real scenarios</h2>
+      <p style="font-size:15px;color:#4A5B68;max-width:640px;margin:0 auto;line-height:1.6">Tell NE your scenario and we'll recommend the right cameras, recorders and access control &mdash; not a generic package.</p>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:980px;margin:0 auto">
       <sc-for list="{{ scenarios }}" as="s" hint-placeholder-count="24">
-        <a href="{{ s.link }}" target="_blank" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#0B8FCB;color:#0B8FCB">{{ s.label }}</a>
+        <a href="{{ s.link }}" target="_blank" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">{{ s.label }}</a>
       </sc-for>
     </div>
   </section>
 
   <section data-screen-label="Solutions by Function" style="max-width:1240px;margin:0 auto;padding:64px 24px 20px">
     <div style="text-align:center;margin-bottom:44px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">Solutions by Function</div>
-      <h2 style="font-size:30px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Pick the capability, NE finds the hardware</h2>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Solutions by Function</div>
+      <h2 style="font-size:clamp(1.4rem, 3.2vw + 0.75rem, 1.875rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Pick the capability, NE finds the hardware</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
       <sc-for list="{{ functions }}" as="f" hint-placeholder-count="9">
         <a href="{{ f.link }}" ref="{{ f.ref }}" style="{{ f.style }}">
-          <div style="width:46px;height:46px;border-radius:11px;background:#0B8FCB;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px;flex-shrink:0">{{ f.icon }}</div>
+          <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px;flex-shrink:0">{{ f.icon }}</div>
           <div>
             <div style="font-size:16px;font-weight:800;margin-bottom:4px;color:#10202E">{{ f.title }}</div>
-            <div style="font-size:13px;line-height:1.55;color:#7A8A96">{{ f.desc }}</div>
+            <div style="font-size:13px;line-height:1.55;color:#4A5B68">{{ f.desc }}</div>
           </div>
         </a>
       </sc-for>
@@ -130,17 +157,17 @@
 
   <section data-screen-label="Solution Brochures" style="max-width:1100px;margin:0 auto;padding:64px 24px 20px">
     <div style="text-align:center;margin-bottom:40px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">Resources</div>
-      <h2 style="font-size:30px;font-weight:800;margin:0 0 12px;color:#10202E;letter-spacing:-0.01em">Download official Hikvision solution brochures</h2>
-      <p style="font-size:15px;color:#7A8A96;max-width:640px;margin:0 auto;line-height:1.6">Detailed spec sheets and solution overviews, straight from Hikvision, for the industries NE supports.</p>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Resources</div>
+      <h2 style="font-size:clamp(1.4rem, 3.2vw + 0.75rem, 1.875rem);font-weight:800;margin:0 0 12px;color:#10202E;letter-spacing:-0.01em">Download official Hikvision solution brochures</h2>
+      <p style="font-size:15px;color:#4A5B68;max-width:640px;margin:0 auto;line-height:1.6">Detailed spec sheets and solution overviews, straight from Hikvision, for the industries NE supports.</p>
     </div>
     <sc-for list="{{ brochureGroups }}" as="grp" hint-placeholder-count="10">
       <div style="margin-bottom:32px">
         <div style="font-size:15px;font-weight:800;color:#10202E;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #E7ECF1">{{ grp.title }}</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
           <sc-for list="{{ grp.items }}" as="doc" hint-placeholder-count="4">
-            <a href="{{ doc.file }}" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#0B8FCB">
-              <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0B8FCB;flex-shrink:0">{{ doc.ext }}</div>
+            <a href="{{ doc.file }}" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
+              <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">{{ doc.ext }}</div>
               <div style="min-width:0">
                 <div style="font-size:13.5px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ doc.title }}</div>
                 <div style="font-size:11.5px;color:#9AA9B4">{{ doc.size }}</div>
@@ -154,8 +181,8 @@
 
   <section data-screen-label="FAQ" style="max-width:860px;margin:0 auto;padding:64px 24px 20px">
     <div style="text-align:center;margin-bottom:36px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0B8FCB;margin-bottom:10px">FAQ</div>
-      <h2 style="font-size:28px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Common questions about NE's solutions</h2>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">FAQ</div>
+      <h2 style="font-size:clamp(1.35rem, 3vw + 0.7rem, 1.75rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Common questions about NE's solutions</h2>
     </div>
     <div style="display:flex;flex-direction:column;gap:16px">
       <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
@@ -219,7 +246,7 @@
     <div ref="{{ ctaRef }}" style="text-align:center;padding:44px;background:#0F2C3D;border-radius:18px;{{ ctaStyle }}">
       <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">Not sure which solution fits?</div>
       <div style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:24px">Tell NE about your site and we'll recommend the right cameras, recorders and access control.</div>
-      <a href="contact.html" style="background:#0B8FCB;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Talk to NE</a>
+      <a href="contact.html" style="background:#086E9E;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Talk to NE</a>
     </div>
   </section>
 
