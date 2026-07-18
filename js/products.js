@@ -73,7 +73,7 @@ export const PRODUCTS = [
     "pcsCtn": "45",
     "retail": 3300,
     "price": 3630,
-    "image": "images/007.png",
+    "image": "images/007.webp",
     "id": 7
   },
   {
