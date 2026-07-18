@@ -4537,14 +4537,16 @@
  ]
 }
 </script>
-<script src="js/support.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media=&#39;all&#39;">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+<script src="js/support.js" defer></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F6F8FA; color: #10202E; }
@@ -4561,7 +4563,7 @@
   <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #E7ECF1">
     <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:24px">
       <a href="index.html" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
-        <img src="assets/nashnaal-favicon.png" alt="NE" style="height:52px;width:auto;display:block" />
+        <img src="assets/nashnaal-logo-header.png" alt="NE" style="height:52px;width:auto;display:block" />
       </a>
       <nav style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
         <a href="index.html" style="font-size:15px;font-weight:600;color:#10202E">Home</a>
@@ -4746,7 +4748,7 @@ class Component extends DCLogic {
     const sc = this.state.scrollY;
     const progressBarStyle = `position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4FC3EC,#0B8FCB);width:${(this.state.scrollProgress * 100).toFixed(2)}%;z-index:200;transition:width 0.1s linear`;
     const spotlightZoom = 1 + Math.min(sc, 400) / 400 * 0.06;
-    const spotlightBgStyle = `position:relative;border-radius:16px;overflow:hidden;height:140px;background-image:linear-gradient(90deg,rgba(6,20,30,0.88) 0%,rgba(6,20,30,0.55) 45%,rgba(6,20,30,0.1) 100%),url('assets/Poster-Preview_KF0T-Series (1).jpg');background-size:cover;background-position:center ${15 + sc * 0.02}%;display:flex;align-items:center;justify-content:space-between;padding:0 28px;transform:scale(${spotlightZoom.toFixed(3)});transition:transform 0.15s linear`;
+    const spotlightBgStyle = `position:relative;border-radius:16px;overflow:hidden;height:140px;background-image:linear-gradient(90deg,rgba(6,20,30,0.88) 0%,rgba(6,20,30,0.55) 45%,rgba(6,20,30,0.1) 100%),url('assets/Poster-Preview_KF0T-Series (1).webp');background-size:cover;background-position:center ${15 + sc * 0.02}%;display:flex;align-items:center;justify-content:space-between;padding:0 28px;transform:scale(${spotlightZoom.toFixed(3)});transition:transform 0.15s linear`;
 
     return {
       tabs,

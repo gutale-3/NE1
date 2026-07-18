@@ -71,14 +71,16 @@
   ]
 }
 </script>
-<script src="js/support.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media=&#39;all&#39;">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+<script src="js/support.js" defer></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F6F8FA; color: #10202E; }
@@ -101,7 +103,7 @@
   <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #E7ECF1">
     <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:24px">
       <a href="index.html" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
-        <img src="assets/nashnaal-favicon.png" alt="NE" style="height:52px;width:auto;display:block" />
+        <img src="assets/nashnaal-logo-header.png" alt="NE" style="height:52px;width:auto;display:block" />
       </a>
       <nav style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
         <a href="index.html" style="font-size:15px;font-weight:700;color:#0B8FCB">Home</a>
@@ -170,7 +172,7 @@
         <h2 style="font-size:34px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Featured Hikvision innovations</h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:26px">
-        <div ref="{{ spotlight0Ref }}" style="position:relative;border-radius:20px;overflow:hidden;height:460px;background-image:linear-gradient(180deg,rgba(9,30,44,0.05) 0%,rgba(6,20,30,0.75) 75%),url('assets/Poster-G4-Dash-Camera.jpg');background-size:cover;background-position:center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ spotlight0Style }}" style-hover="transform:scale(1.015);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
+        <div ref="{{ spotlight0Ref }}" style="position:relative;border-radius:20px;overflow:hidden;height:460px;background-image:linear-gradient(180deg,rgba(9,30,44,0.05) 0%,rgba(6,20,30,0.75) 75%),url('assets/Poster-G4-Dash-Camera.webp');background-size:cover;background-position:center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ spotlight0Style }}" style-hover="transform:scale(1.015);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
           <div style="position:absolute;top:20px;left:20px;background:rgba(255,255,255,0.92);color:#0B7EB5;font-size:12px;font-weight:800;letter-spacing:0.03em;padding:6px 14px;border-radius:999px">AE-DI5042-G4</div>
           <div style="position:absolute;left:0;right:0;bottom:0;padding:28px 30px">
             <div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:4px">G4 Dash Camera</div>
@@ -183,7 +185,7 @@
             <a href="https://wa.me/254798131085?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20Hikvision%20G4%20Dash%20Camera" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0B7EB5;padding:11px 20px;border-radius:8px;font-weight:700;font-size:14px" style-hover="background:#EAF6FC">Enquire on WhatsApp &rarr;</a>
           </div>
         </div>
-        <div ref="{{ spotlight1Ref }}" style="position:relative;border-radius:20px;overflow:hidden;height:460px;background-image:linear-gradient(180deg,rgba(9,30,44,0.05) 0%,rgba(6,20,30,0.75) 75%),url('assets/Poster-Preview_KF0T-Series (1).jpg');background-size:cover;background-position:top center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ spotlight1Style }}" style-hover="transform:scale(1.015);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
+        <div ref="{{ spotlight1Ref }}" style="position:relative;border-radius:20px;overflow:hidden;height:460px;background-image:linear-gradient(180deg,rgba(9,30,44,0.05) 0%,rgba(6,20,30,0.75) 75%),url('assets/Poster-Preview_KF0T-Series (1).webp');background-size:cover;background-position:top center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ spotlight1Style }}" style-hover="transform:scale(1.015);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
           <div style="position:absolute;top:20px;left:20px;background:rgba(255,255,255,0.92);color:#0B7EB5;font-size:12px;font-weight:800;letter-spacing:0.03em;padding:6px 14px;border-radius:999px">KF0T Series &middot; ColorVu</div>
           <div style="position:absolute;left:0;right:0;bottom:0;padding:28px 30px">
             <div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:4px">New Turbo HD Cameras</div>
@@ -208,25 +210,25 @@
         <h2 style="font-size:34px;font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Built for real-world security demands</h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px">
-        <div ref="{{ innov0Ref }}" style="position:relative;border-radius:18px;overflow:hidden;height:400px;background-image:linear-gradient(180deg,rgba(9,30,44,0.02) 0%,rgba(6,20,30,0.82) 78%),url('images/poster-value-series.jpg');background-size:cover;background-position:top center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ innov0Style }}" style-hover="transform:scale(1.02);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
+        <div ref="{{ innov0Ref }}" style="position:relative;border-radius:18px;overflow:hidden;height:400px;background-image:linear-gradient(180deg,rgba(9,30,44,0.02) 0%,rgba(6,20,30,0.82) 78%),url('images/poster-value-series.webp');background-size:cover;background-position:top center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ innov0Style }}" style-hover="transform:scale(1.02);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
           <div style="position:absolute;left:0;right:0;bottom:0;padding:24px">
             <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:6px">Value-Series ColorVu</div>
             <div style="font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.5">Full-color night vision that catches every detail, even in store break-ins after dark</div>
           </div>
         </div>
-        <div ref="{{ innov1Ref }}" style="position:relative;border-radius:18px;overflow:hidden;height:400px;background-image:linear-gradient(180deg,rgba(9,30,44,0.02) 0%,rgba(6,20,30,0.82) 78%),url('images/poster-hybrid-light.jpg');background-size:cover;background-position:center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ innov1Style }}" style-hover="transform:scale(1.02);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
+        <div ref="{{ innov1Ref }}" style="position:relative;border-radius:18px;overflow:hidden;height:400px;background-image:linear-gradient(180deg,rgba(9,30,44,0.02) 0%,rgba(6,20,30,0.82) 78%),url('images/poster-hybrid-light.webp');background-size:cover;background-position:center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ innov1Style }}" style-hover="transform:scale(1.02);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
           <div style="position:absolute;left:0;right:0;bottom:0;padding:24px">
             <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:6px">Smart Hybrid Light</div>
             <div style="font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.5">Automatic switching between IR and white light deters intruders while keeping footage in true color</div>
           </div>
         </div>
-        <div ref="{{ innov2Ref }}" style="position:relative;border-radius:18px;overflow:hidden;height:400px;background-image:linear-gradient(180deg,rgba(9,30,44,0.02) 0%,rgba(6,20,30,0.82) 78%),url('images/poster-dual-lens.jpg');background-size:cover;background-position:center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ innov2Style }}" style-hover="transform:scale(1.02);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
+        <div ref="{{ innov2Ref }}" style="position:relative;border-radius:18px;overflow:hidden;height:400px;background-image:linear-gradient(180deg,rgba(9,30,44,0.02) 0%,rgba(6,20,30,0.82) 78%),url('images/poster-dual-lens.webp');background-size:cover;background-position:center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ innov2Style }}" style-hover="transform:scale(1.02);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
           <div style="position:absolute;left:0;right:0;bottom:0;padding:24px">
             <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:6px">Dual-Lens Panoramic</div>
             <div style="font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.5">180&deg; stitched coverage from a single compact camera &mdash; no blind spots, no extra units</div>
           </div>
         </div>
-        <div ref="{{ innov3Ref }}" style="position:relative;border-radius:18px;overflow:hidden;height:400px;background-image:linear-gradient(180deg,rgba(9,30,44,0.02) 0%,rgba(6,20,30,0.82) 78%),url('images/poster-access-control.jpg');background-size:cover;background-position:center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ innov3Style }}" style-hover="transform:scale(1.02);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
+        <div ref="{{ innov3Ref }}" style="position:relative;border-radius:18px;overflow:hidden;height:400px;background-image:linear-gradient(180deg,rgba(9,30,44,0.02) 0%,rgba(6,20,30,0.82) 78%),url('images/poster-access-control.webp');background-size:cover;background-position:center;box-shadow:0 10px 24px rgba(10,30,45,0.12);{{ innov3Style }}" style-hover="transform:scale(1.02);box-shadow:0 20px 40px rgba(10,30,45,0.25)">
           <div style="position:absolute;left:0;right:0;bottom:0;padding:24px">
             <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:6px">Outdoor Access Control</div>
             <div style="font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.5">IP65-rated terminals with PoE, mobile credentials and 5,000-card capacity for gates &amp; entrances</div>
