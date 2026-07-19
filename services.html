@@ -65,6 +65,9 @@
       .nav-links, .call-btn { display: none !important; }
       .hamburger-btn { display: flex !important; align-items: center; justify-content: center; }
     }
+    @media (max-width: 340px) {
+      .services-grid { grid-template-columns: 1fr !important; }
+    }
     .navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
     .navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
     .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
@@ -136,7 +139,7 @@
   </section>
 
   <section data-screen-label="Services List" style="max-width:1100px;margin:0 auto;padding:64px 24px">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px">
+    <div class="services-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px">
       <sc-for list="{{ services }}" as="svc" hint-placeholder-count="4">
         <div ref="{{ svc.ref }}" style="{{ svc.style }}">
           <div style="width:50px;height:50px;border-radius:12px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:22px">{{ svc.icon }}</div>
