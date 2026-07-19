@@ -402,11 +402,12 @@ const HERO_SLIDES = [
     subtitle: "NE supplies genuine Hikvision CCTV cameras, NVRs, access control, video intercom and public address systems — with installation and after-sales support across Kenya.",
     cta1Text: 'Browse Products', cta1Href: 'products',
     cta2Text: 'Get in Touch', cta2Href: 'contact',
-    image: 'images/hikvision-bullet-camera-hero.webp',
-    imageAlt: 'Hikvision Smart Hybrid Light bullet camera sold by Nashnaal Electronics in Kenya',
+    image: 'images/hero-camera-scene.webp',
+    imageAlt: 'NE technician installing a Hikvision CCTV camera on a building in Kenya',
     imageFit: 'cover',
+    imagePosition: 'center 25%',
     gradient: 'linear-gradient(120deg,#0B7EB5 0%,#0B8FCB 45%,#12A6DE 70%,#0B8FCB 100%)',
-    scrimColor: '0B5578',
+    scrimColor: '0A3A5C',
   },
   {
     badge: 'Technology · ColorVu',
@@ -566,7 +567,7 @@ class Component extends DCLogic {
       : `background:linear-gradient(90deg, #${c}F0 0%, #${c}D9 32%, #${c}80 58%, #${c}1A 82%, #${c}00 100%)`;
     const heroImageStyle = activeHeroSlide.imageFit === 'contain'
       ? `position:absolute;top:0;right:0;bottom:0;z-index:0;width:58%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 30px 50px rgba(0,0,0,0.35));transform:scale(${heroZoom.toFixed(3)});transition:transform 0.15s linear`
-      : `position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(${(1 + (heroZoom - 1) * 0.6).toFixed(3)});transition:transform 0.15s linear`;
+      : `position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:${activeHeroSlide.imagePosition || 'center'};transform:scale(${(1 + (heroZoom - 1) * 0.6).toFixed(3)});transition:transform 0.15s linear`;
     const heroDots = HERO_SLIDES.map((s, i) => ({
       onClick: () => this._goToHero(i),
       label: `Go to slide ${i + 1} of ${HERO_SLIDES.length}`,
