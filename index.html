@@ -149,10 +149,10 @@
         </div>
       </div>
       <div style="position:relative">
-        <div style="background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.25);border-radius:20px;padding:28px;min-height:336px;box-sizing:border-box;position:relative;overflow:hidden;animation:floatY 5s ease-in-out infinite">
-          <img src="{{ heroImage }}" alt="{{ heroImageAlt }}" width="550" height="391" fetchpriority="high" decoding="async" style="width:100%;height:280px;object-fit:contain;display:block;{{ heroImgStyle }}" />
+        <div style="{{ heroImageWrapStyle }}">
+          <img src="{{ heroImage }}" alt="{{ heroImageAlt }}" fetchpriority="high" decoding="async" style="{{ heroImageStyle }}" />
           <div style="position:absolute;left:0;right:0;height:36%;background:linear-gradient(180deg,transparent,rgba(79,195,236,0.35),transparent);animation:scanSweep 3.2s linear infinite;z-index:3;pointer-events:none"></div>
-          <div style="position:absolute;top:44px;right:44px;display:flex;align-items:center;gap:6px;background:rgba(15,44,61,0.55);padding:6px 12px;border-radius:999px;z-index:4">
+          <div style="position:absolute;top:20px;right:20px;display:flex;align-items:center;gap:6px;background:rgba(15,44,61,0.55);padding:6px 12px;border-radius:999px;z-index:4">
             <span style="width:7px;height:7px;border-radius:50%;background:#FF5C5C;display:inline-block;animation:blinkDot 1s ease-in-out infinite"></span>
             <span style="font-size:11px;font-weight:700;color:#fff;letter-spacing:0.03em">LIVE &middot; {{ liveClock }}</span>
           </div>
@@ -409,6 +409,7 @@ const HERO_SLIDES = [
     cta2Text: 'Get in Touch', cta2Href: 'contact',
     image: 'images/007.webp',
     imageAlt: 'Hikvision CCTV camera sold by Nashnaal Electronics in Kenya',
+    imageFit: 'contain', imageCard: true,
     gradient: 'linear-gradient(120deg,#0B7EB5 0%,#0B8FCB 45%,#12A6DE 70%,#0B8FCB 100%)',
   },
   {
@@ -419,6 +420,7 @@ const HERO_SLIDES = [
     cta2Text: 'ColorVu FAQ', cta2Href: 'faq',
     image: 'images/hikvision-bullet-camera-hero.webp',
     imageAlt: 'Hikvision Smart Hybrid Light bullet camera sold by Nashnaal Electronics',
+    imageFit: 'contain', imageCard: false,
     gradient: 'linear-gradient(120deg,#075C6E 0%,#0B8FA3 45%,#14BFC9 70%,#0B8FA3 100%)',
   },
   {
@@ -427,8 +429,9 @@ const HERO_SLIDES = [
     subtitle: 'The Hikvision G4 dash camera adds ADAS collision and lane-departure warnings on top of 1440p recording — ready for personal vehicles and fleets.',
     cta1Text: 'Browse Products', cta1Href: 'products',
     cta2Text: 'Fleet Solutions', cta2Href: 'solution-traffic',
-    image: 'images/hero-dashcam-crop.webp',
+    image: 'images/hero-dashcam-scene.webp',
     imageAlt: 'Hikvision G4 dash camera with ADAS mounted in a truck',
+    imageFit: 'cover', imageCard: false,
     gradient: 'linear-gradient(120deg,#101F3D 0%,#1B3A6B 45%,#2A5298 70%,#1B3A6B 100%)',
   },
   {
@@ -437,9 +440,21 @@ const HERO_SLIDES = [
     subtitle: "Hikvision's ColorVu and Smart Hybrid Light cameras capture usable colour detail at night — better identification for homes, shops and gated compounds.",
     cta1Text: 'Browse Products', cta1Href: 'products',
     cta2Text: 'Learn About ColorVu', cta2Href: 'faq',
-    image: 'images/hero-colorvu-crop.webp',
-    imageAlt: 'Hikvision ColorVu camera range with Smart Hybrid Light technology',
+    image: 'images/hero-colorvu-scene.webp',
+    imageAlt: 'Hikvision ColorVu camera range with Smart Hybrid Light technology monitoring a home at night',
+    imageFit: 'cover', imageCard: false,
     gradient: 'linear-gradient(120deg,#0A1F33 0%,#123354 45%,#1B4870 70%,#123354 100%)',
+  },
+  {
+    badge: 'Access Control · ANPR',
+    title: 'Automatic number-plate access control',
+    subtitle: 'Hikvision barrier gates paired with ANPR cameras recognise registered vehicles and open automatically — built for gated estates, offices and warehouses.',
+    cta1Text: 'Browse Products', cta1Href: 'products',
+    cta2Text: 'Access Control FAQ', cta2Href: 'faq',
+    image: 'images/hero-anpr-gate.webp',
+    imageAlt: 'Hikvision ANPR barrier gate access control system',
+    imageFit: 'cover', imageCard: false,
+    gradient: 'linear-gradient(120deg,#12202B 0%,#1E3A4F 45%,#2C5878 70%,#1E3A4F 100%)',
   },
 ];
 
@@ -546,6 +561,10 @@ class Component extends DCLogic {
     const heroSectionStyle = `background:${activeHeroSlide.gradient};position:relative;overflow:hidden`;
     const heroGradientLayerStyle = `background:${activeHeroSlide.gradient}`;
     const heroContentFade = `opacity:${this.state.heroFading ? 0 : 1};transition:opacity 0.28s ease`;
+    const heroImageWrapStyle = activeHeroSlide.imageCard
+      ? `position:relative;overflow:hidden;border-radius:20px;height:460px;box-sizing:border-box;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.25);padding:28px;box-shadow:0 20px 50px rgba(0,0,0,0.25);animation:floatY 5s ease-in-out infinite`
+      : `position:relative;overflow:hidden;border-radius:20px;height:460px;box-sizing:border-box;box-shadow:0 20px 50px rgba(0,0,0,0.35);animation:floatY 5s ease-in-out infinite`;
+    const heroImageStyle = `width:100%;height:100%;object-fit:${activeHeroSlide.imageFit};display:block;${heroImgStyle}`;
     const heroDots = HERO_SLIDES.map((s, i) => ({
       onClick: () => this._goToHero(i),
       label: `Go to slide ${i + 1} of ${HERO_SLIDES.length}`,
@@ -579,6 +598,8 @@ class Component extends DCLogic {
       heroSectionStyle,
       heroGradientLayerStyle,
       heroContentFade,
+      heroImageWrapStyle,
+      heroImageStyle,
       heroDots,
       heroBadge: activeHeroSlide.badge,
       heroTitle: activeHeroSlide.title,
