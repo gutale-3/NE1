@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hikvision CCTV Setup: A Beginner&#x27;s Guide for Kenya | NE Kenya</title>
+<meta name="description" content="A beginner&#x27;s Hikvision CCTV setup guide for Kenya: choosing cameras and an NVR, cabling within the PoE limit, activating the recorder, and enabling Hik-Connect remote viewing.">
+<link rel="canonical" href="https://nashnaal.com/blog-hikvision-cctv-setup-a-beginners-guide-for-kenya">
+<link rel="icon" type="image/png" href="assets/nashnaal-favicon.png">
+<link rel="apple-touch-icon" href="assets/nashnaal-favicon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Nashnaal Electronics (NE)">
+<meta property="og:title" content="Hikvision CCTV Setup: A Beginner&#x27;s Guide for Kenya | NE Kenya">
+<meta property="og:description" content="A beginner&#x27;s Hikvision CCTV setup guide for Kenya: choosing cameras and an NVR, cabling within the PoE limit, activating the recorder, and enabling Hik-Connect remote viewing.">
+<meta property="og:url" content="https://nashnaal.com/blog-hikvision-cctv-setup-a-beginners-guide-for-kenya">
+<meta property="og:image" content="https://nashnaal.com/assets/blog/hikvision-cctv-setup-a-beginners-guide-for-kenya.webp">
+<meta property="og:locale" content="en_KE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hikvision CCTV Setup: A Beginner&#x27;s Guide for Kenya | NE Kenya">
+<meta name="twitter:description" content="A beginner&#x27;s Hikvision CCTV setup guide for Kenya: choosing cameras and an NVR, cabling within the PoE limit, activating the recorder, and enabling Hik-Connect remote viewing.">
+<meta name="twitter:image" content="https://nashnaal.com/assets/blog/hikvision-cctv-setup-a-beginners-guide-for-kenya.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nashnaal.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://nashnaal.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "Hikvision CCTV Setup: A Beginner&#x27;s Guide for Kenya", "item": "https://nashnaal.com/blog-hikvision-cctv-setup-a-beginners-guide-for-kenya" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Hikvision CCTV Setup: A Beginner&#x27;s Guide for Kenya",
+  "description": "A beginner&#x27;s Hikvision CCTV setup guide for Kenya: choosing cameras and an NVR, cabling within the PoE limit, activating the recorder, and enabling Hik-Connect remote viewing.",
+  "image": "https://nashnaal.com/assets/blog/hikvision-cctv-setup-a-beginners-guide-for-kenya.webp",
+  "datePublished": "2026-07-20",
+  "dateModified": "2026-07-20",
+  "inLanguage": "en-KE",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://nashnaal.com/blog-hikvision-cctv-setup-a-beginners-guide-for-kenya" },
+  "author": { "@type": "Organization", "name": "Nashnaal Electronics (NE)", "url": "https://nashnaal.com/" },
+  "publisher": { "@type": "Organization", "name": "Nashnaal Electronics (NE)", "url": "https://nashnaal.com/" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media=&#39;all&#39;">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+<link rel="preload" as="script" href="js/vendor/react.production.min.js" crossorigin="anonymous">
+<link rel="preload" as="script" href="js/vendor/react-dom.production.min.js" crossorigin="anonymous">
+<script src="js/support.js" defer></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F6F8FA; color: #10202E; }
+    a { color: #086E9E; text-decoration: none; }
+    a:hover { color: #086E9E; }
+    @keyframes pulseRing { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(1.6); opacity: 0; } }
+    .wa-pulse-btn::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(11,143,203,0.55); animation: pulseRing 2.2s ease-out infinite; pointer-events: none; }
+    .navtoggle-cb { display: none; }
+    .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
+    .hamburger-icon-close { display: none; }
+    .mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
+    .mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; }
+    @media (max-width: 860px) {
+      .nav-links, .call-btn { display: none !important; }
+      .hamburger-btn { display: flex !important; align-items: center; justify-content: center; }
+    }
+    .navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
+    .navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
+    .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
+    .article-body p { font-size: 16.5px; line-height: 1.8; color: #10202E; margin: 0 0 22px; }
+    .article-body h2 { font-size: clamp(1.3rem, 2.8vw + 0.65rem, 1.625rem); font-weight: 800; color: #10202E; letter-spacing: -0.01em; margin: 48px 0 18px; }
+    .article-body h3 { font-size: 17.5px; font-weight: 800; color: #10202E; margin: 34px 0 14px; }
+    .article-body ol { margin: 0 0 22px; padding-left: 22px; }
+    .article-body li { font-size: 16.5px; line-height: 1.8; color: #10202E; margin-bottom: 10px; }
+    .article-body strong { font-weight: 700; }
+    .article-body a { color: #086E9E; text-decoration: underline; text-underline-offset: 2px; }
+  </style>
+</helmet>
+
+<div style="width:100%;min-height:100vh;background:#F6F8FA;overflow-x:hidden">
+
+  <div style="{{ progressBarStyle }}"></div>
+
+  <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #E7ECF1">
+    <input type="checkbox" id="navtoggle" class="navtoggle-cb">
+    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:16px">
+      <a href="/" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+        <img src="assets/nashnaal-logo-header.webp" alt="NE" width="52" height="52" style="height:52px;width:auto;display:block" />
+      </a>
+      <nav class="nav-links" style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
+        <a href="/" style="font-size:15px;font-weight:600;color:#10202E">Home</a>
+        <a href="world" style="font-size:15px;font-weight:600;color:#10202E">Explore</a>
+        <a href="products" style="font-size:15px;font-weight:600;color:#10202E">Products</a>
+        <a href="solutions" style="font-size:15px;font-weight:600;color:#10202E">Solutions</a>
+        <a href="services" style="font-size:15px;font-weight:600;color:#10202E">Services</a>
+        <a href="blog" style="font-size:15px;font-weight:600;color:#086E9E">Blog</a>
+        <a href="faq" style="font-size:15px;font-weight:600;color:#10202E">FAQ</a>
+        <a href="about" style="font-size:15px;font-weight:600;color:#10202E">About</a>
+        <a href="contact" style="font-size:15px;font-weight:600;color:#10202E">Contact</a>
+      </nav>
+      <a href="tel:+254798131085" class="call-btn" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#086E9E;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
+        Call 0798 131085
+      </a>
+      <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
+        <span class="hamburger-icon-open">&#9776;</span>
+        <span class="hamburger-icon-close">&#10005;</span>
+      </label>
+    </div>
+    <nav class="mobile-nav-panel">
+        <a href="/" style="display:block;font-weight:600;color:#10202E">Home</a>
+        <a href="world" style="display:block;font-weight:600;color:#10202E">Explore</a>
+        <a href="products" style="display:block;font-weight:600;color:#10202E">Products</a>
+        <a href="solutions" style="display:block;font-weight:600;color:#10202E">Solutions</a>
+        <a href="services" style="display:block;font-weight:600;color:#10202E">Services</a>
+        <a href="blog" style="display:block;font-weight:600;color:#086E9E">Blog</a>
+        <a href="faq" style="display:block;font-weight:600;color:#10202E">FAQ</a>
+        <a href="about" style="display:block;font-weight:600;color:#10202E">About</a>
+        <a href="contact" style="display:block;font-weight:600;color:#10202E">Contact</a>
+      <a href="tel:+254798131085" style="margin-top:12px;text-align:center;background:#086E9E;color:#fff;padding:15px;border-radius:8px;font-weight:700;font-size:16px">Call 0798 131085</a>
+    </nav>
+  </header>
+
+  <nav aria-label="Breadcrumb" style="max-width:860px;margin:0 auto;padding:14px 24px 0">
+    <a href="/" style="font-size:13px;color:#4A5B68">Home</a>
+    <span style="font-size:13px;color:#C3CDD4;margin:0 6px">/</span>
+    <a href="blog" style="font-size:13px;color:#4A5B68">Blog</a>
+    <span style="font-size:13px;color:#C3CDD4;margin:0 6px">/</span>
+    <span style="font-size:13px;color:#10202E;font-weight:600">CCTV Setup Basics</span>
+  </nav>
+
+  <article data-screen-label="Article">
+
+    <header style="max-width:860px;margin:0 auto;padding:26px 24px 0">
+      <a href="blog" style="font-size:13px;font-weight:700;color:#086E9E">&larr; All Articles</a>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin:16px 0 10px">Beginner Guide</div>
+      <h1 style="font-size:clamp(1.65rem, 4vw + 0.95rem, 2.375rem);font-weight:800;margin:0 0 16px;color:#10202E;letter-spacing:-0.01em">Hikvision CCTV Setup: A Beginner&#x27;s Guide for Kenya</h1>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13.5px;color:#4A5B68;margin-bottom:26px">
+        <span>Nashnaal Electronics (NE)</span>
+        <span style="color:#C3CDD4">&middot;</span>
+        <time datetime="2026-07-20">20 July 2026</time>
+        <span style="color:#C3CDD4">&middot;</span>
+        <span>11 min read</span>
+      </div>
+    </header>
+
+    <div style="max-width:860px;margin:0 auto;padding:0 24px">
+      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
+        <img src="assets/blog/hikvision-cctv-setup-a-beginners-guide-for-kenya.webp" alt="Hikvision CCTV Setup: A Beginner&#x27;s Guide for Kenya" width="1536" height="1024" fetchpriority="high" decoding="async" style="width:100%;height:auto;display:block" />
+      </div>
+    </div>
+
+    <div class="article-body" style="max-width:860px;margin:0 auto;padding:36px 24px 0">
+
+      <p>You finally bought a Hikvision camera kit. It arrives, you open the box, and you're staring at coils of Cat6 cable, a black NVR, and a bag of mounting screws with absolutely no idea what connects to what. Installers across Nairobi report this as one of the most common situations they encounter, and it's entirely avoidable. A Hikvision CCTV setup follows a logical sequence: choose the right gear, run your cabling correctly, activate the NVR, initialise storage, and switch on Hik-Connect for live viewing on your phone. Follow that order, and you'll have a working system.</p>
+
+      <p>Before you start, make sure you're working with genuine Hikvision products. Grey-market and counterfeit units do appear in the Kenyan electronics market, and they create setup headaches from day one: firmware that won't activate, warranty cards that lead nowhere, and app compatibility issues. <strong>Nashnaal Electronics (NE)</strong> is an authorised Hikvision distributor in Nairobi, sourcing directly through official channels, so every product comes with a valid Hikvision warranty. This guide covers everything from equipment selection to remote viewing, and if you follow the steps with basic tools to hand, you should have a fully functional system by the time you're done.</p>
+
+      <h2>What you need before buying a single cable</h2>
+
+      <p>Avoid buying cameras before selecting a recorder, mismatched equipment wastes money and creates systems that don't scale. Start with a complete equipment list: IP cameras, an NVR (or DVR for analogue), a compatible hard drive, Cat5e or Cat6 cabling, and either a PoE-capable NVR or a separate PoE switch.</p>
+
+      <h3>NVR vs DVR: which recorder matches your cameras</h3>
+
+      <p>The distinction is straightforward. An NVR (Network Video Recorder) works with IP cameras and connects via Ethernet cable. A DVR (Digital Video Recorder) works with analogue and HD-TVI cameras connected via coaxial cable. For a fresh installation starting from scratch, an NVR with built-in PoE ports is the cleanest option: one cable per camera carries both power and video, with nothing extra to wire. NVRs come in 4, 8, 16, and higher channel configurations. Match the channel count to your number of cameras and leave at least two spare channels for future expansion.</p>
+
+      <h3>Hard drive sizing and other accessories you'll need</h3>
+
+      <p>Using H.265+ compression at 1080p with a 2 Mbps bitrate per camera, you'll consume roughly 1.7 GB per camera per day. A 1 TB drive comfortably handles four cameras recording continuously for 30 days. For eight cameras, budget 1 to 2 TB. Always use a surveillance-grade hard drive; consumer desktop drives aren't built for continuous 24/7 writing and fail prematurely in NVR applications.</p>
+
+      <p>Beyond the drive, you'll need Cat5e or Cat6 cable, RJ45 connectors or pre-terminated PoE runs, and a monitor and USB mouse for the initial NVR setup. Add a UPS as well, power interruptions and surges can corrupt recordings and damage the NVR, making it a worthwhile investment for any installation. For Nairobi businesses that want to skip the sizing guesswork entirely, NE offers a free site survey with every <a href="products">NVR bundle purchase</a> (subject to availability and confirmation at point of purchase).</p>
+
+      <h2>Choosing the right Hikvision cameras for your property</h2>
+
+      <p>Picking the wrong camera type for a location is the most common beginner mistake, and it's more costly to fix after installation than before. Hikvision's range is broad, so understanding the core distinctions saves you money and frustration.</p>
+
+      <h3>Bullet, dome, and turret: matching the camera to the location</h3>
+
+      <p>Bullet cameras are long, cylindrical units built for directional, long-range coverage. They suit driveways, gates, car parks, and perimeter walls where you need to see clearly at distance. Turret and dome cameras are more compact with a wider angle of view, making them ideal for indoor spaces, shop floors, corridors, and covered verandas.</p>
+
+      <p>For large open compounds where a single camera needs to track movement across a wide area, a PTZ (pan-tilt-zoom) camera is the right tool. Most PTZ models require PoE+ (IEEE 802.3at), while higher-powered or feature-heavy PTZs may need Hi-PoE (IEEE 802.3bt), always check the specific model's datasheet for its power requirements. For indoor and general commercial interiors, mount cameras at 2.5 to 3 metres to capture a wide coverage angle while keeping faces clearly in frame. For perimeter walls and fencelines on commercial sites, 4 to 6 metres is the recommended range, as detailed in the mounting section below. Angle the lens slightly downward, and plan your cable route before you start drilling.</p>
+
+      <h3>ColorVu vs standard infrared: when colour night vision matters</h3>
+
+      <p>Standard infrared cameras produce black-and-white footage at night, which is adequate for detecting movement but poor for identifying clothing colour, vehicle colour, or facial features in low light. Hikvision's ColorVu range uses a built-in supplemental white light to capture full-colour footage even in near-darkness. For a retail shop floor, a car park, or an access gate where you need to identify people accurately after dark, ColorVu is a strong choice, compare model pricing against your identification requirements to decide whether the premium is justified for your site. NE's ColorVu range includes bullet and turret options for both commercial and residential sites, all supplied with a valid Hikvision warranty.</p>
+
+      <h3>PoE IP cameras vs analogue: why most new installations go IP</h3>
+
+      <p>A PoE IP camera carries both its power supply and its video signal down a single Cat5e or Cat6 Ethernet cable. Analogue cameras require a separate coaxial cable for video and an additional power run for each unit. For any new build or fresh installation, IP with PoE is simpler to install, easier to troubleshoot, and more scalable as your camera count grows. The only scenario where analogue makes sense today is when you're extending an existing coaxial infrastructure to save on re-cabling costs.</p>
+
+      <h2>Mounting cameras and running cables correctly</h2>
+
+      <p>Physical installation determines how reliable your system will be over the next five to ten years. Poor cable routing and rushed terminations are the root cause of most "camera keeps dropping offline" complaints, so this phase deserves as much care as the equipment selection that precedes it.</p>
+
+      <h3>Planning camera angles and mounting height</h3>
+
+      <p>For indoor and general commercial use, mount cameras at 2.5 to 3 metres. This height gives you a wide coverage angle while keeping faces clearly in frame. For perimeter walls on commercial sites, 4 to 6 metres is recommended to deter tampering while still capturing facial detail at distance. Tilt the lens 10 to 20 degrees downward. Never mount a camera pointing directly at a light source, as backlight will wash out the image. Identify your cable routes before drilling: plan from the camera position back to the NVR, keeping runs along wall edges and ceiling joints wherever possible.</p>
+
+      <h3>PoE power standards and the 100-metre cable rule</h3>
+
+      <p>Most fixed Hikvision turrets and bullets draw between 6 and 13 watts, which falls within the IEEE 802.3af standard (15.4 W per port). PTZ cameras draw more and typically require IEEE 802.3at PoE+ ports rated at 30 W; higher-spec models may need Hi-PoE, check the datasheet. The hard limit for any PoE run is <a href="http://www.hikvisioneurope.com/za/portal/portal/01-Product&amp;%20solution%20promotion/01-Product%20Promotion/01--General%20product%20promotion/03--NVR/Test%20report%20of%20NVR%20enhanced%20PoE%20transmission.pdf" target="_blank" rel="noopener">100 metres of cable</a>. Beyond that distance, voltage drop causes the camera to reboot intermittently or refuse to power on. If you have a camera location beyond 100 metres, use a PoE extender placed at the midpoint, or run 12V DC power separately with a dedicated cable.</p>
+
+      <h3>Routing and terminating your cables</h3>
+
+      <p>For indoor runs, route cables along skirting boards and ceiling edges, secured with cable clips. For outdoor runs, always use conduit: UV-resistant PVC conduit protects against weather and makes tampering obvious. Terminate each cable with RJ45 connectors and test continuity with a cable tester before patching into the NVR. This five-minute step catches bad crimps and saves hours of troubleshooting after everything is mounted and sealed into the wall.</p>
+
+      <h2>Hikvision CCTV setup: NVR first-time activation and recording schedule</h2>
+
+      <p>Once cameras are wired and connected, the NVR needs to be activated before it will record anything. Modern Hikvision firmware ships with no default password, the device is locked until you create one during the activation wizard.</p>
+
+      <h3>First boot and running the activation wizard</h3>
+
+      <p>Connect an HDMI monitor and a USB mouse before powering on. The wizard launches automatically on first boot. Work through the steps in sequence: select your language, then create a strong admin password of at least 12 characters using a mix of letters, numbers, and symbols. Set a recovery email address for password reset purposes. Configure the date and time zone; Kenya operates on East Africa Time (EAT), which is UTC+3. Do not skip the time zone setting, incorrect timestamps on footage can cause serious problems if recordings are ever needed for legal or insurance purposes.</p>
+
+      <h3>Network settings and adding cameras to the NVR</h3>
+
+      <p>Enable DHCP for initial setup simplicity, or assign a static IP if your network uses fixed addressing. During this step, also enable <a href="https://supportusa.hikvision.com/support/solutions/articles/17000110900-how-to-setup-hikconnect" target="_blank" rel="noopener">Hik-Connect Service</a> and agree to the terms. This switches on P2P cloud access for remote viewing without any port forwarding. Once network settings are saved, use the "Online Device List" to find and add your IP cameras. On a PoE NVR, cameras plugged directly into the built-in PoE ports are usually auto-detected and added with minimal input.</p>
+
+      <h3>Initialising the hard drive and setting your recording schedule</h3>
+
+      <p>Select the installed HDD in the wizard and click Initialise. This formats the drive and prepares it for surveillance recording, note that initialisation wipes any existing data on the drive. Wait for the status indicator to change to "Normal" before proceeding. Set your recording type: continuous 24/7 recording for comprehensive coverage, or motion-triggered event recording to reduce storage consumption. If the status shows "Abnormal" or "Uninitialized," the drive has not formatted correctly and recording will not start.</p>
+
+      <h2>Setting up Hik-Connect for remote viewing in Kenya</h2>
+
+      <p>Hik-Connect is the most practical remote viewing solution for Kenya, and it works around the ISP complications that make traditional port forwarding unreliable. It uses a cloud P2P relay: your phone connects to Hikvision's servers, which relay the stream from your NVR. No static IP is required, and no router ports need to be opened.</p>
+
+      <h3>Enabling Hik-Connect on the NVR and creating a verification code</h3>
+
+      <p>If you enabled Hik-Connect during the activation wizard, this step may already be complete. To confirm or enable it manually, navigate to Configuration, then Network, then Advanced Settings, then Platform Access. Enable Hik-Connect, create a verification code of at least six characters (avoid sequential patterns like 123456), and save. The status field should update to "Online" within a few seconds. If it remains "Offline," check that the NVR has a valid IP address, default gateway, and DNS server.</p>
+
+      <h3>Adding your NVR to the Hik-Connect mobile app</h3>
+
+      <p>Download the Hik-Connect app from the Google Play Store or Apple App Store. Create an account using your phone number or email address. Tap the "+" icon and scan the QR code displayed on the NVR's screen, or add the device manually using the serial number printed on the NVR's label. Enter the verification code you created on the NVR. Tap Live View to confirm remote access is working. The app functions over both Wi-Fi and mobile data, so you can check your cameras from anywhere with a data connection.</p>
+
+      <h3>Why port forwarding fails in Kenya and how to avoid the problem</h3>
+
+      <p>Most residential and small-business ISPs in Kenya, including Safaricom, Zuku, and Telkom, assign dynamic IP addresses and block inbound ports 80, 443, and 8000 by default. Port forwarding requires a static IP, which typically means upgrading to a business-grade connection at additional monthly cost. Hik-Connect P2P bypasses all of this by using outbound connections only, which ISPs do not block. <strong>For homes and most businesses in Kenya, Hik-Connect is strongly recommended over any port forwarding approach.</strong> If your NVR keeps showing "Offline" in the app, set the DNS manually to 8.8.8.8 (primary) and 8.8.4.4 (secondary) in the NVR's network settings and reboot the device.</p>
+
+      <h2>Securing your system and fixing the most common setup problems</h2>
+
+      <p>A Hikvision system that isn't hardened after setup is an unnecessary risk. The key security steps take under ten minutes, and the most common setup errors have straightforward fixes.</p>
+
+      <h3>Three security changes to make immediately after setup</h3>
+
+      <p>First, change the default camera IP address (192.168.1.64) to a static IP within your network range to prevent DHCP conflicts. Second, change the HTTP port from 80 to a non-standard port such as 8080; this reduces exposure to automated scanners that target default Hikvision ports. Third, keep UPnP and Telnet disabled unless you have a specific reason to enable them; both are off by default on modern firmware, and both should stay that way. Update the NVR firmware whenever a new version is available, Hikvision releases firmware updates that address known vulnerabilities, and running outdated firmware on an internet-connected recorder is a significant security gap.</p>
+
+      <h3>Camera offline: how to diagnose and fix it</h3>
+
+      <p>Check the PoE port indicator lights on the NVR first. A port with no light indicates no physical connection. Download the <a href="https://www.hikvision.com/content/dam/hikvision/ca/how-to-document/How-to-download-and-use-the-SADP-tool.pdf" target="_blank" rel="noopener">Hikvision SADP Tool</a> on a Windows PC connected to the same network and run a scan: it identifies every Hikvision device by MAC address regardless of IP conflicts, and shows you the camera's current IP address. Ping that IP from the command prompt to confirm network reachability. If there's an IP conflict, assign the camera a static IP outside your router's DHCP range. Set the camera's DNS to 8.8.8.8 and reboot both the camera and the NVR after making changes.</p>
+
+      <h3>No recording and NVR not detecting cameras</h3>
+
+      <p>For a no-recording issue: check that the HDD status shows "Normal" under Storage Management, verify that the recording schedule is active for the current day and time slot, and confirm that Overwrite mode is enabled if the drive is full. An NVR with a full drive and Overwrite disabled simply stops recording without any obvious on-screen warning.</p>
+
+      <p>For cameras the NVR refuses to detect: go into Camera Management, select the offline camera, and verify that the IP address, username, and password entered in the NVR exactly match the camera's actual settings. A single character mismatch in the password is the most common cause. Delete the camera entry and re-add it manually if the credentials are correct but the camera remains offline.</p>
+
+      <h2>Hikvision CCTV setup checklist: the short version</h2>
+
+      <p>The full setup sequence comes down to five steps: select the right cameras and NVR for your property, run Cat5e or Cat6 cable within the 100-metre PoE limit, mount at the correct height and angle, activate the NVR with a strong password and initialise the hard drive, then enable Hik-Connect for mobile access.</p>
+
+      <p>Most issues that emerge after setting up Hikvision CCTV trace back to either a password mismatch between the NVR and the camera, or a DNS or IP conflict preventing the device from reaching the internet. Fix those two things first before exploring deeper causes.</p>
+
+      <p>If you are a business owner in Nairobi and would prefer a professional to handle the complete Hikvision CCTV setup, NE's team covers site survey, supply of genuine Hikvision equipment, full installation, and after-sales support. A <strong>free site survey is included with every NVR bundle purchase</strong> (subject to availability). Reach the NE team directly on WhatsApp to book yours, describe your property, and get a recommendation tailored to your specific coverage requirements.</p>
+
+    </div>
+
+  </article>
+
+  <section data-screen-label="CTA" style="max-width:1100px;margin:56px auto 0;padding:0 24px 64px">
+    <div style="text-align:center;padding:44px;background:#0F2C3D;border-radius:18px">
+      <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">Want this installed properly?</div>
+      <div style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:24px">Tell NE about your site and we'll recommend the right cameras, recorders and cabling &mdash; then install and configure it.</div>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="contact" style="background:#086E9E;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Talk to NE</a>
+        <a href="services" style="background:rgba(255,255,255,0.1);color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px;border:1.5px solid rgba(255,255,255,0.25)" style-hover="background:rgba(255,255,255,0.18)">Our Services</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#0F2C3D;padding:40px 24px">
+    <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <div style="font-size:13.5px;color:rgba(255,255,255,0.55)">&copy; 2026 NE &mdash; Nashnaal Electronics. Authorized Hikvision distributor &amp; retailer.</div>
+      <div style="display:flex;gap:22px">
+        <a href="/" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Home</a>
+        <a href="products" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Products</a>
+        <a href="solutions" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Solutions</a>
+        <a href="blog" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Blog</a>
+        <a href="faq" style="font-size:13.5px;color:rgba(255,255,255,0.75)">FAQ</a>
+        <a href="about" style="font-size:13.5px;color:rgba(255,255,255,0.75)">About</a>
+        <a href="contact" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/254798131085" target="_blank" class="wa-pulse-btn" style="position:fixed;bottom:26px;right:26px;width:58px;height:58px;border-radius:50%;background:#22C35E;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.2);z-index:60" style-hover="background:#1CAD52">
+    <span style="font-size:26px;line-height:1">💬</span>
+  </a>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { scrollY: 0, scrollProgress: 0 };
+
+  componentDidMount() {
+    import('./revealFx.js').then(mod => {
+      this._untrackScroll = mod.makeScrollTracker((scrollY, progress) => {
+        this.setState({ scrollY, scrollProgress: progress });
+      });
+      this.forceUpdate();
+    });
+  }
+
+  componentWillUnmount() {
+    if (this._untrackScroll) this._untrackScroll();
+  }
+
+  renderVals() {
+    const progressBarStyle = `position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4FC3EC,#0B8FCB);width:${(this.state.scrollProgress * 100).toFixed(2)}%;z-index:200;transition:width 0.1s linear`;
+    return { progressBarStyle };
+  }
+}
+
+</script>
+</body>
+</html>
