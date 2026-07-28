@@ -26,7 +26,7 @@
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nashnaal.com/" },
     { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://nashnaal.com/blog" },
-    { "@type": "ListItem", "position": 3, "name": "Hikvision Camera and NVR Installation Guide for Kenya", "item": "https://nashnaal.com/blog-hikvision-camera-and-nvr-installation-guide-for-kenya" }
+    { "@type": "ListItem", "position": 3, "name": "Hikvision camera and NVR installation guide for Kenya", "item": "https://nashnaal.com/blog-hikvision-camera-and-nvr-installation-guide-for-kenya" }
   ]
 }
 </script>
@@ -207,11 +207,17 @@
       <p>Once the IP is set, add the camera to the NVR manually by following these steps:</p>
 
       <ol>
+
         <li>Log into the NVR's local menu.</li>
+
         <li>Navigate to <strong>Camera Management</strong> and select the relevant channel.</li>
+
         <li>Change the adding method from <em>Plug and Play</em> to <em>Manual</em>.</li>
+
         <li>Enter the camera's new IP address, port 8000, the username (<em>admin</em>), and the password.</li>
+
         <li>Confirm a green <em>Online</em> status to verify the connection.</li>
+
       </ol>
 
       <p>If the NVR uses built-in PoE and the camera IP has not been changed from the factory default, Plug and Play handles all of this automatically.</p>
@@ -221,10 +227,15 @@
       <p><strong>Initialising the HDD is mandatory and cannot be skipped.</strong> Follow these steps to complete it:</p>
 
       <ol>
+
         <li>Navigate to <strong>Storage</strong>, then <strong>HDD Management</strong>.</li>
+
         <li>Select the drive and click <strong>Init</strong>.</li>
+
         <li>Confirm the warning that all existing data will be erased, then click <strong>OK</strong>.</li>
+
         <li>Wait for the process to complete; the status will change to <em>Normal</em> when done.</li>
+
       </ol>
 
       <p>Without this step, recording never starts, even if all cameras show as Online. Confirm live view is active on all channels before moving forward.</p>
@@ -238,13 +249,21 @@
       <p>For Hik-Connect remote access, follow these steps to activate the platform:</p>
 
       <ol>
+
         <li>Navigate to <strong>Configuration &rarr; Network &rarr; Advanced Settings &rarr; Platform Access</strong>.</li>
+
         <li>Set the mode to <em>Hik-Connect</em> and enable it.</li>
+
         <li>Create a verification code of six to eight alphanumeric characters.</li>
+
         <li>Wait for the status to change to <em>Online</em> (this usually takes a few seconds).</li>
+
         <li>Download the Hik-Connect app on iOS or Android and register an account.</li>
+
         <li>Add the device by scanning the QR code from the Platform Access screen, or enter the nine-digit serial number manually.</li>
+
         <li>When prompted, enter the verification code.</li>
+
       </ol>
 
       <p><strong>Test the live view over mobile data, not Wi-Fi,</strong> to confirm remote access is working from outside the local network. If it works over 4G, the connection is genuinely remote.</p>
