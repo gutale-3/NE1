@@ -7,7 +7,10 @@
     "pcsCtn": "45",
     "retail": 1150,
     "price": 1265,
-    "image": "images/001.png"
+    "image": "images/001.png",
+    "id": 1,
+    "slug": "ds-2ce16d0t-exipf-3-6mm-o-std",
+    "url": "/product/ds-2ce16d0t-exipf-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -17,7 +20,10 @@
     "pcsCtn": "40",
     "retail": 1150,
     "price": 1265,
-    "image": "images/002.png"
+    "image": "images/002.png",
+    "id": 2,
+    "slug": "ds-2ce76d0t-exipf-2-8mm-o-std",
+    "url": "/product/ds-2ce76d0t-exipf-2-8mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -27,7 +33,10 @@
     "pcsCtn": "16",
     "retail": 4650,
     "price": 5115,
-    "image": "images/003.png"
+    "image": "images/003.png",
+    "id": 3,
+    "slug": "ds-2ce18d0t-lfs-3-6mm-o-std",
+    "url": "/product/ds-2ce18d0t-lfs-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -37,7 +46,10 @@
     "pcsCtn": "16",
     "retail": 5000,
     "price": 5500,
-    "image": "images/004.png"
+    "image": "images/003.png",
+    "id": 4,
+    "slug": "ds-2ce18k0t-lfs-3-6mm-o-std",
+    "url": "/product/ds-2ce18k0t-lfs-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -47,7 +59,10 @@
     "pcsCtn": "45",
     "retail": 2100,
     "price": 2310,
-    "image": "images/005.png"
+    "image": "images/005.png",
+    "id": 5,
+    "slug": "ds-2ce16d0t-lpfs-3-6mm-o-std",
+    "url": "/product/ds-2ce16d0t-lpfs-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -57,7 +72,10 @@
     "pcsCtn": "36",
     "retail": 2100,
     "price": 2310,
-    "image": "images/006.png"
+    "image": "images/006.png",
+    "id": 6,
+    "slug": "ds-2ce76d0t-lpfs-2-8mm-o-std",
+    "url": "/product/ds-2ce76d0t-lpfs-2-8mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -67,7 +85,10 @@
     "pcsCtn": "45",
     "retail": 3300,
     "price": 3630,
-    "image": "images/007.webp"
+    "image": "images/007.webp",
+    "id": 7,
+    "slug": "ds-2ce16k0t-lpfs-3-6mm-o-std",
+    "url": "/product/ds-2ce16k0t-lpfs-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -77,7 +98,10 @@
     "pcsCtn": "36",
     "retail": 3300,
     "price": 3630,
-    "image": "images/008.png"
+    "image": "images/006.png",
+    "id": 8,
+    "slug": "ds-2ce76k0t-lpfs-2-8mm-o-std",
+    "url": "/product/ds-2ce76k0t-lpfs-2-8mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -87,7 +111,10 @@
     "pcsCtn": "36",
     "retail": 3200,
     "price": 3520,
-    "image": "images/009.png"
+    "image": "images/009.png",
+    "id": 9,
+    "slug": "ds-2ce10df0t-lpfs-3-6mm-o-std",
+    "url": "/product/ds-2ce10df0t-lpfs-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -97,7 +124,10 @@
     "pcsCtn": "36",
     "retail": 3200,
     "price": 3520,
-    "image": "images/010.png"
+    "image": "images/010.png",
+    "id": 10,
+    "slug": "ds-2ce70df0t-lpfs-2-8mm-o-std",
+    "url": "/product/ds-2ce70df0t-lpfs-2-8mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -107,7 +137,10 @@
     "pcsCtn": "16",
     "retail": 4250,
     "price": 4675,
-    "image": "images/011.png"
+    "image": "images/011.png",
+    "id": 11,
+    "slug": "ds-2ce12df0t-lfs-3-6mm-o-std",
+    "url": "/product/ds-2ce12df0t-lfs-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -117,7 +150,10 @@
     "pcsCtn": "30",
     "retail": 4250,
     "price": 4675,
-    "image": "images/012.png"
+    "image": "images/012.png",
+    "id": 12,
+    "slug": "ds-2ce72df0t-lfs-3-6mm-o-std",
+    "url": "/product/ds-2ce72df0t-lfs-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -127,7 +163,10 @@
     "pcsCtn": "36",
     "retail": 4550,
     "price": 5005,
-    "image": "images/013.png"
+    "image": "images/009.png",
+    "id": 13,
+    "slug": "ds-2ce10kf0t-lpfs-3-6mm-o-std",
+    "url": "/product/ds-2ce10kf0t-lpfs-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -137,7 +176,10 @@
     "pcsCtn": "36",
     "retail": 4550,
     "price": 5005,
-    "image": "images/014.png"
+    "image": "images/010.png",
+    "id": 14,
+    "slug": "ds-2ce70kf0t-lpfs-2-8mm-o-std",
+    "url": "/product/ds-2ce70kf0t-lpfs-2-8mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -147,7 +189,10 @@
     "pcsCtn": "16",
     "retail": 5800,
     "price": 6380,
-    "image": "images/015.png"
+    "image": "images/011.png",
+    "id": 15,
+    "slug": "ds-2ce12kf0t-lfs-3-6mm-o-std",
+    "url": "/product/ds-2ce12kf0t-lfs-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -157,7 +202,10 @@
     "pcsCtn": "30",
     "retail": 5800,
     "price": 6380,
-    "image": "images/016.png"
+    "image": "images/012.png",
+    "id": 16,
+    "slug": "ds-2ce72kf0t-lfs-2-8mm-o-std",
+    "url": "/product/ds-2ce72kf0t-lfs-2-8mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -167,7 +215,10 @@
     "pcsCtn": "18",
     "retail": 3300,
     "price": 3630,
-    "image": "images/017.png"
+    "image": "images/017.png",
+    "id": 17,
+    "slug": "ds-2ce16d0t-lpts-3-6mm-o-std",
+    "url": "/product/ds-2ce16d0t-lpts-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -177,7 +228,10 @@
     "pcsCtn": "30",
     "retail": 3750,
     "price": 4125,
-    "image": "images/018.png"
+    "image": "images/018.png",
+    "id": 18,
+    "slug": "ds-2ce78d0t-lts-2-8mm-o-std",
+    "url": "/product/ds-2ce78d0t-lts-2-8mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -187,7 +241,10 @@
     "pcsCtn": "27",
     "retail": 3950,
     "price": 4345,
-    "image": "images/019.png"
+    "image": "images/019.png",
+    "id": 19,
+    "slug": "ds-2ce70d0t-ptlts-2-8mm-o-std",
+    "url": "/product/ds-2ce70d0t-ptlts-2-8mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -197,7 +254,10 @@
     "pcsCtn": "18",
     "retail": 3750,
     "price": 4125,
-    "image": "images/020.png"
+    "image": "images/020.png",
+    "id": 20,
+    "slug": "ds-2ce16d0t-lpxts-3-6mm-o-std",
+    "url": "/product/ds-2ce16d0t-lpxts-3-6mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -207,7 +267,10 @@
     "pcsCtn": "30",
     "retail": 4150,
     "price": 4565,
-    "image": "images/021.png"
+    "image": "images/018.png",
+    "id": 21,
+    "slug": "ds-2ce78d0t-lxts-2-8mm-o-std",
+    "url": "/product/ds-2ce78d0t-lxts-2-8mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -217,7 +280,10 @@
     "pcsCtn": "27",
     "retail": 4400,
     "price": 4840,
-    "image": "images/022.png"
+    "image": "images/019.png",
+    "id": 22,
+    "slug": "ds-2ce70d0t-ptlxts-2-8mm-o-std",
+    "url": "/product/ds-2ce70d0t-ptlxts-2-8mm-o-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -227,7 +293,10 @@
     "pcsCtn": "10",
     "retail": 4500,
     "price": 4950,
-    "image": "images/023.png"
+    "image": "images/023.png",
+    "id": 23,
+    "slug": "ds-7104hghi-m1-std-c",
+    "url": "/product/ds-7104hghi-m1-std-c"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -237,7 +306,10 @@
     "pcsCtn": "10",
     "retail": 5350,
     "price": 5885,
-    "image": "images/024.png"
+    "image": "images/023.png",
+    "id": 24,
+    "slug": "ds-7108hghi-m1-std-c",
+    "url": "/product/ds-7108hghi-m1-std-c"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -247,7 +319,10 @@
     "pcsCtn": "10",
     "retail": 9100,
     "price": 10010,
-    "image": "images/025.png"
+    "image": "images/025.png",
+    "id": 25,
+    "slug": "ds-7116hghi-m1-std-e",
+    "url": "/product/ds-7116hghi-m1-std-e"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -257,7 +332,10 @@
     "pcsCtn": "10",
     "retail": 9100,
     "price": 10010,
-    "image": "images/026.png"
+    "image": "images/025.png",
+    "id": 26,
+    "slug": "ds-7116hghi-m1-std-f",
+    "url": "/product/ds-7116hghi-m1-std-f"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -267,7 +345,10 @@
     "pcsCtn": "8",
     "retail": 5100,
     "price": 5610,
-    "image": "images/027.png"
+    "image": "images/027.png",
+    "id": 27,
+    "slug": "ds-7204hghi-m1-std-c",
+    "url": "/product/ds-7204hghi-m1-std-c"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -277,7 +358,10 @@
     "pcsCtn": "8",
     "retail": 6400,
     "price": 7040,
-    "image": "images/028.png"
+    "image": "images/027.png",
+    "id": 28,
+    "slug": "ds-7208hghi-m1-std-c",
+    "url": "/product/ds-7208hghi-m1-std-c"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -287,7 +371,10 @@
     "pcsCtn": "8",
     "retail": 10200,
     "price": 11220,
-    "image": "images/029.png"
+    "image": "images/029.png",
+    "id": 29,
+    "slug": "ds-7216hghi-m1-std-e",
+    "url": "/product/ds-7216hghi-m1-std-e"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -297,7 +384,10 @@
     "pcsCtn": "8",
     "retail": 10200,
     "price": 11220,
-    "image": "images/030.png"
+    "image": "images/029.png",
+    "id": 30,
+    "slug": "ds-7216hghi-m1-std-f",
+    "url": "/product/ds-7216hghi-m1-std-f"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -307,7 +397,10 @@
     "pcsCtn": "10",
     "retail": 5000,
     "price": 5500,
-    "image": "images/031.png"
+    "image": "images/031.png",
+    "id": 31,
+    "slug": "ds-7104hghi-m1-t-std",
+    "url": "/product/ds-7104hghi-m1-t-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -317,7 +410,10 @@
     "pcsCtn": "10",
     "retail": 6300,
     "price": 6930,
-    "image": "images/032.png"
+    "image": "images/031.png",
+    "id": 32,
+    "slug": "ds-7108hghi-m1-t-std",
+    "url": "/product/ds-7108hghi-m1-t-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -327,7 +423,10 @@
     "pcsCtn": "10",
     "retail": 11300,
     "price": 12430,
-    "image": "images/033.png"
+    "image": "images/033.png",
+    "id": 33,
+    "slug": "ds-7116hghi-m1-t-std",
+    "url": "/product/ds-7116hghi-m1-t-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -337,7 +436,10 @@
     "pcsCtn": "8",
     "retail": 5850,
     "price": 6435,
-    "image": "images/034.png"
+    "image": "images/034.png",
+    "id": 34,
+    "slug": "ds-7204hghi-m1-t-std",
+    "url": "/product/ds-7204hghi-m1-t-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -347,7 +449,10 @@
     "pcsCtn": "8",
     "retail": 6800,
     "price": 7480,
-    "image": "images/035.png"
+    "image": "images/035.png",
+    "id": 35,
+    "slug": "ds-7208hghi-m1-t-std",
+    "url": "/product/ds-7208hghi-m1-t-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -357,7 +462,10 @@
     "pcsCtn": "8",
     "retail": 11800,
     "price": 12980,
-    "image": "images/036.png"
+    "image": "images/035.png",
+    "id": 36,
+    "slug": "ds-7216hghi-m1-t-std",
+    "url": "/product/ds-7216hghi-m1-t-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -367,7 +475,10 @@
     "pcsCtn": "4",
     "retail": 29600,
     "price": 32560,
-    "image": "images/037.png"
+    "image": "images/037.png",
+    "id": 37,
+    "slug": "ds-7232hghi-m2-std",
+    "url": "/product/ds-7232hghi-m2-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -377,7 +488,10 @@
     "pcsCtn": "10",
     "retail": 7600,
     "price": 8360,
-    "image": "images/038.png"
+    "image": "images/038.png",
+    "id": 38,
+    "slug": "ids-7104hqhi-m1-t-std",
+    "url": "/product/ids-7104hqhi-m1-t-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -387,7 +501,10 @@
     "pcsCtn": "8",
     "retail": 10100,
     "price": 11110,
-    "image": "images/039.png"
+    "image": "images/039.png",
+    "id": 39,
+    "slug": "ids-7204hqhi-m1-xt-std",
+    "url": "/product/ids-7204hqhi-m1-xt-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -397,7 +514,10 @@
     "pcsCtn": "10",
     "retail": 11100,
     "price": 12210,
-    "image": "images/040.png"
+    "image": "images/038.png",
+    "id": 40,
+    "slug": "ids-7108hqhi-m1-t-std",
+    "url": "/product/ids-7108hqhi-m1-t-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -407,7 +527,10 @@
     "pcsCtn": "8",
     "retail": 14000,
     "price": 15400,
-    "image": "images/041.png"
+    "image": "images/039.png",
+    "id": 41,
+    "slug": "ids-7208hqhi-m1-xt-std",
+    "url": "/product/ids-7208hqhi-m1-xt-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -417,7 +540,10 @@
     "pcsCtn": "10",
     "retail": 18300,
     "price": 20130,
-    "image": "images/042.png"
+    "image": "images/042.png",
+    "id": 42,
+    "slug": "ids-7116hqhi-m1-t-std",
+    "url": "/product/ids-7116hqhi-m1-t-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -427,7 +553,10 @@
     "pcsCtn": "8",
     "retail": 22500,
     "price": 24750,
-    "image": "images/043.png"
+    "image": "images/039.png",
+    "id": 43,
+    "slug": "ids-7216hqhi-m1-xt-std",
+    "url": "/product/ids-7216hqhi-m1-xt-std"
   },
   {
     "category": "CCTV-Turbo HD",
@@ -437,7 +566,10 @@
     "pcsCtn": "4",
     "retail": 43500,
     "price": 47850,
-    "image": "images/044.png"
+    "image": "images/044.png",
+    "id": 44,
+    "slug": "ids-7232hqhi-m2-xt-std",
+    "url": "/product/ids-7232hqhi-m2-xt-std"
   },
   {
     "category": "CCTV-IP",
@@ -447,7 +579,10 @@
     "pcsCtn": "45",
     "retail": 3400,
     "price": 3740,
-    "image": "images/045.png"
+    "image": "images/045.png",
+    "id": 45,
+    "slug": "ds-2cd1021g0-i-4mm-o-std",
+    "url": "/product/ds-2cd1021g0-i-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -457,7 +592,10 @@
     "pcsCtn": "24",
     "retail": 3400,
     "price": 3740,
-    "image": "images/046.png"
+    "image": "images/046.png",
+    "id": 46,
+    "slug": "ds-2cd1121g0-i-2-8mm-o-std",
+    "url": "/product/ds-2cd1121g0-i-2-8mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -467,7 +605,10 @@
     "pcsCtn": "18",
     "retail": 4600,
     "price": 5060,
-    "image": "images/047.png"
+    "image": "images/047.png",
+    "id": 47,
+    "slug": "ds-2cd1023g2-liu-4mm-o-std",
+    "url": "/product/ds-2cd1023g2-liu-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -477,7 +618,10 @@
     "pcsCtn": "27",
     "retail": 4600,
     "price": 5060,
-    "image": "images/048.png"
+    "image": "images/048.png",
+    "id": 48,
+    "slug": "ds-2cd1123g2-liu-2-8mm-o-std",
+    "url": "/product/ds-2cd1123g2-liu-2-8mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -487,7 +631,10 @@
     "pcsCtn": "18",
     "retail": 6700,
     "price": 7370,
-    "image": "images/049.png"
+    "image": "images/047.png",
+    "id": 49,
+    "slug": "ds-2cd1043g2-liu-4mm-o-std",
+    "url": "/product/ds-2cd1043g2-liu-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -497,7 +644,10 @@
     "pcsCtn": "27",
     "retail": 6700,
     "price": 7370,
-    "image": "images/050.png"
+    "image": "images/048.png",
+    "id": 50,
+    "slug": "ds-2cd1143g2-liu-2-8mm-o-std",
+    "url": "/product/ds-2cd1143g2-liu-2-8mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -507,7 +657,10 @@
     "pcsCtn": "12",
     "retail": 13500,
     "price": 14850,
-    "image": "images/051.png"
+    "image": "images/051.png",
+    "id": 51,
+    "slug": "ds-2cd1643g2-lizu-2-8-12mm-o-std",
+    "url": "/product/ds-2cd1643g2-lizu-2-8-12mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -517,7 +670,10 @@
     "pcsCtn": "27",
     "retail": 13500,
     "price": 14850,
-    "image": "images/052.png"
+    "image": "images/052.png",
+    "id": 52,
+    "slug": "ds-2cd1743g2-lizu-2-8-12mm-o-std",
+    "url": "/product/ds-2cd1743g2-lizu-2-8-12mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -527,7 +683,10 @@
     "pcsCtn": "18",
     "retail": 8300,
     "price": 9130,
-    "image": "images/053.png"
+    "image": "images/053.png",
+    "id": 53,
+    "slug": "ds-2cd1063g2-liu-4mm-o-std",
+    "url": "/product/ds-2cd1063g2-liu-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -537,7 +696,10 @@
     "pcsCtn": "27",
     "retail": 8300,
     "price": 9130,
-    "image": "images/054.png"
+    "image": "images/048.png",
+    "id": 54,
+    "slug": "ds-2cd1163g2-liu-2-8mm-o-std",
+    "url": "/product/ds-2cd1163g2-liu-2-8mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -547,7 +709,10 @@
     "pcsCtn": "18",
     "retail": 13800,
     "price": 15180,
-    "image": "images/055.png"
+    "image": "images/053.png",
+    "id": 55,
+    "slug": "ds-2cd1083g2-liu-4mm-o-std",
+    "url": "/product/ds-2cd1083g2-liu-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -557,7 +722,10 @@
     "pcsCtn": "27",
     "retail": 13800,
     "price": 15180,
-    "image": "images/056.png"
+    "image": "images/048.png",
+    "id": 56,
+    "slug": "ds-2cd1183g2-liu-2-8mm-o-std",
+    "url": "/product/ds-2cd1183g2-liu-2-8mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -567,7 +735,10 @@
     "pcsCtn": "18",
     "retail": 8800,
     "price": 9680,
-    "image": "images/057.png"
+    "image": "images/057.png",
+    "id": 57,
+    "slug": "ds-2cd1047g3-liu-4mm-o-std",
+    "url": "/product/ds-2cd1047g3-liu-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -577,7 +748,10 @@
     "pcsCtn": "27",
     "retail": 8800,
     "price": 9680,
-    "image": "images/058.png"
+    "image": "images/058.png",
+    "id": 58,
+    "slug": "ds-2cd1147g3-liu-2-8mm-o-std",
+    "url": "/product/ds-2cd1147g3-liu-2-8mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -587,7 +761,10 @@
     "pcsCtn": "24",
     "retail": 11500,
     "price": 12650,
-    "image": "images/059.png"
+    "image": "images/059.png",
+    "id": 59,
+    "slug": "ds-2cd1t47g3-liu-4mm-o-std",
+    "url": "/product/ds-2cd1t47g3-liu-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -597,7 +774,10 @@
     "pcsCtn": "18",
     "retail": 9800,
     "price": 10780,
-    "image": "images/060.png"
+    "image": "images/057.png",
+    "id": 60,
+    "slug": "ds-2cd1067g3-liu-4mm-o-std",
+    "url": "/product/ds-2cd1067g3-liu-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -607,7 +787,10 @@
     "pcsCtn": "27",
     "retail": 9800,
     "price": 10780,
-    "image": "images/061.png"
+    "image": "images/058.png",
+    "id": 61,
+    "slug": "ds-2cd1167g3-liu-2-8mm-o-std",
+    "url": "/product/ds-2cd1167g3-liu-2-8mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -617,7 +800,10 @@
     "pcsCtn": "24",
     "retail": 10700,
     "price": 11770,
-    "image": "images/062.png"
+    "image": "images/059.png",
+    "id": 62,
+    "slug": "ds-2cd1t67g3-liu-4mm-o-std",
+    "url": "/product/ds-2cd1t67g3-liu-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -627,7 +813,10 @@
     "pcsCtn": "18",
     "retail": 10300,
     "price": 11330,
-    "image": "images/063.png"
+    "image": "images/063.png",
+    "id": 63,
+    "slug": "ds-2cd1047g3-liuf-srb-4mm-o-std",
+    "url": "/product/ds-2cd1047g3-liuf-srb-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -637,7 +826,10 @@
     "pcsCtn": "27",
     "retail": 10300,
     "price": 11330,
-    "image": "images/064.png"
+    "image": "images/064.png",
+    "id": 64,
+    "slug": "ds-2cd1347g3-liuf-srb-2-8mm-o-std",
+    "url": "/product/ds-2cd1347g3-liuf-srb-2-8mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -647,7 +839,10 @@
     "pcsCtn": "24",
     "retail": 13100,
     "price": 14410,
-    "image": "images/065.png"
+    "image": "images/065.png",
+    "id": 65,
+    "slug": "ds-2cd1t47g3-liuf-srb-4mm-o-std",
+    "url": "/product/ds-2cd1t47g3-liuf-srb-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -657,7 +852,10 @@
     "pcsCtn": "18",
     "retail": 12500,
     "price": 13750,
-    "image": "images/066.png"
+    "image": "images/063.png",
+    "id": 66,
+    "slug": "ds-2cd1067g3-liuf-srb-4mm-o-std",
+    "url": "/product/ds-2cd1067g3-liuf-srb-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -667,7 +865,10 @@
     "pcsCtn": "27",
     "retail": 12500,
     "price": 13750,
-    "image": "images/067.png"
+    "image": "images/064.png",
+    "id": 67,
+    "slug": "ds-2cd1367g3-liuf-srb-2-8mm-o-std",
+    "url": "/product/ds-2cd1367g3-liuf-srb-2-8mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -677,7 +878,10 @@
     "pcsCtn": "24",
     "retail": 13700,
     "price": 15070,
-    "image": "images/068.png"
+    "image": "images/065.png",
+    "id": 68,
+    "slug": "ds-2cd1t67g3-liuf-srb-4mm-o-std",
+    "url": "/product/ds-2cd1t67g3-liuf-srb-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -687,7 +891,10 @@
     "pcsCtn": "32",
     "retail": 22500,
     "price": 24750,
-    "image": "images/069.png"
+    "image": "images/069.png",
+    "id": 69,
+    "slug": "ds-2cd2047g3-li2uy-4mm-o-std",
+    "url": "/product/ds-2cd2047g3-li2uy-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -697,7 +904,10 @@
     "pcsCtn": "27",
     "retail": 22500,
     "price": 24750,
-    "image": "images/070.png"
+    "image": "images/070.png",
+    "id": 70,
+    "slug": "ds-2cd2147g3-lis2uy-2-8mm-o-std",
+    "url": "/product/ds-2cd2147g3-lis2uy-2-8mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -707,7 +917,10 @@
     "pcsCtn": "9",
     "retail": 27300,
     "price": 30030,
-    "image": "images/071.png"
+    "image": "images/071.png",
+    "id": 71,
+    "slug": "ds-2cd2t47g3-lis2uy-srb-4mm-o-std",
+    "url": "/product/ds-2cd2t47g3-lis2uy-srb-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -717,7 +930,10 @@
     "pcsCtn": "32",
     "retail": 26200,
     "price": 28820,
-    "image": "images/072.png"
+    "image": "images/069.png",
+    "id": 72,
+    "slug": "ds-2cd2087g3-li2uy-4mm-o-std",
+    "url": "/product/ds-2cd2087g3-li2uy-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -727,7 +943,10 @@
     "pcsCtn": "27",
     "retail": 26200,
     "price": 28820,
-    "image": "images/073.png"
+    "image": "images/070.png",
+    "id": 73,
+    "slug": "ds-2cd2187g3-lis2uy-2-8mm-o-std",
+    "url": "/product/ds-2cd2187g3-lis2uy-2-8mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -737,7 +956,10 @@
     "pcsCtn": "9",
     "retail": 32600,
     "price": 35860,
-    "image": "images/074.png"
+    "image": "images/071.png",
+    "id": 74,
+    "slug": "ds-2cd2t87g3-lis2uy-srb-4mm-o-std",
+    "url": "/product/ds-2cd2t87g3-lis2uy-srb-4mm-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -747,7 +969,10 @@
     "pcsCtn": "4",
     "retail": 39500,
     "price": 43450,
-    "image": "images/075.png"
+    "image": "images/075.png",
+    "id": 75,
+    "slug": "ds-2de4225iwg1-e-o-std",
+    "url": "/product/ds-2de4225iwg1-e-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -757,7 +982,10 @@
     "pcsCtn": "4",
     "retail": 43700,
     "price": 48070,
-    "image": "images/076.png"
+    "image": "images/075.png",
+    "id": 76,
+    "slug": "ds-2de4425iw-de-o-std-t5",
+    "url": "/product/ds-2de4425iw-de-o-std-t5"
   },
   {
     "category": "CCTV-IP",
@@ -767,7 +995,10 @@
     "pcsCtn": "4",
     "retail": 45400,
     "price": 49940,
-    "image": "images/077.png"
+    "image": "images/077.png",
+    "id": 77,
+    "slug": "ds-2se4c225mwg-e-12-f0-o-std",
+    "url": "/product/ds-2se4c225mwg-e-12-f0-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -777,7 +1008,10 @@
     "pcsCtn": "4",
     "retail": 49600,
     "price": 54560,
-    "image": "images/078.png"
+    "image": "images/077.png",
+    "id": 78,
+    "slug": "ds-2se4c425mwg-e-14-f0-o-std",
+    "url": "/product/ds-2se4c425mwg-e-14-f0-o-std"
   },
   {
     "category": "CCTV-IP",
@@ -787,7 +1021,10 @@
     "pcsCtn": "2",
     "retail": 13000,
     "price": 14300,
-    "image": "images/079.png"
+    "image": "images/079.png",
+    "id": 79,
+    "slug": "ds-2cfsp4-4g-4mm-o-std-eu",
+    "url": "/product/ds-2cfsp4-4g-4mm-o-std-eu"
   },
   {
     "category": "CCTV-IP",
@@ -797,7 +1034,10 @@
     "pcsCtn": "2",
     "retail": 13000,
     "price": 14300,
-    "image": "images/080.png"
+    "image": "images/079.png",
+    "id": 80,
+    "slug": "ds-2cfsp4-4g-sim-4mm-ken",
+    "url": "/product/ds-2cfsp4-4g-sim-4mm-ken"
   },
   {
     "category": "CCTV-IP",
@@ -807,7 +1047,10 @@
     "pcsCtn": "2",
     "retail": 18500,
     "price": 20350,
-    "image": "images/081.png"
+    "image": "images/081.png",
+    "id": 81,
+    "slug": "ds-2cfsp8-d-4g-2-8-4mm-o-std-eu",
+    "url": "/product/ds-2cfsp8-d-4g-2-8-4mm-o-std-eu"
   },
   {
     "category": "CCTV-IP",
@@ -817,7 +1060,10 @@
     "pcsCtn": "2",
     "retail": 18500,
     "price": 20350,
-    "image": "images/082.png"
+    "image": "images/081.png",
+    "id": 82,
+    "slug": "ds-2cfsp8-d-4g-sim-2-8-4mm-ken",
+    "url": "/product/ds-2cfsp8-d-4g-sim-2-8-4mm-ken"
   },
   {
     "category": "CCTV-IP",
@@ -827,7 +1073,10 @@
     "pcsCtn": "8",
     "retail": 9100,
     "price": 10010,
-    "image": "images/083.png"
+    "image": "images/083.png",
+    "id": 83,
+    "slug": "ds-7104ni-q1-4p-m-std-d",
+    "url": "/product/ds-7104ni-q1-4p-m-std-d"
   },
   {
     "category": "CCTV-IP",
@@ -837,7 +1086,10 @@
     "pcsCtn": "8",
     "retail": 12800,
     "price": 14080,
-    "image": "images/084.png"
+    "image": "images/083.png",
+    "id": 84,
+    "slug": "ds-7108ni-q1-8p-m-std-d",
+    "url": "/product/ds-7108ni-q1-8p-m-std-d"
   },
   {
     "category": "CCTV-IP",
@@ -847,7 +1099,10 @@
     "pcsCtn": "8",
     "retail": 18300,
     "price": 20130,
-    "image": "images/085.png"
+    "image": "images/085.png",
+    "id": 85,
+    "slug": "ds-7608nxi-k1-8p-std-b",
+    "url": "/product/ds-7608nxi-k1-8p-std-b"
   },
   {
     "category": "CCTV-IP",
@@ -857,7 +1112,10 @@
     "pcsCtn": "4",
     "retail": 26800,
     "price": 29480,
-    "image": "images/086.png"
+    "image": "images/086.png",
+    "id": 86,
+    "slug": "ds-7616ni-q2-16p-e-std",
+    "url": "/product/ds-7616ni-q2-16p-e-std"
   },
   {
     "category": "CCTV-IP",
@@ -867,7 +1125,10 @@
     "pcsCtn": "4",
     "retail": 32100,
     "price": 35310,
-    "image": "images/087.png"
+    "image": "images/087.png",
+    "id": 87,
+    "slug": "ds-7616nxi-k2-16p-d-std",
+    "url": "/product/ds-7616nxi-k2-16p-d-std"
   },
   {
     "category": "CCTV-IP",
@@ -877,7 +1138,10 @@
     "pcsCtn": "4",
     "retail": 32100,
     "price": 35310,
-    "image": "images/088.png"
+    "image": "images/087.png",
+    "id": 88,
+    "slug": "ds-7616nxi-k2-16p-e-std",
+    "url": "/product/ds-7616nxi-k2-16p-e-std"
   },
   {
     "category": "CCTV-IP",
@@ -887,7 +1151,10 @@
     "pcsCtn": "4",
     "retail": 37800,
     "price": 41580,
-    "image": "images/089.png"
+    "image": "images/087.png",
+    "id": 89,
+    "slug": "ds-7632nxi-k2-16p-d-std",
+    "url": "/product/ds-7632nxi-k2-16p-d-std"
   },
   {
     "category": "CCTV-IP",
@@ -897,7 +1164,10 @@
     "pcsCtn": "4",
     "retail": 37800,
     "price": 41580,
-    "image": "images/090.png"
+    "image": "images/087.png",
+    "id": 90,
+    "slug": "ds-7632nxi-k2-16p-e-std",
+    "url": "/product/ds-7632nxi-k2-16p-e-std"
   },
   {
     "category": "CCTV-IP",
@@ -907,7 +1177,10 @@
     "pcsCtn": "2",
     "retail": 56900,
     "price": 62590,
-    "image": "images/091.png"
+    "image": "images/091.png",
+    "id": 91,
+    "slug": "ds-7732nxi-k4-16p-d-std",
+    "url": "/product/ds-7732nxi-k4-16p-d-std"
   },
   {
     "category": "CCTV-IP",
@@ -917,7 +1190,10 @@
     "pcsCtn": "2",
     "retail": 56900,
     "price": 62590,
-    "image": "images/092.png"
+    "image": "images/091.png",
+    "id": 92,
+    "slug": "ds-7732nxi-k4-16p-e-std",
+    "url": "/product/ds-7732nxi-k4-16p-e-std"
   },
   {
     "category": "CCTV-IP",
@@ -927,7 +1203,10 @@
     "pcsCtn": "2",
     "retail": 91600,
     "price": 100760,
-    "image": "images/093.png"
+    "image": "images/093.png",
+    "id": 93,
+    "slug": "ds-7764ni-m4-std",
+    "url": "/product/ds-7764ni-m4-std"
   },
   {
     "category": "Access Control",
@@ -937,7 +1216,10 @@
     "pcsCtn": "20",
     "retail": 9800,
     "price": 10780,
-    "image": "images/094.png"
+    "image": "images/094.png",
+    "id": 94,
+    "slug": "ds-k1t808mfwx-o-std",
+    "url": "/product/ds-k1t808mfwx-o-std"
   },
   {
     "category": "Access Control",
@@ -947,7 +1229,10 @@
     "pcsCtn": "20",
     "retail": 13500,
     "price": 14850,
-    "image": "images/095.png"
+    "image": "images/095.png",
+    "id": 95,
+    "slug": "ds-k1t323mbfwx-e1-o-std",
+    "url": "/product/ds-k1t323mbfwx-e1-o-std"
   },
   {
     "category": "Access Control",
@@ -957,7 +1242,10 @@
     "pcsCtn": "20",
     "retail": 21700,
     "price": 23870,
-    "image": "images/096.png"
+    "image": "images/096.png",
+    "id": 96,
+    "slug": "ds-k1t341cmf-o-std",
+    "url": "/product/ds-k1t341cmf-o-std"
   },
   {
     "category": "Access Control",
@@ -967,7 +1255,10 @@
     "pcsCtn": "20",
     "retail": 19700,
     "price": 21670,
-    "image": "images/097.png"
+    "image": "images/097.png",
+    "id": 97,
+    "slug": "ds-k1t342mfx-e1-o-std",
+    "url": "/product/ds-k1t342mfx-e1-o-std"
   },
   {
     "category": "Access Control",
@@ -977,7 +1268,10 @@
     "pcsCtn": "20",
     "retail": 24800,
     "price": 27280,
-    "image": "images/098.png"
+    "image": "images/098.png",
+    "id": 98,
+    "slug": "ds-k1t344mbfwx-e1-o-std",
+    "url": "/product/ds-k1t344mbfwx-e1-o-std"
   },
   {
     "category": "Access Control",
@@ -987,7 +1281,10 @@
     "pcsCtn": "12",
     "retail": 2300,
     "price": 2530,
-    "image": "images/099.png"
+    "image": "images/099.png",
+    "id": 99,
+    "slug": "ds-k4h255s-o-std",
+    "url": "/product/ds-k4h255s-o-std"
   },
   {
     "category": "Access Control",
@@ -997,7 +1294,10 @@
     "pcsCtn": "30",
     "retail": 1150,
     "price": 1265,
-    "image": "images/100.png"
+    "image": "images/100.png",
+    "id": 100,
+    "slug": "ds-k4h255-lz-o-std",
+    "url": "/product/ds-k4h255-lz-o-std"
   },
   {
     "category": "Access Control",
@@ -1007,7 +1307,10 @@
     "pcsCtn": "10",
     "retail": 3500,
     "price": 3850,
-    "image": "images/101.png"
+    "image": "images/101.png",
+    "id": 101,
+    "slug": "ds-k4dc104-o-neu",
+    "url": "/product/ds-k4dc104-o-neu"
   },
   {
     "category": "Access Control",
@@ -1017,7 +1320,10 @@
     "pcsCtn": "100",
     "retail": 950,
     "price": 1045,
-    "image": "images/102.png"
+    "image": "images/102.png",
+    "id": 102,
+    "slug": "ds-k7p01-o-neu",
+    "url": "/product/ds-k7p01-o-neu"
   },
   {
     "category": "Access Control",
@@ -1027,7 +1333,10 @@
     "pcsCtn": "100",
     "retail": 950,
     "price": 1045,
-    "image": "images/103.png"
+    "image": "images/103.png",
+    "id": 103,
+    "slug": "ds-k7p02-o-neu",
+    "url": "/product/ds-k7p02-o-neu"
   },
   {
     "category": "Access Control",
@@ -1037,7 +1346,10 @@
     "pcsCtn": "96",
     "retail": 1900,
     "price": 2090,
-    "image": "images/104.png"
+    "image": "images/104.png",
+    "id": 104,
+    "slug": "ds-k7p03-o-neu-t",
+    "url": "/product/ds-k7p03-o-neu-t"
   },
   {
     "category": "Access Control",
@@ -1047,7 +1359,10 @@
     "pcsCtn": "50",
     "retail": 1900,
     "price": 2090,
-    "image": "images/105.png"
+    "image": "images/105.png",
+    "id": 105,
+    "slug": "ds-k7peb-green-o-neu",
+    "url": "/product/ds-k7peb-green-o-neu"
   },
   {
     "category": "Access Control",
@@ -1057,7 +1372,10 @@
     "pcsCtn": "5000",
     "retail": 150,
     "price": 165,
-    "image": "images/106.png"
+    "image": "images/106.png",
+    "id": 106,
+    "slug": "ic-s50-o-neu",
+    "url": "/product/ic-s50-o-neu"
   },
   {
     "category": "Access Control",
@@ -1067,7 +1385,10 @@
     "pcsCtn": "1250",
     "retail": 120,
     "price": 132,
-    "image": "images/107.png"
+    "image": "images/107.png",
+    "id": 107,
+    "slug": "ds-k7m102-m-o-std",
+    "url": "/product/ds-k7m102-m-o-std"
   },
   {
     "category": "Video Intercom",
@@ -1077,7 +1398,10 @@
     "pcsCtn": "8",
     "retail": 10800,
     "price": 11880,
-    "image": "images/108.png"
+    "image": "images/108.png",
+    "id": 108,
+    "slug": "ds-kis212-o-std",
+    "url": "/product/ds-kis212-o-std"
   },
   {
     "category": "Video Intercom",
@@ -1087,7 +1411,10 @@
     "pcsCtn": "8",
     "retail": 11900,
     "price": 13090,
-    "image": "images/109.png"
+    "image": "images/109.png",
+    "id": 109,
+    "slug": "ds-kis213-o-std-africa",
+    "url": "/product/ds-kis213-o-std-africa"
   },
   {
     "category": "Video Intercom",
@@ -1097,7 +1424,10 @@
     "pcsCtn": "8",
     "retail": 17000,
     "price": 18700,
-    "image": "images/110.png"
+    "image": "images/110.png",
+    "id": 110,
+    "slug": "ds-kis313-p-o-std",
+    "url": "/product/ds-kis313-p-o-std"
   },
   {
     "category": "Video Intercom",
@@ -1107,7 +1437,10 @@
     "pcsCtn": "6",
     "retail": 24300,
     "price": 26730,
-    "image": "images/111.png"
+    "image": "images/111.png",
+    "id": 111,
+    "slug": "ds-kis603-p-c-o-std",
+    "url": "/product/ds-kis603-p-c-o-std"
   },
   {
     "category": "Video Intercom",
@@ -1117,7 +1450,10 @@
     "pcsCtn": "4",
     "retail": 32600,
     "price": 35860,
-    "image": "images/112.png"
+    "image": "images/112.png",
+    "id": 112,
+    "slug": "ds-kis604-s-c-o-std",
+    "url": "/product/ds-kis604-s-c-o-std"
   },
   {
     "category": "Video Intercom",
@@ -1127,7 +1463,10 @@
     "pcsCtn": "4",
     "retail": 27500,
     "price": 30250,
-    "image": "images/113.png"
+    "image": "images/113.png",
+    "id": 113,
+    "slug": "ds-kis608-p-o-std",
+    "url": "/product/ds-kis608-p-o-std"
   },
   {
     "category": "Video Intercom",
@@ -1137,7 +1476,10 @@
     "pcsCtn": "4",
     "retail": 27500,
     "price": 30250,
-    "image": "images/114.png"
+    "image": "images/114.png",
+    "id": 114,
+    "slug": "ds-kis612-p-o-std",
+    "url": "/product/ds-kis612-p-o-std"
   },
   {
     "category": "Video Intercom",
@@ -1147,7 +1489,10 @@
     "pcsCtn": "20",
     "retail": 12600,
     "price": 13860,
-    "image": "images/115.png"
+    "image": "images/115.png",
+    "id": 115,
+    "slug": "ds-kh6320-wte1-o-std",
+    "url": "/product/ds-kh6320-wte1-o-std"
   },
   {
     "category": "Video Intercom",
@@ -1157,7 +1502,10 @@
     "pcsCtn": "20",
     "retail": 13400,
     "price": 14740,
-    "image": "images/116.png"
+    "image": "images/116.png",
+    "id": 116,
+    "slug": "ds-kh6350-wte1-o-std",
+    "url": "/product/ds-kh6350-wte1-o-std"
   },
   {
     "category": "Video Intercom",
@@ -1167,7 +1515,10 @@
     "pcsCtn": "20",
     "retail": 12200,
     "price": 13420,
-    "image": "images/117.png"
+    "image": "images/117.png",
+    "id": 117,
+    "slug": "ds-kv6113-wpe1-c-o-std",
+    "url": "/product/ds-kv6113-wpe1-c-o-std"
   },
   {
     "category": "Video Intercom",
@@ -1177,7 +1528,10 @@
     "pcsCtn": "16",
     "retail": 16500,
     "price": 18150,
-    "image": "images/118.png"
+    "image": "images/118.png",
+    "id": 118,
+    "slug": "ds-kv8113-wme1-c-o-std",
+    "url": "/product/ds-kv8113-wme1-c-o-std"
   },
   {
     "category": "Video Intercom",
@@ -1187,7 +1541,10 @@
     "pcsCtn": "",
     "retail": 15600,
     "price": 17160,
-    "image": "images/119.png"
+    "image": "images/119.png",
+    "id": 119,
+    "slug": "ds-kv6124-wbe1-o-std",
+    "url": "/product/ds-kv6124-wbe1-o-std"
   },
   {
     "category": "PA",
@@ -1197,7 +1554,10 @@
     "pcsCtn": "3",
     "retail": 16000,
     "price": 17600,
-    "image": "images/120.png"
+    "image": "images/120.png",
+    "id": 120,
+    "slug": "ds-qae0ka60206-4-o-std-eu",
+    "url": "/product/ds-qae0ka60206-4-o-std-eu"
   },
   {
     "category": "PA",
@@ -1207,7 +1567,10 @@
     "pcsCtn": "2",
     "retail": 23000,
     "price": 25300,
-    "image": "images/121.png"
+    "image": "images/121.png",
+    "id": 121,
+    "slug": "ds-qae0ka60120-2-o-std-eu",
+    "url": "/product/ds-qae0ka60120-2-o-std-eu"
   },
   {
     "category": "PA",
@@ -1217,7 +1580,10 @@
     "pcsCtn": "32",
     "retail": 1200,
     "price": 1320,
-    "image": "images/122.png"
+    "image": "images/122.png",
+    "id": 122,
+    "slug": "ds-qae0206g1-v-o-std",
+    "url": "/product/ds-qae0206g1-v-o-std"
   },
   {
     "category": "PA",
@@ -1227,7 +1593,10 @@
     "pcsCtn": "4",
     "retail": 7100,
     "price": 7810,
-    "image": "images/123.png"
+    "image": "images/123.png",
+    "id": 123,
+    "slug": "ds-qae0120g1r-o-std",
+    "url": "/product/ds-qae0120g1r-o-std"
   },
   {
     "category": "PA",
@@ -1237,7 +1606,10 @@
     "pcsCtn": "4",
     "retail": 8500,
     "price": 9350,
-    "image": "images/124.png"
+    "image": "images/124.png",
+    "id": 124,
+    "slug": "ds-qae0420g1-v-o-std",
+    "url": "/product/ds-qae0420g1-v-o-std"
   },
   {
     "category": "PA",
@@ -1247,7 +1619,10 @@
     "pcsCtn": "6",
     "retail": 11600,
     "price": 12760,
-    "image": "images/125.png"
+    "image": "images/125.png",
+    "id": 125,
+    "slug": "ds-qae0a60g1-vb-o-std-eu",
+    "url": "/product/ds-qae0a60g1-vb-o-std-eu"
   },
   {
     "category": "PA",
@@ -1257,7 +1632,10 @@
     "pcsCtn": "1",
     "retail": 22700,
     "price": 24970,
-    "image": "images/126.png"
+    "image": "images/126.png",
+    "id": 126,
+    "slug": "ds-qae0a120g1-vb6-o-std-eu",
+    "url": "/product/ds-qae0a120g1-vb6-o-std-eu"
   },
   {
     "category": "PA",
@@ -1267,7 +1645,10 @@
     "pcsCtn": "1",
     "retail": 28300,
     "price": 31130,
-    "image": "images/127.png"
+    "image": "images/127.png",
+    "id": 127,
+    "slug": "ds-qae0a240g1-vb6-o-std-eu",
+    "url": "/product/ds-qae0a240g1-vb6-o-std-eu"
   },
   {
     "category": "PA",
@@ -1277,7 +1658,10 @@
     "pcsCtn": "2",
     "retail": 51200,
     "price": 56320,
-    "image": "images/128.png"
+    "image": "images/128.png",
+    "id": 128,
+    "slug": "ds-qacam07g1-4lizsu-o-std",
+    "url": "/product/ds-qacam07g1-4lizsu-o-std"
   },
   {
     "category": "Interactive Tablet",
@@ -1287,7 +1671,10 @@
     "pcsCtn": "1",
     "retail": 310000,
     "price": 341000,
-    "image": "images/imported/tablet-ds-d5b65rb-el.png"
+    "image": "images/imported/tablet-ds-d5b65rb-el.png",
+    "id": 129,
+    "slug": "ds-d5b65rb-el",
+    "url": "/product/ds-d5b65rb-el"
   },
   {
     "category": "Interactive Tablet",
@@ -1297,7 +1684,10 @@
     "pcsCtn": "1",
     "retail": 400000,
     "price": 440000,
-    "image": "images/imported/tablet-ds-d5b75rb-el.png"
+    "image": "images/imported/tablet-ds-d5b65rb-el.png",
+    "id": 130,
+    "slug": "ds-d5b75rb-el",
+    "url": "/product/ds-d5b75rb-el"
   },
   {
     "category": "Interactive Tablet",
@@ -1307,7 +1697,10 @@
     "pcsCtn": "10",
     "retail": 28000,
     "price": 30800,
-    "image": "images/imported/tablet-ds-d5sc3b-b.png"
+    "image": "images/imported/tablet-ds-d5sc3b-b.png",
+    "id": 131,
+    "slug": "ds-d5sc3b-b",
+    "url": "/product/ds-d5sc3b-b"
   },
   {
     "category": "Interactive Tablet",
@@ -1317,7 +1710,10 @@
     "pcsCtn": "10",
     "retail": 28000,
     "price": 30800,
-    "image": "images/imported/tablet-ds-d5sc3b-w.png"
+    "image": "images/imported/tablet-ds-d5sc3b-w.png",
+    "id": 132,
+    "slug": "ds-d5sc3b-w",
+    "url": "/product/ds-d5sc3b-w"
   },
   {
     "category": "Interactive Tablet",
@@ -1327,7 +1723,10 @@
     "pcsCtn": "1",
     "retail": 60000,
     "price": 66000,
-    "image": "images/imported/tablet-ds-d5abky2-s.png"
+    "image": "images/imported/tablet-ds-d5abky2-s.png",
+    "id": 133,
+    "slug": "ds-d5abky2-s",
+    "url": "/product/ds-d5abky2-s"
   },
   {
     "category": "Accessories",
@@ -1337,7 +1736,10 @@
     "pcsCtn": "1",
     "retail": 10000,
     "price": 11000,
-    "image": "images/imported/accessories-ds-xs6404-s-b-o-std-overseas.png"
+    "image": "images/imported/accessories-ds-xs6404-s-b-o-std-overseas.png",
+    "id": 134,
+    "slug": "ds-xs6404-s-b-o-std-overseas",
+    "url": "/product/ds-xs6404-s-b-o-std-overseas"
   },
   {
     "category": "Accessories",
@@ -1347,7 +1749,10 @@
     "pcsCtn": "1",
     "retail": 11500,
     "price": 12650,
-    "image": "images/imported/accessories-ds-xs6406-s-b-o-std-overseas.png"
+    "image": "images/imported/accessories-ds-xs6404-s-b-o-std-overseas.png",
+    "id": 135,
+    "slug": "ds-xs6406-s-b-o-std-overseas",
+    "url": "/product/ds-xs6406-s-b-o-std-overseas"
   },
   {
     "category": "Accessories",
@@ -1357,7 +1762,10 @@
     "pcsCtn": "1",
     "retail": 13000,
     "price": 14300,
-    "image": "images/imported/accessories-ds-xs6409-s-b-o-std-overseas.png"
+    "image": "images/imported/accessories-ds-xs6404-s-b-o-std-overseas.png",
+    "id": 136,
+    "slug": "ds-xs6409-s-b-o-std-overseas",
+    "url": "/product/ds-xs6409-s-b-o-std-overseas"
   },
   {
     "category": "Accessories",
@@ -1367,7 +1775,10 @@
     "pcsCtn": "1",
     "retail": 15000,
     "price": 16500,
-    "image": "images/imported/accessories-ds-xs6412-s-b-o-std-overseas.png"
+    "image": "images/imported/accessories-ds-xs6404-s-b-o-std-overseas.png",
+    "id": 137,
+    "slug": "ds-xs6412-s-b-o-std-overseas",
+    "url": "/product/ds-xs6412-s-b-o-std-overseas"
   },
   {
     "category": "Accessories",
@@ -1377,7 +1788,10 @@
     "pcsCtn": "4",
     "retail": 2000,
     "price": 2200,
-    "image": "images/imported/accessories-ds-xspb04-s-b.png"
+    "image": "images/imported/accessories-ds-xspb04-s-b.png",
+    "id": 138,
+    "slug": "ds-xspb04-s-b",
+    "url": "/product/ds-xspb04-s-b"
   },
   {
     "category": "Accessories",
@@ -1387,7 +1801,10 @@
     "pcsCtn": "4",
     "retail": 4000,
     "price": 4400,
-    "image": "images/imported/accessories-ds-ups600-o-std-uk.png"
+    "image": "images/imported/accessories-ds-ups600-o-std-uk.png",
+    "id": 139,
+    "slug": "ds-ups600-o-std-uk",
+    "url": "/product/ds-ups600-o-std-uk"
   },
   {
     "category": "Accessories",
@@ -1397,7 +1814,10 @@
     "pcsCtn": "4",
     "retail": 5500,
     "price": 6050,
-    "image": "images/imported/accessories-ds-ups1000-o-std-uk.png"
+    "image": "images/imported/accessories-ds-ups600-o-std-uk.png",
+    "id": 140,
+    "slug": "ds-ups1000-o-std-uk",
+    "url": "/product/ds-ups1000-o-std-uk"
   },
   {
     "category": "Accessories",
@@ -1407,7 +1827,10 @@
     "pcsCtn": "2",
     "retail": 15000,
     "price": 16500,
-    "image": "images/imported/accessories-ds-ups2000-o-std-uk.png"
+    "image": "images/imported/accessories-ds-ups2000-o-std-uk.png",
+    "id": 141,
+    "slug": "ds-ups2000-o-std-uk",
+    "url": "/product/ds-ups2000-o-std-uk"
   },
   {
     "category": "Accessories",
@@ -1417,7 +1840,10 @@
     "pcsCtn": "1",
     "retail": 22000,
     "price": 24200,
-    "image": "images/imported/accessories-ds-ups3000-o-std-uk.png"
+    "image": "images/imported/accessories-ds-ups2000-o-std-uk.png",
+    "id": 142,
+    "slug": "ds-ups3000-o-std-uk",
+    "url": "/product/ds-ups3000-o-std-uk"
   },
   {
     "category": "Accessories",
@@ -1427,7 +1853,10 @@
     "pcsCtn": "40",
     "retail": 1100,
     "price": 1210,
-    "image": "images/imported/accessories-ds-2fa1225-c4-uk-o-std.png"
+    "image": "images/imported/accessories-ds-2fa1225-c4-uk-o-std.png",
+    "id": 143,
+    "slug": "ds-2fa1225-c4-uk-o-std",
+    "url": "/product/ds-2fa1225-c4-uk-o-std"
   },
   {
     "category": "Accessories",
@@ -1437,7 +1866,10 @@
     "pcsCtn": "40",
     "retail": 1500,
     "price": 1650,
-    "image": "images/imported/accessories-ds-2fa1205-c8-uk-o-std.png"
+    "image": "images/imported/accessories-ds-2fa1205-c8-uk-o-std.png",
+    "id": 144,
+    "slug": "ds-2fa1205-c8-uk-o-std",
+    "url": "/product/ds-2fa1205-c8-uk-o-std"
   },
   {
     "category": "Accessories",
@@ -1447,7 +1879,10 @@
     "pcsCtn": "20",
     "retail": 2000,
     "price": 2200,
-    "image": "images/imported/accessories-ds-2fa1208-c16-uk-africa.png"
+    "image": "images/imported/accessories-ds-2fa1205-c8-uk-o-std.png",
+    "id": 145,
+    "slug": "ds-2fa1208-c16-uk-africa",
+    "url": "/product/ds-2fa1208-c16-uk-africa"
   },
   {
     "category": "Accessories",
@@ -1457,7 +1892,10 @@
     "pcsCtn": "100",
     "retail": 380,
     "price": 418,
-    "image": "images/imported/accessories-adapter-ads-12fg-12n-12012epb-ce-12v-1a.png"
+    "image": "images/imported/accessories-adapter-ads-12fg-12n-12012epb-ce-12v-1a.png",
+    "id": 146,
+    "slug": "adapter-ads-12fg-12n-12012epb-ce-12v-1a",
+    "url": "/product/adapter-ads-12fg-12n-12012epb-ce-12v-1a"
   },
   {
     "category": "Accessories",
@@ -1467,7 +1905,10 @@
     "pcsCtn": "8",
     "retail": 2700,
     "price": 2970,
-    "image": "images/imported/accessories-ds-1lh1scam592c-o-std-90m.png"
+    "image": "images/imported/accessories-ds-1lh1scam592c-o-std-90m.png",
+    "id": 147,
+    "slug": "ds-1lh1scam592c-o-std-90m",
+    "url": "/product/ds-1lh1scam592c-o-std-90m"
   },
   {
     "category": "Accessories",
@@ -1477,7 +1918,10 @@
     "pcsCtn": "4",
     "retail": 5200,
     "price": 5720,
-    "image": "images/imported/accessories-ds-1lh1scam592c-o-std-180m.png"
+    "image": "images/imported/accessories-ds-1lh1scam592c-o-std-90m.png",
+    "id": 148,
+    "slug": "ds-1lh1scam592c-o-std-180m",
+    "url": "/product/ds-1lh1scam592c-o-std-180m"
   },
   {
     "category": "Accessories",
@@ -1487,7 +1931,10 @@
     "pcsCtn": "300",
     "retail": 300,
     "price": 330,
-    "image": "images/imported/accessories-ds-1h18s-e-c-o-std.png"
+    "image": "images/imported/accessories-ds-1h18s-e-c-o-std.png",
+    "id": 149,
+    "slug": "ds-1h18s-e-c-o-std",
+    "url": "/product/ds-1h18s-e-c-o-std"
   },
   {
     "category": "Data Communication",
@@ -1497,7 +1944,10 @@
     "pcsCtn": "12",
     "retail": 7500,
     "price": 8250,
-    "image": "images/imported/datacomm-ds-3wap522-si-o-std.png"
+    "image": "images/imported/datacomm-ds-3wap522-si-o-std.png",
+    "id": 150,
+    "slug": "ds-3wap522-si-o-std",
+    "url": "/product/ds-3wap522-si-o-std"
   },
   {
     "category": "Data Communication",
@@ -1507,7 +1957,10 @@
     "pcsCtn": "12",
     "retail": 11500,
     "price": 12650,
-    "image": "images/imported/datacomm-ds-3wap622g-si-o-std.png"
+    "image": "images/imported/datacomm-ds-3wap522-si-o-std.png",
+    "id": 151,
+    "slug": "ds-3wap622g-si-o-std",
+    "url": "/product/ds-3wap622g-si-o-std"
   },
   {
     "category": "Data Communication",
@@ -1517,7 +1970,10 @@
     "pcsCtn": "12",
     "retail": 14000,
     "price": 15400,
-    "image": "images/imported/datacomm-ds-3wap622e-si-o-std.png"
+    "image": "images/imported/datacomm-ds-3wap522-si-o-std.png",
+    "id": 152,
+    "slug": "ds-3wap622e-si-o-std",
+    "url": "/product/ds-3wap622e-si-o-std"
   },
   {
     "category": "Data Communication",
@@ -1527,7 +1983,10 @@
     "pcsCtn": "30",
     "retail": 7000,
     "price": 7700,
-    "image": "images/imported/datacomm-ds-3wap521-si-o-std.png"
+    "image": "images/imported/datacomm-ds-3wap521-si-o-std.png",
+    "id": 153,
+    "slug": "ds-3wap521-si-o-std",
+    "url": "/product/ds-3wap521-si-o-std"
   },
   {
     "category": "Data Communication",
@@ -1537,7 +1996,10 @@
     "pcsCtn": "28",
     "retail": 11000,
     "price": 12100,
-    "image": "images/imported/datacomm-ds-3wap621e-si-o-std.png"
+    "image": "images/imported/datacomm-ds-3wap621e-si-o-std.png",
+    "id": 154,
+    "slug": "ds-3wap621e-si-o-std",
+    "url": "/product/ds-3wap621e-si-o-std"
   },
   {
     "category": "Data Communication",
@@ -1547,7 +2009,10 @@
     "pcsCtn": "4",
     "retail": 19000,
     "price": 20900,
-    "image": "images/imported/datacomm-ds-3wap623e-si-o-std.png"
+    "image": "images/imported/datacomm-ds-3wap623e-si-o-std.png",
+    "id": 155,
+    "slug": "ds-3wap623e-si-o-std",
+    "url": "/product/ds-3wap623e-si-o-std"
   },
   {
     "category": "Data Communication",
@@ -1557,7 +2022,10 @@
     "pcsCtn": "12",
     "retail": 8700,
     "price": 9570,
-    "image": "images/imported/datacomm-ds-3wg105g-si-o-std.png"
+    "image": "images/imported/datacomm-ds-3wg105g-si-o-std.png",
+    "id": 156,
+    "slug": "ds-3wg105g-si-o-std",
+    "url": "/product/ds-3wg105g-si-o-std"
   },
   {
     "category": "Data Communication",
@@ -1567,7 +2035,10 @@
     "pcsCtn": "12",
     "retail": 10600,
     "price": 11660,
-    "image": "images/imported/datacomm-ds-3wg105gp-si-o-std.png"
+    "image": "images/imported/datacomm-ds-3wg105gp-si-o-std.png",
+    "id": 157,
+    "slug": "ds-3wg105gp-si-o-std",
+    "url": "/product/ds-3wg105gp-si-o-std"
   },
   {
     "category": "Data Communication",
@@ -1577,7 +2048,10 @@
     "pcsCtn": "12",
     "retail": 16500,
     "price": 18150,
-    "image": "images/imported/datacomm-ds-3wg210gp-si-o-std.png"
+    "image": "images/imported/datacomm-ds-3wg210gp-si-o-std.png",
+    "id": 158,
+    "slug": "ds-3wg210gp-si-o-std",
+    "url": "/product/ds-3wg210gp-si-o-std"
   },
   {
     "category": "Data Communication",
@@ -1587,7 +2061,10 @@
     "pcsCtn": "5",
     "retail": 25000,
     "price": 27500,
-    "image": "images/imported/datacomm-ds-3wg507g-si-o-std.png"
+    "image": "images/imported/datacomm-ds-3wg507g-si-o-std.png",
+    "id": 159,
+    "slug": "ds-3wg507g-si-o-std",
+    "url": "/product/ds-3wg507g-si-o-std"
   },
   {
     "category": "Networking",
@@ -1597,7 +2074,10 @@
     "pcsCtn": "2",
     "retail": 17500,
     "price": 19250,
-    "image": "images/imported/networking-ds-1ln6-uu-o-std.png"
+    "image": "images/imported/networking-ds-1ln6-uu-o-std.png",
+    "id": 160,
+    "slug": "ds-1ln6-uu-o-std",
+    "url": "/product/ds-1ln6-uu-o-std"
   },
   {
     "category": "Networking",
@@ -1607,7 +2087,10 @@
     "pcsCtn": "2",
     "retail": 15500,
     "price": 17050,
-    "image": "images/imported/networking-ds-1ln6u-sc0-o-std.png"
+    "image": "images/imported/networking-ds-1ln6u-sc0-o-std.png",
+    "id": 161,
+    "slug": "ds-1ln6u-sc0-o-std",
+    "url": "/product/ds-1ln6u-sc0-o-std"
   },
   {
     "category": "Networking",
@@ -1617,7 +2100,10 @@
     "pcsCtn": "2",
     "retail": 13000,
     "price": 14300,
-    "image": "images/imported/networking-ds-1ln6uzc0-o-std-orange-305m.png"
+    "image": "images/imported/networking-ds-1ln6-uu-o-std.png",
+    "id": 162,
+    "slug": "ds-1ln6uzc0-o-std-orange-305m",
+    "url": "/product/ds-1ln6uzc0-o-std-orange-305m"
   },
   {
     "category": "Networking",
@@ -1627,7 +2113,10 @@
     "pcsCtn": "1",
     "retail": 21000,
     "price": 23100,
-    "image": "images/imported/networking-ds-1ln6auspe-o-std-black-305m.png"
+    "image": "images/imported/networking-ds-1ln6auspe-o-std-black-305m.png",
+    "id": 163,
+    "slug": "ds-1ln6auspe-o-std-black-305m",
+    "url": "/product/ds-1ln6auspe-o-std-black-305m"
   },
   {
     "category": "Networking",
@@ -1637,7 +2126,10 @@
     "pcsCtn": "2",
     "retail": 7500,
     "price": 8250,
-    "image": "images/imported/networking-nc-1ln6uu-cca-o-std-grey-305m.png"
+    "image": "images/imported/networking-nc-1ln6uu-cca-o-std-grey-305m.png",
+    "id": 164,
+    "slug": "nc-1ln6uu-cca-o-std-grey-305m",
+    "url": "/product/nc-1ln6uu-cca-o-std-grey-305m"
   },
   {
     "category": "Networking",
@@ -1647,7 +2139,10 @@
     "pcsCtn": "40",
     "retail": 1200,
     "price": 1320,
-    "image": "images/imported/networking-ds-1m6ua-15u-o-std-100pcs.png"
+    "image": "images/imported/networking-ds-1m6ua-15u-o-std-100pcs.png",
+    "id": 165,
+    "slug": "ds-1m6ua-15u-o-std-100pcs",
+    "url": "/product/ds-1m6ua-15u-o-std-100pcs"
   },
   {
     "category": "Networking",
@@ -1657,7 +2152,10 @@
     "pcsCtn": "",
     "retail": 1200,
     "price": 1320,
-    "image": "images/imported/networking-ds-1m6aua-o-std-100pcs.png"
+    "image": "images/imported/networking-ds-1m6aua-o-std-100pcs.png",
+    "id": 166,
+    "slug": "ds-1m6aua-o-std-100pcs",
+    "url": "/product/ds-1m6aua-o-std-100pcs"
   },
   {
     "category": "Networking",
@@ -1667,7 +2165,10 @@
     "pcsCtn": "",
     "retail": 1800,
     "price": 1980,
-    "image": "images/imported/networking-ds-1m6apb-o-std-50pcs.png"
+    "image": "images/imported/networking-ds-1m6apb-o-std-50pcs.png",
+    "id": 167,
+    "slug": "ds-1m6apb-o-std-50pcs",
+    "url": "/product/ds-1m6apb-o-std-50pcs"
   },
   {
     "category": "Networking",
@@ -1677,7 +2178,10 @@
     "pcsCtn": "20",
     "retail": 1200,
     "price": 1320,
-    "image": "images/imported/networking-ds-3wr3n-o-std-uk.png"
+    "image": "images/imported/networking-ds-3wr3n-o-std-uk.png",
+    "id": 168,
+    "slug": "ds-3wr3n-o-std-uk",
+    "url": "/product/ds-3wr3n-o-std-uk"
   },
   {
     "category": "Networking",
@@ -1687,7 +2191,10 @@
     "pcsCtn": "20",
     "retail": 4000,
     "price": 4400,
-    "image": "images/imported/networking-ds-3wr4g3n-o-std-uk.png"
+    "image": "images/imported/networking-ds-3wr3n-o-std-uk.png",
+    "id": 169,
+    "slug": "ds-3wr4g3n-o-std-uk",
+    "url": "/product/ds-3wr4g3n-o-std-uk"
   },
   {
     "category": "Networking",
@@ -1697,7 +2204,10 @@
     "pcsCtn": "10",
     "retail": 2500,
     "price": 2750,
-    "image": "images/imported/networking-ds-3wr12c-o-std-uk.png"
+    "image": "images/imported/networking-ds-3wr12c-o-std-uk.png",
+    "id": 170,
+    "slug": "ds-3wr12c-o-std-uk",
+    "url": "/product/ds-3wr12c-o-std-uk"
   },
   {
     "category": "Networking",
@@ -1707,7 +2217,10 @@
     "pcsCtn": "10",
     "retail": 5000,
     "price": 5500,
-    "image": "images/imported/networking-ds-3wr15x-o-std-uk.png"
+    "image": "images/imported/networking-ds-3wr15x-o-std-uk.png",
+    "id": 171,
+    "slug": "ds-3wr15x-o-std-uk",
+    "url": "/product/ds-3wr15x-o-std-uk"
   },
   {
     "category": "Networking",
@@ -1717,7 +2230,10 @@
     "pcsCtn": "60",
     "retail": 1500,
     "price": 1650,
-    "image": "images/imported/networking-ds-3wre3n-o-std-uk.png"
+    "image": "images/imported/networking-ds-3wre3n-o-std-uk.png",
+    "id": 172,
+    "slug": "ds-3wre3n-o-std-uk",
+    "url": "/product/ds-3wre3n-o-std-uk"
   },
   {
     "category": "Networking",
@@ -1727,7 +2243,10 @@
     "pcsCtn": "10",
     "retail": 6000,
     "price": 6600,
-    "image": "images/imported/networking-ds-3wr4g12c-o-std-uk.png"
+    "image": "images/imported/networking-ds-3wr4g12c-o-std-uk.png",
+    "id": 173,
+    "slug": "ds-3wr4g12c-o-std-uk",
+    "url": "/product/ds-3wr4g12c-o-std-uk"
   },
   {
     "category": "Networking",
@@ -1737,7 +2256,10 @@
     "pcsCtn": "80",
     "retail": 700,
     "price": 770,
-    "image": "images/imported/networking-ds-3e0105d-o-o-std.png"
+    "image": "images/imported/networking-ds-3e0105d-o-o-std.png",
+    "id": 174,
+    "slug": "ds-3e0105d-o-o-std",
+    "url": "/product/ds-3e0105d-o-o-std"
   },
   {
     "category": "Networking",
@@ -1747,7 +2269,10 @@
     "pcsCtn": "80",
     "retail": 800,
     "price": 880,
-    "image": "images/imported/networking-ds-3e0108d-o-o-std.png"
+    "image": "images/imported/networking-ds-3e0108d-o-o-std.png",
+    "id": 175,
+    "slug": "ds-3e0108d-o-o-std",
+    "url": "/product/ds-3e0108d-o-o-std"
   },
   {
     "category": "Networking",
@@ -1757,7 +2282,10 @@
     "pcsCtn": "12",
     "retail": 3800,
     "price": 4180,
-    "image": "images/imported/networking-ds-3e0116r-o-o-std.png"
+    "image": "images/imported/networking-ds-3e0116r-o-o-std.png",
+    "id": 176,
+    "slug": "ds-3e0116r-o-o-std",
+    "url": "/product/ds-3e0116r-o-o-std"
   },
   {
     "category": "Networking",
@@ -1767,7 +2295,10 @@
     "pcsCtn": "12",
     "retail": 1500,
     "price": 1650,
-    "image": "images/imported/networking-ds-3e0505-o-o-std.png"
+    "image": "images/imported/networking-ds-3e0505-o-o-std.png",
+    "id": 177,
+    "slug": "ds-3e0505-o-o-std",
+    "url": "/product/ds-3e0505-o-o-std"
   },
   {
     "category": "Networking",
@@ -1777,7 +2308,10 @@
     "pcsCtn": "30",
     "retail": 2200,
     "price": 2420,
-    "image": "images/imported/networking-ds-3e0508-o-o-std.png"
+    "image": "images/imported/networking-ds-3e0508-o-o-std.png",
+    "id": 178,
+    "slug": "ds-3e0508-o-o-std",
+    "url": "/product/ds-3e0508-o-o-std"
   },
   {
     "category": "Networking",
@@ -1787,7 +2321,10 @@
     "pcsCtn": "4",
     "retail": 6300,
     "price": 6930,
-    "image": "images/imported/networking-ds-3e0516r-o.png"
+    "image": "images/imported/networking-ds-3e0516r-o.png",
+    "id": 179,
+    "slug": "ds-3e0516r-o",
+    "url": "/product/ds-3e0516r-o"
   },
   {
     "category": "Networking",
@@ -1797,7 +2334,10 @@
     "pcsCtn": "4",
     "retail": 7500,
     "price": 8250,
-    "image": "images/imported/networking-ds-3e0524r-o.png"
+    "image": "images/imported/networking-ds-3e0524r-o.png",
+    "id": 180,
+    "slug": "ds-3e0524r-o",
+    "url": "/product/ds-3e0524r-o"
   },
   {
     "category": "Networking",
@@ -1807,7 +2347,10 @@
     "pcsCtn": "12",
     "retail": 3300,
     "price": 3630,
-    "image": "images/imported/networking-ds-3e0106p-e-m-b-o-std.png"
+    "image": "images/imported/networking-ds-3e0106p-e-m-b-o-std.png",
+    "id": 181,
+    "slug": "ds-3e0106p-e-m-b-o-std",
+    "url": "/product/ds-3e0106p-e-m-b-o-std"
   },
   {
     "category": "Networking",
@@ -1817,7 +2360,10 @@
     "pcsCtn": "8",
     "retail": 5300,
     "price": 5830,
-    "image": "images/imported/networking-ds-3e0310p-e-m-b-o-std.png"
+    "image": "images/imported/networking-ds-3e0310p-e-m-b-o-std.png",
+    "id": 182,
+    "slug": "ds-3e0310p-e-m-b-o-std",
+    "url": "/product/ds-3e0310p-e-m-b-o-std"
   },
   {
     "category": "Networking",
@@ -1827,7 +2373,10 @@
     "pcsCtn": "12",
     "retail": 3400,
     "price": 3740,
-    "image": "images/imported/networking-ds-3e0505p-e-m-o-std-b.png"
+    "image": "images/imported/networking-ds-3e0505p-e-m-o-std-b.png",
+    "id": 183,
+    "slug": "ds-3e0505p-e-m-o-std-b",
+    "url": "/product/ds-3e0505p-e-m-o-std-b"
   },
   {
     "category": "Networking",
@@ -1837,7 +2386,10 @@
     "pcsCtn": "8",
     "retail": 6300,
     "price": 6930,
-    "image": "images/imported/networking-ds-3e0510p-e-m-o-std-b.png"
+    "image": "images/imported/networking-ds-3e0510p-e-m-o-std-b.png",
+    "id": 184,
+    "slug": "ds-3e0510p-e-m-o-std-b",
+    "url": "/product/ds-3e0510p-e-m-o-std-b"
   },
   {
     "category": "Networking",
@@ -1847,7 +2399,10 @@
     "pcsCtn": "4",
     "retail": 20000,
     "price": 22000,
-    "image": "images/imported/networking-ds-3e0518p-e-o-std-b.png"
+    "image": "images/imported/networking-ds-3e0518p-e-o-std-b.png",
+    "id": 185,
+    "slug": "ds-3e0518p-e-o-std-b",
+    "url": "/product/ds-3e0518p-e-o-std-b"
   },
   {
     "category": "Networking",
@@ -1857,7 +2412,10 @@
     "pcsCtn": "4",
     "retail": 26500,
     "price": 29150,
-    "image": "images/imported/networking-ds-3e0526p-e-o-std-b.png"
+    "image": "images/imported/networking-ds-3e0526p-e-o-std-b.png",
+    "id": 186,
+    "slug": "ds-3e0526p-e-o-std-b",
+    "url": "/product/ds-3e0526p-e-o-std-b"
   },
   {
     "category": "Networking",
@@ -1867,7 +2425,10 @@
     "pcsCtn": "12",
     "retail": 3900,
     "price": 4290,
-    "image": "images/imported/networking-ds-3e1106p-ei-m-o-std.png"
+    "image": "images/imported/networking-ds-3e1106p-ei-m-o-std.png",
+    "id": 187,
+    "slug": "ds-3e1106p-ei-m-o-std",
+    "url": "/product/ds-3e1106p-ei-m-o-std"
   },
   {
     "category": "Networking",
@@ -1877,7 +2438,10 @@
     "pcsCtn": "8",
     "retail": 6600,
     "price": 7260,
-    "image": "images/imported/networking-ds-3e1310p-ei-m-o-std.png"
+    "image": "images/imported/networking-ds-3e1310p-ei-m-o-std.png",
+    "id": 188,
+    "slug": "ds-3e1310p-ei-m-o-std",
+    "url": "/product/ds-3e1310p-ei-m-o-std"
   },
   {
     "category": "Networking",
@@ -1887,7 +2451,10 @@
     "pcsCtn": "6",
     "retail": 17000,
     "price": 18700,
-    "image": "images/imported/networking-ds-3e1318p-ei-m-o-std.png"
+    "image": "images/imported/networking-ds-3e1318p-ei-m-o-std.png",
+    "id": 189,
+    "slug": "ds-3e1318p-ei-m-o-std",
+    "url": "/product/ds-3e1318p-ei-m-o-std"
   },
   {
     "category": "Networking",
@@ -1897,7 +2464,10 @@
     "pcsCtn": "6",
     "retail": 22000,
     "price": 24200,
-    "image": "images/imported/networking-ds-3e1326p-ei-m-o-std.png"
+    "image": "images/imported/networking-ds-3e1326p-ei-m-o-std.png",
+    "id": 190,
+    "slug": "ds-3e1326p-ei-m-o-std",
+    "url": "/product/ds-3e1326p-ei-m-o-std"
   },
   {
     "category": "Networking",
@@ -1907,7 +2477,10 @@
     "pcsCtn": "4",
     "retail": 25500,
     "price": 28050,
-    "image": "images/imported/networking-ds-3e1518p-ei-o-std-v2.png"
+    "image": "images/imported/networking-ds-3e1518p-ei-o-std-v2.png",
+    "id": 191,
+    "slug": "ds-3e1518p-ei-o-std-v2",
+    "url": "/product/ds-3e1518p-ei-o-std-v2"
   },
   {
     "category": "Networking",
@@ -1917,7 +2490,10 @@
     "pcsCtn": "4",
     "retail": 33500,
     "price": 36850,
-    "image": "images/imported/networking-ds-3e1526p-ei-o-std-v2.png"
+    "image": "images/imported/networking-ds-3e1526p-ei-o-std-v2.png",
+    "id": 192,
+    "slug": "ds-3e1526p-ei-o-std-v2",
+    "url": "/product/ds-3e1526p-ei-o-std-v2"
   },
   {
     "category": "Networking",
@@ -1927,7 +2503,10 @@
     "pcsCtn": "2",
     "retail": 74000,
     "price": 81400,
-    "image": "images/imported/networking-ds-3e1552p-si-o-std.png"
+    "image": "images/imported/networking-ds-3e1552p-si-o-std.png",
+    "id": 193,
+    "slug": "ds-3e1552p-si-o-std",
+    "url": "/product/ds-3e1552p-si-o-std"
   },
   {
     "category": "Networking",
@@ -1937,7 +2516,10 @@
     "pcsCtn": "5",
     "retail": 4800,
     "price": 5280,
-    "image": "images/imported/networking-ds-3wf0bc-2nt-b-o-std.png"
+    "image": "images/imported/networking-ds-3wf0bc-2nt-b-o-std.png",
+    "id": 194,
+    "slug": "ds-3wf0bc-2nt-b-o-std",
+    "url": "/product/ds-3wf0bc-2nt-b-o-std"
   },
   {
     "category": "Networking",
@@ -1947,7 +2529,10 @@
     "pcsCtn": "5",
     "retail": 10800,
     "price": 11880,
-    "image": "images/imported/networking-ds-3wf3000-ei-5ac-p-o-std.png"
+    "image": "images/imported/networking-ds-3wf3000-ei-5ac-p-o-std.png",
+    "id": 195,
+    "slug": "ds-3wf3000-ei-5ac-p-o-std",
+    "url": "/product/ds-3wf3000-ei-5ac-p-o-std"
   },
   {
     "category": "Networking",
@@ -1957,6 +2542,9 @@
     "pcsCtn": "5",
     "retail": 12800,
     "price": 14080,
-    "image": "images/imported/networking-ds-3wf02-5ac-d-o-std.png"
+    "image": "images/imported/networking-ds-3wf3000-ei-5ac-p-o-std.png",
+    "id": 196,
+    "slug": "ds-3wf02-5ac-d-o-std",
+    "url": "/product/ds-3wf02-5ac-d-o-std"
   }
 ]
