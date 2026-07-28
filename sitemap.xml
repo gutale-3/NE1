@@ -97,6 +97,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://nashnaal.com/blog</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/blog-hikvision-camera-and-nvr-installation-guide-for-kenya</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://nashnaal.com/about</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
