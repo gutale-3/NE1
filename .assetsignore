@@ -3,3 +3,7 @@
 .wrangler
 node_modules
 tools
+wrangler.jsonc
+.assetsignore
+README.md
+MANIFEST.md
