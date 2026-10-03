@@ -271,8 +271,9 @@ def details_html(product):
             f'<p class="overview">{esc(product["overview"])}</p>' if product.get("overview") else ""
         )
         highlights = "".join(f"<li>{esc(item)}</li>" for item in product.get("keyFeatures", []))
+        heading = "Overview" if product.get("overview") else "Key features"
         parts.append(f"""<section class="block">
-      <h2>Overview</h2>
+      <h2>{heading}</h2>
       {overview}
       {f'<ul class="highlights">{highlights}</ul>' if highlights else ""}
     </section>""")
