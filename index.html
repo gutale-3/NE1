@@ -76,9 +76,55 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media=&#39;all&#39;">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
-<link rel="preload" as="image" href="images/007.webp" fetchpriority="high">
+<link rel="preload" as="image" href="/images/hero-camera-scene.webp" fetchpriority="high">
 <style>*{box-sizing:border-box}body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#F6F8FA;color:#10202E}a{color:#086E9E;text-decoration:none}a:hover{color:#086E9E}@keyframes floatY{0%,100%{transform:translateY(0px) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}@keyframes blinkDot{0%,100%{opacity:1}50%{opacity:.15}}@keyframes scanSweep{0%{transform:translateY(-100%)}100%{transform:translateY(220%)}}@keyframes fadeInUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}@keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}@keyframes pulseRing{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.6);opacity:0}}.wa-pulse-btn::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid rgba(11,143,203,.55);animation:pulseRing 2.2s ease-out infinite;pointer-events:none}@keyframes gradientShift{0%,100%{transform:translateX(0)}50%{transform:translateX(8%)}}.hero-gradient-layer{position:absolute;top:0;bottom:0;left:-15%;right:-15%;animation:gradientShift 10s ease-in-out infinite;will-change:transform;z-index:0}.navtoggle-cb{display:none}.hamburger-btn{display:none;cursor:pointer;font-size:24px;color:#10202E;line-height:1;padding:12px;margin:-12px}.hamburger-icon-close{display:none}.mobile-nav-panel{display:none;flex-direction:column;padding:6px 24px 22px;border-top:1px solid #E7ECF1;background:#fff}.mobile-nav-panel a{padding:15px 4px;font-size:16px;font-weight:600;color:#10202E;border-bottom:1px solid #F0F3F5}@media (max-width:860px){.nav-links,.call-btn{display:none!important}.hamburger-btn{display:flex!important;align-items:center;justify-content:center}.hero-grid{grid-template-columns:1fr!important;padding:48px 20px 56px!important;gap:32px!important}.about-grid{grid-template-columns:1fr!important;gap:32px!important;padding:56px 20px!important}.spotlight-grid{grid-template-columns:1fr!important}.hero-dots{position:relative!important;top:auto!important;right:auto!important;transform:none!important;flex-direction:row!important;justify-content:center;padding:0 20px 32px}.hero-scrim{background:linear-gradient(180deg,rgba(10,20,30,0.35) 0%,rgba(10,20,30,0.72) 45%,rgba(10,20,30,0.92) 100%)!important}.chip-grid{grid-template-columns:repeat(2,1fr)!important}.proof-grid{grid-template-columns:repeat(2,1fr)!important;gap:12px!important}.proof-grid figcaption{padding:12px 12px 14px!important}.proof-grid figcaption div:first-child{font-size:14px!important}.proof-grid figcaption div:last-child{font-size:12.5px!important}}@media (min-width:861px) and (max-width:1100px){.proof-grid{grid-template-columns:repeat(2,1fr)!important}}@media (max-width:560px){.stats-grid{grid-template-columns:repeat(3,1fr)!important;gap:10px!important}}.navtoggle-cb:checked~div .hamburger-icon-open{display:none}.navtoggle-cb:checked~div .hamburger-icon-close{display:inline}.navtoggle-cb:checked~.mobile-nav-panel{display:flex!important}</style>
 <style>[data-h="1"]:hover{background:#086E9E !important}[data-h="2"]:hover{background:#1CAD52 !important}[data-h="4"]:hover{border-color:#086E9E !important}[data-h="6"]:hover{background:#EAF6FC !important}[data-h="7"]:hover{background:rgba(255,255,255,0.14) !important}[data-h="8"]:hover{background:#EAF6FC !important;border-color:#B9E1F2 !important}[data-h="9"]:hover{border-color:#086E9E !important;box-shadow:0 12px 28px rgba(16,32,46,0.11) !important}[data-h="10"]:hover{background:#7ED4F1 !important}</style>
+<style id="home-extra-css">
+.home-bundles { background: #fff; border-top: 1px solid #E7ECF1; padding: 72px 0 56px; }
+.hb-in { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.hb-head { text-align: center; margin-bottom: 36px; }
+.hb-eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #086E9E; margin-bottom: 10px; }
+.hb-head h2 { font-size: clamp(1.55rem, 0.85rem + 3.6vw, 2.125rem); font-weight: 800; margin: 0 0 10px; color: #10202E; letter-spacing: -0.01em; }
+.hb-head p { margin: 0 auto; max-width: 620px; color: #4A5B68; line-height: 1.6; }
+.home-bundles .kit-group { margin-bottom: 34px; }
+.home-bundles .kit-group-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.home-bundles .kit-group-head h3 { font-size: 18px; font-weight: 800; margin: 0; color: #10202E; }
+.home-bundles .kit-group-head p { margin: 0; font-size: 13.5px; color: #4A5B68; }
+.home-bundles .kits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.home-bundles .kit { position: relative; display: flex; flex-direction: column; background: #F8FAFB; border: 1px solid #E7ECF1; border-radius: 16px; padding: 20px; }
+.home-bundles .kit-pop { border: 2px solid #086E9E; background: #fff; }
+.home-bundles .kit-flag { position: absolute; top: -11px; left: 18px; background: #086E9E; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
+.home-bundles .kit-shot { height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; background: #fff; border-radius: 12px; }
+.home-bundles .kit-shot img { max-height: 104px; max-width: 80%; object-fit: contain; }
+.home-bundles .kit-for { font-size: 11.5px; font-weight: 700; color: #086E9E; text-transform: uppercase; letter-spacing: 0.05em; }
+.home-bundles .kit h3 { font-size: 17px; font-weight: 800; margin: 4px 0 6px; color: #10202E; }
+.home-bundles .kit p { font-size: 13.5px; line-height: 1.55; color: #4A5B68; margin: 0 0 12px; }
+.home-bundles .kit-price { font-size: 22px; font-weight: 800; color: #10202E; margin: auto 0 6px; }
+.home-bundles .kit-price small { font-size: 12px; font-weight: 600; color: #4A5B68; margin: 0 5px; }
+.home-bundles .kit-price small:first-child { margin-left: 0; }
+.home-bundles .kit-more { font-size: 13px; font-weight: 700; color: #086E9E; margin-bottom: 12px; }
+.home-bundles .kit-cta { display: block; text-align: center; background: #22C35E; color: #fff; padding: 11px; border-radius: 10px; font-weight: 700; font-size: 14px; }
+.home-bundles .kit-cta:hover { background: #1CAD52; color: #fff; }
+.hb-note { text-align: center; font-size: 13px; color: #4A5B68; margin: 6px 0 0; }
+.home-explore { max-width: 1240px; margin: 0 auto 24px; padding: 0 24px; }
+.hx { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 24px; background: linear-gradient(120deg, #0B1F2E 0%, #0F2C3D 55%, #12405A 100%); border-radius: 20px; overflow: hidden; color: #fff; text-decoration: none; }
+.hx-text { padding: 36px 40px; }
+.hx-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4FC3EC; margin-bottom: 8px; }
+.hx h2 { font-size: clamp(1.35rem, 0.9rem + 2vw, 1.8rem); font-weight: 800; margin: 0 0 10px; line-height: 1.25; color: #fff; }
+.hx p { margin: 0 0 18px; color: rgba(255,255,255,0.75); line-height: 1.6; font-size: 15px; }
+.hx-cta { display: inline-block; background: #4FC3EC; color: #0F2C3D; font-weight: 800; padding: 11px 20px; border-radius: 9px; font-size: 14px; }
+.hx:hover .hx-cta { background: #7ED4F1; }
+.hx img { width: 100%; height: 100%; max-height: 300px; object-fit: cover; display: block; }
+@media (max-width: 960px) {
+  .home-bundles .kits { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -24px; padding: 12px 24px 8px; scrollbar-width: none; }
+  .home-bundles .kits::-webkit-scrollbar { display: none; }
+  .home-bundles .kit { scroll-snap-align: start; }
+  .home-bundles .kit-price { font-size: 19px; white-space: nowrap; }
+  .hx { grid-template-columns: 1fr; }
+  .hx img { max-height: 200px; order: -1; }
+  .hx-text { padding: 24px; }
+}
+</style>
 <!--layout:css-->
 <style id="layout-css">
 .site-header { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid #E7ECF1; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
@@ -276,7 +322,7 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px;">
         <a href="product/ds-2cd1047g3-liu-4mm-o-std" data-h="9" style="display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);">
           <div style="background: rgb(248, 250, 251); height: 210px; display: flex; align-items: center; justify-content: center; padding: 22px; border-bottom: 1px solid rgb(240, 243, 245);">
-            <img src="images/057.png" alt="ColorVu with Smart Hybrid Light" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            <img src="images/057.webp" alt="ColorVu with Smart Hybrid Light" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
           </div>
           <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1 1 0%;">
             <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 8px;">CCTV-IP</div>
@@ -290,7 +336,7 @@
         </a>
         <a href="product/ds-2cfsp8-d-4g-2-8-4mm-o-std-eu" data-h="9" style="display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.08s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.08s;">
           <div style="background: rgb(248, 250, 251); height: 210px; display: flex; align-items: center; justify-content: center; padding: 22px; border-bottom: 1px solid rgb(240, 243, 245);">
-            <img src="images/081.png" alt="Solar 4G Dual-Lens PT" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            <img src="images/081.webp" alt="Solar 4G Dual-Lens PT" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
           </div>
           <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1 1 0%;">
             <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 8px;">CCTV-IP</div>
@@ -304,7 +350,7 @@
         </a>
         <a href="product/ds-k1t342mfx-e1-o-std" data-h="9" style="display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.16s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.16s;">
           <div style="background: rgb(248, 250, 251); height: 210px; display: flex; align-items: center; justify-content: center; padding: 22px; border-bottom: 1px solid rgb(240, 243, 245);">
-            <img src="images/097.png" alt="Face Recognition Terminal" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            <img src="images/097.webp" alt="Face Recognition Terminal" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
           </div>
           <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1 1 0%;">
             <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 8px;">Access Control</div>
@@ -318,7 +364,7 @@
         </a>
         <a href="product/ds-kis212-o-std" data-h="9" style="display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.24s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.24s;">
           <div style="background: rgb(248, 250, 251); height: 210px; display: flex; align-items: center; justify-content: center; padding: 22px; border-bottom: 1px solid rgb(240, 243, 245);">
-            <img src="images/108.png" alt="4-Wire HD Video Intercom" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            <img src="images/108.webp" alt="4-Wire HD Video Intercom" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
           </div>
           <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1 1 0%;">
             <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 8px;">Video Intercom</div>
@@ -335,6 +381,106 @@
   </section>
 
   
+  <section class="home-bundles" aria-labelledby="bundles-title">
+    <div class="hb-in">
+      <div class="hb-head">
+        <div class="hb-eyebrow">Ready-made bundles</div>
+        <h2 id="bundles-title">Complete kits, priced and ready to install</h2>
+        <p>Everything for a working system in one bundle &mdash; at our catalogue prices. Tap a bundle for an all-in price with installation.</p>
+      </div>
+  <!--catalog:bundles-->
+<div class="kit-group">
+    <div class="kit-group-head"><h3>Turbo HD camera kits</h3><p>Budget-friendly cameras over coax cable</p></div>
+    <div class="kits">
+    <article class="kit" id="home-hd-home">
+      <div class="kit-shot"><img src="/images/001.webp" alt="HD home starter" loading="lazy" decoding="async" width="160" height="120"></div><div class="kit-for">Homes and small compounds</div>
+      <h3>HD home starter</h3>
+      <p>Four 1080p cameras with 20 m night vision, a 4-channel DVR, power and cabling.</p>
+      <div class="kit-price"><small>from</small> KES 14,190<small>equipment</small></div>
+      <a class="kit-more" href="/quote#hd-home">See what&rsquo;s included</a>
+      <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20HD%20home%20starter%20bundle%20%28equipment%20from%20KES%2014%2C190%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
+    </article>
+    <article class="kit kit-pop" id="home-hd-colorvu">
+      <span class="kit-flag">Most popular</span><div class="kit-shot"><img src="/images/009.webp" alt="HD ColorVu shop &amp; office" loading="lazy" decoding="async" width="160" height="120"></div><div class="kit-for">Shops, offices and small businesses</div>
+      <h3>HD ColorVu shop &amp; office</h3>
+      <p>Eight full-colour night vision cameras with audio, an 8-channel DVR, power and cabling.</p>
+      <div class="kit-price"><small>from</small> KES 41,415<small>equipment</small></div>
+      <a class="kit-more" href="/quote#hd-colorvu">See what&rsquo;s included</a>
+      <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20HD%20ColorVu%20shop%20%26%20office%20bundle%20%28equipment%20from%20KES%2041%2C415%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
+    </article>
+    <article class="kit" id="home-hd-3k">
+      <div class="kit-shot"><img src="/images/009.webp" alt="HD 3K ColorVu premium" loading="lazy" decoding="async" width="160" height="120"></div><div class="kit-for">Larger homes and businesses</div>
+      <h3>HD 3K ColorVu premium</h3>
+      <p>Eight sharper 3K full-colour cameras with audio, a 3K-ready 8-channel DVR, power and cabling.</p>
+      <div class="kit-price"><small>from</small> KES 59,620<small>equipment</small></div>
+      <a class="kit-more" href="/quote#hd-3k">See what&rsquo;s included</a>
+      <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20HD%203K%20ColorVu%20premium%20bundle%20%28equipment%20from%20KES%2059%2C620%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
+    </article>
+    </div>
+  </div>
+  <div class="kit-group">
+    <div class="kit-group-head"><h3>IP camera kits</h3><p>Sharper network cameras — one cable for power and video</p></div>
+    <div class="kits">
+    <article class="kit" id="home-ip-starter">
+      <div class="kit-shot"><img src="/images/047.webp" alt="IP starter" loading="lazy" decoding="async" width="160" height="120"></div><div class="kit-for">Homes moving to IP</div>
+      <h3>IP starter</h3>
+      <p>Four 2MP smart hybrid light IP cameras on a 4-port PoE NVR — one cable per camera, no separate power.</p>
+      <div class="kit-price"><small>from</small> KES 44,550<small>equipment</small></div>
+      <a class="kit-more" href="/quote#ip-starter">See what&rsquo;s included</a>
+      <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20IP%20starter%20bundle%20%28equipment%20from%20KES%2044%2C550%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
+    </article>
+    <article class="kit kit-pop" id="home-ip-colorvu">
+      <span class="kit-flag">Most popular</span><div class="kit-shot"><img src="/images/057.webp" alt="IP 4MP ColorVu" loading="lazy" decoding="async" width="160" height="120"></div><div class="kit-for">Premium homes and shops</div>
+      <h3>IP 4MP ColorVu</h3>
+      <p>Four 4MP ColorVu cameras with built-in mics on a 4-port PoE NVR, plus solid-copper CAT6.</p>
+      <div class="kit-price"><small>from</small> KES 63,030<small>equipment</small></div>
+      <a class="kit-more" href="/quote#ip-colorvu">See what&rsquo;s included</a>
+      <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20IP%204MP%20ColorVu%20bundle%20%28equipment%20from%20KES%2063%2C030%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
+    </article>
+    <article class="kit" id="home-ip-business">
+      <div class="kit-shot"><img src="/images/057.webp" alt="IP 4MP ColorVu business" loading="lazy" decoding="async" width="160" height="120"></div><div class="kit-for">Offices, warehouses and estates</div>
+      <h3>IP 4MP ColorVu business</h3>
+      <p>Eight 4MP ColorVu cameras on an 8-port PoE NVR, with two boxes of CAT6 and connectors.</p>
+      <div class="kit-price"><small>from</small> KES 121,440<small>equipment</small></div>
+      <a class="kit-more" href="/quote#ip-business">See what&rsquo;s included</a>
+      <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20IP%204MP%20ColorVu%20business%20bundle%20%28equipment%20from%20KES%20121%2C440%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
+    </article>
+    </div>
+  </div>
+  <div class="kit-group">
+    <div class="kit-group-head"><h3>Access, intercom &amp; networking</h3><p>Doors, gates and Wi-Fi for the whole building</p></div>
+    <div class="kits">
+    <article class="kit" id="home-access-face">
+      <div class="kit-shot"><img src="/images/095.webp" alt="Face access door kit" loading="lazy" decoding="async" width="160" height="120"></div><div class="kit-for">Offices, staff doors and gates</div>
+      <h3>Face access door kit</h3>
+      <p>Face, card and PIN entry for one door: terminal, magnetic lock with bracket, exit button and 10 cards.</p>
+      <div class="kit-price"><small>from</small> KES 21,010<small>equipment</small></div>
+      <a class="kit-more" href="/quote#access-face">See what&rsquo;s included</a>
+      <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20Face%20access%20door%20kit%20bundle%20%28equipment%20from%20KES%2021%2C010%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
+    </article>
+    <article class="kit" id="home-intercom-villa">
+      <div class="kit-shot"><img src="/images/117.webp" alt="IP villa intercom" loading="lazy" decoding="async" width="160" height="120"></div><div class="kit-for">Homes and compounds with a gate</div>
+      <h3>IP villa intercom</h3>
+      <p>See, talk to and open for visitors at the gate — from the indoor screen or your phone.</p>
+      <div class="kit-price"><small>from</small> KES 31,020<small>equipment</small></div>
+      <a class="kit-more" href="/quote#intercom-villa">See what&rsquo;s included</a>
+      <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20IP%20villa%20intercom%20bundle%20%28equipment%20from%20KES%2031%2C020%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
+    </article>
+    <article class="kit" id="home-network-office">
+      <div class="kit-shot"><img src="/images/imported/datacomm-ds-3wg105gp-si-o-std.png" alt="Office Wi-Fi network" loading="lazy" decoding="async" width="160" height="120"></div><div class="kit-for">Offices, shops and clinics</div>
+      <h3>Office Wi-Fi network</h3>
+      <p>Fast Wi-Fi across the building: all-in-one PoE router, two ceiling access points, a switch and cabling.</p>
+      <div class="kit-price"><small>from</small> KES 46,200<small>equipment</small></div>
+      <a class="kit-more" href="/quote#network-office">See what&rsquo;s included</a>
+      <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20Office%20Wi-Fi%20network%20bundle%20%28equipment%20from%20KES%2046%2C200%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
+    </article>
+    </div>
+  </div>
+<!--/catalog:bundles-->
+      <p class="hb-note">Bundle prices are equipment only. The hard drive and installation are quoted after a site survey. <a href="/quote">Build a custom quote &rarr;</a></p>
+    </div>
+  </section>
+
   <section style="background: rgb(246, 248, 250); border-top: 1px solid rgb(231, 236, 241); border-bottom: 1px solid rgb(231, 236, 241); padding: 32px 24px;">
     <div style="max-width: 1240px; margin: 0px auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);">
       
@@ -540,6 +686,18 @@
   </section>
 
   
+  <section class="home-explore">
+    <a href="/world" class="hx">
+      <div class="hx-text">
+        <div class="hx-eyebrow">Explore NE</div>
+        <h2>Take the scroll-through tour of the NE world</h2>
+        <p>Follow a Hikvision camera from sourcing to installation in an interactive story &mdash; scroll to fly through each scene.</p>
+        <span class="hx-cta">Start exploring &rarr;</span>
+      </div>
+      <img src="/assets/scroll-world/hero.webp" alt="A Hikvision dome camera from the NE world tour" width="1800" height="1196" loading="lazy" decoding="async">
+    </a>
+  </section>
+
   <section style="max-width: 1240px; margin: 24px auto 20px; padding: 0px 24px;">
     <div style="background: rgb(15, 44, 61); border-radius: 16px; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; border: 1px solid rgba(79, 195, 236, 0.25);">
       <div style="display: flex; align-items: center; gap: 14px;">

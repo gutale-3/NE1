@@ -155,6 +155,48 @@ def images_of(product):
     return seen
 
 
+def clip(text, limit=155):
+    """Cut at a word boundary so Google shows the whole snippet."""
+    text = " ".join(text.split())
+    if len(text) <= limit:
+        return text
+    return text[: limit - 1].rsplit(" ", 1)[0].rstrip(" ,;:.-—") + "…"
+
+
+# Packaging/market tags that do not tell two products apart.
+NOISE_TAGS = re.compile(r"\((?:O-STD|STD|O-NEU|UK|Africa|EU)\)|/(?:Overseas|UK|EU)\b|/\d+PCS\b", re.I)
+WEAK_ENDINGS = {"with", "and", "&", "for", "of", "the", "a", "-", "—", "in", "to"}
+
+
+def core_model(model):
+    """DS-2CD1047G3-LIU(4mm)(O-STD) -> DS-2CD1047G3-LIU(4mm); keeps tags that distinguish variants."""
+    model = NOISE_TAGS.sub("", model.split(" ")[0].strip(",")).replace("((", "(")
+    return model.strip("/") or model
+
+
+def page_title(product, limit=62):
+    suffix = " | NE Kenya"
+    core = core_model(product["model"])
+    name = re.sub(r"\s+", " ", product["name"]).strip()
+    base = f"{core} {name}"
+    room = limit - len(suffix)
+    if len(base) > room:
+        words = base[:room + 1].split(" ")[:-1] or [base[:room]]
+        while len(words) > 1 and (words[-1].lower() in WEAK_ENDINGS or words[-1].count("(") > words[-1].count(")")):
+            words.pop()
+        base = " ".join(words).rstrip(" ,-—&")
+        if base.count("(") > base.count(")"):  # never end on an unfinished "(…"
+            base = base[: base.rindex("(")].rstrip(" ,-—&")
+    return base + suffix
+
+
+def share_image(product):
+    """Link previews (WhatsApp, Facebook) still prefer PNG/JPEG over WebP."""
+    image = product["image"]
+    png = image[:-5] + ".png" if image.endswith(".webp") else image
+    return png if (ROOT / png).exists() else image
+
+
 def gallery_html(product):
     images = images_of(product)
     alt = f"{product['name']} — {product['model']}"
@@ -296,11 +338,10 @@ def json_ld(product, category_url):
 def render(product, siblings, index):
     page_url = SITE + product["url"]
     category_url = category_page_url(product["category"])
-    title = f"{product['name']} — {product['model']} | NE Kenya"
-    description = (
-        f"{product['name']} ({product['model']}) from KES "
-        f"{catalog.price_label(product['price'])}. "
-        f"{catalog.summary(product['features'], 105)}"
+    title = page_title(product)
+    description = clip(
+        f"{core_model(product['model'])} {product['name']}, KES {catalog.price_label(product['price'])} at NE Nairobi. "
+        f"{catalog.summary(product['features'], 150)}"
     )
     enquiry = wa_link(
         f"Hi NE, I would like to enquire about: {product['name']} ({product['model']})"
@@ -353,12 +394,12 @@ def render(product, siblings, index):
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:url" content="{esc(page_url)}">
-<meta property="og:image" content="{esc(SITE + '/' + product['image'])}">
+<meta property="og:image" content="{esc(SITE + '/' + share_image(product))}">
 <meta property="og:locale" content="en_KE">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(description)}">
-<meta name="twitter:image" content="{esc(SITE + '/' + product['image'])}">
+<meta name="twitter:image" content="{esc(SITE + '/' + share_image(product))}">
 {json_ld(product, category_url)}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -498,9 +539,9 @@ def render_category(name, items, products):
     slug, heading, _ = site_layout.CATEGORIES[name]
     page_url = SITE + category_page_url(name)
     blurb = catalog.CATEGORY_BLURBS.get(name, "")
-    title = f"{heading} in Kenya | NE — Authorized Hikvision Distributor"
-    description = (f"{len(items)} genuine {heading.replace('Hikvision ', 'Hikvision ')} models in stock at NE, Nairobi, "
-                   f"from KES {catalog.price_label(min(p['price'] for p in items))}. {blurb}")
+    title = f"{heading} in Kenya | NE"
+    description = clip(f"{len(items)} genuine {heading} models in stock at NE, Nairobi, "
+                       f"from KES {catalog.price_label(min(p['price'] for p in items))}. {blurb}")
     item_list = {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
@@ -525,7 +566,7 @@ def render_category(name, items, products):
         ],
     }
     dump = lambda obj: json.dumps(obj, indent=1, ensure_ascii=False)
-    image = SITE + "/" + items[0]["image"]
+    image = SITE + "/" + share_image(items[0])
     cards = "\n".join(catalog_card_html(p) for p in items)
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -613,60 +654,139 @@ def render_category(name, items, products):
 # Ready-made kits for /quote. Prices are summed from the catalogue at build
 # time; the hard drive and installation are quoted after a site survey.
 PACKAGES = [
+    # --- Turbo HD (analogue over coax) ---
     {
-        "name": "Home starter kit",
+        "id": "hd-home", "group": "hd",
+        "name": "HD home starter",
         "for": "Homes and small compounds",
         "summary": "Four 1080p cameras with 20 m night vision, a 4-channel DVR, power and cabling.",
         "items": [("DS-2CE16D0T-EXIPF(3.6mm)(O-STD)", 2), ("DS-2CE76D0T-EXIPF(2.8mm)(O-STD)", 2),
                   ("DS-7104HGHI-M1(STD)(C)", 1), ("DS-2FA1225-C4(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 90m", 1)],
     },
     {
-        "name": "Shop & office ColorVu kit",
+        "id": "hd-colorvu", "group": "hd", "popular": True,
+        "name": "HD ColorVu shop & office",
         "for": "Shops, offices and small businesses",
         "summary": "Eight full-colour night vision cameras with audio, an 8-channel DVR, power and cabling.",
         "items": [("DS-2CE10DF0T-LPFS(3.6mm)(O-STD)", 4), ("DS-2CE70DF0T-LPFS(2.8mm)(O-STD)", 4),
                   ("DS-7108HGHI-M1(STD)(C)", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1)],
-        "popular": True,
     },
     {
-        "name": "4MP IP ColorVu kit",
-        "for": "Premium homes and businesses",
-        "summary": "Four 4MP smart hybrid light IP cameras on a 4-port PoE NVR — one cable per camera, no separate power.",
-        "items": [("DS-2CD1047G3-LIU(4mm)(O-STD)", 4), ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1)],
+        "id": "hd-3k", "group": "hd",
+        "name": "HD 3K ColorVu premium",
+        "for": "Larger homes and businesses",
+        "summary": "Eight sharper 3K full-colour cameras with audio, a 3K-ready 8-channel DVR, power and cabling.",
+        "items": [("DS-2CE10KF0T-LPFS(3.6mm)(O-STD)", 4), ("DS-2CE70KF0T-LPFS(2.8mm)(O-STD)", 4),
+                  ("iDS-7108HQHI-M1/T(STD)", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1)],
     },
+    # --- IP (network cameras over PoE) ---
+    {
+        "id": "ip-starter", "group": "ip",
+        "name": "IP starter",
+        "for": "Homes moving to IP",
+        "summary": "Four 2MP smart hybrid light IP cameras on a 4-port PoE NVR — one cable per camera, no separate power.",
+        "items": [("DS-2CD1023G2-LIU(4mm)(O-STD)", 2), ("DS-2CD1123G2-LIU(2.8mm)(O-STD)", 2),
+                  ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1)],
+    },
+    {
+        "id": "ip-colorvu", "group": "ip", "popular": True,
+        "name": "IP 4MP ColorVu",
+        "for": "Premium homes and shops",
+        "summary": "Four 4MP ColorVu cameras with built-in mics on a 4-port PoE NVR, plus solid-copper CAT6.",
+        "items": [("DS-2CD1047G3-LIU(4mm)(O-STD)", 2), ("DS-2CD1147G3-LIU(2.8mm)(O-STD)", 2),
+                  ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1)],
+    },
+    {
+        "id": "ip-business", "group": "ip",
+        "name": "IP 4MP ColorVu business",
+        "for": "Offices, warehouses and estates",
+        "summary": "Eight 4MP ColorVu cameras on an 8-port PoE NVR, with two boxes of CAT6 and connectors.",
+        "items": [("DS-2CD1047G3-LIU(4mm)(O-STD)", 4), ("DS-2CD1147G3-LIU(2.8mm)(O-STD)", 4),
+                  ("DS-7108NI-Q1/8P/M(STD)(D)", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 2), ("DS-1M6UA-15U(O-STD)/100PCS", 1)],
+    },
+    # --- Access control, video intercom, networking ---
+    {
+        "id": "access-face", "group": "more",
+        "name": "Face access door kit",
+        "for": "Offices, staff doors and gates",
+        "summary": "Face, card and PIN entry for one door: terminal, magnetic lock with bracket, exit button and 10 cards.",
+        "items": [("DS-K1T323MBFWX-E1(O-STD)", 1), ("DS-K4H255S(O-STD)", 1), ("DS-K4H255-LZ(O-STD)", 1),
+                  ("DS-K7P01(O-NEU)", 1), ("DS-K7M102-M(O-STD)", 10)],
+    },
+    {
+        "id": "intercom-villa", "group": "more",
+        "name": "IP villa intercom",
+        "for": "Homes and compounds with a gate",
+        "summary": "See, talk to and open for visitors at the gate — from the indoor screen or your phone.",
+        "items": [("DS-KV6113-WPE1(C)(O-STD)", 1), ("DS-KH6320-WTE1(O-STD)", 1), ("DS-3E0505P-E/M(O-STD)(B)", 1)],
+    },
+    {
+        "id": "network-office", "group": "more",
+        "name": "Office Wi-Fi network",
+        "for": "Offices, shops and clinics",
+        "summary": "Fast Wi-Fi across the building: all-in-one PoE router, two ceiling access points, a switch and cabling.",
+        "items": [("DS-3WG105GP-SI(O-STD)", 1), ("DS-3WAP522-SI(O-STD)", 2), ("DS-3E0508-O(O-STD)", 1),
+                  ("DS-1LN6UZC0(O-STD) orange 305m", 1), ("DS-1M6UA-15U(O-STD)/100PCS", 1)],
+    },
+]
+PACKAGE_GROUPS = [
+    ("hd", "Turbo HD camera kits", "Budget-friendly cameras over coax cable"),
+    ("ip", "IP camera kits", "Sharper network cameras — one cable for power and video"),
+    ("more", "Access, intercom & networking", "Doors, gates and Wi-Fi for the whole building"),
 ]
 
 
-def packages_html(products):
-    by_model = {p["model"]: p for p in products}
-    cards = []
-    for kit in PACKAGES:
-        missing = [model for model, _ in kit["items"] if model not in by_model]
-        if missing:
-            sys.exit(f"package {kit['name']!r}: not in catalogue: {missing}")
-        total = sum(by_model[model]["price"] * qty for model, qty in kit["items"])
-        rows = "".join(
-            f'<li><span>{qty} &times; <a href="{esc(by_model[model]["url"])}">{esc(by_model[model]["name"])}</a></span>'
-            f'<span>KES {catalog.price_label(by_model[model]["price"] * qty)}</span></li>'
-            for model, qty in kit["items"]
-        )
-        ask = wa_link(f"Hi NE, I'm interested in the {kit['name']} (equipment from KES {catalog.price_label(total)}). "
-                      "Please quote with hard drive and installation.")
-        flag = '<span class="kit-flag">Most popular</span>' if kit.get("popular") else ""
-        cards.append(f"""<article class="kit{' kit-pop' if kit.get('popular') else ''}">
-      {flag}<div class="kit-for">{esc(kit['for'])}</div>
+def package_rows(kit, by_model):
+    missing = [model for model, _ in kit["items"] if model not in by_model]
+    if missing:
+        sys.exit(f"package {kit['name']!r}: not in catalogue: {missing}")
+    total = sum(by_model[model]["price"] * qty for model, qty in kit["items"])
+    return total
+
+
+def kit_card_html(kit, by_model, compact=False):
+    total = package_rows(kit, by_model)
+    ask = wa_link(f"Hi NE, I'm interested in the {kit['name']} bundle (equipment from KES {catalog.price_label(total)}). "
+                  "Please send me an all-in price with installation.")
+    rows = "".join(
+        f'<li><span>{qty} &times; <a href="{esc(by_model[model]["url"])}">{esc(by_model[model]["name"])}</a></span>'
+        f'<span>KES {catalog.price_label(by_model[model]["price"] * qty)}</span></li>'
+        for model, qty in kit["items"]
+    )
+    first = by_model[kit["items"][0][0]]
+    flag = '<span class="kit-flag">Most popular</span>' if kit.get("popular") else ""
+    image = (f'<div class="kit-shot"><img src="/{esc(first["image"])}" alt="{esc(kit["name"])}" loading="lazy" decoding="async" width="160" height="120"></div>'
+             if compact else "")
+    more = f'<a class="kit-more" href="/quote#{kit["id"]}">See what&rsquo;s included</a>' if compact else f'<ul>{rows}</ul>'
+    return f"""<article class="kit{' kit-pop' if kit.get('popular') else ''}" id="{'home-' if compact else ''}{kit['id']}">
+      {flag}{image}<div class="kit-for">{esc(kit['for'])}</div>
       <h3>{esc(kit['name'])}</h3>
       <p>{esc(kit['summary'])}</p>
-      <div class="kit-price">KES {catalog.price_label(total)}<small>equipment</small></div>
-      <ul>{rows}</ul>
-      <a class="kit-cta" href="{esc(ask)}" target="_blank" rel="noopener">Get this kit quoted</a>
-    </article>""")
-    return "\n    ".join(cards)
+      <div class="kit-price"><small>from</small> KES {catalog.price_label(total)}<small>equipment</small></div>
+      {more}
+      <a class="kit-cta" href="{esc(ask)}" target="_blank" rel="noopener">Get this bundle</a>
+    </article>"""
+
+
+def packages_html(products, compact=False):
+    by_model = {p["model"]: p for p in products}
+    groups = []
+    for key, title, sub in PACKAGE_GROUPS:
+        cards = "\n    ".join(kit_card_html(k, by_model, compact) for k in PACKAGES if k["group"] == key)
+        groups.append(f"""<div class="kit-group">
+    <div class="kit-group-head"><h3>{esc(title)}</h3><p>{esc(sub)}</p></div>
+    <div class="kits">
+    {cards}
+    </div>
+  </div>""")
+    return "\n  ".join(groups)
 
 
 def write_quote_page(products):
     path = ROOT / "quote.html"
     path.write_text(fill(path.read_text(encoding="utf-8"), "packages", packages_html(products)), encoding="utf-8")
+    home = ROOT / "index.html"
+    home.write_text(fill(home.read_text(encoding="utf-8"), "bundles", packages_html(products, compact=True)), encoding="utf-8")
 
 
 def write_category_pages(products):
