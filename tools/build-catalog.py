@@ -3,8 +3,9 @@
 
     python3 tools/build-catalog.py
 
-Writes js/products.js, one static page per product under product/, the
-catalog JSON-LD block inside products.html, and the sitemap. Edit
+Writes one static page per product under product/, one page per category
+under category/, the product grid and ItemList JSON-LD inside products.html,
+and sitemap.xml. Edit
 data/products.json (never the generated files) and re-run.
 """
 import html
@@ -17,22 +18,12 @@ import urllib.parse
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import catalog
+import site_layout
 from catalog import PHONE, PHONE_LABEL, ROOT, SITE
+from site_layout import category_url as category_page_url
 
 PAGE_DIR = ROOT / "product"
 RELATED_COUNT = 5
-
-NAV = [
-    ("/", "Home"),
-    ("/world", "Explore"),
-    ("/products", "Products"),
-    ("/solutions", "Solutions"),
-    ("/services", "Services"),
-    ("/blog", "Blog"),
-    ("/faq", "FAQ"),
-    ("/about", "About"),
-    ("/contact", "Contact"),
-]
 
 STYLE = """
 * { box-sizing: border-box; }
@@ -41,18 +32,6 @@ img { max-width: 100%; }
 a { color: #086E9E; text-decoration: none; }
 h1, h2, h3 { letter-spacing: -0.01em; }
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
-.navtoggle-cb { display: none; }
-.hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
-.hamburger-icon-close { display: none; }
-.mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
-.mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; }
-.navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
-.navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
-.navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
-.nav-links { display: flex; align-items: center; gap: 32px; flex: 1; justify-content: center; }
-.nav-links a { font-size: 15px; font-weight: 600; color: #10202E; }
-.nav-links a.on { font-weight: 700; color: #086E9E; }
-.call-btn { flex-shrink: 0; display: flex; align-items: center; gap: 8px; background: #086E9E; color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 700; white-space: nowrap; }
 
 .crumbs { font-size: 13px; color: #4A5B68; padding: 16px 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .crumbs a { color: #4A5B68; }
@@ -92,6 +71,7 @@ h1, h2, h3 { letter-spacing: -0.01em; }
 .facts dd { margin: 0; font-size: 14px; font-weight: 600; word-break: break-word; }
 
 section.block { padding: 44px 0 0; }
+.site-footer { margin-top: 56px; }
 .block h2 { font-size: clamp(1.2rem, 2.2vw + 0.6rem, 1.5rem); font-weight: 800; margin: 0 0 18px; }
 .specs { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; padding: 10px 26px; columns: 2; column-gap: 40px; }
 .specs li { break-inside: avoid; font-size: 14px; line-height: 1.65; color: #10202E; margin: 12px 0; }
@@ -131,19 +111,9 @@ section.block { padding: 44px 0 0; }
 .band p { color: rgba(255,255,255,0.88); margin: 0; font-size: 14.5px; }
 .band a { background: #fff; color: #0B7EB5; padding: 13px 24px; border-radius: 9px; font-weight: 700; font-size: 14px; white-space: nowrap; }
 
-footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
-.foot { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-.foot p { font-size: 13.5px; color: rgba(255,255,255,0.55); margin: 0; }
-.foot nav { display: flex; gap: 22px; flex-wrap: wrap; }
-.foot a { font-size: 13.5px; color: rgba(255,255,255,0.75); }
 
-@keyframes pulseRing { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(1.6); opacity: 0; } }
-.wa-float { position: fixed; bottom: 26px; right: 26px; width: 58px; height: 58px; border-radius: 50%; background: #22C35E; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 60; font-size: 26px; line-height: 1; }
-.wa-float::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(11,143,203,0.55); animation: pulseRing 2.2s ease-out infinite; pointer-events: none; }
 
 @media (max-width: 860px) {
-  .nav-links, .call-btn { display: none !important; }
-  .hamburger-btn { display: flex !important; align-items: center; justify-content: center; }
   .detail { grid-template-columns: 1fr; gap: 24px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
@@ -163,55 +133,6 @@ def esc(value):
 
 def wa_link(message):
     return f"https://wa.me/{PHONE.lstrip('+')}?text={urllib.parse.quote(message)}"
-
-
-def header_html():
-    desktop = "\n        ".join(
-        '<a href="{}"{}>{}</a>'.format(
-            href, ' class="on"' if href == "/products" else "", label
-        )
-        for href, label in NAV
-    )
-    mobile = "\n      ".join(
-        f'<a href="{href}">{label}</a>' for href, label in NAV
-    )
-    return f"""<header style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #E7ECF1">
-    <input type="checkbox" id="navtoggle" class="navtoggle-cb">
-    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;padding-top:10px;padding-bottom:10px;gap:16px">
-      <a href="/" style="display:flex;align-items:center;flex-shrink:0">
-        <img src="/assets/nashnaal-logo-header.webp" alt="NE — Nashnaal Electronics" width="52" height="52" style="height:52px;width:auto;display:block">
-      </a>
-      <nav class="nav-links">
-        {desktop}
-      </nav>
-      <a href="tel:{PHONE}" class="call-btn">Call {PHONE_LABEL}</a>
-      <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
-        <span class="hamburger-icon-open">&#9776;</span>
-        <span class="hamburger-icon-close">&#10005;</span>
-      </label>
-    </div>
-    <nav class="mobile-nav-panel">
-      {mobile}
-      <a href="tel:{PHONE}" style="margin-top:12px;text-align:center;background:#086E9E;color:#fff;padding:15px;border-radius:8px;font-weight:700;font-size:16px;border:0">Call {PHONE_LABEL}</a>
-    </nav>
-  </header>"""
-
-
-FOOTER = f"""<footer>
-    <div class="foot">
-      <p>&copy; 2026 NE &mdash; Nashnaal Electronics. Authorized Hikvision distributor &amp; retailer.</p>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/products">Products</a>
-        <a href="/solutions">Solutions</a>
-        <a href="/faq">FAQ</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-      </nav>
-    </div>
-  </footer>
-
-  <a href="https://wa.me/{PHONE.lstrip('+')}" target="_blank" rel="noopener" class="wa-float" aria-label="Chat with NE on WhatsApp"><span aria-hidden="true">&#128172;</span></a>"""
 
 
 def card_html(product):
@@ -374,7 +295,7 @@ def json_ld(product, category_url):
 
 def render(product, siblings, index):
     page_url = SITE + product["url"]
-    category_url = "/products?cat=" + urllib.parse.quote(product["category"])
+    category_url = category_page_url(product["category"])
     title = f"{product['name']} — {product['model']} | NE Kenya"
     description = (
         f"{product['name']} ({product['model']}) from KES "
@@ -446,9 +367,10 @@ def render(product, siblings, index):
 <style>
 {STYLE}
 </style>
+{site_layout.css_block()}
 </head>
 <body>
-  {header_html()}
+  {site_layout.header_html("/products")}
 
   <div class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb">
@@ -507,24 +429,202 @@ def render(product, siblings, index):
     </section>
   </div>
 
-  {FOOTER}
+  {site_layout.footer_html()}
 </body>
 </html>
 """
 
 
-LISTING_FIELDS = ("category", "name", "model", "features", "pcsCtn", "retail", "price", "image", "id", "slug", "url")
+CATALOG_CSS = (ROOT / "tools/catalog.css").read_text(encoding="utf-8").strip()
+PAGE_SIZE = 24
 
 
-def write_products_js(products):
-    listing = [{key: p[key] for key in LISTING_FIELDS if key in p} for p in products]
-    payload = json.dumps(listing, indent=2, ensure_ascii=False)
-    (ROOT / "js/products.js").write_text(
-        "// Generated by tools/build-catalog.py from data/products.json — do not edit by hand.\n"
-        f"export const PRODUCTS = {payload};\n\n"
-        "export const CATEGORIES = [...new Set(PRODUCTS.map(p => p.category))];\n",
-        encoding="utf-8",
+def catalog_card_html(product):
+    photos = 1 + len(product.get("gallery", []))
+    badge = f'<span class="pc-photos">{photos} photos</span>' if photos > 1 else ""
+    search = f"{product['name']} {product['model']}".lower()
+    enquiry = wa_link(f"Hi NE, I would like to enquire about: {product['name']} ({product['model']})")
+    return f"""<div class="pc" data-cat="{esc(product['category'])}" data-q="{esc(search)}">
+  <a class="pc-link" href="{esc(product['url'])}" aria-label="{esc(product['name'])}"></a>{badge}
+  <div class="pc-shot"><img src="/{esc(product['image'])}" alt="{esc(product['name'])}" loading="lazy" decoding="async" width="200" height="144"></div>
+  <div class="pc-body">
+    <div class="pc-cat">{esc(product['category'])}</div>
+    <h3 class="pc-name">{esc(product['name'])}</h3>
+    <div class="pc-sku">{esc(product['model'])}</div>
+    <div class="pc-foot">
+      <div class="pc-price">KES {catalog.price_label(product['price'])}</div>
+      <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="{esc(enquiry)}" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+    </div>
+  </div>
+</div>"""
+
+
+def controls_html(products, active=None):
+    counts = {}
+    for product in products:
+        counts[product["category"]] = counts.get(product["category"], 0) + 1
+    tabs = [f'<a class="ptab{" on" if active is None else ""}" href="/products" data-cat="All">All ({len(products)})</a>']
+    for name in site_layout.CATEGORIES:
+        if name in counts:
+            on = " on" if name == active else ""
+            tabs.append(
+                f'<a class="ptab{on}" href="{category_page_url(name)}" data-cat="{esc(name)}">{esc(site_layout.CATEGORIES[name][2])} ({counts[name]})</a>'
+            )
+    return (
+        '<div class="ptabs">\n        ' + "\n        ".join(tabs) + "\n      </div>\n"
+        '      <input type="search" id="catalog-search" class="psearch" placeholder="Search model or product name…" aria-label="Search products">'
     )
+
+
+def fill(source, name, content):
+    start, end = f"<!--catalog:{name}-->", f"<!--/catalog:{name}-->"
+    if start not in source:
+        sys.exit(f"missing <!--catalog:{name}--> marker")
+    return re.sub(re.escape(start) + r"[\s\S]*?" + re.escape(end), lambda _: f"{start}\n{content}\n{end}", source, count=1)
+
+
+def write_catalog_page(products):
+    path = ROOT / "products.html"
+    source = path.read_text(encoding="utf-8")
+    source = fill(source, "controls", controls_html(products))
+    source = fill(source, "grid", "\n".join(catalog_card_html(p) for p in products))
+    source = re.sub(r'<style id="catalog-css">[\s\S]*?</style>', lambda _: f'<style id="catalog-css">\n{CATALOG_CSS}\n</style>', source, count=1)
+    source = re.sub(r"\d+ genuine Hikvision products across \d+ categories",
+                    f"{len(products)} genuine Hikvision products across {len(catalog.categories(products))} categories", source)
+    path.write_text(source, encoding="utf-8")
+
+
+def render_category(name, items, products):
+    slug, heading, _ = site_layout.CATEGORIES[name]
+    page_url = SITE + category_page_url(name)
+    blurb = catalog.CATEGORY_BLURBS.get(name, "")
+    title = f"{heading} in Kenya | NE — Authorized Hikvision Distributor"
+    description = (f"{len(items)} genuine {heading.replace('Hikvision ', 'Hikvision ')} models in stock at NE, Nairobi, "
+                   f"from KES {catalog.price_label(min(p['price'] for p in items))}. {blurb}")
+    item_list = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": heading,
+        "url": page_url,
+        "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": len(items),
+            "itemListElement": [
+                {"@type": "ListItem", "position": i, "url": SITE + p["url"], "name": p["name"]}
+                for i, p in enumerate(items, start=1)
+            ],
+        },
+    }
+    crumbs = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Products", "item": SITE + "/products"},
+            {"@type": "ListItem", "position": 3, "name": heading, "item": page_url},
+        ],
+    }
+    dump = lambda obj: json.dumps(obj, indent=1, ensure_ascii=False)
+    image = SITE + "/" + items[0]["image"]
+    cards = "\n".join(catalog_card_html(p) for p in items)
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(description)}">
+<link rel="canonical" href="{esc(page_url)}">
+<link rel="icon" type="image/png" href="/assets/nashnaal-favicon.png">
+<link rel="apple-touch-icon" href="/assets/nashnaal-favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nashnaal Electronics (NE)">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(description)}">
+<meta property="og:url" content="{esc(page_url)}">
+<meta property="og:image" content="{esc(image)}">
+<meta property="og:locale" content="en_KE">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{dump(item_list)}
+</script>
+<script type="application/ld+json">
+{dump(crumbs)}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+<style>
+{STYLE}
+.cat-hero {{ background: linear-gradient(135deg,#0B7EB5 0%,#0B8FCB 100%); padding: 48px 24px; color: #fff; }}
+.cat-hero .wrap {{ padding: 0; }}
+.cat-hero h1 {{ font-size: clamp(1.6rem, 3.6vw + 0.9rem, 2.3rem); font-weight: 800; margin: 0 0 10px; }}
+.cat-hero p {{ margin: 0; font-size: 16px; color: rgba(255,255,255,0.9); max-width: 70ch; line-height: 1.6; }}
+.cat-hero .crumbs, .cat-hero .crumbs a, .cat-hero .crumbs span[aria-current] {{ color: rgba(255,255,255,0.85); padding-top: 0; }}
+.cat-controls {{ display: flex; gap: 16px; flex-wrap: wrap; align-items: center; justify-content: space-between; margin: 28px 0; }}
+</style>
+<style id="catalog-css">
+{CATALOG_CSS}
+</style>
+{site_layout.css_block()}
+<script src="/js/site.js" defer></script>
+</head>
+<body>
+  {site_layout.header_html("/products")}
+
+  <section class="cat-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span>
+        <a href="/products">Products</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">{esc(heading)}</span>
+      </nav>
+      <h1>{esc(heading)} in Kenya</h1>
+      <p>{esc(blurb)} {len(items)} genuine models in stock at our Nairobi showroom, supplied with manufacturer warranty and installed by NE&rsquo;s Hikvision-certified technicians.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cat-controls">
+      {controls_html(products, active=name)}
+    </div>
+    <div id="catalog-grid" class="pgrid" data-scope="{esc(name)}">
+{cards}
+    </div>
+    <p id="catalog-empty" class="pempty" hidden>No products match that search.</p>
+    <div class="pmore"><button type="button" id="catalog-more" hidden>Show more products</button></div>
+
+    <section class="band">
+      <div>
+        <h2>Not sure which model fits?</h2>
+        <p>Tell us about your site and we&rsquo;ll recommend the right {esc(site_layout.CATEGORIES[name][2].lower())} and quote with installation.</p>
+      </div>
+      <a href="/quote">Get a quote &rarr;</a>
+    </section>
+  </div>
+
+  {site_layout.footer_html()}
+</body>
+</html>
+"""
+
+
+def write_category_pages(products):
+    directory = ROOT / "category"
+    directory.mkdir(exist_ok=True)
+    expected = set()
+    for name in site_layout.CATEGORIES:
+        items = [p for p in products if p["category"] == name]
+        if not items:
+            continue
+        path = directory / f"{site_layout.CATEGORIES[name][0]}.html"
+        path.write_text(render_category(name, items, products), encoding="utf-8")
+        expected.add(path.name)
+    for path in directory.glob("*.html"):
+        if path.name not in expected:
+            path.unlink()
+    return len(expected)
 
 
 def write_catalog_json_ld(products):
@@ -564,26 +664,57 @@ def write_catalog_json_ld(products):
     path.write_text(pattern.sub(lambda _: replacement, source, count=1), encoding="utf-8")
 
 
+def last_modified(paths):
+    """Date each file last changed: today if it differs from git HEAD, else its last commit."""
+    import datetime
+    import subprocess
+
+    today = datetime.date.today().isoformat()
+    changed = set()
+    status = subprocess.run(["git", "status", "--porcelain", "--untracked-files=all"],
+                            cwd=ROOT, capture_output=True, text=True).stdout
+    for line in status.splitlines():
+        changed.add(line[3:].strip().strip('"'))
+    dates = {}
+    for path in paths:
+        rel = path.relative_to(ROOT).as_posix()
+        if rel in changed:
+            dates[rel] = today
+            continue
+        log = subprocess.run(["git", "log", "-1", "--format=%cs", "--", rel],
+                             cwd=ROOT, capture_output=True, text=True).stdout.strip()
+        dates[rel] = log or today
+    return dates
+
+
 def write_sitemap(products):
-    path = ROOT / "sitemap.xml"
-    source = path.read_text(encoding="utf-8")
-    source = re.sub(
-        r"\n  <!-- products -->.*?(?=</urlset>)", "\n", source, flags=re.S
+    pages = [p for p in sorted(ROOT.glob("*.html")) if p.name != "404.html"]
+    pages = [ROOT / "index.html"] + [p for p in pages if p.name != "index.html"]
+    pages += sorted((ROOT / "category").glob("*.html"))
+    product_pages = {p["slug"]: p for p in products}
+    pages += [PAGE_DIR / f"{slug}.html" for slug in product_pages]
+    dates = last_modified(pages)
+
+    entries = []
+    for path in pages:
+        rel = path.relative_to(ROOT).as_posix()
+        loc = SITE + ("/" if rel == "index.html" else "/" + rel[:-5])
+        images = ""
+        if rel.startswith("product/"):
+            product = product_pages[path.stem]
+            images = "".join(
+                f"\n    <image:image><image:loc>{html.escape(SITE + '/' + img)}</image:loc></image:image>"
+                for img in images_of(product)
+            )
+        entries.append(f"  <url>\n    <loc>{html.escape(loc)}</loc>\n    <lastmod>{dates[rel]}</lastmod>{images}\n  </url>\n")
+    (ROOT / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+        'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+        + "".join(entries) + "</urlset>\n",
+        encoding="utf-8",
     )
-    lastmod = re.search(r"<lastmod>([\d-]+)</lastmod>", source).group(1)
-    entries = "".join(
-        f"  <url>\n"
-        f"    <loc>{SITE}{product['url']}</loc>\n"
-        f"    <lastmod>{lastmod}</lastmod>\n"
-        f"    <changefreq>monthly</changefreq>\n"
-        f"    <priority>0.6</priority>\n"
-        f"  </url>\n"
-        for product in products
-    )
-    source = source.replace(
-        "</urlset>", f"  <!-- products -->\n{entries}</urlset>"
-    )
-    path.write_text(source, encoding="utf-8")
+    return len(entries)
 
 
 def main():
@@ -606,14 +737,16 @@ def main():
     for path in stale:
         path.unlink()
 
-    write_products_js(products)
+    write_catalog_page(products)
     write_catalog_json_ld(products)
-    write_sitemap(products)
+    categories = write_category_pages(products)
+    urls = write_sitemap(products)
 
     print(f"{len(products)} product pages written to product/")
     if stale:
         print(f"{len(stale)} stale pages removed")
-    print("js/products.js, products.html JSON-LD and sitemap.xml updated")
+    print(f"{categories} category pages written to category/")
+    print(f"products.html grid and JSON-LD updated; sitemap.xml lists {urls} URLs")
 
 
 if __name__ == "__main__":

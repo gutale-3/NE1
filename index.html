@@ -66,8 +66,8 @@
     }
   ],
   "sameAs": [
-    "https://www.instagram.com/nationalelectronicsbbs",
-    "https://www.tiktok.com/@nationalelectronicsbbs"
+    "https://www.instagram.com/nashnaalelectronics",
+    "https://www.tiktok.com/@nashnaalelectronics"
   ]
 }
 </script>
@@ -77,189 +77,256 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media=&#39;all&#39;">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 <link rel="preload" as="image" href="images/007.webp" fetchpriority="high">
-<link rel="preload" as="script" href="js/vendor/react.production.min.js" crossorigin="anonymous">
-<link rel="preload" as="script" href="js/vendor/react-dom.production.min.js" crossorigin="anonymous">
-<script src="js/support.js" defer></script>
 <style>*{box-sizing:border-box}body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#F6F8FA;color:#10202E}a{color:#086E9E;text-decoration:none}a:hover{color:#086E9E}@keyframes floatY{0%,100%{transform:translateY(0px) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}@keyframes blinkDot{0%,100%{opacity:1}50%{opacity:.15}}@keyframes scanSweep{0%{transform:translateY(-100%)}100%{transform:translateY(220%)}}@keyframes fadeInUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}@keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}@keyframes pulseRing{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.6);opacity:0}}.wa-pulse-btn::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid rgba(11,143,203,.55);animation:pulseRing 2.2s ease-out infinite;pointer-events:none}@keyframes gradientShift{0%,100%{transform:translateX(0)}50%{transform:translateX(8%)}}.hero-gradient-layer{position:absolute;top:0;bottom:0;left:-15%;right:-15%;animation:gradientShift 10s ease-in-out infinite;will-change:transform;z-index:0}.navtoggle-cb{display:none}.hamburger-btn{display:none;cursor:pointer;font-size:24px;color:#10202E;line-height:1;padding:12px;margin:-12px}.hamburger-icon-close{display:none}.mobile-nav-panel{display:none;flex-direction:column;padding:6px 24px 22px;border-top:1px solid #E7ECF1;background:#fff}.mobile-nav-panel a{padding:15px 4px;font-size:16px;font-weight:600;color:#10202E;border-bottom:1px solid #F0F3F5}@media (max-width:860px){.nav-links,.call-btn{display:none!important}.hamburger-btn{display:flex!important;align-items:center;justify-content:center}.hero-grid{grid-template-columns:1fr!important;padding:48px 20px 56px!important;gap:32px!important}.about-grid{grid-template-columns:1fr!important;gap:32px!important;padding:56px 20px!important}.spotlight-grid{grid-template-columns:1fr!important}.hero-dots{position:relative!important;top:auto!important;right:auto!important;transform:none!important;flex-direction:row!important;justify-content:center;padding:0 20px 32px}.hero-scrim{background:linear-gradient(180deg,rgba(10,20,30,0.35) 0%,rgba(10,20,30,0.72) 45%,rgba(10,20,30,0.92) 100%)!important}.chip-grid{grid-template-columns:repeat(2,1fr)!important}.proof-grid{grid-template-columns:1fr!important;max-width:460px;margin:0 auto}}@media (min-width:861px) and (max-width:1100px){.proof-grid{grid-template-columns:repeat(2,1fr)!important}}@media (max-width:560px){.stats-grid{grid-template-columns:repeat(3,1fr)!important;gap:10px!important}}.navtoggle-cb:checked~div .hamburger-icon-open{display:none}.navtoggle-cb:checked~div .hamburger-icon-close{display:inline}.navtoggle-cb:checked~.mobile-nav-panel{display:flex!important}</style>
-</head>
+<style>[data-h="1"]:hover{background:#086E9E !important}[data-h="2"]:hover{background:#1CAD52 !important}[data-h="4"]:hover{border-color:#086E9E !important}[data-h="6"]:hover{background:#EAF6FC !important}[data-h="7"]:hover{background:rgba(255,255,255,0.14) !important}[data-h="8"]:hover{background:#EAF6FC !important;border-color:#B9E1F2 !important}[data-h="9"]:hover{border-color:#086E9E !important;box-shadow:0 12px 28px rgba(16,32,46,0.11) !important}[data-h="10"]:hover{background:#7ED4F1 !important}</style>
+<!--layout:css-->
+<style id="layout-css">
+.site-header { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid #E7ECF1; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+.site-header .bar { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 24px; }
+.site-header .logo { display: flex; align-items: center; flex-shrink: 0; }
+.site-header .logo img { height: 52px; width: auto; display: block; }
+.site-nav { display: flex; align-items: center; gap: 30px; flex: 1; justify-content: center; }
+.site-nav a { font-size: 15px; font-weight: 600; color: #10202E; text-decoration: none; }
+.site-nav a:hover, .site-nav a.on { color: #086E9E; }
+.site-nav a.on { font-weight: 700; }
+.site-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.site-actions a { display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 8px; font-size: 14px; font-weight: 700; white-space: nowrap; text-decoration: none; }
+.site-actions .call { color: #086E9E; border: 1.5px solid #CFE6F2; }
+.site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
+.site-actions .quote { background: #086E9E; color: #fff; }
+.site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.navtoggle-cb { display: none; }
+.hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
+.hamburger-icon-close { display: none; }
+.mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
+.mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; text-decoration: none; }
+.mobile-nav-panel a.on { color: #086E9E; }
+.mobile-nav-panel .m-cta { margin-top: 12px; text-align: center; border-radius: 8px; font-weight: 700; padding: 15px; border: 0; }
+.mobile-nav-panel .m-quote { background: #086E9E; color: #fff; }
+.mobile-nav-panel .m-call { background: #EAF6FC; color: #086E9E; margin-top: 8px; }
+.navtoggle-cb:checked ~ .bar .hamburger-icon-open { display: none; }
+.navtoggle-cb:checked ~ .bar .hamburger-icon-close { display: inline; }
+.navtoggle-cb:checked ~ .mobile-nav-panel { display: flex; }
+@media (max-width: 1020px) { .site-actions .call { display: none; } }
+@media (max-width: 860px) {
+  .site-nav, .site-actions { display: none; }
+  .hamburger-btn { display: flex; align-items: center; justify-content: center; }
+}
+
+.site-footer { background: #0F2C3D; color: rgba(255,255,255,0.72); font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; line-height: 1.6; }
+.site-footer a { color: rgba(255,255,255,0.78); text-decoration: none; }
+.site-footer a:hover { color: #fff; }
+.site-footer .cols { max-width: 1240px; margin: 0 auto; padding: 56px 24px 36px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 36px; }
+.site-footer h2 { font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin: 0 0 14px; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer li { margin: 0 0 9px; }
+.site-footer .brand img { height: 44px; width: auto; display: block; margin-bottom: 14px; background: #fff; border-radius: 8px; padding: 4px; }
+.site-footer .brand p { margin: 0 0 16px; max-width: 34ch; }
+.site-footer .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(79,195,236,0.35); color: #4FC3EC; border-radius: 999px; padding: 6px 12px; font-size: 12.5px; font-weight: 700; }
+.site-footer .badge:hover { color: #7ED4F1; border-color: #7ED4F1; }
+.site-footer .visit p { margin: 0 0 10px; }
+.site-footer .hours { display: grid; grid-template-columns: auto auto; gap: 2px 14px; margin: 0 0 14px; }
+.site-footer .hours dt { color: rgba(255,255,255,0.6); }
+.site-footer .hours dd { margin: 0; color: #fff; font-weight: 600; }
+.site-footer .social { display: flex; gap: 10px; margin-top: 14px; }
+.site-footer .social a { width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; }
+.site-footer .social a:hover { border-color: #4FC3EC; }
+.site-footer .legal { border-top: 1px solid rgba(255,255,255,0.1); }
+.site-footer .legal div { max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.5); }
+@media (max-width: 960px) { .site-footer .cols { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .site-footer .cols { grid-template-columns: 1fr; gap: 28px; padding-top: 44px; } }
+
+.wa-float { position: fixed; bottom: 22px; right: 22px; width: 56px; height: 56px; border-radius: 50%; background: #22C35E; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 60; }
+.wa-float:hover { background: #1CAD52; }
+</style>
+<script src="/js/site.js" defer></script>
+<!--/layout:css--></head>
 <body>
-<x-dc>
-<helmet>
-  <style>*{box-sizing:border-box}body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#F6F8FA;color:#10202E}a{color:#086E9E;text-decoration:none}a:hover{color:#086E9E}@keyframes floatY{0%,100%{transform:translateY(0px) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}@keyframes blinkDot{0%,100%{opacity:1}50%{opacity:.15}}@keyframes scanSweep{0%{transform:translateY(-100%)}100%{transform:translateY(220%)}}@keyframes fadeInUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}@keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}@keyframes pulseRing{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.6);opacity:0}}.wa-pulse-btn::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid rgba(11,143,203,.55);animation:pulseRing 2.2s ease-out infinite;pointer-events:none}@keyframes gradientShift{0%,100%{transform:translateX(0)}50%{transform:translateX(8%)}}.hero-gradient-layer{position:absolute;top:0;bottom:0;left:-15%;right:-15%;animation:gradientShift 10s ease-in-out infinite;will-change:transform;z-index:0}.navtoggle-cb{display:none}.hamburger-btn{display:none;cursor:pointer;font-size:24px;color:#10202E;line-height:1;padding:12px;margin:-12px}.hamburger-icon-close{display:none}.mobile-nav-panel{display:none;flex-direction:column;padding:6px 24px 22px;border-top:1px solid #E7ECF1;background:#fff}.mobile-nav-panel a{padding:15px 4px;font-size:16px;font-weight:600;color:#10202E;border-bottom:1px solid #F0F3F5}@media (max-width:860px){.nav-links,.call-btn{display:none!important}.hamburger-btn{display:flex!important;align-items:center;justify-content:center}.hero-grid{grid-template-columns:1fr!important;padding:48px 20px 56px!important;gap:32px!important}.about-grid{grid-template-columns:1fr!important;gap:32px!important;padding:56px 20px!important}.spotlight-grid{grid-template-columns:1fr!important}.hero-dots{position:relative!important;top:auto!important;right:auto!important;transform:none!important;flex-direction:row!important;justify-content:center;padding:0 20px 32px}.hero-scrim{background:linear-gradient(180deg,rgba(10,20,30,0.35) 0%,rgba(10,20,30,0.72) 45%,rgba(10,20,30,0.92) 100%)!important}.chip-grid{grid-template-columns:repeat(2,1fr)!important}.proof-grid{grid-template-columns:1fr!important;max-width:460px;margin:0 auto}}@media (min-width:861px) and (max-width:1100px){.proof-grid{grid-template-columns:repeat(2,1fr)!important}}@media (max-width:560px){.stats-grid{grid-template-columns:repeat(3,1fr)!important;gap:10px!important}}.navtoggle-cb:checked~div .hamburger-icon-open{display:none}.navtoggle-cb:checked~div .hamburger-icon-close{display:inline}.navtoggle-cb:checked~.mobile-nav-panel{display:flex!important}</style>
-</helmet>
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute;"><defs><g id="i-cctv" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 17 4l1.6 5L4.6 13.5z"></path><path d="m7 12.6 1.2 4.2M5.6 18.8h4.6"></path><path d="m18.6 9 2.2-.7M17 4l2.2-.7"></path></g><g id="i-ip" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="9" rx="2"></rect><circle cx="9.5" cy="10.5" r="2.4"></circle><path d="M9.5 15v4M6 19h7M18.5 7.5a5 5 0 0 1 0 6M21 5.5a8 8 0 0 1 0 10"></path></g><g id="i-access" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"></rect><path d="M12 8.5a2.6 2.6 0 0 0-2.6 2.6c0 1.6.5 2.9.5 4.4M12 8.5a2.6 2.6 0 0 1 2.6 2.6c0 2-.6 3.2-.6 4.9M12 11.1v3.4"></path></g><g id="i-intercom" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2.5"></rect><rect x="7.5" y="6" width="9" height="6.5" rx="1.2"></rect><circle cx="9.5" cy="16.5" r="1"></circle><circle cx="14.5" cy="16.5" r="1"></circle></g><g id="i-pa" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5a1 1 0 0 0 1 1h3l5 3.5V5L8 8.5H5a1 1 0 0 0-1 1Z"></path><path d="M16.5 9a4.5 4.5 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"></path></g><g id="i-network" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="13" width="19" height="7" rx="2"></rect><path d="M6 16.5h.01M9.5 16.5h.01M12 4v5M9 6.5 12 4l3 2.5"></path></g><g id="i-tablet" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="2"></rect><path d="M9 20.5h6M12 17v3.5"></path></g><g id="i-accessory" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"></path><path d="m3.5 7.5 8.5 4.6 8.5-4.6M12 12.1V21"></path></g><g id="i-data" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3.5" width="18" height="6" rx="1.8"></rect><rect x="3" y="14.5" width="18" height="6" rx="1.8"></rect><path d="M6.5 6.5h.01M6.5 17.5h.01"></path></g><g id="i-shield" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 4.5 6v6c0 4.6 3.2 7.7 7.5 9.2 4.3-1.5 7.5-4.6 7.5-9.2V6z"></path><path d="m8.8 11.8 2.3 2.3 4.1-4.6"></path></g><g id="i-genuine" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="m8.2 12.2 2.6 2.6 5-5.4"></path></g><g id="i-tools" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.2 6.4a3.6 3.6 0 0 0 4.8 4.7l2.3 2.3a2 2 0 0 1-2.8 2.8l-2.3-2.3a3.6 3.6 0 0 1-4.7-4.8z"></path><path d="m10 13.9-6 6M3.2 17.3l3.5 3.5"></path></g><g id="i-star" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.3 2.9 1.1-5.9L3.5 9.8l5.9-.8z"></path></g><g id="i-gift" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="4" rx="1"></rect><path d="M4.5 13v7a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-7M12 9v12"></path><path d="M12 9C10.5 6 9.4 4.6 8 4.6a2.2 2.2 0 0 0 0 4.4zM12 9c1.5-3 2.6-4.4 4-4.4a2.2 2.2 0 0 1 0 4.4z"></path></g><g id="i-install" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 3.5 7v10L12 21.2 20.5 17V7z"></path><path d="m8.6 11.6 2.5 2.5 4.5-4.9"></path></g><g id="i-support" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 13v-1a7.5 7.5 0 0 1 15 0v1"></path><rect x="2.6" y="13" width="4" height="6" rx="1.6"></rect><rect x="17.4" y="13" width="4" height="6" rx="1.6"></rect><path d="M19.5 19v.6a2.4 2.4 0 0 1-2.4 2.4H13"></path></g><g id="i-consult" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 1 1-3.4-6.8"></path><path d="M9 11.5 12 14l8-8"></path></g><g id="i-bulk" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="8" height="7" rx="1"></rect><rect x="13.5" y="8" width="8" height="7" rx="1"></rect><rect x="8" y="15.5" width="8" height="6" rx="1"></rect><path d="M6.5 8V5.5h11V8"></path></g><g id="i-chat" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.6-5A8.4 8.4 0 1 1 21 11.5Z"></path></g></defs></svg><div style="width: 100%; min-height: 100vh; background: rgb(246, 248, 250); overflow-x: hidden;">
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-<g id="i-cctv" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 17 4l1.6 5L4.6 13.5z"/><path d="m7 12.6 1.2 4.2M5.6 18.8h4.6"/><path d="m18.6 9 2.2-.7M17 4l2.2-.7"/></g>
-<g id="i-ip" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="9" rx="2"/><circle cx="9.5" cy="10.5" r="2.4"/><path d="M9.5 15v4M6 19h7M18.5 7.5a5 5 0 0 1 0 6M21 5.5a8 8 0 0 1 0 10"/></g>
-<g id="i-access" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M12 8.5a2.6 2.6 0 0 0-2.6 2.6c0 1.6.5 2.9.5 4.4M12 8.5a2.6 2.6 0 0 1 2.6 2.6c0 2-.6 3.2-.6 4.9M12 11.1v3.4"/></g>
-<g id="i-intercom" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2.5"/><rect x="7.5" y="6" width="9" height="6.5" rx="1.2"/><circle cx="9.5" cy="16.5" r="1"/><circle cx="14.5" cy="16.5" r="1"/></g>
-<g id="i-pa" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5a1 1 0 0 0 1 1h3l5 3.5V5L8 8.5H5a1 1 0 0 0-1 1Z"/><path d="M16.5 9a4.5 4.5 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/></g>
-<g id="i-network" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="13" width="19" height="7" rx="2"/><path d="M6 16.5h.01M9.5 16.5h.01M12 4v5M9 6.5 12 4l3 2.5"/></g>
-<g id="i-tablet" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M9 20.5h6M12 17v3.5"/></g>
-<g id="i-accessory" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="m3.5 7.5 8.5 4.6 8.5-4.6M12 12.1V21"/></g>
-<g id="i-data" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3.5" width="18" height="6" rx="1.8"/><rect x="3" y="14.5" width="18" height="6" rx="1.8"/><path d="M6.5 6.5h.01M6.5 17.5h.01"/></g>
-<g id="i-shield" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 4.5 6v6c0 4.6 3.2 7.7 7.5 9.2 4.3-1.5 7.5-4.6 7.5-9.2V6z"/><path d="m8.8 11.8 2.3 2.3 4.1-4.6"/></g>
-<g id="i-genuine" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.2 12.2 2.6 2.6 5-5.4"/></g>
-<g id="i-tools" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.2 6.4a3.6 3.6 0 0 0 4.8 4.7l2.3 2.3a2 2 0 0 1-2.8 2.8l-2.3-2.3a3.6 3.6 0 0 1-4.7-4.8z"/><path d="m10 13.9-6 6M3.2 17.3l3.5 3.5"/></g>
-<g id="i-star" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.3 2.9 1.1-5.9L3.5 9.8l5.9-.8z"/></g>
-<g id="i-gift" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="4" rx="1"/><path d="M4.5 13v7a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-7M12 9v12"/><path d="M12 9C10.5 6 9.4 4.6 8 4.6a2.2 2.2 0 0 0 0 4.4zM12 9c1.5-3 2.6-4.4 4-4.4a2.2 2.2 0 0 1 0 4.4z"/></g>
-<g id="i-install" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 3.5 7v10L12 21.2 20.5 17V7z"/><path d="m8.6 11.6 2.5 2.5 4.5-4.9"/></g>
-<g id="i-support" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 13v-1a7.5 7.5 0 0 1 15 0v1"/><rect x="2.6" y="13" width="4" height="6" rx="1.6"/><rect x="17.4" y="13" width="4" height="6" rx="1.6"/><path d="M19.5 19v.6a2.4 2.4 0 0 1-2.4 2.4H13"/></g>
-<g id="i-consult" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 1 1-3.4-6.8"/><path d="M9 11.5 12 14l8-8"/></g>
-<g id="i-bulk" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="8" height="7" rx="1"/><rect x="13.5" y="8" width="8" height="7" rx="1"/><rect x="8" y="15.5" width="8" height="6" rx="1"/><path d="M6.5 8V5.5h11V8"/></g>
-<g id="i-chat" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.6-5A8.4 8.4 0 1 1 21 11.5Z"/></g>
-</defs></svg>
-
-<div style="width:100%;min-height:100vh;background:#F6F8FA;overflow-x:hidden">
-
-  <div style="{{ progressBarStyle }}"></div>
-
-  <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #E7ECF1">
+  <!--layout:header-->
+<header class="site-header">
     <input type="checkbox" id="navtoggle" class="navtoggle-cb">
-    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:16px">
-      <a href="/" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
-        <img src="assets/nashnaal-logo-header.webp" alt="NE" width="52" height="52" style="height:52px;width:auto;display:block" />
+    <div class="bar">
+      <a href="/" class="logo" aria-label="NE Nashnaal Electronics home">
+        <img src="/assets/nashnaal-logo-header.webp" alt="NE — Nashnaal Electronics" width="52" height="52">
       </a>
-      <nav class="nav-links" style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
-        <a href="/" style="font-size:15px;font-weight:700;color:#086E9E">Home</a>
-        <a href="world" style="font-size:15px;font-weight:600;color:#10202E">Explore</a>
-        <a href="products" style="font-size:15px;font-weight:600;color:#10202E">Products</a>
-        <a href="solutions" style="font-size:15px;font-weight:600;color:#10202E">Solutions</a>
-        <a href="services" style="font-size:15px;font-weight:600;color:#10202E">Services</a>
-        <a href="blog" style="font-size:15px;font-weight:600;color:#10202E">Blog</a>
-        <a href="faq" style="font-size:15px;font-weight:600;color:#10202E">FAQ</a>
-        <a href="about" style="font-size:15px;font-weight:600;color:#10202E">About</a>
-        <a href="contact" style="font-size:15px;font-weight:600;color:#10202E">Contact</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/products">Products</a>
+        <a href="/solutions">Solutions</a>
+        <a href="/services">Services</a>
+        <a href="/blog">Blog</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
       </nav>
-      <a href="tel:+254737454891" class="call-btn" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#086E9E;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
-        Call 0737 454 891
-      </a>
+      <div class="site-actions">
+        <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
+        <a href="/quote" class="quote">Get a quote</a>
+      </div>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
       </label>
     </div>
-    <nav class="mobile-nav-panel">
-        <a href="/" style="display:block;font-weight:700;color:#086E9E">Home</a>
-        <a href="world" style="display:block;font-weight:600;color:#10202E">Explore</a>
-        <a href="products" style="display:block;font-weight:600;color:#10202E">Products</a>
-        <a href="solutions" style="display:block;font-weight:600;color:#10202E">Solutions</a>
-        <a href="services" style="display:block;font-weight:600;color:#10202E">Services</a>
-        <a href="blog" style="display:block;font-weight:600;color:#10202E">Blog</a>
-        <a href="faq" style="display:block;font-weight:600;color:#10202E">FAQ</a>
-        <a href="about" style="display:block;font-weight:600;color:#10202E">About</a>
-        <a href="contact" style="display:block;font-weight:600;color:#10202E">Contact</a>
-      <a href="tel:+254737454891" style="margin-top:12px;text-align:center;background:#086E9E;color:#fff;padding:15px;border-radius:8px;font-weight:700;font-size:16px">Call 0737 454 891</a>
+    <nav class="mobile-nav-panel" aria-label="Mobile">
+      <a href="/products">Products</a>
+      <a href="/solutions">Solutions</a>
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/quote" class="m-cta m-quote">Get a quote</a>
+      <a href="tel:+254737454891" class="m-cta m-call">Call 0737 454 891</a>
     </nav>
   </header>
+<!--/layout:header-->
 
-  <!-- ===== HERO ===== -->
-  <section data-screen-label="Hero" style="{{ heroSectionStyle }}">
-    <img src="{{ heroImage }}" alt="{{ heroImageAlt }}" fetchpriority="high" decoding="async" style="{{ heroImageStyle }}" />
-    <div class="hero-scrim" style="position:absolute;inset:0;z-index:1;{{ heroScrimStyle }}"></div>
-    <div style="position:absolute;inset:0;z-index:1;background-image:radial-gradient(circle at 85% 20%, rgba(255,255,255,0.10) 0, transparent 45%)"></div>
-    <div style="{{ parallaxCircle1 }}"></div>
-    <div style="{{ parallaxCircle2 }}"></div>
-    <div class="hero-grid" style="max-width:1240px;width:100%;flex:1 1 auto;margin:0 auto;padding:110px 24px 120px;position:relative;z-index:2;{{ heroContentFade }}">
-      <div style="max-width:600px">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.16);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;padding:8px 16px;border-radius:999px;margin-bottom:24px">
-          <span style="width:8px;height:8px;border-radius:50%;background:#FF5C5C;display:inline-block;animation:blinkDot 1.4s ease-in-out infinite"></span>
-          {{ heroBadge }}
+  
+  <section style="background: linear-gradient(120deg, rgb(11, 126, 181) 0%, rgb(11, 143, 203) 45%, rgb(18, 166, 222) 70%, rgb(11, 143, 203) 100%); position: relative; overflow: hidden; min-height: 640px;">
+    <img src="images/hero-camera-scene.webp" alt="NE technician installing a Hikvision CCTV camera on a building in Kenya" fetchpriority="high" decoding="async" style="position: absolute; inset: 0px; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; transform: scale(1.054); transition: transform 0.15s linear;">
+    <div class="hero-scrim" style="position: absolute; inset: 0px; z-index: 1; background: linear-gradient(90deg, rgba(10, 58, 92, 0.94) 0%, rgba(10, 58, 92, 0.85) 32%, rgba(10, 58, 92, 0.5) 58%, rgba(10, 58, 92, 0.1) 82%, rgba(10, 58, 92, 0) 100%);"></div>
+    <div style="position: absolute; inset: 0px; z-index: 1; background-image: radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.1) 0px, transparent 45%);"></div>
+    <div style="position: absolute; top: -60px; right: 8%; width: 220px; height: 220px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); filter: blur(2px); transform: translateY(418.08px); pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -80px; left: 4%; width: 160px; height: 160px; border-radius: 50%; background: rgba(255, 255, 255, 0.07); filter: blur(1px); transform: translateY(-278.72px); pointer-events: none;"></div>
+    <div class="hero-grid" style="max-width: 1240px; width: 100%; flex: 1 1 auto; margin: 0px auto; padding: 110px 24px 120px; position: relative; z-index: 2; opacity: 1; transition: opacity 0.28s;">
+      <div style="max-width: 600px;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.16); color: rgb(255, 255, 255); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 8px 16px; border-radius: 999px; margin-bottom: 24px;">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: rgb(255, 92, 92); display: inline-block; animation: 1.4s ease-in-out 0s infinite normal none running blinkDot;"></span>
+          Authorized Hikvision Distributor &amp; Retailer
         </div>
-        <h1 style="font-size:clamp(2rem, 5vw + 1.2rem, 3.25rem);line-height:1.08;font-weight:800;color:#fff;margin:0 0 22px;letter-spacing:-0.01em;text-shadow:0 2px 18px rgba(0,0,0,0.35)">{{ heroTitle }}</h1>
-        <p style="font-size:19px;line-height:1.6;color:rgba(255,255,255,0.92);margin:0 0 36px;max-width:520px;text-shadow:0 1px 12px rgba(0,0,0,0.3)">{{ heroSubtitle }}</p>
-        <div style="display:flex;gap:14px;flex-wrap:wrap">
-          <a href="{{ heroCta1Href }}" style="background:#fff;color:#0B7EB5;padding:15px 28px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#EAF6FC">{{ heroCta1Text }}</a>
-          <a href="{{ heroCta2Href }}" style="background:transparent;color:#fff;padding:15px 28px;border-radius:9px;font-weight:700;font-size:15px;border:1.5px solid rgba(255,255,255,0.7)" style-hover="background:rgba(255,255,255,0.14)">{{ heroCta2Text }}</a>
+        <h1 style="font-size: clamp(2rem, 1.2rem + 5vw, 3.25rem); line-height: 1.08; font-weight: 800; color: rgb(255, 255, 255); margin: 0px 0px 22px; letter-spacing: -0.01em; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 18px;">Genuine Hikvision security &amp; surveillance systems in Kenya</h1>
+        <p style="font-size: 19px; line-height: 1.6; color: rgba(255, 255, 255, 0.92); margin: 0px 0px 36px; max-width: 520px; text-shadow: rgba(0, 0, 0, 0.3) 0px 1px 12px;">NE supplies genuine Hikvision CCTV cameras, NVRs, access control, video intercom and public address systems — with installation and after-sales support across Kenya.</p>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <a href="products" data-h="6" style="background: rgb(255, 255, 255); color: rgb(11, 126, 181); padding: 15px 28px; border-radius: 9px; font-weight: 700; font-size: 15px;">Browse Products</a>
+          <a href="/quote" data-h="7" style="background: transparent; color: rgb(255, 255, 255); padding: 15px 28px; border-radius: 9px; font-weight: 700; font-size: 15px; border: 1.5px solid rgba(255, 255, 255, 0.7);">Get a Quote</a>
         </div>
       </div>
     </div>
-    <div style="position:absolute;top:24px;right:26px;z-index:3;display:flex;align-items:center;gap:6px;background:rgba(15,44,61,0.55);padding:6px 12px;border-radius:999px">
-      <span style="width:7px;height:7px;border-radius:50%;background:#FF5C5C;display:inline-block;animation:blinkDot 1s ease-in-out infinite"></span>
-      <span style="font-size:11px;font-weight:700;color:#fff;letter-spacing:0.03em">LIVE &middot; {{ liveClock }}</span>
-    </div>
-    <div class="hero-dots" style="position:absolute;right:22px;top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:11px">
-      <sc-for list="{{ heroDots }}" as="dot" hint-placeholder-count="5">
-        <button onClick="{{ dot.onClick }}" aria-label="{{ dot.label }}" style="{{ dot.style }}"></button>
-      </sc-for>
-    </div>
   </section>
 
-  <!-- ===== CATEGORY MARQUEE ===== -->
-  <section data-screen-label="Category Marquee" style="background:#fff;border-bottom:1px solid #E7ECF1;overflow:hidden;padding:20px 0">
-    <div style="display:flex;gap:14px;width:max-content;animation:marqueeScroll 26s linear infinite">
-      <sc-for list="{{ marqueeChips }}" as="chip" hint-placeholder-count="10">
-        <a href="{{ chip.href }}" style="display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:9px;background:#F6F8FA;border:1px solid #E7ECF1;font-size:14px;font-weight:600;color:#10202E;white-space:nowrap" style-hover="background:#EAF6FC;border-color:#B9E1F2">
-          <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" style="color:#086E9E;flex-shrink:0"><use href="{{ chip.iconHref }}"></use></svg>
-          {{ chip.label }}
-          <span style="background:#086E9E;color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px">{{ chip.count }}</span>
+  
+  <section style="background: rgb(255, 255, 255); border-bottom: 1px solid rgb(231, 236, 241); overflow: hidden; padding: 20px 0px;">
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: 1240px; margin: 0px auto; padding: 0px 24px;">
+      
+        <a href="/category/turbo-hd-cameras-dvrs" data-h="8" style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9px; background: rgb(246, 248, 250); border: 1px solid rgb(231, 236, 241); font-size: 14px; font-weight: 600; color: rgb(16, 32, 46); white-space: nowrap;">
+          <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158); flex-shrink: 0;"><use href="#i-cctv"></use></svg>
+          CCTV-Turbo HD
+          <span style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">44</span>
         </a>
-      </sc-for>
+      
+        <a href="/category/ip-cameras-nvrs" data-h="8" style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9px; background: rgb(246, 248, 250); border: 1px solid rgb(231, 236, 241); font-size: 14px; font-weight: 600; color: rgb(16, 32, 46); white-space: nowrap;">
+          <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158); flex-shrink: 0;"><use href="#i-ip"></use></svg>
+          CCTV-IP
+          <span style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">49</span>
+        </a>
+      
+        <a href="/category/access-control" data-h="8" style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9px; background: rgb(246, 248, 250); border: 1px solid rgb(231, 236, 241); font-size: 14px; font-weight: 600; color: rgb(16, 32, 46); white-space: nowrap;">
+          <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158); flex-shrink: 0;"><use href="#i-access"></use></svg>
+          Access Control
+          <span style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">14</span>
+        </a>
+      
+        <a href="/category/video-intercom" data-h="8" style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9px; background: rgb(246, 248, 250); border: 1px solid rgb(231, 236, 241); font-size: 14px; font-weight: 600; color: rgb(16, 32, 46); white-space: nowrap;">
+          <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158); flex-shrink: 0;"><use href="#i-intercom"></use></svg>
+          Video Intercom
+          <span style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">12</span>
+        </a>
+      
+        <a href="/category/public-address" data-h="8" style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9px; background: rgb(246, 248, 250); border: 1px solid rgb(231, 236, 241); font-size: 14px; font-weight: 600; color: rgb(16, 32, 46); white-space: nowrap;">
+          <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158); flex-shrink: 0;"><use href="#i-pa"></use></svg>
+          PA
+          <span style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">9</span>
+        </a>
+      
+        <a href="/category/interactive-panels" data-h="8" style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9px; background: rgb(246, 248, 250); border: 1px solid rgb(231, 236, 241); font-size: 14px; font-weight: 600; color: rgb(16, 32, 46); white-space: nowrap;">
+          <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158); flex-shrink: 0;"><use href="#i-tablet"></use></svg>
+          Interactive Tablet
+          <span style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">5</span>
+        </a>
+      
+        <a href="/category/accessories" data-h="8" style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9px; background: rgb(246, 248, 250); border: 1px solid rgb(231, 236, 241); font-size: 14px; font-weight: 600; color: rgb(16, 32, 46); white-space: nowrap;">
+          <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158); flex-shrink: 0;"><use href="#i-accessory"></use></svg>
+          Accessories
+          <span style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">16</span>
+        </a>
+      
+        <a href="/category/wireless-wifi" data-h="8" style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9px; background: rgb(246, 248, 250); border: 1px solid rgb(231, 236, 241); font-size: 14px; font-weight: 600; color: rgb(16, 32, 46); white-space: nowrap;">
+          <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158); flex-shrink: 0;"><use href="#i-data"></use></svg>
+          Data Communication
+          <span style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">10</span>
+        </a>
+      
+        <a href="/category/networking" data-h="8" style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9px; background: rgb(246, 248, 250); border: 1px solid rgb(231, 236, 241); font-size: 14px; font-weight: 600; color: rgb(16, 32, 46); white-space: nowrap;">
+          <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158); flex-shrink: 0;"><use href="#i-network"></use></svg>
+          Networking
+          <span style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px;">37</span>
+        </a>
+      
     </div>
   </section>
 
 
-  <!-- ===== INNOVATION HIGHLIGHTS ===== -->
-  <section data-screen-label="Innovation Highlights" style="background:#F6F8FA;padding:84px 24px">
-    <div style="max-width:1240px;margin:0 auto">
-      <div style="text-align:center;margin-bottom:44px">
-        <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Popular Right Now</div>
-        <h2 style="font-size:clamp(1.55rem, 3.6vw + 0.85rem, 2.125rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Kit our customers actually buy</h2>
+  
+  <section style="background: rgb(246, 248, 250); padding: 84px 24px;">
+    <div style="max-width: 1240px; margin: 0px auto;">
+      <div style="text-align: center; margin-bottom: 44px;">
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 10px;">Popular Right Now</div>
+        <h2 style="font-size: clamp(1.55rem, 0.85rem + 3.6vw, 2.125rem); font-weight: 800; margin: 0px; color: rgb(16, 32, 46); letter-spacing: -0.01em;">Kit our customers actually buy</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px">
-        <a href="product/ds-2cd1047g3-liu-4mm-o-std" ref="{{ innov0Ref }}" style="display:flex;flex-direction:column;background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(16,32,46,0.06);{{ innov0Style }}" style-hover="border-color:#086E9E;box-shadow:0 12px 28px rgba(16,32,46,0.11)">
-          <div style="background:#F8FAFB;height:210px;display:flex;align-items:center;justify-content:center;padding:22px;border-bottom:1px solid #F0F3F5">
-            <img src="images/057.png" alt="ColorVu with Smart Hybrid Light" loading="lazy" decoding="async" style="max-width:100%;max-height:100%;object-fit:contain" />
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px;">
+        <a href="product/ds-2cd1047g3-liu-4mm-o-std" data-h="9" style="display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);">
+          <div style="background: rgb(248, 250, 251); height: 210px; display: flex; align-items: center; justify-content: center; padding: 22px; border-bottom: 1px solid rgb(240, 243, 245);">
+            <img src="images/057.png" alt="ColorVu with Smart Hybrid Light" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
           </div>
-          <div style="padding:20px 22px 22px;display:flex;flex-direction:column;flex:1">
-            <div style="font-size:11.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#086E9E;margin-bottom:8px">CCTV-IP</div>
-            <div style="font-size:17px;font-weight:800;color:#10202E;line-height:1.3;margin-bottom:7px">ColorVu with Smart Hybrid Light</div>
-            <div style="font-size:13.5px;line-height:1.6;color:#4A5B68;margin-bottom:14px">Full-colour footage after dark, switching to white light only when something moves.</div>
-            <div style="margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;padding-top:12px;border-top:1px dashed #EDF1F4">
-              <span style="font-size:17px;font-weight:800;color:#10202E">KES 9,680</span>
-              <span style="font-size:12.5px;font-weight:700;color:#086E9E">View details &rarr;</span>
+          <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1 1 0%;">
+            <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 8px;">CCTV-IP</div>
+            <div style="font-size: 17px; font-weight: 800; color: rgb(16, 32, 46); line-height: 1.3; margin-bottom: 7px;">ColorVu with Smart Hybrid Light</div>
+            <div style="font-size: 13.5px; line-height: 1.6; color: rgb(74, 91, 104); margin-bottom: 14px;">Full-colour footage after dark, switching to white light only when something moves.</div>
+            <div style="margin-top: auto; display: flex; align-items: baseline; justify-content: space-between; padding-top: 12px; border-top: 1px dashed rgb(237, 241, 244);">
+              <span style="font-size: 17px; font-weight: 800; color: rgb(16, 32, 46);">KES 9,680</span>
+              <span style="font-size: 12.5px; font-weight: 700; color: rgb(8, 110, 158);">View details →</span>
             </div>
           </div>
         </a>
-        <a href="product/ds-2cfsp8-d-4g-2-8-4mm-o-std-eu" ref="{{ innov1Ref }}" style="display:flex;flex-direction:column;background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(16,32,46,0.06);{{ innov1Style }}" style-hover="border-color:#086E9E;box-shadow:0 12px 28px rgba(16,32,46,0.11)">
-          <div style="background:#F8FAFB;height:210px;display:flex;align-items:center;justify-content:center;padding:22px;border-bottom:1px solid #F0F3F5">
-            <img src="images/081.png" alt="Solar 4G Dual-Lens PT" loading="lazy" decoding="async" style="max-width:100%;max-height:100%;object-fit:contain" />
+        <a href="product/ds-2cfsp8-d-4g-2-8-4mm-o-std-eu" data-h="9" style="display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.08s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.08s;">
+          <div style="background: rgb(248, 250, 251); height: 210px; display: flex; align-items: center; justify-content: center; padding: 22px; border-bottom: 1px solid rgb(240, 243, 245);">
+            <img src="images/081.png" alt="Solar 4G Dual-Lens PT" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
           </div>
-          <div style="padding:20px 22px 22px;display:flex;flex-direction:column;flex:1">
-            <div style="font-size:11.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#086E9E;margin-bottom:8px">CCTV-IP</div>
-            <div style="font-size:17px;font-weight:800;color:#10202E;line-height:1.3;margin-bottom:7px">Solar 4G Dual-Lens PT</div>
-            <div style="font-size:13.5px;line-height:1.6;color:#4A5B68;margin-bottom:14px">Runs on solar over 4G with two lenses on a pan-tilt head — no mains, no cabling.</div>
-            <div style="margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;padding-top:12px;border-top:1px dashed #EDF1F4">
-              <span style="font-size:17px;font-weight:800;color:#10202E">KES 20,350</span>
-              <span style="font-size:12.5px;font-weight:700;color:#086E9E">View details &rarr;</span>
+          <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1 1 0%;">
+            <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 8px;">CCTV-IP</div>
+            <div style="font-size: 17px; font-weight: 800; color: rgb(16, 32, 46); line-height: 1.3; margin-bottom: 7px;">Solar 4G Dual-Lens PT</div>
+            <div style="font-size: 13.5px; line-height: 1.6; color: rgb(74, 91, 104); margin-bottom: 14px;">Runs on solar over 4G with two lenses on a pan-tilt head — no mains, no cabling.</div>
+            <div style="margin-top: auto; display: flex; align-items: baseline; justify-content: space-between; padding-top: 12px; border-top: 1px dashed rgb(237, 241, 244);">
+              <span style="font-size: 17px; font-weight: 800; color: rgb(16, 32, 46);">KES 20,350</span>
+              <span style="font-size: 12.5px; font-weight: 700; color: rgb(8, 110, 158);">View details →</span>
             </div>
           </div>
         </a>
-        <a href="product/ds-k1t342mfx-e1-o-std" ref="{{ innov2Ref }}" style="display:flex;flex-direction:column;background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(16,32,46,0.06);{{ innov2Style }}" style-hover="border-color:#086E9E;box-shadow:0 12px 28px rgba(16,32,46,0.11)">
-          <div style="background:#F8FAFB;height:210px;display:flex;align-items:center;justify-content:center;padding:22px;border-bottom:1px solid #F0F3F5">
-            <img src="images/097.png" alt="Face Recognition Terminal" loading="lazy" decoding="async" style="max-width:100%;max-height:100%;object-fit:contain" />
+        <a href="product/ds-k1t342mfx-e1-o-std" data-h="9" style="display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.16s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.16s;">
+          <div style="background: rgb(248, 250, 251); height: 210px; display: flex; align-items: center; justify-content: center; padding: 22px; border-bottom: 1px solid rgb(240, 243, 245);">
+            <img src="images/097.png" alt="Face Recognition Terminal" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
           </div>
-          <div style="padding:20px 22px 22px;display:flex;flex-direction:column;flex:1">
-            <div style="font-size:11.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#086E9E;margin-bottom:8px">Access Control</div>
-            <div style="font-size:17px;font-weight:800;color:#10202E;line-height:1.3;margin-bottom:7px">Face Recognition Terminal</div>
-            <div style="font-size:13.5px;line-height:1.6;color:#4A5B68;margin-bottom:14px">Face, card and PIN entry on one terminal for gates, offices and staff doors.</div>
-            <div style="margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;padding-top:12px;border-top:1px dashed #EDF1F4">
-              <span style="font-size:17px;font-weight:800;color:#10202E">KES 21,670</span>
-              <span style="font-size:12.5px;font-weight:700;color:#086E9E">View details &rarr;</span>
+          <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1 1 0%;">
+            <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 8px;">Access Control</div>
+            <div style="font-size: 17px; font-weight: 800; color: rgb(16, 32, 46); line-height: 1.3; margin-bottom: 7px;">Face Recognition Terminal</div>
+            <div style="font-size: 13.5px; line-height: 1.6; color: rgb(74, 91, 104); margin-bottom: 14px;">Face, card and PIN entry on one terminal for gates, offices and staff doors.</div>
+            <div style="margin-top: auto; display: flex; align-items: baseline; justify-content: space-between; padding-top: 12px; border-top: 1px dashed rgb(237, 241, 244);">
+              <span style="font-size: 17px; font-weight: 800; color: rgb(16, 32, 46);">KES 21,670</span>
+              <span style="font-size: 12.5px; font-weight: 700; color: rgb(8, 110, 158);">View details →</span>
             </div>
           </div>
         </a>
-        <a href="product/ds-kis212-o-std" ref="{{ innov3Ref }}" style="display:flex;flex-direction:column;background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(16,32,46,0.06);{{ innov3Style }}" style-hover="border-color:#086E9E;box-shadow:0 12px 28px rgba(16,32,46,0.11)">
-          <div style="background:#F8FAFB;height:210px;display:flex;align-items:center;justify-content:center;padding:22px;border-bottom:1px solid #F0F3F5">
-            <img src="images/108.png" alt="4-Wire HD Video Intercom" loading="lazy" decoding="async" style="max-width:100%;max-height:100%;object-fit:contain" />
+        <a href="product/ds-kis212-o-std" data-h="9" style="display: flex; flex-direction: column; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.24s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.24s;">
+          <div style="background: rgb(248, 250, 251); height: 210px; display: flex; align-items: center; justify-content: center; padding: 22px; border-bottom: 1px solid rgb(240, 243, 245);">
+            <img src="images/108.png" alt="4-Wire HD Video Intercom" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain;">
           </div>
-          <div style="padding:20px 22px 22px;display:flex;flex-direction:column;flex:1">
-            <div style="font-size:11.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#086E9E;margin-bottom:8px">Video Intercom</div>
-            <div style="font-size:17px;font-weight:800;color:#10202E;line-height:1.3;margin-bottom:7px">4-Wire HD Video Intercom</div>
-            <div style="font-size:13.5px;line-height:1.6;color:#4A5B68;margin-bottom:14px">See and talk to whoever is at the gate before opening it, over existing 4-wire cabling.</div>
-            <div style="margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;padding-top:12px;border-top:1px dashed #EDF1F4">
-              <span style="font-size:17px;font-weight:800;color:#10202E">KES 11,880</span>
-              <span style="font-size:12.5px;font-weight:700;color:#086E9E">View details &rarr;</span>
+          <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1 1 0%;">
+            <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 8px;">Video Intercom</div>
+            <div style="font-size: 17px; font-weight: 800; color: rgb(16, 32, 46); line-height: 1.3; margin-bottom: 7px;">4-Wire HD Video Intercom</div>
+            <div style="font-size: 13.5px; line-height: 1.6; color: rgb(74, 91, 104); margin-bottom: 14px;">See and talk to whoever is at the gate before opening it, over existing 4-wire cabling.</div>
+            <div style="margin-top: auto; display: flex; align-items: baseline; justify-content: space-between; padding-top: 12px; border-top: 1px dashed rgb(237, 241, 244);">
+              <span style="font-size: 17px; font-weight: 800; color: rgb(16, 32, 46);">KES 11,880</span>
+              <span style="font-size: 12.5px; font-weight: 700; color: rgb(8, 110, 158);">View details →</span>
             </div>
           </div>
         </a>
@@ -267,409 +334,290 @@
     </div>
   </section>
 
-  <!-- ===== TRUST BADGES ===== -->
-  <section data-screen-label="Trust Badges" style="background:#F6F8FA;border-top:1px solid #E7ECF1;border-bottom:1px solid #E7ECF1;padding:32px 24px">
-    <div ref="{{ trustRef }}" style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;{{ trustStyle }}">
-      <sc-for list="{{ trustBadges }}" as="badge" hint-placeholder-count="4">
-        <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:220px">
-          <div style="width:42px;height:42px;border-radius:10px;background:#fff;border:1px solid #E7ECF1;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true" style="color:#086E9E"><use href="{{ badge.iconHref }}"></use></svg></div>
+  
+  <section style="background: rgb(246, 248, 250); border-top: 1px solid rgb(231, 236, 241); border-bottom: 1px solid rgb(231, 236, 241); padding: 32px 24px;">
+    <div style="max-width: 1240px; margin: 0px auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);">
+      
+        <div style="display: flex; align-items: center; gap: 12px; flex: 1 1 0%; min-width: 220px;">
+          <div style="width: 42px; height: 42px; border-radius: 10px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-shield"></use></svg></div>
           <div>
-            <div style="font-size:14.5px;font-weight:700;color:#10202E">{{ badge.title }}</div>
-            <div style="font-size:12.5px;color:#4A5B68">{{ badge.sub }}</div>
+            <div style="font-size: 14.5px; font-weight: 700; color: rgb(16, 32, 46);">Authorized Distributor</div>
+            <div style="font-size: 12.5px; color: rgb(74, 91, 104);">Direct from Hikvision</div>
           </div>
         </div>
-      </sc-for>
-    </div>
-  </section>
-
-  <!-- ===== SERVICES TEASER ===== -->
-  <section data-screen-label="Services Teaser" style="background:#0F2C3D;padding:80px 24px">
-    <div style="max-width:1240px;margin:0 auto">
-      <div style="text-align:center;margin-bottom:48px">
-        <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#4FC3EC;margin-bottom:10px">What We Do</div>
-        <h2 style="font-size:clamp(1.6rem, 3.8vw + 0.9rem, 2.25rem);font-weight:800;margin:0;color:#fff;letter-spacing:-0.01em">Beyond supply &mdash; full installation support</h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-bottom:40px">
-        <sc-for list="{{ services }}" as="svc" hint-placeholder-count="4">
-          <div ref="{{ svc.ref }}" style="{{ svc.style }}">
-            <div style="width:46px;height:46px;border-radius:10px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color:#fff"><use href="{{ svc.iconHref }}"></use></svg></div>
-            <div style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px">{{ svc.title }}</div>
-            <div style="font-size:14px;line-height:1.6;color:rgba(255,255,255,0.65)">{{ svc.desc }}</div>
+      
+        <div style="display: flex; align-items: center; gap: 12px; flex: 1 1 0%; min-width: 220px;">
+          <div style="width: 42px; height: 42px; border-radius: 10px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-genuine"></use></svg></div>
+          <div>
+            <div style="font-size: 14.5px; font-weight: 700; color: rgb(16, 32, 46);">100% Genuine Products</div>
+            <div style="font-size: 12.5px; color: rgb(74, 91, 104);">No grey-market imports</div>
           </div>
-        </sc-for>
+        </div>
+      
+        <div style="display: flex; align-items: center; gap: 12px; flex: 1 1 0%; min-width: 220px;">
+          <div style="width: 42px; height: 42px; border-radius: 10px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-tools"></use></svg></div>
+          <div>
+            <div style="font-size: 14.5px; font-weight: 700; color: rgb(16, 32, 46);">Certified Installers</div>
+            <div style="font-size: 12.5px; color: rgb(74, 91, 104);">In-house technical team</div>
+          </div>
+        </div>
+      
+        <div style="display: flex; align-items: center; gap: 12px; flex: 1 1 0%; min-width: 220px;">
+          <div style="width: 42px; height: 42px; border-radius: 10px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-support"></use></svg></div>
+          <div>
+            <div style="font-size: 14.5px; font-weight: 700; color: rgb(16, 32, 46);">Installed &amp; Supported</div>
+            <div style="font-size: 12.5px; color: rgb(74, 91, 104);">Local Nairobi team</div>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  
+  <section style="background: rgb(15, 44, 61); padding: 80px 24px;">
+    <div style="max-width: 1240px; margin: 0px auto;">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(79, 195, 236); margin-bottom: 10px;">What We Do</div>
+        <h2 style="font-size: clamp(1.6rem, 0.9rem + 3.8vw, 2.25rem); font-weight: 800; margin: 0px; color: rgb(255, 255, 255); letter-spacing: -0.01em;">Beyond supply — full installation support</h2>
       </div>
-      <div style="text-align:center">
-        <a href="services" style="color:#fff;font-weight:700;font-size:15px;border-bottom:1.5px solid #4FC3EC;padding-bottom:2px">See all services &rarr;</a>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 40px;">
+        
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 28px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);">
+            <div style="width: 46px; height: 46px; border-radius: 10px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(255, 255, 255);"><use href="#i-install"></use></svg></div>
+            <div style="font-size: 17px; font-weight: 700; color: rgb(255, 255, 255); margin-bottom: 8px;">Professional Installation</div>
+            <div style="font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, 0.65);">Certified technicians install cameras, NVRs, access control and intercom systems correctly the first time.</div>
+          </div>
+        
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 28px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.1s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.1s;">
+            <div style="width: 46px; height: 46px; border-radius: 10px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(255, 255, 255);"><use href="#i-support"></use></svg></div>
+            <div style="font-size: 17px; font-weight: 700; color: rgb(255, 255, 255); margin-bottom: 8px;">Maintenance &amp; Support</div>
+            <div style="font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, 0.65);">Ongoing servicing, troubleshooting and system health checks to keep your setup running.</div>
+          </div>
+        
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 28px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.2s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.2s;">
+            <div style="width: 46px; height: 46px; border-radius: 10px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(255, 255, 255);"><use href="#i-consult"></use></svg></div>
+            <div style="font-size: 17px; font-weight: 700; color: rgb(255, 255, 255); margin-bottom: 8px;">Consultation &amp; Design</div>
+            <div style="font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, 0.65);">We help you plan camera coverage, storage and system architecture before you buy.</div>
+          </div>
+        
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 28px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.3s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.3s;">
+            <div style="width: 46px; height: 46px; border-radius: 10px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(255, 255, 255);"><use href="#i-bulk"></use></svg></div>
+            <div style="font-size: 17px; font-weight: 700; color: rgb(255, 255, 255); margin-bottom: 8px;">Bulk &amp; Wholesale Supply</div>
+            <div style="font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, 0.65);">Competitive pricing for installers, contractors and businesses ordering in volume.</div>
+          </div>
+        
+      </div>
+      <div style="text-align: center;">
+        <a href="services" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 15px; border-bottom: 1.5px solid rgb(79, 195, 236); padding-bottom: 2px;">See all services →</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== HIKVISION PARTNER PROOF ===== -->
-  <section data-screen-label="Hikvision Partner" style="max-width:1240px;margin:0 auto;padding:80px 24px">
-    <div style="text-align:center;margin-bottom:44px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Recognised by Hikvision</div>
-      <h2 style="font-size:clamp(1.55rem, 3.6vw + 0.85rem, 2.125rem);font-weight:800;margin:0 0 12px;color:#10202E;letter-spacing:-0.01em">An authorized national distributor, not a reseller</h2>
-      <p style="font-size:16px;line-height:1.7;color:#4A5B68;margin:0 auto;max-width:640px">Hikvision has certified NE as an Authorized National Distributor every year since 2023, named us its Best Distribution Strategic Partner for 2025, and certified our installation technician.</p>
+  
+  <section style="max-width: 1240px; margin: 0px auto; padding: 80px 24px;">
+    <div style="text-align: center; margin-bottom: 44px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 10px;">Recognised by Hikvision</div>
+      <h2 style="font-size: clamp(1.55rem, 0.85rem + 3.6vw, 2.125rem); font-weight: 800; margin: 0px 0px 12px; color: rgb(16, 32, 46); letter-spacing: -0.01em;">An authorized national distributor, not a reseller</h2>
+      <p style="font-size: 16px; line-height: 1.7; color: rgb(74, 91, 104); margin: 0px auto; max-width: 640px;">Hikvision has certified NE as an Authorized National Distributor every year since 2023, named us its Best Distribution Strategic Partner for 2025, and certified our installation technician.</p>
     </div>
-    <div class="proof-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px">
-      <figure style="margin:0;background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-        <img src="assets/partner/authorized-national-distributor-certificate.webp" alt="NE holding its Hikvision Authorized National Distributor certificate for Kenya, full product range" width="720" height="900" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover" />
-        <figcaption style="padding:18px 20px 20px">
-          <div style="font-size:16px;font-weight:800;color:#10202E;margin-bottom:4px">Authorized National Distributor</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#4A5B68">Hikvision certificate for Kenya, covering the full product range. Renewed every year since 2023.</div>
+    <div class="proof-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px;">
+      <figure style="margin: 0px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+        <img src="assets/partner/authorized-national-distributor-certificate.webp" alt="NE holding its Hikvision Authorized National Distributor certificate for Kenya, full product range" width="720" height="900" loading="lazy" decoding="async" style="display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;">
+        <figcaption style="padding: 18px 20px 20px;">
+          <div style="font-size: 16px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 4px;">Authorized National Distributor</div>
+          <div style="font-size: 13.5px; line-height: 1.55; color: rgb(74, 91, 104);">Hikvision certificate for Kenya, covering the full product range. Renewed every year since 2023.</div>
         </figcaption>
       </figure>
-      <figure style="margin:0;background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-        <img src="assets/partner/best-distribution-partner-award-2025.webp" alt="NE receiving the Hikvision Best Distribution Strategic Partner Award 2025 at the Hikvision End-of-Year Seminar in Nairobi" width="709" height="900" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover" />
-        <figcaption style="padding:18px 20px 20px">
-          <div style="font-size:16px;font-weight:800;color:#10202E;margin-bottom:4px">Best Distribution Strategic Partner 2025</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#4A5B68">Awarded at Hikvision&rsquo;s End-of-Year Seminar 2025 in Nairobi.</div>
+      <figure style="margin: 0px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+        <img src="assets/partner/best-distribution-partner-award-2025.webp" alt="NE receiving the Hikvision Best Distribution Strategic Partner Award 2025 at the Hikvision End-of-Year Seminar in Nairobi" width="709" height="900" loading="lazy" decoding="async" style="display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;">
+        <figcaption style="padding: 18px 20px 20px;">
+          <div style="font-size: 16px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 4px;">Best Distribution Strategic Partner 2025</div>
+          <div style="font-size: 13.5px; line-height: 1.55; color: rgb(74, 91, 104);">Awarded at Hikvision’s End-of-Year Seminar 2025 in Nairobi.</div>
         </figcaption>
       </figure>
-      <figure style="margin:0;background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-        <img src="assets/partner/hikvision-certified-technician.webp" alt="NE's Hikvision-certified technician at the NE showroom in Nairobi" width="720" height="900" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover" />
-        <figcaption style="padding:18px 20px 20px">
-          <div style="font-size:16px;font-weight:800;color:#10202E;margin-bottom:4px">Hikvision-certified technician</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#4A5B68">Our installer holds full Hikvision certification, so your system is set up to Hikvision&rsquo;s own standard.</div>
+      <figure style="margin: 0px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+        <img src="assets/partner/hikvision-certified-technician.webp" alt="NE's Hikvision-certified technician at the NE showroom in Nairobi" width="720" height="900" loading="lazy" decoding="async" style="display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;">
+        <figcaption style="padding: 18px 20px 20px;">
+          <div style="font-size: 16px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 4px;">Hikvision-certified technician</div>
+          <div style="font-size: 13.5px; line-height: 1.55; color: rgb(74, 91, 104);">Our installer holds full Hikvision certification, so your system is set up to Hikvision’s own standard.</div>
         </figcaption>
       </figure>
-      <figure style="margin:0;background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-        <img src="assets/partner/storefront-hikvision-visit.webp" alt="The NE Hikvision showroom at BBS Mall, Nairobi, during a visit from the Hikvision team" width="900" height="1123" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 30%" />
-        <figcaption style="padding:18px 20px 20px">
-          <div style="font-size:16px;font-weight:800;color:#10202E;margin-bottom:4px">Hikvision-branded showroom</div>
-          <div style="font-size:13.5px;line-height:1.55;color:#4A5B68">Visit us at BBS Mall, Nairobi, to see cameras, recorders and intercoms running live.</div>
+      <figure style="margin: 0px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+        <img src="assets/partner/storefront-hikvision-visit.webp" alt="The NE Hikvision showroom at BBS Mall, Nairobi, during a visit from the Hikvision team" width="900" height="1123" loading="lazy" decoding="async" style="display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 30%;">
+        <figcaption style="padding: 18px 20px 20px;">
+          <div style="font-size: 16px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 4px;">Hikvision-branded showroom</div>
+          <div style="font-size: 13.5px; line-height: 1.55; color: rgb(74, 91, 104);">Visit us at BBS Mall, Nairobi, to see cameras, recorders and intercoms running live.</div>
         </figcaption>
       </figure>
     </div>
-    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:32px">
-      <a href="https://www.google.com/maps/place/?q=place_id:ChIJL1wsUKARLxgRTEebeopQdiI" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#10202E;border:1px solid #D5DEE5;padding:12px 20px;border-radius:9px;font-weight:700;font-size:14px" style-hover="border-color:#086E9E">
-        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="color:#F5A623"><use href="#i-star"></use></svg>
+    <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+      <a href="https://www.google.com/maps/place/?q=place_id:ChIJL1wsUKARLxgRTEebeopQdiI" target="_blank" rel="noopener" data-h="4" style="display: inline-flex; align-items: center; gap: 8px; background: rgb(255, 255, 255); color: rgb(16, 32, 46); border: 1px solid rgb(213, 222, 229); padding: 12px 20px; border-radius: 9px; font-weight: 700; font-size: 14px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(245, 166, 35);"><use href="#i-star"></use></svg>
         Read our reviews on Google
       </a>
-      <a href="https://www.hikvision.com/en/Partners/channel-partners/find-a-distributor/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#10202E;border:1px solid #D5DEE5;padding:12px 20px;border-radius:9px;font-weight:700;font-size:14px" style-hover="border-color:#086E9E">
-        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="color:#086E9E"><use href="#i-shield"></use></svg>
-        Find us on Hikvision&rsquo;s distributor list
+      <a href="https://www.hikvision.com/en/Partners/channel-partners/find-a-distributor/" target="_blank" rel="noopener" data-h="4" style="display: inline-flex; align-items: center; gap: 8px; background: rgb(255, 255, 255); color: rgb(16, 32, 46); border: 1px solid rgb(213, 222, 229); padding: 12px 20px; border-radius: 9px; font-weight: 700; font-size: 14px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-shield"></use></svg>
+        Find us on Hikvision’s distributor list
       </a>
     </div>
   </section>
 
-  <!-- ===== ABOUT TEASER ===== -->
-  <section data-screen-label="About Teaser" class="about-grid" style="max-width:1240px;margin:0 auto;padding:80px 24px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+  
+  <section class="about-grid" style="max-width: 1240px; margin: 0px auto; padding: 80px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;">
     <div>
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">About NE</div>
-      <h2 style="font-size:clamp(1.5rem, 3.4vw + 0.8rem, 2rem);font-weight:800;margin:0 0 20px;letter-spacing:-0.01em">Genuine Hikvision, sourced right</h2>
-      <p style="font-size:16px;line-height:1.75;color:#3D4F5C;margin:0 0 28px">NE (Nashnaal Electronics) is an authorized Hikvision distributor and retailer based in Nairobi. Every product is sourced directly through Hikvision's official channel and backed by our own installation and support team.</p>
-      <div ref="{{ aboutStatsRef }}" style="display:flex;gap:32px;margin-bottom:28px">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 10px;">About NE</div>
+      <h2 style="font-size: clamp(1.5rem, 0.8rem + 3.4vw, 2rem); font-weight: 800; margin: 0px 0px 20px; letter-spacing: -0.01em;">Genuine Hikvision, sourced right</h2>
+      <p style="font-size: 16px; line-height: 1.75; color: rgb(61, 79, 92); margin: 0px 0px 28px;">NE (Nashnaal Electronics) is an authorized Hikvision distributor and retailer based in Nairobi. Every product is sourced directly through Hikvision's official channel and backed by our own installation and support team.</p>
+      <div style="display: flex; gap: 32px; margin-bottom: 28px;">
         <div>
-          <div style="font-size:30px;font-weight:800;color:#086E9E">{{ productsCountLabel }}+</div>
-          <div style="font-size:13px;color:#4A5B68;font-weight:600">Products in catalog</div>
+          <div style="font-size: 30px; font-weight: 800; color: rgb(8, 110, 158);">196+</div>
+          <div style="font-size: 13px; color: rgb(74, 91, 104); font-weight: 600;">Products in catalog</div>
         </div>
         <div>
-          <div style="font-size:30px;font-weight:800;color:#086E9E">{{ categoriesCountLabel }}</div>
-          <div style="font-size:13px;color:#4A5B68;font-weight:600">Product categories</div>
+          <div style="font-size: 30px; font-weight: 800; color: rgb(8, 110, 158);">9</div>
+          <div style="font-size: 13px; color: rgb(74, 91, 104); font-weight: 600;">Product categories</div>
         </div>
       </div>
-      <a href="about" style="font-weight:700;font-size:15px;color:#086E9E;border-bottom:1.5px solid #0B8FCB;padding-bottom:2px">Read more about NE &rarr;</a>
+      <a href="about" style="font-weight: 700; font-size: 15px; color: rgb(8, 110, 158); border-bottom: 1.5px solid rgb(11, 143, 203); padding-bottom: 2px;">Read more about NE →</a>
     </div>
-    <div class="chip-grid" style="background:#F8FAFB;border:1px solid #E7ECF1;border-radius:16px;padding:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px">
-      <sc-for list="{{ categoryChips }}" as="chip2" hint-placeholder-count="5">
-        <div ref="{{ chip2.ref }}" style="{{ chip2.cardStyle }}">
-          <div style="margin-bottom:8px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color:#086E9E"><use href="{{ chip2.iconHref }}"></use></svg></div>
-          <div style="font-size:14px;font-weight:700;color:#10202E;margin-bottom:4px">{{ chip2.label }}</div>
-          <div style="font-size:12.5px;color:#4A5B68">{{ chip2.count }} products</div>
+    <div class="chip-grid" style="background: rgb(248, 250, 251); border: 1px solid rgb(231, 236, 241); border-radius: 16px; padding: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 18px; text-align: center; opacity: 1; transform: translateY(0px); transition: opacity 0.7s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);">
+          <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-cctv"></use></svg></div>
+          <div style="font-size: 14px; font-weight: 700; color: rgb(16, 32, 46); margin-bottom: 4px;">CCTV-Turbo HD</div>
+          <div style="font-size: 12.5px; color: rgb(74, 91, 104);">44 products</div>
         </div>
-      </sc-for>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 18px; text-align: center; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.06s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.06s;">
+          <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-ip"></use></svg></div>
+          <div style="font-size: 14px; font-weight: 700; color: rgb(16, 32, 46); margin-bottom: 4px;">CCTV-IP</div>
+          <div style="font-size: 12.5px; color: rgb(74, 91, 104);">49 products</div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 18px; text-align: center; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.12s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.12s;">
+          <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-access"></use></svg></div>
+          <div style="font-size: 14px; font-weight: 700; color: rgb(16, 32, 46); margin-bottom: 4px;">Access Control</div>
+          <div style="font-size: 12.5px; color: rgb(74, 91, 104);">14 products</div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 18px; text-align: center; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.18s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.18s;">
+          <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-intercom"></use></svg></div>
+          <div style="font-size: 14px; font-weight: 700; color: rgb(16, 32, 46); margin-bottom: 4px;">Video Intercom</div>
+          <div style="font-size: 12.5px; color: rgb(74, 91, 104);">12 products</div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 18px; text-align: center; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.24s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.24s;">
+          <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-pa"></use></svg></div>
+          <div style="font-size: 14px; font-weight: 700; color: rgb(16, 32, 46); margin-bottom: 4px;">PA</div>
+          <div style="font-size: 12.5px; color: rgb(74, 91, 104);">9 products</div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 18px; text-align: center; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.3s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.3s;">
+          <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-tablet"></use></svg></div>
+          <div style="font-size: 14px; font-weight: 700; color: rgb(16, 32, 46); margin-bottom: 4px;">Interactive Tablet</div>
+          <div style="font-size: 12.5px; color: rgb(74, 91, 104);">5 products</div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 18px; text-align: center; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.36s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.36s;">
+          <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-accessory"></use></svg></div>
+          <div style="font-size: 14px; font-weight: 700; color: rgb(16, 32, 46); margin-bottom: 4px;">Accessories</div>
+          <div style="font-size: 12.5px; color: rgb(74, 91, 104);">16 products</div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 18px; text-align: center; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.42s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.42s;">
+          <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-data"></use></svg></div>
+          <div style="font-size: 14px; font-weight: 700; color: rgb(16, 32, 46); margin-bottom: 4px;">Data Communication</div>
+          <div style="font-size: 12.5px; color: rgb(74, 91, 104);">10 products</div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 18px; text-align: center; opacity: 1; transform: translateY(0px); transition: opacity 0.7s 0.48s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) 0.48s;">
+          <div style="margin-bottom: 8px;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(8, 110, 158);"><use href="#i-network"></use></svg></div>
+          <div style="font-size: 14px; font-weight: 700; color: rgb(16, 32, 46); margin-bottom: 4px;">Networking</div>
+          <div style="font-size: 12.5px; color: rgb(74, 91, 104);">37 products</div>
+        </div>
+      
     </div>
   </section>
 
-  <!-- ===== OFFERS BANNER ===== -->
-  <section data-screen-label="Offers Banner" style="max-width:1240px;margin:24px auto 0;padding:0 24px">
-    <div style="background:#0F2C3D;border-radius:16px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border:1px solid rgba(79,195,236,0.25)">
-      <div style="display:flex;align-items:center;gap:14px">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="color:#4FC3EC;flex-shrink:0"><use href="#i-gift"></use></svg>
+  
+  <section style="max-width: 1240px; margin: 24px auto 20px; padding: 0px 24px;">
+    <div style="background: rgb(15, 44, 61); border-radius: 16px; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; border: 1px solid rgba(79, 195, 236, 0.25);">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(79, 195, 236); flex-shrink: 0;"><use href="#i-gift"></use></svg>
         <div>
-          <div style="font-size:15.5px;font-weight:700;color:#fff">Free site survey with selected NVR bundles</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Ask our team when you enquire &mdash; we&rsquo;ll confirm availability for your site</div>
+          <div style="font-size: 15.5px; font-weight: 700; color: rgb(255, 255, 255);">Free site survey with selected NVR bundles</div>
+          <div style="font-size: 13px; color: rgba(255, 255, 255, 0.6);">Ask our team when you enquire — we’ll confirm availability for your site</div>
         </div>
       </div>
-      <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27d%20like%20to%20claim%20the%20free%20site%20survey%20offer" target="_blank" style="background:#4FC3EC;color:#0F2C3D;padding:11px 22px;border-radius:8px;font-weight:700;font-size:14px;white-space:nowrap" style-hover="background:#7ED4F1">Claim Offer</a>
+      <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27d%20like%20to%20claim%20the%20free%20site%20survey%20offer" target="_blank" data-h="10" style="background: rgb(79, 195, 236); color: rgb(15, 44, 61); padding: 11px 22px; border-radius: 8px; font-weight: 700; font-size: 14px; white-space: nowrap;">Claim Offer</a>
     </div>
   </section>
 
-  <!-- ===== CTA ===== -->
-  <section data-screen-label="CTA" style="max-width:1240px;margin:0 auto 80px;padding:48px 40px;background:#086E9E;border-radius:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px">
+  
+  <section style="max-width: 1240px; margin: 0px auto 80px; padding: 48px 40px; background: rgb(8, 110, 158); border-radius: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
     <div>
-      <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:6px">Need a security system quote?</div>
-      <div style="font-size:15px;color:rgba(255,255,255,0.92)">Talk to NE about your CCTV or access control project today.</div>
+      <div style="font-size: 22px; font-weight: 800; color: rgb(255, 255, 255); margin-bottom: 6px;">Need a security system quote?</div>
+      <div style="font-size: 15px; color: rgba(255, 255, 255, 0.92);">Talk to NE about your CCTV or access control project today.</div>
     </div>
-    <a href="contact" style="background:#fff;color:#0B7EB5;padding:15px 30px;border-radius:9px;font-weight:700;font-size:15px;white-space:nowrap" style-hover="background:#EAF6FC">Contact NE</a>
+    <a href="/quote" data-h="6" style="background: rgb(255, 255, 255); color: rgb(11, 126, 181); padding: 15px 30px; border-radius: 9px; font-weight: 700; font-size: 15px; white-space: nowrap;">Get a quote</a>
   </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer style="background:#0F2C3D;padding:40px 24px">
-    <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
-      <div style="font-size:13.5px;color:rgba(255,255,255,0.55)">&copy; 2026 NE &mdash; Nashnaal Electronics. Authorized Hikvision distributor &amp; retailer.</div>
-      <div style="display:flex;gap:22px">
-        <a href="/" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Home</a>
-        <a href="products" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Products</a>
-        <a href="solutions" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Solutions</a>
-        <a href="blog" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Blog</a>
-        <a href="faq" style="font-size:13.5px;color:rgba(255,255,255,0.75)">FAQ</a>
-        <a href="about" style="font-size:13.5px;color:rgba(255,255,255,0.75)">About</a>
-        <a href="contact" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Contact</a>
+  
+  <!--layout:footer-->
+<footer class="site-footer">
+    <div class="cols">
+      <div class="brand">
+        <img src="/assets/nashnaal-logo-header.webp" alt="NE — Nashnaal Electronics" width="44" height="44" loading="lazy">
+        <p>Genuine Hikvision CCTV, access control, intercom and networking &mdash; supplied, installed and supported from Nairobi.</p>
+        <a class="badge" href="https://www.hikvision.com/en/Partners/channel-partners/find-a-distributor/" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 4.5 6v6c0 4.6 3.2 7.7 7.5 9.2 4.3-1.5 7.5-4.6 7.5-9.2V6z"/><path d="m8.8 11.8 2.3 2.3 4.1-4.6"/></svg> Authorized Hikvision National Distributor</a>
+      </div>
+      <nav aria-label="Product categories">
+        <h2>Products</h2>
+        <ul>
+          <li><a href="/category/ip-cameras-nvrs">IP cameras &amp; NVRs</a></li>
+          <li><a href="/category/turbo-hd-cameras-dvrs">Turbo HD cameras &amp; DVRs</a></li>
+          <li><a href="/category/access-control">Access control</a></li>
+          <li><a href="/category/video-intercom">Video intercom</a></li>
+          <li><a href="/category/networking">Networking &amp; switches</a></li>
+          <li><a href="/category/wireless-wifi">Wi-Fi &amp; wireless</a></li>
+          <li><a href="/category/public-address">Public address</a></li>
+          <li><a href="/category/interactive-panels">Interactive panels</a></li>
+          <li><a href="/category/accessories">Accessories &amp; UPS</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/about">About NE</a></li>
+          <li><a href="/services">Installation &amp; services</a></li>
+          <li><a href="/solutions">Solutions by industry</a></li>
+          <li><a href="/quote">Get a quote</a></li>
+          <li><a href="/blog">Guides &amp; blog</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/world">Explore NE</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="visit">
+        <h2>Visit the showroom</h2>
+        <p><a href="https://www.google.com/maps/place/?q=place_id:ChIJL1wsUKARLxgRTEebeopQdiI" target="_blank" rel="noopener">Business Bay Square (BBS Mall), Shop GFE 61, General Waruingi Road, Eastleigh, Nairobi</a></p>
+        <dl class="hours">
+          <dt>Mon&ndash;Sat</dt><dd>08:00 &ndash; 20:00</dd>
+          <dt>Sunday</dt><dd>09:00 &ndash; 18:00</dd>
+        </dl>
+        <p><a href="tel:+254737454891">Call 0737 454 891</a> &middot; <a href="https://wa.me/254737454891" target="_blank" rel="noopener">WhatsApp</a></p>
+        <div class="social">
+          <a href="https://www.instagram.com/nashnaalelectronics" target="_blank" rel="noopener" aria-label="NE on Instagram"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.tiktok.com/@nashnaalelectronics" target="_blank" rel="noopener" aria-label="NE on TikTok"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3a7 7 0 0 1-3.9-1.2v6.3a5.9 5.9 0 1 1-5.9-5.9h.6v3.1a2.9 2.9 0 1 0 2.3 2.8V3h3Z"/></svg></a>
+        </div>
       </div>
     </div>
+    <div class="legal"><div>
+      <span>&copy; 2026 NE &mdash; Nashnaal Electronics. All rights reserved.</span>
+      <span>Hikvision is a trademark of Hangzhou Hikvision Digital Technology Co., Ltd.</span>
+    </div></div>
   </footer>
-
-  <a href="https://wa.me/254737454891" target="_blank" class="wa-pulse-btn" style="position:fixed;bottom:26px;right:26px;width:58px;height:58px;border-radius:50%;background:#22C35E;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.2);z-index:60" style-hover="background:#1CAD52">
-    <svg width="27" height="27" viewBox="0 0 24 24" aria-hidden="true" style="color:#fff"><use href="#i-chat"></use></svg>
-  </a>
-
-</div>
-
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-const CATEGORY_ICONS = {
-  'CCTV-Turbo HD': 'i-cctv',
-  'CCTV-IP': 'i-ip',
-  'Access Control': 'i-access',
-  'Video Intercom': 'i-intercom',
-  'PA': 'i-pa',
-  'Networking': 'i-network',
-  'Interactive Tablet': 'i-tablet',
-  'Accessories': 'i-accessory',
-  'Data Communication': 'i-data',
-};
-
-function formatClock() {
-  const d = new Date();
-  return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-}
-
-const HERO_SLIDES = [
-  {
-    badge: 'Authorized Hikvision Distributor & Retailer',
-    title: 'Genuine Hikvision security & surveillance systems in Kenya',
-    subtitle: "NE supplies genuine Hikvision CCTV cameras, NVRs, access control, video intercom and public address systems — with installation and after-sales support across Kenya.",
-    cta1Text: 'Browse Products', cta1Href: 'products',
-    cta2Text: 'Get in Touch', cta2Href: 'contact',
-    image: 'images/hero-camera-scene.webp',
-    imageAlt: 'NE technician installing a Hikvision CCTV camera on a building in Kenya',
-    imageFit: 'cover',
-    imagePosition: 'center 25%',
-    gradient: 'linear-gradient(120deg,#0B7EB5 0%,#0B8FCB 45%,#12A6DE 70%,#0B8FCB 100%)',
-    scrimColor: '0A3A5C',
-  },
-  {
-    badge: 'Technology · ColorVu',
-    title: 'Full-colour footage, even after dark',
-    subtitle: "Hikvision's ColorVu and Smart Hybrid Light cameras capture usable colour detail at night — better identification for homes, shops and gated compounds.",
-    cta1Text: 'Browse Products', cta1Href: 'products',
-    cta2Text: 'Learn About ColorVu', cta2Href: 'faq',
-    image: 'images/hero-colorvu-night.webp',
-    imageAlt: 'A ColorVu camera lighting a shop interior in full colour after dark',
-    imageFit: 'cover',
-    gradient: 'linear-gradient(120deg,#0A1F33 0%,#123354 45%,#1B4870 70%,#123354 100%)',
-    scrimColor: '081521',
-  },
-  {
-    badge: 'Fleet & Transport',
-    title: 'Dash cams built for active road safety',
-    subtitle: 'The Hikvision G4 dash camera adds ADAS collision and lane-departure warnings on top of 1440p recording — ready for personal vehicles and fleets.',
-    cta1Text: 'Browse Products', cta1Href: 'products',
-    cta2Text: 'Fleet Solutions', cta2Href: 'solution-traffic',
-    image: 'images/hero-dashcam-road.webp',
-    imageAlt: 'A dash camera mounted at the windscreen of a vehicle on an open road at sunset',
-    imageFit: 'cover',
-    gradient: 'linear-gradient(120deg,#101F3D 0%,#1B3A6B 45%,#2A5298 70%,#1B3A6B 100%)',
-    scrimColor: '0B1930',
-  },
-  {
-    badge: 'Access Control',
-    title: 'Control who gets through the door',
-    subtitle: 'Card, PIN and face-recognition terminals for offices, estates and staff entrances — plus ANPR barrier gates where vehicles need automatic access.',
-    cta1Text: 'Browse Products', cta1Href: 'products',
-    cta2Text: 'Access Control FAQ', cta2Href: 'faq',
-    image: 'images/hero-access-entrance.webp',
-    imageAlt: 'An access control terminal beside the glass entrance of an office building',
-    imageFit: 'cover',
-    gradient: 'linear-gradient(120deg,#12202B 0%,#1E3A4F 45%,#2C5878 70%,#1E3A4F 100%)',
-    scrimColor: '0D1A22',
-  },
-  {
-    badge: 'Networking & Wireless',
-    title: 'Point-to-point wireless links for any site',
-    subtitle: 'Hikvision wireless bridges connect cameras and networks across long distances without trenching cable — from a single building to multi-kilometre links.',
-    cta1Text: 'Browse Products', cta1Href: 'products?cat=Networking',
-    cta2Text: 'Get in Touch', cta2Href: 'contact',
-    image: 'images/hero-wireless-rooftop.webp',
-    imageAlt: 'A rooftop wireless link antenna against a city skyline at dusk',
-    imageFit: 'cover',
-    gradient: 'linear-gradient(120deg,#173042 0%,#274C63 45%,#3A6E88 70%,#274C63 100%)',
-    scrimColor: '0F2632',
-  },
-];
-
-class Component extends DCLogic {
-  state = { products: [], categories: [], liveClock: formatClock(), scrollY: 0, scrollProgress: 0, productsCounter: 0, categoriesCounter: 0, heroSlide: 0, heroFading: false };
-
-  _advanceHero(toIndex) {
-    this.setState({ heroFading: true });
-    clearTimeout(this._heroFadeTimeout);
-    this._heroFadeTimeout = setTimeout(() => {
-      this.setState({
-        heroSlide: toIndex !== undefined ? toIndex : (this.state.heroSlide + 1) % HERO_SLIDES.length,
-        heroFading: false,
-      });
-    }, 260);
-  }
-
-  _goToHero(i) {
-    clearInterval(this._heroTimer);
-    this._advanceHero(i);
-    this._heroTimer = setInterval(() => this._advanceHero(), 6000);
-  }
-
-  componentDidMount() {
-    import('./products.js').then(mod => {
-      this.setState({ products: mod.PRODUCTS, categories: mod.CATEGORIES });
-    });
-    this._clockTimer = setInterval(() => this.setState({ liveClock: formatClock() }), 1000);
-    this._heroTimer = setInterval(() => this._advanceHero(), 6000);
-
-    import('./revealFx.js').then(mod => {
-      this._fx = mod;
-      this._reveal = mod.makeRevealController(this, {
-        onReveal: (key) => {
-          if (key === 'about-stats') {
-            const products = this.state.products || [];
-            const categories = this.state.categories || [];
-            mod.animateValue(this, 'productsCounter', products.length, 1300);
-            mod.animateValue(this, 'categoriesCounter', categories.length, 1100);
-          }
-        },
-      });
-      this._untrackScroll = mod.makeScrollTracker((scrollY, progress) => {
-        this.setState({ scrollY, scrollProgress: progress });
-      });
-      this.forceUpdate();
-    });
-  }
-
-  componentWillUnmount() {
-    clearInterval(this._clockTimer);
-    clearInterval(this._heroTimer);
-    clearTimeout(this._heroFadeTimeout);
-    if (this._reveal) this._reveal.destroy();
-    if (this._untrackScroll) this._untrackScroll();
-  }
-
-  renderVals() {
-    const products = this.state.products || [];
-    const categories = this.state.categories || [];
-    const counts = {};
-    categories.forEach(c => { counts[c] = products.filter(p => p.category === c).length; });
-    const categoryChips = categories.map(c => ({
-      label: c,
-      count: counts[c] || 0,
-      href: `products.html?cat=${encodeURIComponent(c)}`,
-      iconHref: '#' + (CATEGORY_ICONS[c] || 'i-accessory'),
-    }));
-    const marqueeChips = [...categoryChips, ...categoryChips];
-
-    const reveal = this._reveal;
-    const rref = (key) => reveal ? reveal.ref(key) : undefined;
-    const revealCss = (key, opts = {}) => {
-      const vis = reveal ? reveal.visible(key) : false;
-      const dist = opts.dist ?? 24;
-      const delay = opts.delay ?? 0;
-      const dur = opts.dur ?? 0.7;
-      return `opacity:${vis ? 1 : 0};transform:translateY(${vis ? 0 : dist}px);transition:opacity ${dur}s ease ${delay}s, transform ${dur}s cubic-bezier(.16,.84,.44,1) ${delay}s`;
-    };
-    const revealBg = (key, gradient, url, position = 'center') => {
-      const vis = reveal ? reveal.visible(key) : false;
-      return vis
-        ? `background-image:${gradient},url('${url}');background-size:cover;background-position:${position};`
-        : `background-color:#16283a;`;
-    };
-
-    const services = [
-      { iconHref: '#i-install', title: 'Professional Installation', desc: 'Certified technicians install cameras, NVRs, access control and intercom systems correctly the first time.' },
-      { iconHref: '#i-support', title: 'Maintenance & Support', desc: 'Ongoing servicing, troubleshooting and system health checks to keep your setup running.' },
-      { iconHref: '#i-consult', title: 'Consultation & Design', desc: 'We help you plan camera coverage, storage and system architecture before you buy.' },
-      { iconHref: '#i-bulk', title: 'Bulk & Wholesale Supply', desc: 'Competitive pricing for installers, contractors and businesses ordering in volume.' },
-    ].map((s, i) => ({ ...s, ref: rref(`svc-${i}`), style: `background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:28px;${revealCss(`svc-${i}`, { delay: i * 0.1 })}` }));
-
-    const categoryChipsStyled = categoryChips.map((c, i) => ({ ...c, ref: rref(`chip-${i}`), cardStyle: `background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:18px;text-align:center;${revealCss(`chip-${i}`, { delay: i * 0.06, dist: 16 })}` }));
-
-    const sc = this.state.scrollY;
-    const parallaxCircle1 = `position:absolute;top:-60px;right:8%;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.08);filter:blur(2px);transform:translateY(${sc * 0.12}px);pointer-events:none`;
-    const parallaxCircle2 = `position:absolute;bottom:-80px;left:4%;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.07);filter:blur(1px);transform:translateY(${sc * -0.08}px);pointer-events:none`;
-    const heroZoom = 1 + Math.min(sc, 500) / 500 * 0.09;
-    const heroImgStyle = `filter:drop-shadow(0 20px 30px rgba(0,0,0,0.25));position:relative;z-index:2;transform:scale(${heroZoom.toFixed(3)});transition:transform 0.15s linear`;
-    const progressBarStyle = `position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4FC3EC,#0B8FCB);width:${(this.state.scrollProgress * 100).toFixed(2)}%;z-index:200;transition:width 0.1s linear`;
-
-    const activeHeroSlide = HERO_SLIDES[this.state.heroSlide];
-    const heroSectionStyle = `background:${activeHeroSlide.gradient};position:relative;overflow:hidden;min-height:640px`;
-    const heroContentFade = `opacity:${this.state.heroFading ? 0 : 1};transition:opacity 0.28s ease`;
-    const c = activeHeroSlide.scrimColor;
-    const heroScrimStyle = activeHeroSlide.imageFit === 'contain'
-      ? `background:transparent`
-      : `background:linear-gradient(90deg, #${c}F0 0%, #${c}D9 32%, #${c}80 58%, #${c}1A 82%, #${c}00 100%)`;
-    const heroImageStyle = activeHeroSlide.imageFit === 'contain'
-      ? `position:absolute;top:0;right:0;bottom:0;z-index:0;width:58%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 30px 50px rgba(0,0,0,0.35));transform:scale(${heroZoom.toFixed(3)});transition:transform 0.15s linear`
-      : `position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:${activeHeroSlide.imagePosition || 'center'};transform:scale(${(1 + (heroZoom - 1) * 0.6).toFixed(3)});transition:transform 0.15s linear`;
-    const heroDots = HERO_SLIDES.map((s, i) => ({
-      onClick: () => this._goToHero(i),
-      label: `Go to slide ${i + 1} of ${HERO_SLIDES.length}`,
-      style: `display:block;width:${i === this.state.heroSlide ? 10 : 8}px;height:${i === this.state.heroSlide ? 10 : 8}px;border-radius:50%;border:none;cursor:pointer;background:${i === this.state.heroSlide ? '#fff' : 'rgba(255,255,255,0.45)'};transition:all 0.25s ease;padding:0`,
-    }));
-
-    const trustBadges = [
-      { iconHref: '#i-shield', title: 'Authorized Distributor', sub: 'Direct from Hikvision' },
-      { iconHref: '#i-genuine', title: '100% Genuine Products', sub: 'No grey-market imports' },
-      { iconHref: '#i-tools', title: 'Certified Installers', sub: 'In-house technical team' },
-      { iconHref: '#i-support', title: 'Installed & Supported', sub: 'Local Nairobi team' },
-    ];
-
-
-    return {
-      categoryChips: categoryChipsStyled,
-      marqueeChips,
-      services,
-      liveClock: this.state.liveClock,
-      productsCountLabel: products.length ? Math.round(this.state.productsCounter) : 0,
-      categoriesCountLabel: categories.length ? Math.round(this.state.categoriesCounter) : 0,
-      parallaxCircle1,
-      parallaxCircle2,
-      heroImgStyle,
-      progressBarStyle,
-      heroSectionStyle,
-      heroScrimStyle,
-      heroContentFade,
-      heroImageStyle,
-      heroDots,
-      heroBadge: activeHeroSlide.badge,
-      heroTitle: activeHeroSlide.title,
-      heroSubtitle: activeHeroSlide.subtitle,
-      heroCta1Text: activeHeroSlide.cta1Text,
-      heroCta1Href: activeHeroSlide.cta1Href,
-      heroCta2Text: activeHeroSlide.cta2Text,
-      heroCta2Href: activeHeroSlide.cta2Href,
-      heroImage: activeHeroSlide.image,
-      heroImageAlt: activeHeroSlide.imageAlt,
-      aboutStatsRef: rref('about-stats'),
-      innov0Ref: rref('innov-0'), innov0Style: revealCss('innov-0', { delay: 0 }),
-      innov1Ref: rref('innov-1'), innov1Style: revealCss('innov-1', { delay: 0.08 }),
-      innov2Ref: rref('innov-2'), innov2Style: revealCss('innov-2', { delay: 0.16 }),
-      innov3Ref: rref('innov-3'), innov3Style: revealCss('innov-3', { delay: 0.24 }),
-      trustRef: rref('trust'),
-      trustStyle: revealCss('trust', { dist: 14 }),
-      trustBadges,
-    };
-  }
-}
-
-</script>
+  <a href="https://wa.me/254737454891" target="_blank" rel="noopener" class="wa-float" aria-label="Chat with NE on WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="#fff"><path d="M12 2.2A9.7 9.7 0 0 0 3.6 16.8L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.7-1.2.2-.6.2-1 .1-1.2l-.4-.2Z"/></svg></a>
+<!--/layout:footer--></div>
 </body>
 </html>

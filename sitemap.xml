@@ -1,1348 +1,1454 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://nashnaal.com/</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/about</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/blog-can-you-install-hikvision-cctv-at-home-by-yourself</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/blog-hikvision-camera-and-nvr-installation-guide-for-kenya</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/blog-hikvision-camera-setup-guide-for-kenyan-homes-and-smes</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/blog-hikvision-cctv-installation-guide-for-complete-beginners</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/blog-hikvision-cctv-setup-a-beginners-guide-for-kenya</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/blog-hikvision-cctv-system-the-complete-equipment-checklist</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/blog-hikvision-colorvu-cameras-the-kenya-buyers-guide</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/blog-how-to-set-up-a-hikvision-cctv-system-at-home</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/blog-how-to-set-up-a-hikvision-nvr-step-by-step-guide</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/blog</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/contact</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/faq</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/products</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/services</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/solution-buildings</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/solution-education</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/solution-energy</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/solution-healthcare</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/solution-logistics</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/solution-manufacturing</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/solution-maritime</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/solution-retail</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/solution-smb</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/solution-traffic</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/solutions</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://nashnaal.com/world</loc>
     <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nashnaal.com/products</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://nashnaal.com/category/access-control</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
-    <loc>https://nashnaal.com/solutions</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://nashnaal.com/category/accessories</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
-    <loc>https://nashnaal.com/solution-retail</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://nashnaal.com/category/interactive-panels</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
-    <loc>https://nashnaal.com/solution-education</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://nashnaal.com/category/ip-cameras-nvrs</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
-    <loc>https://nashnaal.com/solution-healthcare</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://nashnaal.com/category/networking</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
-    <loc>https://nashnaal.com/solution-logistics</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://nashnaal.com/category/public-address</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
-    <loc>https://nashnaal.com/solution-manufacturing</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://nashnaal.com/category/turbo-hd-cameras-dvrs</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
-    <loc>https://nashnaal.com/solution-traffic</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://nashnaal.com/category/video-intercom</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
-    <loc>https://nashnaal.com/solution-buildings</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://nashnaal.com/category/wireless-wifi</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
-  <url>
-    <loc>https://nashnaal.com/solution-energy</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/solution-maritime</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/solution-smb</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/services</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/faq</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/about</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/contact</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/blog</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/blog-hikvision-colorvu-cameras-the-kenya-buyers-guide</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/blog-hikvision-cctv-system-the-complete-equipment-checklist</loc>
-    <lastmod>2026-07-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/blog-can-you-install-hikvision-cctv-at-home-by-yourself</loc>
-    <lastmod>2026-07-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/blog-hikvision-cctv-installation-guide-for-complete-beginners</loc>
-    <lastmod>2026-07-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/blog-how-to-set-up-a-hikvision-nvr-step-by-step-guide</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/blog-how-to-set-up-a-hikvision-cctv-system-at-home</loc>
-    <lastmod>2026-07-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/blog-hikvision-camera-setup-guide-for-kenyan-homes-and-smes</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/blog-hikvision-camera-and-nvr-installation-guide-for-kenya</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nashnaal.com/blog-hikvision-cctv-setup-a-beginners-guide-for-kenya</loc>
-    <lastmod>2026-07-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <!-- products -->
   <url>
     <loc>https://nashnaal.com/product/ds-2ce16d0t-exipf-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/001.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000019923/ds-2ce16d0t-exipf-dimensionsimage-1-d0f21100.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce76d0t-exipf-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/002.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000019925/ds-2ce76d0t-exipf-dimensionsimage-1-fd113aa0.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce18d0t-lfs-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/003.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000073441/116-8fc9c8a1.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000073441/116-16f46d5b.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000073441/116-9d480f5a.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000073441/ds-2ce18d0t-lfs-dimensionsimage-1-08edcd8c.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce18k0t-lfs-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/003.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000119745/116-212781b1.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000119745/116-48a2bd26.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000119745/116-d8783525.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000119745/ds-2ce18k0t-lfs-dimensionsimage-1-17e7f12c.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce16d0t-lpfs-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/005.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000059508/62-d0t-5ceaee59.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000059508/62-d0t-ca59d237.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce76d0t-lpfs-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/006.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000059511/ds-2ce76d0t-lpfs-dimensionsimage-1-f7f23c44.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce16k0t-lpfs-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/007.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000059514/62-d0t-1623abdc.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000059514/62-d0t-4a086173.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000059514/ds-2ce16k0t-lpfs-dimensionsimage-1-9c8e9547.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce76k0t-lpfs-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/006.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000059517/ds-2ce76k0t-lpfs-dimensionsimage-1-fee00a69.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce10df0t-lpfs-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/009.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000068419/ds-2ce10df0t-lpfs-dimensionsimage-1-e4f96d94.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce70df0t-lpfs-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/010.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000068422/ds-2ce70df0t-lpfs-dimensionsimage-1-227ecf24.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce12df0t-lfs-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/011.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000068421/ds-2ce12df0t-lfs-dimensionsimage-1-bc9e8928.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce72df0t-lfs-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/012.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000068424/ds-2ce72df0t-lfs-dimensionsimage-1-3373d24b.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce10kf0t-lpfs-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/009.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000104685/73-df0t-21244d39.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000104685/73-df0t-cb89cc8d.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000104685/ds-2ce10kf0t-lpfs-dimensionsimage-1-973ca586.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce70kf0t-lpfs-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/010.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000104682/ds-2ce70kf0t-lpfs-dimensionsimage-1-58d71d8e.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce12kf0t-lfs-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/011.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000104683/74-df0t-ls-e3db06b4.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000104683/74-df0t-ls-92f33f0f.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000104683/ds-2ce12kf0t-lfs-dimensionsimage-1-c2d09e86.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce72kf0t-lfs-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/012.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000104680/ds-2ce72kf0t-lfs-dimensionsimage-1-0c066853.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce16d0t-lpts-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/017.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000135400/39-28f38891.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce78d0t-lts-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/018.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000135404/51-e5720216.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000135404/51-9f65befe.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce70d0t-ptlts-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/019.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000135403/pt23-f4cb4cbf.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000135403/pt23-53145f00.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000135403/ds-2ce70d0t-ptlts-dimensionsimage-1-f28e8aab.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce16d0t-lpxts-3-6mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/020.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000122120/39-5860da0f.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce78d0t-lxts-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/018.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000122123/51-b58d0bf8.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000122123/51-8e7bcacc.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2ce70d0t-ptlxts-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/019.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000122124/pt23-7e6ce9b8.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000122124/pt23-f2f01707.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000122124/ds-2ce70d0t-ptlxts-dimensionsimage-1-35de90e7.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7104hghi-m1-std-c</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/023.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058565/ds-7104hghi-m1-dimensionsimage-1-5a32ca4d.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7108hghi-m1-std-c</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/023.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058567/ds-7108hghi-m1-dimensionsimage-1-a49896e6.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7116hghi-m1-std-e</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/025.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058569/dvrx1-80429-t-4f4a3028.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058569/dvrx1-lp-d626747c.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058569/dvrx1-fp-c6b7e1ed.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058569/dvrx1-80429-b-d72997f9.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058569/ds-7116hghi-m1-dimensionsimage-1-898e1818.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7116hghi-m1-std-f</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/025.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058569/dvrx1-80429-t-4f4a3028.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058569/dvrx1-lp-d626747c.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058569/dvrx1-fp-c6b7e1ed.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058569/dvrx1-80429-b-d72997f9.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058569/ds-7116hghi-m1-dimensionsimage-1-898e1818.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7204hghi-m1-std-c</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/027.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058566/mb-238-f-117060c2.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058566/mb-238-lp-ec0caf7e.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058566/mb-238-fp-266c2b05.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058566/ds-7204hghi-m1-b-e068a4b5.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058566/ds-7204hghi-m1-dimensionsimage-1-2498e71d.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7208hghi-m1-std-c</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/027.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058568/mb-238-f-698efa4d.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058568/mb-238-lp-d243c657.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058568/mb-238-fp-3ca61318.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058568/ds-7208hghi-m1-b-7024af48.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058568/ds-7208hghi-m1-dimensionsimage-1-b8361969.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7216hghi-m1-std-e</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/029.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7216hghi-m1-std-f</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/029.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7104hghi-m1-t-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/031.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158987/dvr-3-t-80303-224173f0.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158987/dvrx1-lp-hikvision-8a1ce888.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158987/dvrx1-fp-hikvision-7dad6dd5.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158987/dvr-3-80303-b-ec55ae15.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158987/ds-7104hghi-m1t-dimensionsimage-1-c4c4cec4.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7108hghi-m1-t-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/031.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158988/dvr-3-t-80304-5d6b8557.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158988/dvrx1-fp-hikvision-204c3f75.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158988/dvr-3-80304-b-f3569cc0.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158988/ds-7108hghi-m1t-dimensionsimage-1-18cebccc.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7116hghi-m1-t-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/033.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162726/dvrx1-80429-t-9874ad6f.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162726/dvrx1-lp-260bf037.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162726/dvrx1-fp-0ed6040d.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162726/dvrx1-80429-b-af120114.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162726/ds-7116hghi-m1t-dimensionsimage-1-f7c18936.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7204hghi-m1-t-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/034.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158985/mb-238-f-0492ae67.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158985/mb-238-lp-7b4370b7.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158985/mb-238-fp-7363f45f.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158985/ds-7204hghi-m1-b-1d40fa0e.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158985/ds-7204hghi-m1t-dimensionsimage-1-ab01f1f8.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7208hghi-m1-t-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/035.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158986/mb-0238hnn-h10-260a0-u0l1-a0-f-hikvision-170a7316.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158986/mb-238-lp-475805d0.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158986/mb-238-fp-de69ac4f.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158986/jx15-80238-a-b-ebbeeae2.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158986/ds-7208hghi-m1t-dimensionsimage-1-f4df58b7.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7216hghi-m1-t-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/035.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162727/mb-0238hnn-h10-260a0-u0l1-a0-f-hikvision-ee55a9ac.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162727/mb-238-lp-1ce7c29a.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162727/mb-238-fp-2187fb5c.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162727/jxh10-260a2-80429a1-a0g-b1-d8e61f6c.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162727/ds-7216hghi-m1t-dimensionsimage-1-11ea22f7.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7232hghi-m2-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/037.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ids-7104hqhi-m1-t-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/038.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168161/dvrx1-80303c-t-114cc42c.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168161/dvrx1-lp-hikvision-77240bca.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168161/dvrx1-fp-hikvision-b8010444.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168161/dvrx1-80303-c-dc3457ed.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168161/ids-7104hqhi-m1t-dimensionsimage-1-aabfe743.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ids-7204hqhi-m1-xt-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/039.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000128025/ids-7204hqhi-m1xt-dimensionsimage-1-88655245.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ids-7108hqhi-m1-t-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/038.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168165/dvrx1-80430a-t-4234acb0.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168165/dvrx1-lp-hikvision-b1548e00.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168165/dvrx1-fp-hikvision-ed9a10f3.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168165/dvrx1-80430-a-1547fe00.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168165/ids-7108hqhi-m1t-dimensionsimage-1-bf0d3241.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ids-7208hqhi-m1-xt-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/039.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000128024/ids-7208hqhi-m1xt-dimensionsimage-1-06c80224.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ids-7116hqhi-m1-t-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/042.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168166/dvrx1-80429-t-06155c4f.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168166/dvrx1-lp-hikvision-1749c286.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168166/dvrx1-fp-hikvision-e9719950.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168166/dvrx1-80429-5d481010.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168166/ids-7116hqhi-m1t-dimensionsimage-1-cddece5a.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ids-7216hqhi-m1-xt-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/039.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000120171/mb-0235-f-1-b1e7d866.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000120171/mb-0235-l-1-d8b426ee.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000120171/mb-0235-fp-1-d4f3e50f.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000120171/jxh10-315a3-80443a3-a0d-895a2b6c.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000120171/ids-7216hqhi-m1xt-dimensionsimage-1-d8287b8c.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ids-7232hqhi-m2-xt-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/044.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1021g0-i-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/045.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1121g0-i-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/046.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1023g2-liu-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/047.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064178/39-d50dabf6.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064178/39-3eda45ad.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064178/ds-2cd1023g2-liu-dimensionsimage-1-ae67d418.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1123g2-liu-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/048.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064177/61-75ade6d7.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064177/61-0cc6adc8.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064177/ds-2cd1123g2-liu-dimensionsimage-1-c41b9e7b.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1043g2-liu-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/047.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064174/39-0959370e.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064174/39-5e4bf09b.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064174/ds-2cd1043g2-liu-dimensionsimage-1-02c856a1.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1143g2-liu-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/048.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064173/61-4afee75b.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064173/61-51372153.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000064173/ds-2cd1143g2-liu-dimensionsimage-1-8626b10b.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1643g2-lizu-2-8-12mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/051.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071379/ds-2cd1663g2-lizsu-92-6a64c7e5.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071379/ds-2cd1663g2-lizsu-92-87e8bf8a.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071379/ds-2cd1643g2-lizu-dimensionsimage-1-0d38355c.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1743g2-lizu-2-8-12mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/052.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071380/61-059545e0.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071380/61-961168be.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071380/61-0726bb8c.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071380/ds-2cd1743g2-lizu-dimensionsimage-1-177e6f78.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1063g2-liu-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/053.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071308/ds-2cd1063g2-liu-dimensionsimage-1-b46c3970.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1163g2-liu-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/048.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071309/ds-2cd1163g2-liu-dimensionsimage-1-6f92cf7e.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1083g2-liu-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/053.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071312/ds-2cd1083g2-liu-dimensionsimage-1-7407cc20.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1183g2-liu-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/048.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071313/ds-2cd1183g2-liu-dimensionsimage-1-e18ef260.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1047g3-liu-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/057.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172317/ds-2cd10x7g2h-liuf-39-7579d667.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172317/ds-2cd10x7g2h-liuf-39-661980ac.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172317/ds-2cd10x7g2h-liuf-39-099b69ac.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172317/ds-2cd1047g3-liu-dimensionsimage-1-a39b5718.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1147g3-liu-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/058.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172318/61-35c4defd.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172318/61-4a82cf01.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172318/ds-2cd1147g3-liu-dimensionsimage-1-88faa532.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1t47g3-liu-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/059.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172320/ds-2cd1tx7g2h-liuf-97-2ce48155.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172320/ds-2cd1t47g3-liu-dimensionsimage-1-49a7acaa.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1067g3-liu-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/057.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172328/ds-2cd10x7g2h-liuf-39-f54031fb.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172328/ds-2cd10x7g2h-liuf-39-3bd383a3.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172328/ds-2cd1067g3-liu-dimensionsimage-1-45747c71.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1167g3-liu-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/058.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172329/61-9344828e.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172329/61-3bbe1c40.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172329/ds-2cd1167g3-liu-dimensionsimage-1-6d3d0a57.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1t67g3-liu-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/059.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172331/ds-2cd1tx7g2h-liuf-97-fd42c357.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172331/ds-2cd1tx7g2h-liuf-97-becc5fc2.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172331/ds-2cd1t67g3-liu-dimensionsimage-1-91632060.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1047g3-liuf-srb-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/063.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172317/ds-2cd10x7g2h-liuf-39-7579d667.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172317/ds-2cd10x7g2h-liuf-39-661980ac.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172317/ds-2cd10x7g2h-liuf-39-099b69ac.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172317/ds-2cd1047g3-liufsrb-dimensionsimage-1-0a236e42.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1347g3-liuf-srb-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/064.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172319/51b-4e7ab0cb.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172319/000-33ddd35e.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172319/ds-2cd1347g3-liufsrb-dimensionsimage-1-70eeddd7.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1t47g3-liuf-srb-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/065.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172320/ds-2cd1tx7g2h-liuf-97-2ce48155.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172320/ds-2cd1t47g3-liufsrb-dimensionsimage-1-a8ec55a5.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1067g3-liuf-srb-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/063.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172328/ds-2cd10x7g2h-liuf-39-f54031fb.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172328/ds-2cd10x7g2h-liuf-39-3bd383a3.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172328/ds-2cd1067g3-liufsrb-dimensionsimage-1-1b4de3ac.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1367g3-liuf-srb-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/064.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172330/51b-aa01cd76.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172330/51b-ff6c0284.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172330/ds-2cd1367g3-liufsrb-dimensionsimage-1-eadcaa06.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1t67g3-liuf-srb-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/065.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172331/ds-2cd1tx7g2h-liuf-97-fd42c357.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172331/ds-2cd1tx7g2h-liuf-97-becc5fc2.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000172331/ds-2cd1t67g3-liufsrb-dimensionsimage-1-c6a40b6d.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd2047g3-li2uy-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/069.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144441/91-995de534.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144441/91-35643494.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144441/91-30dc47db.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd2147g3-lis2uy-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/070.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144446/61-f8007818.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144446/61-81266d98.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144446/61-8e461793.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd2t47g3-lis2uy-srb-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/071.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144456/45pro-8cc5126e.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144456/45pro-5c9db762.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144456/45pro-1-b5eccbc7.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144456/ds-2cd2t47g3-lis2uysrb-dimensionsimage-1-589a45e7.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd2087g3-li2uy-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/069.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144445/91-84b8429e.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144445/91-5697ccfa.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144445/91-796aa9cc.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd2187g3-lis2uy-2-8mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/070.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144448/61-1790bd46.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144448/61-9458acbd.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144448/61-5674ef15.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144448/ds-2cd2187g3-lis2uy-dimensionsimage-1-7c1a8a5d.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd2t87g3-lis2uy-srb-4mm-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/071.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144460/45pro-f859632c.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144460/45pro-08201d06.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144460/45pro-1-d5457047.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144460/ds-2cd2t87g3-lis2uysrb-dimensionsimage-1-b672f15f.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2de4225iwg1-e-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/075.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000171684/ds-2de4225iwg1-e-dimensionsimage-1-973da827.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2de4425iw-de-o-std-t5</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/075.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000044249/ds-2de4425iw-des6-dimensionsimage-1-ffa1a06e.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2se4c225mwg-e-12-f0-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/077.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000159412/20-4g-35d629de.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000159412/20-4g-0a3a1680.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000159412/ds-2se4c225mwg-e12-dimensionsimage-1-85238d0c.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2se4c425mwg-e-14-f0-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/077.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000159414/20-4g-7e365b4a.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000159414/20-4g-6de11b3f.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000159414/ds-2se4c425mwg-e14-dimensionsimage-1-bd2a89fc.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cfsp4-4g-4mm-o-std-eu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/079.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188152/pt24-aov-34ad82de.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188152/pt24-aov-78189323.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188152/pt24-aov-c19a9490.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188152/ds-2cfsp44gcold-proof-dimensionsimage-1-fc2c75de.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cfsp4-4g-sim-4mm-ken</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/079.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188152/pt24-aov-34ad82de.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188152/pt24-aov-78189323.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188152/pt24-aov-c19a9490.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188152/ds-2cfsp44gcold-proof-dimensionsimage-1-fc2c75de.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cfsp8-d-4g-2-8-4mm-o-std-eu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/081.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188151/pt34-hikvision-af3ce1d8.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188151/pt34-hikvision-1-4d18509c.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188151/pt34-hikvision-4220e737.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188151/pt34-hikvision-589aa963.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188151/ds-2cfsp8-d4gcold-proof-dimensionsimage--f5b1b911.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cfsp8-d-4g-sim-2-8-4mm-ken</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/081.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188151/pt34-hikvision-af3ce1d8.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188151/pt34-hikvision-1-4d18509c.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188151/pt34-hikvision-4220e737.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188151/pt34-hikvision-589aa963.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188151/ds-2cfsp8-d4gcold-proof-dimensionsimage--f5b1b911.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7104ni-q1-4p-m-std-d</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/083.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000000616/mb-0191hnn-h10-260a0-u0l1-a0-f-hikvision-dcd6096f.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000000616/ds-7104ni-q14pm-dimensionsimage-1-173edeba.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7108ni-q1-8p-m-std-d</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/083.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000000620/mb-0191hnn-h10-260a0-u0l1-a0-f-hikvision-9b692afa.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000000620/ds-7108ni-q18pm-dimensionsimage-1-16fc6acd.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7608nxi-k1-8p-std-b</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/085.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058878/ds-7608nxi-k18p-dimensionsimage-1-3a4aa210.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7616ni-q2-16p-e-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/086.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000000580/ds-7616ni-q216p-dimensionsimage-1-0e0af3fb.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7616nxi-k2-16p-d-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/087.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000141849/ds-7616nxi-k216pd-dimensionsimage-1-f4e9495f.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7616nxi-k2-16p-e-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/087.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000141849/ds-7616nxi-k216pd-dimensionsimage-1-f4e9495f.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7632nxi-k2-16p-d-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/087.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000141851/ds-7632nxi-k216pd-dimensionsimage-1-bc05f4d4.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7632nxi-k2-16p-e-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/087.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000141851/ds-7632nxi-k216pd-dimensionsimage-1-bc05f4d4.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7732nxi-k4-16p-d-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/091.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000141857/ds-7732nxi-k416pd-dimensionsimage-1-cdfd7cf4.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7732nxi-k4-16p-e-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/091.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000141857/ds-7732nxi-k416pd-dimensionsimage-1-cdfd7cf4.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-7764ni-m4-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/093.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000067968/ds-7764ni-m4-dimensionsimage-1-2262a63b.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k1t808mfwx-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/094.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000141791/hik-b1e3a6ac.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000141791/hik-0125b21a.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000141791/ds-k1t808mfwx-dimensionsimage-1-412e09c7.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k1t323mbfwx-e1-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/095.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000156946/k1t323-8c1d2c02.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000156946/k1t323-1-42cd49df.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000156946/ds-k1t323mbfwx-e1-dimensionsimage-1-d2789010.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k1t341cmf-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/096.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k1t342mfx-e1-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/097.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k1t344mbfwx-e1-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/098.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000126764/344-35ba6d3e.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k4h255s-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/099.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000080480/ds-k4h255s-dimensionsimage-1-1013b34c.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k4h255-lz-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/100.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000081660/ds-k4h255-lz-dimensionsimage-1-4282dcf8.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k4dc104-o-neu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/101.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k7p01-o-neu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/102.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k7p02-o-neu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/103.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k7p03-o-neu-t</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/104.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k7peb-green-o-neu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/105.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ic-s50-o-neu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/106.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-k7m102-m-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/107.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kis212-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/108.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kis213-o-std-africa</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/109.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kis313-p-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/110.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kis603-p-c-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/111.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188285/kis603-p-167ee2f3.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188285/ds-kis603-pd-dimensionsimage-1-fd9409a8.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kis604-s-c-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/112.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188282/kis604-p-ec9f6d65.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000188282/ds-kis604-sd-dimensionsimage-1-b922a471.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kis608-p-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/113.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000149140/ds-kis608-p-dimensionsimage-1-7265476a.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kis612-p-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/114.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000174665/ds-kis612-p-dimensionsimage-1-1bee85b6.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kh6320-wte1-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/115.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000040060/ds-kh6320-wte1-45-1-7dda1395.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000040060/ds-kh6320-wte1-45-6ac7f0fe.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000040060/ds-kh6320-wte1-dimensionsimage-1-42442081.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kh6350-wte1-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/116.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158561/view-36255644.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158561/view-2fd88dbd.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000158561/ds-kh6350-wte1white-dimensionsimage-1-932fd285.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kv6113-wpe1-c-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/117.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058902/ds-kv6113-wpe1c-left-view-f974ec23.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058902/ds-kv6113-wpe1c-right-view-1a881e77.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000058902/ds-kv6113-wpe1c-dimensionsimage-1-b1c7435a.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kv8113-wme1-c-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/118.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000062398/ds-kv8113-wme1c-dimensionsimage-1-247cd624.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-kv6124-wbe1-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/119.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168988/kv6-0d7b7ba1.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168988/kv6-1-2f304c34.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168988/ds-kv6124-wbe1-dimensionsimage-1-d6e745cf.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-qae0ka60206-4-o-std-eu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/120.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000166580/111-7229dcb0.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-qae0ka60120-2-o-std-eu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/121.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000166581/111-84d15962.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-qae0206g1-v-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/122.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000112923/view-ae4e5e2b.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000112923/view-957d2190.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000112923/ds-qae0206g1-v-dimensionsimage-1-7a504350.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-qae0120g1r-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/123.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000117200/3-2f7e9867.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000117200/3-fd685d14.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000117200/3-a61d4f0d.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000117200/ds-qae0120g1r-dimensionsimage-1-e2e305e6.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-qae0420g1-v-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/124.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000112440/3-f46bc9f8.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000112440/ds-qae0420g1-v-dimensionsimage-1-20ffc87f.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-qae0a60g1-vb-o-std-eu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/125.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000112480/view-aaaab46a.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000112480/e-2f5daec5.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000112480/view-b184b3a2.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000112480/ds-qae0a60g1-vb-dimensionsimage-1-2bfcbea2.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-qae0a120g1-vb6-o-std-eu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/126.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144080/45-551d95b1.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144080/14-148dc808.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144080/ds-qae0a120g1-vb6-dimensionsimage-1-97390c70.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-qae0a240g1-vb6-o-std-eu</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/127.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144081/45-2a046ecd.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144081/240-fc74bfbb.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000144081/ds-qae0a240g1-vb6-dimensionsimage-1-f0f67bee.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-qacam07g1-4lizsu-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/128.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000171337/1-f456dc39.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000171337/1-0e74e9ff.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000171337/1-4d9bf864.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000171337/ds-qacam07g1-4lizsu-dimensionsimage-1-2b0a4e04.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-d5b65rb-el</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/tablet-ds-d5b65rb-el.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-d5b75rb-el</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/tablet-ds-d5b65rb-el.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-d5sc3b-b</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/tablet-ds-d5sc3b-b.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-d5sc3b-w</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/tablet-ds-d5sc3b-w.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-d5abky2-s</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/tablet-ds-d5abky2-s.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-xs6404-s-b-o-std-overseas</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-xs6404-s-b-o-std-overseas.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-xs6406-s-b-o-std-overseas</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-xs6404-s-b-o-std-overseas.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-xs6409-s-b-o-std-overseas</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-xs6404-s-b-o-std-overseas.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-xs6412-s-b-o-std-overseas</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-xs6404-s-b-o-std-overseas.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-xspb04-s-b</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-xspb04-s-b.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-ups600-o-std-uk</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-ups600-o-std-uk.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-ups1000-o-std-uk</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-ups600-o-std-uk.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-ups2000-o-std-uk</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-ups2000-o-std-uk.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-ups3000-o-std-uk</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-ups2000-o-std-uk.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000168702/ds-ups3000-x-dimensionsimage-1-dca6fe65.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2fa1225-c4-uk-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-2fa1225-c4-uk-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000060730/ds-2fa1225-c4uk-dimensionsimage-1-010b8b3b.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2fa1205-c8-uk-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-2fa1205-c8-uk-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000060729/ds-2fa1205-c8uk-dimensionsimage-1-f7baef50.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2fa1208-c16-uk-africa</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-2fa1205-c8-uk-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/adapter-ads-12fg-12n-12012epb-ce-12v-1a</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-adapter-ads-12fg-12n-12012epb-ce-12v-1a.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-1lh1scam592c-o-std-90m</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-1lh1scam592c-o-std-90m.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000001463/2-1-d7c0c755.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-1lh1scam592c-o-std-180m</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-1lh1scam592c-o-std-90m.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000001463/2-1-d7c0c755.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-1h18s-e-c-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/accessories-ds-1h18s-e-c-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wap522-si-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/datacomm-ds-3wap522-si-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000113052/ds-3wap522-si-dimensionsimage-1-e07294f8.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wap622g-si-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/datacomm-ds-3wap522-si-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000113053/ds-3wap622g-si-dimensionsimage-1-cb042019.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wap622e-si-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/datacomm-ds-3wap522-si-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000113054/ds-3wap622e-si-dimensionsimage-1-c64c0c54.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wap521-si-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/datacomm-ds-3wap521-si-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000113055/ds-3wap521-si-dimensionsimage-1-ba48ba67.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wap621e-si-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/datacomm-ds-3wap621e-si-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000113056/ds-3wap621e-si-dimensionsimage-1-3f242d11.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wap623e-si-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/datacomm-ds-3wap623e-si-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000113057/ds-3wap623e-si-dimensionsimage-1-1638e79d.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wg105g-si-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/datacomm-ds-3wg105g-si-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000113058/ds-3wg105g-si-dimensionsimage-1-08e7863a.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wg105gp-si-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/datacomm-ds-3wg105gp-si-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000113059/ds-3wg105gp-si-dimensionsimage-1-ee4fb4ca.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wg210gp-si-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/datacomm-ds-3wg210gp-si-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000113060/ds-3wg210gp-si-dimensionsimage-1-915faa7a.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wg507g-si-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/datacomm-ds-3wg507g-si-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000113061/ds-3wg507g-si-dimensionsimage-1-3337a5f7.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-1ln6-uu-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-1ln6-uu-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-1ln6u-sc0-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-1ln6u-sc0-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-1ln6uzc0-o-std-orange-305m</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-1ln6-uu-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-1ln6auspe-o-std-black-305m</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-1ln6auspe-o-std-black-305m.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/nc-1ln6uu-cca-o-std-grey-305m</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-nc-1ln6uu-cca-o-std-grey-305m.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-1m6ua-15u-o-std-100pcs</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-1m6ua-15u-o-std-100pcs.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-1m6aua-o-std-100pcs</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-1m6aua-o-std-100pcs.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000165740/ds-1m6aua-dimensionsimage-1-3ef3e346.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-1m6apb-o-std-50pcs</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-1m6apb-o-std-50pcs.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000165741/ds-1m6apb-dimensionsimage-1-c8184e47.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wr3n-o-std-uk</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3wr3n-o-std-uk.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wr4g3n-o-std-uk</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3wr3n-o-std-uk.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000165528/ds-3wr4g3n-o-dimensionsimage-1-71728cea.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wr12c-o-std-uk</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3wr12c-o-std-uk.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wr15x-o-std-uk</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3wr15x-o-std-uk.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wre3n-o-std-uk</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3wre3n-o-std-uk.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162092/ds-3wre3n-v1-260faa04.webp</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000162092/ds-3wre3n-dimensionsimage-1-9cf05982.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wr4g12c-o-std-uk</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3wr4g12c-o-std-uk.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000076240/6889aa772500f7bd8762d1411c20084-e4310f4c.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0105d-o-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0105d-o-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000073646/ds-3e0105d-o-dimensionsimage-1-6f54df1d.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0108d-o-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0108d-o-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000073647/ds-3e0108d-o-dimensionsimage-1-dad7a9ae.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0116r-o-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0116r-o-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000062800/ds-3e0116r-o-dimensionsimage-1-276ecca7.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0505-o-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0505-o-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0508-o-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0508-o-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0516r-o</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0516r-o.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000112707/ds-3e0516r-o-dimensionsimage-1-06feac4e.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0524r-o</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0524r-o.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000112708/ds-3e0524r-o-dimensionsimage-1-6fd8d03b.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0106p-e-m-b-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0106p-e-m-b-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000019321/ds-3e0106p-em-dimensionsimage-1-d343f5c4.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0310p-e-m-b-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0310p-e-m-b-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0505p-e-m-o-std-b</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0505p-e-m-o-std-b.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000007570/ds-3e0505p-em-dimensionsimage-1-bf228f6c.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0510p-e-m-o-std-b</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0510p-e-m-o-std-b.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000007571/ds-3e0510p-em-dimensionsimage-1-a7a4da2b.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0518p-e-o-std-b</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0518p-e-o-std-b.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000008120/ds-3e0518p-e-2-770326f8.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e0526p-e-o-std-b</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e0526p-e-o-std-b.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000159927/ds-3e0526p-e-b-dimensionsimage-1-1b483055.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e1106p-ei-m-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e1106p-ei-m-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e1310p-ei-m-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e1310p-ei-m-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e1318p-ei-m-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e1318p-ei-m-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e1326p-ei-m-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e1326p-ei-m-o-std.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e1518p-ei-o-std-v2</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e1518p-ei-o-std-v2.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000034947/ds-3e1518p-ei-dimensionsimage-1-0487893e.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e1526p-ei-o-std-v2</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e1526p-ei-o-std-v2.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000034946/ds-3e1526p-ei-dimensionsimage-1-b8631bb8.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3e1552p-si-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3e1552p-si-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000071260/ds-3e1552p-si-dimensionsimage-1-5e344f22.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wf0bc-2nt-b-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3wf0bc-2nt-b-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000081760/ds-3wf0bc-2nt-dimensionsimage-1-46f4592a.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wf3000-ei-5ac-p-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3wf3000-ei-5ac-p-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000160302/ds-3wf3000-ei-5acp-dimensionsimage-1-a8ed20bf.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-3wf02-5ac-d-o-std</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3wf3000-ei-5ac-p-o-std.png</image:loc></image:image>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000148883/ds-3wf02-5acd-dimensionsimage-1-748829c5.webp</image:loc></image:image>
   </url>
 </urlset>
