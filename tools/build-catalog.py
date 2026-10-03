@@ -610,6 +610,65 @@ def render_category(name, items, products):
 """
 
 
+# Ready-made kits for /quote. Prices are summed from the catalogue at build
+# time; the hard drive and installation are quoted after a site survey.
+PACKAGES = [
+    {
+        "name": "Home starter kit",
+        "for": "Homes and small compounds",
+        "summary": "Four 1080p cameras with 20 m night vision, a 4-channel DVR, power and cabling.",
+        "items": [("DS-2CE16D0T-EXIPF(3.6mm)(O-STD)", 2), ("DS-2CE76D0T-EXIPF(2.8mm)(O-STD)", 2),
+                  ("DS-7104HGHI-M1(STD)(C)", 1), ("DS-2FA1225-C4(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 90m", 1)],
+    },
+    {
+        "name": "Shop & office ColorVu kit",
+        "for": "Shops, offices and small businesses",
+        "summary": "Eight full-colour night vision cameras with audio, an 8-channel DVR, power and cabling.",
+        "items": [("DS-2CE10DF0T-LPFS(3.6mm)(O-STD)", 4), ("DS-2CE70DF0T-LPFS(2.8mm)(O-STD)", 4),
+                  ("DS-7108HGHI-M1(STD)(C)", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1)],
+        "popular": True,
+    },
+    {
+        "name": "4MP IP ColorVu kit",
+        "for": "Premium homes and businesses",
+        "summary": "Four 4MP smart hybrid light IP cameras on a 4-port PoE NVR — one cable per camera, no separate power.",
+        "items": [("DS-2CD1047G3-LIU(4mm)(O-STD)", 4), ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1)],
+    },
+]
+
+
+def packages_html(products):
+    by_model = {p["model"]: p for p in products}
+    cards = []
+    for kit in PACKAGES:
+        missing = [model for model, _ in kit["items"] if model not in by_model]
+        if missing:
+            sys.exit(f"package {kit['name']!r}: not in catalogue: {missing}")
+        total = sum(by_model[model]["price"] * qty for model, qty in kit["items"])
+        rows = "".join(
+            f'<li><span>{qty} &times; <a href="{esc(by_model[model]["url"])}">{esc(by_model[model]["name"])}</a></span>'
+            f'<span>KES {catalog.price_label(by_model[model]["price"] * qty)}</span></li>'
+            for model, qty in kit["items"]
+        )
+        ask = wa_link(f"Hi NE, I'm interested in the {kit['name']} (equipment from KES {catalog.price_label(total)}). "
+                      "Please quote with hard drive and installation.")
+        flag = '<span class="kit-flag">Most popular</span>' if kit.get("popular") else ""
+        cards.append(f"""<article class="kit{' kit-pop' if kit.get('popular') else ''}">
+      {flag}<div class="kit-for">{esc(kit['for'])}</div>
+      <h3>{esc(kit['name'])}</h3>
+      <p>{esc(kit['summary'])}</p>
+      <div class="kit-price">KES {catalog.price_label(total)}<small>equipment</small></div>
+      <ul>{rows}</ul>
+      <a class="kit-cta" href="{esc(ask)}" target="_blank" rel="noopener">Get this kit quoted</a>
+    </article>""")
+    return "\n    ".join(cards)
+
+
+def write_quote_page(products):
+    path = ROOT / "quote.html"
+    path.write_text(fill(path.read_text(encoding="utf-8"), "packages", packages_html(products)), encoding="utf-8")
+
+
 def write_category_pages(products):
     directory = ROOT / "category"
     directory.mkdir(exist_ok=True)
@@ -740,6 +799,7 @@ def main():
     write_catalog_page(products)
     write_catalog_json_ld(products)
     categories = write_category_pages(products)
+    write_quote_page(products)
     urls = write_sitemap(products)
 
     print(f"{len(products)} product pages written to product/")
