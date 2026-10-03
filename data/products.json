@@ -8040,14 +8040,21 @@
   },
   {
     "category": "CCTV-Turbo HD",
-    "name": "4-Channel 1080p eDVR with Built-in SSD",
-    "model": "DS-E04HGHI-B",
-    "features": "4-channel Turbo HD eDVR with built-in eSSD storage — no separate hard disk needed\r\nRecords about 2 weeks of footage from 4 cameras (Hikvision figure, default settings)\r\nSilent, low-power solid-state storage\r\n3-year warranty",
+    "name": "4-Channel 1080p eDVR with Built-in 512 GB SSD",
+    "model": "DS-E04HGHI-D",
+    "features": "4-channel Turbo HD eDVR with built-in 512 GB eSSD (480 GB usable) — no separate hard disk needed\r\nRecords about 4 weeks of footage from 4 cameras (Hikvision figure, default settings)\r\nSilent, low-power solid-state storage\r\n3-year warranty",
     "pcsCtn": "",
     "retail": 9000,
     "price": 9000,
-    "image": "images/hik/m000063866/essd-dvr.webp",
+    "image": "images/hik/m000073226/essd-dvr.webp",
     "id": 205,
+    "slug": "ds-e04hghi-d",
+    "url": "/product/ds-e04hghi-d",
+    "highlights": [
+      "3-year warranty",
+      "Built-in 512 GB SSD — no separate hard disk needed",
+      "About 4 weeks of recording from 4 cameras (Hikvision figure)"
+    ],
     "keyFeatures": [
       "Powered by eSSD technology",
       "Deep learning based human and vehicle targets classification of Motion Detection 2.0",
@@ -8095,11 +8102,11 @@
           ],
           [
             "HDMI Output",
-            "1-ch, 1920 × 1080/60Hz, 1280 × 1024/60Hz, 1280 × 720/60Hz"
+            "1-ch, 1920 × 1080/60 Hz, 1280 × 1024/60 Hz, 1280 × 720/60 Hz"
           ],
           [
             "VGA Output",
-            "1-ch, 1920 × 1080/60Hz, 1280 × 1024/60Hz, 1280 × 720/60Hz"
+            "1-ch, 1920 × 1080/60 Hz, 1280 × 1024/60 Hz, 1280 × 720/60 Hz"
           ],
           [
             "Video Output Mode",
@@ -8178,7 +8185,7 @@
         "rows": [
           [
             "Capacity",
-            "Built-in 330 GB eSSD (300 GB available) Note: The device can store about 2 weeks videos for 4-ch analog cameras (default parameters), this estimation is for reference only."
+            "Built-in 512 GB eSSD (480 GB available) Note: The device can store about 4 weeks videos for 4-ch analog cameras (default parameters), this estimation is for reference only."
           ],
           [
             "USB Interface",
@@ -8211,7 +8218,7 @@
           ],
           [
             "Dimension (W × D × H)",
-            "152 × 113 × 46 mm(6.0 × 4.4 × 1.8 inch)"
+            "151 × 121 × 46 mm (5.94 × 4.76 × 1.81 inch)"
           ],
           [
             "",
@@ -8220,32 +8227,32 @@
         ]
       }
     ],
-    "datasheet": "https://assets.hikvision.com/prd/public/all/doc/m000063866/Datasheet-of-DS-E04HGHI-B_V4.71.200_20230413.pdf",
-    "hikvisionUrl": "https://www.hikvision.com/en/products/Turbo-HD-Products/DVR/edvr-series/ds-e04hghi-b/",
-    "slug": "ds-e04hghi-b",
-    "url": "/product/ds-e04hghi-b",
-    "highlights": [
-      "3-year warranty",
-      "Built-in SSD storage — no separate hard disk needed",
-      "About 2 weeks of recording from 4 cameras (Hikvision figure)"
-    ]
+    "datasheet": "https://assets.hikvision.com/prd/normal/all/doc/m000073226/Datasheet-of-DS-E04HGHI-D_V4.71.200_20230413.pdf",
+    "hikvisionUrl": "https://www.hikvision.com/en/products/Turbo-HD-Products/DVR/edvr-series/ds-e04hghi-d/"
   },
   {
     "category": "CCTV-Turbo HD",
-    "name": "8-Channel 1080p eDVR with Built-in SSD",
-    "model": "DS-E08HGHI-B",
-    "features": "8-channel Turbo HD eDVR with built-in eSSD storage — no separate hard disk needed\r\nRecords about 2 weeks of footage from 8 cameras (Hikvision figure, default settings)\r\nSilent, low-power solid-state storage\r\n3-year warranty",
+    "name": "8-Channel 1080p eDVR with Built-in 1 TB SSD",
+    "model": "DS-E08HGHI-D",
+    "features": "8-channel Turbo HD eDVR with built-in 1 TB eSSD (960 GB usable) — no separate hard disk needed\r\nRecords about 4 weeks of footage from 8 cameras (Hikvision figure, default settings)\r\nSilent, low-power solid-state storage\r\n3-year warranty",
     "pcsCtn": "",
     "retail": 11000,
     "price": 11000,
-    "image": "images/hik/m000063866/essd-dvr.webp",
+    "image": "images/hik/m000073227/essd-dvr.webp",
     "id": 206,
+    "slug": "ds-e08hghi-d",
+    "url": "/product/ds-e08hghi-d",
+    "highlights": [
+      "3-year warranty",
+      "Built-in 1 TB SSD — no separate hard disk needed",
+      "About 4 weeks of recording from 8 cameras (Hikvision figure)"
+    ],
     "keyFeatures": [
       "Powered by eSSD technology",
       "Deep learning based human and vehicle targets classification of Motion Detection 2.0",
       "Scene-adaptive bitrate control video compression",
-      "Up to 1080p Lite@15 fps encoding capability",
       "Low power consumption",
+      "Up to 1080p Lite@15 fps encoding capability",
       "Audio via coaxial cable"
     ],
     "specTable": [
@@ -8370,7 +8377,7 @@
         "rows": [
           [
             "Capacity",
-            "Built-in 512 GB eSSD (480 GB available) Note: The device can store about 2 weeks videos for 8-ch analog cameras (default parameters), this estimation is for reference only."
+            "Built-in 1024 GB eSSD (960 GB available) Note: The device can store about 4 weeks videos for 8-ch analog cameras (default parameters), this estimation is for reference only."
           ],
           [
             "USB Interface",
@@ -8412,15 +8419,8 @@
         ]
       }
     ],
-    "datasheet": "https://assets.hikvision.com/prd/public/all/doc/m000063867/Datasheet-of-DS-E08HGHI-B_V4.71.200_20230413.pdf",
-    "hikvisionUrl": "https://www.hikvision.com/en/products/Turbo-HD-Products/DVR/edvr-series/ds-e08hghi-b/",
-    "slug": "ds-e08hghi-b",
-    "url": "/product/ds-e08hghi-b",
-    "highlights": [
-      "3-year warranty",
-      "Built-in SSD storage — no separate hard disk needed",
-      "About 2 weeks of recording from 8 cameras (Hikvision figure)"
-    ]
+    "datasheet": "https://assets.hikvision.com/prd/normal/all/doc/m000073227/Datasheet-of-DS-E08HGHI-D_V4.71.200_20230413.pdf",
+    "hikvisionUrl": "https://www.hikvision.com/en/products/Turbo-HD-Products/DVR/edvr-series/ds-e08hghi-d/"
   },
   {
     "category": "CCTV-IP",
@@ -32447,9 +32447,9 @@
   },
   {
     "category": "Accessories",
-    "name": "Camera Connector Set (BNC, DC Jack & RJ45)",
+    "name": "Camera Connector Set (2× BNC, DC Jack & RJ45)",
     "model": "CONN-SET",
-    "features": "One set per camera, KES 100: BNC connectors and a DC power jack for Turbo HD cameras, or RJ45 plugs for IP cameras\r\nUsed to terminate the camera cable neatly at the camera and the recorder\r\nIncluded in every NE camera bundle",
+    "features": "One set per camera, KES 100: 2 × BNC connectors, 1 × DC power jack and 1 × RJ45 plug\r\nTerminates the camera cable neatly at the camera and the recorder\r\nWorks for Turbo HD (BNC + DC jack) and IP (RJ45) cameras\r\nIncluded in every NE camera bundle",
     "pcsCtn": "",
     "retail": 100,
     "price": 100,

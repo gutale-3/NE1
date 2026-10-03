@@ -37,6 +37,14 @@
         if (ok) visible++;
         card.hidden = !ok || visible > state.shown;
       });
+      // Category headings only make sense in the full, unsearched list.
+      var showHeadings = state.cat === 'All' && !state.q.trim();
+      Array.prototype.forEach.call(grid.querySelectorAll('.pgroup'), function (heading) {
+        var group = heading.getAttribute('data-group');
+        heading.hidden = !showHeadings || !cards.some(function (card) {
+          return !card.hidden && card.getAttribute('data-cat') === group;
+        });
+      });
       if (more) more.hidden = visible <= state.shown;
       if (empty) empty.hidden = visible !== 0;
       if (onProductsPage) {

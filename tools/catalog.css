@@ -31,7 +31,12 @@
 .pc-links { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 700; }
 .pc-links .pc-wa { color: #1B9E4B; position: relative; z-index: 2; }
 .pc-photos { position: absolute; top: 10px; left: 10px; background: rgba(15,44,61,0.78); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; z-index: 2; }
-.pc[hidden] { display: none; }
+.pc[hidden], .pgroup[hidden] { display: none; }
+.pgroup { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 10px; margin: 18px 0 -4px; padding-bottom: 8px; border-bottom: 2px solid #E7ECF1; font-size: 19px; font-weight: 800; }
+.pgroup:first-child { margin-top: 0; }
+.pgroup a { color: #10202E; text-decoration: none; }
+.pgroup a:hover { color: #086E9E; }
+.pgroup span { font-size: 13px; font-weight: 600; color: #4A5B68; }
 .pempty { text-align: center; color: #4A5B68; padding: 32px 0; }
 .pmore { text-align: center; margin-top: 32px; }
 .pmore button { background: #fff; border: 1.5px solid #0B8FCB; color: #086E9E; padding: 13px 30px; border-radius: 9px; font-weight: 700; font-size: 14.5px; cursor: pointer; font-family: inherit; }

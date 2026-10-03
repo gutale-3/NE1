@@ -542,7 +542,20 @@ def write_catalog_page(products):
     path = ROOT / "products.html"
     source = path.read_text(encoding="utf-8")
     source = fill(source, "controls", controls_html(products))
-    source = fill(source, "grid", "\n".join(catalog_card_html(p) for p in products))
+    order = list(site_layout.CATEGORIES)
+    grouped = sorted(products, key=lambda p: order.index(p["category"]) if p["category"] in order else len(order))
+    parts, current = [], None
+    for product in grouped:
+        if product["category"] != current:
+            current = product["category"]
+            count = sum(1 for p in products if p["category"] == current)
+            label = site_layout.CATEGORIES.get(current, (None, None, current))[2]
+            parts.append(
+                f'<h2 class="pgroup" data-group="{esc(current)}">'
+                f'<a href="{category_page_url(current)}">{esc(label)}</a> <span>{count} products</span></h2>'
+            )
+        parts.append(catalog_card_html(product))
+    source = fill(source, "grid", "\n".join(parts))
     source = re.sub(r'<style id="catalog-css">[\s\S]*?</style>', lambda _: f'<style id="catalog-css">\n{CATALOG_CSS}\n</style>', source, count=1)
     source = re.sub(r"\d+ genuine Hikvision products across \d+ categories",
                     f"{len(products)} genuine Hikvision products across {len(catalog.categories(products))} categories", source)
@@ -673,18 +686,18 @@ PACKAGES = [
         "id": "hd-home", "group": "hd",
         "name": "HD home starter",
         "for": "Homes and small compounds",
-        "summary": "Four 1080p cameras with 20 m night vision, a 4-channel eDVR with built-in SSD storage, power, cabling, clips and connectors.",
+        "summary": "Four 1080p cameras with 20 m night vision, a 4-channel eDVR with built-in 512 GB SSD, power, cabling, clips and connectors.",
         "items": [("DS-2CE16D0T-EXIPF(3.6mm)(O-STD)", 2), ("DS-2CE76D0T-EXIPF(2.8mm)(O-STD)", 2),
-                  ("DS-E04HGHI-B", 1), ("DS-2FA1225-C4(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 90m", 1),
+                  ("DS-E04HGHI-D", 1), ("DS-2FA1225-C4(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 90m", 1),
                   ("CONN-SET", 4), ("CLIPS-100", 1)],
     },
     {
         "id": "hd-colorvu", "group": "hd", "popular": True,
         "name": "HD ColorVu shop & office",
         "for": "Shops, offices and small businesses",
-        "summary": "Eight full-colour night vision cameras with audio, an 8-channel eDVR with built-in SSD storage, power, cabling, clips and connectors.",
+        "summary": "Eight full-colour night vision cameras with audio, an 8-channel eDVR with built-in 1 TB SSD, power, cabling, clips and connectors.",
         "items": [("DS-2CE10DF0T-LPFS(3.6mm)(O-STD)", 4), ("DS-2CE70DF0T-LPFS(2.8mm)(O-STD)", 4),
-                  ("DS-E08HGHI-B", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1),
+                  ("DS-E08HGHI-D", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1),
                   ("CONN-SET", 8), ("CLIPS-100", 2)],
     },
     {
