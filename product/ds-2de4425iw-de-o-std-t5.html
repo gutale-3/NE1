@@ -29,7 +29,8 @@
  "category": "CCTV-IP",
  "description": "· Focuses on human and vehicle targets classification based on deep learning\r\n· Support face capture. Up to 5 faces captured at the same time\r\n· 1/2.8\" progressive scan CMOS\r\n· High quality imaging with 4 MP resolution\r\n· Excellent low-light performance with powered-by-DarkFighter technology\r\n· 25× optical zoom and 16× digital zoom provide close up views over expansive areas\r\n· Expansive night view with up to 100 m IR distance\r\n· Support H.265+/H.265 video compression",
  "image": [
-  "https://nashnaal.com/images/075.png"
+  "https://nashnaal.com/images/075.png",
+  "https://nashnaal.com/images/hik/m000044249/ds-2de4425iw-des6-dimensionsimage-1-ffa1a06e.webp"
  ],
  "brand": {
   "@type": "Brand",
@@ -153,10 +154,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -192,7 +200,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 </style>
@@ -244,8 +255,18 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/images/075.png" alt="4 MP 25X Powered by DarkFighter IR PTZ Camera — DS-2DE4425IW-DE(O-STD)(T5)" fetchpriority="high" decoding="async">
+      <style>.gallery #g1:checked ~ .shot .s1 { display: flex; } .gallery #g1:checked ~ .thumbs label[for=g1] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g1:focus-visible ~ .thumbs label[for=g1] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g2:checked ~ .shot .s2 { display: flex; } .gallery #g2:checked ~ .thumbs label[for=g2] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g2:focus-visible ~ .thumbs label[for=g2] { outline: 2px solid #086E9E; outline-offset: 2px; }</style>
+      <div class="gallery">
+        <input type="radio" name="gallery" id="g1" checked aria-label="Photo 1 of 2">
+        <input type="radio" name="gallery" id="g2" aria-label="Photo 2 of 2">
+        <div class="shot">
+          <div class="slide s1"><img src="/images/075.png" alt="4 MP 25X Powered by DarkFighter IR PTZ Camera — DS-2DE4425IW-DE(O-STD)(T5) — view 1" fetchpriority="high" decoding="async"></div>
+          <div class="slide s2"><img src="/images/hik/m000044249/ds-2de4425iw-des6-dimensionsimage-1-ffa1a06e.webp" alt="4 MP 25X Powered by DarkFighter IR PTZ Camera — DS-2DE4425IW-DE(O-STD)(T5) — view 2" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="thumbs">
+          <label for="g1"><img src="/images/075.png" alt="" loading="lazy" decoding="async"></label>
+          <label for="g2"><img src="/images/hik/m000044249/ds-2de4425iw-des6-dimensionsimage-1-ffa1a06e.webp" alt="" loading="lazy" decoding="async"></label>
+        </div>
       </div>
 
       <div>
@@ -274,23 +295,16 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
       </div>
     </div>
 
-    
+    <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>1/2.8&quot; progressive scan CMOS</li><li>High quality imaging with 4 MP resolution</li><li>Excellent low-light performance with powered-by-DarkFighter technology</li><li>25× optical zoom and 16× digital zoom provide close up views over expansive areas</li><li>WDR, HLC, BLC, 3D DNR, defog, regional exposure, regional focus</li><li>Expansive night view with up to 100 m IR distance</li><li>Support H.265+/H.265 video compression</li></ul>
+    </section>
 
     <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>Focuses on human and vehicle targets classification based on deep learning</li>
-            <li>Support face capture. Up to 5 faces captured at the same time</li>
-            <li>1/2.8&quot; progressive scan CMOS</li>
-            <li>High quality imaging with 4 MP resolution</li>
-            <li>Excellent low-light performance with powered-by-DarkFighter technology</li>
-            <li>25× optical zoom and 16× digital zoom provide close up views over expansive areas</li>
-            <li>Expansive night view with up to 100 m IR distance</li>
-            <li>Support H.265+/H.265 video compression</li>
-        </ul>
-      </div>
-      
+      <div class="spec-table"><details class="spec-group" open><summary>Camera<span>22</span></summary><table><tr><th scope="row">Image Sensor</th><td>1/2.8&quot; progressive scan CMOS</td></tr><tr><th scope="row">Min. Illumination</th><td>color: 0.005Lux @ (F1.6, AGC ON); B/W: 0.001Lux @ (F1.6, AGC ON);0 Lux with IR</td></tr><tr><th scope="row">Shutter Speed</th><td>1 s to 1/30,000 s</td></tr><tr><th scope="row">Slow Shutter</th><td>yes</td></tr><tr><th scope="row">Focus</th><td>semi-auto;manual;auto</td></tr><tr><th scope="row">Day &amp; Night</th><td>ICR</td></tr><tr><th scope="row">Day/Night Switch</th><td>day, night, auto, scheduled-switch</td></tr><tr><th scope="row">BLC</th><td>yes</td></tr><tr><th scope="row">WDR</th><td>120 dB WDR</td></tr><tr><th scope="row">HLC</th><td>yes</td></tr><tr><th scope="row">3D DNR</th><td>yes</td></tr><tr><th scope="row">Defog</th><td>yes</td></tr><tr><th scope="row">EIS</th><td>no</td></tr><tr><th scope="row">Regional Exposure</th><td>yes</td></tr><tr><th scope="row">Regional Focus</th><td>yes</td></tr><tr><th scope="row">Image Settings</th><td>saturation;brightness;contrast;sharpness</td></tr><tr><th scope="row">Image Parameters Switch</th><td>yes</td></tr><tr><th scope="row">White Balance</th><td>MWB;indoor;outdoor;fluorescent lamp;sodium lamp;ATW;auto;Locked WB</td></tr><tr><th scope="row">Digital Zoom</th><td>16x</td></tr><tr><th scope="row">Optical Zoom</th><td>25x</td></tr><tr><th scope="row">Privacy Mask</th><td>up to 24 masks;mask color configurable</td></tr><tr><th scope="row">SNR</th><td>＞52dB</td></tr></table></details><details class="spec-group" open><summary>Lens<span>4</span></summary><table><tr><th scope="row">Focal Length</th><td>4.8 mm to 120 mm, 25× Optical</td></tr><tr><th scope="row">Zoom Speed</th><td>approx. 3.6 s</td></tr><tr><th scope="row">FOV</th><td>Horizontal field of view: 55° to 2.4° (wide-tele), Vertical field of view: 33° to 1.4° (wide-tele), Diagonal field of view: 61.5° to 2.8° (wide-tele)</td></tr><tr><th scope="row">Aperture</th><td>F1.6</td></tr></table></details><details class="spec-group"><summary>Illuminator<span>1</span></summary><table><tr><th scope="row">IR Distance</th><td>100 m</td></tr></table></details><details class="spec-group"><summary>PTZ<span>14</span></summary><table><tr><th scope="row">Movement Range (Pan)</th><td>360°</td></tr><tr><th scope="row">Movement Range (Tilt)</th><td>-15° to 90° (auto flip)</td></tr><tr><th scope="row">Pan Speed</th><td>pan speed: configurable from 0.1° to 80°/s; preset speed: 80°/s</td></tr><tr><th scope="row">Tilt Speed</th><td>tilt speed: configurable from 0.1° to 80°/s, preset speed 80°/s</td></tr><tr><th scope="row">Proportional Zoom</th><td>yes</td></tr><tr><th scope="row">Presets</th><td>300</td></tr><tr><th scope="row">Patrol Scan</th><td>8 patrols, up to 32 presets for each patrol</td></tr><tr><th scope="row">Pattern Scan</th><td>4 pattern scans</td></tr><tr><th scope="row">Power-off Memory</th><td>yes</td></tr><tr><th scope="row">Park Action</th><td>preset;patrol scan;pattern scan;auto scan;tilt scan;random scan;frame scan;panorama scan</td></tr><tr><th scope="row">3D Positioning</th><td>yes</td></tr><tr><th scope="row">PTZ Status Display</th><td>yes</td></tr><tr><th scope="row">Preset Freezing</th><td>yes</td></tr><tr><th scope="row">Scheduled Task</th><td>preset;auto scan;random scan;frame scan;patrol scan;pattern scan;panorama scan;tilt scan;dome reboot;dome adjust;aux output</td></tr></table></details><details class="spec-group"><summary>Video<span>13</span></summary><table><tr><th scope="row">Max. Resolution</th><td>2560 × 1440</td></tr><tr><th scope="row">Stream Type</th><td>main stream;sub-stream;third stream</td></tr><tr><th scope="row">Main Stream</th><td>50 Hz: 25 fps (2560 × 1440, 1920 × 1080, 1280 × 960, 1280 × 720) 60 Hz: 30 fps (2560 × 1440, 1920 × 1080, 1280 × 960, 1280 × 720)</td></tr><tr><th scope="row">Sub-Stream</th><td>50 Hz: 25 fps (704 × 576, 640 × 480, 352 × 288) 60 Hz: 30 fps (704 × 480, 640 × 480, 352 × 240)</td></tr><tr><th scope="row">Third Stream</th><td>50 Hz: 25 fps (1920 × 1080, 1280 × 960, 1280 × 720, 704 × 576, 640 × 480, 352 × 288) 60 Hz: 30 fps (1920 × 1080, 1280 × 960, 1280 × 720, 704 × 480, 640 × 480, 352 × 240)</td></tr><tr><th scope="row">Video Compression</th><td>H.265;H.264;MJPEG</td></tr><tr><th scope="row">Video Bit Rate</th><td>32 kbps to 16384 kbps</td></tr><tr><th scope="row">H.264 Type</th><td>baseline profile;main profile;high profile</td></tr><tr><th scope="row">H.265 Type</th><td>main profile</td></tr><tr><th scope="row">H.264+</th><td>yes</td></tr><tr><th scope="row">H.265+</th><td>yes</td></tr><tr><th scope="row">SVC</th><td>yes</td></tr><tr><th scope="row">ROI</th><td>fixed region;main stream, sub-stream and third stream respectively support eight fixed areas</td></tr></table></details><details class="spec-group"><summary>Audio<span>4</span></summary><table><tr><th scope="row">Audio Compression</th><td>G.711alaw;G.711ulaw;G.722.1;G.726;MP2L2;PCM</td></tr><tr><th scope="row">Audio Bit rate</th><td>MP2L2: 32 kbps, 40 kbps, 48 kbps, 56 kbps, 64 kbps, 80 kbps, 96 kbps, 112 kbps, 128 kbps, 144 kbps, 160 kbps, 192 kbps</td></tr><tr><th scope="row">Audio Sampling Rate</th><td>MP2L2: 16 kHz, 32 kHz, 48 kHz;PCM: 8 kHz, 16 kHz, 32 kHz, 48 kHz</td></tr><tr><th scope="row">Environment Noise Filtering</th><td>yes</td></tr></table></details><details class="spec-group"><summary>Smart Features<span>4</span></summary><table><tr><th scope="row">Basic Event</th><td>motion detection;alarm input;alarm output;video tampering alarm;exception</td></tr><tr><th scope="row">Smart Event</th><td>intrusion detection;line crossing detection;region entrance detection;region exiting detection;unattended baggage detection;object removal detection;audio exception detection;face detection</td></tr><tr><th scope="row">Smart Record</th><td>ANR;Dual-VCA</td></tr><tr><th scope="row">Alarm Linkage</th><td>memory card video recording;alarm output;sending email;notify surveillance center; upload to FTP;NAS video recording</td></tr></table></details><details class="spec-group"><summary>Network<span>8</span></summary><table><tr><th scope="row">Network Storage</th><td>NAS (NFS, SMB/ CIFS)</td></tr><tr><th scope="row">Protocols</th><td>IPv4/IPv6;HTTP;HTTPS;802.1x;Qos;FTP;UPnP;SNMP;DNS;DDNS;NTP;RTSP;TCP/IP;UDP;IGMP;ICMP;DHCP;PPPoE;Bonjour;SMTP;RTCP;RTP;ISUP</td></tr><tr><th scope="row">API</th><td>ISAPI;Hikvision SDK;Third-party management platform;Open-ended API;Hik-Connect;ISUP;Open Network Video Interface;CGI</td></tr><tr><th scope="row">Simultaneous Live View</th><td>20</td></tr><tr><th scope="row">User/Host</th><td>32</td></tr><tr><th scope="row">Security Measures</th><td>Authenticated username and password;MAC address binding;HTTPS encryption;802.1X authenticated access;IP address filter</td></tr><tr><th scope="row">Client</th><td>iVMS-4200;Hik-Connect</td></tr><tr><th scope="row">Web Browser</th><td>IE10-11, Chrome 57+, Firefox 52+, Safari 12+</td></tr></table></details><details class="spec-group"><summary>Interface<span>6</span></summary><table><tr><th scope="row">Communication Interface</th><td>RJ45, self-adaptive 10M/100M Ethernet port</td></tr><tr><th scope="row">On-board Storage</th><td>support microSD/microSDHC/microSDXC cards;up to 256 GB</td></tr><tr><th scope="row">Alarm Input</th><td>1 alarm input</td></tr><tr><th scope="row">Alarm Output</th><td>1 alarm output</td></tr><tr><th scope="row">Audio Input</th><td>1 audio input, 2.0 to 2.4Vp-p, 1k Ohm±10%</td></tr><tr><th scope="row">Audio Output</th><td>1 audio output, line level, impedance: 600 Ω</td></tr></table></details><details class="spec-group"><summary>General<span>8</span></summary><table><tr><th scope="row">Power</th><td>12 VDC;PoE (802.3at)</td></tr><tr><th scope="row">Power Consumption and Current</th><td>Max. 18 W, including max. 1.6 W for heater and 9 W for IR</td></tr><tr><th scope="row">Operating Conditions</th><td>-30℃ to 65℃ (-22°F to 149°F) ;humidity lower than 90%RH</td></tr><tr><th scope="row">Reset</th><td>yes</td></tr><tr><th scope="row">Demist</th><td>yes</td></tr><tr><th scope="row">Material</th><td>ADC12</td></tr><tr><th scope="row">Dimensions</th><td>Ø 164.5 mm × 290 mm (Ø 6.48&quot; × 11.42&quot;)</td></tr><tr><th scope="row"></th><td>Approx. 2 kg (4.41 lb.)</td></tr></table></details><details class="spec-group"><summary>Approval<span>1</span></summary><table><tr><th scope="row">Protection</th><td>IP66 Standard, 6000V Lightning Protection, Surge Protection and Voltage Transient Protection</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://assets.hikvision.com/prd/normal/all/doc/m000044249/Datasheet-of-DS-2DE4425IW-DES6_V5.6.10_20220714.pdf" target="_blank" rel="noopener">Download datasheet (PDF)</a><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/IP-Products/PTZ-Cameras/Pro-Series/ds-2de4425iw-de-s6-/" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-2DE4425IW-DE(O-STD)(T5) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 

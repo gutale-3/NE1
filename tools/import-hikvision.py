@@ -32,6 +32,10 @@ CACHE = HIK / "cache"
 PLAN = HIK / "plan.json"
 IMAGE_DIR = ROOT / "images/hik"
 MAX_GALLERY = 6
+# Family pages that are a different hardware version from the model we sell,
+# so their photos could show the wrong product.
+SKIP_FAMILY_PAGES = ("ds-d5b65rb-d", "ds-d5b75rb-d", "ds-3wr12c-e", "ds-3wr15x-h",
+                     "ds-3e0505-e", "ds-3e0508-e-b-", "ds-k7p03a")
 VIEW_ORDER = ["main_mainview", "outline_leftside45view", "outline_rightside45view", "outline_drawingview"]
 
 
@@ -40,6 +44,14 @@ def norm(model):
     model = model.upper().replace("/OVERSEAS", "")
     model = re.sub(r"\((?!BLACK|WHITE)[^)]*\)", "", model)
     return re.sub(r"\s+", "", model.split(" ")[0]).strip(",")
+
+
+FULLWIDTH = str.maketrans({"、": ", ", "：": ": ", "，": ", ", "；": "; ", "（": " (", "）": ")"})
+
+
+def tidy(text):
+    """Hikvision copy sometimes carries Chinese punctuation; normalise it."""
+    return re.sub(r"\s+", " ", text.translate(FULLWIDTH)).replace(" ,", ",").strip()
 
 
 def cached(url):
@@ -99,8 +111,8 @@ def fetch_image(url, dest):
     if dest.exists():
         return True
     parts = urllib.parse.urlsplit(url)
-    quoted = urllib.parse.urlunsplit(parts._replace(path=urllib.parse.quote(parts.path)))
-    request = urllib.request.Request(quoted, headers={"User-Agent": "Mozilla/5.0"})
+    quoted = urllib.parse.urlunsplit(parts._replace(path=urllib.parse.quote(parts.path, safe="/%")))
+    request = urllib.request.Request(quoted, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://www.hikvision.com/"})
     try:
         with urllib.request.urlopen(request, timeout=60) as response, tempfile.NamedTemporaryFile() as tmp:
             tmp.write(response.read())
@@ -133,6 +145,8 @@ def main():
     for product in products:
         slug = catalog.slugify(product["model"]) if "slug" not in product else product["slug"]
         page, sub_id, quality = find_match(product, plan.get(slug, []))
+        if quality == "family" and page["url"].rstrip("/").rsplit("/", 1)[1] in SKIP_FAMILY_PAGES:
+            page = None
         for key in ("gallery", "keyFeatures", "specTable", "datasheet", "hikvisionUrl"):
             product.pop(key, None)
         if not page:
@@ -159,6 +173,7 @@ def main():
             applies, text = variant_line_applies(line, product["model"])
             if quality == "family" and text != line:
                 continue
+            text = tidy(text)
             if applies and text not in features:
                 features.append(text)
         if features:
@@ -167,7 +182,12 @@ def main():
         if quality == "exact":
             specs = page["specs"].get(sub_id) if sub_id else None
             if specs:
-                product["specTable"] = specs
+                # Hikvision fills non-applicable rows with "/"; drop them and any emptied group.
+                groups = [
+                    {"group": tidy(g["group"]), "rows": [[tidy(k), tidy(v)] for k, v in g["rows"] if v and v.strip() not in ("/", "-")]}
+                    for g in specs
+                ]
+                product["specTable"] = [g for g in groups if g["rows"]]
             sheets = [d for d in page["docs"] if doc_id and f"/{doc_id.lower()}/" in d.lower() and "datasheet" in d.lower()]
             if sheets:
                 product["datasheet"] = sheets[0]

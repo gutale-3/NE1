@@ -64,6 +64,25 @@ them fall back to the single photo and the `features` bullet list.
 | `datasheet` | URL or `/assets/...pdf` | "Download datasheet (PDF)" button |
 | `hikvisionUrl` | URL | "View on hikvision.com" button |
 
+### Importing photos and specs from hikvision.com
+
+`tools/hikvision/` fills the fields above from Hikvision's own product pages.
+hikvision.com sits behind a JavaScript bot check, so the scraper drives a real
+browser (Playwright, preinstalled in Claude Code cloud sessions):
+
+```
+node tools/hikvision/scrape.js sitemap   # save Hikvision's sitemap
+python3 tools/hikvision/make-plan.py     # match catalogue models to pages
+node tools/hikvision/scrape.js           # fetch pages (cached, ~1 h for all)
+python3 tools/import-hikvision.py        # photos -> images/hik/, fill fields
+python3 tools/build-catalog.py           # regenerate product pages
+```
+
+The importer picks the exact variant from each family page (for example
+`-LIU` rather than `-LIUF/SRB`), so specs and features match the model sold.
+Products only matched to a family page get photos and general features but no
+spec table. `tools/hikvision/report.json` lists what matched.
+
 These fields are kept out of `js/products.js` so the catalog page stays light.
 
 Because product pages live one directory down, their internal links are

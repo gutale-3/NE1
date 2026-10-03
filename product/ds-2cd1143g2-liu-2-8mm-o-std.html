@@ -29,7 +29,10 @@
  "category": "CCTV-IP",
  "description": "1/3\" Progressive CMOS, ICR,2560 × 1440: 20fps(P)/(N), H.265+/H.265/H.264+&H.264, DWDR, 3D DNR, BLC, IR or white light range: up to 30m, Built-in microphone, DC12V & PoE, Support mobile monitoring via Hik-Connect;\r\n*-F: SD Card Slot (up to 256GB)\r\n*power supply is not included",
  "image": [
-  "https://nashnaal.com/images/048.png"
+  "https://nashnaal.com/images/048.png",
+  "https://nashnaal.com/images/hik/m000064173/61-4afee75b.webp",
+  "https://nashnaal.com/images/hik/m000064173/61-51372153.webp",
+  "https://nashnaal.com/images/hik/m000064173/ds-2cd1143g2-liu-dimensionsimage-1-8626b10b.webp"
  ],
  "brand": {
   "@type": "Brand",
@@ -153,10 +156,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -192,7 +202,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 </style>
@@ -244,8 +257,24 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/images/048.png" alt="4MP Smart Hybrid Light Dome IP Camera — DS-2CD1143G2-LIU(2.8mm)(O-STD)" fetchpriority="high" decoding="async">
+      <style>.gallery #g1:checked ~ .shot .s1 { display: flex; } .gallery #g1:checked ~ .thumbs label[for=g1] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g1:focus-visible ~ .thumbs label[for=g1] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g2:checked ~ .shot .s2 { display: flex; } .gallery #g2:checked ~ .thumbs label[for=g2] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g2:focus-visible ~ .thumbs label[for=g2] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g3:checked ~ .shot .s3 { display: flex; } .gallery #g3:checked ~ .thumbs label[for=g3] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g3:focus-visible ~ .thumbs label[for=g3] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g4:checked ~ .shot .s4 { display: flex; } .gallery #g4:checked ~ .thumbs label[for=g4] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g4:focus-visible ~ .thumbs label[for=g4] { outline: 2px solid #086E9E; outline-offset: 2px; }</style>
+      <div class="gallery">
+        <input type="radio" name="gallery" id="g1" checked aria-label="Photo 1 of 4">
+        <input type="radio" name="gallery" id="g2" aria-label="Photo 2 of 4">
+        <input type="radio" name="gallery" id="g3" aria-label="Photo 3 of 4">
+        <input type="radio" name="gallery" id="g4" aria-label="Photo 4 of 4">
+        <div class="shot">
+          <div class="slide s1"><img src="/images/048.png" alt="4MP Smart Hybrid Light Dome IP Camera — DS-2CD1143G2-LIU(2.8mm)(O-STD) — view 1" fetchpriority="high" decoding="async"></div>
+          <div class="slide s2"><img src="/images/hik/m000064173/61-4afee75b.webp" alt="4MP Smart Hybrid Light Dome IP Camera — DS-2CD1143G2-LIU(2.8mm)(O-STD) — view 2" loading="lazy" decoding="async"></div>
+          <div class="slide s3"><img src="/images/hik/m000064173/61-51372153.webp" alt="4MP Smart Hybrid Light Dome IP Camera — DS-2CD1143G2-LIU(2.8mm)(O-STD) — view 3" loading="lazy" decoding="async"></div>
+          <div class="slide s4"><img src="/images/hik/m000064173/ds-2cd1143g2-liu-dimensionsimage-1-8626b10b.webp" alt="4MP Smart Hybrid Light Dome IP Camera — DS-2CD1143G2-LIU(2.8mm)(O-STD) — view 4" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="thumbs">
+          <label for="g1"><img src="/images/048.png" alt="" loading="lazy" decoding="async"></label>
+          <label for="g2"><img src="/images/hik/m000064173/61-4afee75b.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g3"><img src="/images/hik/m000064173/61-51372153.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g4"><img src="/images/hik/m000064173/ds-2cd1143g2-liu-dimensionsimage-1-8626b10b.webp" alt="" loading="lazy" decoding="async"></label>
+        </div>
       </div>
 
       <div>
@@ -274,28 +303,16 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
       </div>
     </div>
 
-    
+    <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>High quality imaging with 4 MP resolution</li><li>Support Human and Vehicle Detection</li><li>Smart Hybrid Light: advanced technology with long range</li><li>Built-in microphone for real-time audio security</li><li>Efficient H.265+ compression technology</li><li>Support on-board storage up to 512 GB (SD card slot) (Optional)</li><li>Water and dust resistant (IP67) and vandal resistant (IK08)</li></ul>
+    </section>
 
     <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>1/3&quot; Progressive CMOS</li>
-            <li>ICR</li>
-            <li>2560 × 1440: 20fps(P)/(N)</li>
-            <li>H.265+/H.265/H.264+&amp;H.264</li>
-            <li>DWDR</li>
-            <li>3D DNR</li>
-            <li>BLC</li>
-            <li>IR or white light range: up to 30m</li>
-            <li>Built-in microphone</li>
-            <li>DC12V &amp; PoE</li>
-            <li>Support mobile monitoring via Hik-Connect</li>
-            <li>*-F: SD Card Slot (up to 256GB)</li>
-            <li>*power supply is not included</li>
-        </ul>
-      </div>
-      
+      <div class="spec-table"><details class="spec-group" open><summary>Camera<span>6</span></summary><table><tr><th scope="row">Image Sensor</th><td>1/3&quot; Progressive Scan CMOS</td></tr><tr><th scope="row">Max. Resolution</th><td>2560 × 1440</td></tr><tr><th scope="row">Min. Illumination</th><td>Color: 0.005 Lux @ (F1.6, AGC ON),B/W: 0 Lux with IR</td></tr><tr><th scope="row">Shutter Time</th><td>1/3 s to 1/100,000 s</td></tr><tr><th scope="row">Day &amp; Night</th><td>IR cut filter</td></tr><tr><th scope="row">Angle Adjustment</th><td>Pan: 0° to 355°,tilt: 0° to 75°,rotate: 0° to 355°</td></tr></table></details><details class="spec-group" open><summary>Lens<span>5</span></summary><table><tr><th scope="row">Lens Type</th><td>Fixed focal lens, 2.8 and 4 mm optional</td></tr><tr><th scope="row">Focal Length &amp; FOV</th><td>2.8 mm, horizontal FOV 98°, vertical FOV 54°, diagonal FOV 114° 4 mm, horizontal FOV 78°, vertical FOV 42°, diagonal FOV 93°</td></tr><tr><th scope="row">Lens Mount</th><td>M12</td></tr><tr><th scope="row">Iris Type</th><td>Fixed</td></tr><tr><th scope="row">Aperture</th><td>F1.6</td></tr></table></details><details class="spec-group"><summary>Pixel Density<span>1</span></summary><table><tr><th scope="row">DORI</th><td>2.8 mm, D: 63 m, O: 25 m, R: 12 m, I: 6 m 4 mm, D: 78 m, O: 31 m, R: 15 m, I: 7 m</td></tr></table></details><details class="spec-group"><summary>Illuminator<span>4</span></summary><table><tr><th scope="row">Supplement Light Type</th><td>IR,White Light</td></tr><tr><th scope="row">Supplement Light Range</th><td>Up to 30 m</td></tr><tr><th scope="row">Smart Supplement Light</th><td>Yes</td></tr><tr><th scope="row">IR Wavelength</th><td>850 nm</td></tr></table></details><details class="spec-group"><summary>Video<span>8</span></summary><table><tr><th scope="row">Main Stream</th><td>50 Hz: 20 fps (2560 × 1440) 25 fps (1920 × 1080, 1280 × 720) 60 Hz: 20 fps (2560 × 1440) 24 fps (1920 × 1080, 1280 × 720)</td></tr><tr><th scope="row">Sub-Stream</th><td>50 Hz: 25 fps (1280 × 720, 640 × 480, 640 × 360) 60 Hz: 24 fps (1280 × 720, 640 × 480, 640 × 360)</td></tr><tr><th scope="row">Video Compression</th><td>Main stream: H.265+/H.265/H.264+/H.264, Sub-stream: H.265/H.264/MJPEG</td></tr><tr><th scope="row">Video Bit Rate</th><td>32 Kbps to 8 Mbps</td></tr><tr><th scope="row">H.264 Type</th><td>Baseline Profile,Main Profile,High Profile</td></tr><tr><th scope="row">H.265 Type</th><td>Main Profile</td></tr><tr><th scope="row">Bit Rate Control</th><td>CBR,VBR</td></tr><tr><th scope="row">Region of Interest (ROI)</th><td>1 fixed region for main stream</td></tr></table></details><details class="spec-group"><summary>Audio<span>5</span></summary><table><tr><th scope="row">Audio Type</th><td>Mono sound</td></tr><tr><th scope="row">Environment Noise Filtering</th><td>Yes</td></tr><tr><th scope="row">Audio Sampling Rate</th><td>8 kHz/16 kHz</td></tr><tr><th scope="row">Audio Compression</th><td>G.711ulaw/G.711alaw/G.722.1/G.726/MP2L2/PCM/AAC-LC</td></tr><tr><th scope="row">Audio Bit Rate</th><td>64 Kbps (G.711 ulaw)/64 Kbps (G.711 alaw)/16 Kbps (G.722.1)/16 Kbps (G.726)/32 to 160 Kbps (MP2L2)/16 to 64 Kbps (AAC-LC)</td></tr></table></details><details class="spec-group"><summary>Network<span>7</span></summary><table><tr><th scope="row">Security</th><td>Password protection, complicated password, watermark, basic and digest authentication for HTTP, WSSE and digest authentication for Open Network Video Interface, security audit log, host authentication (MAC address)</td></tr><tr><th scope="row">Simultaneous Live View</th><td>Up to 6 channels</td></tr><tr><th scope="row">API</th><td>Open Network Video Interface (Profile S, Profile T, Profile G (only -F model supports)),ISAPI,SDK</td></tr><tr><th scope="row">Protocols</th><td>TCP/IP, ICMP, DHCP, DNS, HTTP, RTP, RTSP, NTP, IGMP, IPv6, UDP, QoS, FTP, SMTP</td></tr><tr><th scope="row">User/Host</th><td>Up to 32 users 3 user levels: administrator, operator, and user</td></tr><tr><th scope="row">Client</th><td>iVMS-4200,Hik-Connect</td></tr><tr><th scope="row">Web Browser</th><td>Plug-in required live view: IE 10, IE 11, Local service: Chrome 57.0+, Firefox 52.0+</td></tr></table></details><details class="spec-group"><summary>Image<span>6</span></summary><table><tr><th scope="row">Wide Dynamic Range (WDR)</th><td>120 dB</td></tr><tr><th scope="row">SNR</th><td>≥ 52 dB</td></tr><tr><th scope="row">Day/Night Switch</th><td>Day,Night,Auto,Schedule</td></tr><tr><th scope="row">Image Enhancement</th><td>BLC,HLC,3D DNR</td></tr><tr><th scope="row">Image Settings</th><td>Rotate mode,saturation,brightness,contrast,sharpness,gain,white balance,adjustable by client software or web browser</td></tr><tr><th scope="row">Privacy Mask</th><td>4 programmable polygon privacy masks</td></tr></table></details><details class="spec-group"><summary>Interface<span>4</span></summary><table><tr><th scope="row">Ethernet Interface</th><td>1 RJ45 10 M/100 M self-adaptive Ethernet port</td></tr><tr><th scope="row">On-Board Storage</th><td>-F: Built-in memory card slot, support microSD/microSDHC/microSDXC card, up to 512 GB</td></tr><tr><th scope="row">Built-in Microphone</th><td>Yes</td></tr><tr><th scope="row">Reset Key</th><td>-F: Yes</td></tr></table></details><details class="spec-group"><summary>Event<span>2</span></summary><table><tr><th scope="row">Basic Event</th><td>Motion detection (support alarm triggering by specified target types (human and vehicle)),video tampering alarm,exception</td></tr><tr><th scope="row">Linkage</th><td>Upload to FTP/memory card (-F), send email, notify surveillance center, trigger recording (-F), trigger capture</td></tr></table></details><details class="spec-group"><summary>General<span>10</span></summary><table><tr><th scope="row">Power</th><td>12 VDC ± 25%, 0.5 A, max. 6 W,Ø5.5 mm coaxial power plug,reverse polarity protection, PoE: IEEE 802.3af, Class 3, max. 7.5 W</td></tr><tr><th scope="row">Material</th><td>Metal &amp; Plastic</td></tr><tr><th scope="row">Dimension</th><td>Ø121.4 mm × 97.7 mm (Ø4.8&quot; × 3.8&quot;)</td></tr><tr><th scope="row">Package Dimension</th><td>150 mm × 150 mm × 141 mm (5.9&quot; × 5.9&quot; × 5.6&quot;)</td></tr><tr><th scope="row"></th><td>Approx. 550 g (1.2 lb.)</td></tr><tr><th scope="row">With Package Weight</th><td>Approx. 800 g (1.8 lb.)</td></tr><tr><th scope="row">Storage Conditions</th><td>-30 °C to 60 °C (-22 °F to 140 °F). Humidity 95% or less (non-condensing)</td></tr><tr><th scope="row">Startup and Operating Conditions</th><td>-30 °C to 60 °C (-22 °F to 140 °F). Humidity 95% or less (non-condensing)</td></tr><tr><th scope="row">Language</th><td>English, Ukrainian</td></tr><tr><th scope="row">General Function</th><td>Heartbeat,anti-banding,mirror,password protection,password reset via email</td></tr></table></details><details class="spec-group"><summary>Approval<span>4</span></summary><table><tr><th scope="row">EMC</th><td>FCC: 47 CFR Part 15, Subpart B, CE-EMC: EN 55032: 2015, EN 61000-3-2:2019, EN 61000-3-3: 2013+A1:2019, EN 50130-4: 2011 +A1: 2014, RCM: AS/NZS CISPR 32: 2015, IC: ICES-003: Issue 7</td></tr><tr><th scope="row">Safety</th><td>UL: UL 62368-1, CB: IEC 62368-1: 2014+A11, CE-LVD: EN 62368-1: 2014/A11: 2017, BIS: IS 13252 (Part 1): 2010/IEC 60950-1: 2005</td></tr><tr><th scope="row">Environment</th><td>CE-RoHS: 2011/65/EU, WEEE: 2012/19/EU, Reach: Regulation (EC) No 1907/2006</td></tr><tr><th scope="row">Protection</th><td>IP67: IEC 60529-2013,IK08: IEC 62262:2002</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://assets.hikvision.com/prd/normal/all/doc/sm000042443/DS-2CD1143G2-LIU_Datasheet_20260603.pdf" target="_blank" rel="noopener">Download datasheet (PDF)</a><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/IP-Products/Network-Cameras/value-series/ds-2cd1143g2-liu-f---ab-/?subName=DS-2CD1143G2-LIU" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-2CD1143G2-LIU(2.8mm)(O-STD) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 

@@ -29,7 +29,10 @@
  "category": "Video Intercom",
  "description": "7“ Touch-Screen Indoor Station, \r\n7-inch Colorful TFT LCD, display resolution: 1024 * 600;\r\n10/100Mbps Ethernet, Wi-Fi 802.11b/g/n;\r\nstandard PoE/ 12 VDC.\r\nTF card, max 32G\r\n8-ch alarm input, 2xalarm output, 1x485",
  "image": [
-  "https://nashnaal.com/images/115.png"
+  "https://nashnaal.com/images/115.png",
+  "https://nashnaal.com/images/hik/m000040060/ds-kh6320-wte1-45-1-7dda1395.webp",
+  "https://nashnaal.com/images/hik/m000040060/ds-kh6320-wte1-45-6ac7f0fe.webp",
+  "https://nashnaal.com/images/hik/m000040060/ds-kh6320-wte1-dimensionsimage-1-42442081.webp"
  ],
  "brand": {
   "@type": "Brand",
@@ -153,10 +156,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -192,7 +202,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 </style>
@@ -244,8 +257,24 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/images/115.png" alt="KH6 Series IP-Based Indoor Station — DS-KH6320-WTE1(O-STD)" fetchpriority="high" decoding="async">
+      <style>.gallery #g1:checked ~ .shot .s1 { display: flex; } .gallery #g1:checked ~ .thumbs label[for=g1] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g1:focus-visible ~ .thumbs label[for=g1] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g2:checked ~ .shot .s2 { display: flex; } .gallery #g2:checked ~ .thumbs label[for=g2] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g2:focus-visible ~ .thumbs label[for=g2] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g3:checked ~ .shot .s3 { display: flex; } .gallery #g3:checked ~ .thumbs label[for=g3] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g3:focus-visible ~ .thumbs label[for=g3] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g4:checked ~ .shot .s4 { display: flex; } .gallery #g4:checked ~ .thumbs label[for=g4] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g4:focus-visible ~ .thumbs label[for=g4] { outline: 2px solid #086E9E; outline-offset: 2px; }</style>
+      <div class="gallery">
+        <input type="radio" name="gallery" id="g1" checked aria-label="Photo 1 of 4">
+        <input type="radio" name="gallery" id="g2" aria-label="Photo 2 of 4">
+        <input type="radio" name="gallery" id="g3" aria-label="Photo 3 of 4">
+        <input type="radio" name="gallery" id="g4" aria-label="Photo 4 of 4">
+        <div class="shot">
+          <div class="slide s1"><img src="/images/115.png" alt="KH6 Series IP-Based Indoor Station — DS-KH6320-WTE1(O-STD) — view 1" fetchpriority="high" decoding="async"></div>
+          <div class="slide s2"><img src="/images/hik/m000040060/ds-kh6320-wte1-45-1-7dda1395.webp" alt="KH6 Series IP-Based Indoor Station — DS-KH6320-WTE1(O-STD) — view 2" loading="lazy" decoding="async"></div>
+          <div class="slide s3"><img src="/images/hik/m000040060/ds-kh6320-wte1-45-6ac7f0fe.webp" alt="KH6 Series IP-Based Indoor Station — DS-KH6320-WTE1(O-STD) — view 3" loading="lazy" decoding="async"></div>
+          <div class="slide s4"><img src="/images/hik/m000040060/ds-kh6320-wte1-dimensionsimage-1-42442081.webp" alt="KH6 Series IP-Based Indoor Station — DS-KH6320-WTE1(O-STD) — view 4" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="thumbs">
+          <label for="g1"><img src="/images/115.png" alt="" loading="lazy" decoding="async"></label>
+          <label for="g2"><img src="/images/hik/m000040060/ds-kh6320-wte1-45-1-7dda1395.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g3"><img src="/images/hik/m000040060/ds-kh6320-wte1-45-6ac7f0fe.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g4"><img src="/images/hik/m000040060/ds-kh6320-wte1-dimensionsimage-1-42442081.webp" alt="" loading="lazy" decoding="async"></label>
+        </div>
       </div>
 
       <div>
@@ -274,26 +303,16 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
       </div>
     </div>
 
-    
+    <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>7-inch TFT touch screen with 1024 × 600 resolution</li><li>Convenient Hik-Connect APP Mobile Control</li><li>Receive calls, open the door and live view remotely</li><li>Easy to use without PC</li><li>Easy wizard for quick set up</li><li>Configure the whole system on one touch screen</li><li>Live view of the door station and cameras in public areas</li><li>Support voice messages when no response from the indoor station</li><li>Receive alarms by linkage with a alarm system and notify the center to handle in time</li><li>Elevator access control</li></ul>
+    </section>
 
     <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>7“ Touch-Screen Indoor Station</li>
-            <li>7-inch Colorful TFT LCD</li>
-            <li>display resolution: 1024 * 600</li>
-            <li>10/100Mbps Ethernet</li>
-            <li>Wi-Fi 802.11b/g/n</li>
-            <li>standard PoE/ 12 VDC</li>
-            <li>TF card</li>
-            <li>max 32G</li>
-            <li>8-ch alarm input</li>
-            <li>2xalarm output</li>
-            <li>1x485</li>
-        </ul>
-      </div>
-      
+      <div class="spec-table"><details class="spec-group" open><summary>System parameters<span>4</span></summary><table><tr><th scope="row">Operation system</th><td>Linux</td></tr><tr><th scope="row">ROM</th><td>32 MB</td></tr><tr><th scope="row">RAM</th><td>128 MB</td></tr><tr><th scope="row">Processor</th><td>Embeded high performance processor</td></tr></table></details><details class="spec-group" open><summary>Display parameters<span>4</span></summary><table><tr><th scope="row">Screen size</th><td>7-inch</td></tr><tr><th scope="row">Operation method</th><td>Capacitive touch screen</td></tr><tr><th scope="row">Type</th><td>Colorful TFT</td></tr><tr><th scope="row">Resolution</th><td>1024 × 600</td></tr></table></details><details class="spec-group"><summary>Audio parameters<span>6</span></summary><table><tr><th scope="row">Audio input</th><td>1 built-in omnidirectional microphone</td></tr><tr><th scope="row">Audio compression standard</th><td>G.711 U, G.711 A, G.722.1</td></tr><tr><th scope="row">Audio output</th><td>1 built-in loudspeaker</td></tr><tr><th scope="row">Audio compression bitrate</th><td>64 Kbps</td></tr><tr><th scope="row">Audio quality</th><td>Noise suppression and echo cancellation</td></tr><tr><th scope="row">Volume adjustment</th><td>Adjustable</td></tr></table></details><details class="spec-group"><summary>Capacity<span>5</span></summary><table><tr><th scope="row">Message capacity</th><td>TF card inser ted: 200 captured pictures, 200 alarm records Without TF card: 2 MB RAM for picture storage; The storage number is decided by the picture size, 200 alarm records</td></tr><tr><th scope="row">Notice capacity</th><td>200</td></tr><tr><th scope="row">Linked indoor extensions capacity</th><td>16</td></tr><tr><th scope="row">Linked doorphone capacity</th><td>17</td></tr><tr><th scope="row">Linked network camera capacity</th><td>16</td></tr></table></details><details class="spec-group"><summary>Network parameters<span>2</span></summary><table><tr><th scope="row">Network protocol</th><td>TCP/IP, SIP, RTSP</td></tr><tr><th scope="row">Wi-Fi</th><td>2.4 GHz, IEEE802.11b, IEEE802.11g, IEEE802.11n</td></tr></table></details><details class="spec-group"><summary>Device interfaces<span>5</span></summary><table><tr><th scope="row">Alarm input</th><td>8</td></tr><tr><th scope="row">Network interface</th><td>1 RJ-45 10/100 Mbps self-adaptive</td></tr><tr><th scope="row">RS-485</th><td>1 RS-485 (Half duplex)</td></tr><tr><th scope="row">TF card</th><td>Support TF card, up to 128 G</td></tr><tr><th scope="row">Alarm output</th><td>2 relays, Max. 30 VDC 0.3 A</td></tr></table></details><details class="spec-group"><summary>General<span>8</span></summary><table><tr><th scope="row">Installation</th><td>Surface mounting</td></tr><tr><th scope="row"></th><td>Net weight: 355 g (0.8 lb) Gross weight: 683 g (1.5 lb)</td></tr><tr><th scope="row">Working temperature</th><td>-10 °C to 50 °C (14 °F to 122 °F)</td></tr><tr><th scope="row">Working humidity</th><td>10% to 90% (no-condensing)</td></tr><tr><th scope="row">Dimension (W × H × D)</th><td>200 mm × 140 mm × 15.1 mm (7.9&quot; × 5.5&quot; × 0.6&quot;)</td></tr><tr><th scope="row">Application environment</th><td>Indoor</td></tr><tr><th scope="row">Power consumption</th><td>≤ 5 W</td></tr><tr><th scope="row">Language</th><td>English, Arabic, French, Russian, Spanish, Spanish (Latin America), Italian, German, Polish, Turkish, Portuguese, Portuguese (Brazil), Uzbek, Kazakh, Czech, Hungarian, Dutch, Romanian, Bulgarian, Ukrainian, Croatian, Serbian, Greek, Lithuanian, Estonian, Latvian, Norwegian, Danish, Slovenian, Slovak, Hebrew, Swedish, Finnish, Mongolian, Vietnamese, Traditional Chinese</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://assets.hikvision.com/prd/normal/all/doc/m000040060/DS-KH6320-WTE1_Datasheet_20260429.pdf" target="_blank" rel="noopener">Download datasheet (PDF)</a><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/Video-Intercom-Products/IP-Series/Pro-Series/ds-kh6320-wte1/" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-KH6320-WTE1(O-STD) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 

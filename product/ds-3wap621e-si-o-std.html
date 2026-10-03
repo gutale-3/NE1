@@ -29,7 +29,8 @@
  "category": "Data Communication",
  "description": "3000 Mbps Dual-band Wi-Fi 6 Gigabit in-Wall indoor AP, 2x2 MIMO, 2 Gigabit port with 1 PoE in, Max/Recommend user access is 256/70, HPP/HC unified cloud app management, Support batch managed via AC Router, Support standalone configuration via AP's web, 86 mm standard wall junction box",
  "image": [
-  "https://nashnaal.com/images/imported/datacomm-ds-3wap621e-si-o-std.png"
+  "https://nashnaal.com/images/imported/datacomm-ds-3wap621e-si-o-std.png",
+  "https://nashnaal.com/images/hik/m000113056/ds-3wap621e-si-dimensionsimage-1-3f242d11.webp"
  ],
  "brand": {
   "@type": "Brand",
@@ -153,10 +154,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -192,7 +200,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 </style>
@@ -244,8 +255,18 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/images/imported/datacomm-ds-3wap621e-si-o-std.png" alt="Wi-Fi 6 3000M In-Wall Access Point — DS-3WAP621E-SI(O-STD)" fetchpriority="high" decoding="async">
+      <style>.gallery #g1:checked ~ .shot .s1 { display: flex; } .gallery #g1:checked ~ .thumbs label[for=g1] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g1:focus-visible ~ .thumbs label[for=g1] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g2:checked ~ .shot .s2 { display: flex; } .gallery #g2:checked ~ .thumbs label[for=g2] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g2:focus-visible ~ .thumbs label[for=g2] { outline: 2px solid #086E9E; outline-offset: 2px; }</style>
+      <div class="gallery">
+        <input type="radio" name="gallery" id="g1" checked aria-label="Photo 1 of 2">
+        <input type="radio" name="gallery" id="g2" aria-label="Photo 2 of 2">
+        <div class="shot">
+          <div class="slide s1"><img src="/images/imported/datacomm-ds-3wap621e-si-o-std.png" alt="Wi-Fi 6 3000M In-Wall Access Point — DS-3WAP621E-SI(O-STD) — view 1" fetchpriority="high" decoding="async"></div>
+          <div class="slide s2"><img src="/images/hik/m000113056/ds-3wap621e-si-dimensionsimage-1-3f242d11.webp" alt="Wi-Fi 6 3000M In-Wall Access Point — DS-3WAP621E-SI(O-STD) — view 2" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="thumbs">
+          <label for="g1"><img src="/images/imported/datacomm-ds-3wap621e-si-o-std.png" alt="" loading="lazy" decoding="async"></label>
+          <label for="g2"><img src="/images/hik/m000113056/ds-3wap621e-si-dimensionsimage-1-3f242d11.webp" alt="" loading="lazy" decoding="async"></label>
+        </div>
       </div>
 
       <div>
@@ -274,23 +295,16 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
       </div>
     </div>
 
-    
+    <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>2 Gigabit LAN Ports with 1 PoE Input</li><li>802.11ax Wi-Fi 6 2975 Mbps</li><li>86 mm Wall Junction Box for Easy Installation</li><li>70+ Concurrent User Connections</li><li>Auto RF Optimization</li><li>Support Intelligent Fast Roaming</li></ul>
+    </section>
 
     <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>3000 Mbps Dual-band Wi-Fi 6 Gigabit in-Wall indoor AP</li>
-            <li>2x2 MIMO</li>
-            <li>2 Gigabit port with 1 PoE in</li>
-            <li>Max/Recommend user access is 256/70</li>
-            <li>HPP/HC unified cloud app management</li>
-            <li>Support batch managed via AC Router</li>
-            <li>Support standalone configuration via AP&#x27;s web</li>
-            <li>86 mm standard wall junction box</li>
-        </ul>
-      </div>
-      
+      <div class="spec-table"><details class="spec-group" open><summary>General<span>9</span></summary><table><tr><th scope="row"></th><td>0.17 kg (0.37 lb)</td></tr><tr><th scope="row">Installation Mode</th><td>In-Wall Mounting</td></tr><tr><th scope="row">Working Temperature</th><td>0 °C to 40 °C (32 °F to 104 °F)</td></tr><tr><th scope="row">Working Humidity</th><td>5% to 95% (no condensation)</td></tr><tr><th scope="row">Storage Temperature</th><td>-40 °C to 70 °C (-40 °F to 158 °F)</td></tr><tr><th scope="row">Storage Humidity</th><td>5% to 95% (no condensation)</td></tr><tr><th scope="row">Product Dimensions (W × H × D)</th><td>86 mm × 86 mm × 44.4 mm (3.38&#x27;&#x27; × 3.38&#x27;&#x27; × 1.75&#x27;&#x27;)</td></tr><tr><th scope="row">Packing List</th><td>3000 M Access Point ×1,Screw Pack × 1,Quick Start Guide ×1,Regulatory Compliance and Safety Information × 1</td></tr><tr><th scope="row">Power Consumption</th><td>Max. 13 W</td></tr></table></details><details class="spec-group" open><summary>Hardware Specifications<span>4</span></summary><table><tr><th scope="row">Interface</th><td>1 × Gigabit RJ45 uplink port, 1 × Gigabit RJ45 port</td></tr><tr><th scope="row">Power Supply</th><td>IEEE 802.3af/at POE</td></tr><tr><th scope="row">LED Indicator</th><td>Yellow/green/blue for different working states, flashing mode</td></tr><tr><th scope="row">Reset Button</th><td>Hardware Resetting Button</td></tr></table></details><details class="spec-group"><summary>WLAN Parameters<span>13</span></summary><table><tr><th scope="row">Maximum Number of Clients</th><td>256</td></tr><tr><th scope="row">Recommended Number of Clients</th><td>70</td></tr><tr><th scope="row">Maximum Number of SSIDs</th><td>8</td></tr><tr><th scope="row">Working Frequency Band</th><td>radio 1: 5G(11a/n/ac/ax), radio 2: 2.4G(11b/g/n/ax)</td></tr><tr><th scope="row">Wi-Fi Standards</th><td>Wi-Fi 6</td></tr><tr><th scope="row">Wi-Fi Speed</th><td>2.4 G: 575 Mbps,5 G: 2400 Mbps</td></tr><tr><th scope="row">Spatial Streams</th><td>2.4 GHz, 2 × 2, MU-MIMO, 5 GHz, 2 ×2, MU-MIMO</td></tr><tr><th scope="row">Channel Width</th><td>2.4 GHz: Auto/20 /40 MHz,5 GHz: Auto/20 /40 /80/ 160MHz</td></tr><tr><th scope="row">Number of Antennas</th><td>2.4GHz: 2; 5GHz: 2</td></tr><tr><th scope="row">Antenna Type</th><td>Built-in omnidirectional antennas</td></tr><tr><th scope="row">Antenna Gain</th><td>2.4 GHz: 3 dBi,5 GHz: 5 dBi</td></tr><tr><th scope="row">Transmit Power</th><td>18 dBm</td></tr><tr><th scope="row">Modulation Technology</th><td>OFDM: BPSK@6/9Mbp, QPSK@12/18Mbps, 16-QAM@24Mbps, 64-QAM@48/54Mbps; DSSS: DBPSK@1Mbps, DQPSK@2Mbps, CCK@5.5/11Mbps; MIMO-OFDM (11n): MCS 0-15; MIMO-OFDM (11ac): MCS 0-9</td></tr></table></details><details class="spec-group"><summary>Software Specifications<span>3</span></summary><table><tr><th scope="row">WLAN Security</th><td>WAP-PSK,WAP2-PSK,WPA-WAP2-PSK,Blocklist &amp; Allowlist,Support Multiple encryption key triggered dynamic unicast/multicast key update,Support Open system/shared key authentication,Support wireless endpoint access,Support 802.11i,Support SSID and VLAN binding</td></tr><tr><th scope="row">Management &amp; Maintenance</th><td>Centralized AC management</td></tr><tr><th scope="row">Version Upgrade</th><td>upgrade on Web</td></tr></table></details><details class="spec-group"><summary>Approval<span>4</span></summary><table><tr><th scope="row">EMC</th><td>CE-EMC (EN 55032: 2015+A11: 2020, EN IEC 61000-3-2: 2019, EN 61000-3-3: 2013+A1: 2019, EN 50130-4: 2011+A1: 2014, EN 55035: 2017+A11: 2020)</td></tr><tr><th scope="row">Safety</th><td>CB (AMD1:2009, AMD2:2013, IEC 62368-1: 2014 (Second Edition), CE-LVD (EN 62368-1: 2014+A11: 2017),UL (UL 60950-1)</td></tr><tr><th scope="row">Chemistry</th><td>CE-RoHS (2011/65/EU),WEEE (2012/19/EU),Reach (Regulation (EC) No.1907/2006)</td></tr><tr><th scope="row">Radio</th><td>EN 301 893,EN 300 440,EN 62311,EN 301 489-3,EN 301 489-17</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/transmission/wireless-access-point/wall-mount-ap/ds-3wap621e-si/" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-3WAP621E-SI(O-STD) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 

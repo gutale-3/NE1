@@ -153,10 +153,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -192,7 +199,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 </style>
@@ -274,21 +284,16 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
       </div>
     </div>
 
-    
+    <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>Full diameter 305 m CAT6 network cable</li><li>Core diameter: 0.565mm</li><li>Excellent transmission performance using solid copper</li><li>Quality verified by Fluke test</li><li>Guaranteed long PoE transmission distance</li><li>Great PVC flame resistance.</li></ul>
+    </section>
 
     <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>UTP CAT 6</li>
-            <li>305 meters</li>
-            <li>Core diameter: 0.565mm</li>
-            <li>Solid Copper</li>
-            <li>CM</li>
-            <li>orange</li>
-        </ul>
-      </div>
-      
+      <div class="spec-table"><details class="spec-group" open><summary>General<span>8</span></summary><table><tr><th scope="row">Core Color</th><td>1 White- Blue /Blue 2 White-Orange /Orange,3 White-Green /Green 4 White- Brown /Brown,</td></tr><tr><th scope="row">Packing</th><td>Wooden Tray &amp; Carton</td></tr><tr><th scope="row">Carton Dimension</th><td>Per request</td></tr><tr><th scope="row">Packing length</th><td>305±1.5m</td></tr><tr><th scope="row">Rip-cord</th><td>Yes</td></tr><tr><th scope="row">Drain wire</th><td>No</td></tr><tr><th scope="row">Sheath Physical Properties</th><td>Before Aging Tensile Strength (Mpa) ≥13.5, Elongation(%) ≥150,Aging Period (℃×hrs) 100℃×24h×10d,After Aging Tensile Strength(Mpa) ≥12.5, Elongation(%) ≥125,Cold bend(-20±2℃×4h) 8×Cable O.D., No visible cracks,</td></tr><tr><th scope="row">Electrical Characteristics (20℃)</th><td>1.0-250.0MHz Impedance ((Ω) 100±15,1.0-250.0MHz Delay Skew (ns/100m) ≤45,DC Resistance (Ω/100m) max 9.38,DC Conductor Resistance Unbalance (%) max 5.0,</td></tr></table></details><details class="spec-group" open><summary>Conductor<span>2</span></summary><table><tr><th scope="row">Material</th><td>Solid-Bare Copper,Content 99.95%,</td></tr><tr><th scope="row">Nom.O.D.(mm)</th><td>0.565±0.005</td></tr></table></details><details class="spec-group"><summary>Insulation<span>2</span></summary><table><tr><th scope="row">Material</th><td>HDPE</td></tr><tr><th scope="row">Diameter</th><td>1.02±0.05mm</td></tr></table></details><details class="spec-group"><summary>Sheath<span>5</span></summary><table><tr><th scope="row">Thickness</th><td>0.55±0.05 mm</td></tr><tr><th scope="row">External O.D.</th><td>6.2±0.4 mm</td></tr><tr><th scope="row">Surface</th><td>Clean,Frap,Satiation</td></tr><tr><th scope="row">Material</th><td>PVC(complies RoHS),CM</td></tr><tr><th scope="row">Color</th><td>Orange RAL2003</td></tr></table></details><details class="spec-group"><summary>Surface Printing<span>3</span></summary><table><tr><th scope="row">Letter height</th><td>3.0±0.3mm</td></tr><tr><th scope="row">Color</th><td>Black</td></tr><tr><th scope="row">Print error &amp; Space</th><td>≤±0.5%, 1m</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/premises-distribution-system/cable/copper-cables/ds-1ln6-uu/" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-1LN6-UU(O-STD) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 

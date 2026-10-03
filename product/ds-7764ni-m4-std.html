@@ -29,7 +29,8 @@
  "category": "CCTV-IP",
  "description": "400Mbps Bit Rate Input Max(up to 64-ch IP video), 32x2MP decoding capability, 4 SATA Interfaces, 2 HDMI ouputs(up to 8K),1 eSATA, alarm I/O: 16/9, 1.5U case,19\"",
  "image": [
-  "https://nashnaal.com/images/093.png"
+  "https://nashnaal.com/images/093.png",
+  "https://nashnaal.com/images/hik/m000067968/ds-7764ni-m4-dimensionsimage-1-2262a63b.webp"
  ],
  "brand": {
   "@type": "Brand",
@@ -153,10 +154,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -192,7 +200,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 </style>
@@ -244,8 +255,18 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/images/093.png" alt="64CH 4 HDD M Series NVR — DS-7764NI-M4(STD)" fetchpriority="high" decoding="async">
+      <style>.gallery #g1:checked ~ .shot .s1 { display: flex; } .gallery #g1:checked ~ .thumbs label[for=g1] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g1:focus-visible ~ .thumbs label[for=g1] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g2:checked ~ .shot .s2 { display: flex; } .gallery #g2:checked ~ .thumbs label[for=g2] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g2:focus-visible ~ .thumbs label[for=g2] { outline: 2px solid #086E9E; outline-offset: 2px; }</style>
+      <div class="gallery">
+        <input type="radio" name="gallery" id="g1" checked aria-label="Photo 1 of 2">
+        <input type="radio" name="gallery" id="g2" aria-label="Photo 2 of 2">
+        <div class="shot">
+          <div class="slide s1"><img src="/images/093.png" alt="64CH 4 HDD M Series NVR — DS-7764NI-M4(STD) — view 1" fetchpriority="high" decoding="async"></div>
+          <div class="slide s2"><img src="/images/hik/m000067968/ds-7764ni-m4-dimensionsimage-1-2262a63b.webp" alt="64CH 4 HDD M Series NVR — DS-7764NI-M4(STD) — view 2" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="thumbs">
+          <label for="g1"><img src="/images/093.png" alt="" loading="lazy" decoding="async"></label>
+          <label for="g2"><img src="/images/hik/m000067968/ds-7764ni-m4-dimensionsimage-1-2262a63b.webp" alt="" loading="lazy" decoding="async"></label>
+        </div>
       </div>
 
       <div>
@@ -274,23 +295,16 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
       </div>
     </div>
 
-    
+    <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>H.265+/H.265/H.264+/H.264 video formats</li><li>Up to 64-ch IP camera inputs</li><li>Up to 2-ch@32 MP/2-ch@24 MP/4-ch@12 MP/8-ch@8 MP/16-ch@4 MP/32-ch@1080p decoding capacity</li><li>Up to 400 Mbps incoming bandwidth and 400 Mbps outgoing bandwidth</li><li>2 HDMI and 1 VGA interfaces, 8K or dual 4K video outputs</li><li>Up to 8-ch IP speakers can be connected</li></ul>
+    </section>
 
     <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>400Mbps Bit Rate Input Max(up to 64-ch IP video)</li>
-            <li>32x2MP decoding capability</li>
-            <li>4 SATA Interfaces</li>
-            <li>2 HDMI ouputs(up to 8K)</li>
-            <li>1 eSATA</li>
-            <li>alarm I/O: 16/9</li>
-            <li>1.5U case</li>
-            <li>19&quot;</li>
-        </ul>
-      </div>
-      
+      <div class="spec-table"><details class="spec-group" open><summary>Video and Audio<span>10</span></summary><table><tr><th scope="row">IP Video Input</th><td>64-ch Up to 32 MP resolution *: The NVR supports up to 8-ch 32/24/16 MP IP video inputs.</td></tr><tr><th scope="row">Incoming Bandwidth</th><td>400 Mbps</td></tr><tr><th scope="row">Outgoing Bandwidth</th><td>400 Mbps</td></tr><tr><th scope="row">HDMI 1 Output</th><td>8K (7680 × 4320)/30Hz, 4K (3840 × 2160)/60Hz, 4K (3840 × 2160)/30Hz, 2K (2560 × 1440)/60Hz, 1920 × 1080/60Hz, 1600 × 1200/60Hz, 1280 × 1024/60Hz, 1280 × 720/60Hz, 1024 × 768/60Hz</td></tr><tr><th scope="row">HDMI 2 Output</th><td>4K (3840 × 2160)/60Hz, 4K (3840 × 2160)/30Hz, 2K (2560 × 1440)/60Hz, 1920 × 1080/60Hz, 1600 × 1200/60Hz, 1280 × 1024/60Hz, 1280 × 720/60Hz, 1024 × 768/60Hz *: When HDMI 1 output resolution is 8K, the maximum HDMI 2 output resolution is 1080p.</td></tr><tr><th scope="row">VGA Output</th><td>1920 × 1080/60Hz, 1600 × 1200/60Hz, 1280 × 1024/60Hz, 1280 × 720/60Hz, 1024 × 768/60Hz</td></tr><tr><th scope="row">Video Output Mode</th><td>HDMI1/VGA simultaneous output, HDMI1/HDMI2 independent output</td></tr><tr><th scope="row">CVBS Output</th><td>1-ch, BNC (1.0 Vp-p, 75 Ω), resolution: PAL: 704 × 576, NTSC: 704 × 480</td></tr><tr><th scope="row">Audio Output</th><td>1-ch, RCA (Linear, 1 KΩ)</td></tr><tr><th scope="row">Two-Way Audio</th><td>1-ch, RCA (2.0 Vp-p, 1 KΩ, using the audio input)</td></tr></table></details><details class="spec-group" open><summary>Decoding<span>7</span></summary><table><tr><th scope="row">Decoding Format</th><td>H.265+/H.265/H.264+/H.264</td></tr><tr><th scope="row">Recording Resolution</th><td>32 MP/24 MP/16MP/12 MP/8 MP/7 MP/6 MP/5 MP/4 MP/3 MP/1080p/UXGA/720p/VGA/4CIF/DCIF/2CIF/CIF/QCIF *: The NVR supports up to 8-ch 32/24/16 MP IP video inputs, all channels for less than 16 MP.</td></tr><tr><th scope="row">Synchronous Playback</th><td>16-ch</td></tr><tr><th scope="row">Decoding Capability</th><td>2-ch@32 MP (30 fps); 3-ch@24 MP (30 fps); 4-ch@16MP (30 fps); 6-ch@12MP (30 fps);10-ch@8 MP (30 fps); 13-ch@6 MP (30 fps);16-ch@5 MP (30 fps);20-ch@4 MP (30 fps);40-ch@1080p (30 fps)</td></tr><tr><th scope="row">Dual-Stream Recording</th><td>Support</td></tr><tr><th scope="row">Stream Type</th><td>Video, Video &amp; Audio</td></tr><tr><th scope="row">Audio Compression</th><td>G.711ulaw/G.711alaw/G.722/G.726/AAC/MP2L2</td></tr></table></details><details class="spec-group"><summary>Network<span>4</span></summary><table><tr><th scope="row">Remote Connection</th><td>128</td></tr><tr><th scope="row">Network Protocol</th><td>TCP/IP, DHCP, IPv4, IPv6, DNS, DDNS, NTP, RTSP, SADP, SMTP, SNMP, NFS, iSCSI, ISUP, UPnP™, HTTP, HTTPS, ONVIF(Version 2.2), OTAP</td></tr><tr><th scope="row">Network Interface</th><td>2 RJ-45 10/100/1000 Mbps self-adaptive Ethernet interfaces</td></tr><tr><th scope="row">Camera Access Protocol</th><td>ONVIF(Version 2.5), RTSP</td></tr></table></details><details class="spec-group"><summary>RAID<span>1</span></summary><table><tr><th scope="row">RAID Type</th><td>N/A</td></tr></table></details><details class="spec-group"><summary>Auxiliary Interface<span>8</span></summary><table><tr><th scope="row">eSATA</th><td>1 eSATA interface</td></tr><tr><th scope="row">SATA</th><td>4 SATA interfaces</td></tr><tr><th scope="row">Capacity</th><td>Up to 16 TB capacity for each disk</td></tr><tr><th scope="row">Serial Interface</th><td>2 RS-485 (half-duplex), 1 RS-232</td></tr><tr><th scope="row">Alarm In/Out</th><td>16/9</td></tr><tr><th scope="row">USB Interface</th><td>Front panel: 2 × USB 2.0; Rear panel: 1 × USB 3.0</td></tr><tr><th scope="row">Ctrl 12V</th><td>Controllable 12 VDC, 1 A power output for external alarm device; The power will be turned on when the alarm output is triggered. *: The Ctrl 12V power is controlled by alarm output 9.</td></tr><tr><th scope="row">DC 12V</th><td>12 VDC, 1 A power output</td></tr></table></details><details class="spec-group"><summary>General<span>7</span></summary><table><tr><th scope="row">Power Supply</th><td>100 to 240 VAC, 50 to 60 Hz</td></tr><tr><th scope="row">Consumption</th><td>≤ 15 W (without HDD)</td></tr><tr><th scope="row">Working Temperature</th><td>-10 °C to 55 °C (14 °F to 131 °F)</td></tr><tr><th scope="row">Working Humidity</th><td>10% to 90%</td></tr><tr><th scope="row">Chassis</th><td>19-inch rack-mounted 1.5U chassis</td></tr><tr><th scope="row">Dimension (W × D × H)</th><td>445 × 400 × 75 mm ( 17.5&quot;× 15.7&quot; × 3.0&quot;)</td></tr><tr><th scope="row"></th><td>≤ 5 kg (without HDD, 11 lb.)</td></tr></table></details><details class="spec-group"><summary>Certification<span>2</span></summary><table><tr><th scope="row">FCC</th><td>Part 15 Subpart B, ANSI C63.4-2014</td></tr><tr><th scope="row">CE</th><td>EN 55032:2015+A1:2020, ENIEC61000-3-2:2019+A1:2021, EN 61000-3-3:2013+A1:201 9, EN 50130-4:2011+A1:2014, EN 55035:2017+A11:2020</td></tr></table></details><details class="spec-group"><summary>Cyber Security<span>10</span></summary><table><tr><th scope="row">EN 303645</th><td>Support</td></tr><tr><th scope="row">Secure Boot</th><td>Support</td></tr><tr><th scope="row">Secure Component Verification SVC</th><td>Support</td></tr><tr><th scope="row">Password Protection</th><td>Support</td></tr><tr><th scope="row">IP &amp; MAC Address Filtering</th><td>Support</td></tr><tr><th scope="row">HTTPS Encryption</th><td>Support</td></tr><tr><th scope="row">Live View &amp; Playback Stream Encryption</th><td>Support : AES128</td></tr><tr><th scope="row">IEEE802.1X(EAP-TLS) Network Access Control</th><td>Support</td></tr><tr><th scope="row">Signed Firmware</th><td>Support</td></tr><tr><th scope="row">Others</th><td>Digest authentication: Support User access log : Support Centralized certificate management : Support Brute force delay protection : Support</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://assets.hikvision.com/prd/normal/all/doc/m000067968/DS-7764NI-M4_Datasheet_20260817.pdf" target="_blank" rel="noopener">Download datasheet (PDF)</a><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/IP-Products/Network-Video-Recorders/Ultra-Series/ds-7764ni-m4/" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-7764NI-M4(STD) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 

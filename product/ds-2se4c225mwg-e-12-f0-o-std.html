@@ -29,7 +29,10 @@
  "category": "CCTV-IP",
  "description": "· Captures a large area and great details at the same time\r\n· High quality imaging with 2 MP resolution\r\n· Focuses on human and vehicle targets classification based on deep learning\r\n· Excellent low-light performance with powered-by-DarkFighter technology and ColorVu technology\r\n· Secures an expansive area with 25 × optical zoom and 16 × digital zoom\r\n· Expansive night view with up to 100 m IR distance & 30 m white light\r\n· Build-in speaker and dual-microphone for real-time high quality audio security\r\n· Active strobe light and audio alarm to warn intruders off\r\n· Supports 12 VDC & PoE+",
  "image": [
-  "https://nashnaal.com/images/077.png"
+  "https://nashnaal.com/images/077.png",
+  "https://nashnaal.com/images/hik/m000159412/20-4g-35d629de.webp",
+  "https://nashnaal.com/images/hik/m000159412/20-4g-0a3a1680.webp",
+  "https://nashnaal.com/images/hik/m000159412/ds-2se4c225mwg-e12-dimensionsimage-1-85238d0c.webp"
  ],
  "brand": {
   "@type": "Brand",
@@ -153,10 +156,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -192,7 +202,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 </style>
@@ -244,8 +257,24 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/images/077.png" alt="TandemVu 2+2MP 25X ColorVu &amp; IR Acusense Network Speed Dome — DS-2SE4C225MWG-E/12(F0)(O-STD)" fetchpriority="high" decoding="async">
+      <style>.gallery #g1:checked ~ .shot .s1 { display: flex; } .gallery #g1:checked ~ .thumbs label[for=g1] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g1:focus-visible ~ .thumbs label[for=g1] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g2:checked ~ .shot .s2 { display: flex; } .gallery #g2:checked ~ .thumbs label[for=g2] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g2:focus-visible ~ .thumbs label[for=g2] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g3:checked ~ .shot .s3 { display: flex; } .gallery #g3:checked ~ .thumbs label[for=g3] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g3:focus-visible ~ .thumbs label[for=g3] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g4:checked ~ .shot .s4 { display: flex; } .gallery #g4:checked ~ .thumbs label[for=g4] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g4:focus-visible ~ .thumbs label[for=g4] { outline: 2px solid #086E9E; outline-offset: 2px; }</style>
+      <div class="gallery">
+        <input type="radio" name="gallery" id="g1" checked aria-label="Photo 1 of 4">
+        <input type="radio" name="gallery" id="g2" aria-label="Photo 2 of 4">
+        <input type="radio" name="gallery" id="g3" aria-label="Photo 3 of 4">
+        <input type="radio" name="gallery" id="g4" aria-label="Photo 4 of 4">
+        <div class="shot">
+          <div class="slide s1"><img src="/images/077.png" alt="TandemVu 2+2MP 25X ColorVu &amp; IR Acusense Network Speed Dome — DS-2SE4C225MWG-E/12(F0)(O-STD) — view 1" fetchpriority="high" decoding="async"></div>
+          <div class="slide s2"><img src="/images/hik/m000159412/20-4g-35d629de.webp" alt="TandemVu 2+2MP 25X ColorVu &amp; IR Acusense Network Speed Dome — DS-2SE4C225MWG-E/12(F0)(O-STD) — view 2" loading="lazy" decoding="async"></div>
+          <div class="slide s3"><img src="/images/hik/m000159412/20-4g-0a3a1680.webp" alt="TandemVu 2+2MP 25X ColorVu &amp; IR Acusense Network Speed Dome — DS-2SE4C225MWG-E/12(F0)(O-STD) — view 3" loading="lazy" decoding="async"></div>
+          <div class="slide s4"><img src="/images/hik/m000159412/ds-2se4c225mwg-e12-dimensionsimage-1-85238d0c.webp" alt="TandemVu 2+2MP 25X ColorVu &amp; IR Acusense Network Speed Dome — DS-2SE4C225MWG-E/12(F0)(O-STD) — view 4" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="thumbs">
+          <label for="g1"><img src="/images/077.png" alt="" loading="lazy" decoding="async"></label>
+          <label for="g2"><img src="/images/hik/m000159412/20-4g-35d629de.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g3"><img src="/images/hik/m000159412/20-4g-0a3a1680.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g4"><img src="/images/hik/m000159412/ds-2se4c225mwg-e12-dimensionsimage-1-85238d0c.webp" alt="" loading="lazy" decoding="async"></label>
+        </div>
       </div>
 
       <div>
@@ -274,24 +303,16 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
       </div>
     </div>
 
-    
+    <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>Captures a large area and great details at the same time</li><li>High quality imaging with 2 MP resolution</li><li>Focuses on human and vehicle targets classification based on deep learning</li><li>Excellent low-light performance with powered-by-DarkFighter technology and ColorVu technology</li><li>Secures an expansive area with 25 × optical zoom and 16 × digital zoom</li><li>Expansive night view with up to 100 m IR distance &amp; 30 m white light</li><li>Build-in speaker and dual-microphone for real-time high quality audio security</li><li>Active strobe light and audio alarm to warn intruders off</li><li>Supports 12 VDC &amp; PoE+</li></ul>
+    </section>
 
     <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>Captures a large area and great details at the same time</li>
-            <li>High quality imaging with 2 MP resolution</li>
-            <li>Focuses on human and vehicle targets classification based on deep learning</li>
-            <li>Excellent low-light performance with powered-by-DarkFighter technology and ColorVu technology</li>
-            <li>Secures an expansive area with 25 × optical zoom and 16 × digital zoom</li>
-            <li>Expansive night view with up to 100 m IR distance &amp; 30 m white light</li>
-            <li>Build-in speaker and dual-microphone for real-time high quality audio security</li>
-            <li>Active strobe light and audio alarm to warn intruders off</li>
-            <li>Supports 12 VDC &amp; PoE+</li>
-        </ul>
-      </div>
-      
+      <div class="spec-table"><details class="spec-group" open><summary>Camera<span>7</span></summary><table><tr><th scope="row">Image Sensor</th><td>[Bullet channel] 1/2.8&quot; Progressive Scan CMOS, [PTZ channel] 1/2.8&quot; Progressive Scan CMOS</td></tr><tr><th scope="row">Max. Resolution</th><td>[Bullet channel] 1920 × 1080, [PTZ channel] 1920 × 1080</td></tr><tr><th scope="row">Min. Illumination</th><td>[Bullet channel]: 0.0005 Lux @ (F1.0, AGC ON), 0 Lux with light; [PTZ channel]: Color: 0.005 Lux @ (F1.6, AGC ON), B/W: 0.001 Lux @ (F1.6, AGC ON), 0 Lux with IR</td></tr><tr><th scope="row">Shutter Speed</th><td>1 s to 1/30,000 s</td></tr><tr><th scope="row">Day &amp; Night</th><td>ICR</td></tr><tr><th scope="row">Zoom</th><td>[PTZ channel] 25 × optical, 16 × digital</td></tr><tr><th scope="row">Slow Shutter</th><td>yes</td></tr></table></details><details class="spec-group" open><summary>Lens<span>5</span></summary><table><tr><th scope="row">Focal Length</th><td>[Bullet channel] 2.8 mm, [PTZ channel] 5 to 125 mm</td></tr><tr><th scope="row">FOV</th><td>[Bullet channel] horizontal field of view: 106.1°, vertical field of view: 56.8°, diagonal field of view: 126.5°, [PTZ channel] horizontal field of view: 55° to 2.8°, vertical field of view: 33° to 1.5°, diagonal field of view: 61.5° to 3.2°</td></tr><tr><th scope="row">Focus</th><td>auto,manual,semi-auto</td></tr><tr><th scope="row">Aperture</th><td>[Bullet channel]: F1.0; [PTZ channel]: F1.6</td></tr><tr><th scope="row">Zoom Speed</th><td>[PTZ channel]: approx. 2.3 s</td></tr></table></details><details class="spec-group"><summary>Illuminator<span>3</span></summary><table><tr><th scope="row">Supplement Light Type</th><td>[PTZ channel]: IR; [Bullet channel]: White Light</td></tr><tr><th scope="row">Supplement Light Range</th><td>[PTZ channel]: up to 100 m; [Bullet channel]: up to 30 m</td></tr><tr><th scope="row">Smart Supplement Light</th><td>Yes</td></tr></table></details><details class="spec-group"><summary>PTZ<span>14</span></summary><table><tr><th scope="row">Movement Range (Pan)</th><td>360° endless</td></tr><tr><th scope="row">Movement Range (Tilt)</th><td>[Bullet channel] 9° to 21° (manually adjust), [PTZ channel] -15° to 90°</td></tr><tr><th scope="row">Pan Speed</th><td>Pan speed: configurable from 0.1° to 80°/s, preset speed: 80°/s</td></tr><tr><th scope="row">Tilt Speed</th><td>Tilt speed: configurable from 0.1° to 80°/s, preset speed 80°/s</td></tr><tr><th scope="row">Proportional Pan</th><td>yes</td></tr><tr><th scope="row">Presets</th><td>300</td></tr><tr><th scope="row">Preset Freezing</th><td>yes</td></tr><tr><th scope="row">Patrol Scan</th><td>8 patrols, up to 32 presets for each patrol</td></tr><tr><th scope="row">Pattern Scan</th><td>4 pattern scans</td></tr><tr><th scope="row">Park Action</th><td>preset,frame scan,tilt scan,patrol scan,random scan,auto scan,pattern scan,panorama scan</td></tr><tr><th scope="row">3D Positioning</th><td>yes</td></tr><tr><th scope="row">PTZ Status Display</th><td>yes</td></tr><tr><th scope="row">Scheduled Task</th><td>Preset,pattern scan,patrol scan,tilt scan,auto scan,random scan,frame scan,panorama scan,dome reboot,dome adjust,aux output</td></tr><tr><th scope="row">Power-off Memory</th><td>yes</td></tr></table></details><details class="spec-group"><summary>Video<span>9</span></summary><table><tr><th scope="row">Main Stream</th><td>[Bullet channel]: 50 Hz: 25 fps (1920 × 1080, 1280 × 960, 1280 × 720) 60 Hz: 30 fps (1920 × 1080, 1280 × 960, 1280 × 720) [PTZ channel]: 50 Hz: 25 fps (1920 × 1080, 1280 × 960, 1280 × 720) 60 Hz: 30 fps (1920 × 1080, 1280 × 960, 1280 × 720)</td></tr><tr><th scope="row">Sub-Stream</th><td>[Bullet channel]: 50 Hz: 25 fps (704 × 576, 640 × 480, 352 × 288) 60 Hz: 30 fps (704 × 480, 640 × 480, 352 × 240) [PTZ channel]: 50 Hz: 25 fps (704 × 576, 640 × 480, 352 × 288) 60 Hz: 30 fps (704 × 480, 640 × 480, 352 × 240)</td></tr><tr><th scope="row">Third Stream</th><td>[Bullet channel]: 50 Hz: 25 fps (1920 × 1080, 1280 × 960, 1280 × 720, 704 × 576, 640 × 480, 352 × 288) 60 Hz: 30 fps (1920 × 1080, 1280 × 960, 1280 × 720, 704 × 480, 640 × 480, 352 × 240) [PTZ channel]: 50 Hz: 25 fps (1920 × 1080, 1280 × 960, 1280 × 720, 704 × 576, 640 × 480, 352 × 288) 60 Hz: 30 fps (1920 × 1080, 1280 × 960, 1280 × 720, 704 × 480, 640 × 480, 352 × 240)</td></tr><tr><th scope="row">Video Compression</th><td>H.265,H.264,MJPEG</td></tr><tr><th scope="row">Video Bit Rate</th><td>32 kbps to 16384 kbps</td></tr><tr><th scope="row">H.264 Type</th><td>main profile,baseline profile,high profile</td></tr><tr><th scope="row">H.265 Type</th><td>main profile</td></tr><tr><th scope="row">Scalable Video Coding (SVC)</th><td>yes</td></tr><tr><th scope="row">Region of Interest (ROI)</th><td>8 fixed regions for each stream</td></tr></table></details><details class="spec-group"><summary>Audio<span>4</span></summary><table><tr><th scope="row">Audio Compression</th><td>G.711,G.722.1,G.726,MP2L2,PCM,MP3,AAC-LC</td></tr><tr><th scope="row">Audio Bit Rate</th><td>64 Kbps (G.711),16 Kbps (G.722.1),16 Kbps (G.726),32 to 192 Kbps (MP2L2),16 to 64Kbps (AAC-LC),8 to 320 Kbps (MP3)</td></tr><tr><th scope="row">Audio Sampling Rate</th><td>MP2L2: 16 kHz, 32kHz, 48 kHz,AAC-LC: 16 kHz, 32kHz, 48 kHz,PCM: 8 kHz, 16 kHz, 32kHz, 48 kHz,MP3: 8 kHz, 16 kHz, 32kHz, 48 kHz</td></tr><tr><th scope="row">Environment Noise Filtering</th><td>yes</td></tr></table></details><details class="spec-group"><summary>Network<span>8</span></summary><table><tr><th scope="row">Protocols</th><td>DHCP,FTP,HTTPS,TCP/IP,ICMP,HTTP,SFTP,DNS,DDNS,RTP,RTSP,RTCP,PPPoE,NTP,UPnP,SMTP,SNMP,IGMP,802.1X,QoS,IPv4/IPv6,UDP,Bonjour,WebSocket,WebSockets</td></tr><tr><th scope="row">Simultaneous Live View</th><td>20</td></tr><tr><th scope="row">API</th><td>ONVIF (Profile S, Profile G, Profile T),ISAPI,SDK,ISUP</td></tr><tr><th scope="row">User/Host</th><td>32</td></tr><tr><th scope="row">Security</th><td>802.1X authenticated access,MAC address binding,Authenticated username and password,IP address filter,HTTPS encryption</td></tr><tr><th scope="row">Network Storage</th><td>NAS (NFS, SMB/CIFS),auto network replenishment (ANR)</td></tr><tr><th scope="row">Client</th><td>iVMS-4200,HikCentral Pro,Hik-Connect</td></tr><tr><th scope="row">Web Browser</th><td>IE 11, Chrome 80+, Firefox 80+, Safari 13+</td></tr></table></details><details class="spec-group"><summary>Image<span>11</span></summary><table><tr><th scope="row">Image Parameters Switch</th><td>Yes</td></tr><tr><th scope="row">Image Settings</th><td>sharpness,saturation,brightness,contrast</td></tr><tr><th scope="row">Day/Night Switch</th><td>day, night, auto, scheduled-switch</td></tr><tr><th scope="row">Wide Dynamic Range (WDR)</th><td>True WDR</td></tr><tr><th scope="row">SNR</th><td>＞52dB</td></tr><tr><th scope="row">Defog</th><td>Digital defog</td></tr><tr><th scope="row">Image Stabilization</th><td>EIS</td></tr><tr><th scope="row">Image Enhancement</th><td>BLC,HLC,3D DNR</td></tr><tr><th scope="row">Privacy Mask</th><td>[Bullet channel] 8 programmable polygon privacy masks, [PTZ channel] 24 programmable polygon privacy masks; mask color or mosaic configurable</td></tr><tr><th scope="row">Regional Focus</th><td>yes</td></tr><tr><th scope="row">Regional Exposure</th><td>yes</td></tr></table></details><details class="spec-group"><summary>Interface<span>7</span></summary><table><tr><th scope="row">Ethernet Interface</th><td>RJ45, self-adaptive 10M/100M Ethernet port</td></tr><tr><th scope="row">On-board Storage</th><td>Built-in memory card slot, support microSD/microSDHC/microSDXC card, up to 512 GB</td></tr><tr><th scope="row">Audio</th><td>1 audio input, 2.0 to 2.4Vp-p, 1k Ohm±10%, 1 audio output, line level, impedance: 600 Ω</td></tr><tr><th scope="row">Alarm</th><td>1 alarm input, 1 alarm output</td></tr><tr><th scope="row">Reset</th><td>yes</td></tr><tr><th scope="row">Built-in Microphone</th><td>2 built-in microphones,picking up sounds in the radius up to 8 m</td></tr><tr><th scope="row">Built-in Speaker</th><td>1 built-in speaker, with effective distance reaching max. 20 m</td></tr></table></details><details class="spec-group"><summary>Event<span>3</span></summary><table><tr><th scope="row">Basic Event</th><td>Motion detection,video tampering alarm,exception (network disconnected, IP address conflict, illegal login, HDD full, HDD error),alarm input and output,audio exception detection</td></tr><tr><th scope="row">Smart Event</th><td>audio exception detection,region exiting detection,region entrance detection,intrusion detection,Line crossing detection</td></tr><tr><th scope="row">Linkage</th><td>[Bullet channel] Upload to FTP/NAS/memory card, notify surveillance center, send email, trigger alarm output, and trigger recording,[PTZ channel] Upload to FTP/NAS/memory card, notify surveillance center, send email, trigger alarm output, trigger recording, strobe light and audio alarm, and PTZ actions (such as preset, patrol scan, pattern scan)</td></tr></table></details><details class="spec-group"><summary>Deep Learning Function<span>2</span></summary><table><tr><th scope="row">Face Capture</th><td>Detects up to 5 faces simultaneously, Uploads face with background and closed-up face pictures,Supports detecting, tracking, capturing, grading, selecting of face in motion, and outputs the best face picture</td></tr><tr><th scope="row">Regional People Counting</th><td>Supports up to 8 detection regions, and independent arming schedule and linkage method. Supports 3 detection modes: people density detection, number of people exception detection, waiting time exception detection</td></tr></table></details><details class="spec-group"><summary>Linkage and Tracking<span>1</span></summary><table><tr><th scope="row">Smart Linkage</th><td>manual tracking, linked tracking capture, tracking in turn</td></tr></table></details><details class="spec-group"><summary>General<span>7</span></summary><table><tr><th scope="row">Power</th><td>12 VDC, 3.33 A PoE: IEEE 802.3at, 42.5 to 57.2 V, 0.6 A</td></tr><tr><th scope="row">Dimension</th><td>Ø166 mm × 294.8 mm (Ø6.5&quot; × 11.6&quot;)</td></tr><tr><th scope="row"></th><td>Approx. 3.0 kg (16.5 lb.)</td></tr><tr><th scope="row">Material</th><td>ADC12</td></tr><tr><th scope="row">Operating Condition</th><td>-30 °C to 65 °C (-22 °F to 149 °F). Humidity 95% or less (non-condensing)</td></tr><tr><th scope="row">General Function</th><td>mirror, password protection, watermark, IP address filter</td></tr><tr><th scope="row">Demist</th><td>Demist by heating the glass</td></tr></table></details><details class="spec-group"><summary>Approval<span>1</span></summary><table><tr><th scope="row">Protection</th><td>IP67 (IEC 60529-2013),TVS 6000 V lightning protection, surge protection and voltage transient protection</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://assets.hikvision.com/prd/normal/all/doc/m000159412/DS-2SE4C225MWG-E_12_Datasheet_20260917.pdf" target="_blank" rel="noopener">Download datasheet (PDF)</a><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/IP-Products/PTZ-Cameras/Pro-Series/ds-2se4c225mwg-e-12/" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-2SE4C225MWG-E/12(F0)(O-STD) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 

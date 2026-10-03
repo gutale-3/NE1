@@ -102,10 +102,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -141,7 +148,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 """.strip()
@@ -283,16 +293,19 @@ def details_html(product):
 def specs_html(product):
     groups = product.get("specTable")
     if groups:
-        body = "".join(
-            f'<tbody><tr><th scope="colgroup" colspan="2">{esc(group["group"])}</th></tr>'
+        sections = "".join(
+            f'<details class="spec-group"{" open" if index < 2 else ""}>'
+            f'<summary>{esc(group["group"])}<span>{len(group["rows"])}</span></summary><table>'
             + "".join(
                 f'<tr><th scope="row">{esc(label)}</th><td>{esc(value)}</td></tr>'
                 for label, value in group["rows"]
             )
-            + "</tbody>"
-            for group in groups
+            + "</table></details>"
+            for index, group in enumerate(groups)
         )
-        table = f'<div class="spec-table"><table>{body}</table></div>'
+        table = f'<div class="spec-table">{sections}</div>'
+        if len(groups) > 2:
+            table += '<p class="note" style="margin-top:10px">Tap a section to expand it.</p>'
     else:
         lines = "\n            ".join(
             f"<li>{esc(line)}</li>" for line in catalog.spec_lines(product["features"])

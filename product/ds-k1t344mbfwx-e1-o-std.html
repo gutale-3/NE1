@@ -29,7 +29,8 @@
  "category": "Access Control",
  "description": " Supports 4.5-inch LCD touch screen, 2 Mega pixel wide-angle lens, and built-in M1 card reading module\r\nMax.3000 faces capacity, Max.3000 fingerprints capacity, and Max.3000 cards\r\n Face Recognition Distance: 0.3 m to 1.5 m; Duration ＜ 0.2 s/User; Accuracy rate ≥ 99%\r\n Supports face, card, and PIN authentication\r\n Two-way audio with client software, indoor station, and main station. Physical button and touch button are supported\r\nWiFi、Bluetooth\r\n Supports mobile web and PC web for configuration\r\n Supports powered by 12 VDC or PoE and supports powering for device and door lock.\r\n IP65\r\nPower adapter included in the package（European Standard）",
  "image": [
-  "https://nashnaal.com/images/098.png"
+  "https://nashnaal.com/images/098.png",
+  "https://nashnaal.com/images/hik/m000126764/344-35ba6d3e.webp"
  ],
  "brand": {
   "@type": "Brand",
@@ -153,10 +154,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -192,7 +200,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 </style>
@@ -244,8 +255,18 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/images/098.png" alt="Value Series Face Access Terminal — DS-K1T344MBFWX-E1(O-STD)" fetchpriority="high" decoding="async">
+      <style>.gallery #g1:checked ~ .shot .s1 { display: flex; } .gallery #g1:checked ~ .thumbs label[for=g1] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g1:focus-visible ~ .thumbs label[for=g1] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g2:checked ~ .shot .s2 { display: flex; } .gallery #g2:checked ~ .thumbs label[for=g2] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g2:focus-visible ~ .thumbs label[for=g2] { outline: 2px solid #086E9E; outline-offset: 2px; }</style>
+      <div class="gallery">
+        <input type="radio" name="gallery" id="g1" checked aria-label="Photo 1 of 2">
+        <input type="radio" name="gallery" id="g2" aria-label="Photo 2 of 2">
+        <div class="shot">
+          <div class="slide s1"><img src="/images/098.png" alt="Value Series Face Access Terminal — DS-K1T344MBFWX-E1(O-STD) — view 1" fetchpriority="high" decoding="async"></div>
+          <div class="slide s2"><img src="/images/hik/m000126764/344-35ba6d3e.webp" alt="Value Series Face Access Terminal — DS-K1T344MBFWX-E1(O-STD) — view 2" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="thumbs">
+          <label for="g1"><img src="/images/098.png" alt="" loading="lazy" decoding="async"></label>
+          <label for="g2"><img src="/images/hik/m000126764/344-35ba6d3e.webp" alt="" loading="lazy" decoding="async"></label>
+        </div>
       </div>
 
       <div>
@@ -274,30 +295,16 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
       </div>
     </div>
 
-    
+    <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>Supports 4.5-inch LCD touch screen, 2 Mega pixel wide-angle lens, and built-in M1 card reading module</li><li>Max.3000 faces capacity, Max.3000 fingerprints capacity, and Max.3000 cards</li><li>Face Recognition Distance: 0.3 m to 1.5 m; Duration ＜ 0.2 s/User; Accuracy rate ≥ 99%</li><li>Supports face, card, PIN, and fingerprint authentication</li><li>Two-way audio with client software, indoor station, and main station.</li><li>Supports mobile web and PC web for configuration</li><li>Powers supply by standard PoE and at the same time powers supply for door lock (12 VDC/1 A)</li><li>Supports Push SDK</li><li>Supports the following SIP servers: ASTERISK, 3CX, ELASTIX, miniSipServer, Brekeke, OpenSIPs, Kamailio.</li><li>Supports face duplicate check, preventing multiple people from using the same face.</li><li>Supports attendance-only function.</li></ul>
+    </section>
 
     <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>Supports 4.5-inch LCD touch screen</li>
-            <li>2 Mega pixel wide-angle lens, and built-in M1 card reading module</li>
-            <li>Max.3000 faces capacity</li>
-            <li>Max.3000 fingerprints capacity, and Max.3000 cards</li>
-            <li>Face Recognition Distance: 0.3 m to 1.5 m; Duration ＜ 0.2 s/User; Accuracy rate ≥ 99%</li>
-            <li>Supports face</li>
-            <li>card, and PIN authentication</li>
-            <li>Two-way audio with client software</li>
-            <li>indoor station, and main station. Physical button and touch button are supported</li>
-            <li>WiFi</li>
-            <li>Bluetooth</li>
-            <li>Supports mobile web and PC web for configuration</li>
-            <li>Supports powered by 12 VDC or PoE and supports powering for device and door lock</li>
-            <li>IP65</li>
-            <li>Power adapter included in the package（European Standard）</li>
-        </ul>
-      </div>
-      
+      <div class="spec-table"><details class="spec-group" open><summary>System<span>1</span></summary><table><tr><th scope="row">Operating system</th><td>Linux</td></tr></table></details><details class="spec-group" open><summary>Display<span>4</span></summary><table><tr><th scope="row">Screen size</th><td>4.5-inch</td></tr><tr><th scope="row">Resolution</th><td>480 × 854</td></tr><tr><th scope="row">Type</th><td>LCD</td></tr><tr><th scope="row">Operation method</th><td>Touchable</td></tr></table></details><details class="spec-group"><summary>Video<span>2</span></summary><table><tr><th scope="row">Lens</th><td>× 2</td></tr><tr><th scope="row">Video standard</th><td>PAL (Default) and NTSC</td></tr></table></details><details class="spec-group"><summary>Network<span>3</span></summary><table><tr><th scope="row">Bluetooth</th><td>Support</td></tr><tr><th scope="row">Wired network</th><td>10/100 Mbps self adaptive</td></tr><tr><th scope="row">Wi-Fi</th><td>Support</td></tr></table></details><details class="spec-group"><summary>Interface<span>11</span></summary><table><tr><th scope="row">Alarm input</th><td>2</td></tr><tr><th scope="row">Alarm output</th><td>1</td></tr><tr><th scope="row">PoE</th><td>IEEE802.3at, standard PoE</td></tr><tr><th scope="row">Network interface</th><td>1</td></tr><tr><th scope="row">RS-485</th><td>1</td></tr><tr><th scope="row">Wiegand</th><td>1, supports Wiegand input, single direction</td></tr><tr><th scope="row">Lock control</th><td>1</td></tr><tr><th scope="row">Exit button</th><td>1</td></tr><tr><th scope="row">Door contact input</th><td>1</td></tr><tr><th scope="row">TAMPER</th><td>1</td></tr><tr><th scope="row">USB</th><td>1</td></tr></table></details><details class="spec-group"><summary>Capacity<span>5</span></summary><table><tr><th scope="row">User capacity</th><td>3000</td></tr><tr><th scope="row">Card capacity</th><td>3000</td></tr><tr><th scope="row">Face capacity</th><td>3000</td></tr><tr><th scope="row">Fingerprint capacity</th><td>3000</td></tr><tr><th scope="row">Event capacity</th><td>150000</td></tr></table></details><details class="spec-group"><summary>Authentication<span>5</span></summary><table><tr><th scope="row">Card type</th><td>M1 card</td></tr><tr><th scope="row">Card reading frequency</th><td>13.56 MHz</td></tr><tr><th scope="row">Face recognition duration</th><td>＜ 0.2 s</td></tr><tr><th scope="row">Face recognition accuracy rate</th><td>＞99%</td></tr><tr><th scope="row">Face recognition distance</th><td>0.3 to 1.5 m</td></tr></table></details><details class="spec-group"><summary>General<span>9</span></summary><table><tr><th scope="row">Button</th><td>No physical call button</td></tr><tr><th scope="row">Power supply</th><td>12 VDC, 1 A, standard PoE</td></tr><tr><th scope="row">Working temperature</th><td>-30 °C to 60 °C (-22 °F to 140 °F)</td></tr><tr><th scope="row">Working humidity</th><td>10 to 90% (No condensing)</td></tr><tr><th scope="row">Dimensions</th><td>165.2 mm × 75.7 mm × 25 mm (6.5&quot; × 2.98&quot; × 0.98&quot;)</td></tr><tr><th scope="row">Installation</th><td>Wall mounting</td></tr><tr><th scope="row">Protective level</th><td>IP65</td></tr><tr><th scope="row">Language</th><td>English, Spanish (South America), Arabic, Thai, Indonesian, Russian, Vietnamese, Portuguese (Brazil), Turkish, French, Traditional Chinese, Kazakh, Uzbek</td></tr><tr><th scope="row"></th><td>Gross weight: 0.60 kg (1.33 lbs) Net weight: 0.30 kg (0.66 lbs)</td></tr></table></details><details class="spec-group"><summary>Function<span>5</span></summary><table><tr><th scope="row">QR code recognition</th><td>Support scan QR code via camera</td></tr><tr><th scope="row">Face anti-spoofing</th><td>Support</td></tr><tr><th scope="row">Two-way audio</th><td>Support</td></tr><tr><th scope="row">Audio prompt</th><td>Support</td></tr><tr><th scope="row">Time synchronization</th><td>Support</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://assets.hikvision.com/prd/normal/all/doc/m000126764/DS-K1T344MBFWX-E1_Datasheet_20260819.pdf" target="_blank" rel="noopener">Download datasheet (PDF)</a><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/Access-Control-Products/terminals/face-recognition-terminal/ds-k1t344mbfwx-e1/" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-K1T344MBFWX-E1(O-STD) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 

@@ -29,7 +29,12 @@
  "category": "CCTV-Turbo HD",
  "description": "Support HDTVI Two-way Audio technology,full-channel motion detection 2.0 ,16 Turbo HD/AHD/Analog interface input, 16-ch HDTVI  coaxial video&audio input,2-ch IP video input (up to 18-ch), 1-ch RCA audio input, HDMI & VGA Output, 1 SATA interface, Live view: 1080P Lite: 25(P)/30(N) fps/ch, Up to 1080p Lite@15fps/ch encoding capability, mini 1U case",
  "image": [
-  "https://nashnaal.com/images/033.png"
+  "https://nashnaal.com/images/033.png",
+  "https://nashnaal.com/images/hik/m000162726/dvrx1-80429-t-9874ad6f.webp",
+  "https://nashnaal.com/images/hik/m000162726/dvrx1-lp-260bf037.webp",
+  "https://nashnaal.com/images/hik/m000162726/dvrx1-fp-0ed6040d.webp",
+  "https://nashnaal.com/images/hik/m000162726/dvrx1-80429-b-af120114.webp",
+  "https://nashnaal.com/images/hik/m000162726/ds-7116hghi-m1t-dimensionsimage-1-f7c18936.webp"
  ],
  "brand": {
   "@type": "Brand",
@@ -153,10 +158,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -192,7 +204,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 </style>
@@ -244,8 +259,30 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/images/033.png" alt="1080P Turbo HD 8.0 16CH DVR-Plastic — DS-7116HGHI-M1/T(STD)" fetchpriority="high" decoding="async">
+      <style>.gallery #g1:checked ~ .shot .s1 { display: flex; } .gallery #g1:checked ~ .thumbs label[for=g1] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g1:focus-visible ~ .thumbs label[for=g1] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g2:checked ~ .shot .s2 { display: flex; } .gallery #g2:checked ~ .thumbs label[for=g2] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g2:focus-visible ~ .thumbs label[for=g2] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g3:checked ~ .shot .s3 { display: flex; } .gallery #g3:checked ~ .thumbs label[for=g3] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g3:focus-visible ~ .thumbs label[for=g3] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g4:checked ~ .shot .s4 { display: flex; } .gallery #g4:checked ~ .thumbs label[for=g4] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g4:focus-visible ~ .thumbs label[for=g4] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g5:checked ~ .shot .s5 { display: flex; } .gallery #g5:checked ~ .thumbs label[for=g5] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g5:focus-visible ~ .thumbs label[for=g5] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g6:checked ~ .shot .s6 { display: flex; } .gallery #g6:checked ~ .thumbs label[for=g6] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g6:focus-visible ~ .thumbs label[for=g6] { outline: 2px solid #086E9E; outline-offset: 2px; }</style>
+      <div class="gallery">
+        <input type="radio" name="gallery" id="g1" checked aria-label="Photo 1 of 6">
+        <input type="radio" name="gallery" id="g2" aria-label="Photo 2 of 6">
+        <input type="radio" name="gallery" id="g3" aria-label="Photo 3 of 6">
+        <input type="radio" name="gallery" id="g4" aria-label="Photo 4 of 6">
+        <input type="radio" name="gallery" id="g5" aria-label="Photo 5 of 6">
+        <input type="radio" name="gallery" id="g6" aria-label="Photo 6 of 6">
+        <div class="shot">
+          <div class="slide s1"><img src="/images/033.png" alt="1080P Turbo HD 8.0 16CH DVR-Plastic — DS-7116HGHI-M1/T(STD) — view 1" fetchpriority="high" decoding="async"></div>
+          <div class="slide s2"><img src="/images/hik/m000162726/dvrx1-80429-t-9874ad6f.webp" alt="1080P Turbo HD 8.0 16CH DVR-Plastic — DS-7116HGHI-M1/T(STD) — view 2" loading="lazy" decoding="async"></div>
+          <div class="slide s3"><img src="/images/hik/m000162726/dvrx1-lp-260bf037.webp" alt="1080P Turbo HD 8.0 16CH DVR-Plastic — DS-7116HGHI-M1/T(STD) — view 3" loading="lazy" decoding="async"></div>
+          <div class="slide s4"><img src="/images/hik/m000162726/dvrx1-fp-0ed6040d.webp" alt="1080P Turbo HD 8.0 16CH DVR-Plastic — DS-7116HGHI-M1/T(STD) — view 4" loading="lazy" decoding="async"></div>
+          <div class="slide s5"><img src="/images/hik/m000162726/dvrx1-80429-b-af120114.webp" alt="1080P Turbo HD 8.0 16CH DVR-Plastic — DS-7116HGHI-M1/T(STD) — view 5" loading="lazy" decoding="async"></div>
+          <div class="slide s6"><img src="/images/hik/m000162726/ds-7116hghi-m1t-dimensionsimage-1-f7c18936.webp" alt="1080P Turbo HD 8.0 16CH DVR-Plastic — DS-7116HGHI-M1/T(STD) — view 6" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="thumbs">
+          <label for="g1"><img src="/images/033.png" alt="" loading="lazy" decoding="async"></label>
+          <label for="g2"><img src="/images/hik/m000162726/dvrx1-80429-t-9874ad6f.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g3"><img src="/images/hik/m000162726/dvrx1-lp-260bf037.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g4"><img src="/images/hik/m000162726/dvrx1-fp-0ed6040d.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g5"><img src="/images/hik/m000162726/dvrx1-80429-b-af120114.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g6"><img src="/images/hik/m000162726/ds-7116hghi-m1t-dimensionsimage-1-f7c18936.webp" alt="" loading="lazy" decoding="async"></label>
+        </div>
       </div>
 
       <div>
@@ -274,26 +311,16 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
       </div>
     </div>
 
-    
+    <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>Deep learning based human and vehicle targets classification of Motion Detection 2.0</li><li>H.265 Pro+/H.265 Pro/H.265 video compression</li><li>HDTVI/AHD/CVI/CVBS/IP video input</li><li>Audio via coaxial cable</li><li>Up to 18-ch IP camera input (up to 5 MP)</li><li>Encoding ability up to 1080p lite @ 15 fps</li><li>Support all channels HDTVI two-way audio technology</li></ul>
+    </section>
 
     <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>Support HDTVI Two-way Audio technology</li>
-            <li>full-channel motion detection 2.0</li>
-            <li>16 Turbo HD/AHD/Analog interface input</li>
-            <li>16-ch HDTVI  coaxial video&amp;audio input</li>
-            <li>2-ch IP video input (up to 18-ch)</li>
-            <li>1-ch RCA audio input</li>
-            <li>HDMI &amp; VGA Output</li>
-            <li>1 SATA interface</li>
-            <li>Live view: 1080P Lite: 25(P)/30(N) fps/ch</li>
-            <li>Up to 1080p Lite@15fps/ch encoding capability</li>
-            <li>mini 1U case</li>
-        </ul>
-      </div>
-      
+      <div class="spec-table"><details class="spec-group" open><summary>Motion Detection 2.0<span>1</span></summary><table><tr><th scope="row">Human/Vehicle Analysis</th><td>Deep learning-based motion detection 2.0 is enabled by default for all analog channels, it can classify human and vehicle, and extremely reduce false alarms caused by objects like leaves and lights; Quick search by object or event type is supported;</td></tr></table></details><details class="spec-group" open><summary>Video and Audio<span>13</span></summary><table><tr><th scope="row">IP Video Input</th><td>2-ch (up to 18-ch) Up to 5 MP resolution Support H.265+/H.265/H.264+/H.264 IP cameras</td></tr><tr><th scope="row">Analog Video Input</th><td>16-ch BNC interface (1.0 Vp-p, 75 Ω), supporting coaxitron connection</td></tr><tr><th scope="row">HDTVI Input</th><td>1080p25, 1080p30, 720p25, 720p30</td></tr><tr><th scope="row">AHD Input</th><td>1080p25, 1080p30, 720p25, 720p30</td></tr><tr><th scope="row">HDCVI Input</th><td>1080p25, 1080p30, 720p25, 720p30</td></tr><tr><th scope="row">CVBS Input</th><td>PAL/NTSC</td></tr><tr><th scope="row">HDMI Output</th><td>1-ch, 1920 × 1080/60Hz, 1280 × 1024/60Hz, 1280 × 720/60Hz</td></tr><tr><th scope="row">VGA Output</th><td>1-ch, 1920 × 1080/60Hz, 1280 × 1024/60Hz, 1280 × 720/60Hz</td></tr><tr><th scope="row">Video Output Mode</th><td>HDMI/VGA simultaneous output</td></tr><tr><th scope="row">Audio Input</th><td>1-ch RCA (2.0 Vp-p, 1 KΩ), and 16-ch via coaxial cable</td></tr><tr><th scope="row">Audio Output</th><td>1-ch, RCA (Linear, 1 KΩ)</td></tr><tr><th scope="row">Two-Way Audio</th><td>1-ch, RCA (2.0 Vp-p, 1 KΩ) (using the first audio input)</td></tr><tr><th scope="row">Synchronous Playback</th><td>16-ch</td></tr></table></details><details class="spec-group"><summary>Recording<span>8</span></summary><table><tr><th scope="row">Video Compression</th><td>H.265 Pro+/H.265 Pro/H.265/H.264+/H.264</td></tr><tr><th scope="row">Encoding Resolution</th><td>For 1080p stream access: 1080p Lite/720p Lite/WD1/4CIF/VGA/CIF For 720p stream access: 720p/WD1/4CIF/VGA/CIF For standard definition stream access: WD1/4CIF/VGA/CIF</td></tr><tr><th scope="row">Frame Rate</th><td>Main stream: For 1080p stream access: 1080p Lite/720p Lite/WD1/4CIF/VGA/CIF@15 fps For 720p stream access: 720p/WD1/4CIF/VGA/CIF@15 fps For SD stream access: WD1/4CIF/VGA/CIF@25 fps (P)/30 fps (N) Sub-stream: For 1080p and 720p stream access CIF/QVGA@15 fps For SD stream access: CIF/QVGA@25 fps (P)/30 fps (N)</td></tr><tr><th scope="row">Video Bitrate</th><td>32 Kbps to 4 Mbps</td></tr><tr><th scope="row">Dual-stream</th><td>Support</td></tr><tr><th scope="row">Stream Type</th><td>Video, Video &amp; Audio</td></tr><tr><th scope="row">Audio Compression</th><td>G.711u</td></tr><tr><th scope="row">Audio Bitrate</th><td>64 Kbps</td></tr></table></details><details class="spec-group"><summary>Network<span>4</span></summary><table><tr><th scope="row">Total Bandwidth</th><td>96 Mbps</td></tr><tr><th scope="row">Remote Connection</th><td>128</td></tr><tr><th scope="row">Network Protocol</th><td>TCP/IP, PPPoE, DHCP, Hik-Connect, DNS, DDNS, NTP, SADP, UPnP™, HTTPS, ONVIF</td></tr><tr><th scope="row">Network Interface</th><td>1, RJ45 10M/100M self-adaptive Ethernet interface</td></tr></table></details><details class="spec-group"><summary>Auxiliary Interface<span>3</span></summary><table><tr><th scope="row">SATA</th><td>1, SATA interface</td></tr><tr><th scope="row">Capacity</th><td>Up to 6 TB capacity for each disk</td></tr><tr><th scope="row">USB Interface</th><td>2 × USB 2.0</td></tr></table></details><details class="spec-group"><summary>General<span>6</span></summary><table><tr><th scope="row">Power Supply</th><td>12 VDC, 2 A</td></tr><tr><th scope="row">Consumption</th><td>≤ 7 W (without HDD)</td></tr><tr><th scope="row">Working Temperature</th><td>-10 °C to 55 °C (14 °F to 131 °F)</td></tr><tr><th scope="row">Working Humidity</th><td>10% to 90%</td></tr><tr><th scope="row">Dimension (W × D × H)</th><td>285 × 210 × 48 mm (11.2 × 8.3 × 1.9 inch)</td></tr><tr><th scope="row"></th><td>≤ 1.8 kg (without HDD, 4.0 lb.)</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://assets.hikvision.com/prd/normal/all/doc/m000162726/DS-7116HGHI-M1_T_Datasheet_20241231.pdf" target="_blank" rel="noopener">Download datasheet (PDF)</a><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/Turbo-HD-Products/DVR/Value-Series/ds-7116hghi-m1-t/" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-7116HGHI-M1/T(STD) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 

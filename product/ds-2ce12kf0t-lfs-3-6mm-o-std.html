@@ -29,7 +29,10 @@
  "category": "CCTV-Turbo HD",
  "description": "3K （5MP 16:9）CMOS Sensor,3K @ 20 fps(Default),Outdoor smart hybird light  Bullet,0.001Lux/F1.0,40m IR+40m White Light,2D DNR,Built-in Mic,Audio up Coaxial(Only TVI),12 VDC,OSD Menu(Up the Coax),  IP67, 2.8/3.6mm Lens,24H  Color，Smart Lighting（With Acusense DVR）,Support TVI/AHD/CVI/CVBS video signal output",
  "image": [
-  "https://nashnaal.com/images/011.png"
+  "https://nashnaal.com/images/011.png",
+  "https://nashnaal.com/images/hik/m000104683/74-df0t-ls-e3db06b4.webp",
+  "https://nashnaal.com/images/hik/m000104683/74-df0t-ls-92f33f0f.webp",
+  "https://nashnaal.com/images/hik/m000104683/ds-2ce12kf0t-lfs-dimensionsimage-1-c2d09e86.webp"
  ],
  "brand": {
   "@type": "Brand",
@@ -153,10 +156,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -192,7 +202,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 </style>
@@ -244,8 +257,24 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/images/011.png" alt="HD-3K Smart Hybrid Light ColorVu Bullet with Audio-40M — DS-2CE12KF0T-LFS(3.6mm)(O-STD)" fetchpriority="high" decoding="async">
+      <style>.gallery #g1:checked ~ .shot .s1 { display: flex; } .gallery #g1:checked ~ .thumbs label[for=g1] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g1:focus-visible ~ .thumbs label[for=g1] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g2:checked ~ .shot .s2 { display: flex; } .gallery #g2:checked ~ .thumbs label[for=g2] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g2:focus-visible ~ .thumbs label[for=g2] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g3:checked ~ .shot .s3 { display: flex; } .gallery #g3:checked ~ .thumbs label[for=g3] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g3:focus-visible ~ .thumbs label[for=g3] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g4:checked ~ .shot .s4 { display: flex; } .gallery #g4:checked ~ .thumbs label[for=g4] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g4:focus-visible ~ .thumbs label[for=g4] { outline: 2px solid #086E9E; outline-offset: 2px; }</style>
+      <div class="gallery">
+        <input type="radio" name="gallery" id="g1" checked aria-label="Photo 1 of 4">
+        <input type="radio" name="gallery" id="g2" aria-label="Photo 2 of 4">
+        <input type="radio" name="gallery" id="g3" aria-label="Photo 3 of 4">
+        <input type="radio" name="gallery" id="g4" aria-label="Photo 4 of 4">
+        <div class="shot">
+          <div class="slide s1"><img src="/images/011.png" alt="HD-3K Smart Hybrid Light ColorVu Bullet with Audio-40M — DS-2CE12KF0T-LFS(3.6mm)(O-STD) — view 1" fetchpriority="high" decoding="async"></div>
+          <div class="slide s2"><img src="/images/hik/m000104683/74-df0t-ls-e3db06b4.webp" alt="HD-3K Smart Hybrid Light ColorVu Bullet with Audio-40M — DS-2CE12KF0T-LFS(3.6mm)(O-STD) — view 2" loading="lazy" decoding="async"></div>
+          <div class="slide s3"><img src="/images/hik/m000104683/74-df0t-ls-92f33f0f.webp" alt="HD-3K Smart Hybrid Light ColorVu Bullet with Audio-40M — DS-2CE12KF0T-LFS(3.6mm)(O-STD) — view 3" loading="lazy" decoding="async"></div>
+          <div class="slide s4"><img src="/images/hik/m000104683/ds-2ce12kf0t-lfs-dimensionsimage-1-c2d09e86.webp" alt="HD-3K Smart Hybrid Light ColorVu Bullet with Audio-40M — DS-2CE12KF0T-LFS(3.6mm)(O-STD) — view 4" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="thumbs">
+          <label for="g1"><img src="/images/011.png" alt="" loading="lazy" decoding="async"></label>
+          <label for="g2"><img src="/images/hik/m000104683/74-df0t-ls-e3db06b4.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g3"><img src="/images/hik/m000104683/74-df0t-ls-92f33f0f.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g4"><img src="/images/hik/m000104683/ds-2ce12kf0t-lfs-dimensionsimage-1-c2d09e86.webp" alt="" loading="lazy" decoding="async"></label>
+        </div>
       </div>
 
       <div>
@@ -274,29 +303,16 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
       </div>
     </div>
 
-    
+    <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>High quality imaging with 3K, 2960 × 1665 resolution</li><li>24/7 color imaging with F1.0 aperture</li><li>2.8 mm and 3.6 mm fixed focal lens</li><li>Up to 40 m IR distance for bright night imaging</li><li>Up to 40 m white light distance for bright night imaging</li><li>One port for four switchable signals (TVI/AHD/CVI/CVBS)</li><li>High quality audio with audio over coaxial cable, built-in mic</li><li>Water and dust resistant (IP67)</li><li>Smart-Hybrid light, optimize your security with flexible lighting options</li></ul>
+    </section>
 
     <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>3K （5MP 16:9）CMOS Sensor</li>
-            <li>3K @ 20 fps(Default)</li>
-            <li>Outdoor smart hybird light  Bullet</li>
-            <li>0.001Lux/F1.0,40m IR+40m White Light</li>
-            <li>2D DNR</li>
-            <li>Built-in Mic</li>
-            <li>Audio up Coaxial(Only TVI)</li>
-            <li>12 VDC</li>
-            <li>OSD Menu(Up the Coax)</li>
-            <li>IP67</li>
-            <li>2.8/3.6mm Lens</li>
-            <li>24H  Color</li>
-            <li>Smart Lighting（With Acusense DVR）</li>
-            <li>Support TVI/AHD/CVI/CVBS video signal output</li>
-        </ul>
-      </div>
-      
+      <div class="spec-table"><details class="spec-group" open><summary>Camera<span>13</span></summary><table><tr><th scope="row">Image Sensor</th><td>3K CMOS</td></tr><tr><th scope="row">Signal System</th><td>PAL/NTSC</td></tr><tr><th scope="row">Resolution</th><td>2960 (H) × 1665 (V)</td></tr><tr><th scope="row">Frame Rate</th><td>TVI: 3K @20 fps, 4 MP @25 fps/30 fps, 1080p @25 fps/30 fps AHD: 5 MP @20 fps, 4 MP @25 fps/30 fps CVI: 4 MP @25 fps/30 fps CVBS: PAL/NTSC</td></tr><tr><th scope="row">Min. Illumination</th><td>0.001 Lux @(F1.0, AGC ON), 0 Lux with white light</td></tr><tr><th scope="row">Shutter Time</th><td>PAL: 1/25 s to 1/50,000 s;NTSC: 1/30 s to 1/50,000 s</td></tr><tr><th scope="row">Lens</th><td>2.8 mm, 3.6 mm fixed focal lens</td></tr><tr><th scope="row">Field of View</th><td>2.8 mm, horizontal FOV: 105°, vertical FOV: 60°, diagonal FOV: 143° 3.6 mm, horizontal FOV: 80°, vertical FOV: 50°, diagonal FOV: 112°</td></tr><tr><th scope="row">Lens Mount</th><td>M12</td></tr><tr><th scope="row">Light Alarm</th><td>Solid Light Alarm (White Light)</td></tr><tr><th scope="row">Day &amp; Night</th><td>ICR</td></tr><tr><th scope="row">WDR (Wide Dynamic Range)</th><td>Digital WDR</td></tr><tr><th scope="row">Angle Adjustment</th><td>Pan: 0° to 360°, Tilt: 0° to 180°, Rotation: 0° to 360°</td></tr></table></details><details class="spec-group" open><summary>Microphone<span>2</span></summary><table><tr><th scope="row">Pickup Distance</th><td>In a radius of up to 5 m</td></tr><tr><th scope="row">Amount</th><td>1</td></tr></table></details><details class="spec-group"><summary>Illuminator<span>2</span></summary><table><tr><th scope="row">Supplement Light Type</th><td>Smart,IR,White Light</td></tr><tr><th scope="row">Supplement Light Range</th><td>IR: Up to 40 m,White Light: Up to 40 m</td></tr></table></details><details class="spec-group"><summary>Image<span>9</span></summary><table><tr><th scope="row">Day/Night Mode</th><td>Auto/Color</td></tr><tr><th scope="row">White Light</th><td>Auto/Off</td></tr><tr><th scope="row">Image Mode</th><td>STD/HIGH-SAT/HIGHLIGHT</td></tr><tr><th scope="row">AGC</th><td>Yes</td></tr><tr><th scope="row">White Balance</th><td>Auto/Outdoor/Global/Manual</td></tr><tr><th scope="row">AE (Auto Exposure) Mode</th><td>HLS;DWDR;BLC;HLC;Global</td></tr><tr><th scope="row">Noise Reduction</th><td>2D DNR</td></tr><tr><th scope="row">Language</th><td>English</td></tr><tr><th scope="row">Function</th><td>Smart IR;Brightness;Sharpness;AGC;Anti-Banding</td></tr></table></details><details class="spec-group"><summary>Interface<span>2</span></summary><table><tr><th scope="row">Video Output</th><td>Switchable TVI/AHD/CVI/CVBS</td></tr><tr><th scope="row">Audio In</th><td>Built-in mic</td></tr></table></details><details class="spec-group"><summary>General<span>7</span></summary><table><tr><th scope="row">Power</th><td>12 VDC ± 25%, max.5.2 W,*You are recommended to use one power adapter to supply the power for one camera.</td></tr><tr><th scope="row">Operating Conditions</th><td>-40 °C to 60 °C (-40 °F to 140 °F), Humidity: 90% or less (non-condensing)</td></tr><tr><th scope="row">Protection Level</th><td>IP67</td></tr><tr><th scope="row">Material</th><td>Metal</td></tr><tr><th scope="row">Communication</th><td>HIKVISION-C</td></tr><tr><th scope="row">Dimension</th><td>194.2 mm × 78 mm × 74.5 mm (7.65&quot; × 3.07&quot; × 2.93&quot;)</td></tr><tr><th scope="row"></th><td>Approx. 500 g (1.1 lb.)</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/Turbo-HD-Products/Turbo-HD-Cameras/ColorVu-Series/ds-2ce12kf0t-lfs/" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-2CE12KF0T-LFS(3.6mm)(O-STD) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 

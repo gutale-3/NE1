@@ -29,7 +29,8 @@
  "category": "Accessories",
  "description": "90m mini RG59 coaxial cable with power cable, 0.41mm",
  "image": [
-  "https://nashnaal.com/images/imported/accessories-ds-1lh1scam592c-o-std-90m.png"
+  "https://nashnaal.com/images/imported/accessories-ds-1lh1scam592c-o-std-90m.png",
+  "https://nashnaal.com/images/hik/m000001463/2-1-d7c0c755.webp"
  ],
  "brand": {
   "@type": "Brand",
@@ -153,10 +154,17 @@ section.block { padding: 44px 0 0; }
 .highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
 .spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
 .spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
 .spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
 .spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
 .spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
@@ -192,7 +200,10 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
   .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
   .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
   .spec-table td { padding: 10px 14px; }
 }
 </style>
@@ -244,8 +255,18 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/images/imported/accessories-ds-1lh1scam592c-o-std-90m.png" alt="90 m Mini RG59 Coaxial Cable with Power Cable — DS-1LH1SCAM592C(O-STD) 90m" fetchpriority="high" decoding="async">
+      <style>.gallery #g1:checked ~ .shot .s1 { display: flex; } .gallery #g1:checked ~ .thumbs label[for=g1] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g1:focus-visible ~ .thumbs label[for=g1] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g2:checked ~ .shot .s2 { display: flex; } .gallery #g2:checked ~ .thumbs label[for=g2] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g2:focus-visible ~ .thumbs label[for=g2] { outline: 2px solid #086E9E; outline-offset: 2px; }</style>
+      <div class="gallery">
+        <input type="radio" name="gallery" id="g1" checked aria-label="Photo 1 of 2">
+        <input type="radio" name="gallery" id="g2" aria-label="Photo 2 of 2">
+        <div class="shot">
+          <div class="slide s1"><img src="/images/imported/accessories-ds-1lh1scam592c-o-std-90m.png" alt="90 m Mini RG59 Coaxial Cable with Power Cable — DS-1LH1SCAM592C(O-STD) 90m — view 1" fetchpriority="high" decoding="async"></div>
+          <div class="slide s2"><img src="/images/hik/m000001463/2-1-d7c0c755.webp" alt="90 m Mini RG59 Coaxial Cable with Power Cable — DS-1LH1SCAM592C(O-STD) 90m — view 2" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="thumbs">
+          <label for="g1"><img src="/images/imported/accessories-ds-1lh1scam592c-o-std-90m.png" alt="" loading="lazy" decoding="async"></label>
+          <label for="g2"><img src="/images/hik/m000001463/2-1-d7c0c755.webp" alt="" loading="lazy" decoding="async"></label>
+        </div>
       </div>
 
       <div>
@@ -274,17 +295,16 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
       </div>
     </div>
 
-    
+    <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>90/180 m reliable coaxial cable with power cables</li><li>Excellent transmission performance using solid copper</li><li>Power cable conductor material is bare copper</li><li>Full diameter and full length</li><li>High shielding performance via high braiding density</li></ul>
+    </section>
 
     <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>90m mini RG59 coaxial cable with power cable</li>
-            <li>0.41mm</li>
-        </ul>
-      </div>
-      
+      <div class="spec-table"><details class="spec-group" open><summary>Coaxial Cable<span>13</span></summary><table><tr><th scope="row">Conductor Material</th><td>Bare Copper</td></tr><tr><th scope="row">Conductor Wire Gauge</th><td>26AWG</td></tr><tr><th scope="row">Conductor Diameter</th><td>0.41 ± 0.01mm</td></tr><tr><th scope="row">Insulation Material</th><td>Foam PE</td></tr><tr><th scope="row">Insulation Diameter</th><td>2.0 ± 0.1mm</td></tr><tr><th scope="row">Tape Material</th><td>Aluminum foil</td></tr><tr><th scope="row">Tape Lapping</th><td>bonded</td></tr><tr><th scope="row">Braid Materia</th><td>Copper Clad Aluminum Magnesium</td></tr><tr><th scope="row">Braiding Standard</th><td>5*16*0.12±0.008mm</td></tr><tr><th scope="row">Braiding Density</th><td>80%</td></tr><tr><th scope="row">Impedance</th><td>75 ohms</td></tr><tr><th scope="row">Jacket Material</th><td>PVC</td></tr><tr><th scope="row">Jacket Average Thickness</th><td>≥0.45mm</td></tr></table></details><details class="spec-group" open><summary>Power Cable<span>6</span></summary><table><tr><th scope="row">Conductor Material</th><td>Bare Copper</td></tr><tr><th scope="row">Conductor Diameter</th><td>0.41 ± 0.01mm;11*(0.16 ±0.01)mm</td></tr><tr><th scope="row">Insulation Material</th><td>PVC(Red, Black,Yellow);Foam PE; PVC(Red, Black)</td></tr><tr><th scope="row">Insulation Diameter</th><td>1.2 ± 0.1mm;2.0 ± 0.1mm</td></tr><tr><th scope="row">Jacket Material</th><td>PVC</td></tr><tr><th scope="row">Jacket Average Thickness</th><td>≥0.45mm</td></tr></table></details><details class="spec-group"><summary>Siamese Cable General<span>6</span></summary><table><tr><th scope="row">Length</th><td>90m;180m</td></tr><tr><th scope="row">Diameter</th><td>3.5x7.0±0.3mm;3.5x7.2±0.3mm</td></tr><tr><th scope="row">Color</th><td>Black</td></tr><tr><th scope="row">Operating Temperature</th><td>-15~70ºC</td></tr><tr><th scope="row">Storage Temperature</th><td>-15~70ºC</td></tr><tr><th scope="row">Dimensions ( L x W x H )</th><td>210mm * 210mm * 103mm;260mm * 260mm * 120mm</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/premises-distribution-system/cable/coaxial-cables/ds-1lh1scam592c/" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-1LH1SCAM592C(O-STD) 90m and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 
