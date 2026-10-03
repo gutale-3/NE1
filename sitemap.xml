@@ -491,6 +491,16 @@
     <image:image><image:loc>https://nashnaal.com/images/044.webp</image:loc></image:image>
   </url>
   <url>
+    <loc>https://nashnaal.com/product/ds-e04hghi-b</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000063866/essd-dvr.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/ds-e08hghi-b</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000063866/essd-dvr.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://nashnaal.com/product/ds-2cd1021g0-i-4mm-o-std</loc>
     <lastmod>2026-10-03</lastmod>
     <image:image><image:loc>https://nashnaal.com/images/045.webp</image:loc></image:image>
@@ -1498,5 +1508,15 @@
     <loc>https://nashnaal.com/product/hdd-10tb</loc>
     <lastmod>2026-10-03</lastmod>
     <image:image><image:loc>https://nashnaal.com/images/storage/hdd-10tb.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/clips-100</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/cable-clips-100.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/ties-100</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/cable-ties-100.webp</image:loc></image:image>
   </url>
 </urlset>

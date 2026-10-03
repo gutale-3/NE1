@@ -72,7 +72,9 @@ them fall back to the single photo and the `features` bullet list.
 | --- | --- | --- |
 | `gallery` | `["images/x-2.webp", ...]` | Extra photos after `image`, with clickable thumbnails (pure CSS, works without JavaScript) |
 | `overview` | `"One or two sentences"` | Overview paragraph; also used as the Product schema description |
-| `keyFeatures` | `["...", "..."]` | Highlight tiles under the overview |
+| `keyFeatures` | `["...", "..."]` | Highlight tiles under the overview (filled by the Hikvision import) |
+| `highlights` | `["3-year warranty", ...]` | NE's own selling points, shown before `keyFeatures`; never overwritten by the import |
+| `brand` | `""` or a name | Defaults to Hikvision; set `""` for unbranded items to drop Hikvision brand and datasheet lines |
 | `specTable` | `[{"group": "Camera", "rows": [["Image sensor", "1/3\" CMOS"], ...]}, ...]` | Grouped specification table |
 | `datasheet` | URL or `/assets/...pdf` | "Download datasheet (PDF)" button |
 | `hikvisionUrl` | URL | "View on hikvision.com" button |

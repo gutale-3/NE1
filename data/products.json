@@ -8039,6 +8039,390 @@
     "hikvisionUrl": "https://www.hikvision.com/en/products/Turbo-HD-Products/DVR/AcuSense-Series/ids-7232hqhi-m2-s/"
   },
   {
+    "category": "CCTV-Turbo HD",
+    "name": "4-Channel 1080p eDVR with Built-in SSD",
+    "model": "DS-E04HGHI-B",
+    "features": "4-channel Turbo HD eDVR with built-in eSSD storage — no separate hard disk needed\r\nRecords about 2 weeks of footage from 4 cameras (Hikvision figure, default settings)\r\nSilent, low-power solid-state storage\r\n3-year warranty",
+    "pcsCtn": "",
+    "retail": 9000,
+    "price": 9000,
+    "image": "images/hik/m000063866/essd-dvr.webp",
+    "id": 205,
+    "keyFeatures": [
+      "Powered by eSSD technology",
+      "Deep learning based human and vehicle targets classification of Motion Detection 2.0",
+      "Scene-adaptive bitrate control video compression",
+      "Up to 1080p Lite@30 fps encoding capability",
+      "Low power consumption",
+      "Audio via coaxial cable"
+    ],
+    "specTable": [
+      {
+        "group": "Motion Detection 2.0",
+        "rows": [
+          [
+            "Human/Vehicle Analysis",
+            "Deep learning-based motion detection 2.0 is enabled by default for all analog channels, it can classify human and vehicle, and extremely reduce false alarms caused by objects like leaves and lights; Quick search by object or event type is supported;"
+          ]
+        ]
+      },
+      {
+        "group": "Video and Audio",
+        "rows": [
+          [
+            "IP Video Input",
+            "1-ch Up to 1080p resolution Support H.265+/H.265 IP cameras"
+          ],
+          [
+            "Analog Video Input",
+            "4-ch BNC interface (1.0 Vp-p, 75 Ω), supporting coaxitron connection"
+          ],
+          [
+            "HDTVI Input",
+            "1080p25, 1080p30, 720p25, 720p30"
+          ],
+          [
+            "AHD Input",
+            "1080p25, 1080p30, 720p25, 720p30"
+          ],
+          [
+            "HDCVI Input",
+            "1080p25, 1080p30, 720p25, 720p30"
+          ],
+          [
+            "CVBS Input",
+            "Support"
+          ],
+          [
+            "HDMI Output",
+            "1-ch, 1920 × 1080/60Hz, 1280 × 1024/60Hz, 1280 × 720/60Hz"
+          ],
+          [
+            "VGA Output",
+            "1-ch, 1920 × 1080/60Hz, 1280 × 1024/60Hz, 1280 × 720/60Hz"
+          ],
+          [
+            "Video Output Mode",
+            "HDMI/VGA simultaneous output"
+          ],
+          [
+            "Audio Input",
+            "4-ch via coaxial cable"
+          ],
+          [
+            "Audio Output",
+            "1-ch via HDMI"
+          ],
+          [
+            "Synchronous playback",
+            "4-ch"
+          ]
+        ]
+      },
+      {
+        "group": "Recording",
+        "rows": [
+          [
+            "Video Compression",
+            "H.265 Pro/H.265"
+          ],
+          [
+            "Encoding Resolution",
+            "1080p Lite/720p/720p Lite/WD1/4CIF/CIF/QVGA"
+          ],
+          [
+            "Frame Rate",
+            "Main stream: 1080p Lite/720p/720p Lite/WD1/4CIF@25 fps (P)/30 fps (N) Note: 1080p Lite/720p is 15 fps by default Sub-stream: 4CIF@15 fps; CIF/QVGA@25 fps (P)/30 fps (N)"
+          ],
+          [
+            "Video Bitrate",
+            "According to the actual scene, scene-adaptive bitrate control technology would automatically allocates appropriate bitrate to ensure the stability of recording period."
+          ],
+          [
+            "Stream Type",
+            "Video, Video & Audio Note: In order to protect privacy, the device will only record video (without audio) by default. If you want to record audio, you shall manually enable audio recording. For operation details, refer to the user manual."
+          ],
+          [
+            "Audio Compression",
+            "G.711u"
+          ],
+          [
+            "Audio Bitrate",
+            "64 Kbps"
+          ]
+        ]
+      },
+      {
+        "group": "Network",
+        "rows": [
+          [
+            "Total Bandwidth",
+            "64 Mbps Incoming bandwidth: 4 Mbps"
+          ],
+          [
+            "Remote Connection",
+            "32"
+          ],
+          [
+            "Network Protocol",
+            "TCP/IP, DHCP, Hik-Connect, DNS, DDNS, NTP, SADP, SMTP, NFS, UPnP™, HTTPS"
+          ],
+          [
+            "Network Interface",
+            "1, RJ45 10/100 Mbps self-adaptive Ethernet interface"
+          ]
+        ]
+      },
+      {
+        "group": "Auxiliary Interface",
+        "rows": [
+          [
+            "Capacity",
+            "Built-in 330 GB eSSD (300 GB available) Note: The device can store about 2 weeks videos for 4-ch analog cameras (default parameters), this estimation is for reference only."
+          ],
+          [
+            "USB Interface",
+            "Rear panel: 2 × USB 2.0"
+          ],
+          [
+            "Alarm In/Out",
+            "N/A"
+          ]
+        ]
+      },
+      {
+        "group": "General",
+        "rows": [
+          [
+            "Power Supply",
+            "12 VDC, 1 A"
+          ],
+          [
+            "Consumption",
+            "≤ 5.4 W (with eSSD)"
+          ],
+          [
+            "Working Temperature",
+            "-10 °C to 45 °C (14 °F to +113 °F)"
+          ],
+          [
+            "Working Humidity",
+            "10% to 90%"
+          ],
+          [
+            "Dimension (W × D × H)",
+            "152 × 113 × 46 mm(6.0 × 4.4 × 1.8 inch)"
+          ],
+          [
+            "",
+            "≤ 0.5 kg (with eSSD, 1.1 lb.)"
+          ]
+        ]
+      }
+    ],
+    "datasheet": "https://assets.hikvision.com/prd/public/all/doc/m000063866/Datasheet-of-DS-E04HGHI-B_V4.71.200_20230413.pdf",
+    "hikvisionUrl": "https://www.hikvision.com/en/products/Turbo-HD-Products/DVR/edvr-series/ds-e04hghi-b/",
+    "slug": "ds-e04hghi-b",
+    "url": "/product/ds-e04hghi-b",
+    "highlights": [
+      "3-year warranty",
+      "Built-in SSD storage — no separate hard disk needed",
+      "About 2 weeks of recording from 4 cameras (Hikvision figure)"
+    ]
+  },
+  {
+    "category": "CCTV-Turbo HD",
+    "name": "8-Channel 1080p eDVR with Built-in SSD",
+    "model": "DS-E08HGHI-B",
+    "features": "8-channel Turbo HD eDVR with built-in eSSD storage — no separate hard disk needed\r\nRecords about 2 weeks of footage from 8 cameras (Hikvision figure, default settings)\r\nSilent, low-power solid-state storage\r\n3-year warranty",
+    "pcsCtn": "",
+    "retail": 11000,
+    "price": 11000,
+    "image": "images/hik/m000063866/essd-dvr.webp",
+    "id": 206,
+    "keyFeatures": [
+      "Powered by eSSD technology",
+      "Deep learning based human and vehicle targets classification of Motion Detection 2.0",
+      "Scene-adaptive bitrate control video compression",
+      "Up to 1080p Lite@15 fps encoding capability",
+      "Low power consumption",
+      "Audio via coaxial cable"
+    ],
+    "specTable": [
+      {
+        "group": "Motion Detection 2.0",
+        "rows": [
+          [
+            "Human/Vehicle Analysis",
+            "Deep learning-based motion detection 2.0 is enabled by default for all analog channels, it can classify human and vehicle, and extremely reduce false alarms caused by objects like leaves and lights; Quick search by object or event type is supported;"
+          ]
+        ]
+      },
+      {
+        "group": "Video and Audio",
+        "rows": [
+          [
+            "IP Video Input",
+            "2-ch Up to 5 MP resolution Support H.265+/H.265 IP cameras"
+          ],
+          [
+            "Analog Video Input",
+            "8-ch BNC interface (1.0 Vp-p, 75 Ω), supporting coaxitron connection"
+          ],
+          [
+            "HDTVI Input",
+            "1080p25, 1080p30, 720p25, 720p30"
+          ],
+          [
+            "AHD Input",
+            "1080p25, 1080p30, 720p25, 720p30"
+          ],
+          [
+            "HDCVI Input",
+            "1080p25, 1080p30, 720p25, 720p30"
+          ],
+          [
+            "CVBS Input",
+            "Support"
+          ],
+          [
+            "HDMI Output",
+            "1-ch, 1920 × 1080/60 Hz, 1280 × 1024/60 Hz, 1280 × 720/60 Hz"
+          ],
+          [
+            "VGA Output",
+            "1-ch, 1920 × 1080/60 Hz, 1280 × 1024/60 Hz, 1280 × 720/60 Hz"
+          ],
+          [
+            "Video Output Mode",
+            "HDMI/VGA simultaneous output"
+          ],
+          [
+            "Audio Input",
+            "8-ch via coaxial cable"
+          ],
+          [
+            "Audio Output",
+            "1-ch via HDMI"
+          ],
+          [
+            "Synchronous playback",
+            "8-ch"
+          ]
+        ]
+      },
+      {
+        "group": "Recording",
+        "rows": [
+          [
+            "Video Compression",
+            "H.265 Pro/H.265"
+          ],
+          [
+            "Encoding Resolution",
+            "1080p Lite/720p/720p Lite/WD1/4CIF/CIF/QVGA"
+          ],
+          [
+            "Frame Rate",
+            "Main stream: 1080p Lite/720p/720p Lite/WD1/4CIF@15 fps Note: 1080p Lite/720p is 15 fps by default Sub-stream: CIF/QVGA@15 fps"
+          ],
+          [
+            "Video Bitrate",
+            "According to the actual scene, scene-adaptive bitrate control technology would automatically allocates appropriate bitrate to ensure the stability of recording period."
+          ],
+          [
+            "Stream Type",
+            "Video, Video & Audio Note: In order to protect privacy, the device will only record video (without audio) by default. If you want to record audio, you shall manually enable audio recording. For operation details, refer to the user manual."
+          ],
+          [
+            "Audio Compression",
+            "G.711u"
+          ],
+          [
+            "Audio Bitrate",
+            "64 Kbps"
+          ]
+        ]
+      },
+      {
+        "group": "Network",
+        "rows": [
+          [
+            "Total Bandwidth",
+            "72 Mbps Incoming bandwidth: 8 Mbps"
+          ],
+          [
+            "Remote Connection",
+            "32"
+          ],
+          [
+            "Network Protocol",
+            "TCP/IP, DHCP, Hik-Connect, DNS, DDNS, NTP, SADP, SMTP, NFS, UPnP™, HTTPS"
+          ],
+          [
+            "Network Interface",
+            "1, RJ45 10/100 Mbps self-adaptive Ethernet interface"
+          ]
+        ]
+      },
+      {
+        "group": "Auxiliary Interface",
+        "rows": [
+          [
+            "Capacity",
+            "Built-in 512 GB eSSD (480 GB available) Note: The device can store about 2 weeks videos for 8-ch analog cameras (default parameters), this estimation is for reference only."
+          ],
+          [
+            "USB Interface",
+            "Rear panel: 2 × USB 2.0"
+          ],
+          [
+            "Alarm In/Out",
+            "N/A"
+          ]
+        ]
+      },
+      {
+        "group": "General",
+        "rows": [
+          [
+            "Power Supply",
+            "12 VDC, 1 A"
+          ],
+          [
+            "Consumption",
+            "≤ 6.2 W (with eSSD)"
+          ],
+          [
+            "Working Temperature",
+            "-10 °C to 45 °C (14 °F to 113 °F)"
+          ],
+          [
+            "Working Humidity",
+            "10% to 90%"
+          ],
+          [
+            "Dimension (W × D × H)",
+            "151 × 121 × 46 mm (5.94 × 4.76 × 1.81 inch)"
+          ],
+          [
+            "",
+            "≤ 0.5 kg (with eSSD, 1.1 lb.)"
+          ]
+        ]
+      }
+    ],
+    "datasheet": "https://assets.hikvision.com/prd/public/all/doc/m000063867/Datasheet-of-DS-E08HGHI-B_V4.71.200_20230413.pdf",
+    "hikvisionUrl": "https://www.hikvision.com/en/products/Turbo-HD-Products/DVR/edvr-series/ds-e08hghi-b/",
+    "slug": "ds-e08hghi-b",
+    "url": "/product/ds-e08hghi-b",
+    "highlights": [
+      "3-year warranty",
+      "Built-in SSD storage — no separate hard disk needed",
+      "About 2 weeks of recording from 8 cameras (Hikvision figure)"
+    ]
+  },
+  {
     "category": "CCTV-IP",
     "name": "2MP IR Bullet IP Camera",
     "model": "DS-2CD1021G0-I(4mm)(O-STD)",
@@ -32172,5 +32556,33 @@
     "slug": "hdd-10tb",
     "url": "/product/hdd-10tb",
     "brand": ""
+  },
+  {
+    "category": "Accessories",
+    "name": "Cable Clips (Box of 100)",
+    "model": "CLIPS-100",
+    "brand": "",
+    "features": "Box of 100 white cable clips with steel nails\r\nFixes camera, coax and network cables neatly along walls and ceilings\r\nKES 200 per box",
+    "pcsCtn": "",
+    "retail": 200,
+    "price": 200,
+    "image": "images/storage/cable-clips-100.webp",
+    "id": 207,
+    "slug": "clips-100",
+    "url": "/product/clips-100"
+  },
+  {
+    "category": "Accessories",
+    "name": "Cable Ties 4.8 × 200 mm (Pack of 100)",
+    "model": "TIES-100",
+    "brand": "",
+    "features": "Pack of 100 white nylon cable ties, 4.8 mm × 200 mm\r\nBundles camera, power and network cables neatly in ceilings, trunking and cabinets\r\nKES 300 per pack",
+    "pcsCtn": "",
+    "retail": 300,
+    "price": 300,
+    "image": "images/storage/cable-ties-100.webp",
+    "id": 208,
+    "slug": "ties-100",
+    "url": "/product/ties-100"
   }
 ]

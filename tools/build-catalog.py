@@ -199,8 +199,11 @@ def brand_of(product):
 def share_image(product):
     """Link previews (WhatsApp, Facebook) still prefer PNG/JPEG over WebP."""
     image = product["image"]
-    png = image[:-5] + ".png" if image.endswith(".webp") else image
-    return png if (ROOT / png).exists() else image
+    if image.endswith(".webp"):
+        for ext in (".png", ".jpg"):
+            if (ROOT / (image[:-5] + ext)).exists():
+                return image[:-5] + ext
+    return image
 
 
 def gallery_html(product):
@@ -245,11 +248,16 @@ def gallery_html(product):
 def details_html(product):
     """Overview, highlights and the grouped spec table, when the data has them."""
     parts = []
-    if product.get("overview") or product.get("keyFeatures"):
+    # "highlights" are NE's own selling points (warranty, bundling); they lead the
+    # Hikvision key features and survive re-running the Hikvision import.
+    features = list(product.get("highlights", [])) + [
+        f for f in product.get("keyFeatures", []) if f not in product.get("highlights", [])
+    ]
+    if product.get("overview") or features:
         overview = (
             f'<p class="overview">{esc(product["overview"])}</p>' if product.get("overview") else ""
         )
-        highlights = "".join(f"<li>{esc(item)}</li>" for item in product.get("keyFeatures", []))
+        highlights = "".join(f"<li>{esc(item)}</li>" for item in features)
         heading = "Overview" if product.get("overview") else "Key features"
         parts.append(f"""<section class="block">
       <h2>{heading}</h2>
@@ -665,28 +673,28 @@ PACKAGES = [
         "id": "hd-home", "group": "hd",
         "name": "HD home starter",
         "for": "Homes and small compounds",
-        "summary": "Four 1080p cameras with 20 m night vision, a 4-channel DVR, 1 TB hard disk, power, cabling and connectors.",
+        "summary": "Four 1080p cameras with 20 m night vision, a 4-channel eDVR with built-in SSD storage, power, cabling, clips and connectors.",
         "items": [("DS-2CE16D0T-EXIPF(3.6mm)(O-STD)", 2), ("DS-2CE76D0T-EXIPF(2.8mm)(O-STD)", 2),
-                  ("DS-7104HGHI-M1(STD)(C)", 1), ("HDD-1TB", 1), ("DS-2FA1225-C4(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 90m", 1),
-                  ("CONN-SET", 4)],
+                  ("DS-E04HGHI-B", 1), ("DS-2FA1225-C4(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 90m", 1),
+                  ("CONN-SET", 4), ("CLIPS-100", 1)],
     },
     {
         "id": "hd-colorvu", "group": "hd", "popular": True,
         "name": "HD ColorVu shop & office",
         "for": "Shops, offices and small businesses",
-        "summary": "Eight full-colour night vision cameras with audio, an 8-channel DVR, 2 TB hard disk, power, cabling and connectors.",
+        "summary": "Eight full-colour night vision cameras with audio, an 8-channel eDVR with built-in SSD storage, power, cabling, clips and connectors.",
         "items": [("DS-2CE10DF0T-LPFS(3.6mm)(O-STD)", 4), ("DS-2CE70DF0T-LPFS(2.8mm)(O-STD)", 4),
-                  ("DS-7108HGHI-M1(STD)(C)", 1), ("HDD-2TB", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1),
-                  ("CONN-SET", 8)],
+                  ("DS-E08HGHI-B", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1),
+                  ("CONN-SET", 8), ("CLIPS-100", 2)],
     },
     {
         "id": "hd-3k", "group": "hd",
         "name": "HD 3K ColorVu premium",
         "for": "Larger homes and businesses",
-        "summary": "Eight sharper 3K full-colour cameras with audio, a 3K-ready 8-channel DVR, 4 TB hard disk, power, cabling and connectors.",
+        "summary": "Eight sharper 3K full-colour cameras with audio, a 3K-ready 8-channel DVR, 4 TB hard disk, power, cabling, clips and connectors.",
         "items": [("DS-2CE10KF0T-LPFS(3.6mm)(O-STD)", 4), ("DS-2CE70KF0T-LPFS(2.8mm)(O-STD)", 4),
                   ("iDS-7108HQHI-M1/T(STD)", 1), ("HDD-4TB", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1),
-                  ("CONN-SET", 8)],
+                  ("CONN-SET", 8), ("CLIPS-100", 2)],
     },
     # --- IP (network cameras over PoE) ---
     {
@@ -695,7 +703,8 @@ PACKAGES = [
         "for": "Homes moving to IP",
         "summary": "Four 2MP smart hybrid light IP cameras on a 4-port PoE NVR with 1 TB hard disk — one cable per camera, no separate power.",
         "items": [("DS-2CD1023G2-LIU(4mm)(O-STD)", 2), ("DS-2CD1123G2-LIU(2.8mm)(O-STD)", 2),
-                  ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("HDD-1TB", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1), ("CONN-SET", 4)],
+                  ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("HDD-1TB", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1), ("CONN-SET", 4),
+                  ("CLIPS-100", 1)],
     },
     {
         "id": "ip-colorvu", "group": "ip", "popular": True,
@@ -703,7 +712,8 @@ PACKAGES = [
         "for": "Premium homes and shops",
         "summary": "Four 4MP ColorVu cameras with built-in mics on a 4-port PoE NVR with 2 TB hard disk, plus solid-copper CAT6 and connectors.",
         "items": [("DS-2CD1047G3-LIU(4mm)(O-STD)", 2), ("DS-2CD1147G3-LIU(2.8mm)(O-STD)", 2),
-                  ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("HDD-2TB", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1), ("CONN-SET", 4)],
+                  ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("HDD-2TB", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1), ("CONN-SET", 4),
+                  ("CLIPS-100", 1)],
     },
     {
         "id": "ip-business", "group": "ip",
@@ -711,7 +721,8 @@ PACKAGES = [
         "for": "Offices, warehouses and estates",
         "summary": "Eight 4MP ColorVu cameras on an 8-port PoE NVR with 4 TB hard disk, two boxes of CAT6 and connectors.",
         "items": [("DS-2CD1047G3-LIU(4mm)(O-STD)", 4), ("DS-2CD1147G3-LIU(2.8mm)(O-STD)", 4),
-                  ("DS-7108NI-Q1/8P/M(STD)(D)", 1), ("HDD-4TB", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 2), ("CONN-SET", 8)],
+                  ("DS-7108NI-Q1/8P/M(STD)(D)", 1), ("HDD-4TB", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 2), ("CONN-SET", 8),
+                  ("CLIPS-100", 2)],
     },
     # --- Access control, video intercom, networking ---
     {

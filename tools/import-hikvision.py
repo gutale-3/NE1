@@ -71,7 +71,8 @@ def find_match(product, urls):
         for sub in page["subs"]:
             if norm(sub["name"]) == target:
                 return page, sub["id"], "exact"
-        if not page["subs"] and norm(page["title"]) == target:
+        title = re.sub(r"\s*discontinued\s*$", "", page["title"], flags=re.I)  # Hikvision appends this to old models
+        if not page["subs"] and norm(title) == target:
             return page, next(iter(page["specs"]), None), "exact"
     return (first, None, "family") if first else (None, None, None)
 
