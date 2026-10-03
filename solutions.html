@@ -24,15 +24,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media=&#39;all&#39;">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
-<link rel="preload" as="script" href="js/vendor/react.production.min.js" crossorigin="anonymous">
-<link rel="preload" as="script" href="js/vendor/react-dom.production.min.js" crossorigin="anonymous">
-<script src="js/support.js" defer></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-  <style>
-    * { box-sizing: border-box; }
+<style>* { box-sizing: border-box; }
     body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F6F8FA; color: #10202E; }
     a { color: #086E9E; text-decoration: none; }
     a:hover { color: #086E9E; }
@@ -49,168 +41,951 @@
     }
     .navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
     .navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
-    .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
+    .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }</style>
+<style>[data-h="1"]:hover{background:#086E9E !important}[data-h="2"]:hover{background:#1CAD52 !important}[data-h="4"]:hover{border-color:#086E9E !important}[data-h="5"]:hover{border-color:#086E9E !important;color:#086E9E !important}[data-h="13"]:hover{transform:scale(1.06) !important}</style>
+<!--layout:css-->
+<style id="layout-css">
+.site-header { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid #E7ECF1; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+.site-header .bar { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 24px; }
+.site-header .logo { display: flex; align-items: center; flex-shrink: 0; }
+.site-header .logo img { height: 52px; width: auto; display: block; }
+.site-nav { display: flex; align-items: center; gap: 30px; flex: 1; justify-content: center; }
+.site-nav a { font-size: 15px; font-weight: 600; color: #10202E; text-decoration: none; }
+.site-nav a:hover, .site-nav a.on { color: #086E9E; }
+.site-nav a.on { font-weight: 700; }
+.site-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.site-actions a { display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 8px; font-size: 14px; font-weight: 700; white-space: nowrap; text-decoration: none; }
+.site-actions .call { color: #086E9E; border: 1.5px solid #CFE6F2; }
+.site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
+.site-actions .quote { background: #086E9E; color: #fff; }
+.site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.navtoggle-cb { display: none; }
+.hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
+.hamburger-icon-close { display: none; }
+.mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
+.mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; text-decoration: none; }
+.mobile-nav-panel a.on { color: #086E9E; }
+.mobile-nav-panel .m-cta { margin-top: 12px; text-align: center; border-radius: 8px; font-weight: 700; padding: 15px; border: 0; }
+.mobile-nav-panel .m-quote { background: #086E9E; color: #fff; }
+.mobile-nav-panel .m-call { background: #EAF6FC; color: #086E9E; margin-top: 8px; }
+.navtoggle-cb:checked ~ .bar .hamburger-icon-open { display: none; }
+.navtoggle-cb:checked ~ .bar .hamburger-icon-close { display: inline; }
+.navtoggle-cb:checked ~ .mobile-nav-panel { display: flex; }
+@media (max-width: 1020px) { .site-actions .call { display: none; } }
+@media (max-width: 860px) {
+  .site-nav, .site-actions { display: none; }
+  .hamburger-btn { display: flex; align-items: center; justify-content: center; }
+}
+
+.site-footer { background: #0F2C3D; color: rgba(255,255,255,0.72); font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; line-height: 1.6; }
+.site-footer a { color: rgba(255,255,255,0.78); text-decoration: none; }
+.site-footer a:hover { color: #fff; }
+.site-footer .cols { max-width: 1240px; margin: 0 auto; padding: 56px 24px 36px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 36px; }
+.site-footer h2 { font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin: 0 0 14px; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer li { margin: 0 0 9px; }
+.site-footer .brand img { height: 44px; width: auto; display: block; margin-bottom: 14px; background: #fff; border-radius: 8px; padding: 4px; }
+.site-footer .brand p { margin: 0 0 16px; max-width: 34ch; }
+.site-footer .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(79,195,236,0.35); color: #4FC3EC; border-radius: 999px; padding: 6px 12px; font-size: 12.5px; font-weight: 700; }
+.site-footer .badge:hover { color: #7ED4F1; border-color: #7ED4F1; }
+.site-footer .visit p { margin: 0 0 10px; }
+.site-footer .hours { display: grid; grid-template-columns: auto auto; gap: 2px 14px; margin: 0 0 14px; }
+.site-footer .hours dt { color: rgba(255,255,255,0.6); }
+.site-footer .hours dd { margin: 0; color: #fff; font-weight: 600; }
+.site-footer .social { display: flex; gap: 10px; margin-top: 14px; }
+.site-footer .social a { width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; }
+.site-footer .social a:hover { border-color: #4FC3EC; }
+.site-footer .legal { border-top: 1px solid rgba(255,255,255,0.1); }
+.site-footer .legal div { max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.5); }
+@media (max-width: 960px) { .site-footer .cols { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .site-footer .cols { grid-template-columns: 1fr; gap: 28px; padding-top: 44px; } }
+
+.wa-float { position: fixed; bottom: 22px; right: 22px; width: 56px; height: 56px; border-radius: 50%; background: #22C35E; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 60; }
+.wa-float:hover { background: #1CAD52; }
 </style>
-</helmet>
+<script src="/js/site.js" defer></script>
+<!--/layout:css--></head>
+<body>
+<div style="width: 100%; min-height: 100vh; background: rgb(246, 248, 250); overflow-x: hidden;">
 
-<div style="width:100%;min-height:100vh;background:#F6F8FA;overflow-x:hidden">
-
-  <div style="{{ progressBarStyle }}"></div>
-
-  <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #E7ECF1">
+  <!--layout:header-->
+<header class="site-header">
     <input type="checkbox" id="navtoggle" class="navtoggle-cb">
-    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:16px">
-      <a href="/" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
-        <img src="assets/nashnaal-logo-header.webp" alt="NE" width="52" height="52" style="height:52px;width:auto;display:block" />
+    <div class="bar">
+      <a href="/" class="logo" aria-label="NE Nashnaal Electronics home">
+        <img src="/assets/nashnaal-logo-header.webp" alt="NE — Nashnaal Electronics" width="52" height="52">
       </a>
-      <nav class="nav-links" style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
-        <a href="/" style="font-size:15px;font-weight:600;color:#10202E">Home</a>
-        <a href="world" style="font-size:15px;font-weight:600;color:#10202E">Explore</a>
-        <a href="products" style="font-size:15px;font-weight:600;color:#10202E">Products</a>
-        <a href="solutions" style="font-size:15px;font-weight:700;color:#086E9E">Solutions</a>
-        <a href="services" style="font-size:15px;font-weight:600;color:#10202E">Services</a>
-        <a href="blog" style="font-size:15px;font-weight:600;color:#10202E">Blog</a>
-        <a href="faq" style="font-size:15px;font-weight:600;color:#10202E">FAQ</a>
-        <a href="about" style="font-size:15px;font-weight:600;color:#10202E">About</a>
-        <a href="contact" style="font-size:15px;font-weight:600;color:#10202E">Contact</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/products">Products</a>
+        <a href="/solutions" class="on" aria-current="page">Solutions</a>
+        <a href="/services">Services</a>
+        <a href="/blog">Blog</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
       </nav>
-      <a href="tel:+254798131085" class="call-btn" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#086E9E;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
-        Call 0798 131085
-      </a>
+      <div class="site-actions">
+        <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
+        <a href="/quote" class="quote">Get a quote</a>
+      </div>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
       </label>
     </div>
-    <nav class="mobile-nav-panel">
-        <a href="/" style="display:block;font-weight:600;color:#10202E">Home</a>
-        <a href="world" style="display:block;font-weight:600;color:#10202E">Explore</a>
-        <a href="products" style="display:block;font-weight:600;color:#10202E">Products</a>
-        <a href="solutions" style="display:block;font-weight:700;color:#086E9E">Solutions</a>
-        <a href="services" style="display:block;font-weight:600;color:#10202E">Services</a>
-        <a href="blog" style="display:block;font-weight:600;color:#10202E">Blog</a>
-        <a href="faq" style="display:block;font-weight:600;color:#10202E">FAQ</a>
-        <a href="about" style="display:block;font-weight:600;color:#10202E">About</a>
-        <a href="contact" style="display:block;font-weight:600;color:#10202E">Contact</a>
-      <a href="tel:+254798131085" style="margin-top:12px;text-align:center;background:#086E9E;color:#fff;padding:15px;border-radius:8px;font-weight:700;font-size:16px">Call 0798 131085</a>
+    <nav class="mobile-nav-panel" aria-label="Mobile">
+      <a href="/products">Products</a>
+      <a href="/solutions" class="on" aria-current="page">Solutions</a>
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/quote" class="m-cta m-quote">Get a quote</a>
+      <a href="tel:+254737454891" class="m-cta m-call">Call 0737 454 891</a>
     </nav>
   </header>
+<!--/layout:header-->
 
-  <section data-screen-label="Solutions Header" style="background:linear-gradient(135deg,#0B7EB5 0%,#0B8FCB 100%);padding:64px 24px;position:relative;overflow:hidden">
-    <div style="{{ headerParallaxStyle }}"></div>
-    <div style="max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:2">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:10px">Solutions</div>
-      <h1 style="font-size:clamp(1.7rem, 4vw + 1rem, 2.5rem);font-weight:800;margin:0 0 14px;color:#fff;letter-spacing:-0.01em">Hikvision solutions for every industry</h1>
-      <p style="font-size:17px;color:rgba(255,255,255,0.88);margin:0;line-height:1.6">Genuine Hikvision hardware, matched by NE to the way your industry actually works &mdash; from a single retail store to a multi-site logistics operation.</p>
+  <section style="background: linear-gradient(135deg, rgb(11, 126, 181) 0%, rgb(11, 143, 203) 100%); padding: 64px 24px; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: -10% -10% -30%; background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.14) 0px, transparent 45%); transform: translateY(832.65px); pointer-events: none;"></div>
+    <div style="max-width: 900px; margin: 0px auto; text-align: center; position: relative; z-index: 2;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); margin-bottom: 10px;">Solutions</div>
+      <h1 style="font-size: clamp(1.7rem, 1rem + 4vw, 2.5rem); font-weight: 800; margin: 0px 0px 14px; color: rgb(255, 255, 255); letter-spacing: -0.01em;">Hikvision solutions for every industry</h1>
+      <p style="font-size: 17px; color: rgba(255, 255, 255, 0.88); margin: 0px; line-height: 1.6;">Genuine Hikvision hardware, matched by NE to the way your industry actually works — from a single retail store to a multi-site logistics operation.</p>
     </div>
   </section>
 
-  <section data-screen-label="Solutions by Industry" style="max-width:1240px;margin:0 auto;padding:64px 24px 20px">
-    <div style="text-align:center;margin-bottom:44px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Solutions by Industry</div>
-      <h2 style="font-size:clamp(1.4rem, 3.2vw + 0.75rem, 1.875rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Built around how you operate</h2>
+  <section style="max-width: 1240px; margin: 0px auto; padding: 64px 24px 20px;">
+    <div style="text-align: center; margin-bottom: 44px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 10px;">Solutions by Industry</div>
+      <h2 style="font-size: clamp(1.4rem, 0.75rem + 3.2vw, 1.875rem); font-weight: 800; margin: 0px; color: rgb(16, 32, 46); letter-spacing: -0.01em;">Built around how you operate</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
-      <sc-for list="{{ industries }}" as="ind" hint-placeholder-count="11">
-        <div ref="{{ ind.ref }}" style="{{ ind.style }}">
-          <div style="height:180px;overflow:hidden">
-            <img src="{{ ind.image }}" alt="{{ ind.title }} security solution" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.35s" style-hover="transform:scale(1.06)" />
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden; opacity: 1; transform: translateY(0px); transition: opacity 0.6s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1);">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="assets/solutions/retail.webp" alt="Retail security solution" loading="lazy" decoding="async" data-h="13" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s;">
           </div>
-          <div style="padding:22px 22px 24px">
-            <div style="font-size:18px;font-weight:800;margin-bottom:8px;color:#10202E">{{ ind.title }}</div>
-            <div style="font-size:14px;line-height:1.65;color:#4A5B68;margin-bottom:14px;min-height:66px">{{ ind.desc }}</div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">
-              <sc-for list="{{ ind.scenarios }}" as="sc" hint-placeholder-count="3">
-                <span style="font-size:11.5px;font-weight:600;color:#4A5B68;background:#F0F4F7;border-radius:6px;padding:4px 9px">{{ sc }}</span>
-              </sc-for>
+          <div style="padding: 22px 22px 24px;">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Retail</div>
+            <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104); margin-bottom: 14px; min-height: 66px;">Cut shrinkage and keep checkout lines honest — IP cameras and people counting built for shops, supermarkets and malls.</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Supermarkets</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Shopping Malls</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Car Dealerships</span>
+              
             </div>
-            <a href="{{ ind.link }}" style="font-size:13.5px;font-weight:700;color:#086E9E">{{ ind.cta }} &rarr;</a>
+            <a href="/solution-retail" style="font-size: 13.5px; font-weight: 700; color: rgb(8, 110, 158);">View Solution →</a>
           </div>
         </div>
-      </sc-for>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.08s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.08s;">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="assets/solutions/education.webp" alt="Education security solution" loading="lazy" decoding="async" data-h="13" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s;">
+          </div>
+          <div style="padding: 22px 22px 24px;">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Education</div>
+            <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104); margin-bottom: 14px; min-height: 66px;">Keep campuses secure and attendance accurate — access control and CCTV sized for schools, universities and classrooms.</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Schools</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Classroom Hub</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Campus Gates</span>
+              
+            </div>
+            <a href="/solution-education" style="font-size: 13.5px; font-weight: 700; color: rgb(8, 110, 158);">View Solution →</a>
+          </div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.16s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.16s;">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="assets/solutions/healthcare.webp" alt="Healthcare security solution" loading="lazy" decoding="async" data-h="13" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s;">
+          </div>
+          <div style="padding: 22px 22px 24px;">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Healthcare</div>
+            <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104); margin-bottom: 14px; min-height: 66px;">Protect patients, staff and equipment around the clock with discreet, reliable surveillance built for clinical spaces.</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Hospitals</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Clinics</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Care Facilities</span>
+              
+            </div>
+            <a href="/solution-healthcare" style="font-size: 13.5px; font-weight: 700; color: rgb(8, 110, 158);">View Solution →</a>
+          </div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden; opacity: 1; transform: translateY(0px); transition: opacity 0.6s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1);">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="assets/scroll-world/warehouse.webp" alt="Logistics &amp; Warehousing security solution" loading="lazy" decoding="async" data-h="13" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s;">
+          </div>
+          <div style="padding: 22px 22px 24px;">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Logistics &amp; Warehousing</div>
+            <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104); margin-bottom: 14px; min-height: 66px;">Track stock and dock activity from arrival to dispatch — wide-coverage cameras built for warehouses and yards.</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Warehouses</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Dock Management</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Parking Lots</span>
+              
+            </div>
+            <a href="/solution-logistics" style="font-size: 13.5px; font-weight: 700; color: rgb(8, 110, 158);">View Solution →</a>
+          </div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.08s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.08s;">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="assets/solutions/manufacturing.webp" alt="Manufacturing security solution" loading="lazy" decoding="async" data-h="13" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s;">
+          </div>
+          <div style="padding: 22px 22px 24px;">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Manufacturing</div>
+            <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104); margin-bottom: 14px; min-height: 66px;">Monitor production lines and enforce safety zones with rugged cameras that hold up on the factory floor.</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Factories</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Construction Sites</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Production Lines</span>
+              
+            </div>
+            <a href="/solution-manufacturing" style="font-size: 13.5px; font-weight: 700; color: rgb(8, 110, 158);">View Solution →</a>
+          </div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.16s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.16s;">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="assets/scroll-world/dashcam.webp" alt="Public Transport &amp; Traffic security solution" loading="lazy" decoding="async" data-h="13" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s;">
+          </div>
+          <div style="padding: 22px 22px 24px;">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Public Transport &amp; Traffic</div>
+            <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104); margin-bottom: 14px; min-height: 66px;">From dashcams to roadside monitoring — coverage that keeps drivers, passengers and commuters accounted for.</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Bus Stops</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Highways</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Fleet Vehicles</span>
+              
+            </div>
+            <a href="/solution-traffic" style="font-size: 13.5px; font-weight: 700; color: rgb(8, 110, 158);">View Solution →</a>
+          </div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden; opacity: 1; transform: translateY(0px); transition: opacity 0.6s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1);">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="assets/scroll-world/control.webp" alt="Safe City &amp; Government security solution" loading="lazy" decoding="async" data-h="13" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s;">
+          </div>
+          <div style="padding: 22px 22px 24px;">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Safe City &amp; Government</div>
+            <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104); margin-bottom: 14px; min-height: 66px;">Centralized monitoring for public spaces and facilities, backed by NE’s local installation and support.</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Monitoring Centers</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Public Spaces</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Municipal Sites</span>
+              
+            </div>
+            <a href="/category/ip-cameras-nvrs" style="font-size: 13.5px; font-weight: 700; color: rgb(8, 110, 158);">Explore Products →</a>
+          </div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.08s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.08s;">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="assets/scroll-world/install.webp" alt="Buildings security solution" loading="lazy" decoding="async" data-h="13" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s;">
+          </div>
+          <div style="padding: 22px 22px 24px;">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Buildings</div>
+            <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104); margin-bottom: 14px; min-height: 66px;">Apartments, offices and hotels — access control and video intercom that fit residential and commercial buildings alike.</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Apartments</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Offices</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Hotels</span>
+              
+            </div>
+            <a href="/solution-buildings" style="font-size: 13.5px; font-weight: 700; color: rgb(8, 110, 158);">View Solution →</a>
+          </div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.16s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.16s;">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="assets/solutions/energy.webp" alt="Energy security solution" loading="lazy" decoding="async" data-h="13" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s;">
+          </div>
+          <div style="padding: 22px 22px 24px;">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Energy</div>
+            <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104); margin-bottom: 14px; min-height: 66px;">Secure remote sites without trenching cable — wireless bridges and solar-ready gear for substations and solar farms.</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Substations</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Solar Farms</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Remote Sites</span>
+              
+            </div>
+            <a href="/solution-energy" style="font-size: 13.5px; font-weight: 700; color: rgb(8, 110, 158);">View Solution →</a>
+          </div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden; opacity: 1; transform: translateY(0px); transition: opacity 0.6s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1);">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="assets/solutions/stadium.webp" alt="Maritime &amp; Stadiums security solution" loading="lazy" decoding="async" data-h="13" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s;">
+          </div>
+          <div style="padding: 22px 22px 24px;">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Maritime &amp; Stadiums</div>
+            <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104); margin-bottom: 14px; min-height: 66px;">High-traffic, high-stakes venues — ports and stadiums — with security that scales to thousands of people and vehicles.</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Ports</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Stadiums</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Large Events</span>
+              
+            </div>
+            <a href="/solution-maritime" style="font-size: 13.5px; font-weight: 700; color: rgb(8, 110, 158);">View Solution →</a>
+          </div>
+        </div>
+      
+        <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.08s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.08s;">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="assets/solutions/smallbiz.webp" alt="Small Business security solution" loading="lazy" decoding="async" data-h="13" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s;">
+          </div>
+          <div style="padding: 22px 22px 24px;">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Small Business</div>
+            <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104); margin-bottom: 14px; min-height: 66px;">Right-sized security for a single store, office or home — no enterprise complexity, fully remote-managed.</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Small Offices</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Single Stores</span>
+              
+                <span style="font-size: 11.5px; font-weight: 600; color: rgb(74, 91, 104); background: rgb(240, 244, 247); border-radius: 6px; padding: 4px 9px;">Homes</span>
+              
+            </div>
+            <a href="/solution-smb" style="font-size: 13.5px; font-weight: 700; color: rgb(8, 110, 158);">View Solution →</a>
+          </div>
+        </div>
+      
     </div>
   </section>
 
-  <section data-screen-label="Solutions by Scenario" style="max-width:1240px;margin:0 auto;padding:64px 24px 20px">
-    <div style="text-align:center;margin-bottom:36px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Solutions by Scenario</div>
-      <h2 style="font-size:clamp(1.4rem, 3.2vw + 0.75rem, 1.875rem);font-weight:800;margin:0 0 12px;color:#10202E;letter-spacing:-0.01em">Every industry breaks down into real scenarios</h2>
-      <p style="font-size:15px;color:#4A5B68;max-width:640px;margin:0 auto;line-height:1.6">Tell NE your scenario and we'll recommend the right cameras, recorders and access control &mdash; not a generic package.</p>
+  <section style="max-width: 1240px; margin: 0px auto; padding: 64px 24px 20px;">
+    <div style="text-align: center; margin-bottom: 36px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 10px;">Solutions by Scenario</div>
+      <h2 style="font-size: clamp(1.4rem, 0.75rem + 3.2vw, 1.875rem); font-weight: 800; margin: 0px 0px 12px; color: rgb(16, 32, 46); letter-spacing: -0.01em;">Every industry breaks down into real scenarios</h2>
+      <p style="font-size: 15px; color: rgb(74, 91, 104); max-width: 640px; margin: 0px auto; line-height: 1.6;">Tell NE your scenario and we'll recommend the right cameras, recorders and access control — not a generic package.</p>
     </div>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:980px;margin:0 auto">
-      <sc-for list="{{ scenarios }}" as="s" hint-placeholder-count="24">
-        <a href="{{ s.link }}" target="_blank" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">{{ s.label }}</a>
-      </sc-for>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; max-width: 980px; margin: 0px auto;">
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Apartments" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Apartments</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Offices" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Offices</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Hotels" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Hotels</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Schools" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Schools</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Classroom%20Hub" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Classroom Hub</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Construction%20Sites" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Construction Sites</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Supermarkets" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Supermarkets</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Shopping%20Malls" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Shopping Malls</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Car%20Dealerships" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Car Dealerships</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Gas%20Stations" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Gas Stations</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Parking%20Lots" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Parking Lots</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Warehouses" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Warehouses</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Factories" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Factories</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Dock%20Management" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Dock Management</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Bus%20Stops" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Bus Stops</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Highways" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Highways</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Monitoring%20Centers" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Monitoring Centers</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Electrical%20Substations" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Electrical Substations</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Solar%20Farms" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Solar Farms</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Hospitals" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Hospitals</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Casinos" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Casinos</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Conference%20Rooms" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Conference Rooms</a>
+      
+        <a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20security%20solution%20for%3A%20Data%20Centers" target="_blank" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Data Centers</a>
+      
     </div>
   </section>
 
-  <section data-screen-label="Solutions by Function" style="max-width:1240px;margin:0 auto;padding:64px 24px 20px">
-    <div style="text-align:center;margin-bottom:44px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Solutions by Function</div>
-      <h2 style="font-size:clamp(1.4rem, 3.2vw + 0.75rem, 1.875rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Pick the capability, NE finds the hardware</h2>
+  <section style="max-width: 1240px; margin: 0px auto; padding: 64px 24px 20px;">
+    <div style="text-align: center; margin-bottom: 44px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 10px;">Solutions by Function</div>
+      <h2 style="font-size: clamp(1.4rem, 0.75rem + 3.2vw, 1.875rem); font-weight: 800; margin: 0px; color: rgb(16, 32, 46); letter-spacing: -0.01em;">Pick the capability, NE finds the hardware</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
-      <sc-for list="{{ functions }}" as="f" hint-placeholder-count="9">
-        <a href="{{ f.link }}" ref="{{ f.ref }}" style="{{ f.style }}">
-          <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px;flex-shrink:0">{{ f.icon }}</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+      
+        <a href="/category/access-control" style="display: flex; gap: 14px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 20px; opacity: 1; transform: translateY(0px); transition: opacity 0.6s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1);">
+          <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px; flex-shrink: 0;">🔑</div>
           <div>
-            <div style="font-size:16px;font-weight:800;margin-bottom:4px;color:#10202E">{{ f.title }}</div>
-            <div style="font-size:13px;line-height:1.55;color:#4A5B68">{{ f.desc }}</div>
+            <div style="font-size: 16px; font-weight: 800; margin-bottom: 4px; color: rgb(16, 32, 46);">Access Control</div>
+            <div style="font-size: 13px; line-height: 1.55; color: rgb(74, 91, 104);">Card, fingerprint or mobile credential entry systems.</div>
           </div>
         </a>
-      </sc-for>
+      
+        <a href="/category/ip-cameras-nvrs" style="display: flex; gap: 14px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 20px; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.07s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.07s;">
+          <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px; flex-shrink: 0;">📹</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 800; margin-bottom: 4px; color: rgb(16, 32, 46);">People Counting</div>
+            <div style="font-size: 13px; line-height: 1.55; color: rgb(74, 91, 104);">Footfall analytics for retail and public spaces.</div>
+          </div>
+        </a>
+      
+        <a href="/category/turbo-hd-cameras-dvrs" style="display: flex; gap: 14px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 20px; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.14s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.14s;">
+          <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px; flex-shrink: 0;">🚧</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 800; margin-bottom: 4px; color: rgb(16, 32, 46);">Perimeter Protection</div>
+            <div style="font-size: 13px; line-height: 1.55; color: rgb(74, 91, 104);">IR and smart-hybrid cameras that flag intrusion.</div>
+          </div>
+        </a>
+      
+        <a href="/category/interactive-panels" style="display: flex; gap: 14px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 20px; opacity: 1; transform: translateY(0px); transition: opacity 0.6s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1);">
+          <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px; flex-shrink: 0;">🖥️</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 800; margin-bottom: 4px; color: rgb(16, 32, 46);">Information Display</div>
+            <div style="font-size: 13px; line-height: 1.55; color: rgb(74, 91, 104);">4K interactive displays for meeting rooms and lobbies.</div>
+          </div>
+        </a>
+      
+        <a href="/category/video-intercom" style="display: flex; gap: 14px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 20px; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.07s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.07s;">
+          <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px; flex-shrink: 0;">☎️</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 800; margin-bottom: 4px; color: rgb(16, 32, 46);">Video Intercom</div>
+            <div style="font-size: 13px; line-height: 1.55; color: rgb(74, 91, 104);">Two-way video entry for gates, doors and reception.</div>
+          </div>
+        </a>
+      
+        <a href="/category/public-address" style="display: flex; gap: 14px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 20px; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.14s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.14s;">
+          <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px; flex-shrink: 0;">📢</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 800; margin-bottom: 4px; color: rgb(16, 32, 46);">Public Address</div>
+            <div style="font-size: 13px; line-height: 1.55; color: rgb(74, 91, 104);">Announcement and alert systems for campuses and sites.</div>
+          </div>
+        </a>
+      
+        <a href="/category/networking" style="display: flex; gap: 14px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 20px; opacity: 1; transform: translateY(0px); transition: opacity 0.6s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1);">
+          <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px; flex-shrink: 0;">📶</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 800; margin-bottom: 4px; color: rgb(16, 32, 46);">Wireless Connectivity</div>
+            <div style="font-size: 13px; line-height: 1.55; color: rgb(74, 91, 104);">Access points and long-range wireless bridges.</div>
+          </div>
+        </a>
+      
+        <a href="/category/accessories" style="display: flex; gap: 14px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 20px; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.07s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.07s;">
+          <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px; flex-shrink: 0;">🔌</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 800; margin-bottom: 4px; color: rgb(16, 32, 46);">Structured Cabling</div>
+            <div style="font-size: 13px; line-height: 1.55; color: rgb(74, 91, 104);">Patch panels, racks and UPS backup power.</div>
+          </div>
+        </a>
+      
+        <a href="/category/access-control" style="display: flex; gap: 14px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 20px; opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.14s, transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1) 0.14s;">
+          <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px; flex-shrink: 0;">👋</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 800; margin-bottom: 4px; color: rgb(16, 32, 46);">Visitor Management</div>
+            <div style="font-size: 13px; line-height: 1.55; color: rgb(74, 91, 104);">Track who enters your site and when.</div>
+          </div>
+        </a>
+      
     </div>
   </section>
 
-  <section data-screen-label="Solution Brochures" style="max-width:1100px;margin:0 auto;padding:64px 24px 20px">
-    <div style="text-align:center;margin-bottom:40px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Resources</div>
-      <h2 style="font-size:clamp(1.4rem, 3.2vw + 0.75rem, 1.875rem);font-weight:800;margin:0 0 12px;color:#10202E;letter-spacing:-0.01em">Download official Hikvision solution brochures</h2>
-      <p style="font-size:15px;color:#4A5B68;max-width:640px;margin:0 auto;line-height:1.6">Detailed spec sheets and solution overviews, straight from Hikvision, for the industries NE supports.</p>
+  <section style="max-width: 1100px; margin: 0px auto; padding: 64px 24px 20px;">
+    <div style="text-align: center; margin-bottom: 40px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 10px;">Resources</div>
+      <h2 style="font-size: clamp(1.4rem, 0.75rem + 3.2vw, 1.875rem); font-weight: 800; margin: 0px 0px 12px; color: rgb(16, 32, 46); letter-spacing: -0.01em;">Download official Hikvision solution brochures</h2>
+      <p style="font-size: 15px; color: rgb(74, 91, 104); max-width: 640px; margin: 0px auto; line-height: 1.6;">Detailed spec sheets and solution overviews, straight from Hikvision, for the industries NE supports.</p>
     </div>
-    <sc-for list="{{ brochureGroups }}" as="grp" hint-placeholder-count="10">
-      <div style="margin-bottom:32px">
-        <div style="font-size:15px;font-weight:800;color:#10202E;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #E7ECF1">{{ grp.title }}</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
-          <sc-for list="{{ grp.items }}" as="doc" hint-placeholder-count="4">
-            <a href="{{ doc.file }}" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
-              <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">{{ doc.ext }}</div>
-              <div style="min-width:0">
-                <div style="font-size:13.5px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ doc.title }}</div>
-                <div style="font-size:11.5px;color:#9AA9B4">{{ doc.size }}</div>
+    
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgb(231, 236, 241);">Retail</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+          
+            <a href="assets/brochures/brochure-retail.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Retail Solutions Overview</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">3.8 MB</div>
               </div>
             </a>
-          </sc-for>
+          
+            <a href="assets/brochures/brochure-smart-supermarket-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Smart Supermarket Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.4 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/leaflet-hikvision-solutions-for-shopping-malls.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Shopping Malls Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.1 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/infographic-cloud-based-chain-store-solution.jpg" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">JPG</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Cloud-Based Chain Store Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.3 MB</div>
+              </div>
+            </a>
+          
         </div>
       </div>
-    </sc-for>
+    
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgb(231, 236, 241);">Education</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+          
+            <a href="assets/brochures/brochure-classroom-hub-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Classroom Hub Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.5 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/brochure-smart-education-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Smart Education Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">5.5 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/flyer-educational-digital-signage.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Educational Digital Signage</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">895 KB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/leaflet-education-course-recording.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Education Course Recording</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.0 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/hikvision-remote-learning-solution-infor-2022.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Remote Learning Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.4 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/leaflet-remote-classroom-inspection-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Remote Classroom Inspection</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.6 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/leaflet-student-attendance-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Student Attendance Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.6 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/inforgraphic-multi-classroom-learning.png" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PNG</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Multi-Classroom Learning</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.6 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/education-infographic-educational-digital-signage-20231122.jpg" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">JPG</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Educational Digital Signage (Infographic)</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.0 MB</div>
+              </div>
+            </a>
+          
+        </div>
+      </div>
+    
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgb(231, 236, 241);">Healthcare</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+          
+            <a href="assets/brochures/brochure-nursing-home-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Nursing Home Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.8 MB</div>
+              </div>
+            </a>
+          
+        </div>
+      </div>
+    
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgb(231, 236, 241);">Logistics &amp; Warehousing</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+          
+            <a href="assets/brochures/inforgraphic-warehouse-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Warehouse Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.1 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/leaflet-intelligent-logistics-system-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Intelligent Logistics System</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">884 KB</div>
+              </div>
+            </a>
+          
+        </div>
+      </div>
+    
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgb(231, 236, 241);">Manufacturing</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+          
+            <a href="assets/brochures/brochure-preview-manufacturing-solution-20231124.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Manufacturing Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">3.6 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/leaflet-hikvision-manufacturing-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Manufacturing Solution (Leaflet)</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.7 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/infographic-preview-industrial-inspection-20231115.jpg" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">JPG</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Industrial Inspection</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.9 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/inforgraphic-construction-site-solution.jpg" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">JPG</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Construction Site Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.4 MB</div>
+              </div>
+            </a>
+          
+        </div>
+      </div>
+    
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgb(231, 236, 241);">Public Transport &amp; Traffic</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+          
+            <a href="assets/brochures/leaflet-hikvision-smart-bus-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Smart Bus Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.1 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/leaflet-intelligent-traffic-system-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Intelligent Traffic System</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.7 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/infographic-highway-solutions.jpg" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">JPG</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Highway Solutions</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">3.8 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/inforgraphic-urban-roadways-solution.jpg" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">JPG</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Urban Roadways Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">4.1 MB</div>
+              </div>
+            </a>
+          
+        </div>
+      </div>
+    
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgb(231, 236, 241);">Buildings</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+          
+            <a href="assets/brochures/building-sbf-inforgraphic-hikvision-visitor-management-solutions-for-residential-buildings-20230612.jpg" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">JPG</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Visitor Management — Residential Buildings</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">4.1 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/inforgraphic-visitor-management-solutions-for-office-buildings.jpg" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">JPG</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Visitor Management — Office Buildings</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.3 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/building-sbf-inforgraphic-smart-lock-solution-20231019.jpg" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">JPG</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Smart Lock Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.4 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/inforgraphic-elevator-control-solution.jpg" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">JPG</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Elevator Control Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.3 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/brochure-smart-hotel-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Smart Hotel Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.3 MB</div>
+              </div>
+            </a>
+          
+        </div>
+      </div>
+    
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgb(231, 236, 241);">Energy</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+          
+            <a href="assets/brochures/leaflet-hikvision-solar-farm-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Solar Farm Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.5 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/leaflet-solar-farm-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Solar Farm Solution (Alt.)</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.5 MB</div>
+              </div>
+            </a>
+          
+        </div>
+      </div>
+    
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgb(231, 236, 241);">Maritime &amp; Stadiums</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+          
+            <a href="assets/brochures/brochure-smart-port-maritime-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Smart Port &amp; Maritime Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">919 KB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/brochure-stadiums-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Stadiums Solution</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.9 MB</div>
+              </div>
+            </a>
+          
+        </div>
+      </div>
+    
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgb(231, 236, 241);">Small Business</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+          
+            <a href="assets/brochures/leaflet-smb-solutions.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">SMB Solutions Overview</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">3.1 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/infographic-smb-solutions-for-farms-01.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">SMB Solutions for Farms (1)</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.5 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/infographic-smb-solutions-for-farms-02.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">SMB Solutions for Farms (2)</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">713 KB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/infographic-smb-solutions-for-farms-03.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">SMB Solutions for Farms (3)</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">385 KB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/poster-smb-solutions-for-farms.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">SMB Poster — Farms</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">205 KB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/poster-smb-solutions-for-houses.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">SMB Poster — Houses</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">176 KB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/poster-smb-solutions-for-offices.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">SMB Poster — Offices</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">183 KB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/poster-smb-solutions-for-stores.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">SMB Poster — Stores</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">206 KB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/rollup-smb-solution-for-farms.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">SMB Rollup — Farms</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">2.3 MB</div>
+              </div>
+            </a>
+          
+        </div>
+      </div>
+    
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgb(231, 236, 241);">General</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+          
+            <a href="assets/brochures/flyer-ai-open-platform.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">AI Open Platform</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">1.1 MB</div>
+              </div>
+            </a>
+          
+            <a href="assets/brochures/brochure-portable-products-20260319.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+              <div style="min-width: 0px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Portable Products Catalog</div>
+                <div style="font-size: 11.5px; color: rgb(154, 169, 180);">3.9 MB</div>
+              </div>
+            </a>
+          
+        </div>
+      </div>
+    
   </section>
 
-  <section data-screen-label="FAQ" style="max-width:860px;margin:0 auto;padding:64px 24px 20px">
-    <div style="text-align:center;margin-bottom:36px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">FAQ</div>
-      <h2 style="font-size:clamp(1.35rem, 3vw + 0.7rem, 1.75rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Common questions about NE's solutions</h2>
+  <section style="max-width: 860px; margin: 0px auto; padding: 64px 24px 20px;">
+    <div style="text-align: center; margin-bottom: 36px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 10px;">FAQ</div>
+      <h2 style="font-size: clamp(1.35rem, 0.7rem + 3vw, 1.75rem); font-weight: 800; margin: 0px; color: rgb(16, 32, 46); letter-spacing: -0.01em;">Common questions about NE's solutions</h2>
     </div>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
-        <div style="font-size:15.5px;font-weight:800;color:#10202E;margin-bottom:8px">Is NE an authorized Hikvision distributor?</div>
-        <div style="font-size:14px;line-height:1.7;color:#4A5B68">Yes. NE sources every product directly through Hikvision's official distribution channel, so what you buy is genuine hardware, not grey-market stock.</div>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 22px 24px;">
+        <div style="font-size: 15.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 8px;">Is NE an authorized Hikvision distributor?</div>
+        <div style="font-size: 14px; line-height: 1.7; color: rgb(74, 91, 104);">Yes. NE sources every product directly through Hikvision's official distribution channel, so what you buy is genuine hardware, not grey-market stock.</div>
       </div>
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
-        <div style="font-size:15.5px;font-weight:800;color:#10202E;margin-bottom:8px">Does NE install what it sells?</div>
-        <div style="font-size:14px;line-height:1.7;color:#4A5B68">Yes. NE's own technicians handle site surveys, installation, system design and after-sales support — one point of contact from purchase to a working system.</div>
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 22px 24px;">
+        <div style="font-size: 15.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 8px;">Does NE install what it sells?</div>
+        <div style="font-size: 14px; line-height: 1.7; color: rgb(74, 91, 104);">Yes. NE's own technicians handle site surveys, installation, system design and after-sales support — one point of contact from purchase to a working system.</div>
       </div>
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
-        <div style="font-size:15.5px;font-weight:800;color:#10202E;margin-bottom:8px">I'm not sure which cameras or system I need — can NE help?</div>
-        <div style="font-size:14px;line-height:1.7;color:#4A5B68">Yes. Tell NE about your site, industry and budget on WhatsApp or through the contact page, and NE will recommend the right cameras, recorders and access control for your scenario.</div>
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 22px 24px;">
+        <div style="font-size: 15.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 8px;">I'm not sure which cameras or system I need — can NE help?</div>
+        <div style="font-size: 14px; line-height: 1.7; color: rgb(74, 91, 104);">Yes. Tell NE about your site, industry and budget on WhatsApp or through the contact page, and NE will recommend the right cameras, recorders and access control for your scenario.</div>
       </div>
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
-        <div style="font-size:15.5px;font-weight:800;color:#10202E;margin-bottom:8px">Does NE offer bulk or wholesale pricing?</div>
-        <div style="font-size:14px;line-height:1.7;color:#4A5B68">Yes. NE offers volume pricing for installers, integrators and contractors sourcing Hikvision equipment for multiple sites or ongoing projects.</div>
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 22px 24px;">
+        <div style="font-size: 15.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 8px;">Does NE offer bulk or wholesale pricing?</div>
+        <div style="font-size: 14px; line-height: 1.7; color: rgb(74, 91, 104);">Yes. NE offers volume pricing for installers, integrators and contractors sourcing Hikvision equipment for multiple sites or ongoing projects.</div>
       </div>
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
-        <div style="font-size:15.5px;font-weight:800;color:#10202E;margin-bottom:8px">How do I get a quote from NE?</div>
-        <div style="font-size:14px;line-height:1.7;color:#4A5B68">Call or WhatsApp NE on +254 798 131 085, or use the contact page — NE is based at Business Bay Square in Nairobi.</div>
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 22px 24px;">
+        <div style="font-size: 15.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 8px;">How do I get a quote from NE?</div>
+        <div style="font-size: 14px; line-height: 1.7; color: rgb(74, 91, 104);">Call or WhatsApp NE on +254 737 454 891, or use the contact page — NE is based at Business Bay Square in Nairobi.</div>
       </div>
     </div>
   </section>
@@ -243,225 +1018,75 @@
       {
         "@type": "Question",
         "name": "How do I get a quote from NE?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Call or WhatsApp NE on +254 798 131 085, or use the contact page — NE is based at Business Bay Square in Nairobi." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Call or WhatsApp NE on +254 737 454 891, or use the contact page — NE is based at Business Bay Square in Nairobi." }
       }
     ]
   }
   </script>
 
-  <section data-screen-label="CTA" style="max-width:1100px;margin:64px auto 0;padding:0 24px 64px">
-    <div ref="{{ ctaRef }}" style="text-align:center;padding:44px;background:#0F2C3D;border-radius:18px;{{ ctaStyle }}">
-      <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">Not sure which solution fits?</div>
-      <div style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:24px">Tell NE about your site and we'll recommend the right cameras, recorders and access control.</div>
-      <a href="contact" style="background:#086E9E;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Talk to NE</a>
+  <section style="max-width: 1100px; margin: 64px auto 0px; padding: 0px 24px 64px;">
+    <div style="text-align: center; padding: 44px; background: rgb(15, 44, 61); border-radius: 18px; opacity: 1; transform: translateY(0px); transition: opacity 0.7s, transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);">
+      <div style="font-size: 22px; font-weight: 800; color: rgb(255, 255, 255); margin-bottom: 8px;">Not sure which solution fits?</div>
+      <div style="font-size: 15px; color: rgba(255, 255, 255, 0.7); margin-bottom: 24px;">Tell NE about your site and we'll recommend the right cameras, recorders and access control.</div>
+      <a href="contact" data-h="1" style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); padding: 14px 30px; border-radius: 9px; font-weight: 700; font-size: 15px;">Talk to NE</a>
     </div>
   </section>
 
-  <footer style="background:#0F2C3D;padding:40px 24px">
-    <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
-      <div style="font-size:13.5px;color:rgba(255,255,255,0.55)">&copy; 2026 NE &mdash; Nashnaal Electronics. Authorized Hikvision distributor &amp; retailer.</div>
-      <div style="display:flex;gap:22px">
-        <a href="/" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Home</a>
-        <a href="products" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Products</a>
-        <a href="solutions" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Solutions</a>
-        <a href="blog" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Blog</a>
-        <a href="faq" style="font-size:13.5px;color:rgba(255,255,255,0.75)">FAQ</a>
-        <a href="about" style="font-size:13.5px;color:rgba(255,255,255,0.75)">About</a>
-        <a href="contact" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Contact</a>
+  <!--layout:footer-->
+<footer class="site-footer">
+    <div class="cols">
+      <div class="brand">
+        <img src="/assets/nashnaal-logo-header.webp" alt="NE — Nashnaal Electronics" width="44" height="44" loading="lazy">
+        <p>Genuine Hikvision CCTV, access control, intercom and networking &mdash; supplied, installed and supported from Nairobi.</p>
+        <a class="badge" href="https://www.hikvision.com/en/Partners/channel-partners/find-a-distributor/" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 4.5 6v6c0 4.6 3.2 7.7 7.5 9.2 4.3-1.5 7.5-4.6 7.5-9.2V6z"/><path d="m8.8 11.8 2.3 2.3 4.1-4.6"/></svg> Authorized Hikvision National Distributor</a>
+      </div>
+      <nav aria-label="Product categories">
+        <h2>Products</h2>
+        <ul>
+          <li><a href="/category/ip-cameras-nvrs">IP cameras &amp; NVRs</a></li>
+          <li><a href="/category/turbo-hd-cameras-dvrs">Turbo HD cameras &amp; DVRs</a></li>
+          <li><a href="/category/access-control">Access control</a></li>
+          <li><a href="/category/video-intercom">Video intercom</a></li>
+          <li><a href="/category/networking">Networking &amp; switches</a></li>
+          <li><a href="/category/wireless-wifi">Wi-Fi &amp; wireless</a></li>
+          <li><a href="/category/public-address">Public address</a></li>
+          <li><a href="/category/interactive-panels">Interactive panels</a></li>
+          <li><a href="/category/accessories">Accessories &amp; UPS</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/about">About NE</a></li>
+          <li><a href="/services">Installation &amp; services</a></li>
+          <li><a href="/solutions">Solutions by industry</a></li>
+          <li><a href="/quote">Get a quote</a></li>
+          <li><a href="/blog">Guides &amp; blog</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/world">Explore NE</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="visit">
+        <h2>Visit the showroom</h2>
+        <p><a href="https://www.google.com/maps/place/?q=place_id:ChIJL1wsUKARLxgRTEebeopQdiI" target="_blank" rel="noopener">Business Bay Square (BBS Mall), Shop GFE 61, General Waruingi Road, Eastleigh, Nairobi</a></p>
+        <dl class="hours">
+          <dt>Mon&ndash;Sat</dt><dd>08:00 &ndash; 20:00</dd>
+          <dt>Sunday</dt><dd>09:00 &ndash; 18:00</dd>
+        </dl>
+        <p><a href="tel:+254737454891">Call 0737 454 891</a> &middot; <a href="https://wa.me/254737454891" target="_blank" rel="noopener">WhatsApp</a></p>
+        <div class="social">
+          <a href="https://www.instagram.com/nashnaalelectronics" target="_blank" rel="noopener" aria-label="NE on Instagram"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.tiktok.com/@nashnaalelectronics" target="_blank" rel="noopener" aria-label="NE on TikTok"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3a7 7 0 0 1-3.9-1.2v6.3a5.9 5.9 0 1 1-5.9-5.9h.6v3.1a2.9 2.9 0 1 0 2.3 2.8V3h3Z"/></svg></a>
+        </div>
       </div>
     </div>
+    <div class="legal"><div>
+      <span>&copy; 2026 NE &mdash; Nashnaal Electronics. All rights reserved.</span>
+      <span>Hikvision is a trademark of Hangzhou Hikvision Digital Technology Co., Ltd.</span>
+    </div></div>
   </footer>
-
-  <a href="https://wa.me/254798131085" target="_blank" class="wa-pulse-btn" style="position:fixed;bottom:26px;right:26px;width:58px;height:58px;border-radius:50%;background:#22C35E;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.2);z-index:60" style-hover="background:#1CAD52">
-    <span style="font-size:26px;line-height:1">💬</span>
-  </a>
-
-</div>
-
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  state = { scrollY: 0, scrollProgress: 0 };
-
-  componentDidMount() {
-    import('./revealFx.js').then(mod => {
-      this._fx = mod;
-      this._reveal = mod.makeRevealController(this);
-      this._untrackScroll = mod.makeScrollTracker((scrollY, progress) => {
-        this.setState({ scrollY, scrollProgress: progress });
-      });
-      this.forceUpdate();
-    });
-  }
-
-  componentWillUnmount() {
-    if (this._reveal) this._reveal.destroy();
-    if (this._untrackScroll) this._untrackScroll();
-  }
-
-  renderVals() {
-    const reveal = this._reveal;
-    const rref = (key) => reveal ? reveal.ref(key) : undefined;
-    const revealCss = (key, delay = 0) => {
-      const vis = reveal ? reveal.visible(key) : false;
-      return `opacity:${vis ? 1 : 0};transform:translateY(${vis ? 0 : 22}px);transition:opacity 0.6s ease ${delay}s, transform 0.6s cubic-bezier(.16,.84,.44,1) ${delay}s`;
-    };
-
-    const industryData = [
-      { title: 'Retail', image: 'assets/solutions/retail.webp', link: 'solution-retail.html', cta: 'View Solution',
-        desc: 'Cut shrinkage and keep checkout lines honest — IP cameras and people counting built for shops, supermarkets and malls.',
-        scenarios: ['Supermarkets', 'Shopping Malls', 'Car Dealerships'] },
-      { title: 'Education', image: 'assets/solutions/education.webp', link: 'solution-education.html', cta: 'View Solution',
-        desc: 'Keep campuses secure and attendance accurate — access control and CCTV sized for schools, universities and classrooms.',
-        scenarios: ['Schools', 'Classroom Hub', 'Campus Gates'] },
-      { title: 'Healthcare', image: 'assets/solutions/healthcare.webp', link: 'solution-healthcare.html', cta: 'View Solution',
-        desc: 'Protect patients, staff and equipment around the clock with discreet, reliable surveillance built for clinical spaces.',
-        scenarios: ['Hospitals', 'Clinics', 'Care Facilities'] },
-      { title: 'Logistics & Warehousing', image: 'assets/scroll-world/warehouse.webp', link: 'solution-logistics.html', cta: 'View Solution',
-        desc: 'Track stock and dock activity from arrival to dispatch — wide-coverage cameras built for warehouses and yards.',
-        scenarios: ['Warehouses', 'Dock Management', 'Parking Lots'] },
-      { title: 'Manufacturing', image: 'assets/solutions/manufacturing.webp', link: 'solution-manufacturing.html', cta: 'View Solution',
-        desc: 'Monitor production lines and enforce safety zones with rugged cameras that hold up on the factory floor.',
-        scenarios: ['Factories', 'Construction Sites', 'Production Lines'] },
-      { title: 'Public Transport & Traffic', image: 'assets/scroll-world/dashcam.webp', link: 'solution-traffic.html', cta: 'View Solution',
-        desc: 'From dashcams to roadside monitoring — coverage that keeps drivers, passengers and commuters accounted for.',
-        scenarios: ['Bus Stops', 'Highways', 'Fleet Vehicles'] },
-      { title: 'Safe City & Government', image: 'assets/scroll-world/control.webp', link: 'products.html?cat=CCTV-IP', cta: 'Explore Products',
-        desc: 'Centralized monitoring for public spaces and facilities, backed by NE’s local installation and support.',
-        scenarios: ['Monitoring Centers', 'Public Spaces', 'Municipal Sites'] },
-      { title: 'Buildings', image: 'assets/scroll-world/install.webp', link: 'solution-buildings.html', cta: 'View Solution',
-        desc: 'Apartments, offices and hotels — access control and video intercom that fit residential and commercial buildings alike.',
-        scenarios: ['Apartments', 'Offices', 'Hotels'] },
-      { title: 'Energy', image: 'assets/solutions/energy.webp', link: 'solution-energy.html', cta: 'View Solution',
-        desc: 'Secure remote sites without trenching cable — wireless bridges and solar-ready gear for substations and solar farms.',
-        scenarios: ['Substations', 'Solar Farms', 'Remote Sites'] },
-      { title: 'Maritime & Stadiums', image: 'assets/solutions/stadium.webp', link: 'solution-maritime.html', cta: 'View Solution',
-        desc: 'High-traffic, high-stakes venues — ports and stadiums — with security that scales to thousands of people and vehicles.',
-        scenarios: ['Ports', 'Stadiums', 'Large Events'] },
-      { title: 'Small Business', image: 'assets/solutions/smallbiz.webp', link: 'solution-smb.html', cta: 'View Solution',
-        desc: 'Right-sized security for a single store, office or home — no enterprise complexity, fully remote-managed.',
-        scenarios: ['Small Offices', 'Single Stores', 'Homes'] },
-    ];
-    const industries = industryData.map((ind, i) => ({
-      ...ind,
-      ref: rref(`ind-${i}`),
-      style: `background:#fff;border:1px solid #E7ECF1;border-radius:16px;overflow:hidden;${revealCss(`ind-${i}`, (i % 3) * 0.08)}`,
-    }));
-
-    const waLink = (label) => `https://wa.me/254798131085?text=${encodeURIComponent('Hi NE, I need a security solution for: ' + label)}`;
-    const scenarioLabels = [
-      'Apartments', 'Offices', 'Hotels', 'Schools', 'Classroom Hub', 'Construction Sites',
-      'Supermarkets', 'Shopping Malls', 'Car Dealerships', 'Gas Stations', 'Parking Lots',
-      'Warehouses', 'Factories', 'Dock Management', 'Bus Stops', 'Highways', 'Monitoring Centers',
-      'Electrical Substations', 'Solar Farms', 'Hospitals', 'Casinos', 'Conference Rooms', 'Data Centers',
-    ];
-    const scenarios = scenarioLabels.map(label => ({ label, link: waLink(label) }));
-
-    const functionData = [
-      { icon: '🔑', title: 'Access Control', desc: 'Card, fingerprint or mobile credential entry systems.', link: 'products.html?cat=Access%20Control' },
-      { icon: '📹', title: 'People Counting', desc: 'Footfall analytics for retail and public spaces.', link: 'products.html?cat=CCTV-IP' },
-      { icon: '🚧', title: 'Perimeter Protection', desc: 'IR and smart-hybrid cameras that flag intrusion.', link: 'products.html?cat=CCTV-Turbo%20HD' },
-      { icon: '🖥️', title: 'Information Display', desc: '4K interactive displays for meeting rooms and lobbies.', link: 'products.html?cat=Interactive%20Tablet' },
-      { icon: '☎️', title: 'Video Intercom', desc: 'Two-way video entry for gates, doors and reception.', link: 'products.html?cat=Video%20Intercom' },
-      { icon: '📢', title: 'Public Address', desc: 'Announcement and alert systems for campuses and sites.', link: 'products.html?cat=PA' },
-      { icon: '📶', title: 'Wireless Connectivity', desc: 'Access points and long-range wireless bridges.', link: 'products.html?cat=Networking' },
-      { icon: '🔌', title: 'Structured Cabling', desc: 'Patch panels, racks and UPS backup power.', link: 'products.html?cat=Accessories' },
-      { icon: '👋', title: 'Visitor Management', desc: 'Track who enters your site and when.', link: 'products.html?cat=Access%20Control' },
-    ];
-    const functions = functionData.map((f, i) => ({
-      ...f,
-      ref: rref(`fn-${i}`),
-      style: `display:flex;gap:14px;background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:20px;${revealCss(`fn-${i}`, (i % 3) * 0.07)}`,
-    }));
-
-    const brochureGroups = [
-      { title: "Retail", items: [
-        { title: "Retail Solutions Overview", file: "assets/brochures/brochure-retail.pdf", ext: "PDF", size: "3.8 MB" },
-        { title: "Smart Supermarket Solution", file: "assets/brochures/brochure-smart-supermarket-solution.pdf", ext: "PDF", size: "1.4 MB" },
-        { title: "Shopping Malls Solution", file: "assets/brochures/leaflet-hikvision-solutions-for-shopping-malls.pdf", ext: "PDF", size: "2.1 MB" },
-        { title: "Cloud-Based Chain Store Solution", file: "assets/brochures/infographic-cloud-based-chain-store-solution.jpg", ext: "JPG", size: "2.3 MB" },
-      ] },
-      { title: "Education", items: [
-        { title: "Classroom Hub Solution", file: "assets/brochures/brochure-classroom-hub-solution.pdf", ext: "PDF", size: "2.5 MB" },
-        { title: "Smart Education Solution", file: "assets/brochures/brochure-smart-education-solution.pdf", ext: "PDF", size: "5.5 MB" },
-        { title: "Educational Digital Signage", file: "assets/brochures/flyer-educational-digital-signage.pdf", ext: "PDF", size: "895 KB" },
-        { title: "Education Course Recording", file: "assets/brochures/leaflet-education-course-recording.pdf", ext: "PDF", size: "2.0 MB" },
-        { title: "Remote Learning Solution", file: "assets/brochures/hikvision-remote-learning-solution-infor-2022.pdf", ext: "PDF", size: "1.4 MB" },
-        { title: "Remote Classroom Inspection", file: "assets/brochures/leaflet-remote-classroom-inspection-solution.pdf", ext: "PDF", size: "1.6 MB" },
-        { title: "Student Attendance Solution", file: "assets/brochures/leaflet-student-attendance-solution.pdf", ext: "PDF", size: "1.6 MB" },
-        { title: "Multi-Classroom Learning", file: "assets/brochures/inforgraphic-multi-classroom-learning.png", ext: "PNG", size: "1.6 MB" },
-        { title: "Educational Digital Signage (Infographic)", file: "assets/brochures/education-infographic-educational-digital-signage-20231122.jpg", ext: "JPG", size: "1.0 MB" },
-      ] },
-      { title: "Healthcare", items: [
-        { title: "Nursing Home Solution", file: "assets/brochures/brochure-nursing-home-solution.pdf", ext: "PDF", size: "1.8 MB" },
-      ] },
-      { title: "Logistics & Warehousing", items: [
-        { title: "Warehouse Solution", file: "assets/brochures/inforgraphic-warehouse-solution.pdf", ext: "PDF", size: "2.1 MB" },
-        { title: "Intelligent Logistics System", file: "assets/brochures/leaflet-intelligent-logistics-system-solution.pdf", ext: "PDF", size: "884 KB" },
-      ] },
-      { title: "Manufacturing", items: [
-        { title: "Manufacturing Solution", file: "assets/brochures/brochure-preview-manufacturing-solution-20231124.pdf", ext: "PDF", size: "3.6 MB" },
-        { title: "Manufacturing Solution (Leaflet)", file: "assets/brochures/leaflet-hikvision-manufacturing-solution.pdf", ext: "PDF", size: "1.7 MB" },
-        { title: "Industrial Inspection", file: "assets/brochures/infographic-preview-industrial-inspection-20231115.jpg", ext: "JPG", size: "2.9 MB" },
-        { title: "Construction Site Solution", file: "assets/brochures/inforgraphic-construction-site-solution.jpg", ext: "JPG", size: "2.4 MB" },
-      ] },
-      { title: "Public Transport & Traffic", items: [
-        { title: "Smart Bus Solution", file: "assets/brochures/leaflet-hikvision-smart-bus-solution.pdf", ext: "PDF", size: "1.1 MB" },
-        { title: "Intelligent Traffic System", file: "assets/brochures/leaflet-intelligent-traffic-system-solution.pdf", ext: "PDF", size: "1.7 MB" },
-        { title: "Highway Solutions", file: "assets/brochures/infographic-highway-solutions.jpg", ext: "JPG", size: "3.8 MB" },
-        { title: "Urban Roadways Solution", file: "assets/brochures/inforgraphic-urban-roadways-solution.jpg", ext: "JPG", size: "4.1 MB" },
-      ] },
-      { title: "Buildings", items: [
-        { title: "Visitor Management — Residential Buildings", file: "assets/brochures/building-sbf-inforgraphic-hikvision-visitor-management-solutions-for-residential-buildings-20230612.jpg", ext: "JPG", size: "4.1 MB" },
-        { title: "Visitor Management — Office Buildings", file: "assets/brochures/inforgraphic-visitor-management-solutions-for-office-buildings.jpg", ext: "JPG", size: "2.3 MB" },
-        { title: "Smart Lock Solution", file: "assets/brochures/building-sbf-inforgraphic-smart-lock-solution-20231019.jpg", ext: "JPG", size: "1.4 MB" },
-        { title: "Elevator Control Solution", file: "assets/brochures/inforgraphic-elevator-control-solution.jpg", ext: "JPG", size: "2.3 MB" },
-        { title: "Smart Hotel Solution", file: "assets/brochures/brochure-smart-hotel-solution.pdf", ext: "PDF", size: "2.3 MB" },
-      ] },
-      { title: "Energy", items: [
-        { title: "Solar Farm Solution", file: "assets/brochures/leaflet-hikvision-solar-farm-solution.pdf", ext: "PDF", size: "2.5 MB" },
-        { title: "Solar Farm Solution (Alt.)", file: "assets/brochures/leaflet-solar-farm-solution.pdf", ext: "PDF", size: "2.5 MB" },
-      ] },
-      { title: "Maritime & Stadiums", items: [
-        { title: "Smart Port & Maritime Solution", file: "assets/brochures/brochure-smart-port-maritime-solution.pdf", ext: "PDF", size: "919 KB" },
-        { title: "Stadiums Solution", file: "assets/brochures/brochure-stadiums-solution.pdf", ext: "PDF", size: "2.9 MB" },
-      ] },
-      { title: "Small Business", items: [
-        { title: "SMB Solutions Overview", file: "assets/brochures/leaflet-smb-solutions.pdf", ext: "PDF", size: "3.1 MB" },
-        { title: "SMB Solutions for Farms (1)", file: "assets/brochures/infographic-smb-solutions-for-farms-01.pdf", ext: "PDF", size: "2.5 MB" },
-        { title: "SMB Solutions for Farms (2)", file: "assets/brochures/infographic-smb-solutions-for-farms-02.pdf", ext: "PDF", size: "713 KB" },
-        { title: "SMB Solutions for Farms (3)", file: "assets/brochures/infographic-smb-solutions-for-farms-03.pdf", ext: "PDF", size: "385 KB" },
-        { title: "SMB Poster — Farms", file: "assets/brochures/poster-smb-solutions-for-farms.pdf", ext: "PDF", size: "205 KB" },
-        { title: "SMB Poster — Houses", file: "assets/brochures/poster-smb-solutions-for-houses.pdf", ext: "PDF", size: "176 KB" },
-        { title: "SMB Poster — Offices", file: "assets/brochures/poster-smb-solutions-for-offices.pdf", ext: "PDF", size: "183 KB" },
-        { title: "SMB Poster — Stores", file: "assets/brochures/poster-smb-solutions-for-stores.pdf", ext: "PDF", size: "206 KB" },
-        { title: "SMB Rollup — Farms", file: "assets/brochures/rollup-smb-solution-for-farms.pdf", ext: "PDF", size: "2.3 MB" },
-      ] },
-      { title: "General", items: [
-        { title: "AI Open Platform", file: "assets/brochures/flyer-ai-open-platform.pdf", ext: "PDF", size: "1.1 MB" },
-        { title: "Portable Products Catalog", file: "assets/brochures/brochure-portable-products-20260319.pdf", ext: "PDF", size: "3.9 MB" },
-      ] },
-    ];
-
-    const sc = this.state.scrollY;
-    const progressBarStyle = `position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4FC3EC,#0B8FCB);width:${(this.state.scrollProgress * 100).toFixed(2)}%;z-index:200;transition:width 0.1s linear`;
-    const headerParallaxStyle = `position:absolute;inset:-10% -10% -30% -10%;background:radial-gradient(circle at 80% 20%, rgba(255,255,255,0.14) 0, transparent 45%);transform:translateY(${sc * 0.15}px);pointer-events:none`;
-
-    const ctaVis = reveal ? reveal.visible('cta') : false;
-
-    return {
-      industries,
-      scenarios,
-      functions,
-      brochureGroups,
-      progressBarStyle,
-      headerParallaxStyle,
-      ctaRef: rref('cta'),
-      ctaStyle: `opacity:${ctaVis ? 1 : 0};transform:translateY(${ctaVis ? 0 : 24}px);transition:opacity 0.7s ease, transform 0.7s cubic-bezier(.16,.84,.44,1)`,
-    };
-  }
-}
-
-</script>
+  <a href="https://wa.me/254737454891" target="_blank" rel="noopener" class="wa-float" aria-label="Chat with NE on WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="#fff"><path d="M12 2.2A9.7 9.7 0 0 0 3.6 16.8L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.7-1.2.2-.6.2-1 .1-1.2l-.4-.2Z"/></svg></a>
+<!--/layout:footer--></div>
 </body>
 </html>

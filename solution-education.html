@@ -68,15 +68,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media=&#39;all&#39;">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
-<link rel="preload" as="script" href="js/vendor/react.production.min.js" crossorigin="anonymous">
-<link rel="preload" as="script" href="js/vendor/react-dom.production.min.js" crossorigin="anonymous">
-<script src="js/support.js" defer></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-  <style>
-    * { box-sizing: border-box; }
+<style>* { box-sizing: border-box; }
     body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F6F8FA; color: #10202E; }
     a { color: #086E9E; text-decoration: none; }
     a:hover { color: #086E9E; }
@@ -93,340 +85,407 @@
     }
     .navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
     .navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
-    .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
+    .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }</style>
+<style>[data-h="1"]:hover{background:#086E9E !important}[data-h="2"]:hover{background:#1CAD52 !important}[data-h="3"]:hover{background:rgba(255,255,255,0.18) !important}[data-h="4"]:hover{border-color:#086E9E !important}[data-h="5"]:hover{border-color:#086E9E !important;color:#086E9E !important}</style>
+<!--layout:css-->
+<style id="layout-css">
+.site-header { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid #E7ECF1; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+.site-header .bar { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 24px; }
+.site-header .logo { display: flex; align-items: center; flex-shrink: 0; }
+.site-header .logo img { height: 52px; width: auto; display: block; }
+.site-nav { display: flex; align-items: center; gap: 30px; flex: 1; justify-content: center; }
+.site-nav a { font-size: 15px; font-weight: 600; color: #10202E; text-decoration: none; }
+.site-nav a:hover, .site-nav a.on { color: #086E9E; }
+.site-nav a.on { font-weight: 700; }
+.site-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.site-actions a { display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 8px; font-size: 14px; font-weight: 700; white-space: nowrap; text-decoration: none; }
+.site-actions .call { color: #086E9E; border: 1.5px solid #CFE6F2; }
+.site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
+.site-actions .quote { background: #086E9E; color: #fff; }
+.site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.navtoggle-cb { display: none; }
+.hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
+.hamburger-icon-close { display: none; }
+.mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
+.mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; text-decoration: none; }
+.mobile-nav-panel a.on { color: #086E9E; }
+.mobile-nav-panel .m-cta { margin-top: 12px; text-align: center; border-radius: 8px; font-weight: 700; padding: 15px; border: 0; }
+.mobile-nav-panel .m-quote { background: #086E9E; color: #fff; }
+.mobile-nav-panel .m-call { background: #EAF6FC; color: #086E9E; margin-top: 8px; }
+.navtoggle-cb:checked ~ .bar .hamburger-icon-open { display: none; }
+.navtoggle-cb:checked ~ .bar .hamburger-icon-close { display: inline; }
+.navtoggle-cb:checked ~ .mobile-nav-panel { display: flex; }
+@media (max-width: 1020px) { .site-actions .call { display: none; } }
+@media (max-width: 860px) {
+  .site-nav, .site-actions { display: none; }
+  .hamburger-btn { display: flex; align-items: center; justify-content: center; }
+}
+
+.site-footer { background: #0F2C3D; color: rgba(255,255,255,0.72); font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; line-height: 1.6; }
+.site-footer a { color: rgba(255,255,255,0.78); text-decoration: none; }
+.site-footer a:hover { color: #fff; }
+.site-footer .cols { max-width: 1240px; margin: 0 auto; padding: 56px 24px 36px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 36px; }
+.site-footer h2 { font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin: 0 0 14px; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer li { margin: 0 0 9px; }
+.site-footer .brand img { height: 44px; width: auto; display: block; margin-bottom: 14px; background: #fff; border-radius: 8px; padding: 4px; }
+.site-footer .brand p { margin: 0 0 16px; max-width: 34ch; }
+.site-footer .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(79,195,236,0.35); color: #4FC3EC; border-radius: 999px; padding: 6px 12px; font-size: 12.5px; font-weight: 700; }
+.site-footer .badge:hover { color: #7ED4F1; border-color: #7ED4F1; }
+.site-footer .visit p { margin: 0 0 10px; }
+.site-footer .hours { display: grid; grid-template-columns: auto auto; gap: 2px 14px; margin: 0 0 14px; }
+.site-footer .hours dt { color: rgba(255,255,255,0.6); }
+.site-footer .hours dd { margin: 0; color: #fff; font-weight: 600; }
+.site-footer .social { display: flex; gap: 10px; margin-top: 14px; }
+.site-footer .social a { width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; }
+.site-footer .social a:hover { border-color: #4FC3EC; }
+.site-footer .legal { border-top: 1px solid rgba(255,255,255,0.1); }
+.site-footer .legal div { max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.5); }
+@media (max-width: 960px) { .site-footer .cols { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .site-footer .cols { grid-template-columns: 1fr; gap: 28px; padding-top: 44px; } }
+
+.wa-float { position: fixed; bottom: 22px; right: 22px; width: 56px; height: 56px; border-radius: 50%; background: #22C35E; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 60; }
+.wa-float:hover { background: #1CAD52; }
 </style>
-</helmet>
+<script src="/js/site.js" defer></script>
+<!--/layout:css--></head>
+<body>
+<div style="width: 100%; min-height: 100vh; background: rgb(246, 248, 250); overflow-x: hidden;">
 
-<div style="width:100%;min-height:100vh;background:#F6F8FA;overflow-x:hidden">
-
-  <div style="{{ progressBarStyle }}"></div>
-
-  <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #E7ECF1">
+  <!--layout:header-->
+<header class="site-header">
     <input type="checkbox" id="navtoggle" class="navtoggle-cb">
-    <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:16px">
-      <a href="/" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
-        <img src="assets/nashnaal-logo-header.webp" alt="NE" width="52" height="52" style="height:52px;width:auto;display:block" />
+    <div class="bar">
+      <a href="/" class="logo" aria-label="NE Nashnaal Electronics home">
+        <img src="/assets/nashnaal-logo-header.webp" alt="NE — Nashnaal Electronics" width="52" height="52">
       </a>
-      <nav class="nav-links" style="display:flex;align-items:center;gap:32px;flex:1;justify-content:center">
-        <a href="/" style="font-size:15px;font-weight:600;color:#10202E">Home</a>
-        <a href="world" style="font-size:15px;font-weight:600;color:#10202E">Explore</a>
-        <a href="products" style="font-size:15px;font-weight:600;color:#10202E">Products</a>
-        <a href="solutions" style="font-size:15px;font-weight:600;color:#10202E">Solutions</a>
-        <a href="services" style="font-size:15px;font-weight:600;color:#10202E">Services</a>
-        <a href="blog" style="font-size:15px;font-weight:600;color:#10202E">Blog</a>
-        <a href="faq" style="font-size:15px;font-weight:600;color:#10202E">FAQ</a>
-        <a href="about" style="font-size:15px;font-weight:600;color:#10202E">About</a>
-        <a href="contact" style="font-size:15px;font-weight:600;color:#10202E">Contact</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/products">Products</a>
+        <a href="/solutions" class="on" aria-current="page">Solutions</a>
+        <a href="/services">Services</a>
+        <a href="/blog">Blog</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
       </nav>
-      <a href="tel:+254798131085" class="call-btn" style="flex-shrink:0;display:flex;align-items:center;gap:8px;background:#086E9E;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap" style-hover="background:#086E9E">
-        Call 0798 131085
-      </a>
+      <div class="site-actions">
+        <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
+        <a href="/quote" class="quote">Get a quote</a>
+      </div>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
       </label>
     </div>
-    <nav class="mobile-nav-panel">
-        <a href="/" style="display:block;font-weight:600;color:#10202E">Home</a>
-        <a href="world" style="display:block;font-weight:600;color:#10202E">Explore</a>
-        <a href="products" style="display:block;font-weight:600;color:#10202E">Products</a>
-        <a href="solutions" style="display:block;font-weight:600;color:#10202E">Solutions</a>
-        <a href="services" style="display:block;font-weight:600;color:#10202E">Services</a>
-        <a href="blog" style="display:block;font-weight:600;color:#10202E">Blog</a>
-        <a href="faq" style="display:block;font-weight:600;color:#10202E">FAQ</a>
-        <a href="about" style="display:block;font-weight:600;color:#10202E">About</a>
-        <a href="contact" style="display:block;font-weight:600;color:#10202E">Contact</a>
-      <a href="tel:+254798131085" style="margin-top:12px;text-align:center;background:#086E9E;color:#fff;padding:15px;border-radius:8px;font-weight:700;font-size:16px">Call 0798 131085</a>
+    <nav class="mobile-nav-panel" aria-label="Mobile">
+      <a href="/products">Products</a>
+      <a href="/solutions" class="on" aria-current="page">Solutions</a>
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/quote" class="m-cta m-quote">Get a quote</a>
+      <a href="tel:+254737454891" class="m-cta m-call">Call 0737 454 891</a>
     </nav>
   </header>
+<!--/layout:header-->
 
-  <nav aria-label="Breadcrumb" style="max-width:1100px;margin:0 auto;padding:14px 24px 0">
-    <a href="/" style="font-size:13px;color:#4A5B68">Home</a>
-    <span style="font-size:13px;color:#C3CDD4;margin:0 6px">/</span>
-    <a href="solutions" style="font-size:13px;color:#4A5B68">Solutions</a>
-    <span style="font-size:13px;color:#C3CDD4;margin:0 6px">/</span>
-    <span style="font-size:13px;color:#10202E;font-weight:600">Education</span>
+  <nav aria-label="Breadcrumb" style="max-width: 1100px; margin: 0px auto; padding: 14px 24px 0px;">
+    <a href="/" style="font-size: 13px; color: rgb(74, 91, 104);">Home</a>
+    <span style="font-size: 13px; color: rgb(195, 205, 212); margin: 0px 6px;">/</span>
+    <a href="solutions" style="font-size: 13px; color: rgb(74, 91, 104);">Solutions</a>
+    <span style="font-size: 13px; color: rgb(195, 205, 212); margin: 0px 6px;">/</span>
+    <span style="font-size: 13px; color: rgb(16, 32, 46); font-weight: 600;">Education</span>
   </nav>
 
-  <section data-screen-label="Solution Hero" style="position:relative;height:52vh;min-height:380px;overflow:hidden">
-    <img src="assets/solutions/education.webp" alt="Smart Education Solutions" fetchpriority="high" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,38,0.35) 0%,rgba(10,26,38,0.78) 100%)"></div>
-    <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px 44px">
-      <a href="solutions" style="font-size:13px;font-weight:700;color:#4FC3EC;margin-bottom:14px">&larr; All Solutions</a>
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:10px">Solutions · Education</div>
-      <h1 style="font-size:clamp(1.65rem, 4vw + 0.95rem, 2.375rem);font-weight:800;margin:0 0 14px;color:#fff;letter-spacing:-0.01em;max-width:760px">Smart Education Solutions</h1>
-      <p style="font-size:16px;color:rgba(255,255,255,0.9);margin:0;line-height:1.6;max-width:680px">From school gates to classrooms and school buses, Hikvision's education portfolio closes security blind spots while giving campuses better tools for attendance, access and remote learning.</p>
+  <section style="position: relative; height: 52vh; min-height: 380px; overflow: hidden;">
+    <img src="assets/solutions/education.webp" alt="Smart Education Solutions" fetchpriority="high" decoding="async" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover;">
+    <div style="position: absolute; inset: 0px; background: linear-gradient(rgba(10, 26, 38, 0.35) 0%, rgba(10, 26, 38, 0.78) 100%);"></div>
+    <div style="position: relative; z-index: 2; max-width: 1100px; margin: 0px auto; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 0px 24px 44px;">
+      <a href="solutions" style="font-size: 13px; font-weight: 700; color: rgb(79, 195, 236); margin-bottom: 14px;">← All Solutions</a>
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); margin-bottom: 10px;">Solutions · Education</div>
+      <h1 style="font-size: clamp(1.65rem, 0.95rem + 4vw, 2.375rem); font-weight: 800; margin: 0px 0px 14px; color: rgb(255, 255, 255); letter-spacing: -0.01em; max-width: 760px;">Smart Education Solutions</h1>
+      <p style="font-size: 16px; color: rgba(255, 255, 255, 0.9); margin: 0px; line-height: 1.6; max-width: 680px;">From school gates to classrooms and school buses, Hikvision's education portfolio closes security blind spots while giving campuses better tools for attendance, access and remote learning.</p>
     </div>
   </section>
 
-  <section data-screen-label="Quick Answer" style="max-width:1100px;margin:0 auto;padding:28px 24px 0">
-    <div style="background:#fff;border-left:4px solid #0B8FCB;border-radius:0 12px 12px 0;padding:20px 24px;box-shadow:0 2px 10px rgba(16,32,46,0.05)">
-      <p style="font-size:15.5px;line-height:1.65;color:#10202E;margin:0"><strong>In short:</strong> NE fits Hikvision's education security range — school bus cameras, gate access control, campus-wide CCTV and classroom digital signage — to schools and campuses in Kenya.</p>
+  <section style="max-width: 1100px; margin: 0px auto; padding: 28px 24px 0px;">
+    <div style="background: rgb(255, 255, 255); border-left: 4px solid rgb(11, 143, 203); border-radius: 0px 12px 12px 0px; padding: 20px 24px; box-shadow: rgba(16, 32, 46, 0.05) 0px 2px 10px;">
+      <p style="font-size: 15.5px; line-height: 1.65; color: rgb(16, 32, 46); margin: 0px;"><strong>In short:</strong> NE fits Hikvision's education security range — school bus cameras, gate access control, campus-wide CCTV and classroom digital signage — to schools and campuses in Kenya.</p>
     </div>
   </section>
 
 
-  <section data-screen-label="How It Works" style="max-width:1180px;margin:0 auto;padding:56px 24px 20px">
-    <div style="text-align:center;margin-bottom:32px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">How It Works</div>
-      <h2 style="font-size:clamp(1.3rem, 2.8vw + 0.65rem, 1.625rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">How does Hikvision's Education solution work?</h2>
+  <section style="max-width: 1180px; margin: 0px auto; padding: 56px 24px 20px;">
+    <div style="text-align: center; margin-bottom: 32px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 10px;">How It Works</div>
+      <h2 style="font-size: clamp(1.3rem, 0.65rem + 2.8vw, 1.625rem); font-weight: 800; margin: 0px; color: rgb(16, 32, 46); letter-spacing: -0.01em;">How does Hikvision's Education solution work?</h2>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education.webp" alt="Hikvision Solutions for Education" loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Hikvision Solutions for Education</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education.webp" alt="Hikvision Solutions for Education" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Hikvision Solutions for Education</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-04.webp" alt="School Bus — real coverage of the vehicle fleet." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">School Bus — real coverage of the vehicle fleet.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-04.webp" alt="School Bus — real coverage of the vehicle fleet." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">School Bus — real coverage of the vehicle fleet.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-05.webp" alt="On-Board Student Detection — safe journey, no child left behind." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">On-Board Student Detection — safe journey, no child left behind.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-05.webp" alt="On-Board Student Detection — safe journey, no child left behind." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">On-Board Student Detection — safe journey, no child left behind.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-06.webp" alt="Stop Arm Violation Detection & Perimeter." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Stop Arm Violation Detection & Perimeter.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-06.webp" alt="Stop Arm Violation Detection &amp; Perimeter." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Stop Arm Violation Detection &amp; Perimeter.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-07.webp" alt="School Gate — entrance, exit and access control." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">School Gate — entrance, exit and access control.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-07.webp" alt="School Gate — entrance, exit and access control." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">School Gate — entrance, exit and access control.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-08.webp" alt="Security Inspection, Vehicle Management & Student Pick-Up." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Security Inspection, Vehicle Management & Student Pick-Up.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-08.webp" alt="Security Inspection, Vehicle Management &amp; Student Pick-Up." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Security Inspection, Vehicle Management &amp; Student Pick-Up.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-09.webp" alt="On-Foot and Car Pick-Up Processes." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">On-Foot and Car Pick-Up Processes.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-09.webp" alt="On-Foot and Car Pick-Up Processes." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">On-Foot and Car Pick-Up Processes.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-10.webp" alt="Campus — emergency calling and AR monitoring." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Campus — emergency calling and AR monitoring.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-10.webp" alt="Campus — emergency calling and AR monitoring." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Campus — emergency calling and AR monitoring.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-11.webp" alt="Daily Arrival Attendance & Information Release." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Daily Arrival Attendance & Information Release.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-11.webp" alt="Daily Arrival Attendance &amp; Information Release." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Daily Arrival Attendance &amp; Information Release.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-12.webp" alt="Control Room — dedicated education dashboards." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Control Room — dedicated education dashboards.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-12.webp" alt="Control Room — dedicated education dashboards." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Control Room — dedicated education dashboards.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-13.webp" alt="Classroom — information sharing with education digital signage." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Classroom — information sharing with education digital signage.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-13.webp" alt="Classroom — information sharing with education digital signage." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Classroom — information sharing with education digital signage.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-14.webp" alt="Distance Learning — remote and hybrid classrooms." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Distance Learning — remote and hybrid classrooms.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-14.webp" alt="Distance Learning — remote and hybrid classrooms." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Distance Learning — remote and hybrid classrooms.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-15.webp" alt="Video-Based Class Inspection & Interactive Flat Panel collaboration." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Video-Based Class Inspection & Interactive Flat Panel collaboration.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-15.webp" alt="Video-Based Class Inspection &amp; Interactive Flat Panel collaboration." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Video-Based Class Inspection &amp; Interactive Flat Panel collaboration.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-16.webp" alt="TandemVu PTZ Camera — big picture and detail in one view." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">TandemVu PTZ Camera — big picture and detail in one view.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-16.webp" alt="TandemVu PTZ Camera — big picture and detail in one view." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">TandemVu PTZ Camera — big picture and detail in one view.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-17.webp" alt="DeepinView Dome Camera — AI-enabled teacher camera." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">DeepinView Dome Camera — AI-enabled teacher camera.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-17.webp" alt="DeepinView Dome Camera — AI-enabled teacher camera." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">DeepinView Dome Camera — AI-enabled teacher camera.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-18.webp" alt="Education Sharing Device — simplified course recording." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Education Sharing Device — simplified course recording.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-18.webp" alt="Education Sharing Device — simplified course recording." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Education Sharing Device — simplified course recording.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-19.webp" alt="Array Microphone — clear sound, high fidelity lecture capture." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Array Microphone — clear sound, high fidelity lecture capture.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-19.webp" alt="Array Microphone — clear sound, high fidelity lecture capture." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Array Microphone — clear sound, high fidelity lecture capture.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-20.webp" alt="Education Digital Signage — efficient class attendance recording." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Education Digital Signage — efficient class attendance recording.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-20.webp" alt="Education Digital Signage — efficient class attendance recording." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Education Digital Signage — efficient class attendance recording.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-21.webp" alt="Interactive Flat Panel Display — outstanding imaging and whiteboard." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Interactive Flat Panel Display — outstanding imaging and whiteboard.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-21.webp" alt="Interactive Flat Panel Display — outstanding imaging and whiteboard." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Interactive Flat Panel Display — outstanding imaging and whiteboard.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-22.webp" alt="HikCentral Professional for Education — unified platform management." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">HikCentral Professional for Education — unified platform management.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-22.webp" alt="HikCentral Professional for Education — unified platform management." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">HikCentral Professional for Education — unified platform management.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-23.webp" alt="Smart Classroom Management — course inspection and attendance." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Smart Classroom Management — course inspection and attendance.</div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-23.webp" alt="Smart Classroom Management — course inspection and attendance." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Smart Classroom Management — course inspection and attendance.</div>
     </div>
-    <div style="background:#fff;border:1px solid #E7ECF1;border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 4px 18px rgba(16,32,46,0.06)">
-      <img src="assets/solutions/diagrams/education-24.webp" alt="Ensuring a safer and smarter learning environment." loading="lazy" decoding="async" style="width:100%;height:auto;display:block" />
-      <div style="padding:16px 22px;font-size:13.5px;color:#4A5B68;border-top:1px solid #F0F3F5">Ensuring a safer and smarter learning environment.</div>
-    </div>
-  </section>
-
-  <section data-screen-label="Features" style="max-width:1100px;margin:0 auto;padding:56px 24px 20px">
-    <div style="text-align:center;margin-bottom:36px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">Key Capabilities</div>
-      <h2 style="font-size:clamp(1.3rem, 2.8vw + 0.65rem, 1.625rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">What does NE's Education solution include?</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">🚌</div>
-        <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">School Bus Safety</div>
-        <div style="font-size:14px;line-height:1.65;color:#4A5B68">A PIR sensor confirms no student is left behind after a bus empties out, sounding an alert automatically if one is.</div>
-      </div>
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">🏫</div>
-        <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">Campus-Wide Coverage</div>
-        <div style="font-size:14px;line-height:1.65;color:#4A5B68">Perimeter, gate, classroom and control-room cameras close blind spots across the whole campus, on and off school hours.</div>
-      </div>
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">🖥️</div>
-        <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">Classroom Hub & Signage</div>
-        <div style="font-size:14px;line-height:1.65;color:#4A5B68">Interactive displays and remote classroom inspection support both in-person and remote learning.</div>
-      </div>
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:28px">
-        <div style="width:46px;height:46px;border-radius:11px;background:#086E9E;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px">🎓</div>
-        <div style="font-size:17px;font-weight:800;margin-bottom:8px;color:#10202E">Student Attendance</div>
-        <div style="font-size:14px;line-height:1.65;color:#4A5B68">Facial recognition access control automates attendance tracking at the gate or classroom door.</div>
-      </div>
+    <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 18px; overflow: hidden; margin-bottom: 24px; box-shadow: rgba(16, 32, 46, 0.06) 0px 4px 18px;">
+      <img src="assets/solutions/diagrams/education-24.webp" alt="Ensuring a safer and smarter learning environment." loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 16px 22px; font-size: 13.5px; color: rgb(74, 91, 104); border-top: 1px solid rgb(240, 243, 245);">Ensuring a safer and smarter learning environment.</div>
     </div>
   </section>
 
-  <section data-screen-label="Related Brochures" style="max-width:1100px;margin:0 auto;padding:20px 24px 20px">
-    <div style="font-size:15px;font-weight:800;color:#10202E;margin-bottom:14px">Related Hikvision brochures</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px">
-      <a href="assets/brochures/brochure-classroom-hub-solution.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
-        <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Classroom Hub Solution</div>
-      </a>
-      <a href="assets/brochures/brochure-smart-education-solution.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
-        <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Smart Education Solution</div>
-      </a>
-      <a href="assets/brochures/flyer-educational-digital-signage.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
-        <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Educational Digital Signage</div>
-      </a>
-      <a href="assets/brochures/leaflet-education-course-recording.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
-        <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Education Course Recording</div>
-      </a>
-      <a href="assets/brochures/hikvision-remote-learning-solution-infor-2022.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
-        <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Remote Learning Solution</div>
-      </a>
-      <a href="assets/brochures/leaflet-remote-classroom-inspection-solution.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
-        <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Remote Classroom Inspection</div>
-      </a>
-      <a href="assets/brochures/leaflet-student-attendance-solution.pdf" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PDF</div>
-        <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Student Attendance Solution</div>
-      </a>
-      <a href="assets/brochures/inforgraphic-multi-classroom-learning.png" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">PNG</div>
-        <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Multi-Classroom Learning</div>
-      </a>
-      <a href="assets/brochures/education-infographic-educational-digital-signage-20231122.jpg" target="_blank" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7ECF1;border-radius:10px;padding:12px 14px" style-hover="border-color:#086E9E">
-        <div style="width:38px;height:38px;border-radius:8px;background:#F0F4F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#086E9E;flex-shrink:0">JPG</div>
-        <div style="font-size:13px;font-weight:700;color:#10202E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Educational Digital Signage (Infographic)</div>
-      </a>
+  <section style="max-width: 1100px; margin: 0px auto; padding: 56px 24px 20px;">
+    <div style="text-align: center; margin-bottom: 36px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 10px;">Key Capabilities</div>
+      <h2 style="font-size: clamp(1.3rem, 0.65rem + 2.8vw, 1.625rem); font-weight: 800; margin: 0px; color: rgb(16, 32, 46); letter-spacing: -0.01em;">What does NE's Education solution include?</h2>
     </div>
-  </section>
-
-  <section data-screen-label="Related Solutions" style="max-width:1100px;margin:0 auto;padding:20px 24px 20px">
-    <div style="font-size:15px;font-weight:800;color:#10202E;margin-bottom:14px">Related solutions</div>
-    <div style="display:flex;flex-wrap:wrap;gap:10px">
-      <a href="solution-healthcare" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Healthcare &rarr;</a>
-      <a href="solution-logistics" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Logistics & Warehousing &rarr;</a>
-      <a href="solution-manufacturing" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Manufacturing &rarr;</a>
-      <a href="solution-traffic" style="font-size:13.5px;font-weight:600;color:#10202E;background:#fff;border:1.5px solid #E7ECF1;border-radius:999px;padding:9px 16px" style-hover="border-color:#086E9E;color:#086E9E">Public Transport & Traffic &rarr;</a>
-    </div>
-  </section>
-
-  <section data-screen-label="FAQ" style="max-width:860px;margin:0 auto;padding:56px 24px 20px">
-    <div style="text-align:center;margin-bottom:32px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#086E9E;margin-bottom:10px">FAQ</div>
-      <h2 style="font-size:clamp(1.3rem, 2.8vw + 0.65rem, 1.625rem);font-weight:800;margin:0;color:#10202E;letter-spacing:-0.01em">Common questions about Education security</h2>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
-        <div style="font-size:15.5px;font-weight:800;color:#10202E;margin-bottom:8px">How does Hikvision prevent a child from being left on a school bus?</div>
-        <div style="font-size:14px;line-height:1.7;color:#4A5B68">A PIR sensor detects a student still onboard after the bus empties and automatically alerts the driver and control center — no manual headcount required.</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; padding: 28px;">
+        <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px;">🚌</div>
+        <div style="font-size: 17px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">School Bus Safety</div>
+        <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104);">A PIR sensor confirms no student is left behind after a bus empties out, sounding an alert automatically if one is.</div>
       </div>
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
-        <div style="font-size:15.5px;font-weight:800;color:#10202E;margin-bottom:8px">Can Hikvision automate student attendance?</div>
-        <div style="font-size:14px;line-height:1.7;color:#4A5B68">Yes. Facial recognition access control at the gate or classroom door logs attendance automatically as students pass through.</div>
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; padding: 28px;">
+        <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px;">🏫</div>
+        <div style="font-size: 17px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Campus-Wide Coverage</div>
+        <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104);">Perimeter, gate, classroom and control-room cameras close blind spots across the whole campus, on and off school hours.</div>
       </div>
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
-        <div style="font-size:15.5px;font-weight:800;color:#10202E;margin-bottom:8px">What does a Hikvision campus security system typically cover?</div>
-        <div style="font-size:14px;line-height:1.7;color:#4A5B68">School bus, perimeter, school gate, campus grounds, control room and classroom — six zones that close blind spots on and off school hours.</div>
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; padding: 28px;">
+        <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px;">🖥️</div>
+        <div style="font-size: 17px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Classroom Hub &amp; Signage</div>
+        <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104);">Interactive displays and remote classroom inspection support both in-person and remote learning.</div>
       </div>
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
-        <div style="font-size:15.5px;font-weight:800;color:#10202E;margin-bottom:8px">What access control options work best for schools and campuses?</div>
-        <div style="font-size:14px;line-height:1.7;color:#4A5B68">Facial recognition or card-based access at gates and classroom doors is the most common setup — it logs entry automatically, doubles as attendance tracking, and can restrict access to specific buildings or times of day for visitors and contractors.</div>
-      </div>
-      <div style="background:#fff;border:1px solid #E7ECF1;border-radius:14px;padding:22px 24px">
-        <div style="font-size:15.5px;font-weight:800;color:#10202E;margin-bottom:8px">What does a typical campus CCTV setup include?</div>
-        <div style="font-size:14px;line-height:1.7;color:#4A5B68">Coverage of the school gate, perimeter fence, school bus, campus grounds, corridors and a control room monitor — sized to the number of buildings and entrances on site, with footage retained long enough to review any incident.</div>
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; padding: 28px;">
+        <div style="width: 46px; height: 46px; border-radius: 11px; background: rgb(8, 110, 158); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px;">🎓</div>
+        <div style="font-size: 17px; font-weight: 800; margin-bottom: 8px; color: rgb(16, 32, 46);">Student Attendance</div>
+        <div style="font-size: 14px; line-height: 1.65; color: rgb(74, 91, 104);">Facial recognition access control automates attendance tracking at the gate or classroom door.</div>
       </div>
     </div>
   </section>
 
-  <section data-screen-label="CTA" style="max-width:1100px;margin:56px auto 0;padding:0 24px 64px">
-    <div style="text-align:center;padding:44px;background:#0F2C3D;border-radius:18px">
-      <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">Want this for your site?</div>
-      <div style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:24px">Tell NE about your education project and we'll recommend the right cameras, recorders and access control.</div>
-      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <a href="contact" style="background:#086E9E;color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px" style-hover="background:#086E9E">Talk to NE</a>
-        <a href="products?cat=Access%20Control" style="background:rgba(255,255,255,0.1);color:#fff;padding:14px 30px;border-radius:9px;font-weight:700;font-size:15px;border:1.5px solid rgba(255,255,255,0.25)" style-hover="background:rgba(255,255,255,0.18)">Browse Products</a>
+  <section style="max-width: 1100px; margin: 0px auto; padding: 20px 24px;">
+    <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px;">Related Hikvision brochures</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px;">
+      <a href="assets/brochures/brochure-classroom-hub-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+        <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+        <div style="font-size: 13px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Classroom Hub Solution</div>
+      </a>
+      <a href="assets/brochures/brochure-smart-education-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+        <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+        <div style="font-size: 13px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Smart Education Solution</div>
+      </a>
+      <a href="assets/brochures/flyer-educational-digital-signage.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+        <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+        <div style="font-size: 13px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Educational Digital Signage</div>
+      </a>
+      <a href="assets/brochures/leaflet-education-course-recording.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+        <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+        <div style="font-size: 13px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Education Course Recording</div>
+      </a>
+      <a href="assets/brochures/hikvision-remote-learning-solution-infor-2022.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+        <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+        <div style="font-size: 13px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Remote Learning Solution</div>
+      </a>
+      <a href="assets/brochures/leaflet-remote-classroom-inspection-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+        <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+        <div style="font-size: 13px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Remote Classroom Inspection</div>
+      </a>
+      <a href="assets/brochures/leaflet-student-attendance-solution.pdf" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+        <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PDF</div>
+        <div style="font-size: 13px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Student Attendance Solution</div>
+      </a>
+      <a href="assets/brochures/inforgraphic-multi-classroom-learning.png" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+        <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">PNG</div>
+        <div style="font-size: 13px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Multi-Classroom Learning</div>
+      </a>
+      <a href="assets/brochures/education-infographic-educational-digital-signage-20231122.jpg" target="_blank" data-h="4" style="display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 10px; padding: 12px 14px;">
+        <div style="width: 38px; height: 38px; border-radius: 8px; background: rgb(240, 244, 247); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: rgb(8, 110, 158); flex-shrink: 0;">JPG</div>
+        <div style="font-size: 13px; font-weight: 700; color: rgb(16, 32, 46); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Educational Digital Signage (Infographic)</div>
+      </a>
+    </div>
+  </section>
+
+  <section style="max-width: 1100px; margin: 0px auto; padding: 20px 24px;">
+    <div style="font-size: 15px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 14px;">Related solutions</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+      <a href="solution-healthcare" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Healthcare →</a>
+      <a href="solution-logistics" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Logistics &amp; Warehousing →</a>
+      <a href="solution-manufacturing" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Manufacturing →</a>
+      <a href="solution-traffic" data-h="5" style="font-size: 13.5px; font-weight: 600; color: rgb(16, 32, 46); background: rgb(255, 255, 255); border: 1.5px solid rgb(231, 236, 241); border-radius: 999px; padding: 9px 16px;">Public Transport &amp; Traffic →</a>
+    </div>
+  </section>
+
+  <section style="max-width: 860px; margin: 0px auto; padding: 56px 24px 20px;">
+    <div style="text-align: center; margin-bottom: 32px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(8, 110, 158); margin-bottom: 10px;">FAQ</div>
+      <h2 style="font-size: clamp(1.3rem, 0.65rem + 2.8vw, 1.625rem); font-weight: 800; margin: 0px; color: rgb(16, 32, 46); letter-spacing: -0.01em;">Common questions about Education security</h2>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 22px 24px;">
+        <div style="font-size: 15.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 8px;">How does Hikvision prevent a child from being left on a school bus?</div>
+        <div style="font-size: 14px; line-height: 1.7; color: rgb(74, 91, 104);">A PIR sensor detects a student still onboard after the bus empties and automatically alerts the driver and control center — no manual headcount required.</div>
+      </div>
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 22px 24px;">
+        <div style="font-size: 15.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 8px;">Can Hikvision automate student attendance?</div>
+        <div style="font-size: 14px; line-height: 1.7; color: rgb(74, 91, 104);">Yes. Facial recognition access control at the gate or classroom door logs attendance automatically as students pass through.</div>
+      </div>
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 22px 24px;">
+        <div style="font-size: 15.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 8px;">What does a Hikvision campus security system typically cover?</div>
+        <div style="font-size: 14px; line-height: 1.7; color: rgb(74, 91, 104);">School bus, perimeter, school gate, campus grounds, control room and classroom — six zones that close blind spots on and off school hours.</div>
+      </div>
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 22px 24px;">
+        <div style="font-size: 15.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 8px;">What access control options work best for schools and campuses?</div>
+        <div style="font-size: 14px; line-height: 1.7; color: rgb(74, 91, 104);">Facial recognition or card-based access at gates and classroom doors is the most common setup — it logs entry automatically, doubles as attendance tracking, and can restrict access to specific buildings or times of day for visitors and contractors.</div>
+      </div>
+      <div style="background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 14px; padding: 22px 24px;">
+        <div style="font-size: 15.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 8px;">What does a typical campus CCTV setup include?</div>
+        <div style="font-size: 14px; line-height: 1.7; color: rgb(74, 91, 104);">Coverage of the school gate, perimeter fence, school bus, campus grounds, corridors and a control room monitor — sized to the number of buildings and entrances on site, with footage retained long enough to review any incident.</div>
       </div>
     </div>
   </section>
 
-  <footer style="background:#0F2C3D;padding:40px 24px">
-    <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
-      <div style="font-size:13.5px;color:rgba(255,255,255,0.55)">&copy; 2026 NE &mdash; Nashnaal Electronics. Authorized Hikvision distributor &amp; retailer.</div>
-      <div style="display:flex;gap:22px">
-        <a href="/" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Home</a>
-        <a href="products" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Products</a>
-        <a href="solutions" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Solutions</a>
-        <a href="blog" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Blog</a>
-        <a href="faq" style="font-size:13.5px;color:rgba(255,255,255,0.75)">FAQ</a>
-        <a href="about" style="font-size:13.5px;color:rgba(255,255,255,0.75)">About</a>
-        <a href="contact" style="font-size:13.5px;color:rgba(255,255,255,0.75)">Contact</a>
+  <section style="max-width: 1100px; margin: 56px auto 0px; padding: 0px 24px 64px;">
+    <div style="text-align: center; padding: 44px; background: rgb(15, 44, 61); border-radius: 18px;">
+      <div style="font-size: 22px; font-weight: 800; color: rgb(255, 255, 255); margin-bottom: 8px;">Want this for your site?</div>
+      <div style="font-size: 15px; color: rgba(255, 255, 255, 0.7); margin-bottom: 24px;">Tell NE about your education project and we'll recommend the right cameras, recorders and access control.</div>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="contact" data-h="1" style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); padding: 14px 30px; border-radius: 9px; font-weight: 700; font-size: 15px;">Talk to NE</a>
+        <a href="/category/access-control" data-h="3" style="background: rgba(255, 255, 255, 0.1); color: rgb(255, 255, 255); padding: 14px 30px; border-radius: 9px; font-weight: 700; font-size: 15px; border: 1.5px solid rgba(255, 255, 255, 0.25);">Browse Products</a>
       </div>
     </div>
+  </section>
+
+  <!--layout:footer-->
+<footer class="site-footer">
+    <div class="cols">
+      <div class="brand">
+        <img src="/assets/nashnaal-logo-header.webp" alt="NE — Nashnaal Electronics" width="44" height="44" loading="lazy">
+        <p>Genuine Hikvision CCTV, access control, intercom and networking &mdash; supplied, installed and supported from Nairobi.</p>
+        <a class="badge" href="https://www.hikvision.com/en/Partners/channel-partners/find-a-distributor/" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 4.5 6v6c0 4.6 3.2 7.7 7.5 9.2 4.3-1.5 7.5-4.6 7.5-9.2V6z"/><path d="m8.8 11.8 2.3 2.3 4.1-4.6"/></svg> Authorized Hikvision National Distributor</a>
+      </div>
+      <nav aria-label="Product categories">
+        <h2>Products</h2>
+        <ul>
+          <li><a href="/category/ip-cameras-nvrs">IP cameras &amp; NVRs</a></li>
+          <li><a href="/category/turbo-hd-cameras-dvrs">Turbo HD cameras &amp; DVRs</a></li>
+          <li><a href="/category/access-control">Access control</a></li>
+          <li><a href="/category/video-intercom">Video intercom</a></li>
+          <li><a href="/category/networking">Networking &amp; switches</a></li>
+          <li><a href="/category/wireless-wifi">Wi-Fi &amp; wireless</a></li>
+          <li><a href="/category/public-address">Public address</a></li>
+          <li><a href="/category/interactive-panels">Interactive panels</a></li>
+          <li><a href="/category/accessories">Accessories &amp; UPS</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/about">About NE</a></li>
+          <li><a href="/services">Installation &amp; services</a></li>
+          <li><a href="/solutions">Solutions by industry</a></li>
+          <li><a href="/quote">Get a quote</a></li>
+          <li><a href="/blog">Guides &amp; blog</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/world">Explore NE</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="visit">
+        <h2>Visit the showroom</h2>
+        <p><a href="https://www.google.com/maps/place/?q=place_id:ChIJL1wsUKARLxgRTEebeopQdiI" target="_blank" rel="noopener">Business Bay Square (BBS Mall), Shop GFE 61, General Waruingi Road, Eastleigh, Nairobi</a></p>
+        <dl class="hours">
+          <dt>Mon&ndash;Sat</dt><dd>08:00 &ndash; 20:00</dd>
+          <dt>Sunday</dt><dd>09:00 &ndash; 18:00</dd>
+        </dl>
+        <p><a href="tel:+254737454891">Call 0737 454 891</a> &middot; <a href="https://wa.me/254737454891" target="_blank" rel="noopener">WhatsApp</a></p>
+        <div class="social">
+          <a href="https://www.instagram.com/nashnaalelectronics" target="_blank" rel="noopener" aria-label="NE on Instagram"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.tiktok.com/@nashnaalelectronics" target="_blank" rel="noopener" aria-label="NE on TikTok"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3a7 7 0 0 1-3.9-1.2v6.3a5.9 5.9 0 1 1-5.9-5.9h.6v3.1a2.9 2.9 0 1 0 2.3 2.8V3h3Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="legal"><div>
+      <span>&copy; 2026 NE &mdash; Nashnaal Electronics. All rights reserved.</span>
+      <span>Hikvision is a trademark of Hangzhou Hikvision Digital Technology Co., Ltd.</span>
+    </div></div>
   </footer>
-
-  <a href="https://wa.me/254798131085" target="_blank" class="wa-pulse-btn" style="position:fixed;bottom:26px;right:26px;width:58px;height:58px;border-radius:50%;background:#22C35E;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.2);z-index:60" style-hover="background:#1CAD52">
-    <span style="font-size:26px;line-height:1">💬</span>
-  </a>
-
-</div>
-
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  state = { scrollY: 0, scrollProgress: 0 };
-
-  componentDidMount() {
-    import('./revealFx.js').then(mod => {
-      this._untrackScroll = mod.makeScrollTracker((scrollY, progress) => {
-        this.setState({ scrollY, scrollProgress: progress });
-      });
-      this.forceUpdate();
-    });
-  }
-
-  componentWillUnmount() {
-    if (this._untrackScroll) this._untrackScroll();
-  }
-
-  renderVals() {
-    const progressBarStyle = `position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4FC3EC,#0B8FCB);width:${(this.state.scrollProgress * 100).toFixed(2)}%;z-index:200;transition:width 0.1s linear`;
-    return { progressBarStyle };
-  }
-}
-
-</script>
+  <a href="https://wa.me/254737454891" target="_blank" rel="noopener" class="wa-float" aria-label="Chat with NE on WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="#fff"><path d="M12 2.2A9.7 9.7 0 0 0 3.6 16.8L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.7-1.2.2-.6.2-1 .1-1.2l-.4-.2Z"/></svg></a>
+<!--/layout:footer--></div>
 </body>
 </html>

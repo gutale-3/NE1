@@ -28,7 +28,12 @@
  "mpn": "DS-2CD1367G3-LIUF/SRB(2.8mm)(O-STD)",
  "category": "CCTV-IP",
  "description": "1/2.4\" Progressive CMOS, ICR, 3200 × 1800: 20fps(P)/fps(N), H.265+/H.265/H.264+/H.264, WDR, 3D DNR, BLC，HLC, Smart hybrid light, IR or white light range: up to 30m, DC12V & PoE power supply, Support remote mobile management via Hik-Connect\r\n\r\n*-LIU: added built-in microphone\r\n\r\n*-LIU/SL: added built-in speaker to support two-way audio and audio alarm, built-in white strobe alarm light\r\n\r\n*-LIU/SRB: added built-in speaker to support two-way audio and audio alarm, built-in red and blue strobe alarm light\r\n\r\n*-LIUF: added built-in SD card slot and support up to 512GB SD card\r\n\r\n*-LIUF/SL: added built-in SD card slot and support up to 512GB SD card, built-in speaker to support two-way audio and audio alarm, built-in white strobe alarm light\r\n\r\n*-LIUF/SRB: added built-in SD card slot and support up to 512GB SD card, built-in speaker to support two-way audio and audio alarm, built-in red and blue strobe alarm light",
- "image": "https://nashnaal.com/images/064.png",
+ "image": [
+  "https://nashnaal.com/images/064.png",
+  "https://nashnaal.com/images/hik/m000172330/51b-aa01cd76.webp",
+  "https://nashnaal.com/images/hik/m000172330/51b-ff6c0284.webp",
+  "https://nashnaal.com/images/hik/m000172330/ds-2cd1367g3-liufsrb-dimensionsimage-1-eadcaa06.webp"
+ ],
  "brand": {
   "@type": "Brand",
   "name": "Hikvision"
@@ -68,7 +73,7 @@
    "@type": "ListItem",
    "position": 3,
    "name": "CCTV-IP",
-   "item": "https://nashnaal.com/products?cat=CCTV-IP"
+   "item": "https://nashnaal.com/category/ip-cameras-nvrs"
   },
   {
    "@type": "ListItem",
@@ -90,18 +95,6 @@ img { max-width: 100%; }
 a { color: #086E9E; text-decoration: none; }
 h1, h2, h3 { letter-spacing: -0.01em; }
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
-.navtoggle-cb { display: none; }
-.hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
-.hamburger-icon-close { display: none; }
-.mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
-.mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; }
-.navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
-.navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
-.navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
-.nav-links { display: flex; align-items: center; gap: 32px; flex: 1; justify-content: center; }
-.nav-links a { font-size: 15px; font-weight: 600; color: #10202E; }
-.nav-links a.on { font-weight: 700; color: #086E9E; }
-.call-btn { flex-shrink: 0; display: flex; align-items: center; gap: 8px; background: #086E9E; color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 700; white-space: nowrap; }
 
 .crumbs { font-size: 13px; color: #4A5B68; padding: 16px 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .crumbs a { color: #4A5B68; }
@@ -111,6 +104,14 @@ h1, h2, h3 { letter-spacing: -0.01em; }
 .detail { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; padding-bottom: 8px; }
 .shot { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; padding: 32px; display: flex; align-items: center; justify-content: center; min-height: 420px; }
 .shot img { max-height: 400px; object-fit: contain; }
+.gallery > input { position: absolute; opacity: 0; pointer-events: none; }
+.gallery .shot { position: relative; }
+.gallery .slide { display: none; width: 100%; height: 400px; align-items: center; justify-content: center; }
+.gallery .slide img { max-height: 100%; }
+.thumbs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.thumbs label { width: 72px; height: 72px; background: #fff; border: 1.5px solid #E7ECF1; border-radius: 10px; padding: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.thumbs label:hover { border-color: #0B8FCB; }
+.thumbs img { max-height: 100%; object-fit: contain; }
 .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #086E9E; background: #EAF6FC; border-radius: 999px; padding: 6px 12px; margin-bottom: 14px; }
 .detail h1 { font-size: clamp(1.5rem, 2.4vw + 0.9rem, 2.1rem); font-weight: 800; margin: 0 0 10px; line-height: 1.2; }
 .sku { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13.5px; color: #4A5B68; margin-bottom: 20px; word-break: break-word; }
@@ -133,10 +134,29 @@ h1, h2, h3 { letter-spacing: -0.01em; }
 .facts dd { margin: 0; font-size: 14px; font-weight: 600; word-break: break-word; }
 
 section.block { padding: 44px 0 0; }
+.site-footer { margin-top: 56px; }
 .block h2 { font-size: clamp(1.2rem, 2.2vw + 0.6rem, 1.5rem); font-weight: 800; margin: 0 0 18px; }
 .specs { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; padding: 10px 26px; columns: 2; column-gap: 40px; }
 .specs li { break-inside: avoid; font-size: 14px; line-height: 1.65; color: #10202E; margin: 12px 0; }
 .specs ul { margin: 0; padding-left: 20px; }
+.overview { font-size: 16px; line-height: 1.75; color: #3D4F5C; max-width: 75ch; margin: 0 0 18px; }
+.highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.highlights li { background: #fff; border: 1px solid #E7ECF1; border-radius: 12px; padding: 14px 16px 14px 40px; font-size: 14px; line-height: 1.55; position: relative; }
+.highlights li::before { content: "\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
+.spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
+.spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.spec-group + .spec-group { border-top: 1px solid #E7ECF1; }
+.spec-group summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #F3F7FA; color: #086E9E; font-size: 12.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; }
+.spec-group summary::-webkit-details-marker { display: none; }
+.spec-group summary span { margin-left: auto; font-size: 11px; font-weight: 700; color: #4A5B68; letter-spacing: 0; }
+.spec-group summary::after { content: "+"; font-size: 18px; line-height: 1; color: #086E9E; }
+.spec-group[open] summary::after { content: "\2212"; }
+.spec-group summary:hover { background: #EAF6FC; }
+.spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
+.spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
+.spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.spec-table tr:first-child th, .spec-table tr:first-child td { border-top: 1px solid #E7ECF1; }
+.doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
 .card { background: #fff; border: 1px solid #E7ECF1; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s; }
@@ -154,60 +174,113 @@ section.block { padding: 44px 0 0; }
 .band p { color: rgba(255,255,255,0.88); margin: 0; font-size: 14.5px; }
 .band a { background: #fff; color: #0B7EB5; padding: 13px 24px; border-radius: 9px; font-weight: 700; font-size: 14px; white-space: nowrap; }
 
-footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
-.foot { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-.foot p { font-size: 13.5px; color: rgba(255,255,255,0.55); margin: 0; }
-.foot nav { display: flex; gap: 22px; flex-wrap: wrap; }
-.foot a { font-size: 13.5px; color: rgba(255,255,255,0.75); }
 
-@keyframes pulseRing { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(1.6); opacity: 0; } }
-.wa-float { position: fixed; bottom: 26px; right: 26px; width: 58px; height: 58px; border-radius: 50%; background: #22C35E; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 60; font-size: 26px; line-height: 1; }
-.wa-float::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(11,143,203,0.55); animation: pulseRing 2.2s ease-out infinite; pointer-events: none; }
 
 @media (max-width: 860px) {
-  .nav-links, .call-btn { display: none !important; }
-  .hamburger-btn { display: flex !important; align-items: center; justify-content: center; }
   .detail { grid-template-columns: 1fr; gap: 24px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
+  .gallery .slide { height: 260px; }
+  .thumbs { gap: 8px; }
+  .thumbs label { width: 58px; height: 58px; padding: 5px; }
+  .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-group summary { padding: 13px 14px; }
+  .spec-table td { padding: 10px 14px; }
 }
+</style>
+<style id="layout-css">
+.site-header { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid #E7ECF1; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+.site-header .bar { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 24px; }
+.site-header .logo { display: flex; align-items: center; flex-shrink: 0; }
+.site-header .logo img { height: 52px; width: auto; display: block; }
+.site-nav { display: flex; align-items: center; gap: 30px; flex: 1; justify-content: center; }
+.site-nav a { font-size: 15px; font-weight: 600; color: #10202E; text-decoration: none; }
+.site-nav a:hover, .site-nav a.on { color: #086E9E; }
+.site-nav a.on { font-weight: 700; }
+.site-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.site-actions a { display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 8px; font-size: 14px; font-weight: 700; white-space: nowrap; text-decoration: none; }
+.site-actions .call { color: #086E9E; border: 1.5px solid #CFE6F2; }
+.site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
+.site-actions .quote { background: #086E9E; color: #fff; }
+.site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.navtoggle-cb { display: none; }
+.hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
+.hamburger-icon-close { display: none; }
+.mobile-nav-panel { display: none; flex-direction: column; padding: 6px 24px 22px; border-top: 1px solid #E7ECF1; background: #fff; }
+.mobile-nav-panel a { padding: 15px 4px; font-size: 16px; font-weight: 600; color: #10202E; border-bottom: 1px solid #F0F3F5; text-decoration: none; }
+.mobile-nav-panel a.on { color: #086E9E; }
+.mobile-nav-panel .m-cta { margin-top: 12px; text-align: center; border-radius: 8px; font-weight: 700; padding: 15px; border: 0; }
+.mobile-nav-panel .m-quote { background: #086E9E; color: #fff; }
+.mobile-nav-panel .m-call { background: #EAF6FC; color: #086E9E; margin-top: 8px; }
+.navtoggle-cb:checked ~ .bar .hamburger-icon-open { display: none; }
+.navtoggle-cb:checked ~ .bar .hamburger-icon-close { display: inline; }
+.navtoggle-cb:checked ~ .mobile-nav-panel { display: flex; }
+@media (max-width: 1020px) { .site-actions .call { display: none; } }
+@media (max-width: 860px) {
+  .site-nav, .site-actions { display: none; }
+  .hamburger-btn { display: flex; align-items: center; justify-content: center; }
+}
+
+.site-footer { background: #0F2C3D; color: rgba(255,255,255,0.72); font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; line-height: 1.6; }
+.site-footer a { color: rgba(255,255,255,0.78); text-decoration: none; }
+.site-footer a:hover { color: #fff; }
+.site-footer .cols { max-width: 1240px; margin: 0 auto; padding: 56px 24px 36px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 36px; }
+.site-footer h2 { font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin: 0 0 14px; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer li { margin: 0 0 9px; }
+.site-footer .brand img { height: 44px; width: auto; display: block; margin-bottom: 14px; background: #fff; border-radius: 8px; padding: 4px; }
+.site-footer .brand p { margin: 0 0 16px; max-width: 34ch; }
+.site-footer .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(79,195,236,0.35); color: #4FC3EC; border-radius: 999px; padding: 6px 12px; font-size: 12.5px; font-weight: 700; }
+.site-footer .badge:hover { color: #7ED4F1; border-color: #7ED4F1; }
+.site-footer .visit p { margin: 0 0 10px; }
+.site-footer .hours { display: grid; grid-template-columns: auto auto; gap: 2px 14px; margin: 0 0 14px; }
+.site-footer .hours dt { color: rgba(255,255,255,0.6); }
+.site-footer .hours dd { margin: 0; color: #fff; font-weight: 600; }
+.site-footer .social { display: flex; gap: 10px; margin-top: 14px; }
+.site-footer .social a { width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; }
+.site-footer .social a:hover { border-color: #4FC3EC; }
+.site-footer .legal { border-top: 1px solid rgba(255,255,255,0.1); }
+.site-footer .legal div { max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.5); }
+@media (max-width: 960px) { .site-footer .cols { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .site-footer .cols { grid-template-columns: 1fr; gap: 28px; padding-top: 44px; } }
+
+.wa-float { position: fixed; bottom: 22px; right: 22px; width: 56px; height: 56px; border-radius: 50%; background: #22C35E; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 60; }
+.wa-float:hover { background: #1CAD52; }
 </style>
 </head>
 <body>
-  <header style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #E7ECF1">
+  <header class="site-header">
     <input type="checkbox" id="navtoggle" class="navtoggle-cb">
-    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;padding-top:10px;padding-bottom:10px;gap:16px">
-      <a href="/" style="display:flex;align-items:center;flex-shrink:0">
-        <img src="/assets/nashnaal-logo-header.webp" alt="NE — Nashnaal Electronics" width="52" height="52" style="height:52px;width:auto;display:block">
+    <div class="bar">
+      <a href="/" class="logo" aria-label="NE Nashnaal Electronics home">
+        <img src="/assets/nashnaal-logo-header.webp" alt="NE — Nashnaal Electronics" width="52" height="52">
       </a>
-      <nav class="nav-links">
-        <a href="/">Home</a>
-        <a href="/world">Explore</a>
-        <a href="/products" class="on">Products</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/products" class="on" aria-current="page">Products</a>
         <a href="/solutions">Solutions</a>
         <a href="/services">Services</a>
         <a href="/blog">Blog</a>
-        <a href="/faq">FAQ</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </nav>
-      <a href="tel:+254798131085" class="call-btn">Call 0798 131085</a>
+      <div class="site-actions">
+        <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
+        <a href="/quote" class="quote">Get a quote</a>
+      </div>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
       </label>
     </div>
-    <nav class="mobile-nav-panel">
-      <a href="/">Home</a>
-      <a href="/world">Explore</a>
-      <a href="/products">Products</a>
+    <nav class="mobile-nav-panel" aria-label="Mobile">
+      <a href="/products" class="on" aria-current="page">Products</a>
       <a href="/solutions">Solutions</a>
       <a href="/services">Services</a>
       <a href="/blog">Blog</a>
-      <a href="/faq">FAQ</a>
       <a href="/about">About</a>
       <a href="/contact">Contact</a>
-      <a href="tel:+254798131085" style="margin-top:12px;text-align:center;background:#086E9E;color:#fff;padding:15px;border-radius:8px;font-weight:700;font-size:16px;border:0">Call 0798 131085</a>
+      <a href="/quote" class="m-cta m-quote">Get a quote</a>
+      <a href="tel:+254737454891" class="m-cta m-call">Call 0737 454 891</a>
     </nav>
   </header>
 
@@ -215,13 +288,29 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/">Home</a> <span aria-hidden="true">/</span>
       <a href="/products">Products</a> <span aria-hidden="true">/</span>
-      <a href="/products?cat=CCTV-IP">CCTV-IP</a> <span aria-hidden="true">/</span>
+      <a href="/category/ip-cameras-nvrs">CCTV-IP</a> <span aria-hidden="true">/</span>
       <span aria-current="page">6 MP ColorVu 3.0 with Smart Hybrid Light Fixed Turret Network Camera with Red&amp;Blue Strobe Light Alarm</span>
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/images/064.png" alt="6 MP ColorVu 3.0 with Smart Hybrid Light Fixed Turret Network Camera with Red&amp;Blue Strobe Light Alarm — DS-2CD1367G3-LIUF/SRB(2.8mm)(O-STD)" fetchpriority="high" decoding="async">
+      <style>.gallery #g1:checked ~ .shot .s1 { display: flex; } .gallery #g1:checked ~ .thumbs label[for=g1] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g1:focus-visible ~ .thumbs label[for=g1] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g2:checked ~ .shot .s2 { display: flex; } .gallery #g2:checked ~ .thumbs label[for=g2] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g2:focus-visible ~ .thumbs label[for=g2] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g3:checked ~ .shot .s3 { display: flex; } .gallery #g3:checked ~ .thumbs label[for=g3] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g3:focus-visible ~ .thumbs label[for=g3] { outline: 2px solid #086E9E; outline-offset: 2px; } .gallery #g4:checked ~ .shot .s4 { display: flex; } .gallery #g4:checked ~ .thumbs label[for=g4] { border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; } .gallery #g4:focus-visible ~ .thumbs label[for=g4] { outline: 2px solid #086E9E; outline-offset: 2px; }</style>
+      <div class="gallery">
+        <input type="radio" name="gallery" id="g1" checked aria-label="Photo 1 of 4">
+        <input type="radio" name="gallery" id="g2" aria-label="Photo 2 of 4">
+        <input type="radio" name="gallery" id="g3" aria-label="Photo 3 of 4">
+        <input type="radio" name="gallery" id="g4" aria-label="Photo 4 of 4">
+        <div class="shot">
+          <div class="slide s1"><img src="/images/064.png" alt="6 MP ColorVu 3.0 with Smart Hybrid Light Fixed Turret Network Camera with Red&amp;Blue Strobe Light Alarm — DS-2CD1367G3-LIUF/SRB(2.8mm)(O-STD) — view 1" fetchpriority="high" decoding="async"></div>
+          <div class="slide s2"><img src="/images/hik/m000172330/51b-aa01cd76.webp" alt="6 MP ColorVu 3.0 with Smart Hybrid Light Fixed Turret Network Camera with Red&amp;Blue Strobe Light Alarm — DS-2CD1367G3-LIUF/SRB(2.8mm)(O-STD) — view 2" loading="lazy" decoding="async"></div>
+          <div class="slide s3"><img src="/images/hik/m000172330/51b-ff6c0284.webp" alt="6 MP ColorVu 3.0 with Smart Hybrid Light Fixed Turret Network Camera with Red&amp;Blue Strobe Light Alarm — DS-2CD1367G3-LIUF/SRB(2.8mm)(O-STD) — view 3" loading="lazy" decoding="async"></div>
+          <div class="slide s4"><img src="/images/hik/m000172330/ds-2cd1367g3-liufsrb-dimensionsimage-1-eadcaa06.webp" alt="6 MP ColorVu 3.0 with Smart Hybrid Light Fixed Turret Network Camera with Red&amp;Blue Strobe Light Alarm — DS-2CD1367G3-LIUF/SRB(2.8mm)(O-STD) — view 4" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="thumbs">
+          <label for="g1"><img src="/images/064.png" alt="" loading="lazy" decoding="async"></label>
+          <label for="g2"><img src="/images/hik/m000172330/51b-aa01cd76.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g3"><img src="/images/hik/m000172330/51b-ff6c0284.webp" alt="" loading="lazy" decoding="async"></label>
+          <label for="g4"><img src="/images/hik/m000172330/ds-2cd1367g3-liufsrb-dimensionsimage-1-eadcaa06.webp" alt="" loading="lazy" decoding="async"></label>
+        </div>
       </div>
 
       <div>
@@ -236,9 +325,9 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
         </div>
 
         <div class="ctas">
-          <a class="btn btn-wa" href="https://wa.me/254798131085?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Turret%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm%20%28DS-2CD1367G3-LIUF/SRB%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire on WhatsApp</a>
-          <a class="btn btn-call" href="tel:+254798131085">Call 0798 131085</a>
-          <a class="btn btn-ghost" href="https://wa.me/254798131085?text=Hi%20NE%2C%20please%20send%20me%20a%20quote%20for%20DS-2CD1367G3-LIUF/SRB%282.8mm%29%28O-STD%29%20%E2%80%94%20including%20installation." target="_blank" rel="noopener">Request a quote</a>
+          <a class="btn btn-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Turret%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm%20%28DS-2CD1367G3-LIUF/SRB%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+          <a class="btn btn-call" href="tel:+254737454891">Call 0737 454 891</a>
+          <a class="btn btn-ghost" href="https://wa.me/254737454891?text=Hi%20NE%2C%20please%20send%20me%20a%20quote%20for%20DS-2CD1367G3-LIUF/SRB%282.8mm%29%28O-STD%29%20%E2%80%94%20including%20installation." target="_blank" rel="noopener">Request a quote</a>
         </div>
 
         <dl class="facts">
@@ -251,32 +340,15 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </div>
 
     <section class="block">
+      <h2>Key features</h2>
+      
+      <ul class="highlights"><li>HikAI-ISP for excellent noise reduction effect</li><li>Super clear 24/7 colorful imaging with ColorVu 3.0 technology</li><li>Motion Detection 3.0, more accurate on person and vehicle classification</li><li>Smart Hybrid Light: integrates IR and white lights, 3 supplemental lighting modes</li><li>/SL/SRB: Provide real-time security via built-in two-way audio and strobe light alarm</li><li>Support on-board storage up to 512 GB (SD card slot) (Optional)</li><li>Water and dust resistant (IP67)</li></ul>
+    </section>
+
+    <section class="block">
       <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            <li>1/2.4&quot; Progressive CMOS</li>
-            <li>ICR</li>
-            <li>3200 × 1800: 20fps(P)/fps(N)</li>
-            <li>H.265+/H.265/H.264+/H.264</li>
-            <li>WDR</li>
-            <li>3D DNR</li>
-            <li>BLC</li>
-            <li>HLC</li>
-            <li>Smart hybrid light</li>
-            <li>IR or white light range: up to 30m</li>
-            <li>DC12V &amp; PoE power supply</li>
-            <li>Support remote mobile management via Hik-Connect</li>
-            <li>*-LIU: added built-in microphone</li>
-            <li>*-LIU/SL: added built-in speaker to support two-way audio and audio alarm</li>
-            <li>built-in white strobe alarm light</li>
-            <li>*-LIU/SRB: added built-in speaker to support two-way audio and audio alarm</li>
-            <li>built-in red and blue strobe alarm light</li>
-            <li>*-LIUF: added built-in SD card slot and support up to 512GB SD card</li>
-            <li>*-LIUF/SL: added built-in SD card slot and support up to 512GB SD card</li>
-            <li>built-in speaker to support two-way audio and audio alarm</li>
-            <li>*-LIUF/SRB: added built-in SD card slot and support up to 512GB SD card</li>
-        </ul>
-      </div>
+      <div class="spec-table"><details class="spec-group" open><summary>Camera<span>6</span></summary><table><tr><th scope="row">Image Sensor</th><td>1/2.4&quot; Progressive Scan CMOS</td></tr><tr><th scope="row">Max. Resolution</th><td>3200 × 1800</td></tr><tr><th scope="row">Min. Illumination</th><td>Color: 0.0005 Lux @ (F1.0, AGC ON),0 Lux with light</td></tr><tr><th scope="row">Shutter Time</th><td>1 s to 1/100,000 s</td></tr><tr><th scope="row">Day &amp; Night</th><td>IR cut filter</td></tr><tr><th scope="row">Angle Adjustment</th><td>Pan: 0° to 360°,tilt: 0° to 75°,rotate: 0° to 360°</td></tr></table></details><details class="spec-group" open><summary>Lens<span>6</span></summary><table><tr><th scope="row">Lens Type</th><td>Fixed focal lens, 2.8 and 4 mm optional</td></tr><tr><th scope="row">Focal Length &amp; FOV</th><td>2.8 mm, horizontal FOV 109°, vertical FOV 60°, diagonal FOV 130° 4 mm, horizontal FOV 89°, vertical FOV 49°, diagonal FOV 105°</td></tr><tr><th scope="row">Lens Mount</th><td>M12</td></tr><tr><th scope="row">Iris Type</th><td>Fixed</td></tr><tr><th scope="row">Aperture</th><td>F1.0</td></tr><tr><th scope="row">Depth of Field</th><td>2.8 mm: 1.9 m to ∞ 4 mm: 2.4 m to ∞</td></tr></table></details><details class="spec-group"><summary>Pixel Density<span>1</span></summary><table><tr><th scope="row">DORI</th><td>2.8 mm, D: 68 m, O: 27 m, R: 13 m, I: 6 m 4 mm, D: 83 m, O: 33 m, R: 16 m, I: 8 m</td></tr></table></details><details class="spec-group"><summary>Illuminator<span>4</span></summary><table><tr><th scope="row">Supplement Light Type</th><td>IR,White Light</td></tr><tr><th scope="row">Supplement Light Range</th><td>Up to 30 m</td></tr><tr><th scope="row">Smart Supplement Light</th><td>Yes</td></tr><tr><th scope="row">IR Wavelength</th><td>850 nm</td></tr></table></details><details class="spec-group"><summary>Video<span>9</span></summary><table><tr><th scope="row">Main Stream</th><td>50 Hz: 20 fps (3200 × 1800, 2688 × 1520, 1920 × 1080, 1280 × 720) 60 Hz: 20 fps (3200 × 1800, 2688 × 1520, 1920 × 1080, 1280 × 720)</td></tr><tr><th scope="row">Sub-Stream</th><td>50 Hz: 20 fps (1280 × 720, 640 × 480, 640 × 360) 60 Hz: 20 fps (1280 × 720, 640 × 480, 640 × 360)</td></tr><tr><th scope="row">Video Compression</th><td>Main stream: H.265+/H.265/H.264+/H.264, Sub-stream: H.265/H.264/MJPEG</td></tr><tr><th scope="row">Video Bit Rate</th><td>32 Kbps to 16 Mbps</td></tr><tr><th scope="row">H.264 Type</th><td>Baseline Profile,Main Profile,High Profile</td></tr><tr><th scope="row">H.265 Type</th><td>Main Profile</td></tr><tr><th scope="row">Bit Rate Control</th><td>CBR,VBR</td></tr><tr><th scope="row">Region of Interest (ROI)</th><td>1 fixed region for main stream and sub-stream</td></tr><tr><th scope="row">Scalable Video Coding (SVC)</th><td>H.264 and H.265 encoding</td></tr></table></details><details class="spec-group"><summary>Audio<span>5</span></summary><table><tr><th scope="row">Audio Type</th><td>Mono sound</td></tr><tr><th scope="row">Audio Compression</th><td>G.711/G.722.1/G.726/MP2L2/PCM/AAC-LC</td></tr><tr><th scope="row">Audio Bit Rate</th><td>64 Kbps (G.711)/16 Kbps (G.722.1)/16 Kbps (G.726)/32 to 160 Kbps (MP2L2)/16 to 64 Kbps (AAC-LC)</td></tr><tr><th scope="row">Audio Sampling Rate</th><td>8 kHz/16 kHz</td></tr><tr><th scope="row">Environment Noise Filtering</th><td>Yes</td></tr></table></details><details class="spec-group"><summary>Network<span>7</span></summary><table><tr><th scope="row">Protocols</th><td>TCP/IP, ICMP, DHCP, DNS, HTTP, RTP, RTSP, RTCP, NTP, IPv4, IPv6, IGMP, UDP, QoS, FTP, SMTP, UPnP</td></tr><tr><th scope="row">Simultaneous Live View</th><td>Up to 6 channels</td></tr><tr><th scope="row">API</th><td>ONVIF (Profile S, Profile G, Profile T),ISAPI,SDK</td></tr><tr><th scope="row">User/Host</th><td>Up to 32 users 3 user levels: administrator, operator, and user</td></tr><tr><th scope="row">Security</th><td>Password protection, complicated password, watermark, basic and digest authentication for HTTP, WSSE and digest authentication for Open Network Video Interface, security audit log, host authentication (MAC address)</td></tr><tr><th scope="row">Client</th><td>iVMS-4200,Hik-Connect</td></tr><tr><th scope="row">Web Browser</th><td>Plug-in required live view: IE 10, IE 11 Local service: Chrome 57.0+, Firefox 52.0+, Edge 89+</td></tr></table></details><details class="spec-group"><summary>Image<span>6</span></summary><table><tr><th scope="row">Image Settings</th><td>Rotate mode,saturation,brightness,contrast,sharpness,gain,white balance,adjustable by client software or web browser</td></tr><tr><th scope="row">Day/Night Switch</th><td>Day,Night,Auto,Schedule</td></tr><tr><th scope="row">Wide Dynamic Range (WDR)</th><td>120 dB</td></tr><tr><th scope="row">SNR</th><td>≥ 52 dB</td></tr><tr><th scope="row">Image Enhancement</th><td>BLC,HLC,3D DNR</td></tr><tr><th scope="row">Privacy Mask</th><td>4 programmable polygon privacy masks</td></tr></table></details><details class="spec-group"><summary>Transducer<span>3</span></summary><table><tr><th scope="row">Transducer Type</th><td>NA</td></tr><tr><th scope="row">Detection Angle</th><td>NA</td></tr><tr><th scope="row">Detection Range</th><td>NA</td></tr></table></details><details class="spec-group"><summary>Interface<span>7</span></summary><table><tr><th scope="row">Ethernet Interface</th><td>1 RJ45 10 M/100 M self-adaptive Ethernet port</td></tr><tr><th scope="row">On-Board Storage</th><td>-LIU, LIU/S(L)(RB): NA -LIUF, LIUF/S(L)(RB): Built-in memory card slot, support microSD/microSDHC/microSDXC card, up to 512 GB</td></tr><tr><th scope="row">Built-in Microphone</th><td>Yes,1 built-in microphone</td></tr><tr><th scope="row">Built-in Speaker</th><td>-LIU, -LIUF: NA -LIU/S(L)(RB), -LIUF/S(L)(RB): Max. power consumption: 2 W, max. sound pressure level: 10 cm: 101 dB</td></tr><tr><th scope="row">Audio</th><td>NA</td></tr><tr><th scope="row">Alarm</th><td>NA</td></tr><tr><th scope="row">Reset Key</th><td>-LIU, LIU/S(L)(RB): NA -LIUF, LIUF/S(L)(RB): YES</td></tr></table></details><details class="spec-group"><summary>Event<span>2</span></summary><table><tr><th scope="row">Basic Event</th><td>Motion detection (support alarm triggering by specified target types (person and vehicle)), video tampering alarm, exception</td></tr><tr><th scope="row">Linkage</th><td>-LUF/S(L)(RB): Upload to memory card, upload to FTP, trigger recording, notify surveillance center, send email, trigger capture -LU: Upload to FTP, notify surveillance center, send email, trigger capture</td></tr></table></details><details class="spec-group"><summary>General<span>11</span></summary><table><tr><th scope="row">Power</th><td>-LIU/-LIUF: 12 VDC ± 25%, 0.54 A, max. 6.5 W, Ø5.5 mm coaxial power plug, reverse polarity protection, PoE: IEEE 802.3af, Class 3, max. 7.8 W, -LIU/S(L)(RB), -LIUF/S(L)(RB): 12 VDC ± 25%, 0.57 A, max. 6.84 W, Ø5.5 mm coaxial power plug, reverse polarity protection, PoE: IEEE 802.3af, Class 3, max. 8.3 W</td></tr><tr><th scope="row">Material</th><td>Metal &amp; Plastic</td></tr><tr><th scope="row">Dimension</th><td>Ø110 mm × 102.7 mm (Ø4.33&quot; × 4.04&quot;)</td></tr><tr><th scope="row">Package Dimension</th><td>150 mm × 150 mm × 141 mm (5.91&quot; × 5.91&quot; × 5.55&quot;)</td></tr><tr><th scope="row"></th><td>-LIU: Approx. 390g (0.9 lb.) -LIUF: Approx. 400g (0.9 lb.) -LIU/S(L)(RB): Approx. 420g (0.9 lb.) -LIUF/S(L)(RB): Approx. 425g (0.9 lb.)</td></tr><tr><th scope="row">With Package Weight</th><td>-LIU: Approx. 580g (1.3 lb.) -LIUF: Approx. 615g (1.4 lb.) -LIU/S(L)(RB): Approx. 610g (1.3 lb.) -LIUF/S(L)(RB): Approx. 615g (1.4 lb.)</td></tr><tr><th scope="row">Storage Conditions</th><td>-30 °C to 60 °C (-22 °F to 140 °F). Humidity 95% or less (non-condensing)</td></tr><tr><th scope="row">Startup and Operating Conditions</th><td>-30 °C to 60 °C (-22 °F to 140 °F). Humidity 95% or less (non-condensing)</td></tr><tr><th scope="row">Language</th><td>English, Russian, Ukrainian, Arabic, Spanish, French, Portuguese, Turkish, Polish, German</td></tr><tr><th scope="row">General Function</th><td>Heartbeat,mirror,flash log,password reset via email,password protection,anti-banding</td></tr><tr><th scope="row">Flashing Light</th><td>-LIU, -LIUF: NA -LIU(F)/SL: White Light -LIU(F)/SRB: Red and Blue Light</td></tr></table></details><details class="spec-group"><summary>Approval<span>4</span></summary><table><tr><th scope="row">EMC</th><td>CE-EMC: EN 55032:2015+A1:2020, EN 50130-4:2011+A1:2014, EN IEC 61000-3-2:2019+A1:2021, EN 61000-3-3:2013+A1:2019+A2:2021</td></tr><tr><th scope="row">Safety</th><td>CB: IEC 62368-1: 2014+A11</td></tr><tr><th scope="row">Environment</th><td>CE-RoHS: 2011/65/EU, WEEE: 2012/19/EU, Reach: Regulation (EC) No 1907/2006</td></tr><tr><th scope="row">Protection</th><td>IP67: IEC 60529-2013</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
+      <div class="doc-links"><a class="btn btn-ghost" href="https://assets.hikvision.com/prd/normal/all/doc/sm000098678/DS-2CD1367G3-LIUF_Datasheet_20250829.pdf" target="_blank" rel="noopener">Download datasheet (PDF)</a><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/IP-Products/Network-Cameras/value-series/ds-2cd1367g3-liu-f---sx-/?subName=DS-2CD1367G3-LIUF/SRB" target="_blank" rel="noopener">View on hikvision.com</a></div>
       <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-2CD1367G3-LIUF/SRB(2.8mm)(O-STD) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 
@@ -324,7 +396,7 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
           </div>
         </a>
       </div>
-      <p style="margin:20px 0 0;font-size:14px"><a href="/products?cat=CCTV-IP">See all 49 CCTV-IP products &rarr;</a></p>
+      <p style="margin:20px 0 0;font-size:14px"><a href="/category/ip-cameras-nvrs">See all 49 CCTV-IP products &rarr;</a></p>
     </section>
 
     <nav class="pager" aria-label="More products in this category">
@@ -341,20 +413,59 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
     </section>
   </div>
 
-  <footer>
-    <div class="foot">
-      <p>&copy; 2026 NE &mdash; Nashnaal Electronics. Authorized Hikvision distributor &amp; retailer.</p>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/products">Products</a>
-        <a href="/solutions">Solutions</a>
-        <a href="/faq">FAQ</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+  <footer class="site-footer">
+    <div class="cols">
+      <div class="brand">
+        <img src="/assets/nashnaal-logo-header.webp" alt="NE — Nashnaal Electronics" width="44" height="44" loading="lazy">
+        <p>Genuine Hikvision CCTV, access control, intercom and networking &mdash; supplied, installed and supported from Nairobi.</p>
+        <a class="badge" href="https://www.hikvision.com/en/Partners/channel-partners/find-a-distributor/" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 4.5 6v6c0 4.6 3.2 7.7 7.5 9.2 4.3-1.5 7.5-4.6 7.5-9.2V6z"/><path d="m8.8 11.8 2.3 2.3 4.1-4.6"/></svg> Authorized Hikvision National Distributor</a>
+      </div>
+      <nav aria-label="Product categories">
+        <h2>Products</h2>
+        <ul>
+          <li><a href="/category/ip-cameras-nvrs">IP cameras &amp; NVRs</a></li>
+          <li><a href="/category/turbo-hd-cameras-dvrs">Turbo HD cameras &amp; DVRs</a></li>
+          <li><a href="/category/access-control">Access control</a></li>
+          <li><a href="/category/video-intercom">Video intercom</a></li>
+          <li><a href="/category/networking">Networking &amp; switches</a></li>
+          <li><a href="/category/wireless-wifi">Wi-Fi &amp; wireless</a></li>
+          <li><a href="/category/public-address">Public address</a></li>
+          <li><a href="/category/interactive-panels">Interactive panels</a></li>
+          <li><a href="/category/accessories">Accessories &amp; UPS</a></li>
+        </ul>
       </nav>
+      <nav aria-label="Company">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/about">About NE</a></li>
+          <li><a href="/services">Installation &amp; services</a></li>
+          <li><a href="/solutions">Solutions by industry</a></li>
+          <li><a href="/quote">Get a quote</a></li>
+          <li><a href="/blog">Guides &amp; blog</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/world">Explore NE</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="visit">
+        <h2>Visit the showroom</h2>
+        <p><a href="https://www.google.com/maps/place/?q=place_id:ChIJL1wsUKARLxgRTEebeopQdiI" target="_blank" rel="noopener">Business Bay Square (BBS Mall), Shop GFE 61, General Waruingi Road, Eastleigh, Nairobi</a></p>
+        <dl class="hours">
+          <dt>Mon&ndash;Sat</dt><dd>08:00 &ndash; 20:00</dd>
+          <dt>Sunday</dt><dd>09:00 &ndash; 18:00</dd>
+        </dl>
+        <p><a href="tel:+254737454891">Call 0737 454 891</a> &middot; <a href="https://wa.me/254737454891" target="_blank" rel="noopener">WhatsApp</a></p>
+        <div class="social">
+          <a href="https://www.instagram.com/nashnaalelectronics" target="_blank" rel="noopener" aria-label="NE on Instagram"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.tiktok.com/@nashnaalelectronics" target="_blank" rel="noopener" aria-label="NE on TikTok"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3a7 7 0 0 1-3.9-1.2v6.3a5.9 5.9 0 1 1-5.9-5.9h.6v3.1a2.9 2.9 0 1 0 2.3 2.8V3h3Z"/></svg></a>
+        </div>
+      </div>
     </div>
+    <div class="legal"><div>
+      <span>&copy; 2026 NE &mdash; Nashnaal Electronics. All rights reserved.</span>
+      <span>Hikvision is a trademark of Hangzhou Hikvision Digital Technology Co., Ltd.</span>
+    </div></div>
   </footer>
-
-  <a href="https://wa.me/254798131085" target="_blank" rel="noopener" class="wa-float" aria-label="Chat with NE on WhatsApp"><span aria-hidden="true">&#128172;</span></a>
+  <a href="https://wa.me/254737454891" target="_blank" rel="noopener" class="wa-float" aria-label="Chat with NE on WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="#fff"><path d="M12 2.2A9.7 9.7 0 0 0 3.6 16.8L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.7-1.2.2-.6.2-1 .1-1.2l-.4-.2Z"/></svg></a>
 </body>
 </html>
