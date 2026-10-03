@@ -130,6 +130,7 @@ h1, h2, h3 { letter-spacing: -0.01em; }
 .facts div { background: #fff; padding: 14px 16px; }
 .facts dt { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #4A5B68; margin-bottom: 5px; }
 .facts dd { margin: 0; font-size: 14px; font-weight: 600; word-break: break-word; }
+.facts div:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
 section.block { padding: 44px 0 0; }
 .site-footer { margin-top: 56px; }
@@ -341,7 +342,7 @@ section.block { padding: 44px 0 0; }
       <h2>Specifications</h2>
       <div class="spec-table"><details class="spec-group" open><summary>Motion Detection 2.0<span>1</span></summary><table><tr><th scope="row">Human/Vehicle Analysis</th><td>Deep learning-based motion detection 2.0 is enabled by default for all analog channels, it can classify human and vehicle, and extremely reduce false alarms caused by objects like leaves and lights; Quick search by object or event type is supported;</td></tr></table></details><details class="spec-group" open><summary>Video and Audio<span>13</span></summary><table><tr><th scope="row">IP Video Input</th><td>2-ch (up to 10-ch) Up to 5 MP resolution Support H.265+/H.265/H.264+/H.264 IP cameras</td></tr><tr><th scope="row">Analog Video Input</th><td>8-ch BNC interface (1.0 Vp-p, 75 Ω), supporting coaxitron connection</td></tr><tr><th scope="row">HDTVI Input</th><td>1080p25, 1080p30, 720p25, 720p30</td></tr><tr><th scope="row">AHD Input</th><td>1080p25, 1080p30, 720p25, 720p30</td></tr><tr><th scope="row">HDCVI Input</th><td>1080p25, 1080p30, 720p25, 720p30</td></tr><tr><th scope="row">CVBS Input</th><td>Support</td></tr><tr><th scope="row">HDMI Output</th><td>1-ch, 1920 × 1080/60Hz, 1280 × 1024/60Hz, 1280 × 720/60Hz</td></tr><tr><th scope="row">VGA Output</th><td>1-ch, 1920 × 1080/60Hz, 1280 × 1024/60Hz, 1280 × 720/60Hz</td></tr><tr><th scope="row">Video Output Mode</th><td>HDMI/VGA simultaneous output</td></tr><tr><th scope="row">Audio Input</th><td>1-ch RCA (2.0 Vp-p, 1 KΩ) 8-ch via coaxial cable</td></tr><tr><th scope="row">Audio Output</th><td>1-ch, RCA (Linear, 1 KΩ)</td></tr><tr><th scope="row">Two-Way Audio</th><td>Reuse the first audio input</td></tr><tr><th scope="row">Synchronous playback</th><td>8-ch</td></tr></table></details><details class="spec-group"><summary>Recording<span>7</span></summary><table><tr><th scope="row">Video Compression</th><td>H.265 Pro+/H.265 Pro/H.265/H.264+/H.264</td></tr><tr><th scope="row">Encoding Resolution</th><td>For 1080p stream access: 1080p Lite/720p Lite/WD1/4CIF/VGA/CIF For 720p stream access: 720p/WD1/4CIF/VGA/CIF For SD stream access: WD1/4CIF/VGA/CIF</td></tr><tr><th scope="row">Frame Rate</th><td>Main stream: For 1080p stream access: 1080p Lite/720p Lite/WD1/4CIF/VGA/CIF@15 fps For 720p stream access: 720p/WD1/4CIF/VGA/CIF@15 fps For SD stream access: WD1/4CIF/VGA/CIF@25 fps (P)/30 fps (N) Sub-stream: For 1080p and 720p stream access CIF/QVGA@15 fps For SD stream access: CIF/QVGA@25 fps (P)/30 fps (N)</td></tr><tr><th scope="row">Video Bitrate</th><td>32 Kbps to 4 Mbps</td></tr><tr><th scope="row">Stream Type</th><td>Video, Video &amp; Audio</td></tr><tr><th scope="row">Audio Compression</th><td>G.711u</td></tr><tr><th scope="row">Audio Bitrate</th><td>64 Kbps</td></tr></table></details><details class="spec-group"><summary>Network<span>4</span></summary><table><tr><th scope="row">Total Bandwidth</th><td>72 Mbps</td></tr><tr><th scope="row">Remote Connection</th><td>64</td></tr><tr><th scope="row">Network Protocol</th><td>TCP/IP, PPPoE, DHCP, Hik-Connect, DNS, DDNS, NTP, SADP, SMTP,UPnP™, HTTPS</td></tr><tr><th scope="row">Network Interface</th><td>1, RJ45 10/100 Mbps self-adaptive Ethernet interface</td></tr></table></details><details class="spec-group"><summary>Auxiliary Interface<span>4</span></summary><table><tr><th scope="row">SATA</th><td>1 SATA interface</td></tr><tr><th scope="row">Capacity</th><td>Up to 4 TB capacity for each disk</td></tr><tr><th scope="row">USB Interface</th><td>Rear panel: 2 × USB 2.0</td></tr><tr><th scope="row">Alarm In/Out</th><td>N/A</td></tr></table></details><details class="spec-group"><summary>General<span>6</span></summary><table><tr><th scope="row">Power Supply</th><td>12 VDC, 1.5 A</td></tr><tr><th scope="row">Consumption</th><td>≤ 17 W (without HDD)</td></tr><tr><th scope="row">Working Temperature</th><td>-10 °C to 55 °C (14 °F to +31 °F)</td></tr><tr><th scope="row">Working Humidity</th><td>10% to 90%</td></tr><tr><th scope="row">Dimension (W × D × H)</th><td>200 × 200 × 48 mm (7.9 × 7.9 × 1.9 inch)</td></tr><tr><th scope="row"></th><td>≤ 1 kg (without HDD, 2.2 lb.)</td></tr></table></details></div><p class="note" style="margin-top:10px">Tap a section to expand it.</p>
       <div class="doc-links"><a class="btn btn-ghost" href="https://www.hikvision.com/en/products/Turbo-HD-Products/DVR/Value-Series/ds-7108hghi-m1/" target="_blank" rel="noopener">View on hikvision.com</a></div>
-      <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for DS-7108HGHI-M1(STD)(C) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
+      <p class="note" style="max-width:70ch">Specifications come from Hikvision&rsquo;s published datasheet for DS-7108HGHI-M1(STD)(C) and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
     </section>
 
     <section class="block">
@@ -388,7 +389,7 @@ section.block { padding: 44px 0 0; }
           </div>
         </a>
       </div>
-      <p style="margin:20px 0 0;font-size:14px"><a href="/category/turbo-hd-cameras-dvrs">See all 44 CCTV-Turbo HD products &rarr;</a></p>
+      <p style="margin:20px 0 0;font-size:14px"><a href="/category/turbo-hd-cameras-dvrs">See all 46 CCTV-Turbo HD products &rarr;</a></p>
     </section>
 
     <nav class="pager" aria-label="More products in this category">
@@ -417,6 +418,7 @@ section.block { padding: 44px 0 0; }
         <ul>
           <li><a href="/category/ip-cameras-nvrs">IP cameras &amp; NVRs</a></li>
           <li><a href="/category/turbo-hd-cameras-dvrs">Turbo HD cameras &amp; DVRs</a></li>
+          <li><a href="/category/hard-disks">Hard disks</a></li>
           <li><a href="/category/access-control">Access control</a></li>
           <li><a href="/category/video-intercom">Video intercom</a></li>
           <li><a href="/category/networking">Networking &amp; switches</a></li>

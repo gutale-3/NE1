@@ -125,6 +125,10 @@
     <lastmod>2026-10-03</lastmod>
   </url>
   <url>
+    <loc>https://nashnaal.com/category/hard-disks</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
     <loc>https://nashnaal.com/category/interactive-panels</loc>
     <lastmod>2026-10-03</lastmod>
   </url>
@@ -485,6 +489,16 @@
     <loc>https://nashnaal.com/product/ids-7232hqhi-m2-xt-std</loc>
     <lastmod>2026-10-03</lastmod>
     <image:image><image:loc>https://nashnaal.com/images/044.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/ds-e04hghi-b</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000063866/essd-dvr.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/ds-e08hghi-b</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/hik/m000063866/essd-dvr.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://nashnaal.com/product/ds-2cd1021g0-i-4mm-o-std</loc>
@@ -1454,5 +1468,55 @@
     <lastmod>2026-10-03</lastmod>
     <image:image><image:loc>https://nashnaal.com/images/imported/networking-ds-3wf3000-ei-5ac-p-o-std.png</image:loc></image:image>
     <image:image><image:loc>https://nashnaal.com/images/hik/m000148883/ds-3wf02-5acd-dimensionsimage-1-748829c5.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/conn-set</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/camera-connector-set.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/hdd-500gb</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/hdd-500gb.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/hdd-1tb</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/hdd-1tb.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/hdd-2tb</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/hdd-2tb.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/hdd-4tb</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/hdd-4tb.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/hdd-6tb</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/hdd-6tb.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/hdd-8tb</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/hdd-8tb.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/hdd-10tb</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/hdd-10tb.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/clips-100</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/cable-clips-100.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://nashnaal.com/product/ties-100</loc>
+    <lastmod>2026-10-03</lastmod>
+    <image:image><image:loc>https://nashnaal.com/images/storage/cable-ties-100.webp</image:loc></image:image>
   </url>
 </urlset>
