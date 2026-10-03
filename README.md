@@ -50,6 +50,22 @@ That one command rewrites the product pages, `js/products.js`, the catalog
 JSON-LD inside `products.html`, and the product entries in `sitemap.xml`. Pages
 for products removed from the JSON are deleted on the next run.
 
+### Optional rich fields
+
+Any product in `data/products.json` can also carry these fields. Pages without
+them fall back to the single photo and the `features` bullet list.
+
+| Field | Shape | Renders as |
+| --- | --- | --- |
+| `gallery` | `["images/x-2.webp", ...]` | Extra photos after `image`, with clickable thumbnails (pure CSS, works without JavaScript) |
+| `overview` | `"One or two sentences"` | Overview paragraph; also used as the Product schema description |
+| `keyFeatures` | `["...", "..."]` | Highlight tiles under the overview |
+| `specTable` | `[{"group": "Camera", "rows": [["Image sensor", "1/3\" CMOS"], ...]}, ...]` | Grouped specification table |
+| `datasheet` | URL or `/assets/...pdf` | "Download datasheet (PDF)" button |
+| `hikvisionUrl` | URL | "View on hikvision.com" button |
+
+These fields are kept out of `js/products.js` so the catalog page stays light.
+
 Because product pages live one directory down, their internal links are
 root-absolute (`/products`, `/images/001.png`) rather than relative.
 

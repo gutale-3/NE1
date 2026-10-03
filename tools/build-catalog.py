@@ -62,6 +62,14 @@ h1, h2, h3 { letter-spacing: -0.01em; }
 .detail { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; padding-bottom: 8px; }
 .shot { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; padding: 32px; display: flex; align-items: center; justify-content: center; min-height: 420px; }
 .shot img { max-height: 400px; object-fit: contain; }
+.gallery > input { position: absolute; opacity: 0; pointer-events: none; }
+.gallery .shot { position: relative; }
+.gallery .slide { display: none; width: 100%; height: 400px; align-items: center; justify-content: center; }
+.gallery .slide img { max-height: 100%; }
+.thumbs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.thumbs label { width: 72px; height: 72px; background: #fff; border: 1.5px solid #E7ECF1; border-radius: 10px; padding: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.thumbs label:hover { border-color: #0B8FCB; }
+.thumbs img { max-height: 100%; object-fit: contain; }
 .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #086E9E; background: #EAF6FC; border-radius: 999px; padding: 6px 12px; margin-bottom: 14px; }
 .detail h1 { font-size: clamp(1.5rem, 2.4vw + 0.9rem, 2.1rem); font-weight: 800; margin: 0 0 10px; line-height: 1.2; }
 .sku { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13.5px; color: #4A5B68; margin-bottom: 20px; word-break: break-word; }
@@ -88,6 +96,17 @@ section.block { padding: 44px 0 0; }
 .specs { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; padding: 10px 26px; columns: 2; column-gap: 40px; }
 .specs li { break-inside: avoid; font-size: 14px; line-height: 1.65; color: #10202E; margin: 12px 0; }
 .specs ul { margin: 0; padding-left: 20px; }
+.overview { font-size: 16px; line-height: 1.75; color: #3D4F5C; max-width: 75ch; margin: 0 0 18px; }
+.highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.highlights li { background: #fff; border: 1px solid #E7ECF1; border-radius: 12px; padding: 14px 16px 14px 40px; font-size: 14px; line-height: 1.55; position: relative; }
+.highlights li::before { content: "\\2713"; position: absolute; left: 16px; top: 14px; color: #086E9E; font-weight: 800; }
+.spec-table { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; overflow: hidden; }
+.spec-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.spec-table th[scope=colgroup] { text-align: left; background: #F3F7FA; color: #086E9E; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 20px; }
+.spec-table th[scope=row] { text-align: left; font-weight: 600; color: #4A5B68; width: 34%; padding: 11px 20px; vertical-align: top; }
+.spec-table td { padding: 11px 20px; color: #10202E; line-height: 1.55; word-break: break-word; }
+.spec-table tr + tr th, .spec-table tr + tr td { border-top: 1px solid #F0F3F5; }
+.doc-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
 .card { background: #fff; border: 1px solid #E7ECF1; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s; }
@@ -121,6 +140,9 @@ footer { background: #0F2C3D; padding: 40px 24px; margin-top: 56px; }
   .detail { grid-template-columns: 1fr; gap: 24px; }
   .shot { min-height: 280px; padding: 22px; }
   .specs { columns: 1; }
+  .gallery .slide { height: 260px; }
+  .spec-table th[scope=row] { width: 42%; padding: 10px 14px; }
+  .spec-table td { padding: 10px 14px; }
 }
 """.strip()
 
@@ -193,6 +215,110 @@ def card_html(product):
         </a>"""
 
 
+def images_of(product):
+    """Main image first, then any extra gallery shots, without duplicates."""
+    seen = []
+    for path in [product["image"], *product.get("gallery", [])]:
+        if path and path not in seen:
+            seen.append(path)
+    return seen
+
+
+def gallery_html(product):
+    images = images_of(product)
+    alt = f"{product['name']} — {product['model']}"
+    if len(images) == 1:
+        return f"""<div class="shot">
+        <img src="/{esc(images[0])}" alt="{esc(alt)}" fetchpriority="high" decoding="async">
+      </div>"""
+    radios = "\n        ".join(
+        f'<input type="radio" name="gallery" id="g{i}"{" checked" if i == 1 else ""} aria-label="Photo {i} of {len(images)}">'
+        for i in range(1, len(images) + 1)
+    )
+    slides = "\n          ".join(
+        f'<div class="slide s{i}"><img src="/{esc(path)}" alt="{esc(alt)} — view {i}"'
+        + (' fetchpriority="high"' if i == 1 else ' loading="lazy"')
+        + ' decoding="async"></div>'
+        for i, path in enumerate(images, start=1)
+    )
+    thumbs = "\n          ".join(
+        f'<label for="g{i}"><img src="/{esc(path)}" alt="" loading="lazy" decoding="async"></label>'
+        for i, path in enumerate(images, start=1)
+    )
+    rules = " ".join(
+        f".gallery #g{i}:checked ~ .shot .s{i} {{ display: flex; }} "
+        f".gallery #g{i}:checked ~ .thumbs label[for=g{i}] {{ border-color: #086E9E; box-shadow: 0 0 0 2px #EAF6FC; }} "
+        f".gallery #g{i}:focus-visible ~ .thumbs label[for=g{i}] {{ outline: 2px solid #086E9E; outline-offset: 2px; }}"
+        for i in range(1, len(images) + 1)
+    )
+    return f"""<style>{rules}</style>
+      <div class="gallery">
+        {radios}
+        <div class="shot">
+          {slides}
+        </div>
+        <div class="thumbs">
+          {thumbs}
+        </div>
+      </div>"""
+
+
+def details_html(product):
+    """Overview, highlights and the grouped spec table, when the data has them."""
+    parts = []
+    if product.get("overview") or product.get("keyFeatures"):
+        overview = (
+            f'<p class="overview">{esc(product["overview"])}</p>' if product.get("overview") else ""
+        )
+        highlights = "".join(f"<li>{esc(item)}</li>" for item in product.get("keyFeatures", []))
+        parts.append(f"""<section class="block">
+      <h2>Overview</h2>
+      {overview}
+      {f'<ul class="highlights">{highlights}</ul>' if highlights else ""}
+    </section>""")
+    return "\n\n    ".join(parts)
+
+
+def specs_html(product):
+    groups = product.get("specTable")
+    if groups:
+        body = "".join(
+            f'<tbody><tr><th scope="colgroup" colspan="2">{esc(group["group"])}</th></tr>'
+            + "".join(
+                f'<tr><th scope="row">{esc(label)}</th><td>{esc(value)}</td></tr>'
+                for label, value in group["rows"]
+            )
+            + "</tbody>"
+            for group in groups
+        )
+        table = f'<div class="spec-table"><table>{body}</table></div>'
+    else:
+        lines = "\n            ".join(
+            f"<li>{esc(line)}</li>" for line in catalog.spec_lines(product["features"])
+        )
+        table = f"""<div class="specs">
+        <ul>
+            {lines}
+        </ul>
+      </div>"""
+    links = []
+    if product.get("datasheet"):
+        links.append(
+            f'<a class="btn btn-ghost" href="{esc(product["datasheet"])}" target="_blank" rel="noopener">Download datasheet (PDF)</a>'
+        )
+    if product.get("hikvisionUrl"):
+        links.append(
+            f'<a class="btn btn-ghost" href="{esc(product["hikvisionUrl"])}" target="_blank" rel="noopener">View on hikvision.com</a>'
+        )
+    doc_links = f'<div class="doc-links">{"".join(links)}</div>' if links else ""
+    return f"""<section class="block">
+      <h2>Specifications</h2>
+      {table}
+      {doc_links}
+      <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for {esc(product['model'])} and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
+    </section>"""
+
+
 def json_ld(product, category_url):
     page_url = SITE + product["url"]
     product_ld = {
@@ -202,8 +328,8 @@ def json_ld(product, category_url):
         "sku": product["model"],
         "mpn": product["model"],
         "category": product["category"],
-        "description": product["features"],
-        "image": f"{SITE}/{product['image']}",
+        "description": product.get("overview") or product["features"],
+        "image": [f"{SITE}/{path}" for path in images_of(product)],
         "brand": {"@type": "Brand", "name": "Hikvision"},
         "offers": {
             "@type": "Offer",
@@ -248,9 +374,6 @@ def render(product, siblings, index):
         f"Hi NE, please send me a quote for {product['model']} — including installation."
     )
 
-    specs = "\n            ".join(
-        f"<li>{esc(line)}</li>" for line in catalog.spec_lines(product["features"])
-    )
     related = [p for p in siblings if p["id"] != product["id"]][:RELATED_COUNT]
     related_html = "\n        ".join(card_html(p) for p in related)
 
@@ -322,9 +445,7 @@ def render(product, siblings, index):
     </nav>
 
     <div class="detail">
-      <div class="shot">
-        <img src="/{esc(product['image'])}" alt="{esc(product['name'])} — {esc(product['model'])}" fetchpriority="high" decoding="async">
-      </div>
+      {gallery_html(product)}
 
       <div>
         <span class="eyebrow">{esc(product['category'])}</span>
@@ -352,15 +473,9 @@ def render(product, siblings, index):
       </div>
     </div>
 
-    <section class="block">
-      <h2>Specifications</h2>
-      <div class="specs">
-        <ul>
-            {specs}
-        </ul>
-      </div>
-      <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for {esc(product['model'])} and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
-    </section>
+    {details_html(product)}
+
+    {specs_html(product)}
 
     {related_block}
 
@@ -384,8 +499,12 @@ def render(product, siblings, index):
 """
 
 
+LISTING_FIELDS = ("category", "name", "model", "features", "pcsCtn", "retail", "price", "image", "id", "slug", "url")
+
+
 def write_products_js(products):
-    payload = json.dumps(products, indent=2, ensure_ascii=False)
+    listing = [{key: p[key] for key in LISTING_FIELDS if key in p} for p in products]
+    payload = json.dumps(listing, indent=2, ensure_ascii=False)
     (ROOT / "js/products.js").write_text(
         "// Generated by tools/build-catalog.py from data/products.json — do not edit by hand.\n"
         f"export const PRODUCTS = {payload};\n\n"
