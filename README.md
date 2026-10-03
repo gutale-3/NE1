@@ -40,7 +40,7 @@ footer and their CSS are shared and live in `tools/site_layout.py`.
   `<!--layout:…-->` and `<!--catalog:…-->` marker comments; the build
   scripts rewrite what is between them.
 - **Products, prices, kits:** edit `data/products.json` (or `PACKAGES` in
-  `tools/build-catalog.py` for the quote-page kits) and run
+  `tools/build-catalog.py` for the bundles shown on the homepage and `/quote`) and run
   `python3 tools/build-catalog.py`.
 
 ## Product pages
@@ -59,7 +59,7 @@ python3 tools/build-catalog.py
 ```
 
 That one command rewrites the product and category pages, the product grid and
-JSON-LD inside `products.html`, the kits on `quote.html`, and `sitemap.xml`
+JSON-LD inside `products.html`, the bundles on `index.html` and `quote.html`, and `sitemap.xml`
 (with each page's last-changed date from git and the product images). Pages
 for products removed from the JSON are deleted on the next run.
 
