@@ -74,6 +74,11 @@
       });
     }
     render();
+    // On phones the tabs scroll sideways; bring the selected one into view.
+    var current = document.querySelector('.ptab.on');
+    if (current && current.parentNode.scrollWidth > current.parentNode.clientWidth) {
+      current.parentNode.scrollLeft = current.offsetLeft - current.parentNode.offsetLeft - 24;
+    }
   }
 
   // ---- WhatsApp forms: contact form and quote builder --------------------
