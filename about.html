@@ -71,6 +71,9 @@
     .navtoggle-cb:checked ~ div .hamburger-icon-open { display: none; }
     .navtoggle-cb:checked ~ div .hamburger-icon-close { display: inline; }
     .navtoggle-cb:checked ~ .mobile-nav-panel { display: flex !important; }
+    @media (max-width: 640px) {
+      .proof-grid { grid-template-columns: 1fr !important; max-width: 420px; margin-left: auto; margin-right: auto; }
+    }
     @media (max-width: 480px) {
       .stats-grid { gap: 10px !important; }
       .stats-grid div div:first-child { font-size: 22px !important; }
@@ -148,6 +151,23 @@
         <div style="font-size:30px;font-weight:800;color:#086E9E">{{ stat2Value }}%</div>
         <div style="font-size:13px;color:#4A5B68;font-weight:600;margin-top:4px">Genuine Hikvision stock</div>
       </div>
+    </div>
+
+    <h2 style="font-size:clamp(1.4rem, 2.6vw + 0.8rem, 1.75rem);font-weight:800;margin:0 0 12px;color:#10202E;letter-spacing:-0.01em">Recognised by Hikvision</h2>
+    <p style="font-size:17px;line-height:1.8;color:#3D4F5C;margin:0 0 24px">Hikvision has certified NE as an <strong>Authorized National Distributor</strong> for the full product range every year since 2023, and named NE its <strong>Best Distribution Strategic Partner</strong> at the Hikvision End-of-Year Seminar 2025 in Nairobi. NE is listed on <a href="https://www.hikvision.com/en/Partners/channel-partners/find-a-distributor/" target="_blank" rel="noopener" style="font-weight:700">Hikvision&rsquo;s official distributor directory</a>.</p>
+    <div class="proof-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px">
+      <figure style="margin:0;background:#fff;border:1px solid #E7ECF1;border-radius:16px;overflow:hidden">
+        <img src="assets/partner/authorized-national-distributor-certificate.webp" alt="NE holding its Hikvision Authorized National Distributor certificate for Kenya" width="720" height="900" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover" />
+        <figcaption style="padding:14px 16px 16px"><div style="font-size:14.5px;font-weight:800;color:#10202E;margin-bottom:3px">Authorized National Distributor</div><div style="font-size:13px;line-height:1.5;color:#4A5B68">Kenya &middot; full range &middot; since 2023</div></figcaption>
+      </figure>
+      <figure style="margin:0;background:#fff;border:1px solid #E7ECF1;border-radius:16px;overflow:hidden">
+        <img src="assets/partner/best-distribution-partner-award-2025.webp" alt="NE receiving the Hikvision Best Distribution Strategic Partner Award 2025 in Nairobi" width="709" height="900" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover" />
+        <figcaption style="padding:14px 16px 16px"><div style="font-size:14.5px;font-weight:800;color:#10202E;margin-bottom:3px">Best Distribution Partner 2025</div><div style="font-size:13px;line-height:1.5;color:#4A5B68">Hikvision End-of-Year Seminar, Nairobi</div></figcaption>
+      </figure>
+      <figure style="margin:0;background:#fff;border:1px solid #E7ECF1;border-radius:16px;overflow:hidden">
+        <img src="assets/partner/storefront-hikvision-visit.webp" alt="The NE Hikvision showroom at BBS Mall, Nairobi" width="900" height="1123" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover" />
+        <figcaption style="padding:14px 16px 16px"><div style="font-size:14.5px;font-weight:800;color:#10202E;margin-bottom:3px">Our Hikvision showroom</div><div style="font-size:13px;line-height:1.5;color:#4A5B68">BBS Mall, Nairobi</div></figcaption>
+      </figure>
     </div>
 
     <div style="text-align:center">
