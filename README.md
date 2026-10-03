@@ -80,5 +80,5 @@ Open `http://localhost:8080`. This resolves extensionless URLs (`/products`,
 
 ## Notes
 - All internal links are relative (`index.html`, `products.html`, etc.) — works at any subpath.
-- WhatsApp/tel links point to `+254 798 131 085`.
+- WhatsApp/tel links point to `+254 737 454 891`.
 - This is a trimmed copy of the working project: original source material (raw video, price lists, merged catalog PDFs) lives one level up and was deliberately left out — it isn't referenced by any page and doesn't belong in a public repo.

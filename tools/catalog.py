@@ -12,8 +12,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "data/products.json"
 
 SITE = "https://nashnaal.com"
-PHONE = "+254798131085"
-PHONE_LABEL = "0798 131085"
+PHONE = "+254737454891"
+PHONE_LABEL = "0737 454 891"
 
 # Short, human labels for the category names used in the price list.
 CATEGORY_BLURBS = {
