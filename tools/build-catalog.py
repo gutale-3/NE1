@@ -69,6 +69,7 @@ h1, h2, h3 { letter-spacing: -0.01em; }
 .facts div { background: #fff; padding: 14px 16px; }
 .facts dt { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #4A5B68; margin-bottom: 5px; }
 .facts dd { margin: 0; font-size: 14px; font-weight: 600; word-break: break-word; }
+.facts div:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
 section.block { padding: 44px 0 0; }
 .site-footer { margin-top: 56px; }
@@ -190,6 +191,11 @@ def page_title(product, limit=62):
     return base + suffix
 
 
+def brand_of(product):
+    """Catalogue items are Hikvision unless they say otherwise ("brand": "" for unbranded)."""
+    return product.get("brand", "Hikvision")
+
+
 def share_image(product):
     """Link previews (WhatsApp, Facebook) still prefer PNG/JPEG over WebP."""
     image = product["image"]
@@ -292,7 +298,7 @@ def specs_html(product):
       <h2>Specifications</h2>
       {table}
       {doc_links}
-      <p class="note" style="max-width:70ch">Specifications come from Hikvision's published datasheet for {esc(product['model'])} and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>
+      {f'<p class="note" style="max-width:70ch">Specifications come from Hikvision&rsquo;s published datasheet for {esc(product["model"])} and may be revised by the manufacturer. Confirm the exact variant with us before ordering.</p>' if brand_of(product) == "Hikvision" else ""}
     </section>"""
 
 
@@ -307,7 +313,7 @@ def json_ld(product, category_url):
         "category": product["category"],
         "description": product.get("overview") or product["features"],
         "image": [f"{SITE}/{path}" for path in images_of(product)],
-        "brand": {"@type": "Brand", "name": "Hikvision"},
+        **({"brand": {"@type": "Brand", "name": brand_of(product)}} if brand_of(product) else {}),
         "offers": {
             "@type": "Offer",
             "price": product["price"],
@@ -431,7 +437,7 @@ def render(product, siblings, index):
 
         <div class="pricebox">
           <div class="price">KES {catalog.price_label(product['price'])} <small>per unit</small></div>
-          <div class="stock">&#10003; Genuine Hikvision stock &mdash; manufacturer warranty support</div>
+          <div class="stock">&#10003; {"Genuine Hikvision stock &mdash; manufacturer warranty support" if brand_of(product) == "Hikvision" else "In stock at our Nairobi showroom"}</div>
           <p class="note">Talk to us for project and volume pricing, or for a quote that includes cabling, installation and configuration.</p>
         </div>
 
@@ -442,10 +448,10 @@ def render(product, siblings, index):
         </div>
 
         <dl class="facts">
-          <div><dt>Brand</dt><dd>Hikvision</dd></div>
+          {f"<div><dt>Brand</dt><dd>{esc(brand_of(product))}</dd></div>" if brand_of(product) else ""}
           <div><dt>Model</dt><dd>{esc(product['model'])}</dd></div>
           <div><dt>Category</dt><dd>{esc(product['category'])}</dd></div>
-          <div><dt>Units per carton</dt><dd>{esc(product['pcsCtn'])}</dd></div>
+          {f"<div><dt>Units per carton</dt><dd>{esc(product['pcsCtn'])}</dd></div>" if str(product.get('pcsCtn', '')).strip() else ""}
         </dl>
       </div>
     </div>
@@ -651,58 +657,61 @@ def render_category(name, items, products):
 """
 
 
-# Ready-made kits for /quote. Prices are summed from the catalogue at build
-# time; the hard drive and installation are quoted after a site survey.
+# Ready-made bundles for the homepage and /quote. Prices are summed from the
+# catalogue at build time; installation is quoted after a site survey.
 PACKAGES = [
     # --- Turbo HD (analogue over coax) ---
     {
         "id": "hd-home", "group": "hd",
         "name": "HD home starter",
         "for": "Homes and small compounds",
-        "summary": "Four 1080p cameras with 20 m night vision, a 4-channel DVR, power and cabling.",
+        "summary": "Four 1080p cameras with 20 m night vision, a 4-channel DVR, 1 TB hard disk, power, cabling and connectors.",
         "items": [("DS-2CE16D0T-EXIPF(3.6mm)(O-STD)", 2), ("DS-2CE76D0T-EXIPF(2.8mm)(O-STD)", 2),
-                  ("DS-7104HGHI-M1(STD)(C)", 1), ("DS-2FA1225-C4(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 90m", 1)],
+                  ("DS-7104HGHI-M1(STD)(C)", 1), ("HDD-1TB", 1), ("DS-2FA1225-C4(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 90m", 1),
+                  ("CONN-SET", 4)],
     },
     {
         "id": "hd-colorvu", "group": "hd", "popular": True,
         "name": "HD ColorVu shop & office",
         "for": "Shops, offices and small businesses",
-        "summary": "Eight full-colour night vision cameras with audio, an 8-channel DVR, power and cabling.",
+        "summary": "Eight full-colour night vision cameras with audio, an 8-channel DVR, 2 TB hard disk, power, cabling and connectors.",
         "items": [("DS-2CE10DF0T-LPFS(3.6mm)(O-STD)", 4), ("DS-2CE70DF0T-LPFS(2.8mm)(O-STD)", 4),
-                  ("DS-7108HGHI-M1(STD)(C)", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1)],
+                  ("DS-7108HGHI-M1(STD)(C)", 1), ("HDD-2TB", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1),
+                  ("CONN-SET", 8)],
     },
     {
         "id": "hd-3k", "group": "hd",
         "name": "HD 3K ColorVu premium",
         "for": "Larger homes and businesses",
-        "summary": "Eight sharper 3K full-colour cameras with audio, a 3K-ready 8-channel DVR, power and cabling.",
+        "summary": "Eight sharper 3K full-colour cameras with audio, a 3K-ready 8-channel DVR, 4 TB hard disk, power, cabling and connectors.",
         "items": [("DS-2CE10KF0T-LPFS(3.6mm)(O-STD)", 4), ("DS-2CE70KF0T-LPFS(2.8mm)(O-STD)", 4),
-                  ("iDS-7108HQHI-M1/T(STD)", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1)],
+                  ("iDS-7108HQHI-M1/T(STD)", 1), ("HDD-4TB", 1), ("DS-2FA1205-C8(UK)(O-STD)", 1), ("DS-1LH1SCAM592C(O-STD) 180m", 1),
+                  ("CONN-SET", 8)],
     },
     # --- IP (network cameras over PoE) ---
     {
         "id": "ip-starter", "group": "ip",
         "name": "IP starter",
         "for": "Homes moving to IP",
-        "summary": "Four 2MP smart hybrid light IP cameras on a 4-port PoE NVR — one cable per camera, no separate power.",
+        "summary": "Four 2MP smart hybrid light IP cameras on a 4-port PoE NVR with 1 TB hard disk — one cable per camera, no separate power.",
         "items": [("DS-2CD1023G2-LIU(4mm)(O-STD)", 2), ("DS-2CD1123G2-LIU(2.8mm)(O-STD)", 2),
-                  ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1)],
+                  ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("HDD-1TB", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1), ("CONN-SET", 4)],
     },
     {
         "id": "ip-colorvu", "group": "ip", "popular": True,
         "name": "IP 4MP ColorVu",
         "for": "Premium homes and shops",
-        "summary": "Four 4MP ColorVu cameras with built-in mics on a 4-port PoE NVR, plus solid-copper CAT6.",
+        "summary": "Four 4MP ColorVu cameras with built-in mics on a 4-port PoE NVR with 2 TB hard disk, plus solid-copper CAT6 and connectors.",
         "items": [("DS-2CD1047G3-LIU(4mm)(O-STD)", 2), ("DS-2CD1147G3-LIU(2.8mm)(O-STD)", 2),
-                  ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1)],
+                  ("DS-7104NI-Q1/4P/M(STD)(D)", 1), ("HDD-2TB", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 1), ("CONN-SET", 4)],
     },
     {
         "id": "ip-business", "group": "ip",
         "name": "IP 4MP ColorVu business",
         "for": "Offices, warehouses and estates",
-        "summary": "Eight 4MP ColorVu cameras on an 8-port PoE NVR, with two boxes of CAT6 and connectors.",
+        "summary": "Eight 4MP ColorVu cameras on an 8-port PoE NVR with 4 TB hard disk, two boxes of CAT6 and connectors.",
         "items": [("DS-2CD1047G3-LIU(4mm)(O-STD)", 4), ("DS-2CD1147G3-LIU(2.8mm)(O-STD)", 4),
-                  ("DS-7108NI-Q1/8P/M(STD)(D)", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 2), ("DS-1M6UA-15U(O-STD)/100PCS", 1)],
+                  ("DS-7108NI-Q1/8P/M(STD)(D)", 1), ("HDD-4TB", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 2), ("CONN-SET", 8)],
     },
     # --- Access control, video intercom, networking ---
     {
@@ -746,7 +755,7 @@ def package_rows(kit, by_model):
 
 def kit_card_html(kit, by_model, compact=False):
     total = package_rows(kit, by_model)
-    ask = wa_link(f"Hi NE, I'm interested in the {kit['name']} bundle (equipment from KES {catalog.price_label(total)}). "
+    ask = wa_link(f"Hi NE, I'm interested in the {kit['name']} bundle (KES {catalog.price_label(total)}). "
                   "Please send me an all-in price with installation.")
     rows = "".join(
         f'<li><span>{qty} &times; <a href="{esc(by_model[model]["url"])}">{esc(by_model[model]["name"])}</a></span>'

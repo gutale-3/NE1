@@ -31,6 +31,7 @@ NAV = [
 CATEGORIES = {
     "CCTV-IP": ("ip-cameras-nvrs", "Hikvision IP Cameras & NVRs", "IP cameras & NVRs"),
     "CCTV-Turbo HD": ("turbo-hd-cameras-dvrs", "Hikvision Turbo HD Cameras & DVRs", "Turbo HD cameras & DVRs"),
+    "Storage": ("hard-disks", "CCTV Hard Disks", "Hard disks"),
     "Access Control": ("access-control", "Hikvision Access Control", "Access control"),
     "Video Intercom": ("video-intercom", "Hikvision Video Intercom", "Video intercom"),
     "Networking": ("networking", "Hikvision Networking & PoE Switches", "Networking & switches"),

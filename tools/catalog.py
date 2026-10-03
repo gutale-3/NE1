@@ -23,7 +23,8 @@ CATEGORY_BLURBS = {
     "Video Intercom": "Villa and apartment intercom kits, indoor stations and door stations.",
     "PA": "Public address amplifiers, speakers and audio controllers.",
     "Interactive Tablet": "Interactive flat panels for classrooms and meeting rooms.",
-    "Accessories": "Power supplies, brackets, cabling and UPS units.",
+    "Accessories": "Power supplies, brackets, cabling, connectors and UPS units.",
+    "Storage": "Surveillance hard disks for DVRs and NVRs, from 500 GB to 10 TB.",
     "Data Communication": "Access points, routers and wireless data links.",
     "Networking": "Switches, PoE injectors, bridges and structured cabling.",
 }
