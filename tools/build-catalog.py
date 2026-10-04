@@ -683,7 +683,7 @@ def render_category(name, items, products):
 PACKAGES = [
     # --- Turbo HD (analogue over coax) ---
     {
-        "id": "hd-home", "group": "hd",
+        "id": "hd-home", "group": "hd", "image": "images/kits/kit-hd-4cam.webp",
         "name": "HD home starter",
         "for": "Homes and small compounds",
         "summary": "Four 1080p cameras with 20 m night vision, a 4-channel eDVR with built-in 512 GB SSD, power, cabling, clips and connectors.",
@@ -692,7 +692,7 @@ PACKAGES = [
                   ("CONN-SET", 4), ("CLIPS-100", 1)],
     },
     {
-        "id": "hd-colorvu", "group": "hd", "popular": True,
+        "id": "hd-colorvu", "group": "hd", "popular": True, "image": "images/kits/kit-hd-8cam.webp",
         "name": "HD ColorVu shop & office",
         "for": "Shops, offices and small businesses",
         "summary": "Eight full-colour night vision cameras with audio, an 8-channel eDVR with built-in 1 TB SSD, power, cabling, clips and connectors.",
@@ -701,7 +701,7 @@ PACKAGES = [
                   ("CONN-SET", 8), ("CLIPS-100", 2)],
     },
     {
-        "id": "hd-3k", "group": "hd",
+        "id": "hd-3k", "group": "hd", "image": "images/kits/kit-hd-8cam.webp",
         "name": "HD 3K ColorVu premium",
         "for": "Larger homes and businesses",
         "summary": "Eight sharper 3K full-colour cameras with audio, a 3K-ready 8-channel DVR, 4 TB hard disk, power, cabling, clips and connectors.",
@@ -711,7 +711,7 @@ PACKAGES = [
     },
     # --- IP (network cameras over PoE) ---
     {
-        "id": "ip-starter", "group": "ip",
+        "id": "ip-starter", "group": "ip", "image": "images/kits/kit-ip.webp",
         "name": "IP starter",
         "for": "Homes moving to IP",
         "summary": "Four 2MP smart hybrid light IP cameras on a 4-port PoE NVR with 1 TB hard disk — one cable per camera, no separate power.",
@@ -720,7 +720,7 @@ PACKAGES = [
                   ("CLIPS-100", 1)],
     },
     {
-        "id": "ip-colorvu", "group": "ip", "popular": True,
+        "id": "ip-colorvu", "group": "ip", "popular": True, "image": "images/kits/kit-ip.webp",
         "name": "IP 4MP ColorVu",
         "for": "Premium homes and shops",
         "summary": "Four 4MP ColorVu cameras with built-in mics on a 4-port PoE NVR with 2 TB hard disk, plus solid-copper CAT6 and connectors.",
@@ -729,7 +729,7 @@ PACKAGES = [
                   ("CLIPS-100", 1)],
     },
     {
-        "id": "ip-business", "group": "ip",
+        "id": "ip-business", "group": "ip", "image": "images/kits/kit-ip.webp",
         "name": "IP 4MP ColorVu business",
         "for": "Offices, warehouses and estates",
         "summary": "Eight 4MP ColorVu cameras on an 8-port PoE NVR with 4 TB hard disk, two boxes of CAT6 and connectors.",
@@ -786,10 +786,17 @@ def kit_card_html(kit, by_model, compact=False):
         f'<span>KES {catalog.price_label(by_model[model]["price"] * qty)}</span></li>'
         for model, qty in kit["items"]
     )
-    first = by_model[kit["items"][0][0]]
     flag = '<span class="kit-flag">Most popular</span>' if kit.get("popular") else ""
-    image = (f'<div class="kit-shot"><img src="/{esc(first["image"])}" alt="{esc(kit["name"])}" loading="lazy" decoding="async" width="160" height="120"></div>'
-             if compact else "")
+    # A kit photo shows everything in the box; without one the homepage card
+    # falls back to the first item's product photo.
+    if kit.get("image"):
+        image = (f'<div class="kit-shot kit-photo"><img src="/{esc(kit["image"])}" alt="{esc(kit["name"])} bundle contents" '
+                 f'loading="lazy" decoding="async" width="320" height="240"></div>')
+    elif compact:
+        first = by_model[kit["items"][0][0]]
+        image = f'<div class="kit-shot"><img src="/{esc(first["image"])}" alt="{esc(kit["name"])}" loading="lazy" decoding="async" width="160" height="120"></div>'
+    else:
+        image = ""
     more = f'<a class="kit-more" href="/quote#{kit["id"]}">See what&rsquo;s included</a>' if compact else f'<ul>{rows}</ul>'
     return f"""<article class="kit{' kit-pop' if kit.get('popular') else ''}" id="{'home-' if compact else ''}{kit['id']}">
       {flag}{image}<div class="kit-for">{esc(kit['for'])}</div>
