@@ -116,7 +116,34 @@
     });
   }
 
+  // ---- Homepage "Recommended for you": a fresh draw on every visit -------
+  // Slots: Turbo HD camera, IP camera, any camera, access control/intercom.
+  function initPicks() {
+    var data = document.getElementById('picks-data');
+    var cards = document.querySelectorAll('.pick[data-slot]');
+    if (!data || cards.length !== 4) return;
+    var pools;
+    try { pools = JSON.parse(data.textContent); } catch (e) { return; }
+    var slots = [pools[0], pools[1], pools[0].concat(pools[1]), pools[2]];
+    var used = {};
+    Array.prototype.forEach.call(cards, function (card, i) {
+      // Skip models and photos already shown so the four cards look different.
+      var options = slots[i].filter(function (p) { return !used[p.m] && !used[p.i]; });
+      if (!options.length) return;
+      var p = options[Math.floor(Math.random() * options.length)];
+      used[p.m] = used[p.i] = true;
+      card.href = p.u;
+      var img = card.querySelector('img');
+      img.src = p.i;
+      img.alt = p.n;
+      card.querySelector('.pick-cat').textContent = p.c;
+      card.querySelector('.pick-name').textContent = p.n;
+      card.querySelector('.pick-foot span').textContent = 'KES ' + p.p;
+    });
+  }
+
   function init() {
+    initPicks();
     initCatalog();
     initWhatsAppForms();
   }

@@ -42,6 +42,10 @@ footer and their CSS are shared and live in `tools/site_layout.py`.
 - **Products, prices, kits:** edit `data/products.json` (or `PACKAGES` in
   `tools/build-catalog.py` for the bundles shown on the homepage and `/quote`) and run
   `python3 tools/build-catalog.py`.
+- **"Recommended for you" on the homepage:** four slots (Turbo HD camera, IP
+  camera, any camera, access control/intercom). `PICK_SLOTS` and `PICK_DEFAULTS`
+  in `tools/build-catalog.py` set the pools and the no-JavaScript fallback;
+  `js/site.js` draws a new set on every visit.
 
 ## Product pages
 
