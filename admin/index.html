@@ -57,7 +57,7 @@
       <input id="cust-search" type="search" placeholder="Search name, phone or email" autocomplete="off">
       <select id="cust-filter">
         <option value="">Everyone</option>
-        <option value="credit">Has reward credit</option>
+        <option value="credit">Has rebate owed</option>
         <option value="customer">Customers (signed in)</option>
         <option value="technician">Technicians</option>
         <option value="guest">Guests (ordered without signing in)</option>
@@ -69,7 +69,7 @@
       <button type="button" class="chip" id="cust-range-clear">All time</button>
     </div>
     <div class="reports">
-      <a class="primary" id="pdf-credit" href="/admin/report/?type=credit" target="_blank" rel="noopener">PDF: credit we owe</a>
+      <a class="primary" id="pdf-credit" href="/admin/report/?type=credit" target="_blank" rel="noopener">PDF: rebate we owe</a>
       <a class="primary alt" id="pdf-sales" href="/admin/report/?type=sales" target="_blank" rel="noopener">PDF: how much they bought</a>
     </div>
     <p class="count" id="cust-count">Loading&hellip;</p>

@@ -94,193 +94,7 @@
     $('tech-view').hidden = view !== 'tech';
     $('orders-view').hidden = view !== 'orders';
     $('customers-view').hidden = view !== 'customers';
-    // ---- orders --------------------------------------------------------------
-  var orderFilter = '';
-  var ORDER_NEXT = {
-    new: [['confirmed', 'Confirm', 'primary'], ['paid', 'Mark paid', 'ok'], ['cancelled', 'Cancel', 'danger']],
-    confirmed: [['paid', 'Mark paid', 'ok'], ['cancelled', 'Cancel', 'danger']],
-    paid: [['delivered', 'Mark delivered', 'ok']],
-    delivered: [],
-    cancelled: [],
-  };
-
-  function loadOrders() {
-    return api('/api/admin/orders' + (orderFilter ? '?status=' + orderFilter : '')).then(function (data) {
-      var waiting = data.counts.new || 0;
-      $('orders-badge').textContent = waiting;
-      $('orders-badge').hidden = !waiting;
-      var total = Object.keys(data.counts).reduce(function (n, k) { return n + data.counts[k]; }, 0);
-      $('orders-count').textContent = total ? data.orders.length + ' shown · ' + waiting + ' new · ' + total + ' total' : 'No orders yet. They appear here when customers check out from the cart.';
-      var list = $('orders-list');
-      list.textContent = '';
-      data.orders.forEach(function (o) { list.appendChild(orderCard(o)); });
-    });
-  }
-
-  function orderCard(o) {
-    var el = document.createElement('article');
-    el.className = 'tech ord ' + o.status;
-    el.innerHTML = '<div class="head"><div><div class="st"></div><h3></h3></div><div class="tot"></div></div><dl></dl><ul></ul><div class="row-actions"></div>';
-    el.querySelector('.st').className = 'st ' + o.status;
-    el.querySelector('.st').textContent = o.status + ' · ' + (o.channel === 'whatsapp' ? 'sent via WhatsApp' : 'sent on website');
-    el.querySelector('h3').textContent = o.number + ' — ' + o.name;
-    el.querySelector('.tot').textContent = money(o.total);
-    var delivery = o.delivery === 'outside' ? 'Outside Nairobi: ' + o.town + ' (' + o.transport + ', customer pays)' : o.deliveryLabel;
-    var facts = [['Phone', o.phone], ['Email', o.email], ['Delivery', delivery], ['Account', o.account_email ? o.account_email + ' (earns ' + o.earn_rate + '%)' : 'Guest – no rewards'],
-      ['Discounts', [o.tech_discount ? 'technician −' + money(o.tech_discount) : '', o.reward_used ? 'reward −' + money(o.reward_used) : ''].filter(Boolean).join(', ')],
-      ['Reward earned', o.reward_earned ? money(o.reward_earned) : ''], ['Notes', o.notes], ['Placed', o.created_at + ' UTC']];
-    var dl = el.querySelector('dl');
-    facts.forEach(function (f) {
-      if (!f[1]) return;
-      var dt = document.createElement('dt'); dt.textContent = f[0];
-      var dd = document.createElement('dd'); dd.textContent = f[1];
-      dl.appendChild(dt); dl.appendChild(dd);
-    });
-    var ul = el.querySelector('ul');
-    o.items.forEach(function (i) {
-      var li = document.createElement('li');
-      li.textContent = i.qty + ' × ' + i.name + ' (' + i.model + ') — ' + money(i.qty * i.price);
-      ul.appendChild(li);
-    });
-    var actions = el.querySelector('.row-actions');
-    var digits = String(o.phone).replace(/[^0-9]/g, '').replace(/^0/, '254');
-    var wa = document.createElement('a');
-    wa.className = 'wa'; wa.target = '_blank'; wa.rel = 'noopener';
-    wa.href = 'https://wa.me/' + digits + '?text=' + encodeURIComponent('Hi ' + o.name.split(' ')[0] + ', this is NE (Nashnaal Electronics) about your order ' + o.number + ' (' + money(o.total) + ').');
-    wa.textContent = 'WhatsApp';
-    actions.appendChild(wa);
-    var view = document.createElement('a');
-    view.className = 'chip'; view.target = '_blank'; view.rel = 'noopener';
-    view.href = '/order/?n=' + encodeURIComponent(o.number) + '&k=' + encodeURIComponent(o.token);
-    view.textContent = 'Open / PDF';
-    actions.appendChild(view);
-    (ORDER_NEXT[o.status] || []).forEach(function (step) {
-      var b = document.createElement('button');
-      b.type = 'button'; b.className = step[2]; b.textContent = step[1];
-      b.addEventListener('click', function () {
-        if (step[0] === 'cancelled' && !window.confirm('Cancel order ' + o.number + '? Any reward credit used on it goes back to the customer.')) return;
-        b.disabled = true;
-        api('/api/admin/orders', { id: o.id, status: step[0] }).then(function (res) {
-          notice(res.message);
-          loadOrders(); loadLog();
-        }).catch(function (err) { b.disabled = false; notice(err.message, true); });
-      });
-      actions.appendChild(b);
-    });
-    return el;
-  }
-
-  Array.prototype.forEach.call(document.querySelectorAll('#order-filter .chip'), function (chip) {
-    chip.addEventListener('click', function () {
-      orderFilter = chip.getAttribute('data-status');
-      Array.prototype.forEach.call(document.querySelectorAll('#order-filter .chip'), function (c) { c.classList.toggle('on', c === chip); });
-      loadOrders().catch(function (err) { notice(err.message, true); });
-    });
-  });
-
-  // ---- customers ------------------------------------------------------------
-  var customers = [];
-
-  function day(sql) { return sql ? new Date(sql.replace(' ', 'T') + 'Z').toLocaleDateString('en-KE', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'; }
-
-  function rangeQuery() {
-    var q = [];
-    if ($('cust-from').value) q.push('from=' + $('cust-from').value);
-    if ($('cust-to').value) q.push('to=' + $('cust-to').value);
-    return q.join('&');
-  }
-
-  function loadCustomers() {
-    var q = rangeQuery();
-    $('pdf-sales').href = '/admin/report/?type=sales' + (q ? '&' + q : '');
-    return api('/api/admin/customers' + (q ? '?' + q : '')).then(function (data) {
-      customers = data.customers;
-      var t = data.totals;
-      var label = data.from || data.to ? 'Bought ' + (data.from ? 'from ' + day(data.from + ' 00:00:00') : '') + (data.to ? ' to ' + day(data.to + ' 00:00:00') : '') : 'Bought (paid orders)';
-      $('cust-tiles').innerHTML = '';
-      [[money(t.credit), 'Credit we owe · ' + t.with_credit + ' people', 'owe'], [money(t.bought), label, ''],
-       [money(t.pending), 'Waiting for payment', ''], [String(t.customers), 'Customers', '']].forEach(function (x) {
-        var d = document.createElement('div');
-        d.className = 'tile ' + x[2];
-        d.innerHTML = '<b></b><span></span>';
-        d.querySelector('b').textContent = x[0];
-        d.querySelector('span').textContent = x[1];
-        $('cust-tiles').appendChild(d);
-      });
-      renderCustomers();
-    });
-  }
-
-  function renderCustomers() {
-    var q = $('cust-search').value.trim().toLowerCase();
-    var f = $('cust-filter').value;
-    var shown = customers.filter(function (c) {
-      if (f === 'credit' && !(c.credit > 0)) return false;
-      if (f && f !== 'credit' && c.type !== f) return false;
-      return !q || (c.name + ' ' + c.phone + ' ' + c.email).toLowerCase().indexOf(q) !== -1;
-    });
-    $('cust-count').textContent = shown.length + ' of ' + customers.length + ' customers · sorted by most bought';
-    var list = $('cust-list');
-    list.textContent = '';
-    shown.forEach(function (c) { list.appendChild(customerCard(c)); });
-    if (!customers.length) $('cust-count').textContent = 'No customers yet. People appear here when they sign in or place an order.';
-  }
-
-  function customerCard(c) {
-    var el = document.createElement('article');
-    el.className = 'tech cust';
-    el.innerHTML = '<h3></h3><div class="meta"></div><div class="nums"></div><div class="meta extra"></div><div class="row-actions"></div>';
-    var h3 = el.querySelector('h3');
-    h3.textContent = c.name;
-    var tag = document.createElement('span');
-    tag.className = 'tag ' + c.type;
-    tag.textContent = c.type;
-    h3.appendChild(tag);
-    el.querySelector('.meta').textContent = [c.phone, c.email].filter(Boolean).join(' · ') || 'No contact details yet';
-    var nums = el.querySelector('.nums');
-    [[money(c.bought), 'Bought (' + c.paid_orders + ' paid)', ''], [money(c.pending), 'Not paid yet', ''],
-     [c.type === 'guest' ? '—' : money(c.credit), 'Credit we owe', c.credit > 0 ? 'owe' : '']].forEach(function (n) {
-      var d = document.createElement('div');
-      d.className = n[2];
-      d.innerHTML = '<b></b><span></span>';
-      d.querySelector('b').textContent = n[0];
-      d.querySelector('span').textContent = n[1];
-      nums.appendChild(d);
-    });
-    var extra = [];
-    if (c.credit_next) extra.push(money(c.credit_next.amount) + ' expires ' + day(c.credit_next.expires));
-    if (c.credit_expired) extra.push(money(c.credit_expired) + ' expired unused');
-    extra.push(c.orders + ' order' + (c.orders === 1 ? '' : 's') + ' · last ' + day(c.last_order));
-    el.querySelector('.extra').textContent = extra.join(' · ');
-    var actions = el.querySelector('.row-actions');
-    if (c.phone) {
-      var digits = String(c.phone).replace(/[^0-9]/g, '').replace(/^0/, '254');
-      var msg = 'Hi ' + c.name.split(' ')[0] + ', this is NE (Nashnaal Electronics).' + (c.credit > 0 ? ' You have ' + money(c.credit) + ' reward credit to use on your next order at nashnaal.com.' : '');
-      var wa = document.createElement('a');
-      wa.className = 'wa'; wa.target = '_blank'; wa.rel = 'noopener';
-      wa.href = 'https://wa.me/' + digits + '?text=' + encodeURIComponent(msg);
-      wa.textContent = 'WhatsApp';
-      actions.appendChild(wa);
-    }
-    var pdf = document.createElement('a');
-    pdf.className = 'chip'; pdf.target = '_blank'; pdf.rel = 'noopener';
-    pdf.href = '/admin/report/?type=statement&' + (c.user_id ? 'user=' + c.user_id : 'phone=' + encodeURIComponent(c.phone));
-    pdf.textContent = 'Statement PDF';
-    actions.appendChild(pdf);
-    return el;
-  }
-
-  $('cust-search').addEventListener('input', renderCustomers);
-  $('cust-filter').addEventListener('change', renderCustomers);
-  ['cust-from', 'cust-to'].forEach(function (id) {
-    $(id).addEventListener('change', function () { loadCustomers().catch(function (err) { notice(err.message, true); }); });
-  });
-  $('cust-range-clear').addEventListener('click', function () {
-    $('cust-from').value = ''; $('cust-to').value = '';
-    loadCustomers().catch(function (err) { notice(err.message, true); });
-  });
-
-  Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
+    Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
       tab.classList.toggle('on', tab.getAttribute('data-tab') === (view === 'edit' ? 'list' : view));
     });
     window.scrollTo(0, 0);
@@ -454,7 +268,7 @@
       var t = data.totals;
       var label = data.from || data.to ? 'Bought ' + (data.from ? 'from ' + day(data.from + ' 00:00:00') : '') + (data.to ? ' to ' + day(data.to + ' 00:00:00') : '') : 'Bought (paid orders)';
       $('cust-tiles').innerHTML = '';
-      [[money(t.credit), 'Credit we owe · ' + t.with_credit + ' people', 'owe'], [money(t.bought), label, ''],
+      [[money(t.credit), 'Rebate we owe (2% / 1%) · ' + t.with_credit + ' people', 'owe'], [money(t.bought), label, ''],
        [money(t.pending), 'Waiting for payment', ''], [String(t.customers), 'Customers', '']].forEach(function (x) {
         var d = document.createElement('div');
         d.className = 'tile ' + x[2];
@@ -495,7 +309,7 @@
     el.querySelector('.meta').textContent = [c.phone, c.email].filter(Boolean).join(' · ') || 'No contact details yet';
     var nums = el.querySelector('.nums');
     [[money(c.bought), 'Bought (' + c.paid_orders + ' paid)', ''], [money(c.pending), 'Not paid yet', ''],
-     [c.type === 'guest' ? '—' : money(c.credit), 'Credit we owe', c.credit > 0 ? 'owe' : '']].forEach(function (n) {
+     [c.type === 'guest' ? '—' : money(c.credit), 'Rebate owed', c.credit > 0 ? 'owe' : '']].forEach(function (n) {
       var d = document.createElement('div');
       d.className = n[2];
       d.innerHTML = '<b></b><span></span>';
@@ -505,13 +319,13 @@
     });
     var extra = [];
     if (c.credit_next) extra.push(money(c.credit_next.amount) + ' expires ' + day(c.credit_next.expires));
-    if (c.credit_expired) extra.push(money(c.credit_expired) + ' expired unused');
+    if (c.credit_expired) extra.push(money(c.credit_expired) + ' rebate expired unused');
     extra.push(c.orders + ' order' + (c.orders === 1 ? '' : 's') + ' · last ' + day(c.last_order));
     el.querySelector('.extra').textContent = extra.join(' · ');
     var actions = el.querySelector('.row-actions');
     if (c.phone) {
       var digits = String(c.phone).replace(/[^0-9]/g, '').replace(/^0/, '254');
-      var msg = 'Hi ' + c.name.split(' ')[0] + ', this is NE (Nashnaal Electronics).' + (c.credit > 0 ? ' You have ' + money(c.credit) + ' reward credit to use on your next order at nashnaal.com.' : '');
+      var msg = 'Hi ' + c.name.split(' ')[0] + ', this is NE (Nashnaal Electronics).' + (c.credit > 0 ? ' You have ' + money(c.credit) + ' rebate (your NE reward) to use on your next order at nashnaal.com.' : '');
       var wa = document.createElement('a');
       wa.className = 'wa'; wa.target = '_blank'; wa.rel = 'noopener';
       wa.href = 'https://wa.me/' + digits + '?text=' + encodeURIComponent(msg);
