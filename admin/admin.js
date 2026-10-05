@@ -93,6 +93,7 @@
     $('edit-view').hidden = view !== 'edit';
     $('tech-view').hidden = view !== 'tech';
     $('orders-view').hidden = view !== 'orders';
+    $('customers-view').hidden = view !== 'customers';
     // ---- orders --------------------------------------------------------------
   var orderFilter = '';
   var ORDER_NEXT = {
@@ -175,6 +176,108 @@
       Array.prototype.forEach.call(document.querySelectorAll('#order-filter .chip'), function (c) { c.classList.toggle('on', c === chip); });
       loadOrders().catch(function (err) { notice(err.message, true); });
     });
+  });
+
+  // ---- customers ------------------------------------------------------------
+  var customers = [];
+
+  function day(sql) { return sql ? new Date(sql.replace(' ', 'T') + 'Z').toLocaleDateString('en-KE', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'; }
+
+  function rangeQuery() {
+    var q = [];
+    if ($('cust-from').value) q.push('from=' + $('cust-from').value);
+    if ($('cust-to').value) q.push('to=' + $('cust-to').value);
+    return q.join('&');
+  }
+
+  function loadCustomers() {
+    var q = rangeQuery();
+    $('pdf-sales').href = '/admin/report/?type=sales' + (q ? '&' + q : '');
+    return api('/api/admin/customers' + (q ? '?' + q : '')).then(function (data) {
+      customers = data.customers;
+      var t = data.totals;
+      var label = data.from || data.to ? 'Bought ' + (data.from ? 'from ' + day(data.from + ' 00:00:00') : '') + (data.to ? ' to ' + day(data.to + ' 00:00:00') : '') : 'Bought (paid orders)';
+      $('cust-tiles').innerHTML = '';
+      [[money(t.credit), 'Credit we owe · ' + t.with_credit + ' people', 'owe'], [money(t.bought), label, ''],
+       [money(t.pending), 'Waiting for payment', ''], [String(t.customers), 'Customers', '']].forEach(function (x) {
+        var d = document.createElement('div');
+        d.className = 'tile ' + x[2];
+        d.innerHTML = '<b></b><span></span>';
+        d.querySelector('b').textContent = x[0];
+        d.querySelector('span').textContent = x[1];
+        $('cust-tiles').appendChild(d);
+      });
+      renderCustomers();
+    });
+  }
+
+  function renderCustomers() {
+    var q = $('cust-search').value.trim().toLowerCase();
+    var f = $('cust-filter').value;
+    var shown = customers.filter(function (c) {
+      if (f === 'credit' && !(c.credit > 0)) return false;
+      if (f && f !== 'credit' && c.type !== f) return false;
+      return !q || (c.name + ' ' + c.phone + ' ' + c.email).toLowerCase().indexOf(q) !== -1;
+    });
+    $('cust-count').textContent = shown.length + ' of ' + customers.length + ' customers · sorted by most bought';
+    var list = $('cust-list');
+    list.textContent = '';
+    shown.forEach(function (c) { list.appendChild(customerCard(c)); });
+    if (!customers.length) $('cust-count').textContent = 'No customers yet. People appear here when they sign in or place an order.';
+  }
+
+  function customerCard(c) {
+    var el = document.createElement('article');
+    el.className = 'tech cust';
+    el.innerHTML = '<h3></h3><div class="meta"></div><div class="nums"></div><div class="meta extra"></div><div class="row-actions"></div>';
+    var h3 = el.querySelector('h3');
+    h3.textContent = c.name;
+    var tag = document.createElement('span');
+    tag.className = 'tag ' + c.type;
+    tag.textContent = c.type;
+    h3.appendChild(tag);
+    el.querySelector('.meta').textContent = [c.phone, c.email].filter(Boolean).join(' · ') || 'No contact details yet';
+    var nums = el.querySelector('.nums');
+    [[money(c.bought), 'Bought (' + c.paid_orders + ' paid)', ''], [money(c.pending), 'Not paid yet', ''],
+     [c.type === 'guest' ? '—' : money(c.credit), 'Credit we owe', c.credit > 0 ? 'owe' : '']].forEach(function (n) {
+      var d = document.createElement('div');
+      d.className = n[2];
+      d.innerHTML = '<b></b><span></span>';
+      d.querySelector('b').textContent = n[0];
+      d.querySelector('span').textContent = n[1];
+      nums.appendChild(d);
+    });
+    var extra = [];
+    if (c.credit_next) extra.push(money(c.credit_next.amount) + ' expires ' + day(c.credit_next.expires));
+    if (c.credit_expired) extra.push(money(c.credit_expired) + ' expired unused');
+    extra.push(c.orders + ' order' + (c.orders === 1 ? '' : 's') + ' · last ' + day(c.last_order));
+    el.querySelector('.extra').textContent = extra.join(' · ');
+    var actions = el.querySelector('.row-actions');
+    if (c.phone) {
+      var digits = String(c.phone).replace(/[^0-9]/g, '').replace(/^0/, '254');
+      var msg = 'Hi ' + c.name.split(' ')[0] + ', this is NE (Nashnaal Electronics).' + (c.credit > 0 ? ' You have ' + money(c.credit) + ' reward credit to use on your next order at nashnaal.com.' : '');
+      var wa = document.createElement('a');
+      wa.className = 'wa'; wa.target = '_blank'; wa.rel = 'noopener';
+      wa.href = 'https://wa.me/' + digits + '?text=' + encodeURIComponent(msg);
+      wa.textContent = 'WhatsApp';
+      actions.appendChild(wa);
+    }
+    var pdf = document.createElement('a');
+    pdf.className = 'chip'; pdf.target = '_blank'; pdf.rel = 'noopener';
+    pdf.href = '/admin/report/?type=statement&' + (c.user_id ? 'user=' + c.user_id : 'phone=' + encodeURIComponent(c.phone));
+    pdf.textContent = 'Statement PDF';
+    actions.appendChild(pdf);
+    return el;
+  }
+
+  $('cust-search').addEventListener('input', renderCustomers);
+  $('cust-filter').addEventListener('change', renderCustomers);
+  ['cust-from', 'cust-to'].forEach(function (id) {
+    $(id).addEventListener('change', function () { loadCustomers().catch(function (err) { notice(err.message, true); }); });
+  });
+  $('cust-range-clear').addEventListener('click', function () {
+    $('cust-from').value = ''; $('cust-to').value = '';
+    loadCustomers().catch(function (err) { notice(err.message, true); });
   });
 
   Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
@@ -331,6 +434,108 @@
     });
   });
 
+  // ---- customers ------------------------------------------------------------
+  var customers = [];
+
+  function day(sql) { return sql ? new Date(sql.replace(' ', 'T') + 'Z').toLocaleDateString('en-KE', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'; }
+
+  function rangeQuery() {
+    var q = [];
+    if ($('cust-from').value) q.push('from=' + $('cust-from').value);
+    if ($('cust-to').value) q.push('to=' + $('cust-to').value);
+    return q.join('&');
+  }
+
+  function loadCustomers() {
+    var q = rangeQuery();
+    $('pdf-sales').href = '/admin/report/?type=sales' + (q ? '&' + q : '');
+    return api('/api/admin/customers' + (q ? '?' + q : '')).then(function (data) {
+      customers = data.customers;
+      var t = data.totals;
+      var label = data.from || data.to ? 'Bought ' + (data.from ? 'from ' + day(data.from + ' 00:00:00') : '') + (data.to ? ' to ' + day(data.to + ' 00:00:00') : '') : 'Bought (paid orders)';
+      $('cust-tiles').innerHTML = '';
+      [[money(t.credit), 'Credit we owe · ' + t.with_credit + ' people', 'owe'], [money(t.bought), label, ''],
+       [money(t.pending), 'Waiting for payment', ''], [String(t.customers), 'Customers', '']].forEach(function (x) {
+        var d = document.createElement('div');
+        d.className = 'tile ' + x[2];
+        d.innerHTML = '<b></b><span></span>';
+        d.querySelector('b').textContent = x[0];
+        d.querySelector('span').textContent = x[1];
+        $('cust-tiles').appendChild(d);
+      });
+      renderCustomers();
+    });
+  }
+
+  function renderCustomers() {
+    var q = $('cust-search').value.trim().toLowerCase();
+    var f = $('cust-filter').value;
+    var shown = customers.filter(function (c) {
+      if (f === 'credit' && !(c.credit > 0)) return false;
+      if (f && f !== 'credit' && c.type !== f) return false;
+      return !q || (c.name + ' ' + c.phone + ' ' + c.email).toLowerCase().indexOf(q) !== -1;
+    });
+    $('cust-count').textContent = shown.length + ' of ' + customers.length + ' customers · sorted by most bought';
+    var list = $('cust-list');
+    list.textContent = '';
+    shown.forEach(function (c) { list.appendChild(customerCard(c)); });
+    if (!customers.length) $('cust-count').textContent = 'No customers yet. People appear here when they sign in or place an order.';
+  }
+
+  function customerCard(c) {
+    var el = document.createElement('article');
+    el.className = 'tech cust';
+    el.innerHTML = '<h3></h3><div class="meta"></div><div class="nums"></div><div class="meta extra"></div><div class="row-actions"></div>';
+    var h3 = el.querySelector('h3');
+    h3.textContent = c.name;
+    var tag = document.createElement('span');
+    tag.className = 'tag ' + c.type;
+    tag.textContent = c.type;
+    h3.appendChild(tag);
+    el.querySelector('.meta').textContent = [c.phone, c.email].filter(Boolean).join(' · ') || 'No contact details yet';
+    var nums = el.querySelector('.nums');
+    [[money(c.bought), 'Bought (' + c.paid_orders + ' paid)', ''], [money(c.pending), 'Not paid yet', ''],
+     [c.type === 'guest' ? '—' : money(c.credit), 'Credit we owe', c.credit > 0 ? 'owe' : '']].forEach(function (n) {
+      var d = document.createElement('div');
+      d.className = n[2];
+      d.innerHTML = '<b></b><span></span>';
+      d.querySelector('b').textContent = n[0];
+      d.querySelector('span').textContent = n[1];
+      nums.appendChild(d);
+    });
+    var extra = [];
+    if (c.credit_next) extra.push(money(c.credit_next.amount) + ' expires ' + day(c.credit_next.expires));
+    if (c.credit_expired) extra.push(money(c.credit_expired) + ' expired unused');
+    extra.push(c.orders + ' order' + (c.orders === 1 ? '' : 's') + ' · last ' + day(c.last_order));
+    el.querySelector('.extra').textContent = extra.join(' · ');
+    var actions = el.querySelector('.row-actions');
+    if (c.phone) {
+      var digits = String(c.phone).replace(/[^0-9]/g, '').replace(/^0/, '254');
+      var msg = 'Hi ' + c.name.split(' ')[0] + ', this is NE (Nashnaal Electronics).' + (c.credit > 0 ? ' You have ' + money(c.credit) + ' reward credit to use on your next order at nashnaal.com.' : '');
+      var wa = document.createElement('a');
+      wa.className = 'wa'; wa.target = '_blank'; wa.rel = 'noopener';
+      wa.href = 'https://wa.me/' + digits + '?text=' + encodeURIComponent(msg);
+      wa.textContent = 'WhatsApp';
+      actions.appendChild(wa);
+    }
+    var pdf = document.createElement('a');
+    pdf.className = 'chip'; pdf.target = '_blank'; pdf.rel = 'noopener';
+    pdf.href = '/admin/report/?type=statement&' + (c.user_id ? 'user=' + c.user_id : 'phone=' + encodeURIComponent(c.phone));
+    pdf.textContent = 'Statement PDF';
+    actions.appendChild(pdf);
+    return el;
+  }
+
+  $('cust-search').addEventListener('input', renderCustomers);
+  $('cust-filter').addEventListener('change', renderCustomers);
+  ['cust-from', 'cust-to'].forEach(function (id) {
+    $(id).addEventListener('change', function () { loadCustomers().catch(function (err) { notice(err.message, true); }); });
+  });
+  $('cust-range-clear').addEventListener('click', function () {
+    $('cust-from').value = ''; $('cust-to').value = '';
+    loadCustomers().catch(function (err) { notice(err.message, true); });
+  });
+
   Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
     tab.addEventListener('click', function () {
       notice('');
@@ -338,6 +543,7 @@
       show(view);
       if (view === 'tech') loadTechs().catch(function (err) { notice(err.message, true); });
       if (view === 'orders') loadOrders().catch(function (err) { notice(err.message, true); });
+      if (view === 'customers') loadCustomers().catch(function (err) { notice(err.message, true); });
     });
   });
 

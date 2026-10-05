@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Report | NE admin</title>
+<link rel="icon" type="image/png" href="/assets/nashnaal-favicon.png">
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #F6F8FA; color: #10202E; }
+a { color: #086E9E; }
+.bar { max-width: 900px; margin: 0 auto; padding: 16px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.btn { border: 0; border-radius: 10px; padding: 12px 18px; font: inherit; font-weight: 800; font-size: 14.5px; cursor: pointer; background: #086E9E; color: #fff; }
+.doc { max-width: 900px; margin: 0 auto 48px; background: #fff; border: 1px solid #E7ECF1; border-radius: 14px; padding: 32px 36px; }
+.head { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; border-bottom: 3px solid #086E9E; padding-bottom: 16px; }
+.co { display: flex; gap: 12px; align-items: flex-start; }
+.co img { width: 56px; height: 56px; }
+.co h1 { font-size: 18px; margin: 0 0 3px; }
+.co p { margin: 0; font-size: 12px; line-height: 1.55; color: #4A5B68; }
+.meta { text-align: right; }
+.meta h2 { margin: 0 0 4px; font-size: 19px; color: #086E9E; }
+.meta p { margin: 0; font-size: 12.5px; line-height: 1.6; color: #4A5B68; }
+.who { margin: 18px 0; font-size: 13.5px; line-height: 1.6; }
+.who h3, h4 { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em; color: #4A5B68; margin: 0 0 4px; }
+h4 { margin-top: 22px; }
+.sum { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+.sum div { border: 1px solid #E7ECF1; border-radius: 10px; padding: 10px 12px; }
+.sum b { display: block; font-size: 17px; } .sum span { font-size: 12px; color: #4A5B68; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+th { text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: #4A5B68; border-bottom: 1.5px solid #10202E; padding: 7px 5px; }
+td { border-bottom: 1px solid #E7ECF1; padding: 7px 5px; vertical-align: top; }
+td.n, th.n { text-align: right; white-space: nowrap; }
+td small { color: #4A5B68; }
+tfoot td { font-weight: 800; border-top: 1.5px solid #10202E; border-bottom: 0; }
+.empty { color: #4A5B68; font-size: 13.5px; padding: 12px 0; }
+.foot { margin-top: 24px; padding-top: 12px; border-top: 1px solid #E7ECF1; font-size: 11.5px; color: #4A5B68; line-height: 1.6; }
+.err { max-width: 900px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 14px; text-align: center; }
+@media (max-width: 640px) { .doc { padding: 20px 12px; border-radius: 0; } .head { flex-direction: column; } .meta { text-align: left; } .sum { grid-template-columns: 1fr; } table { font-size: 11.5px; } }
+@media print { body { background: #fff; } .bar { display: none; } .doc { border: 0; padding: 0; margin: 0; max-width: none; } @page { margin: 14mm; } tr { break-inside: avoid; } }
+</style>
+<script src="/admin/report/report.js" defer></script>
+</head>
+<body>
+<div class="bar"><a href="/admin/">&larr; Back to admin</a><button class="btn" type="button" id="pdf-btn">Download PDF</button></div>
+<p class="err" id="error" hidden></p>
+<article class="doc" id="doc" hidden>
+  <div class="head">
+    <div class="co">
+      <img src="/assets/nashnaal-logo-header.webp" alt="NE" width="56" height="56">
+      <div>
+        <h1>Nashnaal Electronics (NE)</h1>
+        <p>Hikvision Authorized National Distributor<br>Business Bay Square (BBS Mall), Shop GFE 61<br>General Waruingi Road, Eastleigh, Nairobi, Kenya<br>Tel / WhatsApp: +254 737 454 891 &middot; nashnaal.com</p>
+      </div>
+    </div>
+    <div class="meta"><h2 id="r-title"></h2><p id="r-sub"></p></div>
+  </div>
+  <div id="r-body"></div>
+  <div class="foot" id="r-foot"></div>
+</article>
+</body>
+</html>

@@ -164,6 +164,15 @@ Cart, orders and rewards:
   (`reward_ledger`). Cancelling reverses credit earned or spent on that order.
 - `/account` shows the reward balance, what expires next, and order history.
 
+Customers and reports (admin):
+
+- **Customers** tab: everyone who signed in or ordered (guests grouped by phone),
+  with how much they bought (paid/delivered orders), what is not paid yet, and
+  reward credit owed, plus search, filters and a date range for sales.
+- PDF reports at `/admin/report/` (print to PDF): `?type=credit` (credit owed),
+  `?type=sales&from=&to=` (sales by customer) and `?type=statement&user=ID` or
+  `&phone=` (one customer's orders and credit history).
+
 Settings: plain values are in `wrangler.jsonc` `vars`. Secrets are set in the
 Cloudflare dashboard (**ne1 &rarr; Settings &rarr; Variables and Secrets**), never in git:
 

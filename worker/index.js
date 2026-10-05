@@ -351,6 +351,8 @@ async function adminApi(request, env, url) {
     return decideTechnician(request, env, user);
   }
   if (url.pathname === "/api/admin/orders") return adminOrders(request, env, url, user);
+  if (url.pathname === "/api/admin/customers" && request.method === "GET") return adminCustomers(env, url);
+  if (url.pathname === "/api/admin/statement" && request.method === "GET") return adminStatement(env, url);
   if (url.pathname === "/api/admin/products" && !env.GITHUB_TOKEN) {
     return json({ error: "GITHUB_TOKEN is not set in Cloudflare." }, 503);
   }
@@ -609,8 +611,17 @@ async function rewardBalance(env, userId) {
   const { results } = await env.DB.prepare(
     "SELECT kind, amount, expires_at, created_at FROM reward_ledger WHERE user_id = ?1 ORDER BY created_at, id"
   ).bind(userId).all();
+  return replayLedger(results);
+}
+
+// rows: one user's ledger, oldest first. Returns what is still spendable, the
+// next credit to expire, and the totals earned, spent and lost to expiry.
+function replayLedger(rows) {
   const buckets = [];
-  for (const row of results) {
+  let earned = 0;
+  let spent = 0;
+  for (const row of rows) {
+    if (row.kind === "earn") earned += row.amount; else spent += row.amount;
     if (row.kind === "earn") {
       buckets.push({ left: row.amount, expires: row.expires_at });
       buckets.sort((a, b) => (a.expires < b.expires ? -1 : 1));
@@ -628,8 +639,9 @@ async function rewardBalance(env, userId) {
   const now = sqlNow();
   const live = buckets.filter((b) => b.left > 0 && b.expires > now);
   const balance = live.reduce((sum, b) => sum + b.left, 0);
+  const expired = buckets.filter((b) => b.left > 0 && b.expires <= now).reduce((sum, b) => sum + b.left, 0);
   const next = live[0] ? { amount: live[0].left, expires: live[0].expires } : null;
-  return { balance, next };
+  return { balance, next, earned, spent, expired };
 }
 
 function clean(value, max) {
@@ -804,4 +816,112 @@ async function adminOrders(request, env, url, admin) {
     .bind(admin.id, `Order ${order.number}: ${order.status} → ${status}`));
   await env.DB.batch(statements);
   return json({ ok: true, message: `Order ${order.number} is now ${status}.${note}` });
+}
+
+// ---- customers, credit owed and sales reports (admin) ------------------------
+
+const SOLD = "('paid', 'delivered')";
+
+function dateRange(url) {
+  const ok = (d) => (/^\d{4}-\d{2}-\d{2}$/.test(d || "") ? d : null);
+  return { from: ok(url.searchParams.get("from")), to: ok(url.searchParams.get("to")) };
+}
+
+// Everyone who has signed in or ordered: signed-in accounts plus guest buyers
+// grouped by phone number. "bought" counts paid and delivered orders only
+// (within ?from=&to= when given); "pending" is orders not yet paid.
+async function adminCustomers(env, url) {
+  const { from, to } = dateRange(url);
+  const range = `${from ? ` AND created_at >= '${from}'` : ""}${to ? ` AND created_at < date('${to}', '+1 day')` : ""}`;
+  const [users, orderStats, guests, ledger] = await Promise.all([
+    env.DB.prepare("SELECT id, name, email, role, technician_status, created_at, last_login FROM users ORDER BY id").all(),
+    env.DB.prepare(
+      `SELECT user_id,
+         sum(CASE WHEN status IN ${SOLD}${range} THEN total ELSE 0 END) AS bought,
+         sum(CASE WHEN status IN ${SOLD}${range} THEN 1 ELSE 0 END) AS paid_orders,
+         sum(CASE WHEN status IN ('new', 'confirmed') THEN total ELSE 0 END) AS pending,
+         count(*) AS orders, max(created_at) AS last_order,
+         (SELECT phone FROM orders o2 WHERE o2.user_id = orders.user_id ORDER BY id DESC LIMIT 1) AS phone
+       FROM orders WHERE user_id IS NOT NULL AND status != 'cancelled' GROUP BY user_id`
+    ).all(),
+    env.DB.prepare(
+      `SELECT phone, max(name) AS name, max(email) AS email,
+         sum(CASE WHEN status IN ${SOLD}${range} THEN total ELSE 0 END) AS bought,
+         sum(CASE WHEN status IN ${SOLD}${range} THEN 1 ELSE 0 END) AS paid_orders,
+         sum(CASE WHEN status IN ('new', 'confirmed') THEN total ELSE 0 END) AS pending,
+         count(*) AS orders, max(created_at) AS last_order
+       FROM orders WHERE user_id IS NULL AND status != 'cancelled' GROUP BY phone`
+    ).all(),
+    env.DB.prepare("SELECT user_id, kind, amount, expires_at, created_at FROM reward_ledger ORDER BY user_id, created_at, id").all(),
+  ]);
+
+  const byUser = new Map();
+  for (const row of ledger.results) {
+    if (!byUser.has(row.user_id)) byUser.set(row.user_id, []);
+    byUser.get(row.user_id).push(row);
+  }
+  const stats = new Map(orderStats.results.map((r) => [r.user_id, r]));
+  const admins = adminEmails(env);
+  const customers = [];
+  for (const u of users.results) {
+    if (admins.includes(u.email.toLowerCase())) continue;
+    const o = stats.get(u.id) || {};
+    const credit = replayLedger(byUser.get(u.id) || []);
+    customers.push({
+      key: `u${u.id}`, user_id: u.id, name: u.name || u.email, email: u.email, phone: o.phone || "",
+      type: u.role === "technician" && u.technician_status === "approved" ? "technician" : "customer",
+      orders: o.orders || 0, paid_orders: o.paid_orders || 0, bought: o.bought || 0, pending: o.pending || 0,
+      last_order: o.last_order || null, joined: u.created_at,
+      credit: credit.balance, credit_next: credit.next, credit_earned: credit.earned, credit_spent: credit.spent, credit_expired: credit.expired,
+    });
+  }
+  for (const g of guests.results) {
+    customers.push({
+      key: `p${g.phone}`, user_id: null, name: g.name, email: g.email || "", phone: g.phone, type: "guest",
+      orders: g.orders, paid_orders: g.paid_orders, bought: g.bought, pending: g.pending, last_order: g.last_order,
+      joined: null, credit: 0, credit_next: null, credit_earned: 0, credit_spent: 0, credit_expired: 0,
+    });
+  }
+  customers.sort((a, b) => b.bought - a.bought || (b.last_order || "").localeCompare(a.last_order || ""));
+  const totals = customers.reduce((t, c) => ({
+    customers: t.customers + 1, bought: t.bought + c.bought, pending: t.pending + c.pending,
+    credit: t.credit + c.credit, with_credit: t.with_credit + (c.credit > 0 ? 1 : 0),
+  }), { customers: 0, bought: 0, pending: 0, credit: 0, with_credit: 0 });
+  return json({ customers, totals, from, to, generated: sqlNow() });
+}
+
+// One customer's orders and reward history (?user=ID or ?phone= for guests).
+async function adminStatement(env, url) {
+  const userId = Number(url.searchParams.get("user"));
+  const phone = url.searchParams.get("phone");
+  let customer;
+  let orders;
+  let ledger = [];
+  if (Number.isInteger(userId) && userId > 0) {
+    customer = await env.DB.prepare("SELECT id, name, email, role, technician_status, created_at FROM users WHERE id = ?1").bind(userId).first();
+    if (!customer) return json({ error: "Customer not found." }, 404);
+    orders = await env.DB.prepare("SELECT * FROM orders WHERE user_id = ?1 ORDER BY id").bind(userId).all();
+    ledger = (await env.DB.prepare(
+      `SELECT l.kind, l.amount, l.expires_at, l.created_at, o.number FROM reward_ledger l
+       LEFT JOIN orders o ON o.id = l.order_id WHERE l.user_id = ?1 ORDER BY l.created_at, l.id`
+    ).bind(userId).all()).results;
+  } else if (phone) {
+    orders = await env.DB.prepare("SELECT * FROM orders WHERE user_id IS NULL AND phone = ?1 ORDER BY id").bind(phone).all();
+    if (!orders.results.length) return json({ error: "Customer not found." }, 404);
+    const last = orders.results[orders.results.length - 1];
+    customer = { name: last.name, email: last.email, phone, role: "guest" };
+  } else {
+    return json({ error: "Bad request." }, 400);
+  }
+  const list = orders.results.map((o) => ({ number: o.number, created_at: o.created_at, status: o.status, total: o.total,
+    items: JSON.parse(o.items_json).reduce((n, i) => n + i.qty, 0), reward_used: o.reward_used, reward_earned: o.reward_earned, phone: o.phone }));
+  const credit = replayLedger(ledger);
+  return json({
+    customer: { ...customer, phone: customer.phone || (list.length ? list[list.length - 1].phone : "") },
+    orders: list,
+    ledger: ledger.map((l) => ({ kind: l.kind, amount: l.amount, expires_at: l.expires_at, created_at: l.created_at, number: l.number })),
+    credit,
+    bought: list.filter((o) => o.status === "paid" || o.status === "delivered").reduce((n, o) => n + o.total, 0),
+    generated: sqlNow(),
+  });
 }
