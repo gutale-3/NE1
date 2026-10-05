@@ -82,6 +82,18 @@
 .awards-row span { display: block; font-size: 12.5px; line-height: 1.5; color: #4A5B68; }
 @media (max-width: 900px) { .awards-row { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
 </style>
+<style id="certs-css">
+.certs { margin: 8px 0 40px; scroll-margin-top: 90px; }
+.certs h3 { font-size: 18px; font-weight: 800; color: #10202E; margin: 0 0 6px; text-align: center; }
+.certs > p { font-size: 14.5px; line-height: 1.6; color: #4A5B68; text-align: center; max-width: 620px; margin: 0 auto 18px; }
+.certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.certs-grid figure { margin: 0; background: #fff; border: 1px solid #E7ECF1; border-radius: 12px; overflow: hidden; }
+.certs-grid img { display: block; width: 100%; height: auto; aspect-ratio: 900 / 637; object-fit: cover; background: #fff; }
+.certs-grid figcaption { padding: 10px 12px 12px; }
+.certs-grid strong { display: block; font-size: 13.5px; color: #10202E; }
+.certs-grid span { font-size: 12.5px; color: #4A5B68; }
+@media (max-width: 700px) { .certs-grid { grid-template-columns: 1fr 1fr; gap: 10px; } }
+</style>
 <!--layout:css-->
 <style id="layout-css">
 .site-header { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid #E7ECF1; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
@@ -225,8 +237,8 @@
         <figcaption style="padding: 14px 16px 16px;"><div style="font-size: 14.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 3px;">Best Distribution Partner 2025</div><div style="font-size: 13px; line-height: 1.5; color: rgb(74, 91, 104);">Hikvision End-of-Year Seminar, Nairobi</div></figcaption>
       </figure>
       <figure style="margin: 0px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden;">
-        <img src="assets/partner/hikvision-certified-technician.webp" alt="NE's Hikvision-certified technician at the NE showroom in Nairobi" width="720" height="900" loading="lazy" decoding="async" style="display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;">
-        <figcaption style="padding: 14px 16px 16px;"><div style="font-size: 14.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 3px;">Hikvision-certified technician</div><div style="font-size: 13px; line-height: 1.5; color: rgb(74, 91, 104);">Fully certified by Hikvision for installation</div></figcaption>
+        <img src="assets/partner/hikvision-certified-technician.webp" alt="Simon Kinyua, NE&#39;s Hikvision-trained technician, at the NE showroom in Nairobi" width="720" height="900" loading="lazy" decoding="async" style="display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;">
+        <figcaption style="padding: 14px 16px 16px;"><div style="font-size: 14.5px; font-weight: 800; color: rgb(16, 32, 46); margin-bottom: 3px;">Hikvision-certified technician</div><div style="font-size: 13px; line-height: 1.5; color: rgb(74, 91, 104);">Simon Kinyua is a Hikvision Certified Security Associate (HCSA) in CCTV, access control, video intercom, networking and SaaS, valid to October 2027. <a href="#certificates">See his certificates</a></div></figcaption>
       </figure>
       <figure style="margin: 0px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 241); border-radius: 16px; overflow: hidden;">
         <img src="assets/showroom/storefront-gfe61.webp" alt="The NE Hikvision showroom, Shop GFE 61, BBS Mall, Nairobi" width="900" height="1125" loading="lazy" decoding="async" style="display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;">
@@ -255,6 +267,19 @@
       </figure>
       </div>
     </div>
+    <div class="certs" id="certificates">
+      <h3>Our technician&rsquo;s Hikvision certificates</h3>
+      <p>Simon Kinyua installs and supports NE systems. He holds Hikvision Certified Security Associate (HCSA) certification in five areas and has completed Hikvision&rsquo;s trainer course.</p>
+      <div class="certs-grid">
+        <figure><a href="/assets/partner/certificates/simon-kinyua-hcsa-cctv.webp" target="_blank" rel="noopener"><img src="/assets/partner/certificates/simon-kinyua-hcsa-cctv.webp" alt="Hikvision Certified Security Associate certificate, HCSA-CCTV, awarded to Simon Kinyua" width="900" height="637" loading="lazy" decoding="async"></a><figcaption><strong>HCSA &ndash; CCTV</strong><span>Valid to October 2027</span></figcaption></figure>
+        <figure><a href="/assets/partner/certificates/simon-kinyua-hcsa-access-control.webp" target="_blank" rel="noopener"><img src="/assets/partner/certificates/simon-kinyua-hcsa-access-control.webp" alt="Hikvision Certified Security Associate certificate, HCSA-Access Control, awarded to Simon Kinyua" width="900" height="637" loading="lazy" decoding="async"></a><figcaption><strong>HCSA &ndash; Access Control</strong><span>Valid to October 2027</span></figcaption></figure>
+        <figure><a href="/assets/partner/certificates/simon-kinyua-hcsa-video-intercom.webp" target="_blank" rel="noopener"><img src="/assets/partner/certificates/simon-kinyua-hcsa-video-intercom.webp" alt="Hikvision Certified Security Associate certificate, HCSA-Video Intercom, awarded to Simon Kinyua" width="900" height="637" loading="lazy" decoding="async"></a><figcaption><strong>HCSA &ndash; Video Intercom</strong><span>Valid to October 2027</span></figcaption></figure>
+        <figure><a href="/assets/partner/certificates/simon-kinyua-hcsa-networking.webp" target="_blank" rel="noopener"><img src="/assets/partner/certificates/simon-kinyua-hcsa-networking.webp" alt="Hikvision Certified Security Associate certificate, HCSA-Networking, awarded to Simon Kinyua" width="900" height="637" loading="lazy" decoding="async"></a><figcaption><strong>HCSA &ndash; Networking</strong><span>Valid to October 2027</span></figcaption></figure>
+        <figure><a href="/assets/partner/certificates/simon-kinyua-hcsa-saas.webp" target="_blank" rel="noopener"><img src="/assets/partner/certificates/simon-kinyua-hcsa-saas.webp" alt="Hikvision Certified Security Associate certificate, HCSA-SaaS, awarded to Simon Kinyua" width="900" height="637" loading="lazy" decoding="async"></a><figcaption><strong>HCSA &ndash; SaaS</strong><span>Valid to October 2027</span></figcaption></figure>
+        <figure><a href="/assets/partner/certificates/simon-kinyua-hikvision-trainer-course.webp" target="_blank" rel="noopener"><img src="/assets/partner/certificates/simon-kinyua-hikvision-trainer-course.webp" alt="Hikvision certificate of completion for the Become a Hikvision Trainer course, awarded to Simon Kinyua" width="1200" height="675" loading="lazy" decoding="async"></a><figcaption><strong>Become a Hikvision Trainer course</strong><span>Hikvision Middle East &amp; Africa, June 2026</span></figcaption></figure>
+      </div>
+    </div>
+
     <div style="text-align: center;">
       <a href="products" data-h="1" style="background: rgb(8, 110, 158); color: rgb(255, 255, 255); padding: 14px 30px; border-radius: 9px; font-weight: 700; font-size: 15px;">Browse the catalog</a>
     </div>
@@ -288,6 +313,7 @@
         <ul>
           <li><a href="/about">About NE</a></li>
           <li><a href="/services">Installation &amp; services</a></li>
+          <li><a href="/cctv-installation-nairobi">CCTV installation prices</a></li>
           <li><a href="/solutions">Solutions by industry</a></li>
           <li><a href="/quote">Get a quote</a></li>
           <li><a href="/blog">Guides &amp; blog</a></li>

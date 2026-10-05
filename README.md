@@ -42,6 +42,10 @@ footer and their CSS are shared and live in `tools/site_layout.py`.
 - **Products, prices, kits:** edit `data/products.json` (or `PACKAGES` in
   `tools/build-catalog.py` for the bundles shown on the homepage and `/quote`) and run
   `python3 tools/build-catalog.py`.
+- **"Recommended for you" on the homepage:** four slots (Turbo HD camera, IP
+  camera, any camera, access control/intercom). `PICK_SLOTS` and `PICK_DEFAULTS`
+  in `tools/build-catalog.py` set the pools and the no-JavaScript fallback;
+  `js/site.js` draws a new set on every visit.
 
 ## Product pages
 
@@ -103,21 +107,40 @@ The catalog grid and category pages only use the listing fields, so they stay li
 Because product pages live one directory down, their internal links are
 root-absolute (`/products`, `/images/001.png`) rather than relative.
 
-## Deploy to Cloudflare Pages
+## Deploy (Cloudflare Workers, Git integration)
 
-**Option A — Git integration (recommended)**
-1. Push this folder's contents to a GitHub repo (this folder = repo root).
-2. In the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect to Git**, pick the repo.
-3. Build settings:
-   - Framework preset: **None**
-   - Build command: *(leave blank)*
-   - Build output directory: `/`
-4. Deploy. No environment variables or extra config needed.
+The site is the Worker **ne1**. Cloudflare builds it on every push to the
+production branch (`main`):
 
-**Option B — Direct upload**
-1. Workers & Pages → Create → Pages → **Upload assets**.
-2. Drag in the contents of this folder (or a zip of it).
-3. Deploy.
+- **Build command:** `python3 tools/build-catalog.py` (regenerates product,
+  category and bundle pages from `data/products.json`, so admin edits show up)
+- **Deploy command:** `npx wrangler deploy` (default)
+
+Static files are served directly. `worker/index.js` only runs for `/admin`,
+`/auth/*` and `/api/*` (see `run_worker_first` in `wrangler.jsonc`).
+
+## Admin panel and sign-in
+
+- `/admin` &mdash; product editor (list, edit price/name/category/description,
+  change photo, add, delete). Only emails in `ADMIN_EMAILS` can open it.
+- Sign-in is Google OAuth (`/auth/google/login` &rarr; `/auth/google/callback`).
+  Users and sessions live in the D1 database **ne-accounts** (`worker/schema.sql`).
+- Saving commits `data/products.json` (and any new photo under
+  `images/uploads/`) to `GITHUB_BRANCH` through the GitHub API; the Cloudflare
+  build then regenerates the pages, so changes are live in 2&ndash;3 minutes.
+- Products used in a bundle can't be deleted from the panel; the build writes
+  their models to `data/bundle-models.json`.
+
+Settings: plain values are in `wrangler.jsonc` `vars`. Secrets are set in the
+Cloudflare dashboard (**ne1 &rarr; Settings &rarr; Variables and Secrets**), never in git:
+
+| Secret | What |
+|---|---|
+| `GOOGLE_CLIENT_SECRET` | Google Cloud OAuth client secret |
+| `GITHUB_TOKEN` | Fine-grained token, repo `gutale-3/NE1` only, Contents: read and write |
+
+Local test: `npx wrangler dev --var GOOGLE_CLIENT_SECRET:x --var GITHUB_TOKEN:x`
+(add `--var GITHUB_API:<url>` to point at a fake GitHub).
 
 ## Local preview
 

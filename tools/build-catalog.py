@@ -822,11 +822,71 @@ def packages_html(products, compact=False):
     return "\n  ".join(groups)
 
 
+# "Recommended for you" on the homepage: four slots, each drawn from a pool.
+# The page ships the first product of each pool; js/site.js re-draws at random
+# on every visit. Cameras fill three of the four slots.
+CAMERA = re.compile(r"^DS-2(?:CE|CD|DE|SE|CF)")
+PICK_SLOTS = [
+    ("Turbo HD camera", lambda p: p["category"] == "CCTV-Turbo HD" and CAMERA.match(p["model"].strip())),
+    ("IP camera", lambda p: p["category"] == "CCTV-IP" and CAMERA.match(p["model"].strip())),
+    ("Camera", lambda p: CAMERA.match(p["model"].strip())),
+    ("Access & intercom", lambda p: re.match(r"^DS-K(?:1T|IS)", p["model"].strip())),
+]
+# What a visitor without JavaScript (and Google) sees.
+PICK_DEFAULTS = ["DS-2CE10DF0T-LPFS", "DS-2CD1047G3-LIU", "DS-2CFSP8-D/4G", "DS-K1T342MFX-E1"]
+
+
+def pick_card(product, slot):
+    return f"""<a class="pick" href="{esc(product["url"])}" data-slot="{slot}">
+        <div class="pick-shot"><img src="/{esc(product['image'])}" alt="{esc(product['name'])}" loading="lazy" decoding="async" width="240" height="180"></div>
+        <div class="pick-body">
+          <div class="pick-cat">{esc(product['category'])}</div>
+          <div class="pick-name">{esc(product['name'])}</div>
+          <div class="pick-foot"><span>KES {catalog.price_label(product['price'])}</span><span>View &rarr;</span></div>
+        </div>
+      </a>"""
+
+
+def picks_html(products):
+    pools = []
+    for _, test in PICK_SLOTS:
+        pool = [p for p in products if p.get("price") and p.get("image") and test(p)]
+        if not pool:
+            sys.exit("picks: empty pool")
+        pools.append(pool)
+    chosen = []
+    for default, pool in zip(PICK_DEFAULTS, pools):
+        match = next((p for p in pool if p["model"].strip().startswith(default) and p not in chosen), None)
+        chosen.append(match or next(p for p in pool if p not in chosen))
+    cards = "\n      ".join(pick_card(p, i) for i, p in enumerate(chosen))
+    data = [[{"u": p["url"], "i": "/" + p["image"], "n": p["name"], "c": p["category"],
+              "p": catalog.price_label(p["price"]), "m": p["model"].strip()} for p in pool] for pool in (pools[0], pools[1], pools[3])]
+    # site.js draws the third slot from the HD and IP pools combined.
+    assert len(pools[2]) == len(pools[0]) + len(pools[1]), "a camera outside the HD/IP pools"
+    payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return f"""  <section class="home-picks" aria-labelledby="picks-title">
+    <div class="hp-in">
+      <div class="hp-head">
+        <h2 id="picks-title">Recommended for you</h2>
+        <a href="/products">See all products &rarr;</a>
+      </div>
+      <div class="picks">
+      {cards}
+      </div>
+    </div>
+    <script type="application/json" id="picks-data">{payload}</script>
+  </section>"""
+
+
 def write_quote_page(products):
+    # The admin panel refuses to delete these, since the bundles would break.
+    models = sorted({model for kit in PACKAGES for model, _ in kit["items"]})
+    (ROOT / "data/bundle-models.json").write_text(json.dumps(models, indent=1) + "\n", encoding="utf-8")
     path = ROOT / "quote.html"
     path.write_text(fill(path.read_text(encoding="utf-8"), "packages", packages_html(products)), encoding="utf-8")
     home = ROOT / "index.html"
-    home.write_text(fill(home.read_text(encoding="utf-8"), "bundles", packages_html(products, compact=True)), encoding="utf-8")
+    html = fill(home.read_text(encoding="utf-8"), "bundles", packages_html(products, compact=True))
+    home.write_text(fill(html, "picks", picks_html(products)), encoding="utf-8")
 
 
 def write_category_pages(products):
