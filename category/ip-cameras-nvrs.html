@@ -536,6 +536,16 @@ section.block { padding: 44px 0 0; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
 .acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
 .acct:hover { color: #086E9E; background: #F6F8FA; }
+.cart-link { position: relative; display: inline-flex; align-items: center; padding: 8px; color: #10202E; flex-shrink: 0; }
+.cart-link:hover { color: #086E9E; }
+.cart-count { position: absolute; top: 0; right: -2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #22C35E; color: #fff; font-size: 11px; font-weight: 800; line-height: 18px; text-align: center; }
+.btn-cart { background: #10202E; color: #fff; border: 0; cursor: pointer; font-family: inherit; }
+.btn-cart:hover { background: #0F2A3D; color: #fff; }
+.pc-add { position: relative; z-index: 2; margin-top: 10px; width: 100%; padding: 9px 10px; border: 1.5px solid #CFE6F2; border-radius: 9px; background: #fff; color: #086E9E; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
+.pc-add:hover { border-color: #086E9E; }
+.kit-add { display: block; width: 100%; margin: 0 0 8px; padding: 11px; border: 1.5px solid #CFE6F2; border-radius: 10px; background: #fff; color: #086E9E; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; }
+.kit-add:hover { border-color: #086E9E; }
+.added { background: #E8F8EE !important; border-color: #B7E4C7 !important; color: #14532D !important; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -601,6 +611,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/cart" class="cart-link" aria-label="Cart"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg><span class="cart-count" data-cart-count hidden></span></a>
       <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
@@ -659,6 +670,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="3740">KES 3,740</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202MP%20IR%20Bullet%20IP%20Camera%20%28DS-2CD1021G0-I%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1021g0-i-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -672,6 +684,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="3740">KES 3,740</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202MP%20IR%20Dome%20IP%20Camera%20%28DS-2CD1121G0-I%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1121g0-i-2-8mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -685,6 +698,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="5060">KES 5,060</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202MP%20Smart%20Hybrid%20Light%20Bullet%20IP%20Camera%20%28DS-2CD1023G2-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1023g2-liu-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -698,6 +712,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="5060">KES 5,060</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202MP%20Smart%20Hybrid%20Light%20Dome%20IP%20Camera%20%28DS-2CD1123G2-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1123g2-liu-2-8mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -711,6 +726,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="7370">KES 7,370</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20Bullet%20IP%20Camera%20%28DS-2CD1043G2-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1043g2-liu-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -724,6 +740,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="7370">KES 7,370</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20Dome%20IP%20Camera%20%28DS-2CD1143G2-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1143g2-liu-2-8mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -737,6 +754,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="14850">KES 14,850</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20Motorized%20Varifocal%20Bullet%20IP%20Camera%20%28DS-2CD1643G2-LIZU%282.8-12mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1643g2-lizu-2-8-12mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -750,6 +768,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="14850">KES 14,850</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20Motorized%20Varifocal%20Dome%20IP%20Camera%20%28DS-2CD1743G2-LIZU%282.8-12mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1743g2-lizu-2-8-12mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -763,6 +782,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="9130">KES 9,130</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206MP%20Smart%20Hybrid%20Light%20Bullet%20IP%20Camera%20%28DS-2CD1063G2-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1063g2-liu-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -776,6 +796,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="9130">KES 9,130</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206MP%20Smart%20Hybrid%20Light%20Dome%20IP%20Camera%20%28DS-2CD1163G2-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1163g2-liu-2-8mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -789,6 +810,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="15180">KES 15,180</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208MP%20Smart%20Hybrid%20Light%20Bullet%20IP%20Camera%20%28DS-2CD1083G2-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1083g2-liu-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -802,6 +824,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="15180">KES 15,180</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208MP%20Smart%20Hybrid%20Light%20Dome%20IP%20Camera%20%28DS-2CD1183G2-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1183g2-liu-2-8mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -815,6 +838,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="9680">KES 9,680</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Bullet%20IP%20Camera%20%28DS-2CD1047G3-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1047g3-liu-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -828,6 +852,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="9680">KES 9,680</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Dome%20IP%20Camera%20%28DS-2CD1147G3-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1147g3-liu-2-8mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -841,6 +866,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="12650">KES 12,650</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Bullet%20IP%20Camera-Long%20Range%20%28DS-2CD1T47G3-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1t47g3-liu-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -854,6 +880,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="10780">KES 10,780</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206%20MP%20ColorVu%203.0%20Fixed%20Bullet%20Network%20Camera%20%28DS-2CD1067G3-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1067g3-liu-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -867,6 +894,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="10780">KES 10,780</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Dome%20IP%20Camera%20%28DS-2CD1167G3-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1167g3-liu-2-8mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -880,6 +908,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="11770">KES 11,770</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Bullet%20IP%20Camera-Long%20Range%20%28DS-2CD1T67G3-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1t67g3-liu-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -893,6 +922,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="11330">KES 11,330</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Bullet%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm%20%28DS-2CD1047G3-LIUF/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1047g3-liuf-srb-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -906,6 +936,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="11330">KES 11,330</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Turret%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm%20%28DS-2CD1347G3-LIUF/SRB%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1347g3-liuf-srb-2-8mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -919,6 +950,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="14410">KES 14,410</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Bullet%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm-Long%20Range%20%28DS-2CD1T47G3-LIUF/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1t47g3-liuf-srb-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -932,6 +964,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="13750">KES 13,750</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Bullet%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm%20%28DS-2CD1067G3-LIUF/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1067g3-liuf-srb-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -945,6 +978,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="13750">KES 13,750</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Turret%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm%20%28DS-2CD1367G3-LIUF/SRB%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1367g3-liuf-srb-2-8mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -958,6 +992,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="15070">KES 15,070</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Bullet%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm-Long%20Range%20%28DS-2CD1T67G3-LIUF/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd1t67g3-liuf-srb-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -971,6 +1006,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="24750">KES 24,750</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Mini%20Bullet%20Network%20Camera%20%28DS-2CD2047G3-LI2UY%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd2047g3-li2uy-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -984,6 +1020,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="24750">KES 24,750</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Dome%20Network%20Camera%20%28DS-2CD2147G3-LIS2UY%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd2147g3-lis2uy-2-8mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -997,6 +1034,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="30030">KES 30,030</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Bullet%20Network%20Camera%20%28DS-2CD2T47G3-LIS2UY/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd2t47g3-lis2uy-srb-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1010,6 +1048,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="28820">KES 28,820</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Mini%20Bullet%20Network%20Camera%20%28DS-2CD2087G3-LI2UY%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd2087g3-li2uy-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1023,6 +1062,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="28820">KES 28,820</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Mini%20Dome%20Network%20Camera%20%28DS-2CD2187G3-LIS2UY%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd2187g3-lis2uy-2-8mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1036,6 +1076,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="35860">KES 35,860</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Bullet%20Network%20Camera%20%28DS-2CD2T87G3-LIS2UY/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cd2t87g3-lis2uy-srb-4mm-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1049,6 +1090,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="43450">KES 43,450</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202%20MP%2025X%20Powered%20by%20DarkFighter%20IR%20PTZ%20Camera%20%28DS-2DE4225IWG1-E%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2de4225iwg1-e-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1062,6 +1104,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="48070">KES 48,070</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%2025X%20Powered%20by%20DarkFighter%20IR%20PTZ%20Camera%20%28DS-2DE4425IW-DE%28O-STD%29%28T5%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2de4425iw-de-o-std-t5" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1075,6 +1118,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="49940">KES 49,940</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20TandemVu%202%2B2MP%2025X%20ColorVu%20%26%20IR%20Acusense%20Network%20Speed%20Dome%20%28DS-2SE4C225MWG-E/12%28F0%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2se4c225mwg-e-12-f0-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1088,6 +1132,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="54560">KES 54,560</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20TandemVu%204%2B4MP%2025X%20ColorVu%20%26%20IR%20Acusense%20Network%20Speed%20Dome%20%28DS-2SE4C425MWG-E/14%28F0%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2se4c425mwg-e-14-f0-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1101,6 +1146,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="14300">KES 14,300</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%2024/7%20Solar%204G%20PT%20Camera%20%28DS-2CFSP4/4G%284mm%29%28O-STD%29/EU%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cfsp4-4g-4mm-o-std-eu" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1114,6 +1160,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="14300">KES 14,300</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%2024/7%20Solar%204G%20PT%20Camera%28Comes%20with%204G%20SIM%20Card%29%20%28DS-2CFSP4/4G-SIM%284mm%29%28KEN%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cfsp4-4g-sim-4mm-ken" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1127,6 +1174,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="20350">KES 20,350</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%2024/7%20Solar%204G%20Dual-lens%20PT%20Camera%20%28DS-2CFSP8-D/4G%282.8%2B4mm%29%28O-STD%29/EU%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cfsp8-d-4g-2-8-4mm-o-std-eu" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1140,6 +1188,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="20350">KES 20,350</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%2024/7%20Solar%204G%20Dual-lens%20PT%20Camera%20%28Comes%20with%204G%20SIM%20Card%29%20%28DS-2CFSP8-D/4G-SIM%282.8%2B4mm%29%28KEN%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2cfsp8-d-4g-sim-2-8-4mm-ken" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1153,6 +1202,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="10010">KES 10,010</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204CH%204%20PORT%20POE%201%20HDD%20Q%20Series%20NVR%20%28DS-7104NI-Q1/4P/M%28STD%29%28D%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-7104ni-q1-4p-m-std-d" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1166,6 +1216,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="14080">KES 14,080</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208CH%208%20PORT%20POE%201%20HDD%20Q%20Series%20NVR%20%28DS-7108NI-Q1/8P/M%28STD%29%28D%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-7108ni-q1-8p-m-std-d" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1179,6 +1230,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="20130">KES 20,130</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208CH%208%20PORT%20POE%201%20HDD%20K%20Series%20NVR%20%28DS-7608NXI-K1/8P%28STD%29%28B%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-7608nxi-k1-8p-std-b" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1192,6 +1244,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="29480">KES 29,480</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016CH%2016%20PORT%20POE%202%20HDD%20Q%20Series%20NVR%20%28DS-7616NI-Q2/16P%28E%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-7616ni-q2-16p-e-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1205,6 +1258,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="35310">KES 35,310</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016CH%2016%20PORT%20POE%202%20HDD%20K%20Series%20NVR%20%28DS-7616NXI-K2/16P%28D%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-7616nxi-k2-16p-d-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1218,6 +1272,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="35310">KES 35,310</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016CH%2016%20PORT%20POE%202%20HDD%20K%20Series%20NVR%20%28DS-7616NXI-K2/16P%28E%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-7616nxi-k2-16p-e-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1231,6 +1286,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="41580">KES 41,580</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2032CH%2016%20PORT%20POE%202%20HDD%20K%20Series%20NVR%20%28DS-7632NXI-K2/16P%28D%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-7632nxi-k2-16p-d-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1244,6 +1300,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="41580">KES 41,580</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2032CH%2016%20PORT%20POE%202%20HDD%20K%20Series%20NVR%20%28DS-7632NXI-K2/16P%28E%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-7632nxi-k2-16p-e-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1257,6 +1314,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="62590">KES 62,590</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2032CH%2016%20PORT%20POE%204%20HDD%20K%20Series%20NVR%20%28DS-7732NXI-K4/16P%28D%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-7732nxi-k4-16p-d-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1270,6 +1328,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="62590">KES 62,590</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2032CH%2016%20PORT%20POE%204%20HDD%20K%20Series%20NVR%20%28DS-7732NXI-K4/16P%28E%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-7732nxi-k4-16p-e-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1283,6 +1342,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="100760">KES 100,760</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2064CH%204%20HDD%20M%20Series%20NVR%20%28DS-7764NI-M4%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-7764ni-m4-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>

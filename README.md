@@ -145,6 +145,25 @@ Accounts and technician prices:
   site end with "(Technician account: name, approved)". `js/site.js` only calls
   `/api/me` when the readable `ne_signed_in` cookie is present.
 
+Cart, orders and rewards:
+
+- "Add to cart" buttons (`data-add-cart`, bundles `data-add-kit`) appear when
+  JavaScript runs; the cart lives in the browser (`localStorage` key `ne_cart`).
+  The header cart icon shows the count.
+- `/cart` (`cart.html`, `js/cart.js`): quantities, totals, delivery (Nairobi
+  free, pick-up, outside Nairobi with the fare paid by the buyer), and two
+  ways to send: WhatsApp (message pre-written) or "Send order to NE".
+- `POST /api/orders` recalculates every price from `data/prices.json` (written
+  by the build), applies the technician discount and any reward credit, and
+  saves the order in D1 (`orders`) with a number like NE-1001.
+- `/order/?n=…&k=…` shows the order as a document with the NE logo and
+  company details; "Download PDF" uses the browser's Save as PDF.
+- Admin **Orders** tab: filter by status; Confirm, Mark paid, Mark delivered,
+  Cancel. Marking an order paid credits the buyer `REWARD_PERCENT` (2%) or, for
+  technicians, `TECH_REWARD_PERCENT` (1%) of the total, valid 6 months
+  (`reward_ledger`). Cancelling reverses credit earned or spent on that order.
+- `/account` shows the reward balance, what expires next, and order history.
+
 Settings: plain values are in `wrangler.jsonc` `vars`. Secrets are set in the
 Cloudflare dashboard (**ne1 &rarr; Settings &rarr; Variables and Secrets**), never in git:
 

@@ -356,6 +356,16 @@ section.block { padding: 44px 0 0; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
 .acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
 .acct:hover { color: #086E9E; background: #F6F8FA; }
+.cart-link { position: relative; display: inline-flex; align-items: center; padding: 8px; color: #10202E; flex-shrink: 0; }
+.cart-link:hover { color: #086E9E; }
+.cart-count { position: absolute; top: 0; right: -2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #22C35E; color: #fff; font-size: 11px; font-weight: 800; line-height: 18px; text-align: center; }
+.btn-cart { background: #10202E; color: #fff; border: 0; cursor: pointer; font-family: inherit; }
+.btn-cart:hover { background: #0F2A3D; color: #fff; }
+.pc-add { position: relative; z-index: 2; margin-top: 10px; width: 100%; padding: 9px 10px; border: 1.5px solid #CFE6F2; border-radius: 9px; background: #fff; color: #086E9E; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
+.pc-add:hover { border-color: #086E9E; }
+.kit-add { display: block; width: 100%; margin: 0 0 8px; padding: 11px; border: 1.5px solid #CFE6F2; border-radius: 10px; background: #fff; color: #086E9E; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; }
+.kit-add:hover { border-color: #086E9E; }
+.added { background: #E8F8EE !important; border-color: #B7E4C7 !important; color: #14532D !important; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -421,6 +431,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/cart" class="cart-link" aria-label="Cart"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg><span class="cart-count" data-cart-count hidden></span></a>
       <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
@@ -479,6 +490,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="11000">KES 11,000</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204U%20600%2A450mm%20cabinet%20%28DS-XS6404-S/B%28O-STD%29/Overseas%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-xs6404-s-b-o-std-overseas" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -492,6 +504,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="12650">KES 12,650</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206U%20600%2A450mm%20cabinet%20%28DS-XS6406-S/B%28O-STD%29/Overseas%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-xs6406-s-b-o-std-overseas" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -505,6 +518,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="14300">KES 14,300</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%209U%20600%2A450mm%20cabinet%20%28DS-XS6409-S/B%28O-STD%29/Overseas%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-xs6409-s-b-o-std-overseas" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -518,6 +532,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="16500">KES 16,500</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2012U%20600%2A450mm%20cabinet%20%28DS-XS6412-S/B%28O-STD%29/Overseas%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-xs6412-s-b-o-std-overseas" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -531,6 +546,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="2200">KES 2,200</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Standard%20tray%20for%20600mm%20width%20cabinet%20%28DS-XSPB04-S/B%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-xspb04-s-b" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -544,6 +560,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="4400">KES 4,400</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Back-up%20UPS-600VA%20%28DS-UPS600%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-ups600-o-std-uk" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -557,6 +574,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="6050">KES 6,050</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Back-up%20UPS-1000VA%20%28DS-UPS1000%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-ups1000-o-std-uk" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -570,6 +588,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="16500">KES 16,500</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Back-up%20%20UPS-2000VA%20%28DS-UPS2000%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-ups2000-o-std-uk" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -583,6 +602,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="24200">KES 24,200</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Back-up%20UPS-3000VA%20%28DS-UPS3000%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-ups3000-o-std-uk" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -596,6 +616,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="1210">KES 1,210</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Power%20Supply%20%28DS-2FA1225-C4%28UK%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2fa1225-c4-uk-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -609,6 +630,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="1650">KES 1,650</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Power%20Supply%20%28DS-2FA1205-C8%28UK%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2fa1205-c8-uk-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -622,6 +644,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="2200">KES 2,200</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Power%20Supply%20%28DS-2FA1208-C16%28UK%29%28Africa%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-2fa1208-c16-uk-africa" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -635,6 +658,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="418">KES 418</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Power%20Adapter%20%28Adapter%2CADS-12FG-12N%2012012EPB%2CCE%2C12V/1A%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="adapter-ads-12fg-12n-12012epb-ce-12v-1a" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -648,6 +672,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="2970">KES 2,970</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2090%20m%20Mini%20RG59%20Coaxial%20Cable%20with%20Power%20Cable%20%28DS-1LH1SCAM592C%28O-STD%29%2090m%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-1lh1scam592c-o-std-90m" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -661,6 +686,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="5720">KES 5,720</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20180%20m%20Mini%20RG59%20Coaxial%20Cable%20with%20Power%20Cable%20%28DS-1LH1SCAM592C%28O-STD%29%20180m%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-1lh1scam592c-o-std-180m" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -674,6 +700,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="330">KES 330</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Video%20Balun%20%28DS-1H18S/E%28C%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-1h18s-e-c-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -687,6 +714,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="100">KES 100</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Camera%20Connector%20Set%20%282%C3%97%20BNC%2C%20DC%20Jack%20%26%20RJ45%29%20%28CONN-SET%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="conn-set" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -700,6 +728,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="200">KES 200</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Cable%20Clips%20%28Box%20of%20100%29%20%28CLIPS-100%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="clips-100" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -713,6 +742,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="300">KES 300</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Cable%20Ties%204.8%20%C3%97%20200%20mm%20%28Pack%20of%20100%29%20%28TIES-100%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ties-100" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>

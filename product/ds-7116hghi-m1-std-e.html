@@ -208,6 +208,16 @@ section.block { padding: 44px 0 0; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
 .acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
 .acct:hover { color: #086E9E; background: #F6F8FA; }
+.cart-link { position: relative; display: inline-flex; align-items: center; padding: 8px; color: #10202E; flex-shrink: 0; }
+.cart-link:hover { color: #086E9E; }
+.cart-count { position: absolute; top: 0; right: -2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #22C35E; color: #fff; font-size: 11px; font-weight: 800; line-height: 18px; text-align: center; }
+.btn-cart { background: #10202E; color: #fff; border: 0; cursor: pointer; font-family: inherit; }
+.btn-cart:hover { background: #0F2A3D; color: #fff; }
+.pc-add { position: relative; z-index: 2; margin-top: 10px; width: 100%; padding: 9px 10px; border: 1.5px solid #CFE6F2; border-radius: 9px; background: #fff; color: #086E9E; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
+.pc-add:hover { border-color: #086E9E; }
+.kit-add { display: block; width: 100%; margin: 0 0 8px; padding: 11px; border: 1.5px solid #CFE6F2; border-radius: 10px; background: #fff; color: #086E9E; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; }
+.kit-add:hover { border-color: #086E9E; }
+.added { background: #E8F8EE !important; border-color: #B7E4C7 !important; color: #14532D !important; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -273,6 +283,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/cart" class="cart-link" aria-label="Cart"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg><span class="cart-count" data-cart-count hidden></span></a>
       <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
@@ -338,6 +349,7 @@ section.block { padding: 44px 0 0; }
         </div>
 
         <div class="ctas">
+          <button class="btn btn-cart" type="button" data-add-cart="ds-7116hghi-m1-std-e" hidden>Add to cart</button>
           <a class="btn btn-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20HD-1080P%20DVR-16CH%20Plastic%201%20HDD%20%28DS-7116HGHI-M1%28STD%29%28E%29%29" target="_blank" rel="noopener">Enquire on WhatsApp</a>
           <a class="btn btn-call" href="tel:+254737454891">Call 0737 454 891</a>
           <a class="btn btn-ghost" href="https://wa.me/254737454891?text=Hi%20NE%2C%20please%20send%20me%20a%20quote%20for%20DS-7116HGHI-M1%28STD%29%28E%29%20%E2%80%94%20including%20installation." target="_blank" rel="noopener">Request a quote</a>

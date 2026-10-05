@@ -19,6 +19,7 @@
   <div id="notice" class="notice" hidden></div>
   <nav class="tabs">
     <button type="button" class="tab on" data-tab="list">Products</button>
+    <button type="button" class="tab" data-tab="orders">Orders <span class="badge" id="orders-badge" hidden></span></button>
     <button type="button" class="tab" data-tab="tech">Technicians <span class="badge" id="tech-badge" hidden></span></button>
   </nav>
 
@@ -34,6 +35,19 @@
       <summary>Recent changes</summary>
       <ol id="log"></ol>
     </details>
+  </section>
+
+  <section id="orders-view" hidden>
+    <div class="chips" id="order-filter">
+      <button type="button" class="chip on" data-status="">All</button>
+      <button type="button" class="chip" data-status="new">New</button>
+      <button type="button" class="chip" data-status="confirmed">Confirmed</button>
+      <button type="button" class="chip" data-status="paid">Paid</button>
+      <button type="button" class="chip" data-status="delivered">Delivered</button>
+      <button type="button" class="chip" data-status="cancelled">Cancelled</button>
+    </div>
+    <p class="count" id="orders-count">Loading&hellip;</p>
+    <div id="orders-list" class="tech-list"></div>
   </section>
 
   <section id="tech-view" hidden>

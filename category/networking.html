@@ -464,6 +464,16 @@ section.block { padding: 44px 0 0; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
 .acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
 .acct:hover { color: #086E9E; background: #F6F8FA; }
+.cart-link { position: relative; display: inline-flex; align-items: center; padding: 8px; color: #10202E; flex-shrink: 0; }
+.cart-link:hover { color: #086E9E; }
+.cart-count { position: absolute; top: 0; right: -2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #22C35E; color: #fff; font-size: 11px; font-weight: 800; line-height: 18px; text-align: center; }
+.btn-cart { background: #10202E; color: #fff; border: 0; cursor: pointer; font-family: inherit; }
+.btn-cart:hover { background: #0F2A3D; color: #fff; }
+.pc-add { position: relative; z-index: 2; margin-top: 10px; width: 100%; padding: 9px 10px; border: 1.5px solid #CFE6F2; border-radius: 9px; background: #fff; color: #086E9E; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
+.pc-add:hover { border-color: #086E9E; }
+.kit-add { display: block; width: 100%; margin: 0 0 8px; padding: 11px; border: 1.5px solid #CFE6F2; border-radius: 10px; background: #fff; color: #086E9E; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; }
+.kit-add:hover { border-color: #086E9E; }
+.added { background: #E8F8EE !important; border-color: #B7E4C7 !important; color: #14532D !important; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -529,6 +539,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/cart" class="cart-link" aria-label="Cart"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg><span class="cart-count" data-cart-count hidden></span></a>
       <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
@@ -587,6 +598,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="19250">KES 19,250</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20305%20m%20CAT6%20UTP%20Network%20Cable%20%28Solid%20Copper%2C%200.565%20mm%2C%20CM%29%20%28DS-1LN6-UU%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-1ln6-uu-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -600,6 +612,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="17050">KES 17,050</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20305%20m%20CAT6%20UTP%20Network%20Cable%20%28Solid%20Copper%2C%200.55%20mm%2C%20Orange%29%20%28DS-1LN6U-SC0%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-1ln6u-sc0-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -613,6 +626,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="14300">KES 14,300</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20CAT6%20U/UTP%20Network%20Cable%20%28Solid%20Copper%2C%200.5mm%29%20%28DS-1LN6UZC0%28O-STD%29%20orange%20305m%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-1ln6uzc0-o-std-orange-305m" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -626,6 +640,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="23100">KES 23,100</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Cat6A%20UTP%20Outdoor%20Network%20Cable%20%28DS-1LN6AUSPE%28O-STD%29%20black%20305m%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-1ln6auspe-o-std-black-305m" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -639,6 +654,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="8250">KES 8,250</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20CAT6%20U/UTP%20Network%20Cable%20%28CCA%2C%200.57mm%29%20%28NC-1LN6UU/CCA%28O-STD%29%20grey%20305m%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="nc-1ln6uu-cca-o-std-grey-305m" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -652,6 +668,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="1320">KES 1,320</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20RJ45%20Plug-CAT6%2CCAT5E%20%28DS-1M6UA-15U%28O-STD%29/100PCS%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-1m6ua-15u-o-std-100pcs" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -665,6 +682,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="1320">KES 1,320</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20RJ45%20Plug-CAT6A-unshielded%20%28DS-1M6AUA%28O-STD%29/100PCS%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-1m6aua-o-std-100pcs" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -678,6 +696,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="1980">KES 1,980</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20RJ45%20Plug-CAT6A%20%28DS-1M6APB%28O-STD%29/50PCS%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-1m6apb-o-std-50pcs" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -691,6 +710,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="1320">KES 1,320</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20300M%20Wireless%20Router%20%28DS-3WR3N%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3wr3n-o-std-uk" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -704,6 +724,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="4400">KES 4,400</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20300Mbps%204G%20LTE%20Wi-Fi%20Router%20%28DS-3WR4G3N%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3wr4g3n-o-std-uk" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -717,6 +738,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="2750">KES 2,750</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20AC1200%20Wireless%20Router%20%28DS-3WR12C%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3wr12c-o-std-uk" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -730,6 +752,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="5500">KES 5,500</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%201500M%20Wi-Fi%206%20Wireless%20Router%20%28DS-3WR15X%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3wr15x-o-std-uk" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -743,6 +766,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="1650">KES 1,650</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20N300%20Wi-Fi%20Extender%20%28DS-3WRE3N%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3wre3n-o-std-uk" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -756,6 +780,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="6600">KES 6,600</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20AC1200%204G%20CAT4%20Wireless%20Router%20%28DS-3WR4G12C%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3wr4g12c-o-std-uk" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -769,6 +794,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="770">KES 770</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%205-Port%20Fast%20Ethernet%20Plastic%20Switch%20%28DS-3E0105D-O%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0105d-o-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -782,6 +808,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="880">KES 880</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208-Port%20Fast%20Ethernet%20Plastic%20Switch%20%28DS-3E0108D-O%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0108d-o-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -795,6 +822,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="4180">KES 4,180</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016-Port%20Fast%20Ethernet%20Metal%20Switch%20%28DS-3E0116R-O%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0116r-o-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -808,6 +836,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="1650">KES 1,650</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204-Port%20Gigabit%20Unmanaged%20Switch%20%28DS-3E0505-O%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0505-o-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -821,6 +850,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="2420">KES 2,420</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208-Port%20Gigabit%20Unmanaged%20Switch%20%28DS-3E0508-O%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0508-o-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -834,6 +864,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="6930">KES 6,930</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016-Port%20Gigabit%20Unmanaged%20Switch%20%28DS-3E0516R-O%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0516r-o" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -847,6 +878,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="8250">KES 8,250</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2024-Port%20Gigabit%20Unmanaged%20Switch%20%28DS-3E0524R-O%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0524r-o" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -860,6 +892,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="3630">KES 3,630</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20Port%20Fast%20Ethernet%20Unmanaged%20POE%20Switch%20%28DS-3E0106P-E/M%28B%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0106p-e-m-b-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -873,6 +906,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="5830">KES 5,830</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20Port%20Fast%20Ethernet%20Unmanaged%20POE%20Switch%20%28DS-3E0310P-E/M%28B%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0310p-e-m-b-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -886,6 +920,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="3740">KES 3,740</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20Port%20Gigabit%20Unmanaged%20POE%20Switch%20%28DS-3E0505P-E/M%28O-STD%29%28B%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0505p-e-m-o-std-b" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -899,6 +934,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="6930">KES 6,930</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20Port%20Gigabit%20Unmanaged%20POE%20Switch%20%28DS-3E0510P-E/M%28O-STD%29%28B%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0510p-e-m-o-std-b" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -912,6 +948,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="22000">KES 22,000</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016%20Port%20Gigabit%20Unmanaged%20POE%20Switch%20%28DS-3E0518P-E%28O-STD%29%28B%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0518p-e-o-std-b" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -925,6 +962,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="29150">KES 29,150</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2024%20Port%20Gigabit%20Unmanaged%20POE%20Switch%20%28DS-3E0526P-E%28O-STD%29%28B%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e0526p-e-o-std-b" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -938,6 +976,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="4290">KES 4,290</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20Port%20Fast%20Ethernet%20Smart%20POE%20Switch%20%28DS-3E1106P-EI/M%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e1106p-ei-m-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -951,6 +990,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="7260">KES 7,260</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20Port%20Fast%20Ethernet%20Smart%20POE%20Switch%20%28DS-3E1310P-EI/M%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e1310p-ei-m-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -964,6 +1004,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="18700">KES 18,700</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016%20Port%20Fast%20Ethernet%20Smart%20POE%20Switch%20%28DS-3E1318P-EI/M%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e1318p-ei-m-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -977,6 +1018,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="24200">KES 24,200</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2024%20Port%20Fast%20Ethernet%20Smart%20POE%20Switch%20%28DS-3E1326P-EI/M%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e1326p-ei-m-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -990,6 +1032,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="28050">KES 28,050</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016%20Port%20Gigabit%20Smart%20Managed%20POE%20Switch%20%28DS-3E1518P-EI%28O-STD%29V2%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e1518p-ei-o-std-v2" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1003,6 +1046,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="36850">KES 36,850</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2024%20Port%20Gigabit%20Smart%20Managed%20POE%20Switch%20%28DS-3E1526P-EI%28O-STD%29V2%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e1526p-ei-o-std-v2" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1016,6 +1060,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="81400">KES 81,400</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2048%20Port%20Gigabit%20Smart%20Managed%20POE%20Switch%20%28DS-3E1552P-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3e1552p-si-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1029,6 +1074,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="5280">KES 5,280</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202.4Ghz%20300Mbps%20200m%20Elevator%20Wireless%20Bridge%20%28DS-3WF0BC-2NT%28B%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3wf0bc-2nt-b-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1042,6 +1088,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="11880">KES 11,880</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%205Ghz%20867Mbps%203KM%20Wireless%20Bridge%20Kit%20%28DS-3WF3000-EI-5AC/P%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3wf3000-ei-5ac-p-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>
@@ -1055,6 +1102,7 @@ section.block { padding: 44px 0 0; }
     <div class="pc-foot">
       <div class="pc-price" data-kes="14080">KES 14,080</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%205Ghz%20867Mbps%205KM%20Wireless%20Bridge%20Kit%20%28DS-3WF02-5AC/D%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="ds-3wf02-5ac-d-o-std" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>

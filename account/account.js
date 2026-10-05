@@ -84,5 +84,40 @@
     }).then(function () { $('submit-btn').disabled = false; });
   });
 
+  // Reward credit and order history.
+  var ORDER_STATUS = { new: 'Received', confirmed: 'Confirmed', paid: 'Paid', delivered: 'Delivered', cancelled: 'Cancelled' };
+  function money(n) { return 'KES ' + Math.round(n).toLocaleString('en-KE'); }
+  function day(sql) { return new Date(sql.replace(' ', 'T') + 'Z').toLocaleDateString('en-KE', { day: 'numeric', month: 'short', year: 'numeric' }); }
+
+  function loadSummary() {
+    return fetch('/api/account/summary', { credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (s) {
+      if (!s.signedIn) return;
+      $('reward-balance').textContent = money(s.balance);
+      var note = s.balance > 0 && s.next
+        ? money(s.next.amount) + ' of this expires on ' + day(s.next.expires) + '. Use it at checkout on your next order.'
+        : 'Earn ' + s.rewardPercent + '% of every paid order as credit for your next order. Credit lasts 6 months.';
+      $('reward-note').textContent = note;
+      $('reward-card').hidden = false;
+      if (s.orders.length) {
+        var list = $('orders-list');
+        list.textContent = '';
+        s.orders.forEach(function (o) {
+          var a = document.createElement('a');
+          a.className = 'order';
+          a.href = '/order/?n=' + encodeURIComponent(o.number) + '&k=' + encodeURIComponent(o.token);
+          a.innerHTML = '<span><strong></strong><small></small></span><span style="text-align:right"><strong></strong><span class="st"></span></span>';
+          a.querySelector('strong').textContent = o.number;
+          a.querySelector('small').textContent = day(o.created_at) + (o.reward_earned ? ' · earned ' + money(o.reward_earned) : '');
+          a.querySelectorAll('strong')[1].textContent = money(o.total);
+          a.querySelector('.st').textContent = ORDER_STATUS[o.status] || o.status;
+          a.querySelector('.st').style.display = 'block';
+          list.appendChild(a);
+        });
+        $('orders-card').hidden = false;
+      }
+    }).catch(function () {});
+  }
+
   load().catch(function () {});
+  loadSummary();
 })();

@@ -451,6 +451,7 @@ def render(product, siblings, index):
         </div>
 
         <div class="ctas">
+          <button class="btn btn-cart" type="button" data-add-cart="{esc(product['slug'])}" hidden>Add to cart</button>
           <a class="btn btn-wa" href="{esc(enquiry)}" target="_blank" rel="noopener">Enquire on WhatsApp</a>
           <a class="btn btn-call" href="tel:{PHONE}">Call {PHONE_LABEL}</a>
           <a class="btn btn-ghost" href="{esc(quote)}" target="_blank" rel="noopener">Request a quote</a>
@@ -510,6 +511,7 @@ def catalog_card_html(product):
     <div class="pc-foot">
       <div class="pc-price" data-kes="{product['price']}">KES {catalog.price_label(product['price'])}</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="{esc(enquiry)}" target="_blank" rel="noopener">Enquire &rarr;</a></div>
+      <button class="pc-add" type="button" data-add-cart="{esc(product['slug'])}" hidden>+ Add to cart</button>
     </div>
   </div>
 </div>"""
@@ -805,6 +807,7 @@ def kit_card_html(kit, by_model, compact=False):
       <p>{esc(kit['summary'])}</p>
       <div class="kit-price" data-kes="{total}"><small>from</small> KES {catalog.price_label(total)}<small>equipment</small></div>
       {more}
+      <button class="kit-add" type="button" data-add-kit="{esc(json.dumps([[by_model[m]["slug"], q] for m, q in kit["items"]]))}" hidden>Add bundle to cart</button>
       <a class="kit-cta" href="{esc(ask)}" target="_blank" rel="noopener">Get this bundle</a>
     </article>"""
 
@@ -877,6 +880,13 @@ def picks_html(products):
     </div>
     <script type="application/json" id="picks-data">{payload}</script>
   </section>"""
+
+
+def write_price_list(products):
+    """data/prices.json: what the cart and the order API need, without the 1 MB catalogue."""
+    prices = {p["slug"]: {"n": p["name"], "m": p["model"].strip(), "p": p["price"], "i": p["image"],
+                          "c": p["category"], "u": p["url"]} for p in products}
+    (ROOT / "data/prices.json").write_text(json.dumps(prices, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
 
 
 def write_quote_page(products):
@@ -968,7 +978,8 @@ def last_modified(paths):
 
 
 def write_sitemap(products):
-    pages = [p for p in sorted(ROOT.glob("*.html")) if p.name != "404.html"]
+    # Pages marked noindex (404, cart) stay out of the sitemap.
+    pages = [p for p in sorted(ROOT.glob("*.html")) if 'name="robots" content="noindex' not in p.read_text(encoding="utf-8")]
     pages = [ROOT / "index.html"] + [p for p in pages if p.name != "index.html"]
     pages += sorted((ROOT / "category").glob("*.html"))
     product_pages = {p["slug"]: p for p in products}
@@ -1021,6 +1032,7 @@ def main():
     write_catalog_json_ld(products)
     categories = write_category_pages(products)
     write_quote_page(products)
+    write_price_list(products)
     urls = write_sitemap(products)
 
     print(f"{len(products)} product pages written to product/")

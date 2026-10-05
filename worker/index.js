@@ -27,6 +27,9 @@ export default {
       if (path === "/admin" || path.startsWith("/admin/")) return await adminPage(request, env, url);
       if (path === "/account" || path.startsWith("/account/")) return await accountPage(request, env, url);
       if (path === "/api/account/application") return await accountApplication(request, env, url);
+      if (path === "/api/account/summary") return await accountSummary(request, env);
+      if (path === "/api/orders") return await createOrder(request, env, url);
+      if (path === "/api/orders/view") return await viewOrder(request, env, url);
       if (path.startsWith("/api/admin/")) return await adminApi(request, env, url);
     } catch (error) {
       console.error(error.stack || error);
@@ -347,6 +350,7 @@ async function adminApi(request, env, url) {
   if (url.pathname === "/api/admin/technicians" && request.method === "POST") {
     return decideTechnician(request, env, user);
   }
+  if (url.pathname === "/api/admin/orders") return adminOrders(request, env, url, user);
   if (url.pathname === "/api/admin/products" && !env.GITHUB_TOKEN) {
     return json({ error: "GITHUB_TOKEN is not set in Cloudflare." }, 503);
   }
@@ -561,4 +565,243 @@ async function saveProduct(request, env, user) {
     }
   }
   return json({ error: "Someone else saved at the same time. Please try again." }, 409);
+}
+
+// ---- cart orders and rewards -------------------------------------------------
+//
+// Anyone can order. Prices always come from data/prices.json (written by the
+// build), never from the browser. Signed-in buyers earn REWARD_PERCENT (2%) of
+// a paid order as credit, approved technicians TECH_REWARD_PERCENT (1%); credit
+// expires after REWARD_MONTHS and is spent oldest-first.
+
+const REWARD_MONTHS = 6;
+const DELIVERY = { pickup: "Pick up at the NE showroom", nairobi: "Delivery in Nairobi (free)", outside: "Outside Nairobi" };
+const TRANSPORT = { courier: "courier", bus: "bus", other: "other transport" };
+let priceCache = { at: 0, data: null };
+
+async function priceList(env, origin) {
+  if (priceCache.data && Date.now() - priceCache.at < 60_000) return priceCache.data;
+  const response = await env.ASSETS.fetch(new Request(`${origin}/data/prices.json`));
+  priceCache = { at: Date.now(), data: await response.json() };
+  return priceCache.data;
+}
+
+function rewardPercent(env, technician) {
+  return Number(technician ? env.TECH_REWARD_PERCENT || 1 : env.REWARD_PERCENT || 2);
+}
+
+function isApprovedTech(user) {
+  return Boolean(user && user.role === "technician" && user.technician_status === "approved");
+}
+
+function sqlNow(offsetMonths = 0) {
+  const d = new Date();
+  if (offsetMonths) d.setUTCMonth(d.getUTCMonth() + offsetMonths);
+  return d.toISOString().replace("T", " ").slice(0, 19);
+}
+
+function kes(n) {
+  return `KES ${Math.round(n).toLocaleString("en-KE")}`;
+}
+
+// Replays the ledger: each spend uses the oldest credit that was still valid.
+async function rewardBalance(env, userId) {
+  const { results } = await env.DB.prepare(
+    "SELECT kind, amount, expires_at, created_at FROM reward_ledger WHERE user_id = ?1 ORDER BY created_at, id"
+  ).bind(userId).all();
+  const buckets = [];
+  for (const row of results) {
+    if (row.kind === "earn") {
+      buckets.push({ left: row.amount, expires: row.expires_at });
+      buckets.sort((a, b) => (a.expires < b.expires ? -1 : 1));
+    } else {
+      let need = row.amount;
+      for (const bucket of buckets) {
+        if (need <= 0) break;
+        if (bucket.expires <= row.created_at || bucket.left <= 0) continue;
+        const take = Math.min(bucket.left, need);
+        bucket.left -= take;
+        need -= take;
+      }
+    }
+  }
+  const now = sqlNow();
+  const live = buckets.filter((b) => b.left > 0 && b.expires > now);
+  const balance = live.reduce((sum, b) => sum + b.left, 0);
+  const next = live[0] ? { amount: live[0].left, expires: live[0].expires } : null;
+  return { balance, next };
+}
+
+function clean(value, max) {
+  return String(value ?? "").trim().replace(/\s+/g, " ").slice(0, max);
+}
+
+function orderMessage(order, items, url) {
+  const lines = [`Hi NE, I'd like to place an order.`, `Order ${order.number}`, ""];
+  for (const item of items) lines.push(`• ${item.qty} × ${item.name} (${item.model}) — ${kes(item.qty * item.price)}`);
+  lines.push("", `Subtotal: ${kes(order.subtotal)}`);
+  if (order.tech_discount) lines.push(`Technician discount: -${kes(order.tech_discount)}`);
+  if (order.reward_used) lines.push(`Reward credit used: -${kes(order.reward_used)}`);
+  lines.push(`Total: ${kes(order.total)}`, "");
+  let delivery = DELIVERY[order.delivery];
+  if (order.delivery === "outside") delivery += `: ${order.town}, by ${TRANSPORT[order.transport] || "courier"} (fare paid by me)`;
+  lines.push(`Delivery: ${delivery}`, `Name: ${order.name}`, `Phone: ${order.phone}`);
+  if (order.notes) lines.push(`Notes: ${order.notes}`);
+  lines.push("", `Order details: ${url}`);
+  return lines.join("\n");
+}
+
+async function createOrder(request, env, url) {
+  if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
+  if (request.headers.get("origin") !== url.origin) return json({ error: "Bad request origin." }, 403);
+  const body = await request.json();
+
+  const wanted = new Map();
+  for (const item of Array.isArray(body.items) ? body.items.slice(0, 60) : []) {
+    const qty = Math.floor(Number(item.qty));
+    if (typeof item.slug !== "string" || !(qty >= 1 && qty <= 999)) continue;
+    wanted.set(item.slug, Math.min(999, (wanted.get(item.slug) || 0) + qty));
+  }
+  if (!wanted.size) return json({ error: "Your cart is empty." }, 400);
+  const prices = await priceList(env, url.origin);
+  const items = [];
+  for (const [slug, qty] of wanted) {
+    const p = prices[slug];
+    if (p) items.push({ slug, model: p.m, name: p.n, qty, price: p.p });
+  }
+  if (!items.length) return json({ error: "These products are no longer available. Please refresh the page." }, 400);
+
+  const customer = body.customer || {};
+  const name = clean(customer.name, 80);
+  const phone = clean(customer.phone, 20);
+  const email = clean(customer.email, 120).toLowerCase();
+  if (!name) return json({ error: "Please enter your name." }, 400);
+  if (!/^[+0-9 ()-]{9,20}$/.test(phone)) return json({ error: "Please enter a valid phone number, e.g. 0712 345 678." }, 400);
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ error: "That email address does not look right." }, 400);
+  const delivery = DELIVERY[body.delivery?.type] ? body.delivery.type : null;
+  if (!delivery) return json({ error: "Choose pick-up or delivery." }, 400);
+  const town = delivery === "outside" ? clean(body.delivery.town, 80) : "";
+  const transport = delivery === "outside" ? (TRANSPORT[body.delivery.transport] ? body.delivery.transport : "courier") : null;
+  if (delivery === "outside" && !town) return json({ error: "Enter the town for delivery." }, 400);
+  const channel = body.channel === "website" ? "website" : "whatsapp";
+
+  const user = await currentUser(request, env);
+  const tech = isApprovedTech(user);
+  const subtotal = items.reduce((sum, i) => sum + i.qty * i.price, 0);
+  const techDiscountAmount = tech ? Math.round((subtotal * techDiscount(env)) / 100) : 0;
+  let rewardUsed = 0;
+  if (user && body.useReward) {
+    const { balance } = await rewardBalance(env, user.id);
+    rewardUsed = Math.min(balance, subtotal - techDiscountAmount);
+  }
+  const total = subtotal - techDiscountAmount - rewardUsed;
+  const token = randomToken(18);
+
+  const row = await env.DB.prepare(
+    `INSERT INTO orders (view_token, user_id, name, phone, email, delivery, town, transport, notes, items_json,
+       subtotal, tech_discount, reward_used, total, earn_rate, channel, consent)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17) RETURNING id`
+  ).bind(token, user ? user.id : null, name, phone, email || null, delivery, town || null, transport,
+    clean(body.notes, 500) || null, JSON.stringify(items), subtotal, techDiscountAmount, rewardUsed, total,
+    user ? rewardPercent(env, tech) : 0, channel, body.consent ? 1 : 0).first();
+  const number = `NE-${1000 + row.id}`;
+  const statements = [env.DB.prepare("UPDATE orders SET number = ?2 WHERE id = ?1").bind(row.id, number)];
+  if (rewardUsed) {
+    statements.push(env.DB.prepare("INSERT INTO reward_ledger (user_id, order_id, kind, amount) VALUES (?1, ?2, 'spend', ?3)")
+      .bind(user.id, row.id, rewardUsed));
+  }
+  await env.DB.batch(statements);
+
+  const order = { number, subtotal, tech_discount: techDiscountAmount, reward_used: rewardUsed, total, delivery, town, transport, name, phone, notes: clean(body.notes, 500) };
+  const viewUrl = `${siteOrigin(env, url)}/order/?n=${number}&k=${token}`;
+  return json({ ok: true, number, token, total, viewUrl, message: orderMessage(order, items, viewUrl) });
+}
+
+function orderPublic(order) {
+  return {
+    number: order.number, created_at: order.created_at, status: order.status, name: order.name, phone: order.phone,
+    email: order.email, delivery: order.delivery, deliveryLabel: DELIVERY[order.delivery], town: order.town,
+    transport: order.transport, notes: order.notes, items: JSON.parse(order.items_json), subtotal: order.subtotal,
+    tech_discount: order.tech_discount, reward_used: order.reward_used, total: order.total,
+    reward_earned: order.reward_earned, channel: order.channel,
+  };
+}
+
+async function viewOrder(request, env, url) {
+  const number = url.searchParams.get("n") || "";
+  const order = await env.DB.prepare("SELECT * FROM orders WHERE number = ?1").bind(number).first();
+  if (!order) return json({ error: "Order not found." }, 404);
+  const tokenOk = url.searchParams.get("k") === order.view_token;
+  if (!tokenOk) {
+    const user = await currentUser(request, env);
+    if (!user || (user.id !== order.user_id && !isAdmin(env, user))) return json({ error: "Order not found." }, 404);
+  }
+  return json({ order: orderPublic(order) });
+}
+
+async function accountSummary(request, env) {
+  const user = await currentUser(request, env);
+  if (!user) return json({ signedIn: false });
+  const tech = isApprovedTech(user);
+  const [{ balance, next }, orders] = await Promise.all([
+    rewardBalance(env, user.id),
+    env.DB.prepare(
+      "SELECT number, view_token, total, status, created_at, reward_earned FROM orders WHERE user_id = ?1 ORDER BY id DESC LIMIT 20"
+    ).bind(user.id).all(),
+  ]);
+  return json({
+    signedIn: true, name: user.name, email: user.email, balance, next,
+    rewardPercent: rewardPercent(env, tech), technician: tech, techDiscount: tech ? techDiscount(env) : 0,
+    orders: orders.results.map((o) => ({ number: o.number, token: o.view_token, total: o.total, status: o.status, created_at: o.created_at, reward_earned: o.reward_earned })),
+  });
+}
+
+const ORDER_STATUSES = ["new", "confirmed", "paid", "delivered", "cancelled"];
+
+async function adminOrders(request, env, url, admin) {
+  if (request.method === "GET") {
+    const status = url.searchParams.get("status");
+    const filter = ORDER_STATUSES.includes(status) ? "WHERE o.status = ?1" : "";
+    const stmt = env.DB.prepare(
+      `SELECT o.*, u.email AS account_email FROM orders o LEFT JOIN users u ON u.id = o.user_id ${filter} ORDER BY o.id DESC LIMIT 100`
+    );
+    const [{ results }, counts] = await Promise.all([
+      (filter ? stmt.bind(status) : stmt).all(),
+      env.DB.prepare("SELECT status, count(*) AS n FROM orders GROUP BY status").all(),
+    ]);
+    return json({
+      orders: results.map((o) => ({ id: o.id, token: o.view_token, account_email: o.account_email, user_id: o.user_id, earn_rate: o.earn_rate, consent: o.consent, ...orderPublic(o) })),
+      counts: Object.fromEntries(counts.results.map((c) => [c.status, c.n])),
+    });
+  }
+  const { id, status } = await request.json();
+  if (!Number.isInteger(id) || !ORDER_STATUSES.includes(status)) return json({ error: "Bad request." }, 400);
+  const order = await env.DB.prepare("SELECT * FROM orders WHERE id = ?1").bind(id).first();
+  if (!order) return json({ error: "Order not found." }, 404);
+
+  const statements = [env.DB.prepare("UPDATE orders SET status = ?2, updated_at = datetime('now') WHERE id = ?1").bind(id, status)];
+  let note = "";
+  if ((status === "paid" || status === "delivered") && order.user_id && !order.reward_earned && order.earn_rate > 0) {
+    const earned = Math.floor((order.total * order.earn_rate) / 100);
+    if (earned > 0) {
+      statements.push(
+        env.DB.prepare("INSERT INTO reward_ledger (user_id, order_id, kind, amount, expires_at) VALUES (?1, ?2, 'earn', ?3, ?4)")
+          .bind(order.user_id, id, earned, sqlNow(REWARD_MONTHS)),
+        env.DB.prepare("UPDATE orders SET reward_earned = ?2 WHERE id = ?1").bind(id, earned)
+      );
+      note = ` The customer earned ${kes(earned)} reward credit.`;
+    }
+  }
+  if (status === "cancelled") {
+    // Give back credit spent on this order and take back credit earned from it.
+    statements.push(
+      env.DB.prepare("DELETE FROM reward_ledger WHERE order_id = ?1").bind(id),
+      env.DB.prepare("UPDATE orders SET reward_earned = 0 WHERE id = ?1").bind(id)
+    );
+    if (order.reward_used || order.reward_earned) note = " Reward credit for this order was reversed.";
+  }
+  statements.push(env.DB.prepare("INSERT INTO audit_log (user_id, action, detail) VALUES (?1, 'order', ?2)")
+    .bind(admin.id, `Order ${order.number}: ${order.status} → ${status}`));
+  await env.DB.batch(statements);
+  return json({ ok: true, message: `Order ${order.number} is now ${status}.${note}` });
 }

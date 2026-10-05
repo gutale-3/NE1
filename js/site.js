@@ -197,7 +197,81 @@
     }).catch(function () {});
   }
 
+  // ---- Cart: kept on this device (localStorage); checkout is on /cart ------
+  var CART_KEY = 'ne_cart';
+
+  function readCart() {
+    try {
+      var data = JSON.parse(window.localStorage.getItem(CART_KEY) || '[]');
+      return Array.isArray(data) ? data.filter(function (i) { return i && typeof i.slug === 'string' && i.qty > 0; }) : [];
+    } catch (e) { return []; }
+  }
+
+  function writeCart(items) {
+    try { window.localStorage.setItem(CART_KEY, JSON.stringify(items)); } catch (e) { /* private mode: cart lasts this page only */ }
+    updateCartCount(items);
+    try { window.dispatchEvent(new CustomEvent('ne:cart', { detail: items })); } catch (e) { /* old browsers */ }
+  }
+
+  function addToCart(pairs) {
+    var items = readCart();
+    pairs.forEach(function (pair) {
+      var existing = items.filter(function (i) { return i.slug === pair[0]; })[0];
+      if (existing) existing.qty = Math.min(999, existing.qty + pair[1]);
+      else items.push({ slug: pair[0], qty: pair[1] });
+    });
+    writeCart(items);
+  }
+
+  function updateCartCount(items) {
+    var count = (items || readCart()).reduce(function (n, i) { return n + i.qty; }, 0);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-cart-count]'), function (el) {
+      el.textContent = count > 99 ? '99+' : count;
+      el.hidden = !count;
+    });
+  }
+
+  function toast(text) {
+    var el = document.getElementById('ne-toast');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'ne-toast';
+      el.setAttribute('role', 'status');
+      el.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:100;background:#10202E;color:#fff;padding:12px 16px;border-radius:12px;font:600 14px Inter,system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.25);display:flex;gap:14px;align-items:center;max-width:92vw';
+      document.body.appendChild(el);
+    }
+    el.innerHTML = '<span></span><a href="/cart" style="color:#7FD4FF;font-weight:800;white-space:nowrap">View cart &rarr;</a>';
+    el.firstChild.textContent = text;
+    el.hidden = false;
+    clearTimeout(el._t);
+    el._t = setTimeout(function () { el.hidden = true; }, 3500);
+  }
+
+  function initCart() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-add-cart], [data-add-kit]'), function (button) {
+      button.hidden = false;
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var kit = button.getAttribute('data-add-kit');
+        var pairs = kit ? JSON.parse(kit) : [[button.getAttribute('data-add-cart'), 1]];
+        addToCart(pairs);
+        var label = button.textContent;
+        button.classList.add('added');
+        button.textContent = 'Added ✓';
+        setTimeout(function () { button.classList.remove('added'); button.textContent = label; }, 1500);
+        toast(kit ? 'Bundle added to your cart' : 'Added to your cart');
+      });
+    });
+    updateCartCount();
+    // Keep the count in step when another tab changes the cart.
+    window.addEventListener('storage', function (e) { if (e.key === CART_KEY) updateCartCount(); });
+  }
+
+  window.NECart = { read: readCart, write: writeCart };
+
   function init() {
+    initCart();
     initPicks();
     initAccount();
     initCatalog();
