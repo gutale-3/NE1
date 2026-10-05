@@ -1,52 +1,100 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 # Search crawlers
 User-agent: Googlebot
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 # AI answer-engine and training crawlers — explicitly welcome, since
 # being cited in AI Overviews / ChatGPT / Perplexity / Copilot depends on it
 User-agent: Google-Extended
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: GPTBot
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: Perplexity-User
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: Claude-User
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: CCBot
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: Bytespider
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: Applebot
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /admin
+Disallow: /auth/
+Disallow: /api/
 
 Sitemap: https://nashnaal.com/sitemap.xml
