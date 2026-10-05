@@ -17,6 +17,10 @@
 
 <main>
   <div id="notice" class="notice" hidden></div>
+  <nav class="tabs">
+    <button type="button" class="tab on" data-tab="list">Products</button>
+    <button type="button" class="tab" data-tab="tech">Technicians <span class="badge" id="tech-badge" hidden></span></button>
+  </nav>
 
   <section id="list-view">
     <div class="toolbar">
@@ -30,6 +34,11 @@
       <summary>Recent changes</summary>
       <ol id="log"></ol>
     </details>
+  </section>
+
+  <section id="tech-view" hidden>
+    <p class="count" id="tech-count">Loading&hellip;</p>
+    <div id="tech-list" class="tech-list"></div>
   </section>
 
   <section id="edit-view" hidden>

@@ -205,6 +205,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -249,6 +251,7 @@ section.block { padding: 44px 0 0; }
 .wa-float { position: fixed; bottom: 22px; right: 22px; width: 56px; height: 56px; border-radius: 50%; background: #22C35E; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 60; }
 .wa-float:hover { background: #1CAD52; }
 </style>
+<script src="/js/site.js" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -269,6 +272,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -324,7 +328,7 @@ section.block { padding: 44px 0 0; }
         <div class="sku">DS-2CD2T47G3-LIS2UY/SRB(4mm)(O-STD)</div>
 
         <div class="pricebox">
-          <div class="price">KES 30,030 <small>per unit</small></div>
+          <div class="price" data-kes="30030">KES 30,030 <small>per unit</small></div>
           <div class="stock">&#10003; Genuine Hikvision stock &mdash; manufacturer warranty support</div>
           <p class="note">Talk to us for project and volume pricing, or for a quote that includes cabling, installation and configuration.</p>
         </div>
@@ -365,7 +369,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">2MP IR Bullet IP Camera</div>
             <div class="card-sku">DS-2CD1021G0-I(4mm)(O-STD)</div>
-            <div class="card-price">KES 3,740</div>
+            <div class="card-price" data-kes="3740">KES 3,740</div>
           </div>
         </a>
         <a class="card" href="/product/ds-2cd1121g0-i-2-8mm-o-std">
@@ -373,7 +377,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">2MP IR Dome IP Camera</div>
             <div class="card-sku">DS-2CD1121G0-I(2.8mm)(O-STD)</div>
-            <div class="card-price">KES 3,740</div>
+            <div class="card-price" data-kes="3740">KES 3,740</div>
           </div>
         </a>
         <a class="card" href="/product/ds-2cd1023g2-liu-4mm-o-std">
@@ -381,7 +385,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">2MP Smart Hybrid Light Bullet IP Camera</div>
             <div class="card-sku">DS-2CD1023G2-LIU(4mm)(O-STD)</div>
-            <div class="card-price">KES 5,060</div>
+            <div class="card-price" data-kes="5060">KES 5,060</div>
           </div>
         </a>
         <a class="card" href="/product/ds-2cd1123g2-liu-2-8mm-o-std">
@@ -389,7 +393,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">2MP Smart Hybrid Light Dome IP Camera</div>
             <div class="card-sku">DS-2CD1123G2-LIU(2.8mm)(O-STD)</div>
-            <div class="card-price">KES 5,060</div>
+            <div class="card-price" data-kes="5060">KES 5,060</div>
           </div>
         </a>
         <a class="card" href="/product/ds-2cd1043g2-liu-4mm-o-std">
@@ -397,7 +401,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">4MP Smart Hybrid Light Bullet IP Camera</div>
             <div class="card-sku">DS-2CD1043G2-LIU(4mm)(O-STD)</div>
-            <div class="card-price">KES 7,370</div>
+            <div class="card-price" data-kes="7370">KES 7,370</div>
           </div>
         </a>
       </div>

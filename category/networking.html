@@ -462,6 +462,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -527,6 +529,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -582,7 +585,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">305 m CAT6 UTP Network Cable (Solid Copper, 0.565 mm, CM)</h3>
     <div class="pc-sku">DS-1LN6-UU(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 19,250</div>
+      <div class="pc-price" data-kes="19250">KES 19,250</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20305%20m%20CAT6%20UTP%20Network%20Cable%20%28Solid%20Copper%2C%200.565%20mm%2C%20CM%29%20%28DS-1LN6-UU%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -595,7 +598,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">305 m CAT6 UTP Network Cable (Solid Copper, 0.55 mm, Orange)</h3>
     <div class="pc-sku">DS-1LN6U-SC0(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 17,050</div>
+      <div class="pc-price" data-kes="17050">KES 17,050</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20305%20m%20CAT6%20UTP%20Network%20Cable%20%28Solid%20Copper%2C%200.55%20mm%2C%20Orange%29%20%28DS-1LN6U-SC0%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -608,7 +611,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">CAT6 U/UTP Network Cable (Solid Copper, 0.5mm)</h3>
     <div class="pc-sku">DS-1LN6UZC0(O-STD) orange 305m</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 14,300</div>
+      <div class="pc-price" data-kes="14300">KES 14,300</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20CAT6%20U/UTP%20Network%20Cable%20%28Solid%20Copper%2C%200.5mm%29%20%28DS-1LN6UZC0%28O-STD%29%20orange%20305m%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -621,7 +624,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Cat6A UTP Outdoor Network Cable</h3>
     <div class="pc-sku">DS-1LN6AUSPE(O-STD) black 305m</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 23,100</div>
+      <div class="pc-price" data-kes="23100">KES 23,100</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Cat6A%20UTP%20Outdoor%20Network%20Cable%20%28DS-1LN6AUSPE%28O-STD%29%20black%20305m%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -634,7 +637,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">CAT6 U/UTP Network Cable (CCA, 0.57mm)</h3>
     <div class="pc-sku">NC-1LN6UU/CCA(O-STD) grey 305m</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 8,250</div>
+      <div class="pc-price" data-kes="8250">KES 8,250</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20CAT6%20U/UTP%20Network%20Cable%20%28CCA%2C%200.57mm%29%20%28NC-1LN6UU/CCA%28O-STD%29%20grey%20305m%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -647,7 +650,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">RJ45 Plug-CAT6,CAT5E</h3>
     <div class="pc-sku">DS-1M6UA-15U(O-STD)/100PCS</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,320</div>
+      <div class="pc-price" data-kes="1320">KES 1,320</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20RJ45%20Plug-CAT6%2CCAT5E%20%28DS-1M6UA-15U%28O-STD%29/100PCS%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -660,7 +663,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">RJ45 Plug-CAT6A-unshielded</h3>
     <div class="pc-sku">DS-1M6AUA(O-STD)/100PCS</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,320</div>
+      <div class="pc-price" data-kes="1320">KES 1,320</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20RJ45%20Plug-CAT6A-unshielded%20%28DS-1M6AUA%28O-STD%29/100PCS%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -673,7 +676,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">RJ45 Plug-CAT6A</h3>
     <div class="pc-sku">DS-1M6APB(O-STD)/50PCS</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,980</div>
+      <div class="pc-price" data-kes="1980">KES 1,980</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20RJ45%20Plug-CAT6A%20%28DS-1M6APB%28O-STD%29/50PCS%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -686,7 +689,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">300M Wireless Router</h3>
     <div class="pc-sku">DS-3WR3N(O-STD)/UK</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,320</div>
+      <div class="pc-price" data-kes="1320">KES 1,320</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20300M%20Wireless%20Router%20%28DS-3WR3N%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -699,7 +702,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">300Mbps 4G LTE Wi-Fi Router</h3>
     <div class="pc-sku">DS-3WR4G3N(O-STD)/UK</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 4,400</div>
+      <div class="pc-price" data-kes="4400">KES 4,400</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20300Mbps%204G%20LTE%20Wi-Fi%20Router%20%28DS-3WR4G3N%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -712,7 +715,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">AC1200 Wireless Router</h3>
     <div class="pc-sku">DS-3WR12C(O-STD)/UK</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 2,750</div>
+      <div class="pc-price" data-kes="2750">KES 2,750</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20AC1200%20Wireless%20Router%20%28DS-3WR12C%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -725,7 +728,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">1500M Wi-Fi 6 Wireless Router</h3>
     <div class="pc-sku">DS-3WR15X(O-STD)/UK</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 5,500</div>
+      <div class="pc-price" data-kes="5500">KES 5,500</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%201500M%20Wi-Fi%206%20Wireless%20Router%20%28DS-3WR15X%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -738,7 +741,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">N300 Wi-Fi Extender</h3>
     <div class="pc-sku">DS-3WRE3N(O-STD)/UK</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,650</div>
+      <div class="pc-price" data-kes="1650">KES 1,650</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20N300%20Wi-Fi%20Extender%20%28DS-3WRE3N%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -751,7 +754,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">AC1200 4G CAT4 Wireless Router</h3>
     <div class="pc-sku">DS-3WR4G12C(O-STD)/UK</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 6,600</div>
+      <div class="pc-price" data-kes="6600">KES 6,600</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20AC1200%204G%20CAT4%20Wireless%20Router%20%28DS-3WR4G12C%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -764,7 +767,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">5-Port Fast Ethernet Plastic Switch</h3>
     <div class="pc-sku">DS-3E0105D-O(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 770</div>
+      <div class="pc-price" data-kes="770">KES 770</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%205-Port%20Fast%20Ethernet%20Plastic%20Switch%20%28DS-3E0105D-O%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -777,7 +780,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8-Port Fast Ethernet Plastic Switch</h3>
     <div class="pc-sku">DS-3E0108D-O(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 880</div>
+      <div class="pc-price" data-kes="880">KES 880</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208-Port%20Fast%20Ethernet%20Plastic%20Switch%20%28DS-3E0108D-O%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -790,7 +793,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">16-Port Fast Ethernet Metal Switch</h3>
     <div class="pc-sku">DS-3E0116R-O(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 4,180</div>
+      <div class="pc-price" data-kes="4180">KES 4,180</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016-Port%20Fast%20Ethernet%20Metal%20Switch%20%28DS-3E0116R-O%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -803,7 +806,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4-Port Gigabit Unmanaged Switch</h3>
     <div class="pc-sku">DS-3E0505-O(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,650</div>
+      <div class="pc-price" data-kes="1650">KES 1,650</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204-Port%20Gigabit%20Unmanaged%20Switch%20%28DS-3E0505-O%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -816,7 +819,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8-Port Gigabit Unmanaged Switch</h3>
     <div class="pc-sku">DS-3E0508-O(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 2,420</div>
+      <div class="pc-price" data-kes="2420">KES 2,420</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208-Port%20Gigabit%20Unmanaged%20Switch%20%28DS-3E0508-O%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -829,7 +832,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">16-Port Gigabit Unmanaged Switch</h3>
     <div class="pc-sku">DS-3E0516R-O</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 6,930</div>
+      <div class="pc-price" data-kes="6930">KES 6,930</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016-Port%20Gigabit%20Unmanaged%20Switch%20%28DS-3E0516R-O%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -842,7 +845,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">24-Port Gigabit Unmanaged Switch</h3>
     <div class="pc-sku">DS-3E0524R-O</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 8,250</div>
+      <div class="pc-price" data-kes="8250">KES 8,250</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2024-Port%20Gigabit%20Unmanaged%20Switch%20%28DS-3E0524R-O%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -855,7 +858,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 Port Fast Ethernet Unmanaged POE Switch</h3>
     <div class="pc-sku">DS-3E0106P-E/M(B)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 3,630</div>
+      <div class="pc-price" data-kes="3630">KES 3,630</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20Port%20Fast%20Ethernet%20Unmanaged%20POE%20Switch%20%28DS-3E0106P-E/M%28B%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -868,7 +871,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8 Port Fast Ethernet Unmanaged POE Switch</h3>
     <div class="pc-sku">DS-3E0310P-E/M(B)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 5,830</div>
+      <div class="pc-price" data-kes="5830">KES 5,830</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20Port%20Fast%20Ethernet%20Unmanaged%20POE%20Switch%20%28DS-3E0310P-E/M%28B%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -881,7 +884,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 Port Gigabit Unmanaged POE Switch</h3>
     <div class="pc-sku">DS-3E0505P-E/M(O-STD)(B)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 3,740</div>
+      <div class="pc-price" data-kes="3740">KES 3,740</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20Port%20Gigabit%20Unmanaged%20POE%20Switch%20%28DS-3E0505P-E/M%28O-STD%29%28B%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -894,7 +897,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8 Port Gigabit Unmanaged POE Switch</h3>
     <div class="pc-sku">DS-3E0510P-E/M(O-STD)(B)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 6,930</div>
+      <div class="pc-price" data-kes="6930">KES 6,930</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20Port%20Gigabit%20Unmanaged%20POE%20Switch%20%28DS-3E0510P-E/M%28O-STD%29%28B%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -907,7 +910,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">16 Port Gigabit Unmanaged POE Switch</h3>
     <div class="pc-sku">DS-3E0518P-E(O-STD)(B)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 22,000</div>
+      <div class="pc-price" data-kes="22000">KES 22,000</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016%20Port%20Gigabit%20Unmanaged%20POE%20Switch%20%28DS-3E0518P-E%28O-STD%29%28B%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -920,7 +923,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">24 Port Gigabit Unmanaged POE Switch</h3>
     <div class="pc-sku">DS-3E0526P-E(O-STD)(B)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 29,150</div>
+      <div class="pc-price" data-kes="29150">KES 29,150</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2024%20Port%20Gigabit%20Unmanaged%20POE%20Switch%20%28DS-3E0526P-E%28O-STD%29%28B%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -933,7 +936,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 Port Fast Ethernet Smart POE Switch</h3>
     <div class="pc-sku">DS-3E1106P-EI/M(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 4,290</div>
+      <div class="pc-price" data-kes="4290">KES 4,290</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20Port%20Fast%20Ethernet%20Smart%20POE%20Switch%20%28DS-3E1106P-EI/M%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -946,7 +949,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8 Port Fast Ethernet Smart POE Switch</h3>
     <div class="pc-sku">DS-3E1310P-EI/M(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 7,260</div>
+      <div class="pc-price" data-kes="7260">KES 7,260</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20Port%20Fast%20Ethernet%20Smart%20POE%20Switch%20%28DS-3E1310P-EI/M%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -959,7 +962,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">16 Port Fast Ethernet Smart POE Switch</h3>
     <div class="pc-sku">DS-3E1318P-EI/M(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 18,700</div>
+      <div class="pc-price" data-kes="18700">KES 18,700</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016%20Port%20Fast%20Ethernet%20Smart%20POE%20Switch%20%28DS-3E1318P-EI/M%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -972,7 +975,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">24 Port Fast Ethernet Smart POE Switch</h3>
     <div class="pc-sku">DS-3E1326P-EI/M(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 24,200</div>
+      <div class="pc-price" data-kes="24200">KES 24,200</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2024%20Port%20Fast%20Ethernet%20Smart%20POE%20Switch%20%28DS-3E1326P-EI/M%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -985,7 +988,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">16 Port Gigabit Smart Managed POE Switch</h3>
     <div class="pc-sku">DS-3E1518P-EI(O-STD)V2</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 28,050</div>
+      <div class="pc-price" data-kes="28050">KES 28,050</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016%20Port%20Gigabit%20Smart%20Managed%20POE%20Switch%20%28DS-3E1518P-EI%28O-STD%29V2%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -998,7 +1001,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">24 Port Gigabit Smart Managed POE Switch</h3>
     <div class="pc-sku">DS-3E1526P-EI(O-STD)V2</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 36,850</div>
+      <div class="pc-price" data-kes="36850">KES 36,850</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2024%20Port%20Gigabit%20Smart%20Managed%20POE%20Switch%20%28DS-3E1526P-EI%28O-STD%29V2%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1011,7 +1014,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">48 Port Gigabit Smart Managed POE Switch</h3>
     <div class="pc-sku">DS-3E1552P-SI(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 81,400</div>
+      <div class="pc-price" data-kes="81400">KES 81,400</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2048%20Port%20Gigabit%20Smart%20Managed%20POE%20Switch%20%28DS-3E1552P-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1024,7 +1027,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">2.4Ghz 300Mbps 200m Elevator Wireless Bridge</h3>
     <div class="pc-sku">DS-3WF0BC-2NT(B)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 5,280</div>
+      <div class="pc-price" data-kes="5280">KES 5,280</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202.4Ghz%20300Mbps%20200m%20Elevator%20Wireless%20Bridge%20%28DS-3WF0BC-2NT%28B%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1037,7 +1040,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">5Ghz 867Mbps 3KM Wireless Bridge Kit</h3>
     <div class="pc-sku">DS-3WF3000-EI-5AC/P(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 11,880</div>
+      <div class="pc-price" data-kes="11880">KES 11,880</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%205Ghz%20867Mbps%203KM%20Wireless%20Bridge%20Kit%20%28DS-3WF3000-EI-5AC/P%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1050,7 +1053,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">5Ghz 867Mbps 5KM Wireless Bridge Kit</h3>
     <div class="pc-sku">DS-3WF02-5AC/D(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 14,080</div>
+      <div class="pc-price" data-kes="14080">KES 14,080</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%205Ghz%20867Mbps%205KM%20Wireless%20Bridge%20Kit%20%28DS-3WF02-5AC/D%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>

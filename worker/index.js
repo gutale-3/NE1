@@ -11,6 +11,9 @@ const SESSION_COOKIE = "ne_session";
 const OAUTH_COOKIE = "ne_oauth";
 const SESSION_DAYS = 30;
 const PRODUCTS_PATH = "data/products.json";
+// Readable by page scripts (unlike the session cookie), so static pages only
+// call /api/me for people who have signed in.
+const HINT_COOKIE = "ne_signed_in";
 
 export default {
   async fetch(request, env) {
@@ -22,6 +25,8 @@ export default {
       if (path === "/auth/logout") return await logout(request, env);
       if (path === "/api/me") return await me(request, env);
       if (path === "/admin" || path.startsWith("/admin/")) return await adminPage(request, env, url);
+      if (path === "/account" || path.startsWith("/account/")) return await accountPage(request, env, url);
+      if (path === "/api/account/application") return await accountApplication(request, env, url);
       if (path.startsWith("/api/admin/")) return await adminApi(request, env, url);
     } catch (error) {
       console.error(error.stack || error);
@@ -65,6 +70,15 @@ function getCookie(request, name) {
 
 function cookie(name, value, maxAge) {
   return `${name}=${encodeURIComponent(value)}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`;
+}
+
+function hintCookie(on) {
+  return `${HINT_COOKIE}=${on ? "1" : ""}; Path=/; Secure; SameSite=Lax; Max-Age=${on ? SESSION_DAYS * 86400 : 0}`;
+}
+
+function techDiscount(env) {
+  const pct = Number(env.TECH_DISCOUNT_PERCENT || 5);
+  return Number.isFinite(pct) && pct > 0 && pct < 50 ? pct : 5;
 }
 
 function siteOrigin(env, url) {
@@ -200,6 +214,7 @@ async function googleCallback(request, env, url) {
   const headers = new Headers({ location: safeNext(saved.next), "cache-control": "no-store" });
   headers.append("set-cookie", cookie(SESSION_COOKIE, sessionId, SESSION_DAYS * 86400));
   headers.append("set-cookie", cookie(OAUTH_COOKIE, "", 0));
+  headers.append("set-cookie", hintCookie(true));
   return new Response(null, { status: 302, headers });
 }
 
@@ -216,16 +231,80 @@ async function currentUser(request, env) {
 async function logout(request, env) {
   const sessionId = getCookie(request, SESSION_COOKIE);
   if (sessionId) await env.DB.prepare("DELETE FROM sessions WHERE id = ?1").bind(await sha256(sessionId)).run();
-  return new Response(null, {
-    status: 302,
-    headers: { location: safeNext(new URL(request.url).searchParams.get("next")), "set-cookie": cookie(SESSION_COOKIE, "", 0), "cache-control": "no-store" },
-  });
+  const headers = new Headers({ location: safeNext(new URL(request.url).searchParams.get("next")), "cache-control": "no-store" });
+  headers.append("set-cookie", cookie(SESSION_COOKIE, "", 0));
+  headers.append("set-cookie", hintCookie(false));
+  return new Response(null, { status: 302, headers });
 }
 
 async function me(request, env) {
   const user = await currentUser(request, env);
-  if (!user) return json({ signedIn: false });
-  return json({ signedIn: true, name: user.name, email: user.email, picture: user.picture, role: user.role, admin: isAdmin(env, user) });
+  // A stale hint (session expired or signed out elsewhere) is cleared.
+  if (!user) return json({ signedIn: false }, 200, { "set-cookie": hintCookie(false) });
+  const approved = user.role === "technician" && user.technician_status === "approved";
+  return json({
+    signedIn: true, name: user.name, email: user.email, admin: isAdmin(env, user),
+    technician: user.technician_status || null,
+    techDiscount: approved ? techDiscount(env) : 0,
+  });
+}
+
+// ---- customer / technician account -------------------------------------------
+
+async function accountPage(request, env, url) {
+  const user = await currentUser(request, env);
+  if (!user) return Response.redirect(`${url.origin}/auth/google/login?next=/account`, 302);
+  const assetPath = url.pathname === "/account" ? "/account/" : url.pathname;
+  const asset = await env.ASSETS.fetch(new Request(new URL(assetPath, url.origin), request));
+  const response = new Response(asset.body, asset);
+  response.headers.set("cache-control", "no-store");
+  response.headers.set("x-robots-tag", "noindex");
+  return response;
+}
+
+const APPLICATION_FIELDS = {
+  full_name: { label: "Full name", max: 80, required: true },
+  phone: { label: "Phone / WhatsApp", max: 30, required: true },
+  business: { label: "Business name", max: 100 },
+  town: { label: "Town / area", max: 80, required: true },
+  years: { label: "Years installing CCTV", max: 20 },
+  cert_number: { label: "Hikvision certificate number", max: 80 },
+  work_link: { label: "Link to your work", max: 300 },
+};
+
+async function accountApplication(request, env, url) {
+  const user = await currentUser(request, env);
+  if (!user) return json({ error: "Please sign in first." }, 401);
+  if (request.method === "GET") {
+    const app = await env.DB.prepare("SELECT * FROM technician_applications WHERE user_id = ?1").bind(user.id).first();
+    return json({ application: app || null, user: { name: user.name, email: user.email }, discount: techDiscount(env) });
+  }
+  if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
+  if (request.headers.get("origin") !== url.origin) return json({ error: "Bad request origin." }, 403);
+
+  const body = await request.json();
+  const values = {};
+  for (const [key, rule] of Object.entries(APPLICATION_FIELDS)) {
+    const value = String(body[key] ?? "").trim().slice(0, rule.max);
+    if (rule.required && !value) return json({ error: `${rule.label} is required.` }, 400);
+    values[key] = value;
+  }
+  if (!/^[+0-9 ()-]{9,20}$/.test(values.phone)) return json({ error: "Enter a valid phone number, e.g. 0712 345 678." }, 400);
+  if (values.work_link && !/^https?:\/\//i.test(values.work_link)) values.work_link = `https://${values.work_link}`;
+
+  const existing = await env.DB.prepare("SELECT status FROM technician_applications WHERE user_id = ?1").bind(user.id).first();
+  if (existing && existing.status === "approved") return json({ error: "You are already an approved technician." }, 400);
+
+  await env.DB.batch([
+    env.DB.prepare(
+      `INSERT INTO technician_applications (user_id, full_name, phone, business, town, years, cert_number, work_link, status)
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, 'pending')
+       ON CONFLICT(user_id) DO UPDATE SET full_name = ?2, phone = ?3, business = ?4, town = ?5, years = ?6,
+         cert_number = ?7, work_link = ?8, status = 'pending', updated_at = datetime('now'), decided_at = NULL`
+    ).bind(user.id, values.full_name, values.phone, values.business, values.town, values.years, values.cert_number, values.work_link),
+    env.DB.prepare("UPDATE users SET technician_status = 'pending' WHERE id = ?1 AND role != 'admin'").bind(user.id),
+  ]);
+  return json({ ok: true, status: "pending" });
 }
 
 // ---- admin -----------------------------------------------------------------
@@ -258,7 +337,19 @@ async function adminApi(request, env, url) {
     const origin = request.headers.get("origin");
     if (origin !== url.origin || request.headers.get("x-ne-admin") !== "1") return json({ error: "Bad request origin." }, 403);
   }
-  if (!env.GITHUB_TOKEN) return json({ error: "GITHUB_TOKEN is not set in Cloudflare." }, 503);
+  if (url.pathname === "/api/admin/technicians" && request.method === "GET") {
+    const { results } = await env.DB.prepare(
+      `SELECT a.*, u.email FROM technician_applications a JOIN users u ON u.id = a.user_id
+       ORDER BY CASE a.status WHEN 'pending' THEN 0 WHEN 'approved' THEN 1 ELSE 2 END, a.updated_at DESC`
+    ).all();
+    return json({ technicians: results, discount: techDiscount(env) });
+  }
+  if (url.pathname === "/api/admin/technicians" && request.method === "POST") {
+    return decideTechnician(request, env, user);
+  }
+  if (url.pathname === "/api/admin/products" && !env.GITHUB_TOKEN) {
+    return json({ error: "GITHUB_TOKEN is not set in Cloudflare." }, 503);
+  }
 
   if (url.pathname === "/api/admin/products" && request.method === "GET") {
     try {
@@ -279,6 +370,26 @@ async function adminApi(request, env, url) {
     return json({ log: results });
   }
   return json({ error: "Not found." }, 404);
+}
+
+async function decideTechnician(request, env, admin) {
+  const { user_id: userId, decision } = await request.json();
+  const status = { approve: "approved", reject: "rejected", remove: "removed" }[decision];
+  if (!status || !Number.isInteger(userId)) return json({ error: "Bad request." }, 400);
+  const app = await env.DB.prepare(
+    "SELECT a.full_name, u.email FROM technician_applications a JOIN users u ON u.id = a.user_id WHERE a.user_id = ?1"
+  ).bind(userId).first();
+  if (!app) return json({ error: "Application not found." }, 404);
+  await env.DB.batch([
+    env.DB.prepare("UPDATE technician_applications SET status = ?2, decided_at = datetime('now'), updated_at = datetime('now') WHERE user_id = ?1")
+      .bind(userId, status),
+    env.DB.prepare(
+      "UPDATE users SET technician_status = ?2, role = CASE WHEN role = 'admin' THEN role WHEN ?2 = 'approved' THEN 'technician' ELSE 'customer' END WHERE id = ?1"
+    ).bind(userId, status),
+    env.DB.prepare("INSERT INTO audit_log (user_id, action, detail) VALUES (?1, ?2, ?3)")
+      .bind(admin.id, `technician-${decision}`, `Technician ${status}: ${app.full_name} (${app.email})`),
+  ]);
+  return json({ ok: true, status });
 }
 
 function summary(p) {

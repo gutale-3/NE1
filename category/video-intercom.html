@@ -312,6 +312,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -377,6 +379,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -432,7 +435,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4-Wire HD Video Intercom Kit</h3>
     <div class="pc-sku">DS-KIS212(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 11,880</div>
+      <div class="pc-price" data-kes="11880">KES 11,880</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204-Wire%20HD%20Video%20Intercom%20Kit%20%28DS-KIS212%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -445,7 +448,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 wire HD Kits</h3>
     <div class="pc-sku">DS-KIS213(O-STD)/Africa</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 13,090</div>
+      <div class="pc-price" data-kes="13090">KES 13,090</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20wire%20HD%20Kits%20%28DS-KIS213%28O-STD%29/Africa%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -458,7 +461,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Hybrid HD Intercom Kit</h3>
     <div class="pc-sku">DS-KIS313-P(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 18,700</div>
+      <div class="pc-price" data-kes="18700">KES 18,700</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Hybrid%20HD%20Intercom%20Kit%20%28DS-KIS313-P%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -471,7 +474,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">IP Video Intercom Kit</h3>
     <div class="pc-sku">DS-KIS603-P(C)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 26,730</div>
+      <div class="pc-price" data-kes="26730">KES 26,730</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20IP%20Video%20Intercom%20Kit%20%28DS-KIS603-P%28C%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -484,7 +487,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">IP video intercom kit</h3>
     <div class="pc-sku">DS-KIS604-S(C)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 35,860</div>
+      <div class="pc-price" data-kes="35860">KES 35,860</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20IP%20video%20intercom%20kit%20%28DS-KIS604-S%28C%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -497,7 +500,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">IP Video Intercom Kit</h3>
     <div class="pc-sku">DS-KIS608-P(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 30,250</div>
+      <div class="pc-price" data-kes="30250">KES 30,250</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20IP%20Video%20Intercom%20Kit%20%28DS-KIS608-P%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -510,7 +513,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">IP Video Intercom Kit</h3>
     <div class="pc-sku">DS-KIS612-P(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 30,250</div>
+      <div class="pc-price" data-kes="30250">KES 30,250</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20IP%20Video%20Intercom%20Kit%20%28DS-KIS612-P%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -523,7 +526,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">KH6 Series IP-Based Indoor Station</h3>
     <div class="pc-sku">DS-KH6320-WTE1(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 13,860</div>
+      <div class="pc-price" data-kes="13860">KES 13,860</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20KH6%20Series%20IP-Based%20Indoor%20Station%20%28DS-KH6320-WTE1%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -536,7 +539,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">KH6 Series IP-Based Indoor Station</h3>
     <div class="pc-sku">DS-KH6350-WTE1(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 14,740</div>
+      <div class="pc-price" data-kes="14740">KES 14,740</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20KH6%20Series%20IP-Based%20Indoor%20Station%20%28DS-KH6350-WTE1%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -549,7 +552,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">POE/Wifi Villa Door Station</h3>
     <div class="pc-sku">DS-KV6113-WPE1(C)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 13,420</div>
+      <div class="pc-price" data-kes="13420">KES 13,420</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20POE/Wifi%20Villa%20Door%20Station%20%28DS-KV6113-WPE1%28C%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -562,7 +565,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">1 Button Metal Villa Door Station</h3>
     <div class="pc-sku">DS-KV8113-WME1(C)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 18,150</div>
+      <div class="pc-price" data-kes="18150">KES 18,150</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%201%20Button%20Metal%20Villa%20Door%20Station%20%28DS-KV8113-WME1%28C%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -575,7 +578,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Villa door station</h3>
     <div class="pc-sku">DS-KV6124-WBE1(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 17,160</div>
+      <div class="pc-price" data-kes="17160">KES 17,160</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Villa%20door%20station%20%28DS-KV6124-WBE1%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>

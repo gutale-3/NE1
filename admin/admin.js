@@ -91,8 +91,85 @@
   function show(view) {
     $('list-view').hidden = view !== 'list';
     $('edit-view').hidden = view !== 'edit';
+    $('tech-view').hidden = view !== 'tech';
+    Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
+      tab.classList.toggle('on', tab.getAttribute('data-tab') === (view === 'edit' ? 'list' : view));
+    });
     window.scrollTo(0, 0);
   }
+
+  // ---- technicians ---------------------------------------------------------
+  var LABELS = [['phone', 'Phone'], ['business', 'Business'], ['town', 'Town'], ['years', 'Years'],
+    ['cert_number', 'Certificate'], ['work_link', 'Work'], ['email', 'Google'], ['created_at', 'Applied']];
+
+  function loadTechs() {
+    return api('/api/admin/technicians').then(function (data) {
+      var pending = data.technicians.filter(function (t) { return t.status === 'pending'; }).length;
+      $('tech-badge').textContent = pending;
+      $('tech-badge').hidden = !pending;
+      $('tech-count').textContent = data.technicians.length
+        ? pending + ' waiting · ' + data.technicians.length + ' total · approved technicians get ' + data.discount + '% off'
+        : 'No applications yet. Technicians apply from the "Sign in" link on the website.';
+      var list = $('tech-list');
+      list.textContent = '';
+      data.technicians.forEach(function (t) { list.appendChild(techCard(t)); });
+    });
+  }
+
+  function techCard(t) {
+    var el = document.createElement('article');
+    el.className = 'tech ' + t.status;
+    el.innerHTML = '<div class="st"></div><h3></h3><dl></dl><div class="row-actions"></div>';
+    el.querySelector('.st').className = 'st ' + t.status;
+    el.querySelector('.st').textContent = t.status;
+    el.querySelector('h3').textContent = t.full_name;
+    var dl = el.querySelector('dl');
+    LABELS.forEach(function (pair) {
+      if (!t[pair[0]]) return;
+      var dt = document.createElement('dt'); dt.textContent = pair[1];
+      var dd = document.createElement('dd');
+      if (pair[0] === 'work_link' && /^https?:\/\//.test(t.work_link)) {
+        var a = document.createElement('a'); a.href = t.work_link; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = t.work_link;
+        dd.appendChild(a);
+      } else {
+        dd.textContent = pair[0] === 'created_at' ? t[pair[0]] + ' UTC' : t[pair[0]];
+      }
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    var actions = el.querySelector('.row-actions');
+    var digits = String(t.phone).replace(/[^0-9]/g, '').replace(/^0/, '254');
+    var wa = document.createElement('a');
+    wa.className = 'wa'; wa.target = '_blank'; wa.rel = 'noopener';
+    wa.href = 'https://wa.me/' + digits + '?text=' + encodeURIComponent('Hi ' + t.full_name.split(' ')[0] + ', this is NE (Nashnaal Electronics) about your technician account application.');
+    wa.textContent = 'WhatsApp';
+    actions.appendChild(wa);
+    function button(label, cls, decision, confirmText) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = cls; b.textContent = label;
+      b.addEventListener('click', function () {
+        if (confirmText && !window.confirm(confirmText)) return;
+        b.disabled = true;
+        api('/api/admin/technicians', { user_id: t.user_id, decision: decision }).then(function () {
+          notice(t.full_name + ': ' + (decision === 'approve' ? 'approved. They now see technician prices.' : decision === 'reject' ? 'not approved.' : 'technician prices turned off.'));
+          loadTechs(); loadLog();
+        }).catch(function (err) { b.disabled = false; notice(err.message, true); });
+      });
+      actions.appendChild(b);
+    }
+    if (t.status !== 'approved') button('Approve', 'ok', 'approve');
+    if (t.status === 'pending') button('Reject', 'danger', 'reject', 'Reject ' + t.full_name + '?');
+    if (t.status === 'approved') button('Remove technician prices', 'danger', 'remove', 'Turn off technician prices for ' + t.full_name + '?');
+    return el;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
+    tab.addEventListener('click', function () {
+      notice('');
+      var view = tab.getAttribute('data-tab');
+      show(view);
+      if (view === 'tech') loadTechs().catch(function (err) { notice(err.message, true); });
+    });
+  });
 
   function openEditor(p) {
     editing = p;
@@ -180,4 +257,5 @@
   $('filter-cat').addEventListener('change', renderList);
 
   load().then(loadLog).catch(function (err) { notice(err.message, true); $('count').textContent = ''; });
+  loadTechs().catch(function () {});  // fills the badge
 })();

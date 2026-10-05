@@ -324,6 +324,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -389,6 +391,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -444,7 +447,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Pro Fingerprint Terminal</h3>
     <div class="pc-sku">DS-K1T808MFWX(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 10,780</div>
+      <div class="pc-price" data-kes="10780">KES 10,780</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Pro%20Fingerprint%20Terminal%20%28DS-K1T808MFWX%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -457,7 +460,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Face Access Terminal</h3>
     <div class="pc-sku">DS-K1T323MBFWX-E1(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 14,850</div>
+      <div class="pc-price" data-kes="14850">KES 14,850</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Face%20Access%20Terminal%20%28DS-K1T323MBFWX-E1%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -470,7 +473,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Face Access Terminal</h3>
     <div class="pc-sku">DS-K1T341CMF(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 23,870</div>
+      <div class="pc-price" data-kes="23870">KES 23,870</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Face%20Access%20Terminal%20%28DS-K1T341CMF%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -483,7 +486,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Face Recognition Terminal</h3>
     <div class="pc-sku">DS-K1T342MFX-E1(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 21,670</div>
+      <div class="pc-price" data-kes="21670">KES 21,670</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Face%20Recognition%20Terminal%20%28DS-K1T342MFX-E1%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -496,7 +499,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Value Series Face Access Terminal</h3>
     <div class="pc-sku">DS-K1T344MBFWX-E1(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 27,280</div>
+      <div class="pc-price" data-kes="27280">KES 27,280</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Value%20Series%20Face%20Access%20Terminal%20%28DS-K1T344MBFWX-E1%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -509,7 +512,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name"> Magnetic Locks</h3>
     <div class="pc-sku">DS-K4H255S(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 2,530</div>
+      <div class="pc-price" data-kes="2530">KES 2,530</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20%20Magnetic%20Locks%20%28DS-K4H255S%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -522,7 +525,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">L bracket for DS-K4H255S</h3>
     <div class="pc-sku">DS-K4H255-LZ(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,265</div>
+      <div class="pc-price" data-kes="1265">KES 1,265</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20L%20bracket%20for%20DS-K4H255S%20%28DS-K4H255-LZ%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -535,7 +538,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Door Closer</h3>
     <div class="pc-sku">DS-K4DC104(O-NEU)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 3,850</div>
+      <div class="pc-price" data-kes="3850">KES 3,850</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Door%20Closer%20%28DS-K4DC104%28O-NEU%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -548,7 +551,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Exit &amp; Emergency Button</h3>
     <div class="pc-sku">DS-K7P01(O-NEU)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,045</div>
+      <div class="pc-price" data-kes="1045">KES 1,045</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Exit%20%26%20Emergency%20Button%20%28DS-K7P01%28O-NEU%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -561,7 +564,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Exit &amp; Emergency Button</h3>
     <div class="pc-sku">DS-K7P02(O-NEU)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,045</div>
+      <div class="pc-price" data-kes="1045">KES 1,045</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Exit%20%26%20Emergency%20Button%20%28DS-K7P02%28O-NEU%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -574,7 +577,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Exit &amp; Emergency Button</h3>
     <div class="pc-sku">DS-K7P03(O-NEU)/T</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 2,090</div>
+      <div class="pc-price" data-kes="2090">KES 2,090</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Exit%20%26%20Emergency%20Button%20%28DS-K7P03%28O-NEU%29/T%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -587,7 +590,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Exit &amp; Emergency Button</h3>
     <div class="pc-sku">DS-K7PEB/Green(O-NEU)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 2,090</div>
+      <div class="pc-price" data-kes="2090">KES 2,090</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Exit%20%26%20Emergency%20Button%20%28DS-K7PEB/Green%28O-NEU%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -600,7 +603,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Mifare Card</h3>
     <div class="pc-sku">IC S50(O-NEU)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 165</div>
+      <div class="pc-price" data-kes="165">KES 165</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Mifare%20Card%20%28IC%20S50%28O-NEU%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -613,7 +616,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">M1 Card</h3>
     <div class="pc-sku">DS-K7M102-M(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 132</div>
+      <div class="pc-price" data-kes="132">KES 132</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20M1%20Card%20%28DS-K7M102-M%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>

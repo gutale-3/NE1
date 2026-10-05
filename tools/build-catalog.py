@@ -142,7 +142,7 @@ def card_html(product):
           <div class="card-body">
             <div class="card-name">{esc(product['name'])}</div>
             <div class="card-sku">{esc(product['model'])}</div>
-            <div class="card-price">KES {catalog.price_label(product['price'])}</div>
+            <div class="card-price" data-kes="{product['price']}">KES {catalog.price_label(product['price'])}</div>
           </div>
         </a>"""
 
@@ -423,6 +423,7 @@ def render(product, siblings, index):
 {STYLE}
 </style>
 {site_layout.css_block()}
+<script src="/js/site.js" defer></script>
 </head>
 <body>
   {site_layout.header_html("/products")}
@@ -444,7 +445,7 @@ def render(product, siblings, index):
         <div class="sku">{esc(product['model'])}</div>
 
         <div class="pricebox">
-          <div class="price">KES {catalog.price_label(product['price'])} <small>per unit</small></div>
+          <div class="price" data-kes="{product['price']}">KES {catalog.price_label(product['price'])} <small>per unit</small></div>
           <div class="stock">&#10003; {"Genuine Hikvision stock &mdash; manufacturer warranty support" if brand_of(product) == "Hikvision" else "In stock at our Nairobi showroom"}</div>
           <p class="note">Talk to us for project and volume pricing, or for a quote that includes cabling, installation and configuration.</p>
         </div>
@@ -507,7 +508,7 @@ def catalog_card_html(product):
     <h3 class="pc-name">{esc(product['name'])}</h3>
     <div class="pc-sku">{esc(product['model'])}</div>
     <div class="pc-foot">
-      <div class="pc-price">KES {catalog.price_label(product['price'])}</div>
+      <div class="pc-price" data-kes="{product['price']}">KES {catalog.price_label(product['price'])}</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="{esc(enquiry)}" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -802,7 +803,7 @@ def kit_card_html(kit, by_model, compact=False):
       {flag}{image}<div class="kit-for">{esc(kit['for'])}</div>
       <h3>{esc(kit['name'])}</h3>
       <p>{esc(kit['summary'])}</p>
-      <div class="kit-price"><small>from</small> KES {catalog.price_label(total)}<small>equipment</small></div>
+      <div class="kit-price" data-kes="{total}"><small>from</small> KES {catalog.price_label(total)}<small>equipment</small></div>
       {more}
       <a class="kit-cta" href="{esc(ask)}" target="_blank" rel="noopener">Get this bundle</a>
     </article>"""
@@ -842,7 +843,7 @@ def pick_card(product, slot):
         <div class="pick-body">
           <div class="pick-cat">{esc(product['category'])}</div>
           <div class="pick-name">{esc(product['name'])}</div>
-          <div class="pick-foot"><span>KES {catalog.price_label(product['price'])}</span><span>View &rarr;</span></div>
+          <div class="pick-foot"><span data-kes="{product['price']}">KES {catalog.price_label(product['price'])}</span><span>View &rarr;</span></div>
         </div>
       </a>"""
 
@@ -860,7 +861,7 @@ def picks_html(products):
         chosen.append(match or next(p for p in pool if p not in chosen))
     cards = "\n      ".join(pick_card(p, i) for i, p in enumerate(chosen))
     data = [[{"u": p["url"], "i": "/" + p["image"], "n": p["name"], "c": p["category"],
-              "p": catalog.price_label(p["price"]), "m": p["model"].strip()} for p in pool] for pool in (pools[0], pools[1], pools[3])]
+              "p": catalog.price_label(p["price"]), "k": p["price"], "m": p["model"].strip()} for p in pool] for pool in (pools[0], pools[1], pools[3])]
     # site.js draws the third slot from the HD and IP pools combined.
     assert len(pools[2]) == len(pools[0]) + len(pools[1]), "a camera outside the HD/IP pools"
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
