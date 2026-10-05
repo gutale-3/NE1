@@ -33,6 +33,8 @@ def active_for(name):
         return "/solutions"
     if stem.startswith("blog"):
         return "/blog"
+    if stem == "cctv-installation-nairobi":
+        return "/services"
     return {"services": "/services", "about": "/about", "contact": "/contact"}.get(stem)
 
 
