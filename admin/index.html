@@ -20,6 +20,7 @@
   <nav class="tabs">
     <button type="button" class="tab on" data-tab="list">Products</button>
     <button type="button" class="tab" data-tab="orders">Orders <span class="badge" id="orders-badge" hidden></span></button>
+    <button type="button" class="tab" data-tab="customers">Customers</button>
     <button type="button" class="tab" data-tab="tech">Technicians <span class="badge" id="tech-badge" hidden></span></button>
   </nav>
 
@@ -48,6 +49,31 @@
     </div>
     <p class="count" id="orders-count">Loading&hellip;</p>
     <div id="orders-list" class="tech-list"></div>
+  </section>
+
+  <section id="customers-view" hidden>
+    <div class="tiles" id="cust-tiles"></div>
+    <div class="toolbar">
+      <input id="cust-search" type="search" placeholder="Search name, phone or email" autocomplete="off">
+      <select id="cust-filter">
+        <option value="">Everyone</option>
+        <option value="credit">Has reward credit</option>
+        <option value="customer">Customers (signed in)</option>
+        <option value="technician">Technicians</option>
+        <option value="guest">Guests (ordered without signing in)</option>
+      </select>
+    </div>
+    <div class="range">
+      <label>Sales from <input type="date" id="cust-from"></label>
+      <label>to <input type="date" id="cust-to"></label>
+      <button type="button" class="chip" id="cust-range-clear">All time</button>
+    </div>
+    <div class="reports">
+      <a class="primary" id="pdf-credit" href="/admin/report/?type=credit" target="_blank" rel="noopener">PDF: credit we owe</a>
+      <a class="primary alt" id="pdf-sales" href="/admin/report/?type=sales" target="_blank" rel="noopener">PDF: how much they bought</a>
+    </div>
+    <p class="count" id="cust-count">Loading&hellip;</p>
+    <div id="cust-list" class="tech-list"></div>
   </section>
 
   <section id="tech-view" hidden>

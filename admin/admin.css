@@ -66,3 +66,22 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: #086E9E
 .ord ul { margin: 8px 0; padding-left: 18px; font-size: 13.5px; line-height: 1.6; }
 .ord .st.new { color: #B54708; } .ord .st.confirmed { color: #086E9E; } .ord .st.paid, .ord .st.delivered { color: #067647; } .ord .st.cancelled { color: #B42318; }
 .tabs { overflow-x: auto; }
+.tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+.tile { background: #fff; border: 1px solid #E7ECF1; border-radius: 12px; padding: 12px; }
+.tile b { display: block; font-size: 18px; }
+.tile span { font-size: 12px; color: #4A5B68; }
+.tile.owe { background: #0F2A3D; color: #fff; border: 0; } .tile.owe span { color: #BFD7E5; }
+.range { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 10px 0; font-size: 13px; font-weight: 700; color: #4A5B68; }
+.range label { display: flex; gap: 6px; align-items: center; }
+.range input { width: auto; padding: 7px 8px; }
+.reports { display: flex; gap: 8px; flex-wrap: wrap; }
+.reports a { text-decoration: none; font-size: 14px; }
+.reports .alt { background: #10202E; }
+.cust .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
+.cust .nums div { background: #F6F8FA; border-radius: 9px; padding: 8px 10px; }
+.cust .nums b { display: block; font-size: 15px; } .cust .nums span { font-size: 11.5px; color: #4A5B68; }
+.cust .nums .owe { background: #E8F8EE; }
+.cust .meta { font-size: 13px; color: #4A5B68; margin-top: 2px; word-break: break-word; }
+.tag { display: inline-block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; background: #EAF6FC; color: #086E9E; margin-left: 6px; vertical-align: middle; }
+.tag.technician { background: #E8F8EE; color: #067647; } .tag.guest { background: #F2F4F7; color: #4A5B68; }
+@media (max-width: 640px) { .tiles { grid-template-columns: 1fr 1fr; } }
