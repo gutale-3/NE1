@@ -79,6 +79,35 @@ function isAdmin(env, user) {
   return Boolean(user && adminEmails(env).includes(user.email.toLowerCase()));
 }
 
+function escapeHtml(text) {
+  return String(text).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+// A small branded page for sign-in problems. `actions` is [{ href, label, primary }].
+function messagePage(status, title, message, actions = []) {
+  const buttons = actions.map((a) =>
+    `<a class="btn${a.primary ? " primary" : ""}" href="${escapeHtml(a.href)}">${escapeHtml(a.label)}</a>`).join("");
+  const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>${escapeHtml(title)} | NE</title><link rel="icon" type="image/png" href="/assets/nashnaal-favicon.png">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
+font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#F6F8FA;color:#10202E}
+.card{width:100%;max-width:440px;background:#fff;border:1px solid #E7ECF1;border-radius:18px;padding:32px 28px;text-align:center;box-shadow:0 10px 30px rgba(16,32,46,.08)}
+.card img{width:56px;height:56px;border-radius:12px}h1{font-size:22px;margin:16px 0 8px}
+p{font-size:15px;line-height:1.6;color:#4A5B68;margin:0 0 24px}.actions{display:grid;gap:10px}
+.btn{display:block;padding:13px 16px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;border:1.5px solid #D5DEE5;color:#10202E}
+.btn.primary{background:#086E9E;border-color:#086E9E;color:#fff}
+</style></head><body><main class="card">
+<img src="/assets/nashnaal-logo-header.webp" alt="NE" width="56" height="56">
+<h1>${escapeHtml(title)}</h1><p>${message}</p><div class="actions">${buttons}</div>
+</main></body></html>`;
+  return new Response(html, { status, headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-robots-tag": "noindex" } });
+}
+
+const TRY_AGAIN = { href: "/auth/google/login?next=/admin", label: "Try again", primary: true };
+const HOME = { href: "/", label: "Back to the website" };
+
 // Only send people back to a path on this site.
 function safeNext(value) {
   return value && value.startsWith("/") && !value.startsWith("//") ? value : "/";
@@ -113,7 +142,7 @@ async function googleLoginRedirect(env, url) {
 
 function googleLogin(env, url) {
   if (!env.GOOGLE_CLIENT_ID || !env.GOOGLE_CLIENT_SECRET) {
-    return new Response("Sign-in is not configured yet.", { status: 503 });
+    return messagePage(503, "Sign-in is not ready", "Sign-in has not been set up on this site yet.", [HOME]);
   }
   return googleLoginRedirect(env, url);
 }
@@ -121,8 +150,11 @@ function googleLogin(env, url) {
 async function googleCallback(request, env, url) {
   const saved = JSON.parse(getCookie(request, OAUTH_COOKIE) || "null");
   const code = url.searchParams.get("code");
+  if (url.searchParams.get("error")) {
+    return messagePage(400, "Sign-in cancelled", "You did not finish signing in with Google.", [TRY_AGAIN, HOME]);
+  }
   if (!saved || !code || url.searchParams.get("state") !== saved.state) {
-    return new Response("Sign-in expired. Please try again.", { status: 400 });
+    return messagePage(400, "Sign-in expired", "That sign-in link has expired or was opened twice. Please start again.", [TRY_AGAIN, HOME]);
   }
   const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
@@ -138,7 +170,7 @@ async function googleCallback(request, env, url) {
   });
   if (!tokenResponse.ok) {
     console.error("token exchange failed", await tokenResponse.text());
-    return new Response("Google sign-in failed. Please try again.", { status: 400 });
+    return messagePage(400, "Google sign-in failed", "Google did not accept the sign-in. Please try again.", [TRY_AGAIN, HOME]);
   }
   const { id_token: idToken } = await tokenResponse.json();
   // The ID token came straight from Google's token endpoint over TLS, so its
@@ -146,7 +178,7 @@ async function googleCallback(request, env, url) {
   const claims = JSON.parse(atob(idToken.split(".")[1].replace(/-/g, "+").replace(/_/g, "/")));
   const issuerOk = claims.iss === "https://accounts.google.com" || claims.iss === "accounts.google.com";
   if (!issuerOk || claims.aud !== env.GOOGLE_CLIENT_ID || !claims.email_verified || claims.exp * 1000 < Date.now()) {
-    return new Response("Google sign-in could not be verified.", { status: 400 });
+    return messagePage(400, "Sign-in could not be verified", "Use a Google account with a verified email address.", [TRY_AGAIN, HOME]);
   }
 
   const email = String(claims.email).toLowerCase();
@@ -186,7 +218,7 @@ async function logout(request, env) {
   if (sessionId) await env.DB.prepare("DELETE FROM sessions WHERE id = ?1").bind(await sha256(sessionId)).run();
   return new Response(null, {
     status: 302,
-    headers: { location: "/", "set-cookie": cookie(SESSION_COOKIE, "", 0), "cache-control": "no-store" },
+    headers: { location: safeNext(new URL(request.url).searchParams.get("next")), "set-cookie": cookie(SESSION_COOKIE, "", 0), "cache-control": "no-store" },
   });
 }
 
@@ -204,10 +236,11 @@ async function adminPage(request, env, url) {
     return Response.redirect(`${url.origin}/auth/google/login?next=${encodeURIComponent(url.pathname)}`, 302);
   }
   if (!isAdmin(env, user)) {
-    return new Response(`Signed in as ${user.email}, which is not an admin account.`, {
-      status: 403,
-      headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "no-store" },
-    });
+    return messagePage(403, "This account can't open the admin area",
+      `You are signed in as <strong>${escapeHtml(user.email)}</strong>, which is not an NE admin account. ` +
+      "Sign out, then sign in again with the admin Google account.",
+      [{ href: "/auth/logout?next=" + encodeURIComponent("/auth/google/login?next=/admin"), label: "Sign out and use another account", primary: true },
+       { href: "/auth/logout", label: "Sign out" }, HOME]);
   }
   const assetPath = url.pathname === "/admin" ? "/admin/" : url.pathname;
   const asset = await env.ASSETS.fetch(new Request(new URL(assetPath, url.origin), request));
@@ -228,8 +261,13 @@ async function adminApi(request, env, url) {
   if (!env.GITHUB_TOKEN) return json({ error: "GITHUB_TOKEN is not set in Cloudflare." }, 503);
 
   if (url.pathname === "/api/admin/products" && request.method === "GET") {
-    const { products } = await loadProducts(env);
-    return json({ products: products.map(summary), user: { name: user.name, email: user.email } });
+    try {
+      const { products } = await loadProducts(env);
+      return json({ products: products.map(summary), user: { name: user.name, email: user.email } });
+    } catch (error) {
+      if (error.status) return json({ error: githubHelp(error) }, 502);
+      throw error;
+    }
   }
   if (url.pathname === "/api/admin/products" && request.method === "POST") {
     return saveProduct(request, env, user);
@@ -253,6 +291,17 @@ function summary(p) {
 // Python's slugify in tools/catalog.py.
 function slugify(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+function githubHelp(error) {
+  console.error(error.message);
+  const detail = (error.message.match(/"message":\s*"([^"]+)"/) || [])[1] || "";
+  if (error.status === 401) return "GitHub rejected the token (expired or wrong). Make a new GITHUB_TOKEN and update it in Cloudflare.";
+  if (error.status === 403 || error.status === 404) {
+    return "GitHub refused to save: the token can read but not write. Edit the token on GitHub and set Repository permissions → Contents → Read and write for gutale-3/NE1." +
+      (detail ? ` (GitHub said: ${detail})` : "");
+  }
+  return `GitHub error ${error.status}${detail ? `: ${detail}` : ""}. Please try again.`;
 }
 
 // ---- GitHub (git data API, so one commit can hold the JSON and a photo) -----
@@ -396,6 +445,7 @@ async function saveProduct(request, env, user) {
     } catch (error) {
       if (error instanceof UserError) return json({ error: error.message }, 400);
       if (error.status === 422 && attempt === 0) continue; // branch moved; reload and retry once
+      if (error.status) return json({ error: githubHelp(error) }, 502);
       throw error;
     }
   }
