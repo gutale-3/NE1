@@ -92,7 +92,92 @@
     $('list-view').hidden = view !== 'list';
     $('edit-view').hidden = view !== 'edit';
     $('tech-view').hidden = view !== 'tech';
-    Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
+    $('orders-view').hidden = view !== 'orders';
+    // ---- orders --------------------------------------------------------------
+  var orderFilter = '';
+  var ORDER_NEXT = {
+    new: [['confirmed', 'Confirm', 'primary'], ['paid', 'Mark paid', 'ok'], ['cancelled', 'Cancel', 'danger']],
+    confirmed: [['paid', 'Mark paid', 'ok'], ['cancelled', 'Cancel', 'danger']],
+    paid: [['delivered', 'Mark delivered', 'ok']],
+    delivered: [],
+    cancelled: [],
+  };
+
+  function loadOrders() {
+    return api('/api/admin/orders' + (orderFilter ? '?status=' + orderFilter : '')).then(function (data) {
+      var waiting = data.counts.new || 0;
+      $('orders-badge').textContent = waiting;
+      $('orders-badge').hidden = !waiting;
+      var total = Object.keys(data.counts).reduce(function (n, k) { return n + data.counts[k]; }, 0);
+      $('orders-count').textContent = total ? data.orders.length + ' shown · ' + waiting + ' new · ' + total + ' total' : 'No orders yet. They appear here when customers check out from the cart.';
+      var list = $('orders-list');
+      list.textContent = '';
+      data.orders.forEach(function (o) { list.appendChild(orderCard(o)); });
+    });
+  }
+
+  function orderCard(o) {
+    var el = document.createElement('article');
+    el.className = 'tech ord ' + o.status;
+    el.innerHTML = '<div class="head"><div><div class="st"></div><h3></h3></div><div class="tot"></div></div><dl></dl><ul></ul><div class="row-actions"></div>';
+    el.querySelector('.st').className = 'st ' + o.status;
+    el.querySelector('.st').textContent = o.status + ' · ' + (o.channel === 'whatsapp' ? 'sent via WhatsApp' : 'sent on website');
+    el.querySelector('h3').textContent = o.number + ' — ' + o.name;
+    el.querySelector('.tot').textContent = money(o.total);
+    var delivery = o.delivery === 'outside' ? 'Outside Nairobi: ' + o.town + ' (' + o.transport + ', customer pays)' : o.deliveryLabel;
+    var facts = [['Phone', o.phone], ['Email', o.email], ['Delivery', delivery], ['Account', o.account_email ? o.account_email + ' (earns ' + o.earn_rate + '%)' : 'Guest – no rewards'],
+      ['Discounts', [o.tech_discount ? 'technician −' + money(o.tech_discount) : '', o.reward_used ? 'reward −' + money(o.reward_used) : ''].filter(Boolean).join(', ')],
+      ['Reward earned', o.reward_earned ? money(o.reward_earned) : ''], ['Notes', o.notes], ['Placed', o.created_at + ' UTC']];
+    var dl = el.querySelector('dl');
+    facts.forEach(function (f) {
+      if (!f[1]) return;
+      var dt = document.createElement('dt'); dt.textContent = f[0];
+      var dd = document.createElement('dd'); dd.textContent = f[1];
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    var ul = el.querySelector('ul');
+    o.items.forEach(function (i) {
+      var li = document.createElement('li');
+      li.textContent = i.qty + ' × ' + i.name + ' (' + i.model + ') — ' + money(i.qty * i.price);
+      ul.appendChild(li);
+    });
+    var actions = el.querySelector('.row-actions');
+    var digits = String(o.phone).replace(/[^0-9]/g, '').replace(/^0/, '254');
+    var wa = document.createElement('a');
+    wa.className = 'wa'; wa.target = '_blank'; wa.rel = 'noopener';
+    wa.href = 'https://wa.me/' + digits + '?text=' + encodeURIComponent('Hi ' + o.name.split(' ')[0] + ', this is NE (Nashnaal Electronics) about your order ' + o.number + ' (' + money(o.total) + ').');
+    wa.textContent = 'WhatsApp';
+    actions.appendChild(wa);
+    var view = document.createElement('a');
+    view.className = 'chip'; view.target = '_blank'; view.rel = 'noopener';
+    view.href = '/order/?n=' + encodeURIComponent(o.number) + '&k=' + encodeURIComponent(o.token);
+    view.textContent = 'Open / PDF';
+    actions.appendChild(view);
+    (ORDER_NEXT[o.status] || []).forEach(function (step) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = step[2]; b.textContent = step[1];
+      b.addEventListener('click', function () {
+        if (step[0] === 'cancelled' && !window.confirm('Cancel order ' + o.number + '? Any reward credit used on it goes back to the customer.')) return;
+        b.disabled = true;
+        api('/api/admin/orders', { id: o.id, status: step[0] }).then(function (res) {
+          notice(res.message);
+          loadOrders(); loadLog();
+        }).catch(function (err) { b.disabled = false; notice(err.message, true); });
+      });
+      actions.appendChild(b);
+    });
+    return el;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('#order-filter .chip'), function (chip) {
+    chip.addEventListener('click', function () {
+      orderFilter = chip.getAttribute('data-status');
+      Array.prototype.forEach.call(document.querySelectorAll('#order-filter .chip'), function (c) { c.classList.toggle('on', c === chip); });
+      loadOrders().catch(function (err) { notice(err.message, true); });
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
       tab.classList.toggle('on', tab.getAttribute('data-tab') === (view === 'edit' ? 'list' : view));
     });
     window.scrollTo(0, 0);
@@ -162,12 +247,97 @@
     return el;
   }
 
+  // ---- orders --------------------------------------------------------------
+  var orderFilter = '';
+  var ORDER_NEXT = {
+    new: [['confirmed', 'Confirm', 'primary'], ['paid', 'Mark paid', 'ok'], ['cancelled', 'Cancel', 'danger']],
+    confirmed: [['paid', 'Mark paid', 'ok'], ['cancelled', 'Cancel', 'danger']],
+    paid: [['delivered', 'Mark delivered', 'ok']],
+    delivered: [],
+    cancelled: [],
+  };
+
+  function loadOrders() {
+    return api('/api/admin/orders' + (orderFilter ? '?status=' + orderFilter : '')).then(function (data) {
+      var waiting = data.counts.new || 0;
+      $('orders-badge').textContent = waiting;
+      $('orders-badge').hidden = !waiting;
+      var total = Object.keys(data.counts).reduce(function (n, k) { return n + data.counts[k]; }, 0);
+      $('orders-count').textContent = total ? data.orders.length + ' shown · ' + waiting + ' new · ' + total + ' total' : 'No orders yet. They appear here when customers check out from the cart.';
+      var list = $('orders-list');
+      list.textContent = '';
+      data.orders.forEach(function (o) { list.appendChild(orderCard(o)); });
+    });
+  }
+
+  function orderCard(o) {
+    var el = document.createElement('article');
+    el.className = 'tech ord ' + o.status;
+    el.innerHTML = '<div class="head"><div><div class="st"></div><h3></h3></div><div class="tot"></div></div><dl></dl><ul></ul><div class="row-actions"></div>';
+    el.querySelector('.st').className = 'st ' + o.status;
+    el.querySelector('.st').textContent = o.status + ' · ' + (o.channel === 'whatsapp' ? 'sent via WhatsApp' : 'sent on website');
+    el.querySelector('h3').textContent = o.number + ' — ' + o.name;
+    el.querySelector('.tot').textContent = money(o.total);
+    var delivery = o.delivery === 'outside' ? 'Outside Nairobi: ' + o.town + ' (' + o.transport + ', customer pays)' : o.deliveryLabel;
+    var facts = [['Phone', o.phone], ['Email', o.email], ['Delivery', delivery], ['Account', o.account_email ? o.account_email + ' (earns ' + o.earn_rate + '%)' : 'Guest – no rewards'],
+      ['Discounts', [o.tech_discount ? 'technician −' + money(o.tech_discount) : '', o.reward_used ? 'reward −' + money(o.reward_used) : ''].filter(Boolean).join(', ')],
+      ['Reward earned', o.reward_earned ? money(o.reward_earned) : ''], ['Notes', o.notes], ['Placed', o.created_at + ' UTC']];
+    var dl = el.querySelector('dl');
+    facts.forEach(function (f) {
+      if (!f[1]) return;
+      var dt = document.createElement('dt'); dt.textContent = f[0];
+      var dd = document.createElement('dd'); dd.textContent = f[1];
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    var ul = el.querySelector('ul');
+    o.items.forEach(function (i) {
+      var li = document.createElement('li');
+      li.textContent = i.qty + ' × ' + i.name + ' (' + i.model + ') — ' + money(i.qty * i.price);
+      ul.appendChild(li);
+    });
+    var actions = el.querySelector('.row-actions');
+    var digits = String(o.phone).replace(/[^0-9]/g, '').replace(/^0/, '254');
+    var wa = document.createElement('a');
+    wa.className = 'wa'; wa.target = '_blank'; wa.rel = 'noopener';
+    wa.href = 'https://wa.me/' + digits + '?text=' + encodeURIComponent('Hi ' + o.name.split(' ')[0] + ', this is NE (Nashnaal Electronics) about your order ' + o.number + ' (' + money(o.total) + ').');
+    wa.textContent = 'WhatsApp';
+    actions.appendChild(wa);
+    var view = document.createElement('a');
+    view.className = 'chip'; view.target = '_blank'; view.rel = 'noopener';
+    view.href = '/order/?n=' + encodeURIComponent(o.number) + '&k=' + encodeURIComponent(o.token);
+    view.textContent = 'Open / PDF';
+    actions.appendChild(view);
+    (ORDER_NEXT[o.status] || []).forEach(function (step) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = step[2]; b.textContent = step[1];
+      b.addEventListener('click', function () {
+        if (step[0] === 'cancelled' && !window.confirm('Cancel order ' + o.number + '? Any reward credit used on it goes back to the customer.')) return;
+        b.disabled = true;
+        api('/api/admin/orders', { id: o.id, status: step[0] }).then(function (res) {
+          notice(res.message);
+          loadOrders(); loadLog();
+        }).catch(function (err) { b.disabled = false; notice(err.message, true); });
+      });
+      actions.appendChild(b);
+    });
+    return el;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('#order-filter .chip'), function (chip) {
+    chip.addEventListener('click', function () {
+      orderFilter = chip.getAttribute('data-status');
+      Array.prototype.forEach.call(document.querySelectorAll('#order-filter .chip'), function (c) { c.classList.toggle('on', c === chip); });
+      loadOrders().catch(function (err) { notice(err.message, true); });
+    });
+  });
+
   Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
     tab.addEventListener('click', function () {
       notice('');
       var view = tab.getAttribute('data-tab');
       show(view);
       if (view === 'tech') loadTechs().catch(function (err) { notice(err.message, true); });
+      if (view === 'orders') loadOrders().catch(function (err) { notice(err.message, true); });
     });
   });
 
@@ -258,4 +428,5 @@
 
   load().then(loadLog).catch(function (err) { notice(err.message, true); $('count').textContent = ''; });
   loadTechs().catch(function () {});  // fills the badge
+  loadOrders().catch(function () {});
 })();

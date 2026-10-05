@@ -111,6 +111,16 @@ a { color: #086E9E; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
 .acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
 .acct:hover { color: #086E9E; background: #F6F8FA; }
+.cart-link { position: relative; display: inline-flex; align-items: center; padding: 8px; color: #10202E; flex-shrink: 0; }
+.cart-link:hover { color: #086E9E; }
+.cart-count { position: absolute; top: 0; right: -2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #22C35E; color: #fff; font-size: 11px; font-weight: 800; line-height: 18px; text-align: center; }
+.btn-cart { background: #10202E; color: #fff; border: 0; cursor: pointer; font-family: inherit; }
+.btn-cart:hover { background: #0F2A3D; color: #fff; }
+.pc-add { position: relative; z-index: 2; margin-top: 10px; width: 100%; padding: 9px 10px; border: 1.5px solid #CFE6F2; border-radius: 9px; background: #fff; color: #086E9E; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
+.pc-add:hover { border-color: #086E9E; }
+.kit-add { display: block; width: 100%; margin: 0 0 8px; padding: 11px; border: 1.5px solid #CFE6F2; border-radius: 10px; background: #fff; color: #086E9E; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; }
+.kit-add:hover { border-color: #086E9E; }
+.added { background: #E8F8EE !important; border-color: #B7E4C7 !important; color: #14532D !important; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -177,6 +187,7 @@ a { color: #086E9E; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/cart" class="cart-link" aria-label="Cart"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg><span class="cart-count" data-cart-count hidden></span></a>
       <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
@@ -284,6 +295,7 @@ a { color: #086E9E; }
       <p>Four 1080p cameras with 20 m night vision, a 4-channel eDVR with built-in 512 GB SSD, power, cabling, clips and connectors.</p>
       <div class="kit-price" data-kes="18980"><small>from</small> KES 18,980<small>equipment</small></div>
       <ul><li><span>2 &times; <a href="/product/ds-2ce16d0t-exipf-3-6mm-o-std">HD-1080P IR Bullet-20M</a></span><span>KES 2,600</span></li><li><span>2 &times; <a href="/product/ds-2ce76d0t-exipf-2-8mm-o-std">HD-1080P IR Turret-20M</a></span><span>KES 2,600</span></li><li><span>1 &times; <a href="/product/ds-e04hghi-d">4-Channel 1080p eDVR with Built-in 512 GB SSD</a></span><span>KES 9,000</span></li><li><span>1 &times; <a href="/product/ds-2fa1225-c4-uk-o-std">Power Supply</a></span><span>KES 1,210</span></li><li><span>1 &times; <a href="/product/ds-1lh1scam592c-o-std-90m">90 m Mini RG59 Coaxial Cable with Power Cable</a></span><span>KES 2,970</span></li><li><span>4 &times; <a href="/product/conn-set">Camera Connector Set (2× BNC, DC Jack &amp; RJ45)</a></span><span>KES 400</span></li><li><span>1 &times; <a href="/product/clips-100">Cable Clips (Box of 100)</a></span><span>KES 200</span></li></ul>
+      <button class="kit-add" type="button" data-add-kit="[[&quot;ds-2ce16d0t-exipf-3-6mm-o-std&quot;, 2], [&quot;ds-2ce76d0t-exipf-2-8mm-o-std&quot;, 2], [&quot;ds-e04hghi-d&quot;, 1], [&quot;ds-2fa1225-c4-uk-o-std&quot;, 1], [&quot;ds-1lh1scam592c-o-std-90m&quot;, 1], [&quot;conn-set&quot;, 4], [&quot;clips-100&quot;, 1]]" hidden>Add bundle to cart</button>
       <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20HD%20home%20starter%20bundle%20%28KES%2018%2C980%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
     </article>
     <article class="kit kit-pop" id="hd-colorvu">
@@ -292,6 +304,7 @@ a { color: #086E9E; }
       <p>Eight full-colour night vision cameras with audio, an 8-channel eDVR with built-in 1 TB SSD, power, cabling, clips and connectors.</p>
       <div class="kit-price" data-kes="47730"><small>from</small> KES 47,730<small>equipment</small></div>
       <ul><li><span>4 &times; <a href="/product/ds-2ce10df0t-lpfs-3-6mm-o-std">HD-1080P Smart Hybrid Light ColorVu Bullet with Audio-20M</a></span><span>KES 14,080</span></li><li><span>4 &times; <a href="/product/ds-2ce70df0t-lpfs-2-8mm-o-std">HD-1080P Smart Hybrid Light ColorVu Turret with Audio-20M</a></span><span>KES 14,080</span></li><li><span>1 &times; <a href="/product/ds-e08hghi-d">8-Channel 1080p eDVR with Built-in 1 TB SSD</a></span><span>KES 11,000</span></li><li><span>1 &times; <a href="/product/ds-2fa1205-c8-uk-o-std">Power Supply</a></span><span>KES 1,650</span></li><li><span>1 &times; <a href="/product/ds-1lh1scam592c-o-std-180m">180 m Mini RG59 Coaxial Cable with Power Cable</a></span><span>KES 5,720</span></li><li><span>8 &times; <a href="/product/conn-set">Camera Connector Set (2× BNC, DC Jack &amp; RJ45)</a></span><span>KES 800</span></li><li><span>2 &times; <a href="/product/clips-100">Cable Clips (Box of 100)</a></span><span>KES 400</span></li></ul>
+      <button class="kit-add" type="button" data-add-kit="[[&quot;ds-2ce10df0t-lpfs-3-6mm-o-std&quot;, 4], [&quot;ds-2ce70df0t-lpfs-2-8mm-o-std&quot;, 4], [&quot;ds-e08hghi-d&quot;, 1], [&quot;ds-2fa1205-c8-uk-o-std&quot;, 1], [&quot;ds-1lh1scam592c-o-std-180m&quot;, 1], [&quot;conn-set&quot;, 8], [&quot;clips-100&quot;, 2]]" hidden>Add bundle to cart</button>
       <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20HD%20ColorVu%20shop%20%26%20office%20bundle%20%28KES%2047%2C730%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
     </article>
     <article class="kit" id="hd-3k">
@@ -300,6 +313,7 @@ a { color: #086E9E; }
       <p>Eight sharper 3K full-colour cameras with audio, a 3K-ready 8-channel DVR, 4 TB hard disk, power, cabling, clips and connectors.</p>
       <div class="kit-price" data-kes="80820"><small>from</small> KES 80,820<small>equipment</small></div>
       <ul><li><span>4 &times; <a href="/product/ds-2ce10kf0t-lpfs-3-6mm-o-std">HD-3K Smart Hybrid Light ColorVu Bullet with Audio-20M</a></span><span>KES 20,020</span></li><li><span>4 &times; <a href="/product/ds-2ce70kf0t-lpfs-2-8mm-o-std">HD-3K Smart Hybrid Light ColorVu Turret with Audio-20M</a></span><span>KES 20,020</span></li><li><span>1 &times; <a href="/product/ids-7108hqhi-m1-t-std">HD-5MP/3K DVR-8CH Plastic 1 HDD</a></span><span>KES 12,210</span></li><li><span>1 &times; <a href="/product/hdd-4tb">4 TB CCTV Surveillance Hard Disk</a></span><span>KES 20,000</span></li><li><span>1 &times; <a href="/product/ds-2fa1205-c8-uk-o-std">Power Supply</a></span><span>KES 1,650</span></li><li><span>1 &times; <a href="/product/ds-1lh1scam592c-o-std-180m">180 m Mini RG59 Coaxial Cable with Power Cable</a></span><span>KES 5,720</span></li><li><span>8 &times; <a href="/product/conn-set">Camera Connector Set (2× BNC, DC Jack &amp; RJ45)</a></span><span>KES 800</span></li><li><span>2 &times; <a href="/product/clips-100">Cable Clips (Box of 100)</a></span><span>KES 400</span></li></ul>
+      <button class="kit-add" type="button" data-add-kit="[[&quot;ds-2ce10kf0t-lpfs-3-6mm-o-std&quot;, 4], [&quot;ds-2ce70kf0t-lpfs-2-8mm-o-std&quot;, 4], [&quot;ids-7108hqhi-m1-t-std&quot;, 1], [&quot;hdd-4tb&quot;, 1], [&quot;ds-2fa1205-c8-uk-o-std&quot;, 1], [&quot;ds-1lh1scam592c-o-std-180m&quot;, 1], [&quot;conn-set&quot;, 8], [&quot;clips-100&quot;, 2]]" hidden>Add bundle to cart</button>
       <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20HD%203K%20ColorVu%20premium%20bundle%20%28KES%2080%2C820%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
     </article>
     </div>
@@ -313,6 +327,7 @@ a { color: #086E9E; }
       <p>Four 2MP smart hybrid light IP cameras on a 4-port PoE NVR with 1 TB hard disk — one cable per camera, no separate power.</p>
       <div class="kit-price" data-kes="51150"><small>from</small> KES 51,150<small>equipment</small></div>
       <ul><li><span>2 &times; <a href="/product/ds-2cd1023g2-liu-4mm-o-std">2MP Smart Hybrid Light Bullet IP Camera</a></span><span>KES 10,120</span></li><li><span>2 &times; <a href="/product/ds-2cd1123g2-liu-2-8mm-o-std">2MP Smart Hybrid Light Dome IP Camera</a></span><span>KES 10,120</span></li><li><span>1 &times; <a href="/product/ds-7104ni-q1-4p-m-std-d">4CH 4 PORT POE 1 HDD Q Series NVR</a></span><span>KES 10,010</span></li><li><span>1 &times; <a href="/product/hdd-1tb">1 TB CCTV Surveillance Hard Disk</a></span><span>KES 6,000</span></li><li><span>1 &times; <a href="/product/ds-1ln6uzc0-o-std-orange-305m">CAT6 U/UTP Network Cable (Solid Copper, 0.5mm)</a></span><span>KES 14,300</span></li><li><span>4 &times; <a href="/product/conn-set">Camera Connector Set (2× BNC, DC Jack &amp; RJ45)</a></span><span>KES 400</span></li><li><span>1 &times; <a href="/product/clips-100">Cable Clips (Box of 100)</a></span><span>KES 200</span></li></ul>
+      <button class="kit-add" type="button" data-add-kit="[[&quot;ds-2cd1023g2-liu-4mm-o-std&quot;, 2], [&quot;ds-2cd1123g2-liu-2-8mm-o-std&quot;, 2], [&quot;ds-7104ni-q1-4p-m-std-d&quot;, 1], [&quot;hdd-1tb&quot;, 1], [&quot;ds-1ln6uzc0-o-std-orange-305m&quot;, 1], [&quot;conn-set&quot;, 4], [&quot;clips-100&quot;, 1]]" hidden>Add bundle to cart</button>
       <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20IP%20starter%20bundle%20%28KES%2051%2C150%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
     </article>
     <article class="kit kit-pop" id="ip-colorvu">
@@ -321,6 +336,7 @@ a { color: #086E9E; }
       <p>Four 4MP ColorVu cameras with built-in mics on a 4-port PoE NVR with 2 TB hard disk, plus solid-copper CAT6 and connectors.</p>
       <div class="kit-price" data-kes="73630"><small>from</small> KES 73,630<small>equipment</small></div>
       <ul><li><span>2 &times; <a href="/product/ds-2cd1047g3-liu-4mm-o-std">4MP Smart Hybrid Light with ColorVu Bullet IP Camera</a></span><span>KES 19,360</span></li><li><span>2 &times; <a href="/product/ds-2cd1147g3-liu-2-8mm-o-std">4MP Smart Hybrid Light with ColorVu Dome IP Camera</a></span><span>KES 19,360</span></li><li><span>1 &times; <a href="/product/ds-7104ni-q1-4p-m-std-d">4CH 4 PORT POE 1 HDD Q Series NVR</a></span><span>KES 10,010</span></li><li><span>1 &times; <a href="/product/hdd-2tb">2 TB CCTV Surveillance Hard Disk</a></span><span>KES 10,000</span></li><li><span>1 &times; <a href="/product/ds-1ln6uzc0-o-std-orange-305m">CAT6 U/UTP Network Cable (Solid Copper, 0.5mm)</a></span><span>KES 14,300</span></li><li><span>4 &times; <a href="/product/conn-set">Camera Connector Set (2× BNC, DC Jack &amp; RJ45)</a></span><span>KES 400</span></li><li><span>1 &times; <a href="/product/clips-100">Cable Clips (Box of 100)</a></span><span>KES 200</span></li></ul>
+      <button class="kit-add" type="button" data-add-kit="[[&quot;ds-2cd1047g3-liu-4mm-o-std&quot;, 2], [&quot;ds-2cd1147g3-liu-2-8mm-o-std&quot;, 2], [&quot;ds-7104ni-q1-4p-m-std-d&quot;, 1], [&quot;hdd-2tb&quot;, 1], [&quot;ds-1ln6uzc0-o-std-orange-305m&quot;, 1], [&quot;conn-set&quot;, 4], [&quot;clips-100&quot;, 1]]" hidden>Add bundle to cart</button>
       <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20IP%204MP%20ColorVu%20bundle%20%28KES%2073%2C630%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
     </article>
     <article class="kit" id="ip-business">
@@ -329,6 +345,7 @@ a { color: #086E9E; }
       <p>Eight 4MP ColorVu cameras on an 8-port PoE NVR with 4 TB hard disk, two boxes of CAT6 and connectors.</p>
       <div class="kit-price" data-kes="141320"><small>from</small> KES 141,320<small>equipment</small></div>
       <ul><li><span>4 &times; <a href="/product/ds-2cd1047g3-liu-4mm-o-std">4MP Smart Hybrid Light with ColorVu Bullet IP Camera</a></span><span>KES 38,720</span></li><li><span>4 &times; <a href="/product/ds-2cd1147g3-liu-2-8mm-o-std">4MP Smart Hybrid Light with ColorVu Dome IP Camera</a></span><span>KES 38,720</span></li><li><span>1 &times; <a href="/product/ds-7108ni-q1-8p-m-std-d">8CH 8 PORT POE 1 HDD Q Series NVR</a></span><span>KES 14,080</span></li><li><span>1 &times; <a href="/product/hdd-4tb">4 TB CCTV Surveillance Hard Disk</a></span><span>KES 20,000</span></li><li><span>2 &times; <a href="/product/ds-1ln6uzc0-o-std-orange-305m">CAT6 U/UTP Network Cable (Solid Copper, 0.5mm)</a></span><span>KES 28,600</span></li><li><span>8 &times; <a href="/product/conn-set">Camera Connector Set (2× BNC, DC Jack &amp; RJ45)</a></span><span>KES 800</span></li><li><span>2 &times; <a href="/product/clips-100">Cable Clips (Box of 100)</a></span><span>KES 400</span></li></ul>
+      <button class="kit-add" type="button" data-add-kit="[[&quot;ds-2cd1047g3-liu-4mm-o-std&quot;, 4], [&quot;ds-2cd1147g3-liu-2-8mm-o-std&quot;, 4], [&quot;ds-7108ni-q1-8p-m-std-d&quot;, 1], [&quot;hdd-4tb&quot;, 1], [&quot;ds-1ln6uzc0-o-std-orange-305m&quot;, 2], [&quot;conn-set&quot;, 8], [&quot;clips-100&quot;, 2]]" hidden>Add bundle to cart</button>
       <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20IP%204MP%20ColorVu%20business%20bundle%20%28KES%20141%2C320%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
     </article>
     </div>
@@ -342,6 +359,7 @@ a { color: #086E9E; }
       <p>Face, card and PIN entry for one door: terminal, magnetic lock with bracket, exit button and 10 cards.</p>
       <div class="kit-price" data-kes="21010"><small>from</small> KES 21,010<small>equipment</small></div>
       <ul><li><span>1 &times; <a href="/product/ds-k1t323mbfwx-e1-o-std">Face Access Terminal</a></span><span>KES 14,850</span></li><li><span>1 &times; <a href="/product/ds-k4h255s-o-std"> Magnetic Locks</a></span><span>KES 2,530</span></li><li><span>1 &times; <a href="/product/ds-k4h255-lz-o-std">L bracket for DS-K4H255S</a></span><span>KES 1,265</span></li><li><span>1 &times; <a href="/product/ds-k7p01-o-neu">Exit &amp; Emergency Button</a></span><span>KES 1,045</span></li><li><span>10 &times; <a href="/product/ds-k7m102-m-o-std">M1 Card</a></span><span>KES 1,320</span></li></ul>
+      <button class="kit-add" type="button" data-add-kit="[[&quot;ds-k1t323mbfwx-e1-o-std&quot;, 1], [&quot;ds-k4h255s-o-std&quot;, 1], [&quot;ds-k4h255-lz-o-std&quot;, 1], [&quot;ds-k7p01-o-neu&quot;, 1], [&quot;ds-k7m102-m-o-std&quot;, 10]]" hidden>Add bundle to cart</button>
       <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20Face%20access%20door%20kit%20bundle%20%28KES%2021%2C010%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
     </article>
     <article class="kit" id="intercom-villa">
@@ -350,6 +368,7 @@ a { color: #086E9E; }
       <p>See, talk to and open for visitors at the gate — from the indoor screen or your phone.</p>
       <div class="kit-price" data-kes="31020"><small>from</small> KES 31,020<small>equipment</small></div>
       <ul><li><span>1 &times; <a href="/product/ds-kv6113-wpe1-c-o-std">POE/Wifi Villa Door Station</a></span><span>KES 13,420</span></li><li><span>1 &times; <a href="/product/ds-kh6320-wte1-o-std">KH6 Series IP-Based Indoor Station</a></span><span>KES 13,860</span></li><li><span>1 &times; <a href="/product/ds-3e0505p-e-m-o-std-b">4 Port Gigabit Unmanaged POE Switch</a></span><span>KES 3,740</span></li></ul>
+      <button class="kit-add" type="button" data-add-kit="[[&quot;ds-kv6113-wpe1-c-o-std&quot;, 1], [&quot;ds-kh6320-wte1-o-std&quot;, 1], [&quot;ds-3e0505p-e-m-o-std-b&quot;, 1]]" hidden>Add bundle to cart</button>
       <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20IP%20villa%20intercom%20bundle%20%28KES%2031%2C020%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
     </article>
     <article class="kit" id="network-office">
@@ -358,6 +377,7 @@ a { color: #086E9E; }
       <p>Fast Wi-Fi across the building: all-in-one PoE router, two ceiling access points, a switch and cabling.</p>
       <div class="kit-price" data-kes="46200"><small>from</small> KES 46,200<small>equipment</small></div>
       <ul><li><span>1 &times; <a href="/product/ds-3wg105gp-si-o-std">All in One 5 Port PoE AC Router</a></span><span>KES 11,660</span></li><li><span>2 &times; <a href="/product/ds-3wap522-si-o-std">Wi-Fi 5 1200M Celling Access Point</a></span><span>KES 16,500</span></li><li><span>1 &times; <a href="/product/ds-3e0508-o-o-std">8-Port Gigabit Unmanaged Switch</a></span><span>KES 2,420</span></li><li><span>1 &times; <a href="/product/ds-1ln6uzc0-o-std-orange-305m">CAT6 U/UTP Network Cable (Solid Copper, 0.5mm)</a></span><span>KES 14,300</span></li><li><span>1 &times; <a href="/product/ds-1m6ua-15u-o-std-100pcs">RJ45 Plug-CAT6,CAT5E</a></span><span>KES 1,320</span></li></ul>
+      <button class="kit-add" type="button" data-add-kit="[[&quot;ds-3wg105gp-si-o-std&quot;, 1], [&quot;ds-3wap522-si-o-std&quot;, 2], [&quot;ds-3e0508-o-o-std&quot;, 1], [&quot;ds-1ln6uzc0-o-std-orange-305m&quot;, 1], [&quot;ds-1m6ua-15u-o-std-100pcs&quot;, 1]]" hidden>Add bundle to cart</button>
       <a class="kit-cta" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27m%20interested%20in%20the%20Office%20Wi-Fi%20network%20bundle%20%28KES%2046%2C200%29.%20Please%20send%20me%20an%20all-in%20price%20with%20installation." target="_blank" rel="noopener">Get this bundle</a>
     </article>
     </div>

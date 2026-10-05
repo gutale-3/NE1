@@ -30,7 +30,9 @@
     "ADMIN_EMAILS": "ahmed@nashnaal.com",
     "GITHUB_REPO": "gutale-3/NE1",
     "GITHUB_BRANCH": "main",
-    "TECH_DISCOUNT_PERCENT": "5"
+    "TECH_DISCOUNT_PERCENT": "5",
+    "REWARD_PERCENT": "2",
+    "TECH_REWARD_PERCENT": "1"
   },
   "compatibility_flags": [
     "nodejs_compat"
