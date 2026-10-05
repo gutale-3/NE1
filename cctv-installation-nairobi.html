@@ -111,10 +111,10 @@
         },
         {
           "@type": "Question",
-          "name": "How much does a DVR or NVR password reset cost?",
+          "name": "How much does a password reset cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A DVR password reset is KES 2,000. An NVR reset is KES 3,000 up to 16 channels and KES 5,000 above 16 channels."
+            "text": "A DVR password reset is KES 2,000. An NVR reset is KES 3,000 up to 16 channels and KES 5,000 above 16 channels. Resetting a forgotten Hik-Connect app password is free: we guide you through it."
           }
         },
         {
@@ -173,6 +173,9 @@
 .price .amt { font-size: 28px; font-weight: 800; margin-bottom: 2px; }
 .price .unit { font-size: 13px; color: #4A5B68; font-weight: 600; margin-bottom: 14px; }
 .price .unit:last-child { margin-bottom: 0; }
+#password-reset .prices { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1000px) { #password-reset .prices { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { #password-reset .prices { grid-template-columns: 1fr; } }
 .price p { font-size: 14px; line-height: 1.6; color: #4A5B68; margin: 0; }
 .examples { margin-top: 18px; background: #EAF6FC; border-radius: 14px; padding: 18px 22px; font-size: 14.5px; line-height: 1.7; color: #10202E; }
 .examples strong { color: #086E9E; }
@@ -344,8 +347,8 @@
   </section>
 
   <section class="in-sec" id="password-reset">
-    <h2>Forgot your DVR or NVR password?</h2>
-    <p>We reset passwords on Hikvision recorders so you can get back into your system.</p>
+    <h2>Forgot a password?</h2>
+    <p>We reset passwords on Hikvision recorders so you can get back into your system, and help with the Hik-Connect app for free.</p>
     <div class="prices">
       <div class="price">
         <div class="where">DVR</div>
@@ -364,6 +367,12 @@
         <h3>Above 16 channels</h3>
         <div class="amt">KES 5,000</div>
         <div class="unit">per recorder</div>
+      </div>
+      <div class="price pop">
+        <div class="where">Hik-Connect app</div>
+        <h3>App password</h3>
+        <div class="amt">Free</div>
+        <div class="unit">we guide you through the reset</div>
       </div>
     </div>
     <p style="margin-top: 16px;"><a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20need%20a%20password%20reset%20for%20my%20DVR/NVR.%20Model%20/%20channels%3A%20..." target="_blank" rel="noopener">WhatsApp us your recorder model to book a reset &rarr;</a></p>
@@ -401,7 +410,7 @@
       <div>
         <h2>Why install with NE</h2>
         <ul>
-          <li>Technician Simon Kinyua completed Hikvision&rsquo;s <em>Become a Hikvision Trainer</em> course (Hikvision MEA, June 2026) &mdash; <a href="/assets/partner/simon-kinyua-hikvision-certificate.webp" target="_blank" rel="noopener">see the certificate</a></li>
+          <li>Technician Simon Kinyua is a Hikvision Certified Security Associate in CCTV, access control, video intercom and networking &mdash; <a href="/about#certificates">see his certificates</a></li>
           <li>Hikvision Authorized National Distributor &mdash; genuine equipment</li>
           <li>Showroom at BBS Mall, Nairobi, for support after the job</li>
           <li>Everything from one place: equipment, installation and support</li>
@@ -417,7 +426,7 @@
       <details><summary>Is the equipment included in the installation price?</summary><p>No. The installation price covers labour. Cameras, recorders, hard disks and cabling are bought separately, for example as one of NE's ready-made bundles.</p></details>
       <details><summary>Do you also install access control, intercoms and networking?</summary><p>Yes. NE installs access control, video intercoms and networking products as well as CCTV, and finishes the whole job: mounting, wiring, trunking when supplied, connecting the recorder and TV, and power.</p></details>
       <details><summary>Do you set up viewing on my phone?</summary><p>Yes. As long as there is Wi-Fi or internet on site, we add the cameras to your phone and show you how to share access with other people and remove it.</p></details>
-      <details><summary>How much does a DVR or NVR password reset cost?</summary><p>A DVR password reset is KES 2,000. An NVR reset is KES 3,000 up to 16 channels and KES 5,000 above 16 channels.</p></details>
+      <details><summary>How much does a password reset cost?</summary><p>A DVR password reset is KES 2,000. An NVR reset is KES 3,000 up to 16 channels and KES 5,000 above 16 channels. Resetting a forgotten Hik-Connect app password is free: we guide you through it.</p></details>
       <details><summary>What do I need to have ready before installation?</summary><p>All products must be on site before the job starts, so the team can work without stopping.</p></details>
   </section>
 
