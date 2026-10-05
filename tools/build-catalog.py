@@ -879,6 +879,9 @@ def picks_html(products):
 
 
 def write_quote_page(products):
+    # The admin panel refuses to delete these, since the bundles would break.
+    models = sorted({model for kit in PACKAGES for model, _ in kit["items"]})
+    (ROOT / "data/bundle-models.json").write_text(json.dumps(models, indent=1) + "\n", encoding="utf-8")
     path = ROOT / "quote.html"
     path.write_text(fill(path.read_text(encoding="utf-8"), "packages", packages_html(products)), encoding="utf-8")
     home = ROOT / "index.html"

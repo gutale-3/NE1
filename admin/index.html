@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>NE admin</title>
+<link rel="icon" type="image/png" href="/assets/nashnaal-favicon.png">
+<link rel="stylesheet" href="/admin/admin.css">
+<script src="/admin/admin.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/admin/"><img src="/assets/nashnaal-logo-header.webp" alt="" width="34" height="34"> NE admin</a>
+  <div class="who"><span id="who"></span> <a href="/" target="_blank" rel="noopener">View site</a> <a href="/auth/logout">Sign out</a></div>
+</header>
+
+<main>
+  <div id="notice" class="notice" hidden></div>
+
+  <section id="list-view">
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search model or name" autocomplete="off">
+      <select id="filter-cat"><option value="">All categories</option></select>
+      <button id="add-btn" class="primary" type="button">+ Add product</button>
+    </div>
+    <p class="count" id="count">Loading products&hellip;</p>
+    <div id="list" class="list"></div>
+    <details class="log">
+      <summary>Recent changes</summary>
+      <ol id="log"></ol>
+    </details>
+  </section>
+
+  <section id="edit-view" hidden>
+    <button id="back-btn" class="link" type="button">&larr; Back to products</button>
+    <h1 id="edit-title">Edit product</h1>
+    <form id="edit-form" autocomplete="off">
+      <div class="photo">
+        <img id="photo-preview" alt="" width="200" height="200">
+        <label class="file">Change photo<input id="photo" type="file" accept="image/*"></label>
+        <small>Square photos on a white background look best. It is resized automatically.</small>
+      </div>
+      <label>Model number<input id="f-model" required></label>
+      <label>Name<input id="f-name" required></label>
+      <label>Category<select id="f-category" required></select></label>
+      <label>Price (KES)<input id="f-price" type="number" min="1" step="1" inputmode="numeric" required></label>
+      <label>Description / features<textarea id="f-features" rows="5"></textarea></label>
+      <label>Pieces per carton<input id="f-pcs"></label>
+      <div class="actions">
+        <button class="primary" type="submit" id="save-btn">Save</button>
+        <a id="view-link" href="#" target="_blank" rel="noopener">View on site</a>
+        <button class="danger" type="button" id="delete-btn">Delete product</button>
+      </div>
+      <p class="hint">Changes go live on the website about 2&ndash;3 minutes after saving.</p>
+    </form>
+  </section>
+</main>
+</body>
+</html>
