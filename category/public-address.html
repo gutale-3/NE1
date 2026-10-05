@@ -294,6 +294,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -359,6 +361,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -414,7 +417,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Analog Audio Kit with 60W Analog Amplifier and 4* 6W Ceiling Speakers(DS-QAE0A60G1-VB x1, DS-QAE0206G1-V x4)</h3>
     <div class="pc-sku">DS-QAE0KA60206-4(O-STD)/EU</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 17,600</div>
+      <div class="pc-price" data-kes="17600">KES 17,600</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Analog%20Audio%20Kit%20with%2060W%20Analog%20Amplifier%20and%204%2A%206W%20Ceiling%20Speakers%28DS-QAE0A60G1-VB%20x1%2C%20DS-QAE0206G1-V%20x4%29%20%28DS-QAE0KA60206-4%28O-STD%29/EU%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -427,7 +430,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Analog Audio Kit with 60W Analog Amplifier and 2* 20W Cabinet Speakers(DS-QAE0A60G1-VB x1, DS-QAE0120G1R x2)</h3>
     <div class="pc-sku">DS-QAE0KA60120-2(O-STD)/EU</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 25,300</div>
+      <div class="pc-price" data-kes="25300">KES 25,300</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Analog%20Audio%20Kit%20with%2060W%20Analog%20Amplifier%20and%202%2A%2020W%20Cabinet%20Speakers%28DS-QAE0A60G1-VB%20x1%2C%20DS-QAE0120G1R%20x2%29%20%28DS-QAE0KA60120-2%28O-STD%29/EU%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -440,7 +443,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Analog Ceiling Speaker 6W</h3>
     <div class="pc-sku">DS-QAE0206G1-V(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,320</div>
+      <div class="pc-price" data-kes="1320">KES 1,320</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Analog%20Ceiling%20Speaker%206W%20%28DS-QAE0206G1-V%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -453,7 +456,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Analog Cabinet Speaker 20W</h3>
     <div class="pc-sku">DS-QAE0120G1R(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 7,810</div>
+      <div class="pc-price" data-kes="7810">KES 7,810</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Analog%20Cabinet%20Speaker%2020W%20%28DS-QAE0120G1R%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -466,7 +469,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Analog Column Speaker-Outdoor</h3>
     <div class="pc-sku">DS-QAE0420G1-V(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 9,350</div>
+      <div class="pc-price" data-kes="9350">KES 9,350</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Analog%20Column%20Speaker-Outdoor%20%28DS-QAE0420G1-V%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -479,7 +482,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Analog Amplifier 60W</h3>
     <div class="pc-sku">DS-QAE0A60G1-VB(O-STD)/EU</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 12,760</div>
+      <div class="pc-price" data-kes="12760">KES 12,760</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Analog%20Amplifier%2060W%20%28DS-QAE0A60G1-VB%28O-STD%29/EU%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -492,7 +495,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Analog Amplifier 120W</h3>
     <div class="pc-sku">DS-QAE0A120G1-VB6(O-STD)/EU</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 24,970</div>
+      <div class="pc-price" data-kes="24970">KES 24,970</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Analog%20Amplifier%20120W%20%28DS-QAE0A120G1-VB6%28O-STD%29/EU%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -505,7 +508,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Analog Amplifier 240W</h3>
     <div class="pc-sku">DS-QAE0A240G1-VB6(O-STD)//EU</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 31,130</div>
+      <div class="pc-price" data-kes="31130">KES 31,130</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Analog%20Amplifier%20240W%20%28DS-QAE0A240G1-VB6%28O-STD%29//EU%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -518,7 +521,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">7W Motorized 4MP Horn Speaker</h3>
     <div class="pc-sku">DS-QACAM07G1-4LIZSU(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 56,320</div>
+      <div class="pc-price" data-kes="56320">KES 56,320</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%207W%20Motorized%204MP%20Horn%20Speaker%20%28DS-QACAM07G1-4LIZSU%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>

@@ -24,3 +24,18 @@ CREATE TABLE IF NOT EXISTS audit_log (
   detail TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
+CREATE TABLE IF NOT EXISTS technician_applications (
+  user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+  full_name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  business TEXT,
+  town TEXT NOT NULL,
+  years TEXT,
+  cert_number TEXT,
+  work_link TEXT,
+  status TEXT NOT NULL DEFAULT 'pending',     -- pending | approved | rejected | removed
+  note TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  decided_at TEXT
+);

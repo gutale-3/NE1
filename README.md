@@ -131,6 +131,20 @@ Static files are served directly. `worker/index.js` only runs for `/admin`,
 - Products used in a bundle can't be deleted from the panel; the build writes
   their models to `data/bundle-models.json`.
 
+Accounts and technician prices:
+
+- Every page header has **Sign in** (Google). After signing in people land on
+  `/account`; the header link becomes "My account" (or "Admin").
+- On `/account` a signed-in person can apply for technician prices (name,
+  phone, town, optional business, years, Hikvision certificate number, work
+  link). Applications are in the D1 table `technician_applications`.
+- The admin panel's **Technicians** tab lists applications (red badge = waiting)
+  with WhatsApp, Approve, Reject and Remove buttons.
+- Approved technicians see "Technician price" (`TECH_DISCOUNT_PERCENT`, 5%) under
+  every element with a `data-kes` price, and their WhatsApp messages from the
+  site end with "(Technician account: name, approved)". `js/site.js` only calls
+  `/api/me` when the readable `ne_signed_in` cookie is present.
+
 Settings: plain values are in `wrangler.jsonc` `vars`. Secrets are set in the
 Cloudflare dashboard (**ne1 &rarr; Settings &rarr; Variables and Secrets**), never in git:
 

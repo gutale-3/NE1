@@ -197,6 +197,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -241,6 +243,7 @@ section.block { padding: 44px 0 0; }
 .wa-float { position: fixed; bottom: 22px; right: 22px; width: 56px; height: 56px; border-radius: 50%; background: #22C35E; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 60; }
 .wa-float:hover { background: #1CAD52; }
 </style>
+<script src="/js/site.js" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -261,6 +264,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -297,7 +301,7 @@ section.block { padding: 44px 0 0; }
         <div class="sku">HDD-8TB</div>
 
         <div class="pricebox">
-          <div class="price">KES 45,000 <small>per unit</small></div>
+          <div class="price" data-kes="45000">KES 45,000 <small>per unit</small></div>
           <div class="stock">&#10003; In stock at our Nairobi showroom</div>
           <p class="note">Talk to us for project and volume pricing, or for a quote that includes cabling, installation and configuration.</p>
         </div>
@@ -341,7 +345,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">500 GB CCTV Surveillance Hard Disk</div>
             <div class="card-sku">HDD-500GB</div>
-            <div class="card-price">KES 4,000</div>
+            <div class="card-price" data-kes="4000">KES 4,000</div>
           </div>
         </a>
         <a class="card" href="/product/hdd-1tb">
@@ -349,7 +353,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">1 TB CCTV Surveillance Hard Disk</div>
             <div class="card-sku">HDD-1TB</div>
-            <div class="card-price">KES 6,000</div>
+            <div class="card-price" data-kes="6000">KES 6,000</div>
           </div>
         </a>
         <a class="card" href="/product/hdd-2tb">
@@ -357,7 +361,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">2 TB CCTV Surveillance Hard Disk</div>
             <div class="card-sku">HDD-2TB</div>
-            <div class="card-price">KES 10,000</div>
+            <div class="card-price" data-kes="10000">KES 10,000</div>
           </div>
         </a>
         <a class="card" href="/product/hdd-4tb">
@@ -365,7 +369,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">4 TB CCTV Surveillance Hard Disk</div>
             <div class="card-sku">HDD-4TB</div>
-            <div class="card-price">KES 20,000</div>
+            <div class="card-price" data-kes="20000">KES 20,000</div>
           </div>
         </a>
         <a class="card" href="/product/hdd-6tb">
@@ -373,7 +377,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">6 TB CCTV Surveillance Hard Disk</div>
             <div class="card-sku">HDD-6TB</div>
-            <div class="card-price">KES 32,000</div>
+            <div class="card-price" data-kes="32000">KES 32,000</div>
           </div>
         </a>
       </div>

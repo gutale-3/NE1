@@ -202,6 +202,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -246,6 +248,7 @@ section.block { padding: 44px 0 0; }
 .wa-float { position: fixed; bottom: 22px; right: 22px; width: 56px; height: 56px; border-radius: 50%; background: #22C35E; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 60; }
 .wa-float:hover { background: #1CAD52; }
 </style>
+<script src="/js/site.js" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -266,6 +269,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -312,7 +316,7 @@ section.block { padding: 44px 0 0; }
         <div class="sku">DS-3E0108D-O(O-STD)</div>
 
         <div class="pricebox">
-          <div class="price">KES 880 <small>per unit</small></div>
+          <div class="price" data-kes="880">KES 880 <small>per unit</small></div>
           <div class="stock">&#10003; Genuine Hikvision stock &mdash; manufacturer warranty support</div>
           <p class="note">Talk to us for project and volume pricing, or for a quote that includes cabling, installation and configuration.</p>
         </div>
@@ -353,7 +357,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">305 m CAT6 UTP Network Cable (Solid Copper, 0.565 mm, CM)</div>
             <div class="card-sku">DS-1LN6-UU(O-STD)</div>
-            <div class="card-price">KES 19,250</div>
+            <div class="card-price" data-kes="19250">KES 19,250</div>
           </div>
         </a>
         <a class="card" href="/product/ds-1ln6u-sc0-o-std">
@@ -361,7 +365,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">305 m CAT6 UTP Network Cable (Solid Copper, 0.55 mm, Orange)</div>
             <div class="card-sku">DS-1LN6U-SC0(O-STD)</div>
-            <div class="card-price">KES 17,050</div>
+            <div class="card-price" data-kes="17050">KES 17,050</div>
           </div>
         </a>
         <a class="card" href="/product/ds-1ln6uzc0-o-std-orange-305m">
@@ -369,7 +373,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">CAT6 U/UTP Network Cable (Solid Copper, 0.5mm)</div>
             <div class="card-sku">DS-1LN6UZC0(O-STD) orange 305m</div>
-            <div class="card-price">KES 14,300</div>
+            <div class="card-price" data-kes="14300">KES 14,300</div>
           </div>
         </a>
         <a class="card" href="/product/ds-1ln6auspe-o-std-black-305m">
@@ -377,7 +381,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">Cat6A UTP Outdoor Network Cable</div>
             <div class="card-sku">DS-1LN6AUSPE(O-STD) black 305m</div>
-            <div class="card-price">KES 23,100</div>
+            <div class="card-price" data-kes="23100">KES 23,100</div>
           </div>
         </a>
         <a class="card" href="/product/nc-1ln6uu-cca-o-std-grey-305m">
@@ -385,7 +389,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">CAT6 U/UTP Network Cable (CCA, 0.57mm)</div>
             <div class="card-sku">NC-1LN6UU/CCA(O-STD) grey 305m</div>
-            <div class="card-price">KES 8,250</div>
+            <div class="card-price" data-kes="8250">KES 8,250</div>
           </div>
         </a>
       </div>

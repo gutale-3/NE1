@@ -534,6 +534,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -599,6 +601,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -654,7 +657,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">2MP IR Bullet IP Camera</h3>
     <div class="pc-sku">DS-2CD1021G0-I(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 3,740</div>
+      <div class="pc-price" data-kes="3740">KES 3,740</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202MP%20IR%20Bullet%20IP%20Camera%20%28DS-2CD1021G0-I%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -667,7 +670,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">2MP IR Dome IP Camera</h3>
     <div class="pc-sku">DS-2CD1121G0-I(2.8mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 3,740</div>
+      <div class="pc-price" data-kes="3740">KES 3,740</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202MP%20IR%20Dome%20IP%20Camera%20%28DS-2CD1121G0-I%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -680,7 +683,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">2MP Smart Hybrid Light Bullet IP Camera</h3>
     <div class="pc-sku">DS-2CD1023G2-LIU(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 5,060</div>
+      <div class="pc-price" data-kes="5060">KES 5,060</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202MP%20Smart%20Hybrid%20Light%20Bullet%20IP%20Camera%20%28DS-2CD1023G2-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -693,7 +696,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">2MP Smart Hybrid Light Dome IP Camera</h3>
     <div class="pc-sku">DS-2CD1123G2-LIU(2.8mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 5,060</div>
+      <div class="pc-price" data-kes="5060">KES 5,060</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202MP%20Smart%20Hybrid%20Light%20Dome%20IP%20Camera%20%28DS-2CD1123G2-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -706,7 +709,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4MP Smart Hybrid Light Bullet IP Camera</h3>
     <div class="pc-sku">DS-2CD1043G2-LIU(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 7,370</div>
+      <div class="pc-price" data-kes="7370">KES 7,370</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20Bullet%20IP%20Camera%20%28DS-2CD1043G2-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -719,7 +722,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4MP Smart Hybrid Light Dome IP Camera</h3>
     <div class="pc-sku">DS-2CD1143G2-LIU(2.8mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 7,370</div>
+      <div class="pc-price" data-kes="7370">KES 7,370</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20Dome%20IP%20Camera%20%28DS-2CD1143G2-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -732,7 +735,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4MP Smart Hybrid Light Motorized Varifocal Bullet IP Camera</h3>
     <div class="pc-sku">DS-2CD1643G2-LIZU(2.8-12mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 14,850</div>
+      <div class="pc-price" data-kes="14850">KES 14,850</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20Motorized%20Varifocal%20Bullet%20IP%20Camera%20%28DS-2CD1643G2-LIZU%282.8-12mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -745,7 +748,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4MP Smart Hybrid Light Motorized Varifocal Dome IP Camera</h3>
     <div class="pc-sku">DS-2CD1743G2-LIZU(2.8-12mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 14,850</div>
+      <div class="pc-price" data-kes="14850">KES 14,850</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20Motorized%20Varifocal%20Dome%20IP%20Camera%20%28DS-2CD1743G2-LIZU%282.8-12mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -758,7 +761,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">6MP Smart Hybrid Light Bullet IP Camera</h3>
     <div class="pc-sku">DS-2CD1063G2-LIU(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 9,130</div>
+      <div class="pc-price" data-kes="9130">KES 9,130</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206MP%20Smart%20Hybrid%20Light%20Bullet%20IP%20Camera%20%28DS-2CD1063G2-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -771,7 +774,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">6MP Smart Hybrid Light Dome IP Camera</h3>
     <div class="pc-sku">DS-2CD1163G2-LIU(2.8mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 9,130</div>
+      <div class="pc-price" data-kes="9130">KES 9,130</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206MP%20Smart%20Hybrid%20Light%20Dome%20IP%20Camera%20%28DS-2CD1163G2-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -784,7 +787,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8MP Smart Hybrid Light Bullet IP Camera</h3>
     <div class="pc-sku">DS-2CD1083G2-LIU(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 15,180</div>
+      <div class="pc-price" data-kes="15180">KES 15,180</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208MP%20Smart%20Hybrid%20Light%20Bullet%20IP%20Camera%20%28DS-2CD1083G2-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -797,7 +800,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8MP Smart Hybrid Light Dome IP Camera</h3>
     <div class="pc-sku">DS-2CD1183G2-LIU(2.8mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 15,180</div>
+      <div class="pc-price" data-kes="15180">KES 15,180</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208MP%20Smart%20Hybrid%20Light%20Dome%20IP%20Camera%20%28DS-2CD1183G2-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -810,7 +813,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4MP Smart Hybrid Light with ColorVu Bullet IP Camera</h3>
     <div class="pc-sku">DS-2CD1047G3-LIU(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 9,680</div>
+      <div class="pc-price" data-kes="9680">KES 9,680</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Bullet%20IP%20Camera%20%28DS-2CD1047G3-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -823,7 +826,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4MP Smart Hybrid Light with ColorVu Dome IP Camera</h3>
     <div class="pc-sku">DS-2CD1147G3-LIU(2.8mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 9,680</div>
+      <div class="pc-price" data-kes="9680">KES 9,680</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Dome%20IP%20Camera%20%28DS-2CD1147G3-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -836,7 +839,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4MP Smart Hybrid Light with ColorVu Bullet IP Camera-Long Range</h3>
     <div class="pc-sku">DS-2CD1T47G3-LIU(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 12,650</div>
+      <div class="pc-price" data-kes="12650">KES 12,650</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Bullet%20IP%20Camera-Long%20Range%20%28DS-2CD1T47G3-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -849,7 +852,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">6 MP ColorVu 3.0 Fixed Bullet Network Camera</h3>
     <div class="pc-sku">DS-2CD1067G3-LIU(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 10,780</div>
+      <div class="pc-price" data-kes="10780">KES 10,780</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206%20MP%20ColorVu%203.0%20Fixed%20Bullet%20Network%20Camera%20%28DS-2CD1067G3-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -862,7 +865,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">6MP Smart Hybrid Light with ColorVu Dome IP Camera</h3>
     <div class="pc-sku">DS-2CD1167G3-LIU(2.8mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 10,780</div>
+      <div class="pc-price" data-kes="10780">KES 10,780</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Dome%20IP%20Camera%20%28DS-2CD1167G3-LIU%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -875,7 +878,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">6MP Smart Hybrid Light with ColorVu Bullet IP Camera-Long Range</h3>
     <div class="pc-sku">DS-2CD1T67G3-LIU(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 11,770</div>
+      <div class="pc-price" data-kes="11770">KES 11,770</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Bullet%20IP%20Camera-Long%20Range%20%28DS-2CD1T67G3-LIU%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -888,7 +891,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 MP ColorVu 3.0 with Smart Hybrid Light Fixed Bullet Network Camera with Red&amp;Blue Strobe Light Alarm</h3>
     <div class="pc-sku">DS-2CD1047G3-LIUF/SRB(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 11,330</div>
+      <div class="pc-price" data-kes="11330">KES 11,330</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Bullet%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm%20%28DS-2CD1047G3-LIUF/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -901,7 +904,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 MP ColorVu 3.0 with Smart Hybrid Light Fixed Turret Network Camera with Red&amp;Blue Strobe Light Alarm</h3>
     <div class="pc-sku">DS-2CD1347G3-LIUF/SRB(2.8mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 11,330</div>
+      <div class="pc-price" data-kes="11330">KES 11,330</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Turret%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm%20%28DS-2CD1347G3-LIUF/SRB%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -914,7 +917,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 MP ColorVu 3.0 with Smart Hybrid Light Fixed Bullet Network Camera with Red&amp;Blue Strobe Light Alarm-Long Range</h3>
     <div class="pc-sku">DS-2CD1T47G3-LIUF/SRB(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 14,410</div>
+      <div class="pc-price" data-kes="14410">KES 14,410</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Bullet%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm-Long%20Range%20%28DS-2CD1T47G3-LIUF/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -927,7 +930,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">6 MP ColorVu 3.0 with Smart Hybrid Light Fixed Bullet Network Camera with Red&amp;Blue Strobe Light Alarm</h3>
     <div class="pc-sku">DS-2CD1067G3-LIUF/SRB(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 13,750</div>
+      <div class="pc-price" data-kes="13750">KES 13,750</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Bullet%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm%20%28DS-2CD1067G3-LIUF/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -940,7 +943,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">6 MP ColorVu 3.0 with Smart Hybrid Light Fixed Turret Network Camera with Red&amp;Blue Strobe Light Alarm</h3>
     <div class="pc-sku">DS-2CD1367G3-LIUF/SRB(2.8mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 13,750</div>
+      <div class="pc-price" data-kes="13750">KES 13,750</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Turret%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm%20%28DS-2CD1367G3-LIUF/SRB%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -953,7 +956,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">6 MP ColorVu 3.0 with Smart Hybrid Light Fixed Bullet Network Camera with Red&amp;Blue Strobe Light Alarm-Long Range</h3>
     <div class="pc-sku">DS-2CD1T67G3-LIUF/SRB(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 15,070</div>
+      <div class="pc-price" data-kes="15070">KES 15,070</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206%20MP%20ColorVu%203.0%20with%20Smart%20Hybrid%20Light%20Fixed%20Bullet%20Network%20Camera%20with%20Red%26Blue%20Strobe%20Light%20Alarm-Long%20Range%20%28DS-2CD1T67G3-LIUF/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -966,7 +969,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 MP Smart Hybrid Light with ColorVu Fixed Mini Bullet Network Camera</h3>
     <div class="pc-sku">DS-2CD2047G3-LI2UY(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 24,750</div>
+      <div class="pc-price" data-kes="24750">KES 24,750</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Mini%20Bullet%20Network%20Camera%20%28DS-2CD2047G3-LI2UY%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -979,7 +982,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 MP Smart Hybrid Light with ColorVu Fixed Dome Network Camera</h3>
     <div class="pc-sku">DS-2CD2147G3-LIS2UY(2.8mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 24,750</div>
+      <div class="pc-price" data-kes="24750">KES 24,750</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Dome%20Network%20Camera%20%28DS-2CD2147G3-LIS2UY%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -992,7 +995,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 MP Smart Hybrid Light with ColorVu Fixed Bullet Network Camera</h3>
     <div class="pc-sku">DS-2CD2T47G3-LIS2UY/SRB(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 30,030</div>
+      <div class="pc-price" data-kes="30030">KES 30,030</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Bullet%20Network%20Camera%20%28DS-2CD2T47G3-LIS2UY/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1005,7 +1008,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8 MP Smart Hybrid Light with ColorVu Fixed Mini Bullet Network Camera</h3>
     <div class="pc-sku">DS-2CD2087G3-LI2UY(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 28,820</div>
+      <div class="pc-price" data-kes="28820">KES 28,820</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Mini%20Bullet%20Network%20Camera%20%28DS-2CD2087G3-LI2UY%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1018,7 +1021,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8 MP Smart Hybrid Light with ColorVu Fixed Mini Dome Network Camera</h3>
     <div class="pc-sku">DS-2CD2187G3-LIS2UY(2.8mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 28,820</div>
+      <div class="pc-price" data-kes="28820">KES 28,820</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Mini%20Dome%20Network%20Camera%20%28DS-2CD2187G3-LIS2UY%282.8mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1031,7 +1034,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8 MP Smart Hybrid Light with ColorVu Fixed Bullet Network Camera</h3>
     <div class="pc-sku">DS-2CD2T87G3-LIS2UY/SRB(4mm)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 35,860</div>
+      <div class="pc-price" data-kes="35860">KES 35,860</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20MP%20Smart%20Hybrid%20Light%20with%20ColorVu%20Fixed%20Bullet%20Network%20Camera%20%28DS-2CD2T87G3-LIS2UY/SRB%284mm%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1044,7 +1047,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">2 MP 25X Powered by DarkFighter IR PTZ Camera</h3>
     <div class="pc-sku">DS-2DE4225IWG1-E(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 43,450</div>
+      <div class="pc-price" data-kes="43450">KES 43,450</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202%20MP%2025X%20Powered%20by%20DarkFighter%20IR%20PTZ%20Camera%20%28DS-2DE4225IWG1-E%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1057,7 +1060,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 MP 25X Powered by DarkFighter IR PTZ Camera</h3>
     <div class="pc-sku">DS-2DE4425IW-DE(O-STD)(T5)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 48,070</div>
+      <div class="pc-price" data-kes="48070">KES 48,070</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20MP%2025X%20Powered%20by%20DarkFighter%20IR%20PTZ%20Camera%20%28DS-2DE4425IW-DE%28O-STD%29%28T5%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1070,7 +1073,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">TandemVu 2+2MP 25X ColorVu &amp; IR Acusense Network Speed Dome</h3>
     <div class="pc-sku">DS-2SE4C225MWG-E/12(F0)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 49,940</div>
+      <div class="pc-price" data-kes="49940">KES 49,940</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20TandemVu%202%2B2MP%2025X%20ColorVu%20%26%20IR%20Acusense%20Network%20Speed%20Dome%20%28DS-2SE4C225MWG-E/12%28F0%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1083,7 +1086,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">TandemVu 4+4MP 25X ColorVu &amp; IR Acusense Network Speed Dome</h3>
     <div class="pc-sku">DS-2SE4C425MWG-E/14(F0)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 54,560</div>
+      <div class="pc-price" data-kes="54560">KES 54,560</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20TandemVu%204%2B4MP%2025X%20ColorVu%20%26%20IR%20Acusense%20Network%20Speed%20Dome%20%28DS-2SE4C425MWG-E/14%28F0%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1096,7 +1099,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4MP 24/7 Solar 4G PT Camera</h3>
     <div class="pc-sku">DS-2CFSP4/4G(4mm)(O-STD)/EU</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 14,300</div>
+      <div class="pc-price" data-kes="14300">KES 14,300</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%2024/7%20Solar%204G%20PT%20Camera%20%28DS-2CFSP4/4G%284mm%29%28O-STD%29/EU%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1109,7 +1112,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4MP 24/7 Solar 4G PT Camera(Comes with 4G SIM Card)</h3>
     <div class="pc-sku">DS-2CFSP4/4G-SIM(4mm)(KEN)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 14,300</div>
+      <div class="pc-price" data-kes="14300">KES 14,300</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%2024/7%20Solar%204G%20PT%20Camera%28Comes%20with%204G%20SIM%20Card%29%20%28DS-2CFSP4/4G-SIM%284mm%29%28KEN%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1122,7 +1125,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4MP 24/7 Solar 4G Dual-lens PT Camera</h3>
     <div class="pc-sku">DS-2CFSP8-D/4G(2.8+4mm)(O-STD)/EU</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 20,350</div>
+      <div class="pc-price" data-kes="20350">KES 20,350</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%2024/7%20Solar%204G%20Dual-lens%20PT%20Camera%20%28DS-2CFSP8-D/4G%282.8%2B4mm%29%28O-STD%29/EU%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1135,7 +1138,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4MP 24/7 Solar 4G Dual-lens PT Camera (Comes with 4G SIM Card)</h3>
     <div class="pc-sku">DS-2CFSP8-D/4G-SIM(2.8+4mm)(KEN)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 20,350</div>
+      <div class="pc-price" data-kes="20350">KES 20,350</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204MP%2024/7%20Solar%204G%20Dual-lens%20PT%20Camera%20%28Comes%20with%204G%20SIM%20Card%29%20%28DS-2CFSP8-D/4G-SIM%282.8%2B4mm%29%28KEN%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1148,7 +1151,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4CH 4 PORT POE 1 HDD Q Series NVR</h3>
     <div class="pc-sku">DS-7104NI-Q1/4P/M(STD)(D)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 10,010</div>
+      <div class="pc-price" data-kes="10010">KES 10,010</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204CH%204%20PORT%20POE%201%20HDD%20Q%20Series%20NVR%20%28DS-7104NI-Q1/4P/M%28STD%29%28D%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1161,7 +1164,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8CH 8 PORT POE 1 HDD Q Series NVR</h3>
     <div class="pc-sku">DS-7108NI-Q1/8P/M(STD)(D)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 14,080</div>
+      <div class="pc-price" data-kes="14080">KES 14,080</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208CH%208%20PORT%20POE%201%20HDD%20Q%20Series%20NVR%20%28DS-7108NI-Q1/8P/M%28STD%29%28D%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1174,7 +1177,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8CH 8 PORT POE 1 HDD K Series NVR</h3>
     <div class="pc-sku">DS-7608NXI-K1/8P(STD)(B)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 20,130</div>
+      <div class="pc-price" data-kes="20130">KES 20,130</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208CH%208%20PORT%20POE%201%20HDD%20K%20Series%20NVR%20%28DS-7608NXI-K1/8P%28STD%29%28B%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1187,7 +1190,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">16CH 16 PORT POE 2 HDD Q Series NVR</h3>
     <div class="pc-sku">DS-7616NI-Q2/16P(E)(STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 29,480</div>
+      <div class="pc-price" data-kes="29480">KES 29,480</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016CH%2016%20PORT%20POE%202%20HDD%20Q%20Series%20NVR%20%28DS-7616NI-Q2/16P%28E%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1200,7 +1203,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">16CH 16 PORT POE 2 HDD K Series NVR</h3>
     <div class="pc-sku">DS-7616NXI-K2/16P(D)(STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 35,310</div>
+      <div class="pc-price" data-kes="35310">KES 35,310</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016CH%2016%20PORT%20POE%202%20HDD%20K%20Series%20NVR%20%28DS-7616NXI-K2/16P%28D%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1213,7 +1216,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">16CH 16 PORT POE 2 HDD K Series NVR</h3>
     <div class="pc-sku">DS-7616NXI-K2/16P(E)(STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 35,310</div>
+      <div class="pc-price" data-kes="35310">KES 35,310</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2016CH%2016%20PORT%20POE%202%20HDD%20K%20Series%20NVR%20%28DS-7616NXI-K2/16P%28E%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1226,7 +1229,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">32CH 16 PORT POE 2 HDD K Series NVR</h3>
     <div class="pc-sku">DS-7632NXI-K2/16P(D)(STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 41,580</div>
+      <div class="pc-price" data-kes="41580">KES 41,580</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2032CH%2016%20PORT%20POE%202%20HDD%20K%20Series%20NVR%20%28DS-7632NXI-K2/16P%28D%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1239,7 +1242,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">32CH 16 PORT POE 2 HDD K Series NVR</h3>
     <div class="pc-sku">DS-7632NXI-K2/16P(E)(STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 41,580</div>
+      <div class="pc-price" data-kes="41580">KES 41,580</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2032CH%2016%20PORT%20POE%202%20HDD%20K%20Series%20NVR%20%28DS-7632NXI-K2/16P%28E%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1252,7 +1255,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">32CH 16 PORT POE 4 HDD K Series NVR</h3>
     <div class="pc-sku">DS-7732NXI-K4/16P(D)(STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 62,590</div>
+      <div class="pc-price" data-kes="62590">KES 62,590</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2032CH%2016%20PORT%20POE%204%20HDD%20K%20Series%20NVR%20%28DS-7732NXI-K4/16P%28D%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1265,7 +1268,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">32CH 16 PORT POE 4 HDD K Series NVR</h3>
     <div class="pc-sku">DS-7732NXI-K4/16P(E)(STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 62,590</div>
+      <div class="pc-price" data-kes="62590">KES 62,590</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2032CH%2016%20PORT%20POE%204%20HDD%20K%20Series%20NVR%20%28DS-7732NXI-K4/16P%28E%29%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -1278,7 +1281,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">64CH 4 HDD M Series NVR</h3>
     <div class="pc-sku">DS-7764NI-M4(STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 100,760</div>
+      <div class="pc-price" data-kes="100760">KES 100,760</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2064CH%204%20HDD%20M%20Series%20NVR%20%28DS-7764NI-M4%28STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>

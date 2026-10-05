@@ -282,6 +282,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -347,6 +349,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -402,7 +405,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">500 GB CCTV Surveillance Hard Disk</h3>
     <div class="pc-sku">HDD-500GB</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 4,000</div>
+      <div class="pc-price" data-kes="4000">KES 4,000</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20500%20GB%20CCTV%20Surveillance%20Hard%20Disk%20%28HDD-500GB%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -415,7 +418,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">1 TB CCTV Surveillance Hard Disk</h3>
     <div class="pc-sku">HDD-1TB</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 6,000</div>
+      <div class="pc-price" data-kes="6000">KES 6,000</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%201%20TB%20CCTV%20Surveillance%20Hard%20Disk%20%28HDD-1TB%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -428,7 +431,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">2 TB CCTV Surveillance Hard Disk</h3>
     <div class="pc-sku">HDD-2TB</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 10,000</div>
+      <div class="pc-price" data-kes="10000">KES 10,000</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%202%20TB%20CCTV%20Surveillance%20Hard%20Disk%20%28HDD-2TB%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -441,7 +444,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4 TB CCTV Surveillance Hard Disk</h3>
     <div class="pc-sku">HDD-4TB</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 20,000</div>
+      <div class="pc-price" data-kes="20000">KES 20,000</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204%20TB%20CCTV%20Surveillance%20Hard%20Disk%20%28HDD-4TB%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -454,7 +457,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">6 TB CCTV Surveillance Hard Disk</h3>
     <div class="pc-sku">HDD-6TB</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 32,000</div>
+      <div class="pc-price" data-kes="32000">KES 32,000</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206%20TB%20CCTV%20Surveillance%20Hard%20Disk%20%28HDD-6TB%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -467,7 +470,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">8 TB CCTV Surveillance Hard Disk</h3>
     <div class="pc-sku">HDD-8TB</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 45,000</div>
+      <div class="pc-price" data-kes="45000">KES 45,000</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%208%20TB%20CCTV%20Surveillance%20Hard%20Disk%20%28HDD-8TB%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -480,7 +483,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">10 TB CCTV Surveillance Hard Disk</h3>
     <div class="pc-sku">HDD-10TB</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 55,000</div>
+      <div class="pc-price" data-kes="55000">KES 55,000</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2010%20TB%20CCTV%20Surveillance%20Hard%20Disk%20%28HDD-10TB%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>

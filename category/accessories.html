@@ -354,6 +354,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -419,6 +421,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -474,7 +477,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">4U 600*450mm cabinet</h3>
     <div class="pc-sku">DS-XS6404-S/B(O-STD)/Overseas</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 11,000</div>
+      <div class="pc-price" data-kes="11000">KES 11,000</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%204U%20600%2A450mm%20cabinet%20%28DS-XS6404-S/B%28O-STD%29/Overseas%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -487,7 +490,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">6U 600*450mm cabinet</h3>
     <div class="pc-sku">DS-XS6406-S/B(O-STD)/Overseas</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 12,650</div>
+      <div class="pc-price" data-kes="12650">KES 12,650</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%206U%20600%2A450mm%20cabinet%20%28DS-XS6406-S/B%28O-STD%29/Overseas%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -500,7 +503,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">9U 600*450mm cabinet</h3>
     <div class="pc-sku">DS-XS6409-S/B(O-STD)/Overseas</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 14,300</div>
+      <div class="pc-price" data-kes="14300">KES 14,300</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%209U%20600%2A450mm%20cabinet%20%28DS-XS6409-S/B%28O-STD%29/Overseas%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -513,7 +516,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">12U 600*450mm cabinet</h3>
     <div class="pc-sku">DS-XS6412-S/B(O-STD)/Overseas</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 16,500</div>
+      <div class="pc-price" data-kes="16500">KES 16,500</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2012U%20600%2A450mm%20cabinet%20%28DS-XS6412-S/B%28O-STD%29/Overseas%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -526,7 +529,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Standard tray for 600mm width cabinet</h3>
     <div class="pc-sku">DS-XSPB04-S/B</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 2,200</div>
+      <div class="pc-price" data-kes="2200">KES 2,200</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Standard%20tray%20for%20600mm%20width%20cabinet%20%28DS-XSPB04-S/B%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -539,7 +542,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Back-up UPS-600VA</h3>
     <div class="pc-sku">DS-UPS600(O-STD)/UK</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 4,400</div>
+      <div class="pc-price" data-kes="4400">KES 4,400</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Back-up%20UPS-600VA%20%28DS-UPS600%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -552,7 +555,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Back-up UPS-1000VA</h3>
     <div class="pc-sku">DS-UPS1000(O-STD)/UK</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 6,050</div>
+      <div class="pc-price" data-kes="6050">KES 6,050</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Back-up%20UPS-1000VA%20%28DS-UPS1000%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -565,7 +568,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Back-up  UPS-2000VA</h3>
     <div class="pc-sku">DS-UPS2000(O-STD)/UK</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 16,500</div>
+      <div class="pc-price" data-kes="16500">KES 16,500</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Back-up%20%20UPS-2000VA%20%28DS-UPS2000%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -578,7 +581,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Back-up UPS-3000VA</h3>
     <div class="pc-sku">DS-UPS3000(O-STD)/UK</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 24,200</div>
+      <div class="pc-price" data-kes="24200">KES 24,200</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Back-up%20UPS-3000VA%20%28DS-UPS3000%28O-STD%29/UK%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -591,7 +594,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Power Supply</h3>
     <div class="pc-sku">DS-2FA1225-C4(UK)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,210</div>
+      <div class="pc-price" data-kes="1210">KES 1,210</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Power%20Supply%20%28DS-2FA1225-C4%28UK%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -604,7 +607,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Power Supply</h3>
     <div class="pc-sku">DS-2FA1205-C8(UK)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 1,650</div>
+      <div class="pc-price" data-kes="1650">KES 1,650</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Power%20Supply%20%28DS-2FA1205-C8%28UK%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -617,7 +620,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Power Supply</h3>
     <div class="pc-sku">DS-2FA1208-C16(UK)(Africa)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 2,200</div>
+      <div class="pc-price" data-kes="2200">KES 2,200</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Power%20Supply%20%28DS-2FA1208-C16%28UK%29%28Africa%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -630,7 +633,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Power Adapter</h3>
     <div class="pc-sku">Adapter,ADS-12FG-12N 12012EPB,CE,12V/1A</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 418</div>
+      <div class="pc-price" data-kes="418">KES 418</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Power%20Adapter%20%28Adapter%2CADS-12FG-12N%2012012EPB%2CCE%2C12V/1A%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -643,7 +646,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">90 m Mini RG59 Coaxial Cable with Power Cable</h3>
     <div class="pc-sku">DS-1LH1SCAM592C(O-STD) 90m</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 2,970</div>
+      <div class="pc-price" data-kes="2970">KES 2,970</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%2090%20m%20Mini%20RG59%20Coaxial%20Cable%20with%20Power%20Cable%20%28DS-1LH1SCAM592C%28O-STD%29%2090m%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -656,7 +659,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">180 m Mini RG59 Coaxial Cable with Power Cable</h3>
     <div class="pc-sku">DS-1LH1SCAM592C(O-STD) 180m</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 5,720</div>
+      <div class="pc-price" data-kes="5720">KES 5,720</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20180%20m%20Mini%20RG59%20Coaxial%20Cable%20with%20Power%20Cable%20%28DS-1LH1SCAM592C%28O-STD%29%20180m%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -669,7 +672,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Video Balun</h3>
     <div class="pc-sku">DS-1H18S/E(C)(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 330</div>
+      <div class="pc-price" data-kes="330">KES 330</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Video%20Balun%20%28DS-1H18S/E%28C%29%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -682,7 +685,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Camera Connector Set (2× BNC, DC Jack &amp; RJ45)</h3>
     <div class="pc-sku">CONN-SET</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 100</div>
+      <div class="pc-price" data-kes="100">KES 100</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Camera%20Connector%20Set%20%282%C3%97%20BNC%2C%20DC%20Jack%20%26%20RJ45%29%20%28CONN-SET%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -695,7 +698,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Cable Clips (Box of 100)</h3>
     <div class="pc-sku">CLIPS-100</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 200</div>
+      <div class="pc-price" data-kes="200">KES 200</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Cable%20Clips%20%28Box%20of%20100%29%20%28CLIPS-100%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -708,7 +711,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Cable Ties 4.8 × 200 mm (Pack of 100)</h3>
     <div class="pc-sku">TIES-100</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 300</div>
+      <div class="pc-price" data-kes="300">KES 300</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Cable%20Ties%204.8%20%C3%97%20200%20mm%20%28Pack%20of%20100%29%20%28TIES-100%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>

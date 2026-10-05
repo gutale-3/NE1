@@ -300,6 +300,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -365,6 +367,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -420,7 +423,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Wi-Fi 5 1200M Celling Access Point</h3>
     <div class="pc-sku">DS-3WAP522-SI(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 8,250</div>
+      <div class="pc-price" data-kes="8250">KES 8,250</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Wi-Fi%205%201200M%20Celling%20Access%20Point%20%28DS-3WAP522-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -433,7 +436,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Wi-Fi 6 1800M Celling Access Point</h3>
     <div class="pc-sku">DS-3WAP622G-SI(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 12,650</div>
+      <div class="pc-price" data-kes="12650">KES 12,650</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Wi-Fi%206%201800M%20Celling%20Access%20Point%20%28DS-3WAP622G-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -446,7 +449,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Wi-Fi 6 3000M Celling Access Point</h3>
     <div class="pc-sku">DS-3WAP622E-SI(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 15,400</div>
+      <div class="pc-price" data-kes="15400">KES 15,400</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Wi-Fi%206%203000M%20Celling%20Access%20Point%20%28DS-3WAP622E-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -459,7 +462,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Wi-Fi 5 1200M In-Wall Access Point</h3>
     <div class="pc-sku">DS-3WAP521-SI(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 7,700</div>
+      <div class="pc-price" data-kes="7700">KES 7,700</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Wi-Fi%205%201200M%20In-Wall%20Access%20Point%20%28DS-3WAP521-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -472,7 +475,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Wi-Fi 6 3000M In-Wall Access Point</h3>
     <div class="pc-sku">DS-3WAP621E-SI(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 12,100</div>
+      <div class="pc-price" data-kes="12100">KES 12,100</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Wi-Fi%206%203000M%20In-Wall%20Access%20Point%20%28DS-3WAP621E-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -485,7 +488,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">Wi-Fi 6 3000M Outdoor Access Point</h3>
     <div class="pc-sku">DS-3WAP623E-SI(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 20,900</div>
+      <div class="pc-price" data-kes="20900">KES 20,900</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20Wi-Fi%206%203000M%20Outdoor%20Access%20Point%20%28DS-3WAP623E-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -498,7 +501,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">All in One 5 Port AC Router</h3>
     <div class="pc-sku">DS-3WG105G-SI(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 9,570</div>
+      <div class="pc-price" data-kes="9570">KES 9,570</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20All%20in%20One%205%20Port%20AC%20Router%20%28DS-3WG105G-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -511,7 +514,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">All in One 5 Port PoE AC Router</h3>
     <div class="pc-sku">DS-3WG105GP-SI(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 11,660</div>
+      <div class="pc-price" data-kes="11660">KES 11,660</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20All%20in%20One%205%20Port%20PoE%20AC%20Router%20%28DS-3WG105GP-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -524,7 +527,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">All in One 10 Port PoE AC Router</h3>
     <div class="pc-sku">DS-3WG210GP-SI(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 18,150</div>
+      <div class="pc-price" data-kes="18150">KES 18,150</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20All%20in%20One%2010%20Port%20PoE%20AC%20Router%20%28DS-3WG210GP-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>
@@ -537,7 +540,7 @@ section.block { padding: 44px 0 0; }
     <h3 class="pc-name">All in One 7 Port Rack AC Router</h3>
     <div class="pc-sku">DS-3WG507G-SI(O-STD)</div>
     <div class="pc-foot">
-      <div class="pc-price">KES 27,500</div>
+      <div class="pc-price" data-kes="27500">KES 27,500</div>
       <div class="pc-links"><span>View details &rarr;</span><a class="pc-wa" href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%20would%20like%20to%20enquire%20about%3A%20All%20in%20One%207%20Port%20Rack%20AC%20Router%20%28DS-3WG507G-SI%28O-STD%29%29" target="_blank" rel="noopener">Enquire &rarr;</a></div>
     </div>
   </div>

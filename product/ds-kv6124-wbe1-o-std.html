@@ -204,6 +204,8 @@ section.block { padding: 44px 0 0; }
 .site-actions .call:hover { border-color: #086E9E; color: #086E9E; }
 .site-actions .quote { background: #086E9E; color: #fff; }
 .site-actions .quote:hover { background: #0B7EB5; color: #fff; }
+.acct { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #10202E; text-decoration: none; white-space: nowrap; }
+.acct:hover { color: #086E9E; background: #F6F8FA; }
 .navtoggle-cb { display: none; }
 .hamburger-btn { display: none; cursor: pointer; font-size: 24px; color: #10202E; line-height: 1; padding: 12px; margin: -12px; }
 .hamburger-icon-close { display: none; }
@@ -248,6 +250,7 @@ section.block { padding: 44px 0 0; }
 .wa-float { position: fixed; bottom: 22px; right: 22px; width: 56px; height: 56px; border-radius: 50%; background: #22C35E; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 60; }
 .wa-float:hover { background: #1CAD52; }
 </style>
+<script src="/js/site.js" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -268,6 +271,7 @@ section.block { padding: 44px 0 0; }
         <a href="tel:+254737454891" class="call">Call 0737 454 891</a>
         <a href="/quote" class="quote">Get a quote</a>
       </div>
+      <a href="/auth/google/login?next=/account" class="acct" data-acct><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Sign in</span></a>
       <label for="navtoggle" class="hamburger-btn" aria-label="Open menu">
         <span class="hamburger-icon-open">&#9776;</span>
         <span class="hamburger-icon-close">&#10005;</span>
@@ -320,7 +324,7 @@ section.block { padding: 44px 0 0; }
         <div class="sku">DS-KV6124-WBE1(O-STD)</div>
 
         <div class="pricebox">
-          <div class="price">KES 17,160 <small>per unit</small></div>
+          <div class="price" data-kes="17160">KES 17,160 <small>per unit</small></div>
           <div class="stock">&#10003; Genuine Hikvision stock &mdash; manufacturer warranty support</div>
           <p class="note">Talk to us for project and volume pricing, or for a quote that includes cabling, installation and configuration.</p>
         </div>
@@ -361,7 +365,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">4-Wire HD Video Intercom Kit</div>
             <div class="card-sku">DS-KIS212(O-STD)</div>
-            <div class="card-price">KES 11,880</div>
+            <div class="card-price" data-kes="11880">KES 11,880</div>
           </div>
         </a>
         <a class="card" href="/product/ds-kis213-o-std-africa">
@@ -369,7 +373,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">4 wire HD Kits</div>
             <div class="card-sku">DS-KIS213(O-STD)/Africa</div>
-            <div class="card-price">KES 13,090</div>
+            <div class="card-price" data-kes="13090">KES 13,090</div>
           </div>
         </a>
         <a class="card" href="/product/ds-kis313-p-o-std">
@@ -377,7 +381,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">Hybrid HD Intercom Kit</div>
             <div class="card-sku">DS-KIS313-P(O-STD)</div>
-            <div class="card-price">KES 18,700</div>
+            <div class="card-price" data-kes="18700">KES 18,700</div>
           </div>
         </a>
         <a class="card" href="/product/ds-kis603-p-c-o-std">
@@ -385,7 +389,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">IP Video Intercom Kit</div>
             <div class="card-sku">DS-KIS603-P(C)(O-STD)</div>
-            <div class="card-price">KES 26,730</div>
+            <div class="card-price" data-kes="26730">KES 26,730</div>
           </div>
         </a>
         <a class="card" href="/product/ds-kis604-s-c-o-std">
@@ -393,7 +397,7 @@ section.block { padding: 44px 0 0; }
           <div class="card-body">
             <div class="card-name">IP video intercom kit</div>
             <div class="card-sku">DS-KIS604-S(C)(O-STD)</div>
-            <div class="card-price">KES 35,860</div>
+            <div class="card-price" data-kes="35860">KES 35,860</div>
           </div>
         </a>
       </div>

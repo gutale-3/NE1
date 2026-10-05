@@ -13,7 +13,7 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
-    "run_worker_first": ["/admin", "/admin/*", "/auth/*", "/api/*"]
+    "run_worker_first": ["/admin", "/admin/*", "/account", "/account/*", "/auth/*", "/api/*"]
   },
   "d1_databases": [
     {
@@ -29,7 +29,8 @@
     "GOOGLE_CLIENT_ID": "621054563960-gdaku45086r1g12oq1eo0t6p1n32dvbd.apps.googleusercontent.com",
     "ADMIN_EMAILS": "ahmed@nashnaal.com",
     "GITHUB_REPO": "gutale-3/NE1",
-    "GITHUB_BRANCH": "main"
+    "GITHUB_BRANCH": "main",
+    "TECH_DISCOUNT_PERCENT": "5"
   },
   "compatibility_flags": [
     "nodejs_compat"

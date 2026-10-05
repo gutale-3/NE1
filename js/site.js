@@ -110,6 +110,7 @@
           if (!value) return;
           lines.push('• ' + field.getAttribute('data-label') + ': ' + value);
         });
+        if (techTag) lines.push(techTag);
         var url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lines.join('\n'));
         window.open(url, '_blank', 'noopener');
       });
@@ -138,12 +139,67 @@
       img.alt = p.n;
       card.querySelector('.pick-cat').textContent = p.c;
       card.querySelector('.pick-name').textContent = p.n;
-      card.querySelector('.pick-foot span').textContent = 'KES ' + p.p;
+      var price = card.querySelector('.pick-foot span');
+      price.textContent = 'KES ' + p.p;
+      price.setAttribute('data-kes', p.k);
     });
+  }
+
+  // ---- Accounts: header link, technician prices ----------------------------
+  // Only people who have signed in carry the ne_signed_in cookie, so everyone
+  // else never calls the API.
+  var techTag = '';
+
+  function money(n) { return 'KES ' + Math.round(n).toLocaleString('en-KE'); }
+
+  function showTechPrices(pct) {
+    var rate = (100 - pct) / 100;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-kes]'), function (el) {
+      // Inside a price row (homepage picks) the badge goes under the whole row.
+      var anchor = el.closest('.pick-foot') || el;
+      var next = anchor.nextElementSibling;
+      if (next && next.classList.contains('tech-price')) next.remove();
+      var tag = document.createElement('div');
+      tag.className = 'tech-price';
+      tag.textContent = 'Technician price: ' + money(Number(el.getAttribute('data-kes')) * rate);
+      anchor.insertAdjacentElement('afterend', tag);
+    });
+  }
+
+  function tagWhatsAppLinks() {
+    Array.prototype.forEach.call(document.querySelectorAll('a[href*="wa.me/"]'), function (a) {
+      // Rebuilt by hand: URLSearchParams would turn spaces into '+', which WhatsApp shows literally.
+      var match = a.href.match(/^([^?]*\?(?:[^#]*&)?text=)([^&#]*)(.*)$/);
+      if (!match) return;
+      var text;
+      try { text = decodeURIComponent(match[2].replace(/\+/g, ' ')); } catch (e) { return; }
+      if (text.indexOf(techTag) !== -1) return;
+      a.href = match[1] + encodeURIComponent(text + '\n' + techTag) + match[3];
+    });
+  }
+
+  function initAccount() {
+    if (document.cookie.indexOf('ne_signed_in=1') === -1) return;
+    fetch('/api/me', { credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (me) {
+      if (!me.signedIn) return;
+      Array.prototype.forEach.call(document.querySelectorAll('[data-acct]'), function (link) {
+        link.href = me.admin ? '/admin' : '/account';
+        link.querySelector('span').textContent = me.admin ? 'Admin' : 'My account';
+      });
+      if (me.techDiscount > 0) {
+        techTag = '(Technician account: ' + (me.name || me.email) + ', approved)';
+        var style = document.createElement('style');
+        style.textContent = '.tech-price{display:block;width:max-content;max-width:100%;margin-top:6px;padding:3px 9px;border-radius:999px;background:#E8F8EE;color:#14532D;font-size:12.5px;font-weight:800;line-height:1.4}';
+        document.head.appendChild(style);
+        showTechPrices(me.techDiscount);
+        tagWhatsAppLinks();
+      }
+    }).catch(function () {});
   }
 
   function init() {
     initPicks();
+    initAccount();
     initCatalog();
     initWhatsAppForms();
   }
