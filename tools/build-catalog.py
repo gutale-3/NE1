@@ -19,6 +19,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import catalog
 import site_layout
+import brochure_pages
 import print_catalogue
 from catalog import PHONE, PHONE_LABEL, ROOT, SITE
 from site_layout import category_url as category_page_url
@@ -667,6 +668,8 @@ def render_category(name, items, products):
     <p id="catalog-empty" class="pempty" hidden>No products match that search.</p>
     <div class="pmore"><button type="button" id="catalog-more" hidden>Show more products</button></div>
 
+    {brochure_pages.strip_html(name)}
+
     <section class="band">
       <div>
         <h2>Not sure which model fits?</h2>
@@ -901,6 +904,15 @@ def write_quote_page(products):
     home.write_text(fill(html, "picks", picks_html(products)), encoding="utf-8")
 
 
+def write_downloads_page():
+    path = ROOT / "downloads.html"
+    body, count = brochure_pages.library_html()
+    source = fill(path.read_text(encoding="utf-8"), "brochures", body)
+    source = re.sub(r'<style id="bro-css">[\s\S]*?</style>', lambda _: f'<style id="bro-css">{brochure_pages.CSS}</style>', source, count=1)
+    path.write_text(source, encoding="utf-8")
+    return count
+
+
 def write_category_pages(products):
     directory = ROOT / "category"
     directory.mkdir(exist_ok=True)
@@ -1035,6 +1047,7 @@ def main():
     write_quote_page(products)
     write_price_list(products)
     sheets = print_catalogue.write(products, PACKAGES, ROOT)
+    brochures = write_downloads_page()
     urls = write_sitemap(products)
 
     print(f"{len(products)} product pages written to product/")
@@ -1042,7 +1055,7 @@ def main():
         print(f"{len(stale)} stale pages removed")
     print(f"{categories} category pages written to category/")
     print(f"products.html grid and JSON-LD updated; sitemap.xml lists {urls} URLs")
-    print(f"catalogue/index.html: {sheets} A4 pages")
+    print(f"catalogue/index.html: {sheets} A4 pages; downloads.html: {brochures} brochures")
 
 
 if __name__ == "__main__":
