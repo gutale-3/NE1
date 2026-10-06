@@ -82,9 +82,9 @@ def make_cover(item, src=None):
     if not out.exists():
         COVERS.mkdir(parents=True, exist_ok=True)
         if src.suffix.lower() == ".pdf":
-            tmp = out.with_suffix("")
+            tmp = COVERS / (item["id"] + "-page1")
             subprocess.run(["pdftoppm", "-r", "60", "-png", "-f", "1", "-l", "1", "-singlefile", str(src), str(tmp)], check=True)
-            image = tmp.with_suffix(".png")
+            image = COVERS / (item["id"] + "-page1.png")
         else:
             image = src
         # Very tall infographics: keep the top, so the card shows the headline.
@@ -102,7 +102,10 @@ def add(directory, listing):
     added = skipped = 0
     for row in json.loads(pathlib.Path(listing).read_text(encoding="utf-8")):
         src = directory / row["file"]
-        if row["href"] in known or not src.exists():
+        if row["href"] in known or not src.exists() or src.suffix.lower() not in {".pdf", ".jpg", ".jpeg", ".png"}:
+            continue
+        if re.match(rb"\s*<(!doctype|html)", src.read_bytes()[:64], re.I):
+            print(f"skipped (got a web page, not the file): {row['title']}")
             continue
         if src.stat().st_size > MAX_BYTES:
             # Too big to host: link to Hikvision's own online copy instead.

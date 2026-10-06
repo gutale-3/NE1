@@ -76,14 +76,14 @@ CSS = """
 .bro h3 { font-size: 14.5px; line-height: 1.35; margin: 4px 0 6px; color: #10202E; }
 .bro-meta { font-size: 12px; color: #4A5B68; margin: 0 0 12px; }
 .bro-actions { margin-top: auto; display: flex; gap: 8px; }
-.bro-actions a { flex: 1; text-align: center; padding: 9px 8px; border-radius: 9px; font-size: 13.5px; font-weight: 700; text-decoration: none; }
+.bro-actions a { flex: 1; text-align: center; white-space: nowrap; padding: 9px 6px; border-radius: 9px; font-size: 13.5px; font-weight: 700; text-decoration: none; }
 .bro-dl { background: #086E9E; color: #fff !important; }
 .bro-wa { background: #E8F8EE; color: #14532D !important; }
 .bro-strip { margin: 40px 0 8px; }
 .bro-strip-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
 .bro-strip-head h2 { font-size: 22px; margin: 0; }
 .bro-strip-head a { font-weight: 700; }
-.bro-row { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(170px, 200px); gap: 14px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory; }
+.bro-row { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(190px, 210px); gap: 14px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory; }
 .bro-row .bro { scroll-snap-align: start; }
 """
 
@@ -97,7 +97,7 @@ def strip_html(category):
     label = next(label for key, label, _ in GROUPS if key == keys[0])
     cards = "\n".join(card_html(i) for i in items[:10])
     return f"""<section class="bro-strip" aria-labelledby="bro-title">
-      <div class="bro-strip-head"><h2 id="bro-title">Hikvision brochures &amp; posters</h2><a href="/downloads#{keys[0]}">All {len(items)} {esc(label.lower())} downloads &rarr;</a></div>
+      <div class="bro-strip-head"><h2 id="bro-title">Hikvision brochures &amp; posters</h2><a href="/downloads#{keys[0]}">See all {len(items)} &middot; {esc(label)} &rarr;</a></div>
       <div class="bro-row">
 {cards}
       </div>
