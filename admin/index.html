@@ -22,6 +22,7 @@
     <button type="button" class="tab" data-tab="orders">Orders <span class="badge" id="orders-badge" hidden></span></button>
     <button type="button" class="tab" data-tab="customers">Customers</button>
     <button type="button" class="tab" data-tab="tech">Technicians <span class="badge" id="tech-badge" hidden></span></button>
+    <button type="button" class="tab" data-tab="wa">WhatsApp <span class="badge" id="wa-badge" hidden></span></button>
   </nav>
 
   <section id="list-view">
@@ -86,6 +87,29 @@
     </div>
     <p class="count" id="cust-count">Loading&hellip;</p>
     <div id="cust-list" class="tech-list"></div>
+  </section>
+
+  <section id="wa-view" hidden>
+    <div class="wa-grid">
+      <div class="tech">
+        <h3>Updates number</h3>
+        <dl id="wa-status"></dl>
+        <div class="row-actions">
+          <button type="button" class="primary" data-wa="templates">Submit message templates</button>
+          <button type="button" class="chip" data-wa="profile">Update WhatsApp profile</button>
+          <button type="button" class="chip" data-wa="test">Send test alert to me</button>
+        </div>
+      </div>
+      <div class="tech">
+        <h3>Webhook (paste these in Meta)</h3>
+        <dl id="wa-hook"></dl>
+        <p class="hint">Meta developer app &rarr; WhatsApp &rarr; Configuration &rarr; Webhook &rarr; Edit. Then subscribe to the <b>messages</b> field.</p>
+      </div>
+    </div>
+    <h2 class="wa-h">Message templates</h2>
+    <div id="wa-templates" class="tech-list"></div>
+    <h2 class="wa-h">Messages</h2>
+    <div id="wa-log" class="tech-list"></div>
   </section>
 
   <section id="tech-view" hidden>

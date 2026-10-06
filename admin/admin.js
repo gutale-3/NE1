@@ -94,6 +94,7 @@
     $('tech-view').hidden = view !== 'tech';
     $('orders-view').hidden = view !== 'orders';
     $('customers-view').hidden = view !== 'customers';
+    $('wa-view').hidden = view !== 'wa';
     Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
       tab.classList.toggle('on', tab.getAttribute('data-tab') === (view === 'edit' ? 'list' : view));
     });
@@ -389,6 +390,70 @@
     });
   });
 
+  // ---- WhatsApp updates number -------------------------------------------
+  function dl(box, pairs) {
+    box.textContent = '';
+    pairs.forEach(function (p) {
+      var dt = document.createElement('dt'); dt.textContent = p[0];
+      var dd = document.createElement('dd');
+      if (p[2]) { var c = document.createElement('span'); c.className = 'copy'; c.textContent = p[1]; dd.appendChild(c); } else dd.textContent = p[1];
+      box.appendChild(dt); box.appendChild(dd);
+    });
+  }
+  function loadWhatsApp() {
+    return api('/api/admin/whatsapp').then(function (d) {
+      var n = d.number || {};
+      dl($('wa-status'), [
+        ['Number', n.display_phone_number || '+254 141 444 982'],
+        ['Display name', (n.verified_name || 'Nashnaal Electronics') + (n.name_status ? ' (' + n.name_status.toLowerCase().replace(/_/g, ' ') + ')' : '')],
+        ['Quality', n.quality_rating || '—'],
+        ['Access key', d.hasToken ? 'Saved in Cloudflare' : 'Missing: add WHATSAPP_TOKEN secret'],
+        ['App secret', d.hasAppSecret ? 'Saved in Cloudflare' : 'Missing: add META_APP_SECRET secret'],
+        ['Owner alerts to', d.owner ? '+' + d.owner : '—'],
+      ].concat(d.numberError ? [['Error', d.numberError]] : []));
+      dl($('wa-hook'), [['Callback URL', d.webhookUrl, true], ['Verify token', d.verifyToken || 'Add META_APP_SECRET first', Boolean(d.verifyToken)]]);
+      var tl = $('wa-templates'); tl.textContent = '';
+      if (d.templatesError) tl.textContent = d.templatesError;
+      (d.templates || []).forEach(function (t) {
+        var el = document.createElement('div'); el.className = 'tpl';
+        el.innerHTML = '<div><b></b><p></p></div><span class="s"></span>';
+        el.querySelector('b').textContent = t.name;
+        el.querySelector('p').textContent = t.body + (t.reason && t.reason !== 'NONE' ? ' — Rejected: ' + t.reason : '');
+        el.querySelector('.s').className = 's ' + t.status; el.querySelector('.s').textContent = t.status;
+        tl.appendChild(el);
+      });
+      if (!d.configured) tl.textContent = 'Templates appear here once the access key is saved in Cloudflare.';
+      var log = $('wa-log'); log.textContent = '';
+      var inbound = 0;
+      d.messages.forEach(function (m) {
+        if (m.direction === 'in' && m.created_at > (localStorage.getItem('ne_wa_seen') || '')) inbound++;
+        var el = document.createElement('div'); el.className = 'wa-msg ' + m.direction;
+        el.innerHTML = '<span class="dir"></span><div><div class="txt"></div><small></small></div><span class="st"></span>';
+        el.querySelector('.dir').textContent = m.direction === 'in' ? 'From' : 'To';
+        el.querySelector('.txt').textContent = m.body || '';
+        var who = '+' + m.phone + ' · ' + (m.direction === 'in' ? m.kind : m.kind.replace(/^ne_/, '').replace(/_/g, ' ')) + ' · ' + day(m.created_at);
+        el.querySelector('small').textContent = who + (m.error ? ' · ' + m.error : '');
+        if (m.direction === 'in') {
+          var a = document.createElement('a'); a.href = 'https://wa.me/' + m.phone; a.target = '_blank'; a.rel = 'noopener'; a.textContent = ' Reply from my WhatsApp';
+          el.querySelector('small').appendChild(a);
+        }
+        el.querySelector('.st').className = 'st ' + m.status; el.querySelector('.st').textContent = m.status;
+        log.appendChild(el);
+      });
+      if (!d.messages.length) log.textContent = 'No messages yet.';
+      try { if (d.messages[0]) localStorage.setItem('ne_wa_seen', d.messages[0].created_at); } catch (e) { /* ignore */ }
+      $('wa-badge').hidden = true;
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-wa]'), function (b) {
+    b.addEventListener('click', function () {
+      b.disabled = true;
+      api('/api/admin/whatsapp', { action: b.getAttribute('data-wa') }).then(function (r) {
+        notice(r.message); return loadWhatsApp();
+      }).catch(function (err) { notice(err.message, true); }).then(function () { b.disabled = false; });
+    });
+  });
+
   $('cust-search').addEventListener('input', renderCustomers);
   $('cust-filter').addEventListener('change', renderCustomers);
   ['cust-from', 'cust-to'].forEach(function (id) {
@@ -406,6 +471,7 @@
       show(view);
       if (view === 'tech') loadTechs().catch(function (err) { notice(err.message, true); });
       if (view === 'orders') loadOrders().catch(function (err) { notice(err.message, true); });
+      if (view === 'wa') loadWhatsApp().catch(function (err) { notice(err.message, true); });
       if (view === 'customers') {
         loadCustomers().catch(function (err) { notice(err.message, true); });
         loadFunnel().catch(function (err) { notice(err.message, true); });

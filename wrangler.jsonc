@@ -22,8 +22,10 @@
       "database_id": "b6442f5e-37ed-4bca-9083-4e2da5cc2886"
     }
   ],
+  // Daily at 06:00 UTC (09:00 Nairobi): WhatsApp reward-expiry reminders.
+  "triggers": { "crons": ["0 6 * * *"] },
   // Secrets (set in the Cloudflare dashboard, never in this file):
-  //   GOOGLE_CLIENT_SECRET, GITHUB_TOKEN
+  //   GOOGLE_CLIENT_SECRET, GITHUB_TOKEN, WHATSAPP_TOKEN, META_APP_SECRET
   "vars": {
     "SITE_ORIGIN": "https://nashnaal.com",
     "GOOGLE_CLIENT_ID": "621054563960-gdaku45086r1g12oq1eo0t6p1n32dvbd.apps.googleusercontent.com",
@@ -32,7 +34,11 @@
     "GITHUB_BRANCH": "main",
     "TECH_DISCOUNT_PERCENT": "5",
     "REWARD_PERCENT": "2",
-    "TECH_REWARD_PERCENT": "1"
+    "TECH_REWARD_PERCENT": "1",
+    // WhatsApp updates number +254 141 444 982 (Cloud API) and the owner's alerts number.
+    "WHATSAPP_PHONE_ID": "1311756048696222",
+    "WHATSAPP_WABA_ID": "1109082984855157",
+    "OWNER_WHATSAPP": "254737454891"
   },
   "compatibility_flags": [
     "nodejs_compat"

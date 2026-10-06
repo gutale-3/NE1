@@ -16,8 +16,20 @@ const PRODUCTS_PATH = "data/products.json";
 const HINT_COOKIE = "ne_signed_in";
 const WELCOME_COOKIE = "ne_welcome";
 
+import * as wa from "./whatsapp.js";
+
+// Runs a side job (e.g. a WhatsApp message) after the response, without failing the request.
+function later(ctx, job) {
+  const safe = Promise.resolve().then(job).catch((error) => console.error("background job failed:", error.stack || error));
+  if (ctx && ctx.waitUntil) ctx.waitUntil(safe);
+  return safe;
+}
+
 export default {
-  async fetch(request, env) {
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(wa.expiryReminders(env, (userId) => rewardBalance(env, userId)));
+  },
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const path = url.pathname;
     try {
@@ -29,9 +41,10 @@ export default {
       if (path === "/account" || path.startsWith("/account/")) return await accountPage(request, env, url);
       if (path === "/api/account/application") return await accountApplication(request, env, url);
       if (path === "/api/account/summary") return await accountSummary(request, env);
-      if (path === "/api/orders") return await createOrder(request, env, url);
+      if (path === "/api/orders") return await createOrder(request, env, url, ctx);
+      if (path === "/api/whatsapp/webhook") return await wa.webhook(request, env);
       if (path === "/api/orders/view") return await viewOrder(request, env, url);
-      if (path.startsWith("/api/admin/")) return await adminApi(request, env, url);
+      if (path.startsWith("/api/admin/")) return await adminApi(request, env, url, ctx);
     } catch (error) {
       console.error(error.stack || error);
       return json({ error: "Something went wrong. Please try again." }, 500);
@@ -336,7 +349,7 @@ async function adminPage(request, env, url) {
   return response;
 }
 
-async function adminApi(request, env, url) {
+async function adminApi(request, env, url, ctx) {
   const user = await currentUser(request, env);
   if (!isAdmin(env, user)) return json({ error: "Not signed in as an admin." }, 401);
   if (request.method !== "GET") {
@@ -354,7 +367,8 @@ async function adminApi(request, env, url) {
   if (url.pathname === "/api/admin/technicians" && request.method === "POST") {
     return decideTechnician(request, env, user);
   }
-  if (url.pathname === "/api/admin/orders") return adminOrders(request, env, url, user);
+  if (url.pathname === "/api/admin/orders") return adminOrders(request, env, url, user, ctx);
+  if (url.pathname === "/api/admin/whatsapp") return adminWhatsApp(request, env, url);
   if (url.pathname === "/api/admin/customers" && request.method === "GET") return adminCustomers(env, url);
   if (url.pathname === "/api/admin/statement" && request.method === "GET") return adminStatement(env, url);
   if (url.pathname === "/api/admin/funnel" && request.method === "GET") return adminFunnel(env);
@@ -668,7 +682,7 @@ function orderMessage(order, items, url) {
   return lines.join("\n");
 }
 
-async function createOrder(request, env, url) {
+async function createOrder(request, env, url, ctx) {
   if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
   if (request.headers.get("origin") !== url.origin) return json({ error: "Bad request origin." }, 403);
   const body = await request.json();
@@ -731,6 +745,9 @@ async function createOrder(request, env, url) {
 
   const order = { number, subtotal, tech_discount: techDiscountAmount, reward_used: rewardUsed, total, delivery, town, transport, name, phone, notes: clean(body.notes, 500) };
   const viewUrl = `${siteOrigin(env, url)}/order/?n=${number}&k=${token}`;
+  later(ctx, () => wa.orderCreated(env, {
+    id: row.id, number, view_token: token, name, phone, total, delivery, town, consent: body.consent ? 1 : 0, user_id: user ? user.id : null,
+  }, items.reduce((n, i) => n + i.qty, 0)));
   return json({ ok: true, number, token, total, viewUrl, message: orderMessage(order, items, viewUrl) });
 }
 
@@ -773,6 +790,23 @@ async function accountSummary(request, env) {
   });
 }
 
+async function adminWhatsApp(request, env, url) {
+  if (request.method === "GET") return json(await wa.adminStatus(env, siteOrigin(env, url)));
+  if (!wa.configured(env)) return json({ error: "Add WHATSAPP_TOKEN in Cloudflare first." }, 400);
+  const { action } = await request.json();
+  try {
+    if (action === "templates") return json({ ok: true, message: (await wa.submitTemplates(env)).join("\n") });
+    if (action === "profile") { await wa.updateProfile(env); return json({ ok: true, message: "WhatsApp profile updated." }); }
+    if (action === "test") {
+      const out = await wa.sendTest(env);
+      return json(out.status === "sent" ? { ok: true, message: "Test alert sent to your WhatsApp." } : { error: out.error || out.skipped || "Could not send." }, out.status === "sent" ? 200 : 400);
+    }
+  } catch (error) {
+    return json({ error: error.message }, 502);
+  }
+  return json({ error: "Unknown action." }, 400);
+}
+
 // Sign-up -> order -> paid, for the last 7 and 30 days and all time.
 async function adminFunnel(env) {
   const periods = [["7", "-7 days"], ["30", "-30 days"], ["all", "-100 years"]];
@@ -798,7 +832,7 @@ async function adminFunnel(env) {
 
 const ORDER_STATUSES = ["new", "confirmed", "paid", "delivered", "cancelled"];
 
-async function adminOrders(request, env, url, admin) {
+async function adminOrders(request, env, url, admin, ctx) {
   if (request.method === "GET") {
     const status = url.searchParams.get("status");
     const filter = ORDER_STATUSES.includes(status) ? "WHERE o.status = ?1" : "";
@@ -843,6 +877,16 @@ async function adminOrders(request, env, url, admin) {
   statements.push(env.DB.prepare("INSERT INTO audit_log (user_id, action, detail) VALUES (?1, 'order', ?2)")
     .bind(admin.id, `Order ${order.number}: ${order.status} → ${status}`));
   await env.DB.batch(statements);
+  if (status !== order.status) {
+    later(ctx, async () => {
+      let reward = null;
+      const earnedNow = (status === "paid" || status === "delivered") && order.user_id && !order.reward_earned
+        ? (await env.DB.prepare("SELECT amount, expires_at FROM reward_ledger WHERE order_id = ?1 AND kind = 'earn'").bind(id).first())
+        : null;
+      if (earnedNow) reward = { earned: earnedNow.amount, expires: earnedNow.expires_at, balance: (await rewardBalance(env, order.user_id)).balance };
+      await wa.orderStatusChanged(env, order, status, reward);
+    });
+  }
   return json({ ok: true, message: `Order ${order.number} is now ${status}.${note}` });
 }
 
