@@ -168,7 +168,7 @@ ABOUT = f"""<h2 class="page-title">About NE</h2>
 </div>
 <h3 class="strip-title">Certified and recognised by Hikvision</h3>
 <div class="strip">
-  <figure><img src="/assets/partner/authorized-national-distributor-certificate.webp" alt=""><figcaption>Authorized National Distributor certificate</figcaption></figure>
+  <figure><img src="/assets/partner/hikvision-certified-technician.webp" alt=""><figcaption>Authorized National Distributor certificate</figcaption></figure>
   <figure><img src="/assets/awards/hikvision-distributor-plaque.webp" alt=""><figcaption>Authorized National Distributor plaque</figcaption></figure>
   <figure><img src="/assets/partner/best-distribution-partner-award-2025.webp" alt=""><figcaption>Best Distribution Strategic Partner 2025</figcaption></figure>
   <figure><img src="/assets/awards/hikvision-partner-award-2025-plaque.webp" alt=""><figcaption>Hikvision award plaque, 2025</figcaption></figure>
@@ -210,17 +210,13 @@ SERVICES = f"""<h2 class="page-title">Installation &amp; services</h2>
   <figure class="svc qr"><img src="/assets/catalogue/qr/install.svg" alt=""><figcaption>Book an installation</figcaption></figure>
 </div>
 <div class="certs">
+  <figure class="training"><img src="/assets/partner/simon-kinyua-hikvision-training.webp" alt=""><figcaption>Simon leading a Hikvision training session</figcaption></figure>
   <img src="/assets/partner/certificates/simon-kinyua-hcsa-cctv.webp" alt="">
   <img src="/assets/partner/certificates/simon-kinyua-hcsa-access-control.webp" alt="">
   <img src="/assets/partner/certificates/simon-kinyua-hcsa-video-intercom.webp" alt="">
   <img src="/assets/partner/certificates/simon-kinyua-hcsa-networking.webp" alt="">
 </div>
-<p class="certs-note">Our technician Simon Kinyua is a Hikvision Certified Security Associate (HCSA) in CCTV, access control, video intercom and networking.</p>
-<div class="visit-band">
-  <img src="/assets/showroom/showroom-entrance.webp" alt="">
-  <div><b>Visit the NE showroom</b><br>Business Bay Square (BBS Mall), Shop GFE 61, General Waruingi Road, Eastleigh, Nairobi<br>
-  Mon&ndash;Sat 08:00&ndash;20:00 &middot; Sun 09:00&ndash;18:00 &middot; Call / WhatsApp {catalog.PHONE_LABEL}</div>
-</div>"""
+<p class="certs-note">Our technician Simon Kinyua is a Hikvision Certified Security Associate (HCSA) in CCTV, access control, video intercom and networking.</p>"""
 
 
 BACK = f"""<div class="back">

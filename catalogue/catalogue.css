@@ -113,7 +113,10 @@ td.n { text-align: right; white-space: nowrap; }
 .svc td.n { font-weight: 800; color: #10202E; }
 .svc.qr { grid-column: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; border-style: dashed; }
 .svc.qr img { width: 28mm; height: 28mm; }
-.certs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin-top: 6mm; }
+.certs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin-top: 6mm; align-items: center; }
+.certs .training { grid-column: span 2; grid-row: span 2; margin: 0; }
+.certs .training img { width: 100%; height: 52mm; object-fit: cover; border-radius: 2mm; }
+.certs .training figcaption { font-weight: 600; color: #4A5B68; }
 .certs img { width: 100%; border: 0.5pt solid #E1E7EC; border-radius: 1.5mm; }
 .visit-band { margin-top: auto; display: grid; grid-template-columns: 80mm 1fr; gap: 6mm; align-items: center; background: #0F2A3D; color: #fff; border-radius: 3mm; overflow: hidden; }
 .visit-band img { width: 100%; height: 42mm; object-fit: cover; }
