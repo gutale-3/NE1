@@ -53,6 +53,17 @@
   </section>
 
   <section id="customers-view" hidden>
+    <div class="funnel-box">
+      <div class="funnel-head"><h2>Funnel</h2>
+        <div class="chips" id="funnel-period">
+          <button type="button" class="chip" data-p="7">7 days</button>
+          <button type="button" class="chip on" data-p="30">30 days</button>
+          <button type="button" class="chip" data-p="all">All time</button>
+        </div>
+      </div>
+      <div class="funnel" id="funnel"></div>
+      <details class="idle" id="idle-box" hidden><summary id="idle-title"></summary><ul id="idle-list"></ul></details>
+    </div>
     <div class="tiles" id="cust-tiles"></div>
     <div class="toolbar">
       <input id="cust-search" type="search" placeholder="Search name, phone or email" autocomplete="off">

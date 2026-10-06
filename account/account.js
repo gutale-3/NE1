@@ -15,6 +15,10 @@
     var pct = data.discount;
     $('hello').textContent = 'Hello, ' + ((data.user.name || '').split(' ')[0] || 'there');
     $('email').textContent = 'Signed in as ' + data.user.email;
+    if (document.cookie.indexOf('ne_welcome=1') !== -1) {
+      document.cookie = 'ne_welcome=; Path=/; Max-Age=0; Secure; SameSite=Lax';
+      $('welcome-card').hidden = false;
+    }
     Array.prototype.forEach.call(document.querySelectorAll('.pct'), function (el) { el.textContent = pct; });
 
     var card = $('status-card');

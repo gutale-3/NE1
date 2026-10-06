@@ -55,7 +55,11 @@
 .sum .tot { font-size: 19px; font-weight: 800; border-top: 1px dashed #E7ECF1; padding-top: 10px; margin-top: 4px; }
 .sum .minus { color: #067647; }
 .reward-opt { display: flex; gap: 10px; align-items: flex-start; background: #E8F8EE; border-radius: 10px; padding: 10px 12px; font-size: 14px; margin-top: 10px; }
-.nudge { background: #EAF6FC; border-radius: 10px; padding: 10px 12px; font-size: 13.5px; margin-top: 10px; color: #10202E; }
+.nudge { background: #EAF6FC; border: 1.5px solid #B9E1F3; border-radius: 12px; padding: 12px 14px; font-size: 13.5px; margin-top: 12px; color: #10202E; display: grid; gap: 4px; }
+.nudge strong { font-size: 15px; color: #086E9E; }
+.nudge span { color: #4A5B68; line-height: 1.45; }
+.nudge-btn { justify-self: start; margin-top: 6px; background: #086E9E; color: #fff !important; padding: 9px 14px; border-radius: 9px; font-weight: 700; }
+.earn { margin-top: 10px; background: #E8F8EE; color: #14532D; border-radius: 10px; padding: 9px 12px; font-size: 13.5px; font-weight: 600; }
 .co { display: grid; gap: 12px; }
 .co label { display: grid; gap: 5px; font-size: 13.5px; font-weight: 700; }
 .co label small { font-weight: 400; color: #4A5B68; }
@@ -210,7 +214,8 @@
           <h2>Summary</h2>
           <div class="sum" id="cart-sum"></div>
           <label class="reward-opt" id="reward-opt" hidden><input type="checkbox" id="use-reward"> <span id="reward-text"></span></label>
-          <div class="nudge" id="signin-nudge" hidden><a href="/auth/google/login?next=/cart"><strong>Sign in</strong></a> to earn <strong>2% reward credit</strong> on this order, to spend next time.</div>
+          <div class="nudge" id="signin-nudge" hidden><strong id="nudge-amount">Get 2% back on this order</strong><span>Sign in with Google before you send it. The credit is yours to spend on your next order.</span><a class="nudge-btn" href="/auth/google/login?next=/cart">Sign in with Google</a></div>
+          <div class="earn" id="earn-line" hidden></div>
         </section>
         <section class="box">
           <h2>Your details</h2>

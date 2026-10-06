@@ -73,6 +73,12 @@
     var delivery = (document.querySelector('input[name=delivery]:checked') || {}).value;
     rows.push(['Delivery', delivery === 'outside' ? 'Fare paid by you' : 'Free', '']);
     rows.push(['Total', money(t.total), 'tot']);
+    // The reward the order earns once paid: shown to members, and to guests as the reason to sign in.
+    var pct = me.signedIn ? Number(me.rewardPercent) || 0 : 2;
+    var earn = Math.floor(t.total * pct / 100);
+    if (!me.signedIn) $('nudge-amount').textContent = earn > 0 ? 'Get ' + money(earn) + ' back on this order' : 'Get 2% back on every order';
+    $('earn-line').hidden = !(me.signedIn && earn > 0);
+    if (me.signedIn) $('earn-line').textContent = 'You earn ' + money(earn) + ' reward credit (' + pct + '%) when this order is paid.';
     sum.textContent = '';
     rows.forEach(function (r) {
       var div = document.createElement('div');
