@@ -86,3 +86,4 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: #086E9E
 .tag { display: inline-block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; background: #EAF6FC; color: #086E9E; margin-left: 6px; vertical-align: middle; }
 .tag.technician { background: #E8F8EE; color: #067647; } .tag.guest { background: #F2F4F7; color: #4A5B68; }
 @media (max-width: 640px) { .tiles { grid-template-columns: 1fr 1fr; } }
+.alt-link { background: #10202E; text-decoration: none; display: inline-flex; align-items: center; }
