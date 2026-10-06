@@ -14,6 +14,7 @@ const PRODUCTS_PATH = "data/products.json";
 // Readable by page scripts (unlike the session cookie), so static pages only
 // call /api/me for people who have signed in.
 const HINT_COOKIE = "ne_signed_in";
+const WELCOME_COOKIE = "ne_welcome";
 
 export default {
   async fetch(request, env) {
@@ -206,7 +207,7 @@ async function googleCallback(request, env, url) {
      ON CONFLICT(google_sub) DO UPDATE SET email = ?2, name = ?3, picture = ?4,
        role = CASE WHEN ?5 = 'admin' THEN 'admin' WHEN users.role = 'admin' THEN 'customer' ELSE users.role END,
        last_login = datetime('now')
-     RETURNING id`
+     RETURNING id, created_at = last_login AS fresh`
   ).bind(claims.sub, email, claims.name || "", claims.picture || "", role).first();
 
   const sessionId = randomToken();
@@ -218,6 +219,8 @@ async function googleCallback(request, env, url) {
   headers.append("set-cookie", cookie(SESSION_COOKIE, sessionId, SESSION_DAYS * 86400));
   headers.append("set-cookie", cookie(OAUTH_COOKIE, "", 0));
   headers.append("set-cookie", hintCookie(true));
+  // First sign-in: the site shows a one-time welcome (js/site.js, account.js).
+  if (user.fresh) headers.append("set-cookie", `${WELCOME_COOKIE}=1; Path=/; Secure; SameSite=Lax; Max-Age=900`);
   return new Response(null, { status: 302, headers });
 }
 
@@ -249,6 +252,7 @@ async function me(request, env) {
     signedIn: true, name: user.name, email: user.email, admin: isAdmin(env, user),
     technician: user.technician_status || null,
     techDiscount: approved ? techDiscount(env) : 0,
+    rewardPercent: rewardPercent(env, approved),
   });
 }
 
@@ -353,6 +357,7 @@ async function adminApi(request, env, url) {
   if (url.pathname === "/api/admin/orders") return adminOrders(request, env, url, user);
   if (url.pathname === "/api/admin/customers" && request.method === "GET") return adminCustomers(env, url);
   if (url.pathname === "/api/admin/statement" && request.method === "GET") return adminStatement(env, url);
+  if (url.pathname === "/api/admin/funnel" && request.method === "GET") return adminFunnel(env);
   if (url.pathname === "/api/admin/products" && !env.GITHUB_TOKEN) {
     return json({ error: "GITHUB_TOKEN is not set in Cloudflare." }, 503);
   }
@@ -766,6 +771,29 @@ async function accountSummary(request, env) {
     rewardPercent: rewardPercent(env, tech), technician: tech, techDiscount: tech ? techDiscount(env) : 0,
     orders: orders.results.map((o) => ({ number: o.number, token: o.view_token, total: o.total, status: o.status, created_at: o.created_at, reward_earned: o.reward_earned })),
   });
+}
+
+// Sign-up -> order -> paid, for the last 7 and 30 days and all time.
+async function adminFunnel(env) {
+  const periods = [["7", "-7 days"], ["30", "-30 days"], ["all", "-100 years"]];
+  const stage = (since) => env.DB.prepare(
+    `SELECT
+       (SELECT count(*) FROM users WHERE role != 'admin' AND created_at >= datetime('now', ?1)) AS accounts,
+       (SELECT count(*) FROM orders WHERE status != 'cancelled' AND created_at >= datetime('now', ?1)) AS orders,
+       (SELECT count(*) FROM orders WHERE status != 'cancelled' AND user_id IS NOT NULL AND created_at >= datetime('now', ?1)) AS member_orders,
+       (SELECT count(DISTINCT user_id) FROM orders WHERE status != 'cancelled' AND user_id IS NOT NULL AND created_at >= datetime('now', ?1)) AS buyers,
+       (SELECT count(*) FROM orders WHERE status IN ('paid', 'delivered') AND created_at >= datetime('now', ?1)) AS paid,
+       (SELECT coalesce(sum(total), 0) FROM orders WHERE status IN ('paid', 'delivered') AND created_at >= datetime('now', ?1)) AS revenue,
+       (SELECT count(*) FROM orders WHERE status = 'cancelled' AND created_at >= datetime('now', ?1)) AS cancelled`
+  ).bind(since).first();
+  const rows = await Promise.all(periods.map(([, since]) => stage(since)));
+  // Accounts that have never placed an order: the people to follow up with.
+  const { results: idle } = await env.DB.prepare(
+    `SELECT u.name, u.email, u.created_at FROM users u
+     WHERE u.role != 'admin' AND NOT EXISTS (SELECT 1 FROM orders o WHERE o.user_id = u.id)
+     ORDER BY u.created_at DESC LIMIT 20`
+  ).all();
+  return json({ periods: Object.fromEntries(periods.map(([key], i) => [key, rows[i]])), idle });
 }
 
 const ORDER_STATUSES = ["new", "confirmed", "paid", "delivered", "cancelled"];

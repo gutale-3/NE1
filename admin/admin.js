@@ -340,6 +340,55 @@
     return el;
   }
 
+  // ---- funnel: accounts -> orders -> paid -> revenue -----------------------
+  var funnelData = null, funnelPeriod = '30';
+  function pct(a, b) { return b ? Math.round(a * 100 / b) + '%' : '—'; }
+  function renderFunnel() {
+    if (!funnelData) return;
+    var f = funnelData.periods[funnelPeriod];
+    var steps = [
+      [String(f.accounts), 'New accounts', ''],
+      [String(f.orders), 'Orders sent', f.member_orders + ' from signed-in customers (' + pct(f.member_orders, f.orders) + ')'],
+      [String(f.paid), 'Paid orders', pct(f.paid, f.orders) + ' of orders paid' + (f.cancelled ? ' · ' + f.cancelled + ' cancelled' : '')],
+      [money(f.revenue), 'Paid sales', f.paid ? 'Average ' + money(Math.round(f.revenue / f.paid)) : ''],
+    ];
+    var box = $('funnel');
+    box.textContent = '';
+    steps.forEach(function (st) {
+      var d = document.createElement('div');
+      d.className = 'fstep';
+      d.innerHTML = '<b></b><span></span><em></em>';
+      d.querySelector('b').textContent = st[0];
+      d.querySelector('span').textContent = st[1];
+      d.querySelector('em').textContent = st[2];
+      box.appendChild(d);
+    });
+    var idle = funnelData.idle;
+    $('idle-box').hidden = !idle.length;
+    $('idle-title').textContent = idle.length + (idle.length === 20 ? '+' : '') + ' signed up but never ordered (most recent first)';
+    $('idle-list').textContent = '';
+    idle.forEach(function (u) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = 'mailto:' + u.email;
+      a.textContent = u.email;
+      li.appendChild(document.createTextNode((u.name || 'No name') + ' · '));
+      li.appendChild(a);
+      li.appendChild(document.createTextNode(' · joined ' + day(u.created_at)));
+      $('idle-list').appendChild(li);
+    });
+  }
+  function loadFunnel() {
+    return api('/api/admin/funnel').then(function (data) { funnelData = data; renderFunnel(); });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('#funnel-period .chip'), function (chip) {
+    chip.addEventListener('click', function () {
+      funnelPeriod = chip.getAttribute('data-p');
+      Array.prototype.forEach.call(document.querySelectorAll('#funnel-period .chip'), function (c) { c.classList.toggle('on', c === chip); });
+      renderFunnel();
+    });
+  });
+
   $('cust-search').addEventListener('input', renderCustomers);
   $('cust-filter').addEventListener('change', renderCustomers);
   ['cust-from', 'cust-to'].forEach(function (id) {
@@ -357,7 +406,10 @@
       show(view);
       if (view === 'tech') loadTechs().catch(function (err) { notice(err.message, true); });
       if (view === 'orders') loadOrders().catch(function (err) { notice(err.message, true); });
-      if (view === 'customers') loadCustomers().catch(function (err) { notice(err.message, true); });
+      if (view === 'customers') {
+        loadCustomers().catch(function (err) { notice(err.message, true); });
+        loadFunnel().catch(function (err) { notice(err.message, true); });
+      }
     });
   });
 

@@ -194,7 +194,40 @@
         showTechPrices(me.techDiscount);
         tagWhatsAppLinks();
       }
+      if (document.cookie.indexOf('ne_welcome=1') !== -1 && !me.admin) showWelcome(me);
     }).catch(function () {});
+  }
+
+  // One-time welcome after someone's first sign-in: what the account gives them.
+  function showWelcome(me) {
+    document.cookie = 'ne_welcome=; Path=/; Max-Age=0; Secure; SameSite=Lax';
+    var first = String(me.name || '').split(' ')[0];
+    var style = document.createElement('style');
+    style.textContent = '.ne-welcome{position:fixed;left:16px;right:16px;bottom:16px;z-index:200;max-width:420px;margin-left:auto;background:#fff;border:1px solid #E7ECF1;border-radius:18px;box-shadow:0 18px 50px rgba(15,42,61,.25);padding:20px 20px 18px;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#10202E}' +
+      '.ne-welcome h2{font-size:19px;margin:0 0 4px}.ne-welcome p{margin:0 0 10px;color:#4A5B68;font-size:14px;line-height:1.5}' +
+      '.ne-welcome ul{margin:0 0 14px;padding:0;list-style:none;display:grid;gap:7px;font-size:14px}.ne-welcome li{padding-left:24px;position:relative;line-height:1.4}' +
+      '.ne-welcome li:before{content:"";position:absolute;left:2px;top:3px;width:13px;height:13px;border-radius:50%;background:#22C35E;box-shadow:inset 0 0 0 3px #E8F8EE}' +
+      '.ne-welcome .acts{display:flex;gap:8px;flex-wrap:wrap}.ne-welcome .acts a,.ne-welcome .acts button{border:0;border-radius:10px;padding:10px 14px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none}' +
+      '.ne-welcome .go{background:#086E9E;color:#fff}.ne-welcome .alt{background:#EAF6FC;color:#086E9E}.ne-welcome .x{position:absolute;top:10px;right:12px;background:none;border:0;font-size:22px;line-height:1;color:#8A99A6;cursor:pointer}';
+    document.head.appendChild(style);
+    var box = document.createElement('div');
+    box.className = 'ne-welcome';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-label', 'Welcome to NE');
+    box.innerHTML = '<button class="x" type="button" aria-label="Close">&times;</button><h2></h2><p>Your NE account is ready. Here is what you get:</p><ul>' +
+      '<li><b class="pct"></b> back as reward credit on every paid order, valid 6 months</li>' +
+      '<li>Your orders and order PDFs in one place</li><li>Faster checkout: we fill in your details</li></ul>' +
+      '<div class="acts"><a class="go" href="/products">Start shopping</a><a class="alt" href="/account#apply-card">Installer? Get 5% off</a></div>';
+    box.querySelector('h2').textContent = 'Welcome to NE' + (first ? ', ' + first : '') + '!';
+    box.querySelector('.pct').textContent = (me.rewardPercent || 2) + '%';
+    if (location.pathname.indexOf('/cart') === 0) {
+      var go = box.querySelector('.go');
+      go.textContent = 'Back to my cart';
+      go.href = '#';
+      go.addEventListener('click', function (e) { e.preventDefault(); box.remove(); });
+    }
+    box.querySelector('.x').addEventListener('click', function () { box.remove(); });
+    document.body.appendChild(box);
   }
 
   // ---- Cart: kept on this device (localStorage); checkout is on /cart ------
