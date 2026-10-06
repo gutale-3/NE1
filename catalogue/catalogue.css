@@ -1,0 +1,147 @@
+/* NE printable catalogue: fixed A4 sheets, printed to PDF by the browser. */
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #DDE3E8; color: #10202E; }
+img { display: block; max-width: 100%; }
+.bar { position: sticky; top: 0; z-index: 3; display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 10px 16px; background: #0F2A3D; color: #fff; font-size: 14px; }
+.bar a { color: #9FD8F2; font-weight: 700; text-decoration: none; }
+.bar button { border: 0; border-radius: 10px; padding: 11px 18px; font: inherit; font-weight: 800; background: #22A3DD; color: #fff; cursor: pointer; }
+.tip { max-width: 210mm; margin: 12px auto 0; padding: 0 16px; font-size: 13px; color: #4A5B68; }
+#book { padding: 16px 0 48px; }
+
+.sheet { position: relative; width: 210mm; height: 297mm; margin: 0 auto 16px; background: #fff; overflow: hidden; display: flex; flex-direction: column; padding: 9mm 11mm 8mm; box-shadow: 0 2px 12px rgba(15, 42, 61, 0.15); }
+.run { display: flex; justify-content: space-between; align-items: center; font-size: 8.5pt; color: #4A5B68; }
+header.run { padding-bottom: 3mm; border-bottom: 1.5pt solid #086E9E; font-weight: 700; }
+header.run span:first-child { display: flex; gap: 6px; align-items: center; color: #10202E; }
+header.run img { width: 5.5mm; height: 5.5mm; }
+header.run span:last-child { color: #086E9E; text-transform: uppercase; letter-spacing: 0.06em; }
+footer.run { padding-top: 2.5mm; border-top: 0.5pt solid #D5DEE5; font-size: 7.5pt; }
+footer.run span:last-child { font-weight: 800; color: #10202E; font-size: 9pt; }
+.body { flex: 1; min-height: 0; padding: 4mm 0; display: flex; flex-direction: column; }
+
+/* Section head + product grid */
+.sec-head { display: flex; gap: 6mm; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #0F2A3D, #086E9E); color: #fff; border-radius: 4mm; padding: 5mm 6mm; margin-bottom: 4mm; }
+.sec-head h2 { margin: 0 0 1.5mm; font-size: 19pt; line-height: 1.15; }
+.sec-head p { margin: 0; font-size: 9.5pt; line-height: 1.45; color: rgba(255, 255, 255, 0.9); }
+.sec-head figure, .toc-note figure, .cover-foot figure, .back-qr figure, .svc.qr { margin: 0; text-align: center; flex: none; }
+.sec-head figure img { width: 21mm; height: 21mm; background: #fff; padding: 1.5mm; border-radius: 2mm; }
+figcaption { font-size: 7pt; font-weight: 700; margin-top: 1mm; }
+.grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 4mm; }
+.sec-head + .grid { grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.card { border: 0.75pt solid #E1E7EC; border-radius: 3mm; padding: 3mm; display: flex; flex-direction: column; min-height: 0; }
+.card .shot { flex: 1 1 0; min-height: 24mm; display: flex; align-items: center; justify-content: center; margin-bottom: 2mm; }
+.card .shot img { max-height: 100%; max-width: 100%; object-fit: contain; }
+.card h3 { margin: 0; font-size: 10pt; line-height: 1.25; }
+.card .model { font-size: 7.5pt; color: #086E9E; font-weight: 700; margin: 0.8mm 0 1.2mm; word-break: break-all; }
+.card ul { margin: 0; padding-left: 3.5mm; font-size: 7.6pt; line-height: 1.38; color: #4A5B68; flex: none; }
+.card .price { margin-top: 1.5mm; padding-top: 1.5mm; border-top: 0.5pt dashed #D5DEE5; font-weight: 800; font-size: 11.5pt; text-align: right; }
+
+/* Kits */
+.kit { flex: 1; display: grid; grid-template-columns: 58mm 1fr; gap: 5mm; border: 0.75pt solid #E1E7EC; border-radius: 3mm; padding: 4mm; margin-bottom: 3.5mm; min-height: 0; }
+.kit:last-child { margin-bottom: 0; }
+.kit-shot { position: relative; display: flex; align-items: center; justify-content: center; background: #F6F8FA; border-radius: 2mm; }
+.kit-shot img { max-height: 52mm; object-fit: contain; }
+.flag { position: absolute; top: 2mm; left: 2mm; background: #F79009; color: #fff; font-size: 7pt; font-weight: 800; padding: 1mm 2.5mm; border-radius: 9mm; }
+.kit .for { font-size: 7.5pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #086E9E; }
+.kit h3 { margin: 0.5mm 0 1mm; font-size: 13pt; }
+.kit p { margin: 0 0 1.5mm; font-size: 8.5pt; line-height: 1.4; color: #4A5B68; }
+.kit table { width: 100%; border-collapse: collapse; font-size: 7.6pt; }
+.kit td { padding: 0.6mm 0; border-bottom: 0.5pt solid #EEF2F5; vertical-align: top; }
+.kit td:first-child { width: 7mm; font-weight: 700; }
+.kit td small { display: block; color: #4A5B68; font-size: 6.5pt; }
+td.n { text-align: right; white-space: nowrap; }
+.kit-total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 1.5mm; font-size: 8.5pt; font-weight: 700; }
+.kit-total b { font-size: 13pt; color: #086E9E; }
+
+/* Posters: full bleed */
+.poster-sheet { padding: 0; background: #10202E; align-items: center; justify-content: center; }
+.poster { width: 100%; height: 100%; object-fit: cover; }
+
+/* Cover */
+.cover-sheet { padding: 0; }
+.cover { height: 100%; display: flex; flex-direction: column; background: #0F2A3D; color: #fff; }
+.cover-photo { height: 118mm; width: 100%; object-fit: cover; }
+.cover-text { flex: 1; padding: 12mm 16mm 12mm; display: flex; flex-direction: column; }
+.cover-text > img { width: 24mm; height: 24mm; background: #fff; border-radius: 4mm; padding: 1.5mm; }
+.kicker { margin: 7mm 0 1mm; font-size: 10pt; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #9FD8F2; }
+.cover h1 { margin: 0; font-size: 44pt; line-height: 1.05; letter-spacing: -0.01em; }
+.lead { font-size: 12.5pt; line-height: 1.5; color: rgba(255, 255, 255, 0.88); margin: 5mm 0; max-width: 150mm; }
+.valid { font-size: 11pt; margin: 0; color: #9FD8F2; }
+.valid b { color: #fff; }
+.cover-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 8mm; font-size: 10pt; line-height: 1.6; border-top: 0.75pt solid rgba(255, 255, 255, 0.25); padding-top: 6mm; }
+.cover-foot img, .back-qr img { width: 26mm; height: 26mm; background: #fff; padding: 2mm; border-radius: 2mm; }
+
+/* About */
+.page-title { font-size: 22pt; margin: 1mm 0 5mm; }
+.about { display: grid; grid-template-columns: 1fr 66mm; gap: 7mm; }
+.big { font-size: 11pt; line-height: 1.55; margin: 0 0 4mm; }
+.why { margin: 0 0 5mm; padding-left: 5mm; font-size: 9pt; line-height: 1.5; color: #33444F; }
+.why li { margin-bottom: 1.4mm; }
+.visit { background: #EAF6FC; border-radius: 3mm; padding: 4mm 5mm; font-size: 9pt; line-height: 1.6; }
+.about-pics { display: grid; gap: 4mm; }
+.about-pics figure, .strip figure { margin: 0; }
+.about-pics img { width: 100%; border-radius: 2.5mm; object-fit: cover; }
+.about-pics .tall img { height: 76mm; object-position: top; }
+.about-pics figure:not(.tall) img { height: 31mm; }
+.strip-title { font-size: 11pt; margin: 7mm 0 3mm; }
+.strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3mm; }
+.strip img { width: 100%; height: 44mm; object-fit: cover; border-radius: 2mm; }
+.strip figcaption { font-weight: 600; line-height: 1.3; color: #33444F; }
+
+/* Contents */
+.toc { list-style: none; margin: 0; padding: 0; font-size: 12pt; }
+.toc li { display: flex; align-items: baseline; gap: 3mm; padding: 3.2mm 0; border-bottom: 0.5pt solid #EEF2F5; }
+.toc i { flex: 1; border-bottom: 1pt dotted #B5C2CC; }
+.toc b { color: #086E9E; min-width: 8mm; text-align: right; }
+.toc-note { margin-top: auto; display: flex; gap: 6mm; align-items: center; background: #EAF6FC; border-radius: 3mm; padding: 5mm 6mm; font-size: 10pt; line-height: 1.5; }
+.toc-note p { margin: 0; }
+.toc-note img { width: 24mm; height: 24mm; }
+
+/* Services */
+.services { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.svc { border: 0.75pt solid #E1E7EC; border-radius: 3mm; padding: 4mm 5mm; font-size: 8.8pt; line-height: 1.45; color: #33444F; }
+.svc.main { grid-row: span 2; background: #F6F8FA; }
+.svc h3 { margin: 0 0 2mm; font-size: 12pt; color: #10202E; }
+.svc h3:not(:first-child) { margin-top: 4mm; }
+.svc p { margin: 0 0 2mm; }
+.svc-price { font-size: 17pt; font-weight: 800; color: #086E9E; margin-bottom: 2mm; }
+.svc-price small { font-size: 9pt; color: #4A5B68; font-weight: 600; }
+.ticks { margin: 0; padding-left: 5mm; }
+.ticks li { margin-bottom: 1mm; }
+.svc table { width: 100%; border-collapse: collapse; margin-bottom: 2mm; }
+.svc td { padding: 1.2mm 0; border-bottom: 0.5pt solid #EEF2F5; }
+.svc td.n { font-weight: 800; color: #10202E; }
+.svc.qr { grid-column: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; border-style: dashed; }
+.svc.qr img { width: 28mm; height: 28mm; }
+.certs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin-top: 6mm; }
+.certs img { width: 100%; border: 0.5pt solid #E1E7EC; border-radius: 1.5mm; }
+.visit-band { margin-top: auto; display: grid; grid-template-columns: 80mm 1fr; gap: 6mm; align-items: center; background: #0F2A3D; color: #fff; border-radius: 3mm; overflow: hidden; }
+.visit-band img { width: 100%; height: 42mm; object-fit: cover; }
+.visit-band div { padding: 4mm 6mm 4mm 0; font-size: 9.5pt; line-height: 1.6; }
+.visit-band b { font-size: 12pt; }
+.certs-note { font-size: 8.5pt; color: #4A5B68; margin: 2.5mm 0 4mm; }
+
+/* Back cover */
+.back-sheet { padding: 0; }
+.back { height: 100%; background: #0F2A3D; color: #fff; padding: 22mm 20mm; display: flex; flex-direction: column; }
+.back > img { width: 28mm; height: 28mm; background: #fff; border-radius: 4mm; padding: 2mm; }
+.back h2 { font-size: 26pt; margin: 9mm 0 5mm; }
+.back ol { margin: 0; padding-left: 6mm; font-size: 12.5pt; line-height: 1.7; }
+.back li { margin-bottom: 3mm; }
+.back-qr { display: flex; gap: 14mm; margin: 12mm 0; }
+.back-qr img { width: 38mm; height: 38mm; }
+.back-qr figcaption { font-size: 9.5pt; margin-top: 2mm; }
+.small { margin-top: auto; font-size: 7.5pt; line-height: 1.5; color: rgba(255, 255, 255, 0.6); }
+
+/* Phones: shrink the A4 sheets to the screen (catalogue.js sets --fit). */
+@media screen and (max-width: 840px) {
+  #book { zoom: var(--fit, 0.45); }
+}
+@media print {
+  @page { size: A4; margin: 0; }
+  body { background: #fff; }
+  .bar, .tip { display: none; }
+  #book { padding: 0; zoom: 1 !important; }
+  .sheet { margin: 0; box-shadow: none; break-after: page; }
+  .sheet:last-child { break-after: auto; }
+}

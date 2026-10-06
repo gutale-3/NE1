@@ -19,6 +19,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import catalog
 import site_layout
+import print_catalogue
 from catalog import PHONE, PHONE_LABEL, ROOT, SITE
 from site_layout import category_url as category_page_url
 
@@ -1033,6 +1034,7 @@ def main():
     categories = write_category_pages(products)
     write_quote_page(products)
     write_price_list(products)
+    sheets = print_catalogue.write(products, PACKAGES, ROOT)
     urls = write_sitemap(products)
 
     print(f"{len(products)} product pages written to product/")
@@ -1040,6 +1042,7 @@ def main():
         print(f"{len(stale)} stale pages removed")
     print(f"{categories} category pages written to category/")
     print(f"products.html grid and JSON-LD updated; sitemap.xml lists {urls} URLs")
+    print(f"catalogue/index.html: {sheets} A4 pages")
 
 
 if __name__ == "__main__":
