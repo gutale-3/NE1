@@ -14,3 +14,5 @@ tools/hikvision/cache/
 tools/hikvision/sitemap.xml
 tools/hikvision/plan.json
 tools/hikvision/report.json
+__pycache__/
+*.pyc
