@@ -423,6 +423,41 @@
 <!--/catalog:picks-->
 
   
+  <section class="night-band" aria-labelledby="night-title">
+    <video class="nb-video" muted loop playsinline preload="none" poster="/assets/video/colorvu-night-poster.webp" data-src="/assets/video/colorvu-night.mp4" data-webm="/assets/video/colorvu-night.webm" aria-hidden="true"></video>
+    <div class="nb-in">
+      <div class="nb-eyebrow">Hikvision ColorVu &amp; Smart Hybrid Light</div>
+      <h2 id="night-title">Sharp, full-colour video, even at night</h2>
+      <div class="nb-ctas"><a href="/category/turbo-hd-cameras-dvrs" class="nb-primary">See ColorVu cameras</a><a href="https://wa.me/254737454891?text=Hi%20NE%2C%20I%27d%20like%20advice%20on%20ColorVu%20night%20cameras" target="_blank" rel="noopener" class="nb-ghost">Ask NE</a></div>
+    </div>
+  </section>
+  <style>
+  .night-band { position: relative; overflow: hidden; background: #0B1F2E url('/assets/video/colorvu-night-poster.webp') center / cover; min-height: 420px; display: flex; align-items: center; }
+  .night-band .nb-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .night-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(9,31,46,.92) 0%, rgba(9,31,46,.7) 35%, rgba(9,31,46,0) 70%); }
+  .nb-in { position: relative; z-index: 1; max-width: 1240px; width: 100%; margin: 0 auto; padding: 56px 24px; }
+  .nb-eyebrow { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #4FC3EC; margin-bottom: 10px; }
+  .night-band h2 { font-size: clamp(1.6rem, .9rem + 3vw, 2.4rem); font-weight: 800; color: #fff; margin: 0 0 22px; max-width: 16ch; line-height: 1.15; }
+  .nb-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+  .nb-ctas a { padding: 13px 20px; border-radius: 10px; font-weight: 700; font-size: 15px; }
+  .nb-primary { background: #fff; color: #0B1F2E !important; } .nb-ghost { border: 1.5px solid rgba(255,255,255,.6); color: #fff !important; }
+  @media (max-width: 760px) { .night-band { min-height: 0; flex-direction: column; align-items: stretch; background: #0B1F2E; } .night-band .nb-video { position: relative; height: auto; aspect-ratio: 16 / 9; } .night-band::after { display: none; } .nb-in { padding: 22px 20px 30px; } }
+  </style>
+  <script>
+  (function () {
+    // Load and play the night video only when it scrolls into view; reduced-motion users keep the still picture.
+    var v = document.querySelector('.night-band .nb-video');
+    if (!v || !('IntersectionObserver' in window) || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) { if (v.src) v.pause(); return; }
+        if (!v.src) v.src = v.canPlayType('video/mp4; codecs="avc1.4d401f"') ? v.getAttribute('data-src') : v.getAttribute('data-webm');
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      });
+    }, { rootMargin: '200px' }).observe(v);
+  })();
+  </script>
+
   <section class="home-bundles" aria-labelledby="bundles-title">
     <div class="hb-in">
       <div class="hb-head">
