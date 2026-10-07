@@ -702,7 +702,7 @@ def render_category(name, items, products):
 PACKAGES = [
     # --- Turbo HD (analogue over coax) ---
     {
-        "id": "hd-home", "group": "hd", "image": "images/kits/kit-hd-4cam.webp",
+        "id": "hd-home", "group": "hd", "image": "images/kits/hd-home.webp",
         "name": "HD home starter",
         "for": "Homes and small compounds",
         "summary": "Four 1080p cameras with 20 m night vision, a 4-channel eDVR with built-in 512 GB SSD, power, cabling, clips and connectors.",
@@ -711,7 +711,7 @@ PACKAGES = [
                   ("CONN-SET", 4), ("CLIPS-100", 1)],
     },
     {
-        "id": "hd-colorvu", "group": "hd", "popular": True, "image": "images/kits/kit-hd-8cam.webp",
+        "id": "hd-colorvu", "group": "hd", "popular": True, "image": "images/kits/hd-colorvu.webp",
         "name": "HD ColorVu shop & office",
         "for": "Shops, offices and small businesses",
         "summary": "Eight full-colour night vision cameras with audio, an 8-channel eDVR with built-in 1 TB SSD, power, cabling, clips and connectors.",
@@ -720,7 +720,7 @@ PACKAGES = [
                   ("CONN-SET", 8), ("CLIPS-100", 2)],
     },
     {
-        "id": "hd-3k", "group": "hd", "image": "images/kits/kit-hd-8cam.webp",
+        "id": "hd-3k", "group": "hd", "image": "images/kits/hd-3k.webp",
         "name": "HD 3K ColorVu premium",
         "for": "Larger homes and businesses",
         "summary": "Eight sharper 3K full-colour cameras with audio, a 3K-ready 8-channel DVR, 4 TB hard disk, power, cabling, clips and connectors.",
@@ -730,7 +730,7 @@ PACKAGES = [
     },
     # --- IP (network cameras over PoE) ---
     {
-        "id": "ip-starter", "group": "ip", "image": "images/kits/kit-ip.webp",
+        "id": "ip-starter", "group": "ip", "image": "images/kits/ip-starter.webp",
         "name": "IP starter",
         "for": "Homes moving to IP",
         "summary": "Four 2MP smart hybrid light IP cameras on a 4-port PoE NVR with 1 TB hard disk — one cable per camera, no separate power.",
@@ -739,7 +739,7 @@ PACKAGES = [
                   ("CLIPS-100", 1)],
     },
     {
-        "id": "ip-colorvu", "group": "ip", "popular": True, "image": "images/kits/kit-ip.webp",
+        "id": "ip-colorvu", "group": "ip", "popular": True, "image": "images/kits/ip-colorvu.webp",
         "name": "IP 4MP ColorVu",
         "for": "Premium homes and shops",
         "summary": "Four 4MP ColorVu cameras with built-in mics on a 4-port PoE NVR with 2 TB hard disk, plus solid-copper CAT6 and connectors.",
@@ -748,7 +748,7 @@ PACKAGES = [
                   ("CLIPS-100", 1)],
     },
     {
-        "id": "ip-business", "group": "ip", "image": "images/kits/kit-ip.webp",
+        "id": "ip-business", "group": "ip", "image": "images/kits/ip-business.webp",
         "name": "IP 4MP ColorVu business",
         "for": "Offices, warehouses and estates",
         "summary": "Eight 4MP ColorVu cameras on an 8-port PoE NVR with 4 TB hard disk, two boxes of CAT6 and connectors.",
@@ -758,7 +758,7 @@ PACKAGES = [
     },
     # --- Access control, video intercom, networking ---
     {
-        "id": "access-face", "group": "more",
+        "id": "access-face", "group": "more", "image": "images/kits/access-face.webp",
         "name": "Face access door kit",
         "for": "Offices, staff doors and gates",
         "summary": "Face, card and PIN entry for one door: terminal, magnetic lock with bracket, exit button and 10 cards.",
@@ -766,14 +766,14 @@ PACKAGES = [
                   ("DS-K7P01(O-NEU)", 1), ("DS-K7M102-M(O-STD)", 10)],
     },
     {
-        "id": "intercom-villa", "group": "more",
+        "id": "intercom-villa", "group": "more", "image": "images/kits/intercom-villa.webp",
         "name": "IP villa intercom",
         "for": "Homes and compounds with a gate",
         "summary": "See, talk to and open for visitors at the gate — from the indoor screen or your phone.",
         "items": [("DS-KV6113-WPE1(C)(O-STD)", 1), ("DS-KH6320-WTE1(O-STD)", 1), ("DS-3E0505P-E/M(O-STD)(B)", 1)],
     },
     {
-        "id": "network-office", "group": "more",
+        "id": "network-office", "group": "more", "image": "images/kits/network-office.webp",
         "name": "Office Wi-Fi network",
         "for": "Offices, shops and clinics",
         "summary": "Fast Wi-Fi across the building: all-in-one PoE router, two ceiling access points, a switch and cabling.",
