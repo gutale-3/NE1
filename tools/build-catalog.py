@@ -599,6 +599,17 @@ def render_category(name, items, products):
     }
     dump = lambda obj: json.dumps(obj, indent=1, ensure_ascii=False)
     image = SITE + "/" + share_image(items[0])
+    # AI-made scene banner around a real product photo (assets/banners/<slug>.webp), if there is one.
+    banner = (ROOT / f"assets/banners/{slug}.webp").exists()
+    if banner:
+        image = f"{SITE}/assets/banners/{slug}.webp"
+    banner_css = (
+        f".cat-hero {{ background: linear-gradient(90deg, rgba(9,40,61,.94) 0%, rgba(9,40,61,.82) 38%, rgba(9,40,61,.15) 75%, rgba(9,40,61,0) 100%), "
+        f"url('/assets/banners/{slug}.webp') center right / cover no-repeat; min-height: 360px; display: flex; align-items: center; }}\n"
+        f".cat-hero .wrap {{ width: 100%; }} .cat-hero p {{ max-width: 52ch; }}\n"
+        f"@media (max-width: 760px) {{ .cat-hero {{ background: linear-gradient(180deg, rgba(9,40,61,0) 0, rgba(9,40,61,0) 42vw, #09283D 57vw), "
+        f"url('/assets/banners/{slug}-800.webp') top center / 100% auto no-repeat, #09283D; min-height: 0; padding-top: calc(50vw + 8px); }} }}"
+    ) if banner else ""
     cards = "\n".join(catalog_card_html(p) for p in items)
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -636,6 +647,7 @@ def render_category(name, items, products):
 .cat-hero p {{ margin: 0; font-size: 16px; color: rgba(255,255,255,0.9); max-width: 70ch; line-height: 1.6; }}
 .cat-hero .crumbs, .cat-hero .crumbs a, .cat-hero .crumbs span[aria-current] {{ color: rgba(255,255,255,0.85); padding-top: 0; }}
 .cat-controls {{ display: flex; gap: 16px; flex-wrap: wrap; align-items: center; justify-content: space-between; margin: 28px 0; }}
+{banner_css}
 </style>
 <style id="catalog-css">
 {CATALOG_CSS}
