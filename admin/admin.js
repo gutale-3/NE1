@@ -534,6 +534,14 @@
     });
   });
 
+  $('tpl-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = this.querySelector('button'); btn.disabled = true;
+    api('/api/admin/whatsapp', { action: 'create', template: { name: $('tpl-name').value, category: $('tpl-cat').value, body: $('tpl-body').value } }).then(function (r) {
+      notice(r.message); $('tpl-form').reset(); return loadWhatsApp();
+    }).catch(function (err) { notice(err.message, true); }).then(function () { btn.disabled = false; });
+  });
+
   $('cust-search').addEventListener('input', renderCustomers);
   $('cust-filter').addEventListener('change', renderCustomers);
   ['cust-from', 'cust-to'].forEach(function (id) {

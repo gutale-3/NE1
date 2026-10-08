@@ -128,6 +128,16 @@
     </div>
     <h2 class="wa-h">Message templates</h2>
     <div id="wa-templates" class="tech-list"></div>
+    <form id="tpl-form" class="tech tpl-form">
+      <h3>New template</h3>
+      <div class="tpl-row">
+        <label>Name <input id="tpl-name" required placeholder="ne_test_demo" pattern="[a-z0-9_]+" autocomplete="off"></label>
+        <label>Category <select id="tpl-cat"><option value="UTILITY">Utility (order and account updates)</option><option value="MARKETING">Marketing (offers)</option></select></label>
+      </div>
+      <label>Message text <textarea id="tpl-body" rows="3" required maxlength="1024" placeholder="Hello {{1}}, your order is ready for pick-up at our Eastleigh showroom."></textarea></label>
+      <p class="hint">Use {{1}}, {{2}} for parts that change per customer. Meta reviews new templates, usually within a day.</p>
+      <div class="row-actions"><button type="submit" class="primary">Create template</button></div>
+    </form>
     <h2 class="wa-h">Messages</h2>
     <div id="wa-log" class="tech-list"></div>
     </details>
