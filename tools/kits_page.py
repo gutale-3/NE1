@@ -97,9 +97,9 @@ HD_FAMILIES = [
 IP_CABLE = {4: 1, 8: 2, 16: 3}           # 305 m boxes of CAT6
 IP_CLIPS = {4: 1, 8: 2, 16: 4}
 NVR_Q = {4: "DS-7104NI-Q1/4P/M(STD)(D)", 8: "DS-7108NI-Q1/8P/M(STD)(D)", 16: "DS-7616NI-Q2/16P(E)(STD)"}  # fine for 2MP
-# 4MP and above, and cameras with two-way audio, need a 76-series (or higher) NVR.
-# There is no 4-channel 76 model, so 4-camera kits get the 8-channel one (room to add 4 more).
-NVR_76 = {4: "DS-7608NXI-K1/8P(STD)(B)", 8: "DS-7608NXI-K1/8P(STD)(B)", 16: "DS-7616NXI-K2/16P(D)(STD)"}
+# 4MP and above, and cameras with two-way audio, need a 76-series NVR from 8
+# channels; a 4-camera kit can stay on the 71-series 4-channel NVR.
+NVR_76 = {4: "DS-7104NI-Q1/4P/M(STD)(D)", 8: "DS-7608NXI-K1/8P(STD)(B)", 16: "DS-7616NXI-K2/16P(D)(STD)"}
 HDD_2MP = {4: "HDD-1TB", 8: "HDD-2TB", 16: "HDD-4TB"}
 HDD_4MP = {4: "HDD-2TB", 8: "HDD-4TB", 16: "HDD-6TB"}
 HDD_8MP = {4: "HDD-2TB", 8: "HDD-4TB", 16: "HDD-8TB"}
