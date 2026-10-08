@@ -1,10 +1,10 @@
-// WhatsApp Cloud API: automatic updates from NE's updates-only number.
+// WhatsApp Cloud API: automatic updates from NE's updates number.
 //
-// The updates number (WHATSAPP_PHONE_ID) only sends: order received / confirmed /
-// paid / delivered, reward earned, credit-expiry reminders, and a new-order
-// alert to the owner's own WhatsApp (OWNER_WHATSAPP). Anyone who writes to it
-// gets a polite auto-reply pointing to the shop's main WhatsApp, and the
-// message shows in the admin panel.
+// The updates number (WHATSAPP_PHONE_ID) sends: order received / confirmed /
+// paid / delivered, reward earned, credit-expiry reminders, Google review
+// requests, and a new-order alert to the owner's own WhatsApp (OWNER_WHATSAPP).
+// Anyone who writes to it gets a polite auto-reply, and staff answer from the
+// chat in the admin panel.
 //
 // Secrets: WHATSAPP_TOKEN (permanent access token), META_APP_SECRET (checks
 // webhook signatures; the webhook verify token is derived from it).
@@ -13,6 +13,7 @@
 const GRAPH = "https://graph.facebook.com/v23.0";
 const SITE = "https://nashnaal.com";
 const FOOTER = "Updates only. Chat with us on WhatsApp: 0737 454 891";
+const REVIEW_URL = `${SITE}/review`;  // redirects to the Google review form (see /_redirects)
 const VIEW_ORDER = { type: "URL", text: "View order", url: `${SITE}/order/?{{1}}`, example: [`${SITE}/order/?n=NE-1005&k=a1b2c3`] };
 
 // Message templates (Meta must approve each one before it can be sent).
@@ -46,6 +47,12 @@ export const TEMPLATES = [
     name: "ne_credit_expiring",
     body: "Hi {{1}}, a quick reminder that KES {{2}} of your NE reward credit expires on {{3}}. Sign in at nashnaal.com and it comes off your next order automatically.",
     example: ["Mary", "403", "6 Apr 2027"],
+  },
+  {
+    // Same request for every customer: Google forbids rewards for reviews and asking only happy customers.
+    name: "ne_review_request",
+    body: "Hi {{1}}, thank you for choosing Nashnaal Electronics. If you have a minute, we would really appreciate a short Google review. A line about the product or our service helps other customers find us. Thank you!",
+    example: ["Mary"], button: { type: "URL", text: "Write a review", url: REVIEW_URL },
   },
   {
     name: "ne_new_order_alert",
@@ -124,7 +131,8 @@ async function graph(env, path, body, method = body ? "POST" : "GET") {
   return data;
 }
 
-// Sends a template and logs it. meta.dedupe skips a message already sent.
+// Sends a template and logs it. meta.dedupe skips a message already sent;
+// a failed send doesn't claim the key, so a daily job can try again.
 export async function sendTemplate(env, to, name, params, meta = {}) {
   if (!configured(env)) return { skipped: "not configured" };
   const phone = waNumber(to);
@@ -154,7 +162,7 @@ export async function sendTemplate(env, to, name, params, meta = {}) {
   await env.DB.prepare(
     `INSERT INTO wa_messages (direction, phone, kind, order_id, user_id, dedupe, wa_id, status, body, error)
      VALUES ('out', ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9) ON CONFLICT(dedupe) DO NOTHING`
-  ).bind(phone, name, meta.orderId || null, meta.userId || null, meta.dedupe || null, waId, status, rendered, error).run();
+  ).bind(phone, name, meta.orderId || null, meta.userId || null, status === "failed" ? null : meta.dedupe || null, waId, status, rendered, error).run();
   return { status, error };
 }
 
@@ -242,6 +250,24 @@ export async function expiryReminders(env, replay) {
         { userId: user.id, dedupe: `expiry:${user.id}:${date}:${days}` });
     }
   }
+}
+
+// Asks for a Google review a few days after delivery. Once per phone number,
+// whether asked here or from the admin, so repeat customers are not pestered.
+export async function reviewRequests(env) {
+  if (!configured(env)) return;
+  const { results } = await env.DB.prepare(
+    `SELECT id, name, phone, user_id FROM orders
+     WHERE status = 'delivered' AND consent = 1
+       AND updated_at <= datetime('now', '-2 days') AND updated_at >= datetime('now', '-10 days')`
+  ).all();
+  for (const o of results) await askForReview(env, o.phone, o.name, { orderId: o.id, userId: o.user_id });
+}
+
+export async function askForReview(env, phone, name, meta = {}) {
+  const to = waNumber(phone);
+  if (!to) return { skipped: "bad number" };
+  return sendTemplate(env, to, "ne_review_request", [first(name)], { ...meta, dedupe: `review:${to}` });
 }
 
 // ---- webhook ---------------------------------------------------------------
@@ -400,7 +426,7 @@ export async function submitTemplates(env) {
     const components = [{ type: "BODY", text: t.body, example: { body_text: [t.example] } }, { type: "FOOTER", text: t.footer || FOOTER }];
     if (t.button) components.push({ type: "BUTTONS", buttons: [t.button.example ? t.button : { type: "URL", text: t.button.text, url: t.button.url }] });
     try {
-      await graph(env, `${env.WHATSAPP_WABA_ID}/message_templates`, { name: t.name, language: "en", category: "UTILITY", components });
+      await graph(env, `${env.WHATSAPP_WABA_ID}/message_templates`, { name: t.name, language: "en", category: t.category || "UTILITY", components });
       results.push(`${t.name}: submitted`);
     } catch (e) {
       const msg = /already exists|duplicate|already .*content/i.test(e.message) ? "already submitted"

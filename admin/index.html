@@ -100,7 +100,7 @@
       <aside class="chat-list" id="chat-list"><p class="hint" style="padding:14px">Loading conversations&hellip;</p></aside>
       <div class="chat-pane" id="chat-pane">
         <div class="chat-empty" id="chat-empty">Choose a conversation. Messages customers send to <b>+254 141 444 982</b> appear here, and your replies go out from that number.</div>
-        <div class="chat-head" id="chat-head" hidden><button type="button" class="link chat-back" id="chat-back">&larr;</button><div><b id="chat-name"></b><span id="chat-phone"></span></div><a id="chat-wa" target="_blank" rel="noopener">Open in my WhatsApp</a></div>
+        <div class="chat-head" id="chat-head" hidden><button type="button" class="link chat-back" id="chat-back">&larr;</button><div><b id="chat-name"></b><span id="chat-phone"></span></div><button type="button" class="link" id="chat-review" title="Send the Google review request template">Ask for review</button><a id="chat-wa" target="_blank" rel="noopener">Open in my WhatsApp</a></div>
         <div class="chat-msgs" id="chat-msgs" hidden></div>
         <form class="chat-form" id="chat-form" hidden>
           <textarea id="chat-text" rows="2" placeholder="Type a reply&hellip;"></textarea>
@@ -109,6 +109,16 @@
         <p class="chat-closed" id="chat-closed" hidden>More than 24 hours since this customer last wrote, so WhatsApp only allows approved templates here. Use <b>Open in my WhatsApp</b> to message them from 0737.</p>
       </div>
     </div>
+    <details class="wa-setup" id="review-box"><summary>Ask a shop customer for a Google review</summary>
+      <form id="review-form" class="tech tpl-form">
+        <div class="tpl-row">
+          <label>Customer name <input id="rv-name" placeholder="Mary Wanjiku" autocomplete="off"></label>
+          <label>WhatsApp number <input id="rv-phone" required inputmode="tel" placeholder="0712 345 678" autocomplete="off"></label>
+        </div>
+        <p class="hint">Sends our approved review request from +254 141 444 982 with a <b>Write a review</b> button. Only for customers who agreed to hear from us. Each number is asked once. Website orders are asked automatically 2 days after delivery. Never offer discounts or credit for reviews: Google removes them.</p>
+        <div class="row-actions"><button type="submit" class="primary">Send review request</button><a class="chip" href="/review-card/" target="_blank" rel="noopener">Print counter QR card</a></div>
+      </form>
+    </details>
     <details class="wa-setup"><summary>Setup, templates and full message log</summary>
     <div class="wa-grid">
       <div class="tech">

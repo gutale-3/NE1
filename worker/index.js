@@ -28,6 +28,7 @@ function later(ctx, job) {
 export default {
   async scheduled(event, env, ctx) {
     ctx.waitUntil(wa.expiryReminders(env, (userId) => rewardBalance(env, userId)));
+    ctx.waitUntil(wa.reviewRequests(env));
   },
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -795,13 +796,20 @@ async function accountSummary(request, env) {
 async function adminWhatsApp(request, env, url) {
   if (request.method === "GET") return json(await wa.adminStatus(env, siteOrigin(env, url)));
   if (!wa.configured(env)) return json({ error: "Add WHATSAPP_TOKEN in Cloudflare first." }, 400);
-  const { action, phone, text, template } = await request.json();
+  const { action, phone, text, template, name } = await request.json();
   try {
     if (action === "reply") {
       const out = await wa.reply(env, String(phone || "").replace(/\D/g, ""), text);
       return out.status === "sent" ? json({ ok: true }) : json({ error: out.error || "Could not send." }, 400);
     }
     if (action === "templates") return json({ ok: true, message: (await wa.submitTemplates(env)).join("\n") });
+    if (action === "review") {
+      const out = await wa.askForReview(env, phone, name);
+      if (out.status === "sent") return json({ ok: true, message: "Google review request sent on WhatsApp." });
+      const why = out.skipped === "already sent" ? "This number has already been asked for a review."
+        : out.skipped === "bad number" ? "That doesn't look like a Kenyan mobile number." : out.error || out.skipped || "Could not send.";
+      return json({ error: why }, 400);
+    }
     if (action === "create") return json({ ok: true, message: await wa.createTemplate(env, template || {}) });
     if (action === "profile") { await wa.updateProfile(env); return json({ ok: true, message: "WhatsApp profile updated." }); }
     if (action === "test") {
