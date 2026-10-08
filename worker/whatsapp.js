@@ -176,7 +176,7 @@ function friendly(message) {
   return message;
 }
 
-async function sendText(env, phone, text, kind) {
+async function sendText(env, phone, text, kind, dedupe = null) {
   let waId = null, status = "sent", error = null;
   try {
     const out = await graph(env, `${env.WHATSAPP_PHONE_ID}/messages`, {
@@ -187,8 +187,10 @@ async function sendText(env, phone, text, kind) {
     status = "failed";
     error = friendly(e.message);
   }
-  await env.DB.prepare("INSERT INTO wa_messages (direction, phone, kind, wa_id, status, body, error) VALUES ('out', ?1, ?2, ?3, ?4, ?5, ?6)")
-    .bind(phone, kind, waId, status, text, error).run();
+  await env.DB.prepare(
+    `INSERT INTO wa_messages (direction, phone, kind, wa_id, status, body, error, dedupe)
+     VALUES ('out', ?1, ?2, ?3, ?4, ?5, ?6, ?7) ON CONFLICT(dedupe) DO NOTHING`
+  ).bind(phone, kind, waId, status, text, error, status === "failed" ? null : dedupe).run();
   return { status, error };
 }
 
@@ -264,10 +266,20 @@ export async function reviewRequests(env) {
   for (const o of results) await askForReview(env, o.phone, o.name, { orderId: o.id, userId: o.user_id });
 }
 
+// Inside the 24-hour window after the customer last wrote, a plain message
+// works without Meta's template approval; otherwise it has to be the template.
 export async function askForReview(env, phone, name, meta = {}) {
   const to = waNumber(phone);
   if (!to) return { skipped: "bad number" };
-  return sendTemplate(env, to, "ne_review_request", [first(name)], { ...meta, dedupe: `review:${to}` });
+  const dedupe = `review:${to}`;
+  await ensureTable(env);
+  if (await env.DB.prepare("SELECT 1 FROM wa_messages WHERE dedupe = ?1").bind(dedupe).first()) return { skipped: "already sent" };
+  const firstName = first(name).toLowerCase().replace(/^./, (c) => c.toUpperCase());
+  if ((await chat(env, to)).open) {
+    const tpl = TEMPLATES.find((t) => t.name === "ne_review_request");
+    return sendText(env, to, `${tpl.body.replace("{{1}}", firstName)}\n\n${REVIEW_URL}`, "ne_review_request", dedupe);
+  }
+  return sendTemplate(env, to, "ne_review_request", [firstName], { ...meta, dedupe });
 }
 
 // ---- webhook ---------------------------------------------------------------
