@@ -752,9 +752,9 @@ PACKAGES = [
         "id": "ip-business", "group": "ip", "image": "images/kits/ip-business.webp",
         "name": "IP 4MP ColorVu business",
         "for": "Offices, warehouses and estates",
-        "summary": "Eight 4MP ColorVu cameras on an 8-port PoE NVR with 4 TB hard disk, two boxes of CAT6 and connectors.",
+        "summary": "Eight 4MP ColorVu cameras on a professional 8-port PoE NVR with 4 TB hard disk, two boxes of CAT6 and connectors.",
         "items": [("DS-2CD1047G3-LIU(4mm)(O-STD)", 4), ("DS-2CD1147G3-LIU(2.8mm)(O-STD)", 4),
-                  ("DS-7108NI-Q1/8P/M(STD)(D)", 1), ("HDD-4TB", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 2), ("CONN-SET", 8),
+                  ("DS-7608NXI-K1/8P(STD)(B)", 1), ("HDD-4TB", 1), ("DS-1LN6UZC0(O-STD) orange 305m", 2), ("CONN-SET", 8),
                   ("CLIPS-100", 2)],
     },
     # --- Access control, video intercom, networking ---
