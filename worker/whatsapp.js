@@ -143,13 +143,23 @@ export async function sendTemplate(env, to, name, params, meta = {}) {
     waId = out.messages && out.messages[0] && out.messages[0].id;
   } catch (e) {
     status = "failed";
-    error = e.message;
+    error = friendly(e.message);
   }
   await env.DB.prepare(
     `INSERT INTO wa_messages (direction, phone, kind, order_id, user_id, dedupe, wa_id, status, body, error)
      VALUES ('out', ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9) ON CONFLICT(dedupe) DO NOTHING`
   ).bind(phone, name, meta.orderId || null, meta.userId || null, meta.dedupe || null, waId, status, rendered, error).run();
   return { status, error };
+}
+
+// Meta's error codes, in words the admin can act on.
+function friendly(message) {
+  if (/#132001|does not exist/i.test(message)) return "This message template isn't approved by Meta yet (see Message templates in the admin).";
+  if (/#131026|undeliverable/i.test(message)) return "The customer's number isn't on WhatsApp.";
+  if (/#131047|re-engagement/i.test(message)) return "More than 24 hours since the customer's last message.";
+  if (/#190|access token|session has expired/i.test(message)) return "The WhatsApp access key is invalid or expired: update WHATSAPP_TOKEN in Cloudflare.";
+  if (/#200|#10\b|authori[sz]ation|permission/i.test(message)) return "The WhatsApp access key has no permission for this WhatsApp account.";
+  return message;
 }
 
 async function sendText(env, phone, text, kind) {
