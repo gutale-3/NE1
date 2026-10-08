@@ -442,9 +442,89 @@
       });
       if (!d.messages.length) log.textContent = 'No messages yet.';
       try { if (d.messages[0]) localStorage.setItem('ne_wa_seen', d.messages[0].created_at); } catch (e) { /* ignore */ }
-      $('wa-badge').hidden = true;
     });
   }
+  // ---- WhatsApp conversations ------------------------------------------
+  var openPhone = null, chatTimer = null;
+  function when(sql) {
+    var d = new Date(String(sql).replace(' ', 'T') + 'Z');
+    return d.toDateString() === new Date().toDateString()
+      ? d.toLocaleTimeString('en-KE', { hour: '2-digit', minute: '2-digit' })
+      : d.toLocaleDateString('en-KE', { day: 'numeric', month: 'short' });
+  }
+  function loadChats() {
+    return api('/api/admin/whatsapp/chats').then(function (d) {
+      $('wa-badge').textContent = d.waiting;
+      $('wa-badge').hidden = !d.waiting;
+      var list = $('chat-list'); list.textContent = '';
+      if (!d.chats.length) list.innerHTML = '<p class="hint" style="padding:14px">No conversations yet.</p>';
+      d.chats.forEach(function (c) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'chat-item' + (c.waiting ? ' waiting' : '') + (c.phone === openPhone ? ' on' : '');
+        b.innerHTML = '<div class="ci-top"><b></b><time></time></div><p></p>';
+        b.querySelector('b').textContent = c.name && c.name !== 'message' ? c.name : '+' + c.phone;
+        b.querySelector('time').textContent = when(c.last_at);
+        b.querySelector('p').textContent = (c.last_dir === 'out' ? 'You: ' : '') + (c.last_body || '');
+        b.addEventListener('click', function () { openChat(c.phone); });
+        list.appendChild(b);
+      });
+    });
+  }
+  function openChat(phone) {
+    openPhone = phone;
+    $('chat-app').classList.add('open');
+    return api('/api/admin/whatsapp/chat?phone=' + phone).then(function (d) {
+      if (openPhone !== phone) return;
+      $('chat-empty').hidden = true;
+      $('chat-head').hidden = false; $('chat-msgs').hidden = false;
+      $('chat-name').textContent = d.name && d.name !== 'message' ? d.name : '+' + phone;
+      $('chat-phone').textContent = ' +' + phone;
+      $('chat-wa').href = 'https://wa.me/' + phone;
+      $('chat-form').hidden = !d.open; $('chat-closed').hidden = d.open;
+      var box = $('chat-msgs');
+      var atBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 60;
+      box.textContent = '';
+      d.messages.forEach(function (m) {
+        var el = document.createElement('div');
+        var auto = m.direction === 'out' && m.kind !== 'reply';
+        el.className = 'bubble ' + m.direction + (auto ? ' auto' : '');
+        el.textContent = m.body || '';
+        var meta = document.createElement('small');
+        var label = auto ? (m.kind === 'auto_reply' ? 'Auto-reply' : 'Update: ' + m.kind.replace(/^ne_/, '').replace(/_/g, ' ')) + ' · ' : '';
+        var tick = m.direction === 'out' ? (m.status === 'read' ? ' ✓✓ read' : m.status === 'delivered' ? ' ✓✓' : m.status === 'failed' ? ' failed' : ' ✓') : '';
+        meta.textContent = label + when(m.created_at) + tick;
+        if (m.status === 'failed') { meta.className = 'failed'; meta.title = m.error || ''; }
+        el.appendChild(meta);
+        box.appendChild(el);
+      });
+      if (atBottom || !box.dataset.phone || box.dataset.phone !== phone) box.scrollTop = box.scrollHeight;
+      box.dataset.phone = phone;
+      loadChats();
+    });
+  }
+  $('chat-back').addEventListener('click', function () { openPhone = null; $('chat-app').classList.remove('open'); loadChats(); });
+  $('chat-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var text = $('chat-text').value.trim();
+    if (!text || !openPhone) return;
+    $('chat-send').disabled = true;
+    api('/api/admin/whatsapp', { action: 'reply', phone: openPhone, text: text }).then(function () {
+      $('chat-text').value = '';
+      return openChat(openPhone);
+    }).catch(function (err) { notice(err.message, true); }).then(function () { $('chat-send').disabled = false; });
+  });
+  $('chat-text').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !e.shiftKey && window.matchMedia('(min-width: 761px)').matches) { e.preventDefault(); $('chat-form').requestSubmit(); }
+  });
+  function startChatPolling() {
+    clearInterval(chatTimer);
+    chatTimer = setInterval(function () {
+      if ($('wa-view').hidden || document.hidden) return;
+      (openPhone ? openChat(openPhone) : loadChats()).catch(function () {});
+    }, 15000);
+  }
+
   Array.prototype.forEach.call(document.querySelectorAll('[data-wa]'), function (b) {
     b.addEventListener('click', function () {
       b.disabled = true;
@@ -471,7 +551,11 @@
       show(view);
       if (view === 'tech') loadTechs().catch(function (err) { notice(err.message, true); });
       if (view === 'orders') loadOrders().catch(function (err) { notice(err.message, true); });
-      if (view === 'wa') loadWhatsApp().catch(function (err) { notice(err.message, true); });
+      if (view === 'wa') {
+        loadChats().catch(function (err) { notice(err.message, true); });
+        loadWhatsApp().catch(function (err) { notice(err.message, true); });
+        startChatPolling();
+      }
       if (view === 'customers') {
         loadCustomers().catch(function (err) { notice(err.message, true); });
         loadFunnel().catch(function (err) { notice(err.message, true); });
@@ -567,4 +651,7 @@
   load().then(loadLog).catch(function (err) { notice(err.message, true); $('count').textContent = ''; });
   loadTechs().catch(function () {});  // fills the badge
   loadOrders().catch(function () {});
+  loadChats().catch(function () {});  // fills the WhatsApp badge
+  // The home-screen app opens straight on the chats (start_url /admin/#wa).
+  if (location.hash === '#wa') { var waTab = document.querySelector('[data-tab=wa]'); if (waTab) waTab.click(); }
 })();

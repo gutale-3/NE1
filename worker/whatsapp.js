@@ -53,15 +53,21 @@ export const TEMPLATES = [
     example: ["NE-1005", "Mary Wanjiku", "0712 345 678", "20,150", "8", "Nairobi (free)"],
     button: { type: "URL", text: "Open admin", url: `${SITE}/admin/` }, footer: "Nashnaal Electronics website",
   },
+  {
+    name: "ne_customer_message",
+    body: "New WhatsApp message on the NE updates number from {{1}} ({{2}}): {{3}} Reply from the WhatsApp tab in the NE admin panel.",
+    example: ["Mary Wanjiku", "+254712345678", "Is the 4MP ColorVu camera in stock?"],
+    button: { type: "URL", text: "Open chats", url: `${SITE}/admin/#wa` }, footer: "Nashnaal Electronics website",
+  },
 ];
 
 const AUTO_REPLY =
-  "Hello, and thank you for your message! This number only sends automatic order and reward updates from Nashnaal Electronics (NE), so messages here are not read.\n\n" +
-  "For orders, prices or support, please chat with our team on WhatsApp: https://wa.me/254737454891 or call 0737 454 891. We are happy to help.";
+  "Hello, and thank you for messaging Nashnaal Electronics (NE)! We have received your message and will reply here shortly " +
+  "(Monday to Saturday 8am to 8pm, Sunday 9am to 6pm).\n\nFor urgent help, call or WhatsApp 0737 454 891.";
 
 const PROFILE = {
-  about: "Automatic updates from NE. Chat with us: 0737 454 891",
-  description: "This number sends automatic order and reward updates from Nashnaal Electronics (NE), Hikvision Authorized National Distributor in Nairobi. For orders and support, chat with us on WhatsApp 0737 454 891.",
+  about: "Nashnaal Electronics: orders, updates and support",
+  description: "Nashnaal Electronics (NE), Hikvision Authorized National Distributor in Nairobi. Order updates, rewards and support. You can also call or WhatsApp 0737 454 891.",
   address: "BBS Mall, Shop GFE 61, Eastleigh, Nairobi, Kenya",
   websites: [SITE],
   vertical: "RETAIL",
@@ -171,10 +177,11 @@ async function sendText(env, phone, text, kind) {
     waId = out.messages && out.messages[0] && out.messages[0].id;
   } catch (e) {
     status = "failed";
-    error = e.message;
+    error = friendly(e.message);
   }
   await env.DB.prepare("INSERT INTO wa_messages (direction, phone, kind, wa_id, status, body, error) VALUES ('out', ?1, ?2, ?3, ?4, ?5, ?6)")
     .bind(phone, kind, waId, status, text, error).run();
+  return { status, error };
 }
 
 const first = (name) => String(name || "").trim().split(/\s+/)[0] || "there";
@@ -286,15 +293,68 @@ export async function webhook(request, env) {
         const text = msg.type === "text" ? msg.text.body : `[${msg.type}]`;
         await env.DB.prepare("INSERT INTO wa_messages (direction, phone, kind, wa_id, status, body) VALUES ('in', ?1, ?2, ?3, 'received', ?4)")
           .bind(phone, contact && contact.profile ? contact.profile.name || "message" : "message", msg.id, text.slice(0, 2000)).run();
-        // One auto-reply per person every 12 hours.
+        if (!configured(env)) continue;
+        // Auto-reply at most once per person every 12 hours, and never while staff are replying.
         const recent = await env.DB.prepare(
-          "SELECT 1 FROM wa_messages WHERE phone = ?1 AND kind = 'auto_reply' AND created_at > datetime('now', '-12 hours')"
+          "SELECT 1 FROM wa_messages WHERE phone = ?1 AND kind IN ('auto_reply', 'reply') AND created_at > datetime('now', '-12 hours')"
         ).bind(phone).first();
-        if (!recent && configured(env)) await sendText(env, phone, AUTO_REPLY, "auto_reply");
+        if (!recent) await sendText(env, phone, AUTO_REPLY, "auto_reply");
+        // Tell the owner on their own WhatsApp (at most every 30 minutes per customer).
+        const owner = waNumber(env.OWNER_WHATSAPP);
+        if (owner && owner !== phone) {
+          const alerted = await env.DB.prepare(
+            "SELECT 1 FROM wa_messages WHERE kind = 'ne_customer_message' AND body LIKE ?1 AND created_at > datetime('now', '-30 minutes')"
+          ).bind(`%(+${phone})%`).first();
+          const name = contact && contact.profile && contact.profile.name ? contact.profile.name : "a customer";
+          if (!alerted) {
+            await sendTemplate(env, owner, "ne_customer_message",
+              [name.slice(0, 60), `+${phone}`, `"${text.replace(/\s+/g, " ").trim().slice(0, 180)}"`], {});
+          }
+        }
       }
     }
   }
   return new Response("OK", { status: 200 });
+}
+
+// ---- admin: conversations ---------------------------------------------------
+
+// Everyone who has written to the updates number, newest first. "waiting" means
+// their last message came after our last reply.
+export async function chats(env) {
+  await ensureTable(env);
+  const { results } = await env.DB.prepare(
+    `SELECT phone, max(created_at) AS last_at,
+       (SELECT body FROM wa_messages b WHERE b.phone = m.phone ORDER BY id DESC LIMIT 1) AS last_body,
+       (SELECT direction FROM wa_messages b WHERE b.phone = m.phone ORDER BY id DESC LIMIT 1) AS last_dir,
+       (SELECT kind FROM wa_messages b WHERE b.phone = m.phone AND direction = 'in' ORDER BY id DESC LIMIT 1) AS name,
+       (SELECT max(created_at) FROM wa_messages b WHERE b.phone = m.phone AND direction = 'in') AS last_in,
+       (SELECT max(created_at) FROM wa_messages b WHERE b.phone = m.phone AND kind = 'reply') AS last_reply
+     FROM wa_messages m
+     WHERE phone IN (SELECT DISTINCT phone FROM wa_messages WHERE direction = 'in')
+     GROUP BY phone ORDER BY last_at DESC LIMIT 100`
+  ).all();
+  const chatsOut = results.map((c) => ({ ...c, waiting: !c.last_reply || c.last_in > c.last_reply }));
+  return { chats: chatsOut, waiting: chatsOut.filter((c) => c.waiting).length };
+}
+
+export async function chat(env, phone) {
+  await ensureTable(env);
+  const { results } = await env.DB.prepare(
+    "SELECT id, direction, kind, status, body, error, created_at FROM wa_messages WHERE phone = ?1 ORDER BY id DESC LIMIT 200"
+  ).bind(phone).all();
+  const lastIn = results.find((m) => m.direction === "in");
+  const open = Boolean(lastIn) && Date.now() - new Date(lastIn.created_at.replace(" ", "T") + "Z").getTime() < 24 * 3600 * 1000;
+  return { phone, name: lastIn ? lastIn.kind : null, open, messages: results.reverse() };
+}
+
+// Free-form replies are only allowed within 24 hours of the customer's last message.
+export async function reply(env, phone, text) {
+  const body = String(text || "").trim().slice(0, 4000);
+  if (!/^\d{8,15}$/.test(phone) || !body) return { error: "Write a message first." };
+  const { open } = await chat(env, phone);
+  if (!open) return { error: "It is more than 24 hours since this customer last wrote, so WhatsApp only allows approved templates. Message them from your 0737 WhatsApp instead." };
+  return sendText(env, phone, body, "reply");
 }
 
 // ---- admin -----------------------------------------------------------------

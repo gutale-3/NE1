@@ -7,6 +7,12 @@
 <title>NE admin</title>
 <link rel="icon" type="image/png" href="/assets/nashnaal-favicon.png">
 <link rel="stylesheet" href="/admin/admin.css">
+<link rel="manifest" href="/assets/admin.webmanifest">
+<meta name="theme-color" content="#0F2A3D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NE Admin">
+<link rel="apple-touch-icon" href="/assets/admin-icon-180.png">
 <script src="/admin/admin.js" defer></script>
 </head>
 <body>
@@ -90,6 +96,20 @@
   </section>
 
   <section id="wa-view" hidden>
+    <div class="chat-app" id="chat-app">
+      <aside class="chat-list" id="chat-list"><p class="hint" style="padding:14px">Loading conversations&hellip;</p></aside>
+      <div class="chat-pane" id="chat-pane">
+        <div class="chat-empty" id="chat-empty">Choose a conversation. Messages customers send to <b>+254 141 444 982</b> appear here, and your replies go out from that number.</div>
+        <div class="chat-head" id="chat-head" hidden><button type="button" class="link chat-back" id="chat-back">&larr;</button><div><b id="chat-name"></b><span id="chat-phone"></span></div><a id="chat-wa" target="_blank" rel="noopener">Open in my WhatsApp</a></div>
+        <div class="chat-msgs" id="chat-msgs" hidden></div>
+        <form class="chat-form" id="chat-form" hidden>
+          <textarea id="chat-text" rows="2" placeholder="Type a reply&hellip;"></textarea>
+          <button type="submit" class="primary" id="chat-send">Send</button>
+        </form>
+        <p class="chat-closed" id="chat-closed" hidden>More than 24 hours since this customer last wrote, so WhatsApp only allows approved templates here. Use <b>Open in my WhatsApp</b> to message them from 0737.</p>
+      </div>
+    </div>
+    <details class="wa-setup"><summary>Setup, templates and full message log</summary>
     <div class="wa-grid">
       <div class="tech">
         <h3>Updates number</h3>
@@ -110,6 +130,7 @@
     <div id="wa-templates" class="tech-list"></div>
     <h2 class="wa-h">Messages</h2>
     <div id="wa-log" class="tech-list"></div>
+    </details>
   </section>
 
   <section id="tech-view" hidden>
