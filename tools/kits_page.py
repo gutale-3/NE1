@@ -29,7 +29,14 @@ HDD_3K = {4: "HDD-2TB", 8: "HDD-4TB", 16: "HDD-6TB"}  # 3K footage is larger
 
 HD_FAMILIES = [
     {
-        "id": "hd-basic", "name": "1080p IR", "tag": "Lowest price",
+        "id": "hd-basic-edvr", "name": "1080p IR with eDVR", "tag": "Lowest price", "sizes": (4, 8),
+        "summary": "The 1080p IR kit on an eDVR with storage built in (512 GB on 4 channels, 1 TB on 8), so no separate hard disk. Silent, cool-running and ready out of the box.",
+        "points": ["2MP 1080p", "Built-in SSD storage", "IR night vision 20 m"],
+        "bullet": "DS-2CE16D0T-EXIPF(3.6mm)(O-STD)", "dome": "DS-2CE76D0T-EXIPF(2.8mm)(O-STD)",
+        "dvr": {4: "DS-E04HGHI-D", 8: "DS-E08HGHI-D"}, "hdd": None,
+    },
+    {
+        "id": "hd-basic", "name": "1080p IR with hard disk",
         "summary": "Sharp 1080p video by day and clear black-and-white infrared at night, up to 20 m. The most affordable way to cover a home, shop or compound.",
         "points": ["2MP 1080p", "IR night vision 20 m", "Indoor & outdoor"],
         "bullet": "DS-2CE16D0T-EXIPF(3.6mm)(O-STD)", "dome": "DS-2CE76D0T-EXIPF(2.8mm)(O-STD)",
@@ -201,7 +208,7 @@ def kit_items(family, size):
     cable, rolls = HD_CABLE[size]
     return [
         (family["bullet"], size // 2), (family["dome"], size // 2),
-        (family["dvr"][size], 1), (family["hdd"][size], 1),
+        (family["dvr"][size], 1), *([(family["hdd"][size], 1)] if family["hdd"] else []),
         (HD_POWER[size], 1), (cable, rolls),
         ("CONN-SET", size), ("CLIPS-100", HD_CLIPS[size]),
     ]
@@ -209,7 +216,7 @@ def kit_items(family, size):
 
 def all_kits():
     """(id, name, items) for every size of every family, for checks and the admin."""
-    return [(f"{f['id']}-{n}", f"{f['name']} {n}-camera kit", kit_items(f, n)) for f in HD_FAMILIES + IP_FAMILIES for n in SIZES]
+    return [(f"{f['id']}-{n}", f"{f['name']} {n}-camera kit", kit_items(f, n)) for f in HD_FAMILIES + IP_FAMILIES for n in f.get("sizes", SIZES)]
 
 
 def _wa(message):
@@ -245,8 +252,9 @@ def _panel(family, size, by_model, checked):
 def family_html(family, by_model):
     tag = f'<span class="kit-flag">{esc(family["tag"])}</span>' if family.get("tag") else ""
     points = "".join(f"<li>{esc(p)}</li>" for p in family["points"])
-    panels = "".join(_panel(family, n, by_model, n == 4) for n in SIZES)
-    lowest = min(sum(by_model[m]["price"] * q for m, q in kit_items(family, n)) for n in SIZES)
+    sizes = family.get("sizes", SIZES)
+    panels = "".join(_panel(family, n, by_model, n == 4) for n in sizes)
+    lowest = min(sum(by_model[m]["price"] * q for m, q in kit_items(family, n)) for n in sizes)
     return f"""<article class="kit ks" id="{family['id']}" data-from="{lowest}">
       {tag}<div class="kit-shot kit-photo"><img src="/images/kits/{family['id']}.webp" alt="{esc(family['name'])} camera kit: {ALT[family['kind']]}" loading="lazy" decoding="async" width="400" height="300"></div>
       <div class="kit-for">{KIND[family['kind']]} &middot; bullet + dome</div>
