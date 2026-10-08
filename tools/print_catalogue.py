@@ -231,7 +231,7 @@ BACK = f"""<div class="back">
     <figure><img src="/assets/catalogue/qr/site.svg" alt=""><figcaption>Shop on nashnaal.com</figcaption></figure>
     <figure><img src="/assets/catalogue/qr/whatsapp.svg" alt=""><figcaption>WhatsApp NE</figcaption></figure>
   </div>
-  <p class="small">Prices are in Kenya Shillings and may change; the website always shows the current price. Product photos are for illustration. Hikvision and the Hikvision logo are trademarks of Hangzhou Hikvision Digital Technology Co., Ltd.</p>
+  <p class="small">Nashnaal Electronics is a trading name of NE Falcon Apex Commerce Limited (Company No. PVT-9L1Q856P). Prices are in Kenya Shillings and may change; the website always shows the current price. Product photos are for illustration. Hikvision and the Hikvision logo are trademarks of Hangzhou Hikvision Digital Technology Co., Ltd.</p>
 </div>"""
 
 
