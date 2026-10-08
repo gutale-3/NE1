@@ -96,8 +96,10 @@ HD_FAMILIES = [
 # --- IP (network cameras powered over the network cable by a PoE NVR) ---
 IP_CABLE = {4: 1, 8: 2, 16: 3}           # 305 m boxes of CAT6
 IP_CLIPS = {4: 1, 8: 2, 16: 4}
-NVR_Q = {4: "DS-7104NI-Q1/4P/M(STD)(D)", 8: "DS-7108NI-Q1/8P/M(STD)(D)", 16: "DS-7616NI-Q2/16P(E)(STD)"}
-NVR_K = {4: "DS-7104NI-Q1/4P/M(STD)(D)", 8: "DS-7608NXI-K1/8P(STD)(B)", 16: "DS-7616NXI-K2/16P(D)(STD)"}  # AcuSense-ready K series from 8 channels
+NVR_Q = {4: "DS-7104NI-Q1/4P/M(STD)(D)", 8: "DS-7108NI-Q1/8P/M(STD)(D)", 16: "DS-7616NI-Q2/16P(E)(STD)"}  # fine for 2MP
+# 4MP and above, and cameras with two-way audio, need a 76-series (or higher) NVR.
+# There is no 4-channel 76 model, so 4-camera kits get the 8-channel one (room to add 4 more).
+NVR_76 = {4: "DS-7608NXI-K1/8P(STD)(B)", 8: "DS-7608NXI-K1/8P(STD)(B)", 16: "DS-7616NXI-K2/16P(D)(STD)"}
 HDD_2MP = {4: "HDD-1TB", 8: "HDD-2TB", 16: "HDD-4TB"}
 HDD_4MP = {4: "HDD-2TB", 8: "HDD-4TB", 16: "HDD-6TB"}
 HDD_8MP = {4: "HDD-2TB", 8: "HDD-4TB", 16: "HDD-8TB"}
@@ -119,61 +121,61 @@ IP_FAMILIES = [
         "id": "ip-4mp-hybrid", "name": "4MP Smart Hybrid Light",
         "summary": "Twice the detail of 1080p for faces and number plates, colour on motion at night and a built-in microphone.",
         "points": ["4MP 2K", "Colour on motion", "Built-in mic"],
-        "bullet": "DS-2CD1043G2-LIU(4mm)(O-STD)", "dome": "DS-2CD1143G2-LIU(2.8mm)(O-STD)", "nvr": NVR_Q, "hdd": HDD_4MP,
+        "bullet": "DS-2CD1043G2-LIU(4mm)(O-STD)", "dome": "DS-2CD1143G2-LIU(2.8mm)(O-STD)", "nvr": NVR_76, "hdd": HDD_4MP,
     },
     {
         "id": "ip-4mp-colorvu", "name": "4MP ColorVu", "tag": "Most popular",
         "summary": "Full-colour video all night with sharp 4MP detail and a built-in microphone. Our best-selling IP cameras.",
         "points": ["4MP 2K", "Colour at night", "Built-in mic"],
-        "bullet": "DS-2CD1047G3-LIU(4mm)(O-STD)", "dome": "DS-2CD1147G3-LIU(2.8mm)(O-STD)", "nvr": NVR_Q, "hdd": HDD_4MP,
+        "bullet": "DS-2CD1047G3-LIU(4mm)(O-STD)", "dome": "DS-2CD1147G3-LIU(2.8mm)(O-STD)", "nvr": NVR_76, "hdd": HDD_4MP,
     },
     {
         "id": "ip-4mp-strobe", "name": "4MP ColorVu with red & blue strobe",
         "summary": "Active deterrence: flashing red and blue lights and an alarm sound when a person or car is detected, with full-colour night video.",
         "points": ["4MP 2K", "Strobe & alarm", "Colour at night"],
-        "bullet": "DS-2CD1047G3-LIUF/SRB(4mm)(O-STD)", "dome": "DS-2CD1347G3-LIUF/SRB(2.8mm)(O-STD)", "nvr": NVR_Q, "hdd": HDD_4MP,
+        "bullet": "DS-2CD1047G3-LIUF/SRB(4mm)(O-STD)", "dome": "DS-2CD1347G3-LIUF/SRB(2.8mm)(O-STD)", "nvr": NVR_76, "hdd": HDD_4MP,
     },
     {
         "id": "ip-4mp-varifocal", "name": "4MP motorised zoom",
         "summary": "Zoom lenses (2.8 to 12 mm) adjusted from the phone app: frame a gate, till or car park exactly, with colour on motion.",
         "points": ["4MP 2K", "2.8-12 mm zoom", "Colour on motion"],
-        "bullet": "DS-2CD1643G2-LIZU(2.8-12mm)(O-STD)", "dome": "DS-2CD1743G2-LIZU(2.8-12mm)(O-STD)", "nvr": NVR_K, "hdd": HDD_4MP,
+        "bullet": "DS-2CD1643G2-LIZU(2.8-12mm)(O-STD)", "dome": "DS-2CD1743G2-LIZU(2.8-12mm)(O-STD)", "nvr": NVR_76, "hdd": HDD_4MP,
     },
     {
         "id": "ip-6mp-hybrid", "name": "6MP Smart Hybrid Light",
         "summary": "6MP detail covers wider areas with one camera, colour on motion at night and a built-in microphone.",
         "points": ["6MP 3K", "Colour on motion", "Built-in mic"],
-        "bullet": "DS-2CD1063G2-LIU(4mm)(O-STD)", "dome": "DS-2CD1163G2-LIU(2.8mm)(O-STD)", "nvr": NVR_K, "hdd": HDD_8MP,
+        "bullet": "DS-2CD1063G2-LIU(4mm)(O-STD)", "dome": "DS-2CD1163G2-LIU(2.8mm)(O-STD)", "nvr": NVR_76, "hdd": HDD_8MP,
     },
     {
         "id": "ip-6mp-colorvu", "name": "6MP ColorVu",
         "summary": "Wide, detailed full-colour video day and night for shops, schools and compounds, with a built-in microphone.",
         "points": ["6MP 3K", "Colour at night", "Built-in mic"],
-        "bullet": "DS-2CD1067G3-LIU(4mm)(O-STD)", "dome": "DS-2CD1167G3-LIU(2.8mm)(O-STD)", "nvr": NVR_K, "hdd": HDD_8MP,
+        "bullet": "DS-2CD1067G3-LIU(4mm)(O-STD)", "dome": "DS-2CD1167G3-LIU(2.8mm)(O-STD)", "nvr": NVR_76, "hdd": HDD_8MP,
     },
     {
         "id": "ip-6mp-strobe", "name": "6MP ColorVu with red & blue strobe",
         "summary": "Our sharpest deterrence cameras: 6MP colour at night, flashing strobe lights and an alarm sound to scare intruders off.",
         "points": ["6MP 3K", "Strobe & alarm", "Colour at night"],
-        "bullet": "DS-2CD1067G3-LIUF/SRB(4mm)(O-STD)", "dome": "DS-2CD1367G3-LIUF/SRB(2.8mm)(O-STD)", "nvr": NVR_K, "hdd": HDD_8MP,
+        "bullet": "DS-2CD1067G3-LIUF/SRB(4mm)(O-STD)", "dome": "DS-2CD1367G3-LIUF/SRB(2.8mm)(O-STD)", "nvr": NVR_76, "hdd": HDD_8MP,
     },
     {
         "id": "ip-8mp-hybrid", "name": "8MP 4K Smart Hybrid Light",
         "summary": "4K Ultra HD: zoom into recordings to read faces and plates. Colour on motion at night and a built-in microphone.",
         "points": ["8MP 4K", "Colour on motion", "Built-in mic"],
-        "bullet": "DS-2CD1083G2-LIU(4mm)(O-STD)", "dome": "DS-2CD1183G2-LIU(2.8mm)(O-STD)", "nvr": NVR_K, "hdd": HDD_8MP,
+        "bullet": "DS-2CD1083G2-LIU(4mm)(O-STD)", "dome": "DS-2CD1183G2-LIU(2.8mm)(O-STD)", "nvr": NVR_76, "hdd": HDD_8MP,
     },
     {
         "id": "ip-4mp-acusense", "name": "4MP AcuSense ColorVu",
         "summary": "Professional cameras that tell people and vehicles apart from leaves and animals, so alerts are real. Colour at night, built-in mic.",
         "points": ["4MP 2K", "AcuSense alerts", "Colour at night"],
-        "bullet": "DS-2CD2047G3-LI2UY(4mm)(O-STD)", "dome": "DS-2CD2147G3-LIS2UY(2.8mm)(O-STD)", "nvr": NVR_K, "hdd": HDD_4MP,
+        "bullet": "DS-2CD2047G3-LI2UY(4mm)(O-STD)", "dome": "DS-2CD2147G3-LIS2UY(2.8mm)(O-STD)", "nvr": NVR_76, "hdd": HDD_4MP,
     },
     {
         "id": "ip-8mp-acusense", "name": "8MP 4K AcuSense ColorVu",
         "summary": "Top of the range: 4K colour day and night with AcuSense people and vehicle detection, for banks, warehouses and estates.",
         "points": ["8MP 4K", "AcuSense alerts", "Colour at night"],
-        "bullet": "DS-2CD2087G3-LI2UY(4mm)(O-STD)", "dome": "DS-2CD2187G3-LIS2UY(2.8mm)(O-STD)", "nvr": NVR_K, "hdd": HDD_8MP,
+        "bullet": "DS-2CD2087G3-LI2UY(4mm)(O-STD)", "dome": "DS-2CD2187G3-LIS2UY(2.8mm)(O-STD)", "nvr": NVR_76, "hdd": HDD_8MP,
     },
 ]
 for _f in HD_FAMILIES:
