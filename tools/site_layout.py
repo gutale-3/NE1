@@ -20,6 +20,7 @@ HIKVISION_DIRECTORY = "https://www.hikvision.com/en/Partners/channel-partners/fi
 
 NAV = [
     ("/products", "Products"),
+    ("/kits", "Kits"),
     ("/solutions", "Solutions"),
     ("/services", "Services"),
     ("/blog", "Blog"),

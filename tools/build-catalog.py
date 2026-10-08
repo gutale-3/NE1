@@ -21,6 +21,7 @@ import catalog
 import site_layout
 import brochure_pages
 import print_catalogue
+import kits_page
 from catalog import PHONE, PHONE_LABEL, ROOT, SITE
 from site_layout import category_url as category_page_url
 
@@ -828,10 +829,12 @@ def kit_card_html(kit, by_model, compact=False):
     </article>"""
 
 
-def packages_html(products, compact=False):
+def packages_html(products, compact=False, only=None):
     by_model = {p["model"]: p for p in products}
     groups = []
     for key, title, sub in PACKAGE_GROUPS:
+        if only and key not in only:
+            continue
         cards = "\n    ".join(kit_card_html(k, by_model, compact) for k in PACKAGES if k["group"] == key)
         groups.append(f"""<div class="kit-group">
     <div class="kit-group-head"><h3>{esc(title)}</h3><p>{esc(sub)}</p></div>
@@ -907,13 +910,19 @@ def write_price_list(products):
 
 def write_quote_page(products):
     # The admin panel refuses to delete these, since the bundles would break.
-    models = sorted({model for kit in PACKAGES for model, _ in kit["items"]})
+    models = sorted({model for kit in PACKAGES for model, _ in kit["items"]} | set(kits_page.models()))
     (ROOT / "data/bundle-models.json").write_text(json.dumps(models, indent=1) + "\n", encoding="utf-8")
     path = ROOT / "quote.html"
     path.write_text(fill(path.read_text(encoding="utf-8"), "packages", packages_html(products)), encoding="utf-8")
     home = ROOT / "index.html"
     html = fill(home.read_text(encoding="utf-8"), "bundles", packages_html(products, compact=True))
     home.write_text(fill(html, "picks", picks_html(products)), encoding="utf-8")
+
+
+def write_kits_page(products):
+    path = ROOT / "kits.html"
+    html = fill(path.read_text(encoding="utf-8"), "hd-kits", kits_page.hd_kits_html(products))
+    path.write_text(fill(html, "more-kits", packages_html(products, only=("ip", "more"))), encoding="utf-8")
 
 
 def write_downloads_page():
@@ -1057,6 +1066,7 @@ def main():
     write_catalog_json_ld(products)
     categories = write_category_pages(products)
     write_quote_page(products)
+    write_kits_page(products)
     write_price_list(products)
     sheets = print_catalogue.write(products, PACKAGES, ROOT)
     brochures = write_downloads_page()
