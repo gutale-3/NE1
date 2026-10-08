@@ -337,7 +337,9 @@ export async function submitTemplates(env) {
       await graph(env, `${env.WHATSAPP_WABA_ID}/message_templates`, { name: t.name, language: "en", category: "UTILITY", components });
       results.push(`${t.name}: submitted`);
     } catch (e) {
-      results.push(`${t.name}: ${/already exists|duplicate/i.test(e.message) ? "already submitted" : e.message}`);
+      const msg = /already exists|duplicate|already .*content/i.test(e.message) ? "already submitted"
+        : /category .* doesn't match/i.test(e.message) ? "already submitted (Meta filed it as Marketing)" : e.message;
+      results.push(`${t.name}: ${msg}`);
     }
   }
   return results;
