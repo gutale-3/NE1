@@ -546,6 +546,17 @@
       if (ok) $('review-form').reset();
     });
   });
+  $('rv-mine').addEventListener('click', function () {
+    var d = $('rv-phone').value.replace(/\D/g, '');
+    if (d.charAt(0) === '0') d = '254' + d.slice(1);
+    else if (d.length === 9) d = '254' + d;
+    if (!/^254[17]\d{8}$/.test(d)) { notice("Enter the customer's WhatsApp number first.", true); return; }
+    var n = $('rv-name').value.trim().split(/\s+/)[0];
+    n = n ? n.charAt(0).toUpperCase() + n.slice(1).toLowerCase() : 'there';
+    var text = 'Hi ' + n + ', thank you for choosing Nashnaal Electronics. If you have a minute, we would really appreciate a short Google review. ' +
+      'A line about the product or our service helps other customers find us. Thank you!\n\nhttps://nashnaal.com/review';
+    window.open('https://wa.me/' + d + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+  });
   $('chat-review').addEventListener('click', function () {
     var name = $('chat-name').textContent;
     if (openPhone) askReview(openPhone, name.charAt(0) === '+' ? '' : name, this).then(function (ok) { if (ok) openChat(openPhone); });
