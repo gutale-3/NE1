@@ -922,7 +922,8 @@ def write_quote_page(products):
 def write_kits_page(products):
     path = ROOT / "kits.html"
     html = fill(path.read_text(encoding="utf-8"), "hd-kits", kits_page.hd_kits_html(products))
-    path.write_text(fill(html, "more-kits", packages_html(products, only=("ip", "more"))), encoding="utf-8")
+    html = fill(html, "ip-kits", kits_page.ip_kits_html(products))
+    path.write_text(fill(html, "more-kits", packages_html(products, only=("more",))), encoding="utf-8")
 
 
 def write_downloads_page():
