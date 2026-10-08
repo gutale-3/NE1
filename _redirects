@@ -1,3 +1,7 @@
 # Renamed products: old URL -> new URL (permanent)
 /product/ds-e04hghi-b /product/ds-e04hghi-d 301
 /product/ds-e08hghi-b /product/ds-e08hghi-d 301
+
+# Google review form for the NE listing (short link for QR codes and WhatsApp)
+/review https://g.page/r/CUxHm3qKUHYiEBM/review 302
+/review/ https://g.page/r/CUxHm3qKUHYiEBM/review 302

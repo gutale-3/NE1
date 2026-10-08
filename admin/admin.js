@@ -534,6 +534,23 @@
     });
   });
 
+  function askReview(phone, name, btn) {
+    btn.disabled = true;
+    return api('/api/admin/whatsapp', { action: 'review', phone: phone, name: name }).then(function (r) {
+      notice(r.message); return true;
+    }).catch(function (err) { notice(err.message, true); }).then(function (ok) { btn.disabled = false; return ok; });
+  }
+  $('review-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    askReview($('rv-phone').value, $('rv-name').value, this.querySelector('button')).then(function (ok) {
+      if (ok) $('review-form').reset();
+    });
+  });
+  $('chat-review').addEventListener('click', function () {
+    var name = $('chat-name').textContent;
+    if (openPhone) askReview(openPhone, name.charAt(0) === '+' ? '' : name, this).then(function (ok) { if (ok) openChat(openPhone); });
+  });
+
   $('tpl-form').addEventListener('submit', function (e) {
     e.preventDefault();
     var btn = this.querySelector('button'); btn.disabled = true;
