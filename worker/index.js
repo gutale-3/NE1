@@ -369,6 +369,8 @@ async function adminApi(request, env, url, ctx) {
   }
   if (url.pathname === "/api/admin/orders") return adminOrders(request, env, url, user, ctx);
   if (url.pathname === "/api/admin/whatsapp") return adminWhatsApp(request, env, url);
+  if (url.pathname === "/api/admin/whatsapp/chats" && request.method === "GET") return json(await wa.chats(env));
+  if (url.pathname === "/api/admin/whatsapp/chat" && request.method === "GET") return json(await wa.chat(env, (url.searchParams.get("phone") || "").replace(/\D/g, "")));
   if (url.pathname === "/api/admin/customers" && request.method === "GET") return adminCustomers(env, url);
   if (url.pathname === "/api/admin/statement" && request.method === "GET") return adminStatement(env, url);
   if (url.pathname === "/api/admin/funnel" && request.method === "GET") return adminFunnel(env);
@@ -793,8 +795,12 @@ async function accountSummary(request, env) {
 async function adminWhatsApp(request, env, url) {
   if (request.method === "GET") return json(await wa.adminStatus(env, siteOrigin(env, url)));
   if (!wa.configured(env)) return json({ error: "Add WHATSAPP_TOKEN in Cloudflare first." }, 400);
-  const { action } = await request.json();
+  const { action, phone, text } = await request.json();
   try {
+    if (action === "reply") {
+      const out = await wa.reply(env, String(phone || "").replace(/\D/g, ""), text);
+      return out.status === "sent" ? json({ ok: true }) : json({ error: out.error || "Could not send." }, 400);
+    }
     if (action === "templates") return json({ ok: true, message: (await wa.submitTemplates(env)).join("\n") });
     if (action === "profile") { await wa.updateProfile(env); return json({ ok: true, message: "WhatsApp profile updated." }); }
     if (action === "test") {
