@@ -795,13 +795,14 @@ async function accountSummary(request, env) {
 async function adminWhatsApp(request, env, url) {
   if (request.method === "GET") return json(await wa.adminStatus(env, siteOrigin(env, url)));
   if (!wa.configured(env)) return json({ error: "Add WHATSAPP_TOKEN in Cloudflare first." }, 400);
-  const { action, phone, text } = await request.json();
+  const { action, phone, text, template } = await request.json();
   try {
     if (action === "reply") {
       const out = await wa.reply(env, String(phone || "").replace(/\D/g, ""), text);
       return out.status === "sent" ? json({ ok: true }) : json({ error: out.error || "Could not send." }, 400);
     }
     if (action === "templates") return json({ ok: true, message: (await wa.submitTemplates(env)).join("\n") });
+    if (action === "create") return json({ ok: true, message: await wa.createTemplate(env, template || {}) });
     if (action === "profile") { await wa.updateProfile(env); return json({ ok: true, message: "WhatsApp profile updated." }); }
     if (action === "test") {
       const out = await wa.sendTest(env);

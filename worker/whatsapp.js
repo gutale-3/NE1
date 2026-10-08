@@ -377,11 +377,17 @@ export async function adminStatus(env, origin) {
     } catch (e) { out.numberError = e.message; }
     if (env.WHATSAPP_WABA_ID) {
       try {
-        const list = await graph(env, `${env.WHATSAPP_WABA_ID}/message_templates?fields=name,status,category,rejected_reason&limit=100`);
+        const list = await graph(env, `${env.WHATSAPP_WABA_ID}/message_templates?fields=name,status,category,rejected_reason,components&limit=100`);
         out.templates = TEMPLATES.map((t) => {
           const found = (list.data || []).find((d) => d.name === t.name);
           return { name: t.name, body: t.body, status: found ? found.status : "NOT SUBMITTED", category: found ? found.category : null, reason: found ? found.rejected_reason : null };
         });
+        // Templates created by hand from the admin, not part of the built-in set.
+        for (const d of list.data || []) {
+          if (TEMPLATES.some((t) => t.name === d.name)) continue;
+          const body = (d.components || []).find((c) => c.type === "BODY");
+          out.templates.push({ name: d.name, body: body ? body.text : "", status: d.status, category: d.category, reason: d.rejected_reason });
+        }
       } catch (e) { out.templatesError = e.message; }
     }
   }
@@ -403,6 +409,22 @@ export async function submitTemplates(env) {
     }
   }
   return results;
+}
+
+// Creates one new template from the admin form.
+export async function createTemplate(env, { name, category, body }) {
+  name = String(name || "").trim().toLowerCase();
+  body = String(body || "").trim();
+  if (!/^[a-z0-9_]{1,512}$/.test(name)) throw new Error("Name: use only lowercase letters, numbers and underscores, e.g. ne_test_demo.");
+  if (!body || body.length > 1024) throw new Error("Message text is required (up to 1024 characters).");
+  const vars = [...new Set(body.match(/\{\{\d+\}\}/g) || [])];
+  const component = { type: "BODY", text: body };
+  if (vars.length) component.example = { body_text: [vars.map((_, i) => `sample ${i + 1}`)] };
+  const out = await graph(env, `${env.WHATSAPP_WABA_ID}/message_templates`, {
+    name, language: "en", category: category === "MARKETING" ? "MARKETING" : "UTILITY",
+    components: [component, { type: "FOOTER", text: FOOTER }],
+  });
+  return `Template ${name} created and sent to Meta for review (status: ${out.status || "PENDING"}).`;
 }
 
 export async function updateProfile(env) {
