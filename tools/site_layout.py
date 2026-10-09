@@ -12,7 +12,7 @@ import html
 
 from catalog import PHONE, PHONE_LABEL, slugify
 
-ADDRESS = "Business Bay Square (BBS Mall), Shop GFE 61, General Waruingi Road, Eastleigh, Nairobi"
+ADDRESS = "Business Bay Square (BBS Mall), Shop GFE 61, General Waruingi Street, Eastleigh, Nairobi"
 MAPS_URL = "https://www.google.com/maps/place/?q=place_id:ChIJL1wsUKARLxgRTEebeopQdiI"
 INSTAGRAM = "https://www.instagram.com/nashnaalelectronics"
 TIKTOK = "https://www.tiktok.com/@nashnaalelectronics"

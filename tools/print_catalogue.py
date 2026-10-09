@@ -157,7 +157,7 @@ ABOUT = f"""<h2 class="page-title">About NE</h2>
       <li><b>Rewards</b> &mdash; order on nashnaal.com while signed in and earn 2% back on every paid order.</li>
     </ul>
     <div class="visit">
-      <b>Visit the showroom</b><br>Business Bay Square (BBS Mall), Shop GFE 61<br>General Waruingi Road, Eastleigh, Nairobi<br>
+      <b>Visit the showroom</b><br>Business Bay Square (BBS Mall), Shop GFE 61<br>General Waruingi Street, Eastleigh, Nairobi<br>
       Mon&ndash;Sat 08:00&ndash;20:00 &middot; Sun 09:00&ndash;18:00<br>Call / WhatsApp {catalog.PHONE_LABEL}
     </div>
   </div>
