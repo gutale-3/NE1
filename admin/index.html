@@ -29,6 +29,8 @@
     <button type="button" class="tab" data-tab="customers">Customers</button>
     <button type="button" class="tab" data-tab="tech">Technicians <span class="badge" id="tech-badge" hidden></span></button>
     <button type="button" class="tab" data-tab="wa">WhatsApp <span class="badge" id="wa-badge" hidden></span></button>
+    <button type="button" class="tab" data-tab="partners">Partners <span class="badge" id="partners-badge" hidden></span></button>
+    <button type="button" class="tab" data-tab="docs">Invoices</button>
   </nav>
 
   <section id="list-view">
@@ -151,6 +153,83 @@
     <h2 class="wa-h">Messages</h2>
     <div id="wa-log" class="tech-list"></div>
     </details>
+  </section>
+
+  <section id="partners-view" hidden>
+    <div class="req-box" id="requests-box" hidden>
+      <h2>Price requests from partners</h2>
+      <p class="hint">Accept to reprice the order line and save the price as this partner's agreed price for that product.</p>
+      <div id="requests" class="tech-list"></div>
+    </div>
+    <p class="count" id="partners-count">Loading&hellip;</p>
+    <div id="partners-list" class="tech-list"></div>
+    <p class="hint" style="margin-top:14px">Partners apply at <b>nashnaal.com/partner</b>. Share the programme page: <b>nashnaal.com/partners</b></p>
+  </section>
+
+  <section id="partner-view" hidden>
+    <button class="link" type="button" id="partner-back">&larr; Back to partners</button>
+    <h1 id="pt-title"></h1>
+    <p class="hint" id="pt-facts"></p>
+    <form id="pt-form" class="pt-form">
+      <div class="grid3">
+        <label>Status<select id="pt-status"><option value="pending">Pending</option><option value="approved">Approved</option><option value="rejected">Rejected</option><option value="suspended">Suspended</option></select></label>
+        <label>Partner type<select id="pt-kind"></select></label>
+        <label>Default discount off website price (%)<input id="pt-discount" type="number" min="0" max="89" step="0.5" inputmode="decimal"></label>
+      </div>
+      <label>Private note <small>(only you see this)</small><input id="pt-note" maxlength="500"></label>
+      <div class="actions"><button class="primary" type="submit">Save partner</button></div>
+    </form>
+    <h2 class="wa-h">Prices for this partner</h2>
+    <p class="hint">Blank = website price less the default discount. Type a price to fix an agreed price for this partner only. Clear it to go back to the default.</p>
+    <div class="toolbar" style="margin:10px 0">
+      <input id="pt-search" type="search" placeholder="Search model or name" autocomplete="off">
+      <select id="pt-cat"><option value="">All categories</option></select>
+      <label class="inline"><input type="checkbox" id="pt-own"> Only agreed prices</label>
+    </div>
+    <p class="count" id="pt-count"></p>
+    <div id="pt-prices" class="ptable"></div>
+    <div class="savebar" id="pt-savebar" hidden><span id="pt-changes"></span><button class="primary" type="button" id="pt-save">Save prices</button></div>
+  </section>
+
+  <section id="docs-view" hidden>
+    <div class="toolbar">
+      <input id="docs-search" type="search" placeholder="Search number, customer or phone" autocomplete="off">
+      <button class="primary" type="button" id="new-invoice">+ New invoice</button>
+      <button class="primary alt-link" type="button" id="new-receipt">+ New receipt</button>
+    </div>
+    <p class="count" id="docs-count">Loading&hellip;</p>
+    <div id="docs-list" class="tech-list"></div>
+    <p class="hint" style="margin-top:14px">Tip: in the Orders tab, each order has <b>Invoice</b> and <b>Receipt</b> buttons that fill everything in for you.</p>
+  </section>
+
+  <section id="doc-edit" hidden>
+    <button class="link" type="button" id="doc-back">&larr; Back to invoices</button>
+    <h1 id="doc-title">New invoice</h1>
+    <form id="doc-form" autocomplete="off">
+      <div class="grid3">
+        <label>Customer / company<input id="d-name" required maxlength="100"></label>
+        <label>Phone<input id="d-phone" maxlength="30" inputmode="tel"></label>
+        <label>Email<input id="d-email" maxlength="120" type="email"></label>
+        <label>KRA PIN <small>(optional)</small><input id="d-pin" maxlength="20"></label>
+        <label class="span2">Address <small>(optional)</small><input id="d-address" maxlength="200"></label>
+      </div>
+      <h3 class="dh">Items</h3>
+      <div class="dlines" id="d-lines"></div>
+      <datalist id="d-products"></datalist>
+      <div><button class="link" type="button" id="d-add">+ Add line</button></div>
+      <div class="grid3">
+        <label>Discount (KES)<input id="d-discount" type="number" min="0" step="1" inputmode="numeric" value="0"></label>
+        <label class="inv-only">Due date<input id="d-due" type="date"></label>
+        <label class="inv-only">Already paid (KES)<input id="d-paid-inv" type="number" min="0" step="1" inputmode="numeric" value="0"></label>
+        <label class="rct-only">Amount received (KES)<input id="d-paid" type="number" min="0" step="1" inputmode="numeric"></label>
+        <label class="rct-only">Paid by<select id="d-method"><option>M-Pesa</option><option>Cash</option><option>Bank transfer</option><option>Card</option><option>Cheque</option></select></label>
+        <label class="rct-only">Reference <small>(e.g. M-Pesa code)</small><input id="d-ref" maxlength="60"></label>
+        <label class="rct-only">For invoice / order <small>(optional)</small><input id="d-against" maxlength="40" placeholder="INV-1001 or NE-1005"></label>
+      </div>
+      <label>Notes on the document <small>(payment details, warranty, delivery)</small><textarea id="d-notes" rows="3" maxlength="800"></textarea></label>
+      <div class="dsum" id="d-sum"></div>
+      <div class="actions"><button class="primary" type="submit" id="d-save">Create and open</button></div>
+    </form>
   </section>
 
   <section id="tech-view" hidden>

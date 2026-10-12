@@ -17,6 +17,8 @@ const HINT_COOKIE = "ne_signed_in";
 const WELCOME_COOKIE = "ne_welcome";
 
 import * as wa from "./whatsapp.js";
+import * as partners from "./partners.js";
+import * as docs from "./documents.js";
 
 // Runs a side job (e.g. a WhatsApp message) after the response, without failing the request.
 function later(ctx, job) {
@@ -40,6 +42,8 @@ export default {
       if (path === "/api/me") return await me(request, env);
       if (path === "/admin" || path.startsWith("/admin/")) return await adminPage(request, env, url);
       if (path === "/account" || path.startsWith("/account/")) return await accountPage(request, env, url);
+      if (path === "/partner" || path.startsWith("/partner/")) return await accountPage(request, env, url, "/partner/");
+      if (path === "/api/partner") return await partnerApi(request, env, url, ctx);
       if (path === "/api/account/application") return await accountApplication(request, env, url);
       if (path === "/api/account/summary") return await accountSummary(request, env);
       if (path === "/api/orders") return await createOrder(request, env, url, ctx);
@@ -262,8 +266,10 @@ async function me(request, env) {
   // A stale hint (session expired or signed out elsewhere) is cleared.
   if (!user) return json({ signedIn: false }, 200, { "set-cookie": hintCookie(false) });
   const approved = user.role === "technician" && user.technician_status === "approved";
+  const partner = await partners.partnerOf(env, user.id);
   return json({
     signedIn: true, name: user.name, email: user.email, admin: isAdmin(env, user),
+    partner: partner ? partner.status : null,
     technician: user.technician_status || null,
     techDiscount: approved ? techDiscount(env) : 0,
     rewardPercent: rewardPercent(env, approved),
@@ -272,10 +278,11 @@ async function me(request, env) {
 
 // ---- customer / technician account -------------------------------------------
 
-async function accountPage(request, env, url) {
+// Signed-in pages: /account (customers and technicians) and /partner (trade partners).
+async function accountPage(request, env, url, home = "/account/") {
   const user = await currentUser(request, env);
-  if (!user) return Response.redirect(`${url.origin}/auth/google/login?next=/account`, 302);
-  const assetPath = url.pathname === "/account" ? "/account/" : url.pathname;
+  if (!user) return Response.redirect(`${url.origin}/auth/google/login?next=${home}`, 302);
+  const assetPath = url.pathname === home.slice(0, -1) ? home : url.pathname;
   const asset = await env.ASSETS.fetch(new Request(new URL(assetPath, url.origin), request));
   const response = new Response(asset.body, asset);
   response.headers.set("cache-control", "no-store");
@@ -375,6 +382,8 @@ async function adminApi(request, env, url, ctx) {
   if (url.pathname === "/api/admin/customers" && request.method === "GET") return adminCustomers(env, url);
   if (url.pathname === "/api/admin/statement" && request.method === "GET") return adminStatement(env, url);
   if (url.pathname === "/api/admin/funnel" && request.method === "GET") return adminFunnel(env);
+  if (url.pathname === "/api/admin/partners") return adminPartners(request, env, url, user);
+  if (url.pathname === "/api/admin/documents") return adminDocuments(request, env, url, user);
   if (url.pathname === "/api/admin/products" && !env.GITHUB_TOKEN) {
     return json({ error: "GITHUB_TOKEN is not set in Cloudflare." }, 503);
   }
@@ -903,6 +912,96 @@ async function adminOrders(request, env, url, admin, ctx) {
     });
   }
   return json({ ok: true, message: `Order ${order.number} is now ${status}.${note}` });
+}
+
+// ---- trade partners -------------------------------------------------------------
+
+async function partnerApi(request, env, url, ctx) {
+  const user = await currentUser(request, env);
+  if (!user) return json({ error: "Please sign in first." }, 401);
+  const catalogue = await priceList(env, url.origin);
+  if (request.method === "GET") return json(await partners.portal(env, user, catalogue));
+  if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
+  if (request.headers.get("origin") !== url.origin) return json({ error: "Bad request origin." }, 403);
+  const body = await request.json();
+  if (body.action === "apply") {
+    const out = await partners.apply(env, user, body);
+    return json(out, out.error ? 400 : 200);
+  }
+  if (body.action !== "order") return json({ error: "Unknown action." }, 400);
+  const o = await partners.order(env, user, body, catalogue);
+  if (o.error) return json(o, 400);
+  const token = randomToken(18);
+  const row = await env.DB.prepare(
+    `INSERT INTO orders (view_token, user_id, name, phone, email, delivery, town, notes, items_json,
+       subtotal, tech_discount, reward_used, total, earn_rate, channel, consent)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, 0, 0, ?10, 0, 'partner', 1) RETURNING id`
+  ).bind(token, user.id, o.name, o.phone, o.email, o.delivery, o.town || null, o.notes || null, JSON.stringify(o.items), o.subtotal).first();
+  const number = `NE-${1000 + row.id}`;
+  await env.DB.prepare("UPDATE orders SET number = ?2 WHERE id = ?1").bind(row.id, number).run();
+  later(ctx, () => wa.orderCreated(env, {
+    id: row.id, number, view_token: token, name: o.name, phone: o.phone, total: o.subtotal, delivery: o.delivery,
+    town: o.town, consent: 1, user_id: user.id, greet: o.partner.contact.split(" ")[0],
+  }, o.items.reduce((n, i) => n + i.qty, 0)));
+  const requests = o.items.filter((i) => i.requested).length;
+  return json({ ok: true, number, token, total: o.subtotal, requests, viewUrl: `${siteOrigin(env, url)}/order/?n=${number}&k=${token}` });
+}
+
+async function adminPartners(request, env, url, admin) {
+  const catalogue = await priceList(env, url.origin);
+  if (request.method === "GET") {
+    const id = Number(url.searchParams.get("id"));
+    if (id) {
+      const detail = await partners.adminDetail(env, id, catalogue);
+      return detail ? json(detail) : json({ error: "Partner not found." }, 404);
+    }
+    return json(await partners.adminList(env));
+  }
+  const body = await request.json();
+  let out;
+  if (body.action === "update") {
+    out = await partners.adminUpdate(env, Number(body.id), body);
+    if (out.ok) {
+      await env.DB.prepare("INSERT INTO audit_log (user_id, action, detail) VALUES (?1, 'partner', ?2)")
+        .bind(admin.id, `Partner ${out.partner.company}: ${out.partner.status}, ${out.partner.discount}% default discount`).run();
+      out.message = `${out.partner.company} saved (${out.partner.status}).`;
+    }
+  } else if (body.action === "prices") {
+    out = await partners.adminSetPrices(env, Number(body.id), body.prices, catalogue);
+    if (out.ok) out.message = `${out.saved} price${out.saved === 1 ? "" : "s"} saved.`;
+  } else if (body.action === "decide") {
+    out = await partners.adminDecide(env, Number(body.order_id), String(body.slug || ""), Boolean(body.accept));
+    if (out.ok) {
+      out.message = body.accept
+        ? `Accepted KES ${out.item.price.toLocaleString("en-KE")} for ${out.item.model}. It is now this partner's price; ${out.number} total is ${kes(out.total)}.`
+        : `Declined the price request for ${out.item.model} on ${out.number}.`;
+    }
+  } else {
+    out = { error: "Unknown action." };
+  }
+  return json(out, out.error ? 400 : 200);
+}
+
+// ---- invoices and receipts -------------------------------------------------------
+
+async function adminDocuments(request, env, url, admin) {
+  if (request.method === "GET") {
+    const id = Number(url.searchParams.get("id"));
+    if (id) {
+      const doc = await docs.get(env, id);
+      return doc ? json({ document: doc }) : json({ error: "Document not found." }, 404);
+    }
+    return json(await docs.list(env, url.searchParams.get("q")));
+  }
+  const body = await request.json();
+  const out = body.action === "void" ? await docs.setVoid(env, Number(body.id))
+    : body.action === "create" ? await docs.create(env, body.document || {}, admin)
+    : { error: "Unknown action." };
+  if (out.ok && out.document) {
+    await env.DB.prepare("INSERT INTO audit_log (user_id, action, detail) VALUES (?1, 'document', ?2)")
+      .bind(admin.id, `${out.document.number} for ${out.document.customer.name}: ${kes(out.document.total)}`).run();
+  }
+  return json(out, out.error ? 400 : 200);
 }
 
 // ---- customers, credit owed and sales reports (admin) ------------------------

@@ -210,7 +210,7 @@ export async function orderCreated(env, order, itemCount) {
       { orderId: order.id, dedupe: `alert:${order.id}` }));
   }
   if (order.consent) {
-    tasks.push(sendTemplate(env, order.phone, "ne_order_received", [first(order.name), order.number, kes(order.total)],
+    tasks.push(sendTemplate(env, order.phone, "ne_order_received", [order.greet || first(order.name), order.number, kes(order.total)],
       { orderId: order.id, userId: order.user_id, dedupe: `received:${order.id}`, buttonParam: `n=${order.number}&k=${order.view_token}` }));
   }
   await Promise.all(tasks);
