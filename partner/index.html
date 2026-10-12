@@ -133,6 +133,31 @@ label.check input { width: auto; }
   .rq { grid-template-columns: 1fr 1fr; } .rq > :first-child { grid-column: 1 / -1; } .rq.head { display: none; } .rq .now { text-align: left; }
   .steps div { font-size: 11px; }
 }
+.pill.due { background: #D92D20; }
+.sums { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+.sumcard { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; padding: 18px 20px; }
+.sumcard span { display: block; font-size: 13px; font-weight: 700; color: #4A5B68; text-transform: uppercase; letter-spacing: .04em; }
+.sumcard b { display: block; font-size: 30px; margin: 4px 0; }
+.sumcard small { color: #4A5B68; font-size: 13px; }
+.due-card { background: #0F2A3D; color: #fff; border: 0; } .due-card span, .due-card small { color: #BFD7E5; }
+.due-card.clear { background: #E8F8EE; color: #14532D; } .due-card.clear span, .due-card.clear small { color: #14532D; }
+.preview { max-width: 220px; max-height: 260px; border-radius: 10px; border: 1px solid #E7ECF1; }
+.sent { border: 2px solid #22C35E; background: #F3FCF6; }
+.sent .btn { margin: 4px 6px 0 0; }
+.stmt-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.entry { display: grid; grid-template-columns: 1fr auto auto; gap: 6px 14px; align-items: center; background: #fff; border: 1px solid #E7ECF1; border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+.entry small { display: block; color: #4A5B68; font-size: 12.5px; }
+.entry .amt { font-weight: 800; text-align: right; white-space: nowrap; }
+.entry .amt.pay { color: #067647; }
+.entry .run { font-size: 12.5px; color: #4A5B68; text-align: right; white-space: nowrap; }
+.entry.muted { opacity: .6; } .entry.muted .amt { text-decoration: line-through; }
+.entry a { font-size: 13px; font-weight: 700; }
+@media (max-width: 760px) { .sums { grid-template-columns: 1fr; } .entry { grid-template-columns: 1fr auto; } .entry .run { grid-column: 1 / -1; text-align: left; } }
+@media print {
+  .top, .ptabs, .hero, .bar, .noprint, #done, #error, .tabpane:not(#tab-account) { display: none !important; }
+  body { background: #fff; } main { padding: 0; }
+  .entry, .sumcard { break-inside: avoid; }
+}
 </style>
 <script src="/partner/partner.js" defer></script>
 </head>
@@ -182,6 +207,7 @@ label.check input { width: auto; }
       <a href="#order" data-tab="order">Price list &amp; order</a>
       <a href="#prices" data-tab="prices">Request prices <span class="pill" id="b-prices" hidden></span></a>
       <a href="#orders" data-tab="orders">My orders <span class="pill" id="b-orders" hidden></span></a>
+      <a href="#account" data-tab="account">Account &amp; payments <span class="pill due" id="b-account" hidden></span></a>
     </nav>
 
     <div id="done" class="msg ok" hidden></div>
@@ -242,6 +268,45 @@ label.check input { width: auto; }
         <button type="button" class="chip" data-s="cancelled">Cancelled</button>
       </div>
       <div id="orders" class="olist"></div>
+    </div>
+
+    <!-- 4. Account balance and payments -->
+    <div id="tab-account" class="tabpane" hidden>
+      <h1>Account &amp; payments</h1>
+      <p class="sub">Your account with NE: goods taken on credit and the payments you have made. Report a payment here with its screenshot: it stays on your statement as proof, and you can send it to us on WhatsApp in one tap.</p>
+      <div class="sums">
+        <div class="sumcard due-card"><span>Amount due</span><b id="a-due">KES 0</b><small id="a-due-note"></small></div>
+        <div class="sumcard"><span>Payments awaiting confirmation</span><b id="a-pending">KES 0</b><small>We confirm payments once they reach our account.</small></div>
+      </div>
+
+      <div class="card noprint" id="pay-card">
+        <h2>Report a payment</h2>
+        <form id="pay-form" class="apply">
+          <div class="two">
+            <label>Amount paid (KES)<input name="amount" type="number" min="1" step="1" inputmode="numeric" required></label>
+            <label>Paid by<select name="method" id="pay-method"></select></label>
+          </div>
+          <div class="two">
+            <label>Transaction code <small>(e.g. M-Pesa code SJK12AB34C)</small><input name="reference" maxlength="60" autocapitalize="characters"></label>
+            <label>Date paid<input name="paid_on" type="date" id="pay-date"></label>
+          </div>
+          <label>Screenshot of the payment message <small>(M-Pesa SMS, bank app or slip)</small>
+            <input type="file" accept="image/*" id="pay-file"></label>
+          <img id="pay-preview" class="preview" alt="" hidden>
+          <label>Note <small>(optional, e.g. "for order NE-1008")</small><input name="note" maxlength="300"></label>
+          <button class="btn go" type="submit">Submit payment</button>
+        </form>
+      </div>
+
+      <div class="card sent noprint" id="pay-sent" hidden>
+        <h2 id="sent-title">Payment submitted</h2>
+        <p id="sent-text"></p>
+        <button class="btn go" type="button" id="share-btn">Send screenshot to NE on WhatsApp</button>
+        <button class="btn ghost" type="button" id="another-btn">Report another payment</button>
+      </div>
+
+      <div class="stmt-head"><h2 class="h2">Statement</h2><button class="btn ghost noprint" type="button" id="print-stmt">Print / PDF</button></div>
+      <div id="statement" class="history"></div>
     </div>
   </section>
 </main>
