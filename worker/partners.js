@@ -61,7 +61,8 @@ export async function ensureTables(env) {
     )`),
   ]);
   // Columns added after launch (credit control). ALTER fails harmlessly once they exist.
-  for (const sql of ["ALTER TABLE partners ADD COLUMN credit_limit INTEGER", "ALTER TABLE partners ADD COLUMN terms_days INTEGER"]) {
+  for (const sql of ["ALTER TABLE partners ADD COLUMN credit_limit INTEGER", "ALTER TABLE partners ADD COLUMN terms_days INTEGER",
+    "ALTER TABLE partners ADD COLUMN remind_days INTEGER"]) {   // payment reminders every N days; NULL = off
     try { await env.DB.prepare(sql).run(); } catch (e) { /* column already there */ }
   }
   ready = true;
@@ -104,7 +105,7 @@ function publicPartner(p) {
   return p && {
     company: p.company, contact: p.contact, phone: p.phone, town: p.town, kind: p.kind, hik_id: p.hik_id,
     kra_pin: p.kra_pin, status: p.status, discount: p.discount, created_at: p.created_at,
-    code: partnerCode(p.user_id), credit_limit: p.credit_limit, terms_days: p.terms_days,
+    code: partnerCode(p.user_id), credit_limit: p.credit_limit, terms_days: p.terms_days, remind_days: p.remind_days,
   };
 }
 
@@ -240,13 +241,15 @@ export async function adminUpdate(env, userId, body) {
   const num = (v, old) => (v === undefined ? old : v === "" || v === null ? null : Math.round(Number(v)));
   const creditLimit = num(body.credit_limit, partner.credit_limit);
   const terms = num(body.terms_days, partner.terms_days);
+  const remind = num(body.remind_days, partner.remind_days);
+  if (remind !== null && !(remind >= 1 && remind <= 90)) return { error: "Reminders can be every 1 to 90 days." };
   if (creditLimit !== null && !(creditLimit >= 0)) return { error: "Credit limit must be an amount in KES, or blank for no limit." };
   if (terms !== null && !(terms >= 1 && terms <= 365)) return { error: "Payment terms must be between 1 and 365 days, or blank." };
   await env.DB.prepare(
-    `UPDATE partners SET status = ?2, discount = ?3, kind = ?4, note = ?5, credit_limit = ?6, terms_days = ?7, updated_at = datetime('now'),
+    `UPDATE partners SET status = ?2, discount = ?3, kind = ?4, note = ?5, credit_limit = ?6, terms_days = ?7, remind_days = ?8, updated_at = datetime('now'),
        decided_at = CASE WHEN ?2 != status THEN datetime('now') ELSE decided_at END WHERE user_id = ?1`
-  ).bind(userId, status, discount, kind, note, creditLimit, terms).run();
-  return { ok: true, partner: { ...partner, status, discount, kind, note, credit_limit: creditLimit, terms_days: terms }, changed: status !== partner.status };
+  ).bind(userId, status, discount, kind, note, creditLimit, terms, remind).run();
+  return { ok: true, partner: { ...partner, status, discount, kind, note, credit_limit: creditLimit, terms_days: terms, remind_days: remind }, changed: status !== partner.status };
 }
 
 // prices: [{ slug, price }] — a price of null or 0 removes the partner's own price.
