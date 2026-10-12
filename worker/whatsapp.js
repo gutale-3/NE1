@@ -104,6 +104,27 @@ export const TEMPLATES = [
     example: ["SecureLink Systems Ltd", "2", "KES 2,500 for DS-2CE10DF0T-LPFS"],
     button: { type: "URL", text: "Review", url: `${SITE}/admin/#partners` }, footer: "Nashnaal Electronics website",
   },
+  // The NE team (/team).
+  {
+    name: "ne_delivery_job",
+    body: "Hi {{1}}, you have a new NE delivery: order {{2}} for {{3}} at {{4}}. Amount to collect: KES {{5}}. Open the job for the customer's phone number, map and items.",
+    example: ["Hassan", "NE-1005", "Mary Wanjiku", "Kilimani, Argwings Kodhek Rd", "20,150"],
+    button: { type: "URL", text: "Open job", url: `${SITE}/team/job/{{1}}`, example: [`${SITE}/team/job/12`] },
+    footer: "Nashnaal Electronics team",
+  },
+  {
+    name: "ne_staff_collection",
+    body: "Payment collected by {{1}}: KES {{2}} by {{3}}, code {{4}}, from {{5}} for {{6}}. Please check it reached NE, then confirm it.",
+    example: ["hassan", "20,150", "M-Pesa", "SJK12AB34C", "Mary Wanjiku", "order NE-1005"],
+    button: { type: "URL", text: "Check and confirm", url: `${SITE}/admin/collection/{{1}}`, example: [`${SITE}/admin/collection/12`] },
+    footer: "Nashnaal Electronics website",
+  },
+  {
+    name: "ne_staff_applied",
+    body: "New team sign-up: {{1}} (username {{2}}, phone {{3}}) asked to join the NE team as {{4}}. Approve them and choose their role in the Team tab of the NE admin.",
+    example: ["Hassan Abdi", "hassan", "0712 345 678", "delivery"],
+    button: { type: "URL", text: "Review", url: `${SITE}/admin/#team` }, footer: "Nashnaal Electronics website",
+  },
 ];
 
 const AUTO_REPLY =
@@ -284,6 +305,29 @@ export async function partnerApplied(env, a) {
 export async function priceRequested(env, company, count, example) {
   if (!env.OWNER_WHATSAPP) return;
   await sendTemplate(env, env.OWNER_WHATSAPP, "ne_price_request", [company.slice(0, 80), String(count), example.slice(0, 120)], {});
+}
+
+// ---- the NE team ------------------------------------------------------------------
+
+// out: team.assign() result (person, order, collect, address, id).
+export async function deliveryJob(env, out) {
+  return sendTemplate(env, out.person.phone, "ne_delivery_job",
+    [first(out.person.full_name), out.order.number, out.order.name.slice(0, 60), String(out.address).slice(0, 100), kes(out.collect)],
+    { orderId: out.order.id, userId: out.person.user_id, buttonParam: String(out.id) });
+}
+
+// c: team.collectionById() row.
+export async function staffCollection(env, c) {
+  if (!env.OWNER_WHATSAPP) return;
+  const what = c.order ? `order ${c.order}` : c.partner ? `their trade account` : "no order";
+  await sendTemplate(env, env.OWNER_WHATSAPP, "ne_staff_collection",
+    [c.staff, kes(c.amount), c.method === "Cash" ? "cash (held by staff)" : c.method, c.reference || "none given", c.customer.slice(0, 60), what],
+    { dedupe: `collection:${c.id}`, buttonParam: String(c.id) });
+}
+
+export async function staffApplied(env, s) {
+  if (!env.OWNER_WHATSAPP) return;
+  await sendTemplate(env, env.OWNER_WHATSAPP, "ne_staff_applied", [s.full_name, s.username, s.phone, s.wanted || "not said"], {});
 }
 
 export async function orderCreated(env, order, itemCount) {

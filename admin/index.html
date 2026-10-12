@@ -31,6 +31,7 @@
     <button type="button" class="tab" data-tab="wa">WhatsApp <span class="badge" id="wa-badge" hidden></span></button>
     <button type="button" class="tab" data-tab="partners">Partners <span class="badge" id="partners-badge" hidden></span></button>
     <button type="button" class="tab" data-tab="docs">Invoices</button>
+    <button type="button" class="tab" data-tab="team">Team <span class="badge" id="team-badge" hidden></span></button>
   </nav>
 
   <section id="list-view">
@@ -226,6 +227,24 @@
     <p class="count" id="pt-count"></p>
     <div id="pt-prices" class="ptable"></div>
     <div class="savebar" id="pt-savebar" hidden><span id="pt-changes"></span><button class="primary" type="button" id="pt-save">Save prices</button></div>
+  </section>
+
+  <section id="team-view" hidden>
+    <div class="req-box pay-box" id="tm-pay-box" hidden>
+      <h2>Money to confirm</h2>
+      <p class="hint">Staff collected these. Check M-Pesa or the bank (or count the cash handed in), then confirm. Until then it counts as money that person holds.</p>
+      <div id="tm-pay" class="tech-list"></div>
+    </div>
+    <p class="count" id="tm-count">Loading&hellip;</p>
+    <div id="tm-people" class="tech-list"></div>
+    <h2 class="wa-h">Money with each person</h2>
+    <div id="tm-cash" class="tech-list"></div>
+    <h2 class="wa-h">Delivery jobs</h2>
+    <p class="hint">Assign a delivery from the Orders tab (<b>Assign delivery</b> on each order). The person gets it on WhatsApp.</p>
+    <div id="tm-jobs" class="tech-list"></div>
+    <h2 class="wa-h">Recent staff activity</h2>
+    <div id="tm-log" class="tech-list"></div>
+    <p class="hint" style="margin-top:14px">Staff sign up at <b>nashnaal.com/team</b> with their own Google account. Roles: <b>Sales &amp; delivery</b> (orders, own deliveries, record payments), <b>Operations</b> (+ assign deliveries), <b>Finance</b> (+ confirm payments), <b>HR</b> (team view), <b>Management</b> (all of these). Nobody but you can open this admin, change prices, partners or WhatsApp.</p>
   </section>
 
   <section id="docs-view" hidden>
