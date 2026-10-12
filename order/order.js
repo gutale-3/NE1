@@ -4,7 +4,14 @@
 (function () {
   'use strict';
   var $ = function (id) { return document.getElementById(id); };
-  var params = new URLSearchParams(window.location.search);
+  // The WhatsApp "View order" button may arrive as /order/?n=…&k=…, with the
+  // query percent-encoded, or with the "?" dropped (/order/n=…&k=…). Read
+  // whatever follows /order/ so every form works.
+  var params = (function () {
+    var raw = (window.location.href.split('/order/')[1] || '').replace(/#.*$/, '');
+    try { raw = decodeURIComponent(raw); } catch (e) { /* keep as is */ }
+    return new URLSearchParams(raw.replace(/^[?\/]+/, ''));
+  })();
   var STATUS = { new: 'Received', confirmed: 'Confirmed', paid: 'Paid', delivered: 'Delivered', cancelled: 'Cancelled' };
   var TRANSPORT = { courier: 'courier', bus: 'bus / matatu parcel', other: 'other transport' };
 

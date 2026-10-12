@@ -46,6 +46,19 @@ export async function ensureTables(env) {
       updated_at TEXT NOT NULL DEFAULT (datetime('now')),
       PRIMARY KEY (user_id, slug)
     )`),
+    // Standing price requests ("can I always get this camera at X?"), not tied to an order.
+    env.DB.prepare(`CREATE TABLE IF NOT EXISTS price_requests (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      slug TEXT NOT NULL,
+      requested INTEGER NOT NULL,
+      volume TEXT,                               -- expected quantity, e.g. "20 a month"
+      note TEXT,
+      status TEXT NOT NULL DEFAULT 'pending',    -- pending | accepted | declined
+      agreed INTEGER,                            -- the price agreed (may differ from requested)
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      decided_at TEXT
+    )`),
   ]);
   ready = true;
 }
@@ -93,15 +106,16 @@ export async function portal(env, user, catalogue) {
   if (partner && partner.status === "approved") {
     out.products = await priceBook(env, partner, catalogue);
     const { results } = await env.DB.prepare(
-      "SELECT number, view_token, total, status, created_at, items_json FROM orders WHERE user_id = ?1 AND channel = 'partner' ORDER BY id DESC LIMIT 30"
+      "SELECT number, view_token, total, status, created_at, updated_at, delivery, town, notes, items_json FROM orders WHERE user_id = ?1 AND channel = 'partner' ORDER BY id DESC LIMIT 50"
     ).bind(user.id).all();
-    out.orders = results.map((o) => {
-      const items = JSON.parse(o.items_json);
-      return {
-        number: o.number, token: o.view_token, total: o.total, status: o.status, created_at: o.created_at,
-        lines: items.length, requests: items.filter((i) => i.requested).map((i) => ({ model: i.model, requested: i.requested, result: i.request || "waiting" })),
-      };
-    });
+    out.orders = results.map((o) => ({
+      number: o.number, token: o.view_token, total: o.total, status: o.status, created_at: o.created_at,
+      updated_at: o.updated_at, delivery: o.delivery, town: o.town, notes: o.notes, items: JSON.parse(o.items_json),
+    }));
+    const reqs = await env.DB.prepare(
+      "SELECT id, slug, requested, volume, note, status, agreed, created_at, decided_at FROM price_requests WHERE user_id = ?1 ORDER BY id DESC LIMIT 100"
+    ).bind(user.id).all();
+    out.requests = reqs.results.map((r) => ({ ...r, name: catalogue[r.slug] ? catalogue[r.slug].n : r.slug, model: catalogue[r.slug] ? catalogue[r.slug].m : "" }));
   }
   return out;
 }
@@ -127,6 +141,29 @@ export async function apply(env, user, body) {
        kra_pin = ?8, status = 'pending', updated_at = datetime('now'), decided_at = NULL`
   ).bind(user.id, v.company, v.contact, v.phone, v.town, v.kind, v.hik_id || null, v.kra_pin || null).run();
   return { ok: true };
+}
+
+// Standing price requests from the portal's "Request prices" page.
+export async function requestPrices(env, user, body, catalogue) {
+  const partner = await partnerOf(env, user.id);
+  if (!partner || partner.status !== "approved") return { error: "Your partner account is not active yet." };
+  const book = Object.fromEntries((await priceBook(env, partner, catalogue)).map((p) => [p.slug, p]));
+  const note = clean(body.note, 500);
+  const statements = [];
+  for (const line of Array.isArray(body.items) ? body.items.slice(0, 50) : []) {
+    const p = book[line.slug];
+    const requested = Math.round(Number(line.requested));
+    if (!p || !(requested > 0)) continue;
+    if (requested >= p.price) return { error: `Your target for ${p.model} must be below your current price (KES ${p.price.toLocaleString("en-KE")}).` };
+    statements.push(
+      env.DB.prepare("DELETE FROM price_requests WHERE user_id = ?1 AND slug = ?2 AND status = 'pending'").bind(user.id, p.slug),
+      env.DB.prepare("INSERT INTO price_requests (user_id, slug, requested, volume, note) VALUES (?1, ?2, ?3, ?4, ?5)")
+        .bind(user.id, p.slug, requested, clean(line.volume, 40) || null, note || null),
+    );
+  }
+  if (!statements.length) return { error: "Add at least one product with your target price." };
+  await env.DB.batch(statements);
+  return { ok: true, count: statements.length / 2 };
 }
 
 const DELIVERY = ["pickup", "nairobi", "outside"];
@@ -164,7 +201,7 @@ export async function order(env, user, body, catalogue) {
 
 // ---- admin -------------------------------------------------------------------
 
-export async function adminList(env) {
+export async function adminList(env, catalogue) {
   await ensureTables(env);
   const { results } = await env.DB.prepare(
     `SELECT p.*, u.email, (SELECT count(*) FROM partner_prices pp WHERE pp.user_id = p.user_id) AS prices,
@@ -172,7 +209,7 @@ export async function adminList(env) {
      FROM partners p JOIN users u ON u.id = p.user_id
      ORDER BY CASE p.status WHEN 'pending' THEN 0 WHEN 'approved' THEN 1 ELSE 2 END, p.company`
   ).all();
-  return { partners: results, kinds: KINDS, requests: await priceRequests(env) };
+  return { partners: results, kinds: KINDS, requests: await priceRequests(env, catalogue) };
 }
 
 export async function adminDetail(env, userId, catalogue) {
@@ -214,18 +251,30 @@ export async function adminSetPrices(env, userId, prices, catalogue) {
   return { ok: true, saved: statements.length };
 }
 
-// Lines in open partner orders where the partner asked for a lower price.
-async function priceRequests(env) {
+// What partners asked for: standing requests from the "Request prices" page,
+// and lines in open orders where they typed a target price.
+async function priceRequests(env, catalogue) {
   const { results } = await env.DB.prepare(
     `SELECT o.id, o.number, o.user_id, o.items_json, o.created_at, p.company
      FROM orders o JOIN partners p ON p.user_id = o.user_id
      WHERE o.channel = 'partner' AND o.status IN ('new', 'confirmed') ORDER BY o.id DESC LIMIT 100`
   ).all();
   const out = [];
+  const standing = await env.DB.prepare(
+    `SELECT r.*, p.company, p.discount FROM price_requests r JOIN partners p ON p.user_id = r.user_id
+     WHERE r.status = 'pending' ORDER BY r.id DESC LIMIT 100`
+  ).all();
+  for (const r of standing.results) {
+    const c = catalogue[r.slug];
+    const own = await env.DB.prepare("SELECT price FROM partner_prices WHERE user_id = ?1 AND slug = ?2").bind(r.user_id, r.slug).first();
+    out.push({ type: "standing", id: r.id, user_id: r.user_id, company: r.company, created_at: r.created_at, slug: r.slug,
+      model: c ? c.m : r.slug, name: c ? c.n : r.slug, retail: c ? c.p : 0, requested: r.requested, volume: r.volume, note: r.note,
+      price: own ? own.price : c ? tradePrice(c.p, r.discount) : 0 });
+  }
   for (const o of results) {
     for (const i of JSON.parse(o.items_json)) {
       if (i.requested && !i.request) {
-        out.push({ order_id: o.id, number: o.number, user_id: o.user_id, company: o.company, created_at: o.created_at,
+        out.push({ type: "order", order_id: o.id, number: o.number, user_id: o.user_id, company: o.company, created_at: o.created_at,
           slug: i.slug, model: i.model, name: i.name, qty: i.qty, price: i.price, retail: i.retail, requested: i.requested });
       }
     }
@@ -235,7 +284,29 @@ async function priceRequests(env) {
 
 // Accept: the requested price becomes the partner's price and the order line
 // is repriced. Decline: the line keeps its price.
-export async function adminDecide(env, orderId, slug, accept) {
+async function savePrice(env, userId, slug, price) {
+  return env.DB.prepare(
+    `INSERT INTO partner_prices (user_id, slug, price) VALUES (?1, ?2, ?3)
+     ON CONFLICT(user_id, slug) DO UPDATE SET price = ?3, updated_at = datetime('now')`
+  ).bind(userId, slug, price);
+}
+
+// A standing request: accept (at the requested or a counter price) or decline.
+export async function adminDecideStanding(env, id, accept, price) {
+  await ensureTables(env);
+  const r = await env.DB.prepare("SELECT * FROM price_requests WHERE id = ?1").bind(id).first();
+  if (!r) return { error: "That price request was not found." };
+  const agreed = accept ? Math.round(Number(price) || r.requested) : null;
+  if (accept && !(agreed > 0)) return { error: "Enter the agreed price." };
+  const statements = [env.DB.prepare(
+    "UPDATE price_requests SET status = ?2, agreed = ?3, decided_at = datetime('now') WHERE id = ?1"
+  ).bind(id, accept ? "accepted" : "declined", agreed)];
+  if (accept) statements.push(await savePrice(env, r.user_id, r.slug, agreed));
+  await env.DB.batch(statements);
+  return { ok: true, agreed, slug: r.slug };
+}
+
+export async function adminDecide(env, orderId, slug, accept, price) {
   const order = await env.DB.prepare("SELECT * FROM orders WHERE id = ?1 AND channel = 'partner'").bind(orderId).first();
   if (!order) return { error: "Order not found." };
   const items = JSON.parse(order.items_json);
@@ -244,11 +315,11 @@ export async function adminDecide(env, orderId, slug, accept) {
   item.request = accept ? "accepted" : "declined";
   const statements = [];
   if (accept) {
-    item.price = item.requested;
-    statements.push(env.DB.prepare(
-      `INSERT INTO partner_prices (user_id, slug, price) VALUES (?1, ?2, ?3)
-       ON CONFLICT(user_id, slug) DO UPDATE SET price = ?3, updated_at = datetime('now')`
-    ).bind(order.user_id, slug, item.requested));
+    const agreed = Math.round(Number(price) || item.requested);
+    if (!(agreed > 0)) return { error: "Enter the agreed price." };
+    item.price = agreed;
+    item.agreed = agreed;
+    statements.push(await savePrice(env, order.user_id, slug, agreed));
   }
   const subtotal = items.reduce((n, i) => n + i.qty * i.price, 0);
   statements.push(env.DB.prepare(

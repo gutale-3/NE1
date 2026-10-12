@@ -48,6 +48,10 @@ export default {
       if (path === "/api/account/summary") return await accountSummary(request, env);
       if (path === "/api/orders") return await createOrder(request, env, url, ctx);
       if (path === "/api/whatsapp/webhook") return await wa.webhook(request, env);
+      // Order links from WhatsApp buttons can lose their "?", e.g. /order/n=NE-1005&k=…
+      if (path.startsWith("/order/") && path !== "/order/" && !/\.(js|css|svg|png|webp)$/.test(path)) {
+        return env.ASSETS.fetch(new Request(new URL("/order/", url.origin), request));
+      }
       if (path === "/api/orders/view") return await viewOrder(request, env, url);
       if (path.startsWith("/api/admin/")) return await adminApi(request, env, url, ctx);
     } catch (error) {
@@ -928,6 +932,10 @@ async function partnerApi(request, env, url, ctx) {
     const out = await partners.apply(env, user, body);
     return json(out, out.error ? 400 : 200);
   }
+  if (body.action === "request_prices") {
+    const out = await partners.requestPrices(env, user, body, catalogue);
+    return json(out, out.error ? 400 : 200);
+  }
   if (body.action !== "order") return json({ error: "Unknown action." }, 400);
   const o = await partners.order(env, user, body, catalogue);
   if (o.error) return json(o, 400);
@@ -955,7 +963,7 @@ async function adminPartners(request, env, url, admin) {
       const detail = await partners.adminDetail(env, id, catalogue);
       return detail ? json(detail) : json({ error: "Partner not found." }, 404);
     }
-    return json(await partners.adminList(env));
+    return json(await partners.adminList(env, catalogue));
   }
   const body = await request.json();
   let out;
@@ -969,11 +977,17 @@ async function adminPartners(request, env, url, admin) {
   } else if (body.action === "prices") {
     out = await partners.adminSetPrices(env, Number(body.id), body.prices, catalogue);
     if (out.ok) out.message = `${out.saved} price${out.saved === 1 ? "" : "s"} saved.`;
+  } else if (body.action === "decide" && body.request_id) {
+    out = await partners.adminDecideStanding(env, Number(body.request_id), Boolean(body.accept), body.price);
+    if (out.ok) {
+      const model = catalogue[out.slug] ? catalogue[out.slug].m : out.slug;
+      out.message = body.accept ? `Agreed ${kes(out.agreed)} for ${model}. It is now this partner's price.` : `Declined the price request for ${model}.`;
+    }
   } else if (body.action === "decide") {
-    out = await partners.adminDecide(env, Number(body.order_id), String(body.slug || ""), Boolean(body.accept));
+    out = await partners.adminDecide(env, Number(body.order_id), String(body.slug || ""), Boolean(body.accept), body.price);
     if (out.ok) {
       out.message = body.accept
-        ? `Accepted KES ${out.item.price.toLocaleString("en-KE")} for ${out.item.model}. It is now this partner's price; ${out.number} total is ${kes(out.total)}.`
+        ? `Agreed ${kes(out.item.price)} for ${out.item.model}. It is now this partner's price; ${out.number} total is ${kes(out.total)}.`
         : `Declined the price request for ${out.item.model} on ${out.number}.`;
     }
   } else {

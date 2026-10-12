@@ -216,7 +216,7 @@
     o.items.forEach(function (i) {
       var li = document.createElement('li');
       li.textContent = i.qty + ' × ' + i.name + ' (' + i.model + ') — ' + money(i.qty * i.price) +
-        (i.requested ? '  · partner asked ' + money(i.requested) + ' each (' + (i.request || 'waiting — see Partners tab') + ')' : '');
+        (i.requested ? '  · partner asked ' + money(i.requested) + ' each (' + (i.request === 'accepted' ? 'agreed at ' + money(i.agreed || i.price) : i.request || 'waiting — see Partners tab') + ')' : '');
       ul.appendChild(li);
     });
     var actions = el.querySelector('.row-actions');
@@ -663,15 +663,25 @@
   function requestRow(r) {
     var el = document.createElement('div');
     el.className = 'req';
-    el.innerHTML = '<div><b></b><small></small></div><div class="row-actions"></div>';
+    el.innerHTML = '<div><b></b><small></small></div><div class="row-actions"><label class="agree">KES <input type="number" min="1" step="1" inputmode="numeric"></label></div>';
     el.querySelector('b').textContent = r.company + ' asks ' + money(r.requested) + ' for ' + r.model;
-    el.querySelector('small').textContent = r.qty + ' × ' + r.name + ' on ' + r.number + ' · their price now ' + money(r.price) + ' · website ' + money(r.retail) +
-      ' · ' + Math.round((1 - r.requested / r.retail) * 100) + '% off website';
-    [['Accept', 'ok', true], ['Decline', 'danger', false]].forEach(function (a) {
+    var facts = r.type === 'order'
+      ? [r.qty + ' × on order ' + r.number]
+      : ['Permanent price request' + (r.volume ? ' · expects ' + r.volume : '')];
+    facts.push('their price now ' + money(r.price), 'website ' + money(r.retail));
+    if (r.retail) facts.push(Math.round((1 - r.requested / r.retail) * 100) + '% off website');
+    if (r.note) facts.push('“' + r.note + '”');
+    el.querySelector('small').textContent = r.name + ' · ' + facts.join(' · ');
+    var input = el.querySelector('input');
+    input.value = r.requested;
+    input.title = 'Agreed price. Change it to make a counter-offer.';
+    [['Agree', 'ok', true], ['Decline', 'danger', false]].forEach(function (a) {
       var b = document.createElement('button'); b.type = 'button'; b.className = a[1]; b.textContent = a[0];
       b.addEventListener('click', function () {
         b.disabled = true;
-        api('/api/admin/partners', { action: 'decide', order_id: r.order_id, slug: r.slug, accept: a[2] }).then(function (res) {
+        var body = { action: 'decide', accept: a[2], price: Number(input.value) || r.requested };
+        if (r.type === 'order') { body.order_id = r.order_id; body.slug = r.slug; } else body.request_id = r.id;
+        api('/api/admin/partners', body).then(function (res) {
           notice(res.message); loadPartners(); loadOrders();
         }).catch(function (err) { b.disabled = false; notice(err.message, true); });
       });
