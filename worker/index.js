@@ -971,15 +971,16 @@ if(d.ok)document.getElementById('btns').hidden=true;else b.disabled=false;});};}
   return new Response(html, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-robots-tag": "noindex" } });
 }
 
-// Daily (06:00 UTC = 09:00 Nairobi): weekly overdue reminders to partners past
-// their payment terms, and on the 1st a statement to everyone who owes money.
+// Daily (06:00 UTC = 09:00 Nairobi): payment reminders to partners who have them
+// switched on (every N days, set per partner), and on the 1st a statement to
+// everyone who owes money.
 async function creditJobs(env) {
   const today = new Date(Date.now() + 3 * 3600000);   // Nairobi time
   const firstOfMonth = today.getUTCDate() === 1;
   const lastMonth = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() - 1, 1))
     .toLocaleDateString("en-KE", { month: "long", year: "numeric", timeZone: "UTC" });
   for (const a of await accounts.owing(env)) {
-    if (a.overdue > 0) await wa.overdueReminder(env, a, false);
+    await wa.paymentReminder(env, a, false);
     if (firstOfMonth) await wa.monthlyStatement(env, a, lastMonth, a.paid_last_month, false);
   }
 }
@@ -1081,11 +1082,13 @@ async function adminPartners(request, env, url, admin) {
   if (body.action === "send_statement" || body.action === "send_reminder") {
     const a = { partner: await partners.partnerOf(env, Number(body.id)), ...(await accounts.account(env, Number(body.id))) };
     if (!a.partner) return json({ error: "Partner not found." }, 404);
-    if (body.action === "send_reminder" && !(a.overdue > 0)) return json({ error: "Nothing is overdue for this partner." }, 400);
+    if (body.action === "send_reminder" && !((a.terms_days ? a.overdue : a.balance) > 0)) {
+      return json({ error: a.terms_days ? "Nothing is overdue for this partner." : "This partner owes nothing." }, 400);
+    }
     const period = new Date().toLocaleDateString("en-KE", { month: "long", year: "numeric", timeZone: "Africa/Nairobi" });
     const paid = a.entries.filter((e) => e.kind === "payment" && e.status === "confirmed" && String(e.paid_on || e.created_at).slice(0, 7) === new Date().toISOString().slice(0, 7))
       .reduce((n, e) => n + e.amount, 0);
-    const sent = body.action === "send_reminder" ? await wa.overdueReminder(env, a, true) : await wa.monthlyStatement(env, a, period, paid, true);
+    const sent = body.action === "send_reminder" ? await wa.paymentReminder(env, a, true) : await wa.monthlyStatement(env, a, period, paid, true);
     out = sent && sent.status === "sent" ? { ok: true, message: `Sent to ${a.partner.company} on WhatsApp (${a.partner.phone}).` }
       : { error: (sent && (sent.error || sent.skipped)) || "Could not send." };
   } else if (["charge", "charge_order", "payment", "decide_payment", "void_entry"].includes(body.action)) {

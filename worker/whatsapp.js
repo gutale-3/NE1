@@ -81,6 +81,12 @@ export const TEMPLATES = [
     button: { type: "URL", text: "View statement", url: `${SITE}/partner/#account` },
   },
   {
+    name: "ne_payment_reminder",
+    body: "Hi {{1}}, a friendly reminder from Nashnaal Electronics: your trade account has KES {{2}} due. Please pay by M-Pesa or bank and report it in your partner portal so we can update your statement. Thank you!",
+    example: ["Peter", "30,800"],
+    button: { type: "URL", text: "View statement", url: `${SITE}/partner/#account` },
+  },
+  {
     name: "ne_monthly_statement",
     body: "Hi {{1}}, here is your Nashnaal Electronics trade account summary for {{2}}. Payments received: KES {{3}}. Amount due now: KES {{4}}. Thank you for your business. Open your partner portal for the full statement.",
     example: ["Peter", "October 2026", "20,000", "30,800"],
@@ -243,12 +249,24 @@ export async function paymentReported(env, partner, code, p, dueBefore) {
     { dedupe: `payment:${p.id}`, buttonParam: String(p.id) });
 }
 
-// Partner reminders (cron). a: the partner's account summary from accounts.owing().
-export async function overdueReminder(env, a, force) {
-  const week = Math.floor(Date.now() / (7 * 86400000));
-  return sendTemplate(env, a.partner.phone, "ne_payment_overdue",
-    [first(a.partner.contact), kes(a.overdue), String(a.terms_days), kes(a.balance)],
-    { userId: a.partner.user_id, dedupe: force ? null : `overdue:${a.partner.user_id}:${week}` });
+// Partner payment reminders. a: the partner's account summary (accounts.owing()).
+// With payment terms the reminder is about the overdue amount, otherwise about
+// everything owed. Unless forced, at most one every remind_days days.
+export async function paymentReminder(env, a, force) {
+  const p = a.partner;
+  const amount = a.terms_days ? a.overdue : a.balance;
+  if (!(amount > 0)) return { skipped: "nothing due" };
+  if (!force) {
+    if (!p.remind_days) return { skipped: "reminders off" };
+    const recent = await env.DB.prepare(
+      `SELECT 1 FROM wa_messages WHERE user_id = ?1 AND kind IN ('ne_payment_overdue', 'ne_payment_reminder') AND status != 'failed'
+       AND created_at > datetime('now', ?2)`
+    ).bind(p.user_id, `-${p.remind_days * 24 - 2} hours`).first();
+    if (recent) return { skipped: "reminded recently" };
+  }
+  return a.terms_days
+    ? sendTemplate(env, p.phone, "ne_payment_overdue", [first(p.contact), kes(a.overdue), String(a.terms_days), kes(a.balance)], { userId: p.user_id })
+    : sendTemplate(env, p.phone, "ne_payment_reminder", [first(p.contact), kes(a.balance)], { userId: p.user_id });
 }
 
 export async function monthlyStatement(env, a, period, paid, force) {

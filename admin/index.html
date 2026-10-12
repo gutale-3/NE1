@@ -186,12 +186,17 @@
         <label>Payment terms (days) <small>(blank = none)</small><input id="pt-terms" type="number" min="1" max="365" step="1" inputmode="numeric" placeholder="e.g. 30"></label>
         <label>Private note <small>(only you see this)</small><input id="pt-note" maxlength="500"></label>
       </div>
+      <div class="remind-row">
+        <label class="inline"><input type="checkbox" id="pt-remind-on"> Send WhatsApp payment reminders</label>
+        <label class="inline">every <input id="pt-remind-days" type="number" min="1" max="90" step="1" inputmode="numeric" value="7" style="width:80px"> day(s)</label>
+        <small class="hint">With payment terms they are reminded about the overdue amount; without terms, about everything they owe. Only sent while money is due.</small>
+      </div>
       <div class="actions"><button class="primary" type="submit">Save partner</button></div>
     </form>
     <h2 class="wa-h">Account</h2>
     <div class="acct">
       <div class="acct-due"><span>Amount due</span><b id="ac-due">KES 0</b><small id="ac-pending"></small><small id="ac-credit"></small>
-        <div class="acct-btns"><button type="button" class="chip" id="ac-statement-btn">Send statement on WhatsApp</button><button type="button" class="chip" id="ac-remind-btn" hidden>Send overdue reminder</button></div></div>
+        <div class="acct-btns"><button type="button" class="chip" id="ac-statement-btn">Send statement on WhatsApp</button><button type="button" class="chip" id="ac-remind-btn" hidden>Send payment reminder now</button></div></div>
       <form id="ac-charge" class="mini">
         <h3>Add amount owed</h3>
         <label>Amount (KES)<input id="ac-c-amount" type="number" min="1" step="1" inputmode="numeric" required></label>

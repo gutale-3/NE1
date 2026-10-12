@@ -647,7 +647,8 @@
     var facts = [['Contact', p.contact], ['Phone', p.phone], ['Town', p.town], ['Google', p.email], ['Hikvision ID', p.hik_id], ['KRA PIN', p.kra_pin],
       ['Pricing', (p.discount ? p.discount + '% off website' : 'Website prices') + (p.prices ? ' + ' + p.prices + ' agreed prices' : '')],
       ['Amount due', (p.balance > 0 ? money(p.balance) : p.balance < 0 ? 'In credit ' + money(-p.balance) : '') +
-        (p.credit_limit != null ? ' (limit ' + money(p.credit_limit) + ')' : '') + (p.terms_days ? ' · ' + p.terms_days + '-day terms' : '')],
+        (p.credit_limit != null ? ' (limit ' + money(p.credit_limit) + ')' : '') + (p.terms_days ? ' · ' + p.terms_days + '-day terms' : '') +
+        (p.remind_days ? ' · reminders every ' + p.remind_days + ' day' + (p.remind_days === 1 ? '' : 's') : '')],
       ['Bought', p.bought ? money(p.bought) : ''], ['Note', p.note], ['Applied', day(p.created_at)]];
     var dl = el.querySelector('dl');
     facts.forEach(function (f) {
@@ -755,7 +756,7 @@
     c.textContent = [a.credit_limit != null ? 'Limit ' + money(a.credit_limit) + (a.over_limit ? ' — OVER LIMIT' : ', ' + money(a.available) + ' available') : 'No credit limit set',
       a.terms_days ? a.terms_days + '-day terms' : '', a.overdue ? money(a.overdue) + ' OVERDUE' : ''].filter(Boolean).join(' · ');
     c.className = a.over_limit || a.overdue ? 'warn' : '';
-    $('ac-remind-btn').hidden = !(a.overdue > 0);
+    $('ac-remind-btn').hidden = !((a.terms_days ? a.overdue : a.balance) > 0);
     var box = $('ac-statement');
     box.textContent = '';
     if (!a.entries.length) { box.innerHTML = '<p class="hint">No entries yet. Add an amount owed when this partner takes goods on credit.</p>'; return; }
@@ -790,10 +791,11 @@
     });
   }
 
+  $('pt-remind-on').addEventListener('change', function () { $('pt-remind-days').disabled = !this.checked; });
   ['ac-statement-btn', 'ac-remind-btn'].forEach(function (id) {
     $(id).addEventListener('click', function () {
       var reminder = id === 'ac-remind-btn';
-      if (!window.confirm((reminder ? 'Send an overdue reminder' : 'Send an account statement') + ' to ' + current.partner.company + ' on WhatsApp now?')) return;
+      if (!window.confirm((reminder ? 'Send a payment reminder' : 'Send an account statement') + ' to ' + current.partner.company + ' on WhatsApp now?')) return;
       accountApi({ action: reminder ? 'send_reminder' : 'send_statement', id: current.partner.id }, this);
     });
   });
@@ -823,6 +825,9 @@
       $('pt-note').value = p.note || '';
       $('pt-limit').value = p.credit_limit == null ? '' : p.credit_limit;
       $('pt-terms').value = p.terms_days == null ? '' : p.terms_days;
+      $('pt-remind-on').checked = p.remind_days != null;
+      $('pt-remind-days').value = p.remind_days || 7;
+      $('pt-remind-days').disabled = p.remind_days == null;
       var cat = $('pt-cat'); cat.length = 1;
       Array.from(new Set(data.products.map(function (x) { return x.category; }))).sort().forEach(function (c) { cat.add(new Option(c, c)); });
       renderPrices(); updateSavebar();
@@ -889,7 +894,8 @@
     var b = this.querySelector('button'); b.disabled = true;
     api('/api/admin/partners', { action: 'update', id: current.partner.id, status: $('pt-status').value, kind: $('pt-kind').value,
       discount: Number($('pt-discount').value) || 0, note: $('pt-note').value,
-      credit_limit: $('pt-limit').value.trim(), terms_days: $('pt-terms').value.trim() }).then(function (r) {
+      credit_limit: $('pt-limit').value.trim(), terms_days: $('pt-terms').value.trim(),
+      remind_days: $('pt-remind-on').checked ? ($('pt-remind-days').value.trim() || '7') : '' }).then(function (r) {
       notice(r.message); loadPartners(); return openPartner(current.partner.id);
     }).catch(function (err) { notice(err.message, true); }).then(function () { b.disabled = false; });
   });
