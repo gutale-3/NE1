@@ -45,6 +45,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: #086E9E
 .tools { display: flex; gap: 10px; flex-wrap: wrap; margin: 6px 0 12px; }
 .tools input[type=search] { flex: 1; min-width: 200px; }
 .tools select { width: auto; }
+.tools select { width: auto; }
 .count { color: #4A5B68; font-size: 13.5px; margin: 0 0 8px; }
 table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #E7ECF1; border-radius: 14px; overflow: hidden; font-size: 14px; }
 th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: #4A5B68; padding: 10px; background: #F6F8FA; border-bottom: 1px solid #E7ECF1; }
@@ -81,6 +82,56 @@ td input.qty { width: 70px; }
   td { border: 0; padding: 5px 10px; }
   td.n { text-align: left; display: flex; justify-content: space-between; align-items: center; }
   td.n::before { content: attr(data-label); font-size: 12px; font-weight: 700; color: #4A5B68; }
+}
+.ptabs { display: flex; gap: 6px; border-bottom: 1px solid #E7ECF1; margin: 0 0 18px; overflow-x: auto; }
+.ptabs a { padding: 12px 14px; font-weight: 800; font-size: 15px; color: #4A5B68; text-decoration: none; border-bottom: 3px solid transparent; white-space: nowrap; }
+.ptabs a.on { color: #086E9E; border-bottom-color: #086E9E; }
+.pill { display: inline-block; min-width: 20px; padding: 1px 7px; border-radius: 999px; background: #F79009; color: #fff; font-size: 12px; text-align: center; }
+label.check { display: flex; gap: 6px; align-items: center; white-space: nowrap; }
+label.check input { width: auto; }
+.picks { display: grid; gap: 6px; margin: 8px 0 0; }
+.pick { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid #E7ECF1; border-radius: 10px; font-size: 14px; }
+.pick small { display: block; color: #4A5B68; font-size: 12px; }
+.pick button { flex: none; }
+.rq { display: grid; grid-template-columns: 1fr 120px 130px 150px 36px; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid #EEF2F5; font-size: 14px; }
+.rq.head { font-size: 11.5px; font-weight: 800; text-transform: uppercase; color: #4A5B68; letter-spacing: .04em; margin-top: 14px; }
+.rq b { display: block; font-size: 13.5px; } .rq small { color: #4A5B68; font-size: 12px; }
+.rq .x { background: none; border: 0; color: #B42318; font-size: 22px; cursor: pointer; }
+.rq .now { text-align: right; font-weight: 700; }
+#rq-actions, #rq-note-wrap { margin-top: 14px; }
+.h2 { font-size: 18px; margin: 26px 0 10px; }
+.history { display: grid; gap: 8px; }
+.hist { display: flex; justify-content: space-between; gap: 12px; align-items: center; background: #fff; border: 1px solid #E7ECF1; border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+.hist small { display: block; color: #4A5B68; font-size: 12.5px; }
+.st { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; padding: 4px 10px; border-radius: 999px; white-space: nowrap; background: #FFF6E5; color: #8A5300; }
+.st.accepted, .st.delivered, .st.paid { background: #E8F8EE; color: #14532D; }
+.st.declined, .st.cancelled { background: #FDECEC; color: #7F1D1D; }
+.st.confirmed { background: #EAF6FC; color: #086E9E; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.chip { background: #fff; border: 1.5px solid #D5DEE5; border-radius: 999px; padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 700; color: #4A5B68; cursor: pointer; }
+.chip.on { border-color: #086E9E; color: #086E9E; background: #EAF6FC; }
+.olist { display: grid; gap: 12px; }
+.ocard { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; padding: 18px; }
+.ocard .top2 { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; flex-wrap: wrap; }
+.ocard h3 { margin: 0; font-size: 17px; }
+.ocard .meta { color: #4A5B68; font-size: 13px; margin-top: 2px; }
+.ocard .tot { font-size: 20px; font-weight: 800; text-align: right; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); margin: 16px 0 6px; }
+.steps div { position: relative; text-align: center; font-size: 12.5px; font-weight: 700; color: #8193A0; padding-top: 26px; }
+.steps div::before { content: ''; position: absolute; top: 6px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: #D5DEE5; z-index: 1; }
+.steps div::after { content: ''; position: absolute; top: 12px; left: -50%; width: 100%; height: 3px; background: #D5DEE5; }
+.steps div:first-child::after { display: none; }
+.steps div.done { color: #14532D; } .steps div.done::before, .steps div.done::after { background: #22C35E; }
+.steps div.now { color: #086E9E; } .steps div.now::before { background: #086E9E; box-shadow: 0 0 0 4px #CFE6F2; } .steps div.now::after { background: #22C35E; }
+.cancelled-note { margin: 12px 0 4px; padding: 10px 12px; border-radius: 10px; background: #FDECEC; color: #7F1D1D; font-size: 14px; font-weight: 700; }
+.oitems { list-style: none; margin: 10px 0 0; padding: 0; font-size: 13.5px; }
+.oitems li { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-top: 1px dashed #E7ECF1; }
+.oitems small { color: #8A5300; font-weight: 700; } .oitems small.ok { color: #14532D; } .oitems small.no { color: #7F1D1D; }
+.oacts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.oacts .btn { padding: 9px 14px; font-size: 14px; }
+@media (max-width: 760px) {
+  .rq { grid-template-columns: 1fr 1fr; } .rq > :first-child { grid-column: 1 / -1; } .rq.head { display: none; } .rq .now { text-align: left; }
+  .steps div { font-size: 11px; }
 }
 </style>
 <script src="/partner/partner.js" defer></script>
@@ -127,35 +178,71 @@ td input.qty { width: 70px; }
       <a class="btn go" href="https://wa.me/254737454891" target="_blank" rel="noopener">WhatsApp your account manager</a>
     </div>
 
+    <nav class="ptabs" aria-label="Partner portal">
+      <a href="#order" data-tab="order">Price list &amp; order</a>
+      <a href="#prices" data-tab="prices">Request prices <span class="pill" id="b-prices" hidden></span></a>
+      <a href="#orders" data-tab="orders">My orders <span class="pill" id="b-orders" hidden></span></a>
+    </nav>
+
     <div id="done" class="msg ok" hidden></div>
 
-    <h1>Your price list</h1>
-    <p class="sub">Enter quantities to order. If you need a better price on a line, type your target price: we'll review it and, once agreed, it becomes your price for that product from then on. It's optional.</p>
-    <div class="tools">
-      <input type="search" id="q" placeholder="Search model or name, e.g. DS-2CE10DF0T" autocomplete="off">
-      <select id="cat"><option value="">All categories</option></select>
-      <label style="display:flex;gap:6px;align-items:center;font-weight:700"><input type="checkbox" id="only-sel" style="width:auto"> Only my selection</label>
-    </div>
-    <p class="count" id="count"></p>
-    <table>
-      <thead><tr><th>Product</th><th class="n">Website</th><th class="n">Your price</th><th class="n">Qty</th><th class="n">Target price <small>(optional)</small></th><th class="n">Line total</th></tr></thead>
-      <tbody id="rows"></tbody>
-    </table>
-    <p class="count" id="more" hidden></p>
-
-    <div class="card checkout" id="checkout" hidden>
-      <h2>Review and send</h2>
-      <ul class="lines" id="lines"></ul>
-      <div class="two">
-        <label>Delivery<select id="delivery"><option value="pickup">Collect from NE, BBS Mall Eastleigh</option><option value="nairobi">Deliver in Nairobi</option><option value="outside">Send outside Nairobi</option></select></label>
-        <label id="town-wrap" hidden>Town<input id="town" maxlength="80"></label>
+    <!-- 1. Price list and order -->
+    <div id="tab-order" class="tabpane">
+      <h1>Your price list</h1>
+      <p class="sub">Enter quantities to order. On any line you can type a target price for this order (optional). For a permanent better price on a product, use <a href="#prices">Request prices</a>.</p>
+      <div class="tools">
+        <input type="search" id="q" placeholder="Search model or name, e.g. DS-2CE10DF0T" autocomplete="off">
+        <select id="cat"><option value="">All categories</option></select>
+        <label class="check"><input type="checkbox" id="only-sel"> Only my selection</label>
       </div>
-      <label>Notes for NE <small>(project name, delivery time, anything else)</small><textarea id="notes" rows="3" maxlength="800"></textarea></label>
-      <div><button class="btn go" type="button" id="send">Send order</button> <button class="btn ghost" type="button" id="back">Keep editing</button></div>
+      <p class="count" id="count"></p>
+      <table>
+        <thead><tr><th>Product</th><th class="n">Website</th><th class="n">Your price</th><th class="n">Qty</th><th class="n">Target price <small>(optional)</small></th><th class="n">Line total</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p class="count" id="more" hidden></p>
+
+      <div class="card checkout" id="checkout" hidden>
+        <h2>Review and send</h2>
+        <ul class="lines" id="lines"></ul>
+        <div class="two">
+          <label>Delivery<select id="delivery"><option value="pickup">Collect from NE, BBS Mall Eastleigh</option><option value="nairobi">Deliver in Nairobi</option><option value="outside">Send outside Nairobi</option></select></label>
+          <label id="town-wrap" hidden>Town<input id="town" maxlength="80"></label>
+        </div>
+        <label>Notes for NE <small>(project name, delivery time, anything else)</small><textarea id="notes" rows="3" maxlength="800"></textarea></label>
+        <div><button class="btn go" type="button" id="send">Send order</button> <button class="btn ghost" type="button" id="back">Keep editing</button></div>
+      </div>
     </div>
 
-    <h2 style="margin:28px 0 10px">Your orders</h2>
-    <div class="orders" id="orders"></div>
+    <!-- 2. Permanent price requests -->
+    <div id="tab-prices" class="tabpane" hidden>
+      <h1>Request permanent prices</h1>
+      <p class="sub">Products you buy often? Tell us the price you need and roughly how many you expect to buy. Once we agree, the new price shows in your price list for every future order.</p>
+      <div class="card">
+        <input type="search" id="rq-q" placeholder="Search a product to add, e.g. DS-7608NXI or ColorVu" autocomplete="off">
+        <div id="rq-results" class="picks"></div>
+        <div id="rq-list"></div>
+        <label id="rq-note-wrap" hidden>Anything we should know? <small>(project, competing quote, payment terms)</small><textarea id="rq-note" rows="3" maxlength="500"></textarea></label>
+        <div id="rq-actions" hidden><button class="btn go" type="button" id="rq-send">Send price requests</button></div>
+        <p class="sub" id="rq-empty" style="margin:12px 0 0">Search above and add the products you want better prices on.</p>
+      </div>
+      <h2 class="h2">Your requests</h2>
+      <div id="rq-history" class="history"></div>
+    </div>
+
+    <!-- 3. Orders -->
+    <div id="tab-orders" class="tabpane" hidden>
+      <h1>Your orders</h1>
+      <div class="chips" id="o-filter">
+        <button type="button" class="chip on" data-s="">All</button>
+        <button type="button" class="chip" data-s="new">Pending</button>
+        <button type="button" class="chip" data-s="confirmed">Confirmed</button>
+        <button type="button" class="chip" data-s="paid">Paid</button>
+        <button type="button" class="chip" data-s="delivered">Delivered</button>
+        <button type="button" class="chip" data-s="cancelled">Cancelled</button>
+      </div>
+      <div id="orders" class="olist"></div>
+    </div>
   </section>
 </main>
 

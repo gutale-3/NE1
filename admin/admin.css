@@ -197,3 +197,5 @@ label.inline input { width: auto; }
   .prow { grid-template-columns: 1fr 1fr; } .prow > :first-child { grid-column: 1 / -1; } .prow.head { display: none; }
   .dline { grid-template-columns: 1fr 64px 96px 28px; } .dline .amt { display: none; } .dline.head { display: none; }
 }
+.req .agree { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; }
+.req .agree input { width: 100px; padding: 7px 8px; text-align: right; }
