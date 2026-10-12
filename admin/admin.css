@@ -213,3 +213,7 @@ form.mini { padding: 14px; gap: 10px; } form.mini h3 { margin: 0; font-size: 15p
 .req a.proof { font-weight: 700; font-size: 13px; }
 @media (max-width: 760px) { .acct { grid-template-columns: 1fr; } .ent { grid-template-columns: 1fr auto; } .ent .row-actions { grid-column: 1 / -1; } }
 form.mini .ok, form.mini .primary { border-radius: 9px; padding: 11px 18px; font-weight: 700; }
+.acct-due small { display: block; margin-top: 4px; }
+.acct-due .warn { color: #FDB022; font-weight: 700; }
+.acct-btns { display: grid; gap: 6px; margin-top: 12px; } .acct-btns .chip { width: 100%; }
+.tech .flag { display: inline-block; margin-left: 8px; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: #FDECEC; color: #B42318; vertical-align: middle; }

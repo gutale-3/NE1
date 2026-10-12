@@ -16,7 +16,7 @@
   var STEPS = ['new', 'confirmed', 'paid', 'delivered'];
   var TABS = ['order', 'prices', 'orders', 'account'];
   var proof = null;       // { dataUrl, file } chosen in the payment form
-  var lastPayment = null; // details of the payment just submitted, for sharing
+  var lastPayment = null; // details of the payment just submitted
 
   function money(n) { return 'KES ' + Math.round(n).toLocaleString('en-KE'); }
   function day(sql) { return new Date(String(sql).replace(' ', 'T') + 'Z').toLocaleDateString('en-KE', { day: 'numeric', month: 'short', year: 'numeric' }); }
@@ -168,6 +168,14 @@
     last.appendChild(el('b', '', 'Total at your prices')); last.appendChild(el('b', '', money(t.total)));
     ul.appendChild(last);
     $('send').textContent = t.asks ? 'Send order with target prices' : 'Send order';
+    var acct = data.account || {}, sel = $('payment');
+    sel.length = 1;
+    if (acct.credit_limit) {
+      var fits = t.total <= acct.available;
+      var opt = new Option('On my account (credit): ' + money(acct.available) + ' available' + (fits ? '' : ', not enough for this order'), 'account');
+      opt.disabled = !fits;
+      sel.add(opt);
+    }
     $('checkout').hidden = false;
     $('checkout').scrollIntoView({ behavior: 'smooth' });
   }
@@ -176,7 +184,7 @@
     var btn = $('send');
     btn.disabled = true; error('');
     var items = Object.keys(cart).map(function (s) { return { slug: s, qty: cart[s].qty, requested: cart[s].requested || 0 }; });
-    api({ action: 'order', items: items, delivery: $('delivery').value, town: $('town').value, notes: $('notes').value })
+    api({ action: 'order', items: items, payment: $('payment').value, delivery: $('delivery').value, town: $('town').value, notes: $('notes').value })
       .then(function (r) {
         cart = {}; save();
         $('checkout').hidden = true;
@@ -344,6 +352,15 @@
     due.classList.toggle('clear', a.balance <= 0);
     $('a-due-note').textContent = a.balance < 0 ? 'You have ' + money(-a.balance) + ' in credit with us.' : a.balance > 0 ? 'Owed to NE Falcon Apex Commerce Limited.' : 'Nothing owed. Thank you!';
     $('a-pending').textContent = money(a.pending);
+    var bits = [];
+    if (a.credit_limit != null) bits.push('Credit limit <b>' + money(a.credit_limit) + '</b>', 'Available <b>' + money(a.available) + '</b>');
+    if (a.terms_days) bits.push('Payment terms <b>' + a.terms_days + ' days</b>');
+    var line = $('a-credit');
+    line.innerHTML = bits.map(function (b) { return '<span>' + b + '</span>'; }).join('');
+    line.hidden = !bits.length;
+    var od = $('a-overdue');
+    od.hidden = !(a.overdue > 0);
+    od.textContent = a.overdue > 0 ? money(a.overdue) + ' is past your ' + a.terms_days + '-day payment terms. Please pay it as soon as you can and report the payment below.' : '';
     var sel = $('pay-method');
     if (!sel.length) a.methods.forEach(function (m) { sel.add(new Option(m, m)); });
     var box = $('statement');
@@ -395,24 +412,6 @@
     });
   }
 
-  function payText(p) {
-    return 'Hi NE, this is ' + data.partner.company + '. I have paid ' + money(p.amount) + ' by ' + p.method +
-      (p.reference ? ' (code ' + p.reference + ')' : '') + ' on ' + day(p.paid_on + ' 00:00:00') + '. Payment ' + p.number + ' is in my partner portal.' +
-      (p.note ? ' Note: ' + p.note : '');
-  }
-
-  function share() {
-    var p = lastPayment;
-    var text = payText(p);
-    var wa = 'https://wa.me/254737454891?text=' + encodeURIComponent(text);
-    // On phones, share the screenshot itself so it arrives in WhatsApp with the message.
-    if (p.file && navigator.canShare && navigator.canShare({ files: [p.file] })) {
-      navigator.share({ files: [p.file], text: text }).catch(function (e) { if (e.name !== 'AbortError') location.href = wa; });
-    } else {
-      window.open(wa, '_blank', 'noopener');
-    }
-  }
-
   function submitPayment(e) {
     e.preventDefault();
     var f = e.target, b = f.querySelector('button');
@@ -425,8 +424,8 @@
       f.reset(); proof = null; $('pay-preview').hidden = true; $('pay-date').value = new Date().toISOString().slice(0, 10);
       $('pay-card').hidden = true; $('pay-sent').hidden = false;
       $('sent-title').textContent = 'Payment ' + r.number + ' submitted';
-      $('sent-text').textContent = money(lastPayment.amount) + ' by ' + lastPayment.method + ' is now on your statement as "Awaiting confirmation". ' +
-        'Send it to us on WhatsApp so we can confirm it quickly' + (lastPayment.file ? ' (the screenshot goes with it).' : '.');
+      $('sent-text').textContent = money(lastPayment.amount) + ' by ' + lastPayment.method + ' is on your statement as "Awaiting confirmation". ' +
+        'NE has been notified on WhatsApp automatically' + (lastPayment.file ? ', with your screenshot' : '') + ', so there is nothing else to send. We will confirm it once it reaches our account.';
       return load();
     }).catch(function (err) { error(err.message); }).then(function () { b.disabled = false; });
   }
@@ -495,7 +494,6 @@
       $('pay-preview').src = dataUrl; $('pay-preview').hidden = false;
     }).catch(function (err) { error(err.message); });
   });
-  $('share-btn').addEventListener('click', share);
   $('another-btn').addEventListener('click', function () { $('pay-sent').hidden = true; $('pay-card').hidden = false; });
   $('print-stmt').addEventListener('click', function () { window.print(); });
   $('rq-send').addEventListener('click', sendAsks);

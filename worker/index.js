@@ -32,6 +32,7 @@ export default {
   async scheduled(event, env, ctx) {
     ctx.waitUntil(wa.expiryReminders(env, (userId) => rewardBalance(env, userId)));
     ctx.waitUntil(wa.reviewRequests(env));
+    ctx.waitUntil(creditJobs(env));
   },
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -355,6 +356,8 @@ async function adminPage(request, env, url) {
       [{ href: "/auth/logout?next=" + encodeURIComponent("/auth/google/login?next=/admin"), label: "Sign out and use another account", primary: true },
        { href: "/auth/logout", label: "Sign out" }, HOME]);
   }
+  const pay = /^\/admin\/payment\/(\d+)\/?$/.exec(url.pathname);
+  if (pay) return paymentPage(env, Number(pay[1]));
   const assetPath = url.pathname === "/admin" ? "/admin/" : url.pathname;
   const asset = await env.ASSETS.fetch(new Request(new URL(assetPath, url.origin), request));
   const response = new Response(asset.body, asset);
@@ -896,6 +899,16 @@ async function adminOrders(request, env, url, admin, ctx) {
       note = ` The customer earned ${kes(earned)} reward credit.`;
     }
   }
+  if (order.channel === "partner" && String(order.notes || "").startsWith(PAY_ON_ACCOUNT)) {
+    if (status === "confirmed" || status === "paid" || status === "delivered") {
+      const put = await accounts.adminAction(env, { action: "charge_order", order_id: id }, admin);
+      if (put.ok) note += ` ${kes(order.total)} was added to the partner's account (they chose to pay on account).`;
+    }
+    if (status === "cancelled") {
+      const voided = await accounts.voidOrderCharge(env, order.user_id, order.number);
+      if (voided) note += " The amount was taken off the partner's account.";
+    }
+  }
   if (status === "cancelled") {
     // Give back credit spent on this order and take back credit earned from it.
     statements.push(
@@ -922,6 +935,58 @@ async function adminOrders(request, env, url, admin, ctx) {
 
 // ---- trade partners -------------------------------------------------------------
 
+// The "Check and confirm" button in the owner's WhatsApp alert opens this:
+// one payment with its screenshot and Confirm / Not received buttons.
+async function paymentPage(env, id) {
+  const p = await accounts.paymentDetail(env, id);
+  if (!p) return messagePage(404, "Payment not found", "This payment no longer exists.", [{ href: "/admin/#partners", label: "Open Partners", primary: true }]);
+  const e = escapeHtml;
+  const done = p.status !== "pending";
+  const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Payment P-${p.id} | NE admin</title><link rel="icon" href="/assets/nashnaal-favicon.png">
+<style>*{box-sizing:border-box}body{margin:0;font-family:Inter,-apple-system,Segoe UI,sans-serif;background:#F6F8FA;color:#10202E}
+.top{background:#0F2A3D;color:#fff;padding:12px 16px;font-weight:800}.top a{color:#9FD8F2;float:right;font-weight:700;font-size:14px}
+main{max-width:560px;margin:0 auto;padding:18px 16px 40px}.card{background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:18px;margin-bottom:14px}
+h1{font-size:22px;margin:0 0 4px}.amt{font-size:32px;font-weight:800;margin:6px 0}dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;font-size:14.5px;margin:12px 0 0}
+dt{color:#4A5B68}dd{margin:0;font-weight:600}img{width:100%;border-radius:12px;border:1px solid #E7ECF1}
+.btns{display:flex;gap:10px}.btns button{flex:1;border:0;border-radius:12px;padding:15px;font:inherit;font-weight:800;font-size:16px;cursor:pointer}
+.ok{background:#067647;color:#fff}.no{background:#fff;color:#B42318;border:1.5px solid #F1B5B0 !important}.st{padding:12px 14px;border-radius:12px;font-weight:700}
+.st.confirmed{background:#E8F8EE;color:#14532D}.st.rejected,.st.void{background:#FDECEC;color:#7F1D1D}.st.pending{background:#FFF6E5;color:#8A5300}</style></head>
+<body><div class="top">NE admin <a href="/admin/#partners">All partners</a></div><main>
+<div class="card"><h1>${e(p.company)}</h1><div style="color:#4A5B68">${e(p.code)} · ${e(p.phone)}</div>
+<div class="amt">KES ${p.amount.toLocaleString("en-KE")}</div>
+<dl><dt>Paid by</dt><dd>${e(p.method || "—")}</dd><dt>Code</dt><dd>${e(p.reference || "none given")}</dd><dt>Date paid</dt><dd>${e(p.paid_on || "")}</dd>
+${p.description ? `<dt>Note</dt><dd>${e(p.description)}</dd>` : ""}<dt>Owed before</dt><dd>KES ${Math.max(0, p.balance).toLocaleString("en-KE")}</dd>
+<dt>Reference</dt><dd>P-${p.id}</dd></dl></div>
+${p.has_proof ? `<div class="card"><img src="/api/partner/proof?id=${p.id}" alt="Payment screenshot"></div>` : `<div class="card">No screenshot was attached.</div>`}
+<div id="state" class="st ${p.status}" ${done ? "" : "hidden"}>${{ confirmed: "Confirmed ✓", rejected: "Marked not received", void: "Voided", pending: "" }[p.status] || ""}</div>
+<div class="btns" id="btns" ${done ? "hidden" : ""}><button class="ok" data-a="1">Confirm received</button><button class="no" data-a="0">Not received</button></div>
+<script>document.querySelectorAll('#btns button').forEach(function(b){b.onclick=function(){var ok=b.dataset.a==='1',note='';
+if(!ok){note=prompt('Why? The partner sees this note.','Not found in our account');if(note===null)return;}
+b.disabled=true;fetch('/api/admin/partners',{method:'POST',credentials:'same-origin',headers:{'content-type':'application/json','x-ne-admin':'1'},
+body:JSON.stringify({action:'decide_payment',entry_id:${p.id},accept:ok,note:note})}).then(function(r){return r.json()}).then(function(d){
+var s=document.getElementById('state');s.hidden=false;s.className='st '+(d.ok?(ok?'confirmed':'rejected'):'rejected');s.textContent=d.message||d.error;
+if(d.ok)document.getElementById('btns').hidden=true;else b.disabled=false;});};});</script>
+</main></body></html>`;
+  return new Response(html, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-robots-tag": "noindex" } });
+}
+
+// Daily (06:00 UTC = 09:00 Nairobi): weekly overdue reminders to partners past
+// their payment terms, and on the 1st a statement to everyone who owes money.
+async function creditJobs(env) {
+  const today = new Date(Date.now() + 3 * 3600000);   // Nairobi time
+  const firstOfMonth = today.getUTCDate() === 1;
+  const lastMonth = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() - 1, 1))
+    .toLocaleDateString("en-KE", { month: "long", year: "numeric", timeZone: "UTC" });
+  for (const a of await accounts.owing(env)) {
+    if (a.overdue > 0) await wa.overdueReminder(env, a, false);
+    if (firstOfMonth) await wa.monthlyStatement(env, a, lastMonth, a.paid_last_month, false);
+  }
+}
+
+// Marks a partner order taken on credit; confirming it puts the total on the partner's account.
+const PAY_ON_ACCOUNT = "Payment: on my account (credit)";
+
 async function partnerApi(request, env, url, ctx) {
   const user = await currentUser(request, env);
   if (!user) return json({ error: "Please sign in first." }, 401);
@@ -943,7 +1008,8 @@ async function partnerApi(request, env, url, ctx) {
     const out = await accounts.reportPayment(env, user, body);
     if (out.ok) {
       const partner = await partners.partnerOf(env, user.id);
-      later(ctx, () => wa.paymentReported(env, partner.company, out.payment));
+      const { balance } = await accounts.account(env, user.id);
+      later(ctx, () => wa.paymentReported(env, partner, partners.partnerCode(user.id), out.payment, balance));
     }
     return json(out, out.error ? 400 : 200);
   }
@@ -960,6 +1026,17 @@ async function partnerApi(request, env, url, ctx) {
   if (body.action !== "order") return json({ error: "Unknown action." }, 400);
   const o = await partners.order(env, user, body, catalogue);
   if (o.error) return json(o, 400);
+  // Payment: on the partner's account (credit, within their limit) or before collection.
+  if (body.payment === "account") {
+    const limit = o.partner.credit_limit;
+    if (!limit) return json({ error: "Credit is not set up on your account. Choose 'Pay before collection', or ask NE about a credit limit." }, 400);
+    const { balance } = await accounts.account(env, user.id);
+    if (balance + o.subtotal > limit) {
+      return json({ error: `This order (${kes(o.subtotal)}) would bring your account to ${kes(balance + o.subtotal)}, over your credit limit of ${kes(limit)}. ` +
+        `Pay part of your balance first, or choose 'Pay before collection'.` }, 400);
+    }
+  }
+  o.notes = [body.payment === "account" ? PAY_ON_ACCOUNT : "Payment: before collection", o.notes].filter(Boolean).join("\n");
   const token = randomToken(18);
   const row = await env.DB.prepare(
     `INSERT INTO orders (view_token, user_id, name, phone, email, delivery, town, notes, items_json,
@@ -1001,7 +1078,17 @@ async function adminPartners(request, env, url, admin) {
   }
   const body = await request.json();
   let out;
-  if (["charge", "charge_order", "payment", "decide_payment", "void_entry"].includes(body.action)) {
+  if (body.action === "send_statement" || body.action === "send_reminder") {
+    const a = { partner: await partners.partnerOf(env, Number(body.id)), ...(await accounts.account(env, Number(body.id))) };
+    if (!a.partner) return json({ error: "Partner not found." }, 404);
+    if (body.action === "send_reminder" && !(a.overdue > 0)) return json({ error: "Nothing is overdue for this partner." }, 400);
+    const period = new Date().toLocaleDateString("en-KE", { month: "long", year: "numeric", timeZone: "Africa/Nairobi" });
+    const paid = a.entries.filter((e) => e.kind === "payment" && e.status === "confirmed" && String(e.paid_on || e.created_at).slice(0, 7) === new Date().toISOString().slice(0, 7))
+      .reduce((n, e) => n + e.amount, 0);
+    const sent = body.action === "send_reminder" ? await wa.overdueReminder(env, a, true) : await wa.monthlyStatement(env, a, period, paid, true);
+    out = sent && sent.status === "sent" ? { ok: true, message: `Sent to ${a.partner.company} on WhatsApp (${a.partner.phone}).` }
+      : { error: (sent && (sent.error || sent.skipped)) || "Could not send." };
+  } else if (["charge", "charge_order", "payment", "decide_payment", "void_entry"].includes(body.action)) {
     out = await accounts.adminAction(env, body, admin);
     if (out.ok) {
       await env.DB.prepare("INSERT INTO audit_log (user_id, action, detail) VALUES (?1, 'partner_account', ?2)").bind(admin.id, out.message).run();
