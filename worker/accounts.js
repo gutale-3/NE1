@@ -114,7 +114,7 @@ export async function reportPayment(env, user, body) {
      VALUES (?1, 'payment', ?2, ?3, ?4, ?5, ?6, 'pending', ?7, 'partner') RETURNING id`
   ).bind(user.id, v.amount, v.note || null, v.method, v.reference || null, v.paidOn, proof ? 1 : 0).first();
   if (proof) await env.DB.prepare("INSERT INTO payment_proofs (ledger_id, mime, data) VALUES (?1, ?2, ?3)").bind(row.id, proof.mime, proof.data).run();
-  return { ok: true, id: row.id, number: `P-${row.id}` };
+  return { ok: true, id: row.id, number: `P-${row.id}`, payment: { id: row.id, amount: v.amount, method: v.method, reference: v.reference, paid_on: v.paidOn } };
 }
 
 // The screenshot, for the partner who sent it or for the admin.

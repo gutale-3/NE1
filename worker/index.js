@@ -936,14 +936,25 @@ async function partnerApi(request, env, url, ctx) {
   const body = await request.json();
   if (body.action === "apply") {
     const out = await partners.apply(env, user, body);
+    if (out.ok) later(ctx, async () => wa.partnerApplied(env, await partners.partnerOf(env, user.id)));
     return json(out, out.error ? 400 : 200);
   }
   if (body.action === "payment") {
     const out = await accounts.reportPayment(env, user, body);
+    if (out.ok) {
+      const partner = await partners.partnerOf(env, user.id);
+      later(ctx, () => wa.paymentReported(env, partner.company, out.payment));
+    }
     return json(out, out.error ? 400 : 200);
   }
   if (body.action === "request_prices") {
     const out = await partners.requestPrices(env, user, body, catalogue);
+    if (out.ok) {
+      const partner = await partners.partnerOf(env, user.id);
+      const first = (body.items || []).find((i) => catalogue[i.slug] && Number(i.requested) > 0);
+      const example = first ? `KES ${Math.round(first.requested).toLocaleString("en-KE")} for ${catalogue[first.slug].m}` : "several products";
+      later(ctx, () => wa.priceRequested(env, partner.company, out.count, example));
+    }
     return json(out, out.error ? 400 : 200);
   }
   if (body.action !== "order") return json({ error: "Unknown action." }, 400);

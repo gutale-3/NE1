@@ -1160,5 +1160,7 @@
   loadPartners().catch(function () {});  // fills the Partners badge
   loadChats().catch(function () {});  // fills the WhatsApp badge
   // The home-screen app opens straight on the chats (start_url /admin/#wa).
-  if (location.hash === '#wa') { var waTab = document.querySelector('[data-tab=wa]'); if (waTab) waTab.click(); }
+  // Links from WhatsApp alerts open a tab directly: /admin/#wa, /admin/#partners, /admin/#orders.
+  var hashTab = location.hash && document.querySelector('[data-tab="' + location.hash.slice(1) + '"]');
+  if (hashTab) hashTab.click();
 })();

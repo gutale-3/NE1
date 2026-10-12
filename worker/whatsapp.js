@@ -66,6 +66,25 @@ export const TEMPLATES = [
     example: ["Mary Wanjiku", "+254712345678", "Is the 4MP ColorVu camera in stock?"],
     button: { type: "URL", text: "Open chats", url: `${SITE}/admin/#wa` }, footer: "Nashnaal Electronics website",
   },
+  // Trade partner alerts to the owner.
+  {
+    name: "ne_payment_reported",
+    body: "Payment reported: {{1}} says they paid KES {{2}} by {{3}} (code {{4}}) on {{5}}. Please check your account, then confirm it in the Partners tab of the NE admin.",
+    example: ["SecureLink Systems Ltd", "20,000", "M-Pesa", "SJK12AB34C", "12 Oct 2026"],
+    button: { type: "URL", text: "Check payment", url: `${SITE}/admin/#partners` }, footer: "Nashnaal Electronics website",
+  },
+  {
+    name: "ne_partner_applied",
+    body: "New trade partner application from {{1}}, a {{2}} in {{3}}. Contact: {{4}}. Review it in the Partners tab of the NE admin.",
+    example: ["SecureLink Systems Ltd", "Hikvision Authorized Partner", "Thika", "Peter Kamau, 0722 111 222"],
+    button: { type: "URL", text: "Review", url: `${SITE}/admin/#partners` }, footer: "Nashnaal Electronics website",
+  },
+  {
+    name: "ne_price_request",
+    body: "Price request: {{1}} asks for better prices on {{2}} product(s), for example {{3}}. Agree or reply in the Partners tab of the NE admin.",
+    example: ["SecureLink Systems Ltd", "2", "KES 2,500 for DS-2CE10DF0T-LPFS"],
+    button: { type: "URL", text: "Review", url: `${SITE}/admin/#partners` }, footer: "Nashnaal Electronics website",
+  },
 ];
 
 const AUTO_REPLY =
@@ -200,6 +219,26 @@ const day = (sql) => new Date(String(sql).replace(" ", "T") + "Z").toLocaleDateS
 const DELIVERY = { pickup: "pick-up at the showroom", nairobi: "Nairobi (free)", outside: "outside Nairobi" };
 
 // order: a row from the orders table (number, view_token, name, phone, total, consent, ...)
+// ---- trade partner alerts to the owner ------------------------------------------
+
+export async function paymentReported(env, company, p) {
+  if (!env.OWNER_WHATSAPP) return;
+  await sendTemplate(env, env.OWNER_WHATSAPP, "ne_payment_reported",
+    [company.slice(0, 80), kes(p.amount), p.method, p.reference || "none given", day(p.paid_on + " 00:00:00")],
+    { dedupe: `payment:${p.id}` });
+}
+
+export async function partnerApplied(env, a) {
+  if (!env.OWNER_WHATSAPP) return;
+  await sendTemplate(env, env.OWNER_WHATSAPP, "ne_partner_applied",
+    [a.company.slice(0, 80), a.kind, a.town.slice(0, 60), `${a.contact}, ${a.phone}`.slice(0, 100)], {});
+}
+
+export async function priceRequested(env, company, count, example) {
+  if (!env.OWNER_WHATSAPP) return;
+  await sendTemplate(env, env.OWNER_WHATSAPP, "ne_price_request", [company.slice(0, 80), String(count), example.slice(0, 120)], {});
+}
+
 export async function orderCreated(env, order, itemCount) {
   const owner = env.OWNER_WHATSAPP;
   const tasks = [];
