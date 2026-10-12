@@ -99,6 +99,7 @@
     $('partner-view').hidden = view !== 'partner';
     $('docs-view').hidden = view !== 'docs';
     $('doc-edit').hidden = view !== 'doc';
+    $('team-view').hidden = view !== 'team';
     var PARENT = { edit: 'list', partner: 'partners', doc: 'docs' };
     Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
       tab.classList.toggle('on', tab.getAttribute('data-tab') === (PARENT[view] || view));
@@ -248,6 +249,16 @@
       b.addEventListener('click', function () { openDoc(k[0], { order: o }); });
       actions.appendChild(b);
     });
+    if (['new', 'confirmed', 'paid'].indexOf(o.status) >= 0) {
+      var assign = document.createElement('button');
+      assign.type = 'button'; assign.className = 'chip'; assign.textContent = 'Assign delivery';
+      assign.addEventListener('click', function () {
+        var open = el.querySelector('.assign-form');
+        if (open) { open.remove(); return; }
+        teamReady().then(function (t) { el.appendChild(assignForm(o, t)); }).catch(function (err) { notice(err.message, true); });
+      });
+      actions.appendChild(assign);
+    }
     (ORDER_NEXT[o.status] || []).forEach(function (step) {
       var b = document.createElement('button');
       b.type = 'button'; b.className = step[2]; b.textContent = step[1];
@@ -1074,6 +1085,160 @@
     docTimer = setTimeout(function () { loadDocs().catch(function (err) { notice(err.message, true); }); }, 300);
   });
 
+  // ---- team (staff area at /team) ------------------------------------------------
+  var teamData = null;
+  function teamApi(body, b) {
+    if (b) b.disabled = true;
+    return api('/api/admin/team', body).then(function (r) { notice(r.message); return loadTeam(); })
+      .catch(function (err) { notice(err.message, true); }).then(function () { if (b) b.disabled = false; });
+  }
+  function teamReady() { return teamData ? Promise.resolve(teamData) : loadTeam(); }
+
+  function loadTeam() {
+    return api('/api/admin/team').then(function (t) {
+      teamData = t;
+      var pending = t.people.filter(function (p) { return p.status === 'pending'; }).length;
+      var waiting = pending + t.toConfirm.length;
+      $('team-badge').textContent = waiting; $('team-badge').hidden = !waiting;
+      $('tm-count').textContent = t.people.length ? t.people.length + ' people · ' + pending + ' waiting for approval' : 'Nobody has signed up yet. Send your staff to nashnaal.com/team.';
+      var pay = $('tm-pay'); pay.textContent = '';
+      t.toConfirm.forEach(function (c) { pay.appendChild(collectionRow(c)); });
+      $('tm-pay-box').hidden = !t.toConfirm.length;
+      var list = $('tm-people'); list.textContent = '';
+      t.people.forEach(function (p) { list.appendChild(staffCard(p, t.roles)); });
+      var cash = $('tm-cash'); cash.textContent = '';
+      if (!t.cash.length) cash.appendChild(textEl('p', 'hint', 'No money recorded by staff yet.'));
+      t.cash.forEach(function (r) {
+        var d = document.createElement('div'); d.className = 'req';
+        d.innerHTML = '<div><b></b><small></small></div>';
+        d.querySelector('b').textContent = r.username + ': ' + money(r.holding) + ' not yet confirmed';
+        d.querySelector('small').textContent = 'Cash ' + money(r.cash) + ' · ' + r.pending + ' payment(s) waiting · confirmed this month ' + money(r.month);
+        cash.appendChild(d);
+      });
+      var jobs = $('tm-jobs'); jobs.textContent = '';
+      if (!t.deliveries.length) jobs.appendChild(textEl('p', 'hint', 'No delivery jobs in the last 3 days.'));
+      t.deliveries.forEach(function (j) { jobs.appendChild(jobRow(j)); });
+      var log = $('tm-log'); log.textContent = '';
+      t.activity.forEach(function (a) {
+        var d = document.createElement('div'); d.className = 'req';
+        d.innerHTML = '<div><b></b><small></small></div>';
+        d.querySelector('b').textContent = a.username + ': ' + a.detail;
+        d.querySelector('small').textContent = a.created_at + ' UTC';
+        log.appendChild(d);
+      });
+      return t;
+    });
+  }
+
+  function textEl(tag, cls, text) { var e = document.createElement(tag); e.className = cls; e.textContent = text; return e; }
+
+  function staffCard(p, roles) {
+    var el = document.createElement('article');
+    el.className = 'tech ' + p.status;
+    el.innerHTML = '<div class="st"></div><h3></h3><dl></dl><div class="row-actions"></div>';
+    el.querySelector('.st').className = 'st ' + p.status;
+    el.querySelector('.st').textContent = p.status + (p.role ? ' · ' + roles[p.role] : '');
+    el.querySelector('h3').textContent = p.username + ' — ' + p.full_name;
+    var facts = [['Phone', p.phone], ['Google', p.email], ['Says they do', p.wanted], ['Last 30 days', p.delivered + ' delivered · ' + p.orders + ' orders · ' + money(p.collected) + ' confirmed'],
+      ['Holding now', p.holding ? money(p.holding) : ''], ['Open jobs', p.open_jobs || ''], ['Signed up', day(p.created_at)], ['Last sign-in', p.last_login ? day(p.last_login) : '']];
+    var dl = el.querySelector('dl');
+    facts.forEach(function (f) {
+      if (!f[1]) return;
+      var dt = document.createElement('dt'); dt.textContent = f[0];
+      var dd = document.createElement('dd'); dd.textContent = f[1];
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    var acts = el.querySelector('.row-actions');
+    var sel = document.createElement('select');
+    sel.appendChild(new Option('Choose role…', ''));
+    Object.keys(roles).forEach(function (k) { sel.appendChild(new Option(roles[k], k)); });
+    sel.value = p.role || '';
+    acts.appendChild(sel);
+    function btn(label, cls, fields) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = cls; b.textContent = label;
+      b.addEventListener('click', function () {
+        var f = Object.assign({ action: 'update', id: p.user_id, role: sel.value || null }, fields);
+        if (f.status === 'approved' && !sel.value) { notice('Choose a role first.', true); return; }
+        if (fields.status === 'suspended' || fields.status === 'rejected') {
+          var note = window.prompt('Note (they see it):', ''); if (note === null) return; f.note = note;
+        }
+        teamApi(f, b);
+      });
+      acts.appendChild(b);
+    }
+    if (p.status === 'approved') btn('Save role', 'chip', {});
+    else btn('Approve', 'ok', { status: 'approved' });
+    if (p.status === 'pending') btn('Reject', 'danger', { status: 'rejected' });
+    if (p.status === 'approved') btn('Suspend', 'danger', { status: 'suspended' });
+    var digits = String(p.phone).replace(/[^0-9]/g, '').replace(/^0/, '254');
+    var wa = document.createElement('a'); wa.className = 'wa'; wa.target = '_blank'; wa.rel = 'noopener'; wa.textContent = 'WhatsApp';
+    wa.href = 'https://wa.me/' + digits + '?text=' + encodeURIComponent('Hi ' + p.full_name.split(' ')[0] + ', your NE team account is ready: nashnaal.com/team');
+    acts.appendChild(wa);
+    return el;
+  }
+
+  function collectionRow(c) {
+    var el = document.createElement('div');
+    el.className = 'req';
+    el.innerHTML = '<div><b></b><small></small></div><div class="row-actions"></div>';
+    el.querySelector('b').textContent = c.staff + ' collected ' + money(c.amount) + ' by ' + c.method + ' from ' + c.customer;
+    el.querySelector('small').textContent = ['C-' + c.id, c.reference ? 'code ' + c.reference : '', c.order, c.partner ? 'partner account: ' + c.partner : '', c.note ? '“' + c.note + '”' : '', day(c.created_at)].filter(Boolean).join(' · ');
+    var acts = el.querySelector('.row-actions');
+    if (c.has_proof) {
+      var a = document.createElement('a'); a.className = 'chip'; a.target = '_blank'; a.href = '/api/team/proof?id=' + c.id; a.textContent = 'Screenshot';
+      acts.appendChild(a);
+    }
+    [[c.method === 'Cash' ? 'Cash handed in' : 'Confirm', 'ok', true], ['Not received', 'danger', false]].forEach(function (x) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = x[1]; b.textContent = x[0];
+      b.addEventListener('click', function () {
+        var note = '';
+        if (!x[2]) { note = window.prompt('Why? The staff member sees this note.', 'Not found in our account'); if (!note) return; }
+        teamApi({ action: 'decide', id: c.id, accept: x[2], note: note }, b);
+      });
+      acts.appendChild(b);
+    });
+    return el;
+  }
+
+  var JOB_LABEL = { assigned: 'assigned', on_way: 'on the way', delivered: 'delivered', failed: 'not delivered', cancelled: 'cancelled' };
+  function jobRow(j) {
+    var el = document.createElement('div');
+    el.className = 'req';
+    el.innerHTML = '<div><b></b><small></small></div><div class="row-actions"></div>';
+    el.querySelector('b').textContent = j.number + ' → ' + j.staff + ': ' + JOB_LABEL[j.status];
+    el.querySelector('small').textContent = [j.customer, j.address, j.collect ? 'collect ' + money(j.collect) : 'nothing to collect', j.reason, day(j.created_at)].filter(Boolean).join(' · ');
+    if (j.status === 'assigned' || j.status === 'on_way') {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'danger'; b.textContent = 'Cancel job';
+      b.addEventListener('click', function () { if (window.confirm('Cancel this delivery job?')) teamApi({ action: 'cancel_job', id: j.id }, b); });
+      el.querySelector('.row-actions').appendChild(b);
+    }
+    return el;
+  }
+
+  function assignForm(o, t) {
+    var f = document.createElement('form');
+    f.className = 'assign-form';
+    var people = t.people.filter(function (p) { return p.status === 'approved'; });
+    if (!people.length) { f.appendChild(textEl('p', 'hint', 'Nobody is approved on the team yet (Team tab).')); return f; }
+    f.innerHTML = '<label>Delivered by <select name="staff_id"></select></label>' +
+      '<label>Address <input name="address" maxlength="200" placeholder="Building, street, area"></label>' +
+      '<label>Map link <input name="map_url" placeholder="Google Maps link or -1.27, 36.85"></label>' +
+      '<label>Amount to collect (KES) <input name="collect" type="number" min="0" step="1"></label>' +
+      '<label>Note for them <input name="notes" maxlength="300"></label><button class="primary" type="submit">Assign and send on WhatsApp</button>';
+    people.forEach(function (p) { f.elements.staff_id.appendChild(new Option(p.username + ' (' + t.roles[p.role] + ')', p.user_id)); });
+    f.elements.address.value = o.town || '';
+    f.elements.collect.value = o.status === 'paid' || String(o.notes || '').indexOf('Payment: on my account') === 0 ? 0 : o.total;
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var b = f.querySelector('button'); b.disabled = true;
+      api('/api/admin/team', { action: 'assign', order_id: o.id, staff_id: Number(f.elements.staff_id.value), address: f.elements.address.value,
+        map_url: f.elements.map_url.value, collect: f.elements.collect.value, notes: f.elements.notes.value })
+        .then(function (r) { notice(r.message); f.remove(); teamData = null; })
+        .catch(function (err) { notice(err.message, true); b.disabled = false; });
+    });
+    return f;
+  }
+
   Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
     tab.addEventListener('click', function () {
       notice('');
@@ -1083,6 +1248,7 @@
       if (view === 'orders') loadOrders().catch(function (err) { notice(err.message, true); });
       if (view === 'partners') loadPartners().catch(function (err) { notice(err.message, true); });
       if (view === 'docs') loadDocs().catch(function (err) { notice(err.message, true); });
+      if (view === 'team') loadTeam().catch(function (err) { notice(err.message, true); });
       if (view === 'wa') {
         loadChats().catch(function (err) { notice(err.message, true); });
         loadWhatsApp().catch(function (err) { notice(err.message, true); });
@@ -1184,6 +1350,7 @@
   loadTechs().catch(function () {});  // fills the badge
   loadOrders().catch(function () {});
   loadPartners().catch(function () {});  // fills the Partners badge
+  loadTeam().catch(function () {});  // fills the Team badge
   loadChats().catch(function () {});  // fills the WhatsApp badge
   // The home-screen app opens straight on the chats (start_url /admin/#wa).
   // Links from WhatsApp alerts open a tab directly: /admin/#wa, /admin/#partners, /admin/#orders.

@@ -20,6 +20,7 @@ import * as wa from "./whatsapp.js";
 import * as partners from "./partners.js";
 import * as docs from "./documents.js";
 import * as accounts from "./accounts.js";
+import * as team from "./team.js";
 
 // Runs a side job (e.g. a WhatsApp message) after the response, without failing the request.
 function later(ctx, job) {
@@ -47,6 +48,9 @@ export default {
       if (path === "/partner" || path.startsWith("/partner/")) return await accountPage(request, env, url, "/partner/");
       if (path === "/api/partner") return await partnerApi(request, env, url, ctx);
       if (path === "/api/partner/proof") return await partnerProof(request, env, url);
+      if (path === "/team" || path.startsWith("/team/")) return await accountPage(request, env, url, "/team/");
+      if (path === "/api/team") return await teamApi(request, env, url, ctx);
+      if (path === "/api/team/proof") return await teamProof(request, env, url);
       if (path === "/api/account/application") return await accountApplication(request, env, url);
       if (path === "/api/account/summary") return await accountSummary(request, env);
       if (path === "/api/orders") return await createOrder(request, env, url, ctx);
@@ -288,8 +292,12 @@ async function me(request, env) {
 // Signed-in pages: /account (customers and technicians) and /partner (trade partners).
 async function accountPage(request, env, url, home = "/account/") {
   const user = await currentUser(request, env);
-  if (!user) return Response.redirect(`${url.origin}/auth/google/login?next=${home}`, 302);
-  const assetPath = url.pathname === home.slice(0, -1) ? home : url.pathname;
+  if (!user) {
+    const next = home === "/team/" && url.pathname.startsWith("/team/job/") ? url.pathname : home;
+    return Response.redirect(`${url.origin}/auth/google/login?next=${encodeURIComponent(next)}`, 302);
+  }
+  // Job links from WhatsApp (/team/job/12) open the team page on that job.
+  const assetPath = url.pathname === home.slice(0, -1) || /^\/team\/job\//.test(url.pathname) ? home : url.pathname;
   const asset = await env.ASSETS.fetch(new Request(new URL(assetPath, url.origin), request));
   const response = new Response(asset.body, asset);
   response.headers.set("cache-control", "no-store");
@@ -358,6 +366,8 @@ async function adminPage(request, env, url) {
   }
   const pay = /^\/admin\/payment\/(\d+)\/?$/.exec(url.pathname);
   if (pay) return paymentPage(env, Number(pay[1]));
+  const coll = /^\/admin\/collection\/(\d+)\/?$/.exec(url.pathname);
+  if (coll) return collectionPage(env, Number(coll[1]));
   const assetPath = url.pathname === "/admin" ? "/admin/" : url.pathname;
   const asset = await env.ASSETS.fetch(new Request(new URL(assetPath, url.origin), request));
   const response = new Response(asset.body, asset);
@@ -393,6 +403,7 @@ async function adminApi(request, env, url, ctx) {
   if (url.pathname === "/api/admin/funnel" && request.method === "GET") return adminFunnel(env);
   if (url.pathname === "/api/admin/partners") return adminPartners(request, env, url, user);
   if (url.pathname === "/api/admin/documents") return adminDocuments(request, env, url, user);
+  if (url.pathname === "/api/admin/team") return adminTeam(request, env, url, user, ctx);
   if (url.pathname === "/api/admin/products" && !env.GITHUB_TOKEN) {
     return json({ error: "GITHUB_TOKEN is not set in Cloudflare." }, 503);
   }
@@ -886,6 +897,15 @@ async function adminOrders(request, env, url, admin, ctx) {
   const order = await env.DB.prepare("SELECT * FROM orders WHERE id = ?1").bind(id).first();
   if (!order) return json({ error: "Order not found." }, 404);
 
+  const note = await changeOrderStatus(env, order, status, admin, ctx);
+  return json({ ok: true, message: `Order ${order.number} is now ${status}.${note}` });
+}
+
+// Sets an order's status with everything that goes with it: reward credit,
+// the partner's account, the audit log and the customer's WhatsApp update.
+// Used by the admin and by staff (delivered, or paid once a collection is confirmed).
+async function changeOrderStatus(env, order, status, admin, ctx) {
+  const id = order.id;
   const statements = [env.DB.prepare("UPDATE orders SET status = ?2, updated_at = datetime('now') WHERE id = ?1").bind(id, status)];
   let note = "";
   if ((status === "paid" || status === "delivered") && order.user_id && !order.reward_earned && order.earn_rate > 0) {
@@ -930,7 +950,7 @@ async function adminOrders(request, env, url, admin, ctx) {
       await wa.orderStatusChanged(env, order, status, reward);
     });
   }
-  return json({ ok: true, message: `Order ${order.number} is now ${status}.${note}` });
+  return note;
 }
 
 // ---- trade partners -------------------------------------------------------------
@@ -1123,6 +1143,161 @@ async function adminPartners(request, env, url, admin) {
     out = { error: "Unknown action." };
   }
   return json(out, out.error ? 400 : 200);
+}
+
+// ---- the NE team (/team) -----------------------------------------------------------
+
+async function teamApi(request, env, url, ctx) {
+  const user = await currentUser(request, env);
+  if (!user) return json({ error: "Please sign in first." }, 401);
+  const owner = isAdmin(env, user);
+  if (request.method === "GET") return json(await team.portal(env, user, owner));
+  if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
+  if (request.headers.get("origin") !== url.origin) return json({ error: "Bad request origin." }, 403);
+  const body = await request.json();
+  if (body.action === "apply") {
+    if (owner) return json({ error: "You are the owner: you already have full access." }, 400);
+    const out = await team.apply(env, user, body);
+    if (out.ok) later(ctx, () => wa.staffApplied(env, out.staff));
+    return json(out, out.error ? 400 : 200);
+  }
+  const staff = await team.staffOf(env, user.id);
+  const can = team.permissions(staff, owner);
+  if (!can) return json({ error: "Your team account is not approved yet." }, 403);
+  const need = { order: "orders", assign: "dispatch", cancel_job: "dispatch", decide: "confirm" }[body.action];
+  if (need && !can.includes(need)) return json({ error: "Your role can't do this. Ask the owner if you need it." }, 403);
+  const who = staff ? staff.username : "Owner";
+  let out;
+  if (body.action === "record") {
+    out = await team.record(env, user, body);
+    const { collection } = out;
+    if (collection) later(ctx, () => wa.staffCollection(env, collection));
+    delete out.collection;
+  } else if (body.action === "job_status") {
+    out = await team.jobStatus(env, user, body);
+  } else if (body.action === "deliver") {
+    out = await team.delivered(env, user, body);
+    if (out.ok) {
+      if (!["delivered", "cancelled"].includes(out.order.status)) await changeOrderStatus(env, out.order, "delivered", user, ctx);
+      const { collection } = out;
+      if (collection) later(ctx, () => wa.staffCollection(env, collection));
+      delete out.order;
+      delete out.collection;
+    }
+  } else if (body.action === "order") {
+    const token = randomToken(18);
+    out = await team.createOrder(env, user, body, await priceList(env, url.origin), token);
+    if (out.ok) {
+      const o = out.order;
+      later(ctx, () => wa.orderCreated(env, { ...o, user_id: null }, o.items.reduce((n, i) => n + i.qty, 0)));
+      out.message = `Order ${o.number} saved: ${kes(o.total)}.`;
+      if (body.deliver_me && staff) {
+        const job = await team.assign(env, user, { order_id: o.id, staff_id: user.id, address: body.address, map_url: body.map_url, notes: body.job_notes });
+        out.message += job.ok ? " The delivery is in My jobs." : ` The delivery could not be added: ${job.error}`;
+      }
+      out.number = o.number;
+      out.viewUrl = `${siteOrigin(env, url)}/order/?n=${o.number}&k=${token}`;
+      delete out.order;
+    }
+  } else if (body.action === "assign") {
+    const job = await team.assign(env, user, body);
+    if (job.ok) later(ctx, () => wa.deliveryJob(env, job));
+    out = job.ok ? { ok: true, message: job.message } : job;
+  } else if (body.action === "cancel_job") {
+    out = await team.cancelJob(env, user, Number(body.id));
+  } else if (body.action === "decide") {
+    out = await afterCollectionDecided(env, await team.decide(env, user, body, owner), user, who, ctx);
+  } else {
+    out = { error: "Unknown action." };
+  }
+  return json(out, out.error ? 400 : 200);
+}
+
+// A confirmed collection pays the order (when fully paid) and, for a trade
+// partner paying their account, goes on the partner's statement.
+async function afterCollectionDecided(env, out, actor, who, ctx) {
+  if (!out.ok) return out;
+  const { collection: c, paidOrder, accepted } = out;
+  delete out.collection; delete out.paidOrder; delete out.accepted;
+  if (!accepted) return out;
+  if (paidOrder) {
+    await changeOrderStatus(env, paidOrder, "paid", actor, ctx);
+    out.message += ` ${paidOrder.number} is now paid.`;
+  }
+  // Only money against the partner's account (no order, or an order on credit) goes on their statement.
+  let onAccount = !c.order_id;
+  if (c.order_id) {
+    const o = await env.DB.prepare("SELECT notes FROM orders WHERE id = ?1").bind(c.order_id).first();
+    onAccount = Boolean(o && String(o.notes || "").startsWith(PAY_ON_ACCOUNT));
+  }
+  if (c.partner_id && onAccount) {
+    const put = await accounts.adminAction(env, {
+      action: "payment", id: c.partner_id, amount: c.amount, method: c.method, reference: c.reference,
+      paid_on: c.created_at.slice(0, 10), note: `Collected by ${who === "Owner" ? "NE" : who} (C-${c.id})`,
+    }, { email: actor.email });
+    if (put.ok) out.message += " Added to the partner's statement.";
+  }
+  return out;
+}
+
+async function teamProof(request, env, url) {
+  const user = await currentUser(request, env);
+  if (!user) return json({ error: "Please sign in first." }, 401);
+  const can = team.permissions(await team.staffOf(env, user.id), isAdmin(env, user));
+  if (!can) return json({ error: "Not found." }, 404);
+  const res = await team.proof(env, Number(url.searchParams.get("id")), can.includes("confirm") ? null : user.id);
+  return res || json({ error: "Not found." }, 404);
+}
+
+async function adminTeam(request, env, url, admin, ctx) {
+  if (request.method === "GET") return json(await team.adminOverview(env));
+  const body = await request.json();
+  let out;
+  if (body.action === "update") out = await team.adminUpdate(env, admin, body);
+  else if (body.action === "assign") {
+    const job = await team.assign(env, admin, body);
+    if (job.ok) later(ctx, () => wa.deliveryJob(env, job));
+    out = job.ok ? { ok: true, message: job.message } : job;
+  } else if (body.action === "cancel_job") out = await team.cancelJob(env, admin, Number(body.id));
+  else if (body.action === "decide") out = await afterCollectionDecided(env, await team.decide(env, admin, body, true), admin, "Owner", ctx);
+  else out = { error: "Unknown action." };
+  if (out.staff) delete out.staff;
+  return json(out, out.error ? 400 : 200);
+}
+
+// The "Check and confirm" button in the owner's alert for money a staff member collected.
+async function collectionPage(env, id) {
+  const c = await team.collectionById(env, id);
+  if (!c) return messagePage(404, "Payment not found", "This payment no longer exists.", [{ href: "/admin/#team", label: "Open Team", primary: true }]);
+  const e = escapeHtml;
+  const done = c.status !== "pending";
+  const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Collection C-${c.id} | NE admin</title><link rel="icon" href="/assets/nashnaal-favicon.png">
+<style>*{box-sizing:border-box}body{margin:0;font-family:Inter,-apple-system,Segoe UI,sans-serif;background:#F6F8FA;color:#10202E}
+.top{background:#0F2A3D;color:#fff;padding:12px 16px;font-weight:800}.top a{color:#9FD8F2;float:right;font-weight:700;font-size:14px}
+main{max-width:560px;margin:0 auto;padding:18px 16px 40px}.card{background:#fff;border:1px solid #E7ECF1;border-radius:16px;padding:18px;margin-bottom:14px}
+h1{font-size:22px;margin:0 0 4px}.amt{font-size:32px;font-weight:800;margin:6px 0}dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;font-size:14.5px;margin:12px 0 0}
+dt{color:#4A5B68}dd{margin:0;font-weight:600}img{width:100%;border-radius:12px;border:1px solid #E7ECF1}
+.btns{display:flex;gap:10px}.btns button{flex:1;border:0;border-radius:12px;padding:15px;font:inherit;font-weight:800;font-size:16px;cursor:pointer}
+.ok{background:#067647;color:#fff}.no{background:#fff;color:#B42318;border:1.5px solid #F1B5B0 !important}.st{padding:12px 14px;border-radius:12px;font-weight:700}
+.st.confirmed{background:#E8F8EE;color:#14532D}.st.rejected{background:#FDECEC;color:#7F1D1D}</style></head>
+<body><div class="top">NE admin <a href="/admin/#team">Team</a></div><main>
+<div class="card"><h1>${e(c.customer)}</h1><div style="color:#4A5B68">Collected by <b>${e(c.staff)}</b>${c.phone ? ` · ${e(c.phone)}` : ""}</div>
+<div class="amt">KES ${c.amount.toLocaleString("en-KE")}</div>
+<dl><dt>Paid by</dt><dd>${e(c.method)}${c.method === "Cash" ? " (staff holds it until handed in)" : ""}</dd><dt>Code</dt><dd>${e(c.reference || "none given")}</dd>
+${c.order ? `<dt>Order</dt><dd>${e(c.order)}</dd>` : ""}${c.partner ? `<dt>Partner</dt><dd>${e(c.partner)} (goes on their statement)</dd>` : ""}
+${c.note ? `<dt>Note</dt><dd>${e(c.note)}</dd>` : ""}<dt>Recorded</dt><dd>${e(c.created_at)} UTC</dd><dt>Reference</dt><dd>C-${c.id}</dd></dl></div>
+${c.has_proof ? `<div class="card"><img src="/api/team/proof?id=${c.id}" alt="Payment screenshot"></div>` : ""}
+<div id="state" class="st ${c.status}" ${done ? "" : "hidden"}>${{ confirmed: "Confirmed ✓", rejected: "Marked not received" }[c.status] || ""}${c.decided_note ? ` — ${e(c.decided_note)}` : ""}</div>
+<div class="btns" id="btns" ${done ? "hidden" : ""}><button class="ok" data-a="1">${c.method === "Cash" ? "Cash handed in" : "Confirm received"}</button><button class="no" data-a="0">Not received</button></div>
+<script>document.querySelectorAll('#btns button').forEach(function(b){b.onclick=function(){var ok=b.dataset.a==='1',note='';
+if(!ok){note=prompt('Why? The staff member sees this note.','Not found in our account');if(!note)return;}
+b.disabled=true;fetch('/api/admin/team',{method:'POST',credentials:'same-origin',headers:{'content-type':'application/json','x-ne-admin':'1'},
+body:JSON.stringify({action:'decide',id:${c.id},accept:ok,note:note})}).then(function(r){return r.json()}).then(function(d){
+var s=document.getElementById('state');s.hidden=false;s.className='st '+(d.ok&&ok?'confirmed':'rejected');s.textContent=d.message||d.error;
+if(d.ok)document.getElementById('btns').hidden=true;else b.disabled=false;});};});</script>
+</main></body></html>`;
+  return new Response(html, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-robots-tag": "noindex" } });
 }
 
 // ---- invoices and receipts -------------------------------------------------------
