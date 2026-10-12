@@ -95,8 +95,13 @@
     $('orders-view').hidden = view !== 'orders';
     $('customers-view').hidden = view !== 'customers';
     $('wa-view').hidden = view !== 'wa';
+    $('partners-view').hidden = view !== 'partners';
+    $('partner-view').hidden = view !== 'partner';
+    $('docs-view').hidden = view !== 'docs';
+    $('doc-edit').hidden = view !== 'doc';
+    var PARENT = { edit: 'list', partner: 'partners', doc: 'docs' };
     Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
-      tab.classList.toggle('on', tab.getAttribute('data-tab') === (view === 'edit' ? 'list' : view));
+      tab.classList.toggle('on', tab.getAttribute('data-tab') === (PARENT[view] || view));
     });
     window.scrollTo(0, 0);
   }
@@ -193,7 +198,7 @@
     el.className = 'tech ord ' + o.status;
     el.innerHTML = '<div class="head"><div><div class="st"></div><h3></h3></div><div class="tot"></div></div><dl></dl><ul></ul><div class="row-actions"></div>';
     el.querySelector('.st').className = 'st ' + o.status;
-    el.querySelector('.st').textContent = o.status + ' · ' + (o.channel === 'whatsapp' ? 'sent via WhatsApp' : 'sent on website');
+    el.querySelector('.st').textContent = o.status + ' · ' + (o.channel === 'partner' ? 'trade partner order' : o.channel === 'whatsapp' ? 'sent via WhatsApp' : 'sent on website');
     el.querySelector('h3').textContent = o.number + ' — ' + o.name;
     el.querySelector('.tot').textContent = money(o.total);
     var delivery = o.delivery === 'outside' ? 'Outside Nairobi: ' + o.town + ' (' + o.transport + ', customer pays)' : o.deliveryLabel;
@@ -210,7 +215,8 @@
     var ul = el.querySelector('ul');
     o.items.forEach(function (i) {
       var li = document.createElement('li');
-      li.textContent = i.qty + ' × ' + i.name + ' (' + i.model + ') — ' + money(i.qty * i.price);
+      li.textContent = i.qty + ' × ' + i.name + ' (' + i.model + ') — ' + money(i.qty * i.price) +
+        (i.requested ? '  · partner asked ' + money(i.requested) + ' each (' + (i.request || 'waiting — see Partners tab') + ')' : '');
       ul.appendChild(li);
     });
     var actions = el.querySelector('.row-actions');
@@ -225,6 +231,12 @@
     view.href = '/order/?n=' + encodeURIComponent(o.number) + '&k=' + encodeURIComponent(o.token);
     view.textContent = 'Open / PDF';
     actions.appendChild(view);
+    [['invoice', 'Invoice'], ['receipt', 'Receipt']].forEach(function (k) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = k[1];
+      b.addEventListener('click', function () { openDoc(k[0], { order: o }); });
+      actions.appendChild(b);
+    });
     (ORDER_NEXT[o.status] || []).forEach(function (step) {
       var b = document.createElement('button');
       b.type = 'button'; b.className = step[2]; b.textContent = step[1];
@@ -580,6 +592,350 @@
     loadCustomers().catch(function (err) { notice(err.message, true); });
   });
 
+
+  // ---- trade partners ---------------------------------------------------------
+  var partnerKinds = [];
+  var current = null;          // { partner, products } open in the partner view
+  var priceEdits = {};         // slug -> new price ('' = remove)
+
+  function loadPartners() {
+    return api('/api/admin/partners').then(function (data) {
+      partnerKinds = data.kinds;
+      var pending = data.partners.filter(function (p) { return p.status === 'pending'; }).length;
+      var waiting = pending + data.requests.length;
+      $('partners-badge').textContent = waiting;
+      $('partners-badge').hidden = !waiting;
+      $('partners-count').textContent = data.partners.length
+        ? data.partners.length + ' partners · ' + pending + ' waiting for approval'
+        : 'No partners yet. Share nashnaal.com/partners with the companies you supply.';
+      var list = $('partners-list');
+      list.textContent = '';
+      data.partners.forEach(function (p) { list.appendChild(partnerCard(p)); });
+      var req = $('requests');
+      req.textContent = '';
+      data.requests.forEach(function (r) { req.appendChild(requestRow(r)); });
+      $('requests-box').hidden = !data.requests.length;
+    });
+  }
+
+  function partnerCard(p) {
+    var el = document.createElement('article');
+    el.className = 'tech ' + p.status;
+    el.innerHTML = '<div class="st"></div><h3></h3><dl></dl><div class="row-actions"></div>';
+    el.querySelector('.st').className = 'st ' + p.status;
+    el.querySelector('.st').textContent = p.status + ' · ' + p.kind;
+    el.querySelector('h3').textContent = p.company;
+    var facts = [['Contact', p.contact], ['Phone', p.phone], ['Town', p.town], ['Google', p.email], ['Hikvision ID', p.hik_id], ['KRA PIN', p.kra_pin],
+      ['Pricing', (p.discount ? p.discount + '% off website' : 'Website prices') + (p.prices ? ' + ' + p.prices + ' agreed prices' : '')],
+      ['Bought', p.bought ? money(p.bought) : ''], ['Note', p.note], ['Applied', day(p.created_at)]];
+    var dl = el.querySelector('dl');
+    facts.forEach(function (f) {
+      if (!f[1]) return;
+      var dt = document.createElement('dt'); dt.textContent = f[0];
+      var dd = document.createElement('dd'); dd.textContent = f[1];
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    var actions = el.querySelector('.row-actions');
+    function btn(label, cls, fn) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = cls; b.textContent = label;
+      b.addEventListener('click', function () { b.disabled = true; fn(b); });
+      actions.appendChild(b);
+    }
+    if (p.status === 'pending') {
+      btn('Approve', 'ok', function (b) { setPartner(p.user_id, { status: 'approved' }, b); });
+      btn('Reject', 'danger', function (b) { setPartner(p.user_id, { status: 'rejected' }, b); });
+    }
+    btn('Prices & settings', 'chip', function (b) { b.disabled = false; openPartner(p.user_id); });
+    var digits = String(p.phone).replace(/[^0-9]/g, '').replace(/^0/, '254');
+    var wa = document.createElement('a');
+    wa.className = 'wa'; wa.target = '_blank'; wa.rel = 'noopener'; wa.textContent = 'WhatsApp';
+    wa.href = 'https://wa.me/' + digits + '?text=' + encodeURIComponent('Hi ' + p.contact.split(' ')[0] + ', this is NE (Nashnaal Electronics) about your trade partner account.');
+    actions.appendChild(wa);
+    return el;
+  }
+
+  function setPartner(id, fields, b) {
+    return api('/api/admin/partners', Object.assign({ action: 'update', id: id }, fields)).then(function (r) {
+      notice(r.message); return loadPartners();
+    }).catch(function (err) { notice(err.message, true); }).then(function () { if (b) b.disabled = false; });
+  }
+
+  function requestRow(r) {
+    var el = document.createElement('div');
+    el.className = 'req';
+    el.innerHTML = '<div><b></b><small></small></div><div class="row-actions"></div>';
+    el.querySelector('b').textContent = r.company + ' asks ' + money(r.requested) + ' for ' + r.model;
+    el.querySelector('small').textContent = r.qty + ' × ' + r.name + ' on ' + r.number + ' · their price now ' + money(r.price) + ' · website ' + money(r.retail) +
+      ' · ' + Math.round((1 - r.requested / r.retail) * 100) + '% off website';
+    [['Accept', 'ok', true], ['Decline', 'danger', false]].forEach(function (a) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = a[1]; b.textContent = a[0];
+      b.addEventListener('click', function () {
+        b.disabled = true;
+        api('/api/admin/partners', { action: 'decide', order_id: r.order_id, slug: r.slug, accept: a[2] }).then(function (res) {
+          notice(res.message); loadPartners(); loadOrders();
+        }).catch(function (err) { b.disabled = false; notice(err.message, true); });
+      });
+      el.querySelector('.row-actions').appendChild(b);
+    });
+    return el;
+  }
+
+  function openPartner(id) {
+    notice('');
+    return api('/api/admin/partners?id=' + id).then(function (data) {
+      current = data; priceEdits = {};
+      var p = data.partner;
+      $('pt-title').textContent = p.company;
+      $('pt-facts').textContent = [p.kind, p.contact, p.phone, p.town].filter(Boolean).join(' · ');
+      var kind = $('pt-kind'); kind.length = 0;
+      partnerKinds.forEach(function (k) { kind.add(new Option(k, k)); });
+      kind.value = p.kind;
+      $('pt-status').value = p.status;
+      $('pt-discount').value = p.discount;
+      $('pt-note').value = p.note || '';
+      var cat = $('pt-cat'); cat.length = 1;
+      Array.from(new Set(data.products.map(function (x) { return x.category; }))).sort().forEach(function (c) { cat.add(new Option(c, c)); });
+      renderPrices(); updateSavebar();
+      show('partner');
+    }).catch(function (err) { notice(err.message, true); });
+  }
+
+  function defaultPrice(x) { return Math.round(x.retail * (1 - (Number($('pt-discount').value) || 0) / 100)); }
+
+  function renderPrices() {
+    if (!current) return;
+    var q = $('pt-search').value.trim().toLowerCase(), cat = $('pt-cat').value, own = $('pt-own').checked;
+    var shown = current.products.filter(function (x) {
+      if (own && !x.own && !(x.slug in priceEdits)) return false;
+      if (cat && x.category !== cat) return false;
+      return !q || (x.model + ' ' + x.name).toLowerCase().indexOf(q) !== -1;
+    });
+    $('pt-count').textContent = shown.length + ' of ' + current.products.length + ' products' + (shown.length > 150 ? ' (first 150 shown, search to narrow)' : '');
+    var box = $('pt-prices');
+    box.textContent = '';
+    var head = document.createElement('div');
+    head.className = 'prow head';
+    head.innerHTML = '<span>Product</span><span class="r">Website</span><span class="r">Default for them</span><span class="r">Agreed price</span>';
+    box.appendChild(head);
+    shown.slice(0, 150).forEach(function (x) {
+      var row = document.createElement('div');
+      var edited = x.slug in priceEdits;
+      row.className = 'prow' + (x.own ? ' own' : '') + (edited ? ' dirty' : '');
+      row.innerHTML = '<div><b></b><small></small></div><span class="r web"></span><span class="r def"></span><input type="number" min="0" step="1" inputmode="numeric">';
+      row.querySelector('b').textContent = x.name;
+      row.querySelector('small').textContent = x.model + ' · ' + x.category;
+      row.querySelector('.web').textContent = money(x.retail);
+      row.querySelector('.def').textContent = money(defaultPrice(x));
+      var input = row.querySelector('input');
+      input.placeholder = 'default';
+      input.value = edited ? priceEdits[x.slug] : (x.own ? x.price : '');
+      input.addEventListener('input', function () {
+        var v = input.value.trim();
+        if ((x.own && Number(v) === x.price) || (!x.own && !v)) delete priceEdits[x.slug]; else priceEdits[x.slug] = v;
+        row.classList.toggle('dirty', x.slug in priceEdits);
+        updateSavebar();
+      });
+      box.appendChild(row);
+    });
+  }
+
+  function updateSavebar() {
+    var n = Object.keys(priceEdits).length;
+    $('pt-savebar').hidden = !n;
+    $('pt-changes').textContent = n + ' unsaved price change' + (n === 1 ? '' : 's');
+  }
+
+  $('pt-save').addEventListener('click', function () {
+    var b = this; b.disabled = true;
+    var prices = Object.keys(priceEdits).map(function (slug) { return { slug: slug, price: priceEdits[slug] === '' ? 0 : Number(priceEdits[slug]) }; });
+    api('/api/admin/partners', { action: 'prices', id: current.partner.id, prices: prices }).then(function (r) {
+      notice(r.message);
+      return openPartner(current.partner.id);
+    }).catch(function (err) { notice(err.message, true); }).then(function () { b.disabled = false; });
+  });
+  $('pt-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var b = this.querySelector('button'); b.disabled = true;
+    api('/api/admin/partners', { action: 'update', id: current.partner.id, status: $('pt-status').value, kind: $('pt-kind').value,
+      discount: Number($('pt-discount').value) || 0, note: $('pt-note').value }).then(function (r) {
+      notice(r.message); loadPartners(); return openPartner(current.partner.id);
+    }).catch(function (err) { notice(err.message, true); }).then(function () { b.disabled = false; });
+  });
+  $('pt-discount').addEventListener('input', renderPrices);
+  $('pt-search').addEventListener('input', renderPrices);
+  $('pt-cat').addEventListener('change', renderPrices);
+  $('pt-own').addEventListener('change', renderPrices);
+  $('partner-back').addEventListener('click', function () {
+    if (Object.keys(priceEdits).length && !window.confirm('Leave without saving your price changes?')) return;
+    show('partners'); loadPartners();
+  });
+
+  // ---- invoices and receipts ----------------------------------------------------
+  var docKind = 'invoice', docOrderId = null, docAgainst = '';
+
+  function loadDocs() {
+    var q = $('docs-search').value.trim();
+    return api('/api/admin/documents' + (q ? '?q=' + encodeURIComponent(q) : '')).then(function (data) {
+      $('docs-count').textContent = data.documents.length ? data.documents.length + ' documents' + (q ? ' found' : '') : (q ? 'Nothing found.' : 'No invoices or receipts yet.');
+      var list = $('docs-list'); list.textContent = '';
+      data.documents.forEach(function (d) { list.appendChild(docCard(d)); });
+    });
+  }
+
+  function docCard(d) {
+    var el = document.createElement('article');
+    el.className = 'tech doc-card' + (d.status === 'void' ? ' void' : '');
+    el.innerHTML = '<div><h3><span class="k"></span><span class="num"></span></h3><div class="meta"></div></div><div class="tot"></div><div class="row-actions"></div>';
+    el.querySelector('.k').className = 'k ' + d.kind;
+    el.querySelector('.k').textContent = d.status === 'void' ? 'void' : d.kind;
+    el.querySelector('.num').textContent = d.number + ' — ' + d.customer.name;
+    el.querySelector('.meta').textContent = day(d.created_at) + (d.customer.phone ? ' · ' + d.customer.phone : '') +
+      (d.kind === 'invoice' ? (d.balance ? ' · balance ' + money(d.balance) : ' · paid in full') : ' · received ' + money(d.paid) + (d.method ? ' by ' + d.method : '')) +
+      (d.against ? ' · for ' + d.against : '');
+    el.querySelector('.tot').textContent = money(d.total);
+    var actions = el.querySelector('.row-actions');
+    var open = document.createElement('a');
+    open.className = 'chip'; open.href = '/admin/doc/?id=' + d.id; open.target = '_blank'; open.rel = 'noopener'; open.textContent = 'Open / PDF';
+    actions.appendChild(open);
+    if (d.status !== 'void') {
+      if (d.kind === 'invoice' && d.balance) {
+        var rc = document.createElement('button'); rc.type = 'button'; rc.className = 'chip'; rc.textContent = 'Receipt for this';
+        rc.addEventListener('click', function () { openDoc('receipt', { doc: d }); });
+        actions.appendChild(rc);
+      }
+      var v = document.createElement('button'); v.type = 'button'; v.className = 'danger'; v.textContent = 'Void';
+      v.addEventListener('click', function () {
+        if (!window.confirm('Void ' + d.number + '? It stays in the list marked VOID; the number is not reused.')) return;
+        v.disabled = true;
+        api('/api/admin/documents', { action: 'void', id: d.id }).then(function (r) { notice(r.message); loadDocs(); })
+          .catch(function (err) { v.disabled = false; notice(err.message, true); });
+      });
+      actions.appendChild(v);
+    }
+    return el;
+  }
+
+  function productLabel(p) { return p.model.trim() + ' — ' + p.name; }
+
+  function addLine(line) {
+    line = line || {};
+    var row = document.createElement('div');
+    row.className = 'dline';
+    row.innerHTML = '<input class="nm" list="d-products" placeholder="Type a model or describe the item" maxlength="160"><input class="q" type="number" min="0" step="any" value="1" inputmode="decimal">' +
+      '<input class="p" type="number" min="0" step="1" inputmode="numeric" placeholder="Unit price"><span class="amt"></span><button type="button" class="x" aria-label="Remove line">&times;</button>';
+    var nm = row.querySelector('.nm'), q = row.querySelector('.q'), pr = row.querySelector('.p');
+    nm.value = line.name ? (line.model ? line.model + ' — ' + line.name : line.name) : '';
+    if (line.qty) q.value = line.qty;
+    if (line.price !== undefined) pr.value = line.price;
+    nm.addEventListener('change', function () {
+      var hit = products.filter(function (p) { return productLabel(p) === nm.value; })[0];
+      if (hit && !pr.value) pr.value = hit.price;
+      sumDoc();
+    });
+    [q, pr].forEach(function (i) { i.addEventListener('input', sumDoc); });
+    row.querySelector('.x').addEventListener('click', function () { row.remove(); sumDoc(); });
+    $('d-lines').appendChild(row);
+    sumDoc();
+  }
+
+  function readLines() {
+    return Array.prototype.map.call(document.querySelectorAll('#d-lines .dline'), function (row) {
+      var text = row.querySelector('.nm').value.trim();
+      var hit = products.filter(function (p) { return productLabel(p) === text; })[0];
+      var parts = hit ? null : text.match(/^(\S+) — (.+)$/);
+      return {
+        name: hit ? hit.name : parts ? parts[2] : text, model: hit ? hit.model.trim() : parts ? parts[1] : '',
+        qty: Number(row.querySelector('.q').value) || 0, price: Number(row.querySelector('.p').value) || 0,
+      };
+    }).filter(function (l) { return l.name && l.qty > 0; });
+  }
+
+  function sumDoc() {
+    var subtotal = 0;
+    Array.prototype.forEach.call(document.querySelectorAll('#d-lines .dline'), function (row) {
+      var a = (Number(row.querySelector('.q').value) || 0) * (Number(row.querySelector('.p').value) || 0);
+      row.querySelector('.amt').textContent = a ? money(Math.round(a)) : '';
+      subtotal += a;
+    });
+    subtotal = Math.round(subtotal);
+    var discount = Math.min(subtotal, Number($('d-discount').value) || 0);
+    var total = subtotal - discount;
+    var paid = docKind === 'receipt' ? Number($('d-paid').value) || 0 : Number($('d-paid-inv').value) || 0;
+    $('d-sum').innerHTML = '';
+    var lines = [['Subtotal', subtotal]];
+    if (discount) lines.push(['Discount', -discount]);
+    lines.push(['Total', total]);
+    if (paid) lines.push([docKind === 'receipt' ? 'Received' : 'Already paid', paid], ['Balance', Math.max(0, total - paid)]);
+    lines.forEach(function (l) {
+      var d = document.createElement('div');
+      d.innerHTML = l[0] === 'Total' ? '<b></b>' : '<span></span>';
+      d.firstChild.textContent = l[0] + ': ' + money(l[1]);
+      $('d-sum').appendChild(d);
+    });
+  }
+
+  // from: { order } or { doc } to prefill, or nothing for a blank document.
+  function openDoc(kind, from) {
+    from = from || {};
+    docKind = kind; docOrderId = null; docAgainst = '';
+    notice('');
+    $('doc-form').reset();
+    $('doc-form').className = kind === 'receipt' ? 'rct-mode' : 'inv-mode';
+    $('doc-title').textContent = kind === 'receipt' ? 'New receipt' : 'New invoice';
+    $('d-lines').textContent = '';
+    var dl = $('d-products');
+    if (!dl.options.length) products.forEach(function (p) { var o = document.createElement('option'); o.value = productLabel(p); dl.appendChild(o); });
+    try { $('d-notes').value = localStorage.getItem('ne_doc_notes_' + kind) || ''; } catch (e) { /* ignore */ }
+    var o = from.order, src = from.doc;
+    if (o) {
+      docOrderId = o.id; docAgainst = 'Order ' + o.number;
+      $('d-name').value = o.name; $('d-phone').value = o.phone || ''; $('d-email').value = o.email || '';
+      o.items.forEach(function (i) { addLine({ name: i.name, model: i.model, qty: i.qty, price: i.price }); });
+      if (o.tech_discount || o.reward_used) $('d-discount').value = (o.tech_discount || 0) + (o.reward_used || 0);
+      if (kind === 'receipt') { $('d-paid').value = o.total; $('d-against').value = o.number; }
+    } else if (src) {
+      docOrderId = src.order_id;
+      var c = src.customer;
+      $('d-name').value = c.name; $('d-phone').value = c.phone || ''; $('d-email').value = c.email || ''; $('d-pin').value = c.pin || ''; $('d-address').value = c.address || '';
+      src.items.forEach(addLine);
+      $('d-discount').value = src.discount || 0;
+      $('d-paid').value = src.balance; $('d-against').value = src.number;
+    } else {
+      addLine();
+    }
+    sumDoc();
+    show('doc');
+  }
+
+  $('d-add').addEventListener('click', function () { addLine(); });
+  ['d-discount', 'd-paid', 'd-paid-inv'].forEach(function (id) { $(id).addEventListener('input', sumDoc); });
+  $('doc-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var b = $('d-save'); b.disabled = true;
+    var doc = {
+      kind: docKind, order_id: docOrderId,
+      customer: { name: $('d-name').value, phone: $('d-phone').value, email: $('d-email').value, pin: $('d-pin').value, address: $('d-address').value },
+      items: readLines(), discount: Number($('d-discount').value) || 0, notes: $('d-notes').value,
+      paid: docKind === 'receipt' ? Number($('d-paid').value) || 0 : Number($('d-paid-inv').value) || 0,
+      due_date: $('d-due').value, method: $('d-method').value, reference: $('d-ref').value,
+      against: docKind === 'receipt' ? $('d-against').value : docAgainst,
+    };
+    try { localStorage.setItem('ne_doc_notes_' + docKind, doc.notes); } catch (err) { /* ignore */ }
+    api('/api/admin/documents', { action: 'create', document: doc }).then(function (r) {
+      notice(r.document.number + ' created.');
+      window.open('/admin/doc/?id=' + r.document.id, '_blank', 'noopener');
+      show('docs'); return loadDocs();
+    }).catch(function (err) { notice(err.message, true); }).then(function () { b.disabled = false; });
+  });
+  $('doc-back').addEventListener('click', function () { show('docs'); });
+  $('new-invoice').addEventListener('click', function () { openDoc('invoice'); });
+  $('new-receipt').addEventListener('click', function () { openDoc('receipt'); });
+  var docTimer = null;
+  $('docs-search').addEventListener('input', function () {
+    clearTimeout(docTimer);
+    docTimer = setTimeout(function () { loadDocs().catch(function (err) { notice(err.message, true); }); }, 300);
+  });
+
   Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
     tab.addEventListener('click', function () {
       notice('');
@@ -587,6 +943,8 @@
       show(view);
       if (view === 'tech') loadTechs().catch(function (err) { notice(err.message, true); });
       if (view === 'orders') loadOrders().catch(function (err) { notice(err.message, true); });
+      if (view === 'partners') loadPartners().catch(function (err) { notice(err.message, true); });
+      if (view === 'docs') loadDocs().catch(function (err) { notice(err.message, true); });
       if (view === 'wa') {
         loadChats().catch(function (err) { notice(err.message, true); });
         loadWhatsApp().catch(function (err) { notice(err.message, true); });
@@ -687,6 +1045,7 @@
   load().then(loadLog).catch(function (err) { notice(err.message, true); $('count').textContent = ''; });
   loadTechs().catch(function () {});  // fills the badge
   loadOrders().catch(function () {});
+  loadPartners().catch(function () {});  // fills the Partners badge
   loadChats().catch(function () {});  // fills the WhatsApp badge
   // The home-screen app opens straight on the chats (start_url /admin/#wa).
   if (location.hash === '#wa') { var waTab = document.querySelector('[data-tab=wa]'); if (waTab) waTab.click(); }

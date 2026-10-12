@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Partner Portal | NE Trade Partners</title>
+<link rel="icon" type="image/png" href="/assets/nashnaal-favicon.png">
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #F6F8FA; color: #10202E; }
+a { color: #086E9E; }
+[hidden] { display: none !important; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; background: #0F2A3D; color: #fff; }
+.top a { color: #fff; }
+.top .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; }
+.top img { height: 38px; width: auto; display: block; background: #fff; border-radius: 8px; padding: 3px; }
+.top nav { display: flex; gap: 16px; font-size: 14px; font-weight: 700; }
+main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 140px; }
+h1 { font-size: 26px; margin: 0 0 4px; }
+.sub { color: #4A5B68; margin: 0 0 22px; font-size: 15px; line-height: 1.55; }
+.card { background: #fff; border: 1px solid #E7ECF1; border-radius: 16px; padding: 22px; margin-bottom: 16px; }
+.card h2 { font-size: 18px; margin: 0 0 8px; }
+.card p { font-size: 15px; line-height: 1.6; color: #4A5B68; margin: 0 0 12px; }
+.narrow { max-width: 640px; }
+.status { display: inline-block; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; margin-bottom: 10px; background: #FFF6E5; color: #8A5300; }
+.status.rejected, .status.suspended { background: #FDECEC; color: #7F1D1D; }
+.btn { display: inline-block; border: 0; border-radius: 10px; padding: 12px 18px; font: inherit; font-weight: 800; font-size: 15px; cursor: pointer; text-decoration: none; }
+.btn.primary { background: #086E9E; color: #fff; }
+.btn.go { background: #22C35E; color: #fff; }
+.btn.ghost { background: #fff; color: #10202E; border: 1.5px solid #D5DEE5; }
+.btn:disabled { opacity: .6; cursor: wait; }
+form.apply { display: grid; gap: 14px; }
+label { display: grid; gap: 6px; font-size: 13.5px; font-weight: 700; }
+label small { font-weight: 400; color: #4A5B68; }
+input, select, textarea { font: inherit; font-weight: 400; padding: 11px 12px; border: 1.5px solid #D5DEE5; border-radius: 10px; width: 100%; background: #fff; color: #10202E; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: #086E9E; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.msg { padding: 12px 14px; border-radius: 10px; font-size: 14px; margin-bottom: 14px; background: #FDECEC; color: #7F1D1D; }
+.msg.ok { background: #E8F8EE; color: #14532D; }
+.hero { background: linear-gradient(135deg, #0F2A3D, #086E9E); color: #fff; border: 0; display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; }
+.hero h2 { color: #fff; margin: 0 0 4px; }
+.hero p { color: rgba(255,255,255,.88); margin: 0; }
+.hero .tag { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #9FD8F2; }
+.tools { display: flex; gap: 10px; flex-wrap: wrap; margin: 6px 0 12px; }
+.tools input[type=search] { flex: 1; min-width: 200px; }
+.tools select { width: auto; }
+.count { color: #4A5B68; font-size: 13.5px; margin: 0 0 8px; }
+table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #E7ECF1; border-radius: 14px; overflow: hidden; font-size: 14px; }
+th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: #4A5B68; padding: 10px; background: #F6F8FA; border-bottom: 1px solid #E7ECF1; }
+td { padding: 9px 10px; border-bottom: 1px solid #EEF2F5; vertical-align: middle; }
+tr.on td { background: #F1F9FD; }
+td.prod { display: flex; gap: 10px; align-items: center; min-width: 240px; }
+td.prod img { width: 44px; height: 44px; object-fit: contain; flex: none; }
+td.prod b { display: block; font-size: 13.5px; line-height: 1.35; }
+td.prod small { color: #4A5B68; font-size: 12px; }
+.n { text-align: right; white-space: nowrap; }
+.web { color: #8193A0; text-decoration: line-through; font-size: 13px; }
+.yours { font-weight: 800; }
+.own { display: block; font-size: 11px; font-weight: 800; color: #14532D; }
+td input { width: 92px; padding: 8px; text-align: right; }
+td input.qty { width: 70px; }
+.bar { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid #E7ECF1; box-shadow: 0 -6px 20px rgba(16,32,46,.08); padding: 12px 16px; }
+.bar .in { max-width: 1100px; margin: 0 auto; display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.bar b { font-size: 20px; }
+.bar small { display: block; color: #4A5B68; font-size: 12.5px; }
+.checkout { display: grid; gap: 14px; }
+.lines { list-style: none; margin: 0; padding: 0; font-size: 14px; }
+.lines li { display: flex; justify-content: space-between; gap: 10px; padding: 7px 0; border-bottom: 1px dashed #E7ECF1; }
+.lines li small { color: #8A5300; }
+.orders { display: grid; gap: 8px; }
+.order { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 10px 12px; border: 1px solid #E7ECF1; border-radius: 10px; text-decoration: none; color: #10202E; font-size: 14px; background: #fff; }
+.order small { display: block; color: #4A5B68; font-size: 12.5px; }
+.order .st { font-size: 11.5px; font-weight: 800; text-transform: uppercase; color: #086E9E; }
+@media (max-width: 760px) {
+  .two { grid-template-columns: 1fr; }
+  table, thead, tbody, tr, td { display: block; width: 100%; }
+  thead { display: none; }
+  table { border: 0; background: none; }
+  tr { background: #fff; border: 1px solid #E7ECF1; border-radius: 12px; margin-bottom: 8px; padding: 6px 4px; }
+  td { border: 0; padding: 5px 10px; }
+  td.n { text-align: left; display: flex; justify-content: space-between; align-items: center; }
+  td.n::before { content: attr(data-label); font-size: 12px; font-weight: 700; color: #4A5B68; }
+}
+</style>
+<script src="/partner/partner.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/partner/"><img src="/assets/nashnaal-logo-header.webp" alt="" width="38" height="38"> NE Partner Portal</a>
+  <nav><a href="/partners">Programme</a><a href="/auth/logout">Sign out</a></nav>
+</header>
+<main>
+  <p id="loading" class="sub">Loading&hellip;</p>
+  <div id="error" class="msg" hidden></div>
+
+  <!-- Not a partner yet: application -->
+  <section id="apply-view" class="narrow" hidden>
+    <h1>Become an NE Trade Partner</h1>
+    <p class="sub">For Hikvision Authorized Partners, DPP members, installation companies, system integrators and dealers. Once approved you see your own trade prices on the full Hikvision range and can order here directly.</p>
+    <div class="card" id="status-card" hidden></div>
+    <div class="card">
+      <h2>Your business</h2>
+      <form class="apply" id="apply-form">
+        <label>Company name<input name="company" required maxlength="100" autocomplete="organization"></label>
+        <div class="two">
+          <label>Contact person<input name="contact" required maxlength="80" autocomplete="name"></label>
+          <label>Phone / WhatsApp<input name="phone" required maxlength="30" inputmode="tel" autocomplete="tel" placeholder="0712 345 678"></label>
+        </div>
+        <div class="two">
+          <label>Town / area<input name="town" required maxlength="80" placeholder="e.g. Eastleigh, Nairobi"></label>
+          <label>Your business is a<select name="kind" required id="kind"></select></label>
+        </div>
+        <div class="two">
+          <label>Hikvision partner / DPP ID <small>(if you have one)</small><input name="hik_id" maxlength="60"></label>
+          <label>Company KRA PIN <small>(for invoices, optional)</small><input name="kra_pin" maxlength="20"></label>
+        </div>
+        <button class="btn primary" type="submit">Send application</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Approved partner -->
+  <section id="portal-view" hidden>
+    <div class="card hero">
+      <div><div class="tag" id="p-kind"></div><h2 id="p-company"></h2><p id="p-terms"></p></div>
+      <a class="btn go" href="https://wa.me/254737454891" target="_blank" rel="noopener">WhatsApp your account manager</a>
+    </div>
+
+    <div id="done" class="msg ok" hidden></div>
+
+    <h1>Your price list</h1>
+    <p class="sub">Enter quantities to order. If you need a better price on a line, type your target price: we'll review it and, once agreed, it becomes your price for that product from then on. It's optional.</p>
+    <div class="tools">
+      <input type="search" id="q" placeholder="Search model or name, e.g. DS-2CE10DF0T" autocomplete="off">
+      <select id="cat"><option value="">All categories</option></select>
+      <label style="display:flex;gap:6px;align-items:center;font-weight:700"><input type="checkbox" id="only-sel" style="width:auto"> Only my selection</label>
+    </div>
+    <p class="count" id="count"></p>
+    <table>
+      <thead><tr><th>Product</th><th class="n">Website</th><th class="n">Your price</th><th class="n">Qty</th><th class="n">Target price <small>(optional)</small></th><th class="n">Line total</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="count" id="more" hidden></p>
+
+    <div class="card checkout" id="checkout" hidden>
+      <h2>Review and send</h2>
+      <ul class="lines" id="lines"></ul>
+      <div class="two">
+        <label>Delivery<select id="delivery"><option value="pickup">Collect from NE, BBS Mall Eastleigh</option><option value="nairobi">Deliver in Nairobi</option><option value="outside">Send outside Nairobi</option></select></label>
+        <label id="town-wrap" hidden>Town<input id="town" maxlength="80"></label>
+      </div>
+      <label>Notes for NE <small>(project name, delivery time, anything else)</small><textarea id="notes" rows="3" maxlength="800"></textarea></label>
+      <div><button class="btn go" type="button" id="send">Send order</button> <button class="btn ghost" type="button" id="back">Keep editing</button></div>
+    </div>
+
+    <h2 style="margin:28px 0 10px">Your orders</h2>
+    <div class="orders" id="orders"></div>
+  </section>
+</main>
+
+<div class="bar" id="bar" hidden>
+  <div class="in">
+    <div><b id="bar-total">KES 0</b><small id="bar-sub"></small></div>
+    <button class="btn go" type="button" id="review">Review order</button>
+  </div>
+</div>
+</body>
+</html>
