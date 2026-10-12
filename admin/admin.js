@@ -231,6 +231,17 @@
     view.href = '/order/?n=' + encodeURIComponent(o.number) + '&k=' + encodeURIComponent(o.token);
     view.textContent = 'Open / PDF';
     actions.appendChild(view);
+    if (o.channel === 'partner' && o.status !== 'cancelled') {
+      var credit = document.createElement('button');
+      credit.type = 'button'; credit.className = 'chip'; credit.textContent = 'Put on account (credit)';
+      credit.addEventListener('click', function () {
+        if (!window.confirm('Add ' + money(o.total) + ' for ' + o.number + ' to this partner\'s amount due?')) return;
+        credit.disabled = true;
+        api('/api/admin/partners', { action: 'charge_order', order_id: o.id }).then(function (r) { notice(r.message); loadPartners(); })
+          .catch(function (err) { credit.disabled = false; notice(err.message, true); });
+      });
+      actions.appendChild(credit);
+    }
     [['invoice', 'Invoice'], ['receipt', 'Receipt']].forEach(function (k) {
       var b = document.createElement('button');
       b.type = 'button'; b.className = 'chip'; b.textContent = k[1];
@@ -602,7 +613,11 @@
     return api('/api/admin/partners').then(function (data) {
       partnerKinds = data.kinds;
       var pending = data.partners.filter(function (p) { return p.status === 'pending'; }).length;
-      var waiting = pending + data.requests.length;
+      var waiting = pending + data.requests.length + data.payments.length;
+      var pays = $('payments');
+      pays.textContent = '';
+      data.payments.forEach(function (x) { pays.appendChild(paymentRow(x)); });
+      $('payments-box').hidden = !data.payments.length;
       $('partners-badge').textContent = waiting;
       $('partners-badge').hidden = !waiting;
       $('partners-count').textContent = data.partners.length
@@ -627,6 +642,7 @@
     el.querySelector('h3').textContent = p.company;
     var facts = [['Contact', p.contact], ['Phone', p.phone], ['Town', p.town], ['Google', p.email], ['Hikvision ID', p.hik_id], ['KRA PIN', p.kra_pin],
       ['Pricing', (p.discount ? p.discount + '% off website' : 'Website prices') + (p.prices ? ' + ' + p.prices + ' agreed prices' : '')],
+      ['Amount due', p.balance > 0 ? money(p.balance) : p.balance < 0 ? 'In credit ' + money(-p.balance) : ''],
       ['Bought', p.bought ? money(p.bought) : ''], ['Note', p.note], ['Applied', day(p.created_at)]];
     var dl = el.querySelector('dl');
     facts.forEach(function (f) {
@@ -690,10 +706,95 @@
     return el;
   }
 
-  function openPartner(id) {
+
+  function accountApi(body, b) {
+    if (b) b.disabled = true;
+    return api('/api/admin/partners', body).then(function (r) {
+      notice(r.message); loadPartners();
+      if (current && !$('partner-view').hidden) return openPartner(current.partner.id, true);
+    }).catch(function (err) { notice(err.message, true); }).then(function () { if (b) b.disabled = false; });
+  }
+
+  function proofLink(id) {
+    var a = document.createElement('a');
+    a.className = 'proof chip'; a.href = '/api/partner/proof?id=' + id; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'View screenshot';
+    return a;
+  }
+
+  function paymentRow(x) {
+    var el = document.createElement('div');
+    el.className = 'req';
+    el.innerHTML = '<div><b></b><small></small></div><div class="row-actions"></div>';
+    el.querySelector('b').textContent = x.company + ' paid ' + money(x.amount) + ' by ' + x.method;
+    el.querySelector('small').textContent = ['P-' + x.id, x.reference ? 'code ' + x.reference : 'no code', 'paid ' + day(x.paid_on + ' 00:00:00'), x.description, 'reported ' + day(x.created_at)].filter(Boolean).join(' · ');
+    var acts = el.querySelector('.row-actions');
+    if (x.has_proof) acts.appendChild(proofLink(x.id));
+    [['Confirm', 'ok', true], ['Not received', 'danger', false]].forEach(function (a) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = a[1]; b.textContent = a[0];
+      b.addEventListener('click', function () {
+        var note = '';
+        if (!a[2]) { note = window.prompt('Why? The partner sees this note (e.g. "Not found in M-Pesa statement").', 'Not found in our account'); if (note === null) return; }
+        accountApi({ action: 'decide_payment', entry_id: x.id, accept: a[2], note: note }, b);
+      });
+      acts.appendChild(b);
+    });
+    return el;
+  }
+
+  function renderAccount(a) {
+    var due = $('ac-due');
+    due.textContent = a.balance < 0 ? 'In credit ' + money(-a.balance) : money(a.balance);
+    due.parentNode.classList.toggle('clear', a.balance <= 0);
+    $('ac-pending').textContent = a.pending ? money(a.pending) + ' reported, waiting for you to confirm' : '';
+    var box = $('ac-statement');
+    box.textContent = '';
+    if (!a.entries.length) { box.innerHTML = '<p class="hint">No entries yet. Add an amount owed when this partner takes goods on credit.</p>'; return; }
+    a.entries.forEach(function (e) {
+      var row = document.createElement('div');
+      row.className = 'ent' + (e.status === 'rejected' || e.status === 'void' ? ' muted' : '');
+      row.innerHTML = '<div><b></b><small></small></div><div class="amt"></div><div class="row-actions"></div>';
+      row.querySelector('b').textContent = e.kind === 'charge' ? (e.description || 'Goods on credit') : 'Payment by ' + (e.method || '—') + ' (P-' + e.id + ')';
+      row.querySelector('small').textContent = [day(e.paid_on ? e.paid_on + ' 00:00:00' : e.created_at), e.reference ? 'code ' + e.reference : '', e.kind === 'payment' && e.description ? e.description : '',
+        e.by_partner ? 'reported by partner' : '', { pending: 'WAITING FOR YOU', rejected: 'not received', void: 'voided' }[e.status] || '', e.note ? 'note: ' + e.note : '',
+        e.status === 'confirmed' ? 'balance ' + money(e.running) : ''].filter(Boolean).join(' · ');
+      var amt = row.querySelector('.amt');
+      amt.textContent = (e.kind === 'payment' ? '− ' : '+ ') + money(e.amount);
+      if (e.kind === 'payment') amt.className = 'amt pay';
+      var acts = row.querySelector('.row-actions');
+      if (e.has_proof) acts.appendChild(proofLink(e.id));
+      if (e.status === 'pending') {
+        var ok = document.createElement('button'); ok.type = 'button'; ok.className = 'ok'; ok.textContent = 'Confirm';
+        ok.addEventListener('click', function () { accountApi({ action: 'decide_payment', entry_id: e.id, accept: true }, ok); });
+        acts.appendChild(ok);
+      }
+      if (e.status === 'confirmed') {
+        var v = document.createElement('button'); v.type = 'button'; v.className = 'danger'; v.textContent = 'Void';
+        v.addEventListener('click', function () {
+          var note = window.prompt('Void this entry? It stays on the statement, crossed out. Reason (the partner sees it):', 'Entered by mistake');
+          if (note === null) return;
+          accountApi({ action: 'void_entry', entry_id: e.id, note: note }, v);
+        });
+        acts.appendChild(v);
+      }
+      box.appendChild(row);
+    });
+  }
+
+  $('ac-charge').addEventListener('submit', function (e) {
+    e.preventDefault();
+    accountApi({ action: 'charge', id: current.partner.id, amount: Number($('ac-c-amount').value), ref: $('ac-c-ref').value, description: $('ac-c-desc').value }, this.querySelector('button'))
+      .then(function () { $('ac-charge').reset(); });
+  });
+  $('ac-pay').addEventListener('submit', function (e) {
+    e.preventDefault();
+    accountApi({ action: 'payment', id: current.partner.id, amount: Number($('ac-p-amount').value), method: $('ac-p-method').value, reference: $('ac-p-ref').value, paid_on: $('ac-p-date').value }, this.querySelector('button'))
+      .then(function () { $('ac-pay').reset(); });
+  });
+
+  function openPartner(id, keepScroll) {
     notice('');
     return api('/api/admin/partners?id=' + id).then(function (data) {
-      current = data; priceEdits = {};
+      current = data; if (!keepScroll) priceEdits = {};
       var p = data.partner;
       $('pt-title').textContent = p.company;
       $('pt-facts').textContent = [p.kind, p.contact, p.phone, p.town].filter(Boolean).join(' · ');
@@ -706,7 +807,8 @@
       var cat = $('pt-cat'); cat.length = 1;
       Array.from(new Set(data.products.map(function (x) { return x.category; }))).sort().forEach(function (c) { cat.add(new Option(c, c)); });
       renderPrices(); updateSavebar();
-      show('partner');
+      renderAccount(data.account);
+      if (!keepScroll) show('partner');
     }).catch(function (err) { notice(err.message, true); });
   }
 

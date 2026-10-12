@@ -14,6 +14,9 @@
   var PAGE = 120;
   var STATUS = { new: 'Pending', confirmed: 'Confirmed', paid: 'Paid', delivered: 'Delivered', cancelled: 'Cancelled' };
   var STEPS = ['new', 'confirmed', 'paid', 'delivered'];
+  var TABS = ['order', 'prices', 'orders', 'account'];
+  var proof = null;       // { dataUrl, file } chosen in the payment form
+  var lastPayment = null; // details of the payment just submitted, for sharing
 
   function money(n) { return 'KES ' + Math.round(n).toLocaleString('en-KE'); }
   function day(sql) { return new Date(String(sql).replace(' ', 'T') + 'Z').toLocaleDateString('en-KE', { day: 'numeric', month: 'short', year: 'numeric' }); }
@@ -68,8 +71,8 @@
   // ---- tabs --------------------------------------------------------------------
   function tab() {
     var name = (location.hash || '#order').slice(1);
-    if (['order', 'prices', 'orders'].indexOf(name) === -1) name = 'order';
-    ['order', 'prices', 'orders'].forEach(function (t) { $('tab-' + t).hidden = t !== name; });
+    if (TABS.indexOf(name) === -1) name = 'order';
+    TABS.forEach(function (t) { $('tab-' + t).hidden = t !== name; });
     Array.prototype.forEach.call(document.querySelectorAll('.ptabs a'), function (a) { a.classList.toggle('on', a.getAttribute('data-tab') === name); });
     updateBar();
   }
@@ -332,11 +335,109 @@
     });
   }
 
+
+  // ---- 4. account and payments ---------------------------------------------
+  function renderAccount() {
+    var a = data.account || { balance: 0, pending: 0, entries: [], methods: [] };
+    var due = $('a-due').parentNode;
+    $('a-due').textContent = money(Math.max(0, a.balance));
+    due.classList.toggle('clear', a.balance <= 0);
+    $('a-due-note').textContent = a.balance < 0 ? 'You have ' + money(-a.balance) + ' in credit with us.' : a.balance > 0 ? 'Owed to NE Falcon Apex Commerce Limited.' : 'Nothing owed. Thank you!';
+    $('a-pending').textContent = money(a.pending);
+    var sel = $('pay-method');
+    if (!sel.length) a.methods.forEach(function (m) { sel.add(new Option(m, m)); });
+    var box = $('statement');
+    box.textContent = '';
+    if (!a.entries.length) { box.appendChild(el('p', 'sub', 'No account entries yet.')); return; }
+    a.entries.forEach(function (e) {
+      var row = el('div', 'entry' + (e.status === 'rejected' || e.status === 'void' ? ' muted' : ''));
+      var info = el('div', '', e.kind === 'charge' ? (e.description || 'Goods on credit') : 'Payment' + (e.method ? ' by ' + e.method : ''));
+      var bits = [day(e.paid_on ? e.paid_on + ' 00:00:00' : e.created_at)];
+      if (e.kind === 'payment') bits.push('P-' + e.id);
+      if (e.reference) bits.push('code ' + e.reference);
+      if (e.ref && e.kind === 'charge') bits.push(e.ref);
+      if (e.kind === 'payment' && e.description) bits.push(e.description);
+      if (e.note) bits.push('NE: ' + e.note);
+      info.appendChild(el('small', '', bits.join(' · ')));
+      if (e.has_proof) {
+        var link = el('a', '', 'View proof');
+        link.href = '/api/partner/proof?id=' + e.id; link.target = '_blank'; link.rel = 'noopener';
+        info.appendChild(link);
+      }
+      var right = el('div');
+      right.appendChild(el('div', 'amt' + (e.kind === 'payment' ? ' pay' : ''), (e.kind === 'payment' ? '− ' : '+ ') + money(e.amount)));
+      var stLabel = { pending: 'Awaiting confirmation', confirmed: e.kind === 'payment' ? 'Confirmed' : 'Owed', rejected: 'Not received', void: 'Cancelled' }[e.status];
+      right.appendChild(el('span', 'st ' + (e.status === 'confirmed' ? 'accepted' : e.status === 'pending' ? '' : 'declined'), stLabel));
+      row.appendChild(info); row.appendChild(right);
+      row.appendChild(el('div', 'run', e.status === 'confirmed' ? 'Balance ' + money(e.running) : ''));
+      box.appendChild(row);
+    });
+  }
+
+  function shrink(file) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.onload = function () {
+        var scale = Math.min(1, 1600 / Math.max(img.width, img.height));
+        var c = document.createElement('canvas');
+        c.width = Math.round(img.width * scale); c.height = Math.round(img.height * scale);
+        var ctx = c.getContext('2d');
+        ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
+        ctx.drawImage(img, 0, 0, c.width, c.height);
+        resolve(c.toDataURL('image/jpeg', 0.78));
+      };
+      img.onerror = function () { reject(new Error('That file is not an image we can read. Try a JPG or PNG screenshot.')); };
+      // A data: URL, not a blob: URL — the site's security policy only allows data: images.
+      var reader = new FileReader();
+      reader.onload = function () { img.src = reader.result; };
+      reader.onerror = img.onerror;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function payText(p) {
+    return 'Hi NE, this is ' + data.partner.company + '. I have paid ' + money(p.amount) + ' by ' + p.method +
+      (p.reference ? ' (code ' + p.reference + ')' : '') + ' on ' + day(p.paid_on + ' 00:00:00') + '. Payment ' + p.number + ' is in my partner portal.' +
+      (p.note ? ' Note: ' + p.note : '');
+  }
+
+  function share() {
+    var p = lastPayment;
+    var text = payText(p);
+    var wa = 'https://wa.me/254737454891?text=' + encodeURIComponent(text);
+    // On phones, share the screenshot itself so it arrives in WhatsApp with the message.
+    if (p.file && navigator.canShare && navigator.canShare({ files: [p.file] })) {
+      navigator.share({ files: [p.file], text: text }).catch(function (e) { if (e.name !== 'AbortError') location.href = wa; });
+    } else {
+      window.open(wa, '_blank', 'noopener');
+    }
+  }
+
+  function submitPayment(e) {
+    e.preventDefault();
+    var f = e.target, b = f.querySelector('button');
+    var body = { action: 'payment', amount: Number(f.elements.amount.value), method: f.elements.method.value,
+      reference: f.elements.reference.value, paid_on: f.elements.paid_on.value, note: f.elements.note.value, proof: proof ? proof.dataUrl : null };
+    b.disabled = true; error('');
+    api(body).then(function (r) {
+      lastPayment = { number: r.number, amount: body.amount, method: body.method, reference: body.reference.toUpperCase(),
+        paid_on: body.paid_on || new Date().toISOString().slice(0, 10), note: body.note, file: proof ? proof.file : null };
+      f.reset(); proof = null; $('pay-preview').hidden = true; $('pay-date').value = new Date().toISOString().slice(0, 10);
+      $('pay-card').hidden = true; $('pay-sent').hidden = false;
+      $('sent-title').textContent = 'Payment ' + r.number + ' submitted';
+      $('sent-text').textContent = money(lastPayment.amount) + ' by ' + lastPayment.method + ' is now on your statement as "Awaiting confirmation". ' +
+        'Send it to us on WhatsApp so we can confirm it quickly' + (lastPayment.file ? ' (the screenshot goes with it).' : '.');
+      return load();
+    }).catch(function (err) { error(err.message); }).then(function () { b.disabled = false; });
+  }
+
   function badges() {
     var waiting = (data.requests || []).filter(function (r) { return r.status === 'pending'; }).length;
     $('b-prices').textContent = waiting; $('b-prices').hidden = !waiting;
     var open = (data.orders || []).filter(function (o) { return o.status === 'new' || o.status === 'confirmed'; }).length;
     $('b-orders').textContent = open; $('b-orders').hidden = !open;
+    var owed = data.account ? data.account.balance : 0;
+    $('b-account').textContent = owed > 0 ? money(owed) : ''; $('b-account').hidden = !(owed > 0);
   }
 
   function showPortal() {
@@ -356,7 +457,7 @@
     if ($('cat').length === 1) {
       Array.from(new Set(products.map(function (x) { return x.category; }))).sort().forEach(function (c) { $('cat').add(new Option(c, c)); });
     }
-    renderList(); renderAsks(); renderHistory(); renderOrders(); badges(); tab();
+    renderList(); renderAsks(); renderHistory(); renderOrders(); renderAccount(); badges(); tab();
   }
 
   function load() {
@@ -383,6 +484,20 @@
   $('send').addEventListener('click', send);
   $('delivery').addEventListener('change', function () { $('town-wrap').hidden = $('delivery').value !== 'outside'; });
   $('rq-q').addEventListener('input', renderPicks);
+  $('pay-date').value = new Date().toISOString().slice(0, 10);
+  $('pay-form').addEventListener('submit', submitPayment);
+  $('pay-file').addEventListener('change', function () {
+    var file = this.files[0];
+    proof = null; $('pay-preview').hidden = true;
+    if (!file) return;
+    shrink(file).then(function (dataUrl) {
+      proof = { dataUrl: dataUrl, file: file };
+      $('pay-preview').src = dataUrl; $('pay-preview').hidden = false;
+    }).catch(function (err) { error(err.message); });
+  });
+  $('share-btn').addEventListener('click', share);
+  $('another-btn').addEventListener('click', function () { $('pay-sent').hidden = true; $('pay-card').hidden = false; });
+  $('print-stmt').addEventListener('click', function () { window.print(); });
   $('rq-send').addEventListener('click', sendAsks);
   Array.prototype.forEach.call(document.querySelectorAll('#o-filter .chip'), function (chip) {
     chip.addEventListener('click', function () {

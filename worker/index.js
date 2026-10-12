@@ -19,6 +19,7 @@ const WELCOME_COOKIE = "ne_welcome";
 import * as wa from "./whatsapp.js";
 import * as partners from "./partners.js";
 import * as docs from "./documents.js";
+import * as accounts from "./accounts.js";
 
 // Runs a side job (e.g. a WhatsApp message) after the response, without failing the request.
 function later(ctx, job) {
@@ -44,6 +45,7 @@ export default {
       if (path === "/account" || path.startsWith("/account/")) return await accountPage(request, env, url);
       if (path === "/partner" || path.startsWith("/partner/")) return await accountPage(request, env, url, "/partner/");
       if (path === "/api/partner") return await partnerApi(request, env, url, ctx);
+      if (path === "/api/partner/proof") return await partnerProof(request, env, url);
       if (path === "/api/account/application") return await accountApplication(request, env, url);
       if (path === "/api/account/summary") return await accountSummary(request, env);
       if (path === "/api/orders") return await createOrder(request, env, url, ctx);
@@ -924,12 +926,20 @@ async function partnerApi(request, env, url, ctx) {
   const user = await currentUser(request, env);
   if (!user) return json({ error: "Please sign in first." }, 401);
   const catalogue = await priceList(env, url.origin);
-  if (request.method === "GET") return json(await partners.portal(env, user, catalogue));
+  if (request.method === "GET") {
+    const out = await partners.portal(env, user, catalogue);
+    if (out.partner && out.partner.status === "approved") out.account = await accounts.account(env, user.id);
+    return json(out);
+  }
   if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
   if (request.headers.get("origin") !== url.origin) return json({ error: "Bad request origin." }, 403);
   const body = await request.json();
   if (body.action === "apply") {
     const out = await partners.apply(env, user, body);
+    return json(out, out.error ? 400 : 200);
+  }
+  if (body.action === "payment") {
+    const out = await accounts.reportPayment(env, user, body);
     return json(out, out.error ? 400 : 200);
   }
   if (body.action === "request_prices") {
@@ -955,19 +965,37 @@ async function partnerApi(request, env, url, ctx) {
   return json({ ok: true, number, token, total: o.subtotal, requests, viewUrl: `${siteOrigin(env, url)}/order/?n=${number}&k=${token}` });
 }
 
+// A payment screenshot: partners see their own, admins see all.
+async function partnerProof(request, env, url) {
+  const user = await currentUser(request, env);
+  if (!user) return json({ error: "Please sign in first." }, 401);
+  const res = await accounts.proof(env, Number(url.searchParams.get("id")), isAdmin(env, user) ? null : user.id);
+  return res || json({ error: "Not found." }, 404);
+}
+
 async function adminPartners(request, env, url, admin) {
   const catalogue = await priceList(env, url.origin);
   if (request.method === "GET") {
     const id = Number(url.searchParams.get("id"));
     if (id) {
       const detail = await partners.adminDetail(env, id, catalogue);
-      return detail ? json(detail) : json({ error: "Partner not found." }, 404);
+      if (!detail) return json({ error: "Partner not found." }, 404);
+      detail.account = await accounts.account(env, id);
+      return json(detail);
     }
-    return json(await partners.adminList(env, catalogue));
+    const [list, bal, payments] = await Promise.all([partners.adminList(env, catalogue), accounts.balances(env), accounts.pendingPayments(env)]);
+    list.partners.forEach((p) => { p.balance = bal[p.user_id] ? bal[p.user_id].balance : 0; });
+    list.payments = payments;
+    return json(list);
   }
   const body = await request.json();
   let out;
-  if (body.action === "update") {
+  if (["charge", "charge_order", "payment", "decide_payment", "void_entry"].includes(body.action)) {
+    out = await accounts.adminAction(env, body, admin);
+    if (out.ok) {
+      await env.DB.prepare("INSERT INTO audit_log (user_id, action, detail) VALUES (?1, 'partner_account', ?2)").bind(admin.id, out.message).run();
+    }
+  } else if (body.action === "update") {
     out = await partners.adminUpdate(env, Number(body.id), body);
     if (out.ok) {
       await env.DB.prepare("INSERT INTO audit_log (user_id, action, detail) VALUES (?1, 'partner', ?2)")

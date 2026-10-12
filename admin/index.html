@@ -156,6 +156,11 @@
   </section>
 
   <section id="partners-view" hidden>
+    <div class="req-box pay-box" id="payments-box" hidden>
+      <h2>Payments to confirm</h2>
+      <p class="hint">Partners reported these payments. Check they reached your M-Pesa or bank, then confirm. Confirmed payments reduce what they owe.</p>
+      <div id="payments" class="tech-list"></div>
+    </div>
     <div class="req-box" id="requests-box" hidden>
       <h2>Price requests from partners</h2>
       <p class="hint">Agree at their price, or change the amount first to make a counter-offer. An agreed price becomes this partner's price for that product (and reprices the order line, for target prices typed on an order).</p>
@@ -179,6 +184,28 @@
       <label>Private note <small>(only you see this)</small><input id="pt-note" maxlength="500"></label>
       <div class="actions"><button class="primary" type="submit">Save partner</button></div>
     </form>
+    <h2 class="wa-h">Account</h2>
+    <div class="acct">
+      <div class="acct-due"><span>Amount due</span><b id="ac-due">KES 0</b><small id="ac-pending"></small></div>
+      <form id="ac-charge" class="mini">
+        <h3>Add amount owed</h3>
+        <label>Amount (KES)<input id="ac-c-amount" type="number" min="1" step="1" inputmode="numeric" required></label>
+        <label>For <small>(order / invoice no.)</small><input id="ac-c-ref" maxlength="40" placeholder="NE-1008 or INV-1001"></label>
+        <label>Description <small>(optional)</small><input id="ac-c-desc" maxlength="200" placeholder="Goods on credit"></label>
+        <button class="primary" type="submit">Add to account</button>
+      </form>
+      <form id="ac-pay" class="mini">
+        <h3>Record a payment received</h3>
+        <label>Amount (KES)<input id="ac-p-amount" type="number" min="1" step="1" inputmode="numeric" required></label>
+        <label>Paid by<select id="ac-p-method"><option>M-Pesa</option><option>Bank transfer</option><option>Cash</option><option>Cheque</option><option>Card</option></select></label>
+        <label>Transaction code<input id="ac-p-ref" maxlength="60"></label>
+        <label>Date paid<input id="ac-p-date" type="date"></label>
+        <button class="ok" type="submit">Record payment</button>
+      </form>
+    </div>
+    <h3 class="dh">Statement</h3>
+    <div id="ac-statement" class="tech-list"></div>
+
     <h2 class="wa-h">Prices for this partner</h2>
     <p class="hint">Blank = website price less the default discount. Type a price to fix an agreed price for this partner only. Clear it to go back to the default.</p>
     <div class="toolbar" style="margin:10px 0">
