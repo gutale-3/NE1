@@ -68,10 +68,23 @@ export const TEMPLATES = [
   },
   // Trade partner alerts to the owner.
   {
-    name: "ne_payment_reported",
-    body: "Payment reported: {{1}} says they paid KES {{2}} by {{3}} (code {{4}}) on {{5}}. Please check your account, then confirm it in the Partners tab of the NE admin.",
-    example: ["SecureLink Systems Ltd", "20,000", "M-Pesa", "SJK12AB34C", "12 Oct 2026"],
-    button: { type: "URL", text: "Check payment", url: `${SITE}/admin/#partners` }, footer: "Nashnaal Electronics website",
+    name: "ne_partner_payment",
+    body: "Payment reported by {{1}} (partner {{2}}, phone {{3}}): KES {{4}} by {{5}}, code {{6}}, paid {{7}}. Amount due before this payment: KES {{8}}. Please check your M-Pesa or bank, then confirm it.",
+    example: ["SecureLink Systems Ltd", "NEP-003", "0722 111 222", "20,000", "M-Pesa", "SJK12AB34C", "12 Oct 2026", "50,800"],
+    button: { type: "URL", text: "Check and confirm", url: `${SITE}/admin/payment/{{1}}`, example: [`${SITE}/admin/payment/12`] },
+    footer: "Nashnaal Electronics website",
+  },
+  {
+    name: "ne_payment_overdue",
+    body: "Hi {{1}}, a friendly reminder from Nashnaal Electronics: KES {{2}} on your trade account is past your {{3}}-day payment terms. Your total amount due is KES {{4}}. Please pay by M-Pesa or bank and report it in your partner portal so we can update your statement.",
+    example: ["Peter", "38,800", "30", "50,800"],
+    button: { type: "URL", text: "View statement", url: `${SITE}/partner/#account` },
+  },
+  {
+    name: "ne_monthly_statement",
+    body: "Hi {{1}}, here is your Nashnaal Electronics trade account summary for {{2}}. Payments received: KES {{3}}. Amount due now: KES {{4}}. Thank you for your business. Open your partner portal for the full statement.",
+    example: ["Peter", "October 2026", "20,000", "30,800"],
+    button: { type: "URL", text: "View statement", url: `${SITE}/partner/#account` },
   },
   {
     name: "ne_partner_applied",
@@ -221,11 +234,27 @@ const DELIVERY = { pickup: "pick-up at the showroom", nairobi: "Nairobi (free)",
 // order: a row from the orders table (number, view_token, name, phone, total, consent, ...)
 // ---- trade partner alerts to the owner ------------------------------------------
 
-export async function paymentReported(env, company, p) {
+// p: { id, amount, method, reference, paid_on }; dueBefore: amount owed before this payment.
+export async function paymentReported(env, partner, code, p, dueBefore) {
   if (!env.OWNER_WHATSAPP) return;
-  await sendTemplate(env, env.OWNER_WHATSAPP, "ne_payment_reported",
-    [company.slice(0, 80), kes(p.amount), p.method, p.reference || "none given", day(p.paid_on + " 00:00:00")],
-    { dedupe: `payment:${p.id}` });
+  await sendTemplate(env, env.OWNER_WHATSAPP, "ne_partner_payment",
+    [partner.company.slice(0, 80), code, partner.phone, kes(p.amount), p.method, p.reference || "none given",
+      day(p.paid_on + " 00:00:00"), kes(Math.max(0, dueBefore))],
+    { dedupe: `payment:${p.id}`, buttonParam: String(p.id) });
+}
+
+// Partner reminders (cron). a: the partner's account summary from accounts.owing().
+export async function overdueReminder(env, a, force) {
+  const week = Math.floor(Date.now() / (7 * 86400000));
+  return sendTemplate(env, a.partner.phone, "ne_payment_overdue",
+    [first(a.partner.contact), kes(a.overdue), String(a.terms_days), kes(a.balance)],
+    { userId: a.partner.user_id, dedupe: force ? null : `overdue:${a.partner.user_id}:${week}` });
+}
+
+export async function monthlyStatement(env, a, period, paid, force) {
+  return sendTemplate(env, a.partner.phone, "ne_monthly_statement",
+    [first(a.partner.contact), period, kes(paid), kes(a.balance)],
+    { userId: a.partner.user_id, dedupe: force ? null : `statement:${a.partner.user_id}:${period}` });
 }
 
 export async function partnerApplied(env, a) {

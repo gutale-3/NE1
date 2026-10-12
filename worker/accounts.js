@@ -81,7 +81,56 @@ export async function account(env, userId) {
     return { ...e, by_partner: e.created_by === "partner", created_by: undefined, running };
   });
   const pending = results.filter((e) => e.status === "pending").reduce((n, e) => n + e.amount, 0);
-  return { balance: running, pending, entries: entries.reverse(), methods: METHODS };
+  const partner = await partnerOf(env, userId);
+  return { balance: running, pending, entries: entries.reverse(), methods: METHODS, ...credit(partner, results, running) };
+}
+
+// Credit position: limit, what is still available, and what is overdue under the
+// partner's payment terms (payments clear the oldest charges first).
+function credit(partner, rows, balance) {
+  const limit = partner && partner.credit_limit != null ? partner.credit_limit : null;
+  const terms = partner && partner.terms_days ? partner.terms_days : null;
+  let overdue = 0;
+  let oldestDue = null;
+  if (terms && balance > 0) {
+    const cutoff = new Date(Date.now() - terms * 86400000).toISOString().replace("T", " ").slice(0, 19);
+    const confirmed = rows.filter((e) => e.status === "confirmed");
+    const paid = confirmed.filter((e) => e.kind === "payment").reduce((n, e) => n + e.amount, 0);
+    let left = paid;
+    for (const c of confirmed.filter((e) => e.kind === "charge")) {   // oldest first
+      const open = Math.max(0, c.amount - left);
+      left = Math.max(0, left - c.amount);
+      if (open > 0 && c.created_at <= cutoff) {
+        overdue += open;
+        if (!oldestDue) oldestDue = c.created_at;
+      }
+    }
+  }
+  return {
+    credit_limit: limit, terms_days: terms, overdue, oldest_due: oldestDue,
+    available: limit == null ? null : Math.max(0, limit - Math.max(0, balance)),
+    over_limit: limit != null && balance > limit,
+  };
+}
+
+// Everyone with money owed, for reminders and monthly statements.
+export async function owing(env) {
+  await ensureTables(env);
+  const { results } = await env.DB.prepare(
+    `SELECT user_id FROM partner_ledger
+     WHERE user_id IN (SELECT user_id FROM partners WHERE status = 'approved')
+     GROUP BY user_id HAVING ${BALANCE} > 0`
+  ).all();
+  const out = [];
+  for (const r of results) {
+    const partner = await partnerOf(env, r.user_id);
+    const acct = await account(env, r.user_id);
+    const month = new Date(Date.now() - 86400000).toISOString().slice(0, 7);   // last month, run on the 1st
+    const paidLastMonth = acct.entries.filter((e) => e.kind === "payment" && e.status === "confirmed" && String(e.paid_on || e.created_at).slice(0, 7) === month)
+      .reduce((n, e) => n + e.amount, 0);
+    out.push({ partner, ...acct, paid_last_month: paidLastMonth });
+  }
+  return out;
 }
 
 function validPayment(body) {
@@ -184,4 +233,25 @@ export async function pendingPayments(env) {
      WHERE l.kind = 'payment' AND l.status = 'pending' ORDER BY l.id DESC LIMIT 100`
   ).all();
   return results;
+}
+
+// Takes a cancelled order off the partner's account. Returns true if there was a charge.
+export async function voidOrderCharge(env, userId, number) {
+  await ensureTables(env);
+  const row = await env.DB.prepare(
+    `UPDATE partner_ledger SET status = 'void', note = 'Order cancelled', decided_at = datetime('now')
+     WHERE user_id = ?1 AND kind = 'charge' AND ref = ?2 AND status = 'confirmed' RETURNING id`
+  ).bind(userId, number).first();
+  return Boolean(row);
+}
+
+// One payment with its partner, for the admin's payment page.
+export async function paymentDetail(env, id) {
+  await ensureTables(env);
+  const p = await env.DB.prepare(
+    `SELECT l.*, p.company, p.phone FROM partner_ledger l JOIN partners p ON p.user_id = l.user_id WHERE l.id = ?1 AND l.kind = 'payment'`
+  ).bind(id).first();
+  if (!p) return null;
+  const { balance } = await account(env, p.user_id);
+  return { ...p, code: `NEP-${String(p.user_id).padStart(3, "0")}`, balance: p.status === "confirmed" ? balance + p.amount : balance };
 }

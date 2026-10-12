@@ -181,12 +181,17 @@
         <label>Partner type<select id="pt-kind"></select></label>
         <label>Default discount off website price (%)<input id="pt-discount" type="number" min="0" max="89" step="0.5" inputmode="decimal"></label>
       </div>
-      <label>Private note <small>(only you see this)</small><input id="pt-note" maxlength="500"></label>
+      <div class="grid3">
+        <label>Credit limit (KES) <small>(blank = no credit)</small><input id="pt-limit" type="number" min="0" step="1000" inputmode="numeric" placeholder="e.g. 100000"></label>
+        <label>Payment terms (days) <small>(blank = none)</small><input id="pt-terms" type="number" min="1" max="365" step="1" inputmode="numeric" placeholder="e.g. 30"></label>
+        <label>Private note <small>(only you see this)</small><input id="pt-note" maxlength="500"></label>
+      </div>
       <div class="actions"><button class="primary" type="submit">Save partner</button></div>
     </form>
     <h2 class="wa-h">Account</h2>
     <div class="acct">
-      <div class="acct-due"><span>Amount due</span><b id="ac-due">KES 0</b><small id="ac-pending"></small></div>
+      <div class="acct-due"><span>Amount due</span><b id="ac-due">KES 0</b><small id="ac-pending"></small><small id="ac-credit"></small>
+        <div class="acct-btns"><button type="button" class="chip" id="ac-statement-btn">Send statement on WhatsApp</button><button type="button" class="chip" id="ac-remind-btn" hidden>Send overdue reminder</button></div></div>
       <form id="ac-charge" class="mini">
         <h3>Add amount owed</h3>
         <label>Amount (KES)<input id="ac-c-amount" type="number" min="1" step="1" inputmode="numeric" required></label>

@@ -640,9 +640,14 @@
     el.querySelector('.st').className = 'st ' + p.status;
     el.querySelector('.st').textContent = p.status + ' · ' + p.kind;
     el.querySelector('h3').textContent = p.company;
+    if (p.credit_limit != null && p.balance > p.credit_limit) {
+      var flag = document.createElement('span'); flag.className = 'flag'; flag.textContent = 'Over credit limit';
+      el.querySelector('h3').appendChild(flag);
+    }
     var facts = [['Contact', p.contact], ['Phone', p.phone], ['Town', p.town], ['Google', p.email], ['Hikvision ID', p.hik_id], ['KRA PIN', p.kra_pin],
       ['Pricing', (p.discount ? p.discount + '% off website' : 'Website prices') + (p.prices ? ' + ' + p.prices + ' agreed prices' : '')],
-      ['Amount due', p.balance > 0 ? money(p.balance) : p.balance < 0 ? 'In credit ' + money(-p.balance) : ''],
+      ['Amount due', (p.balance > 0 ? money(p.balance) : p.balance < 0 ? 'In credit ' + money(-p.balance) : '') +
+        (p.credit_limit != null ? ' (limit ' + money(p.credit_limit) + ')' : '') + (p.terms_days ? ' · ' + p.terms_days + '-day terms' : '')],
       ['Bought', p.bought ? money(p.bought) : ''], ['Note', p.note], ['Applied', day(p.created_at)]];
     var dl = el.querySelector('dl');
     facts.forEach(function (f) {
@@ -746,6 +751,11 @@
     due.textContent = a.balance < 0 ? 'In credit ' + money(-a.balance) : money(a.balance);
     due.parentNode.classList.toggle('clear', a.balance <= 0);
     $('ac-pending').textContent = a.pending ? money(a.pending) + ' reported, waiting for you to confirm' : '';
+    var c = $('ac-credit');
+    c.textContent = [a.credit_limit != null ? 'Limit ' + money(a.credit_limit) + (a.over_limit ? ' — OVER LIMIT' : ', ' + money(a.available) + ' available') : 'No credit limit set',
+      a.terms_days ? a.terms_days + '-day terms' : '', a.overdue ? money(a.overdue) + ' OVERDUE' : ''].filter(Boolean).join(' · ');
+    c.className = a.over_limit || a.overdue ? 'warn' : '';
+    $('ac-remind-btn').hidden = !(a.overdue > 0);
     var box = $('ac-statement');
     box.textContent = '';
     if (!a.entries.length) { box.innerHTML = '<p class="hint">No entries yet. Add an amount owed when this partner takes goods on credit.</p>'; return; }
@@ -780,6 +790,13 @@
     });
   }
 
+  ['ac-statement-btn', 'ac-remind-btn'].forEach(function (id) {
+    $(id).addEventListener('click', function () {
+      var reminder = id === 'ac-remind-btn';
+      if (!window.confirm((reminder ? 'Send an overdue reminder' : 'Send an account statement') + ' to ' + current.partner.company + ' on WhatsApp now?')) return;
+      accountApi({ action: reminder ? 'send_reminder' : 'send_statement', id: current.partner.id }, this);
+    });
+  });
   $('ac-charge').addEventListener('submit', function (e) {
     e.preventDefault();
     accountApi({ action: 'charge', id: current.partner.id, amount: Number($('ac-c-amount').value), ref: $('ac-c-ref').value, description: $('ac-c-desc').value }, this.querySelector('button'))
@@ -804,6 +821,8 @@
       $('pt-status').value = p.status;
       $('pt-discount').value = p.discount;
       $('pt-note').value = p.note || '';
+      $('pt-limit').value = p.credit_limit == null ? '' : p.credit_limit;
+      $('pt-terms').value = p.terms_days == null ? '' : p.terms_days;
       var cat = $('pt-cat'); cat.length = 1;
       Array.from(new Set(data.products.map(function (x) { return x.category; }))).sort().forEach(function (c) { cat.add(new Option(c, c)); });
       renderPrices(); updateSavebar();
@@ -869,7 +888,8 @@
     e.preventDefault();
     var b = this.querySelector('button'); b.disabled = true;
     api('/api/admin/partners', { action: 'update', id: current.partner.id, status: $('pt-status').value, kind: $('pt-kind').value,
-      discount: Number($('pt-discount').value) || 0, note: $('pt-note').value }).then(function (r) {
+      discount: Number($('pt-discount').value) || 0, note: $('pt-note').value,
+      credit_limit: $('pt-limit').value.trim(), terms_days: $('pt-terms').value.trim() }).then(function (r) {
       notice(r.message); loadPartners(); return openPartner(current.partner.id);
     }).catch(function (err) { notice(err.message, true); }).then(function () { b.disabled = false; });
   });

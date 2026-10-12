@@ -141,6 +141,8 @@ label.check input { width: auto; }
 .sumcard small { color: #4A5B68; font-size: 13px; }
 .due-card { background: #0F2A3D; color: #fff; border: 0; } .due-card span, .due-card small { color: #BFD7E5; }
 .due-card.clear { background: #E8F8EE; color: #14532D; } .due-card.clear span, .due-card.clear small { color: #14532D; }
+.credit-line { display: flex; flex-wrap: wrap; gap: 8px 22px; background: #fff; border: 1px solid #E7ECF1; border-radius: 14px; padding: 12px 16px; margin: -4px 0 16px; font-size: 14px; color: #4A5B68; }
+.credit-line b { color: #10202E; }
 .preview { max-width: 220px; max-height: 260px; border-radius: 10px; border: 1px solid #E7ECF1; }
 .sent { border: 2px solid #22C35E; background: #F3FCF6; }
 .sent .btn { margin: 4px 6px 0 0; }
@@ -231,6 +233,7 @@ label.check input { width: auto; }
       <div class="card checkout" id="checkout" hidden>
         <h2>Review and send</h2>
         <ul class="lines" id="lines"></ul>
+        <label id="paywrap">Payment<select id="payment"><option value="before">Pay before collection (M-Pesa, bank or cash)</option></select></label>
         <div class="two">
           <label>Delivery<select id="delivery"><option value="pickup">Collect from NE, BBS Mall Eastleigh</option><option value="nairobi">Deliver in Nairobi</option><option value="outside">Send outside Nairobi</option></select></label>
           <label id="town-wrap" hidden>Town<input id="town" maxlength="80"></label>
@@ -273,11 +276,13 @@ label.check input { width: auto; }
     <!-- 4. Account balance and payments -->
     <div id="tab-account" class="tabpane" hidden>
       <h1>Account &amp; payments</h1>
-      <p class="sub">Your account with NE: goods taken on credit and the payments you have made. Report a payment here with its screenshot: it stays on your statement as proof, and you can send it to us on WhatsApp in one tap.</p>
+      <p class="sub">Your account with NE: goods taken on credit and the payments you have made. Report a payment here with its screenshot: it stays on your statement as proof, and NE is notified on WhatsApp automatically.</p>
       <div class="sums">
         <div class="sumcard due-card"><span>Amount due</span><b id="a-due">KES 0</b><small id="a-due-note"></small></div>
         <div class="sumcard"><span>Payments awaiting confirmation</span><b id="a-pending">KES 0</b><small>We confirm payments once they reach our account.</small></div>
       </div>
+      <div class="credit-line" id="a-credit" hidden></div>
+      <div class="msg" id="a-overdue" hidden></div>
 
       <div class="card noprint" id="pay-card">
         <h2>Report a payment</h2>
@@ -301,7 +306,6 @@ label.check input { width: auto; }
       <div class="card sent noprint" id="pay-sent" hidden>
         <h2 id="sent-title">Payment submitted</h2>
         <p id="sent-text"></p>
-        <button class="btn go" type="button" id="share-btn">Send screenshot to NE on WhatsApp</button>
         <button class="btn ghost" type="button" id="another-btn">Report another payment</button>
       </div>
 

@@ -60,7 +60,16 @@ export async function ensureTables(env) {
       decided_at TEXT
     )`),
   ]);
+  // Columns added after launch (credit control). ALTER fails harmlessly once they exist.
+  for (const sql of ["ALTER TABLE partners ADD COLUMN credit_limit INTEGER", "ALTER TABLE partners ADD COLUMN terms_days INTEGER"]) {
+    try { await env.DB.prepare(sql).run(); } catch (e) { /* column already there */ }
+  }
   ready = true;
+}
+
+// Short reference shown to the owner, e.g. NEP-003.
+export function partnerCode(userId) {
+  return `NEP-${String(userId).padStart(3, "0")}`;
 }
 
 function clean(value, max) {
@@ -95,6 +104,7 @@ function publicPartner(p) {
   return p && {
     company: p.company, contact: p.contact, phone: p.phone, town: p.town, kind: p.kind, hik_id: p.hik_id,
     kra_pin: p.kra_pin, status: p.status, discount: p.discount, created_at: p.created_at,
+    code: partnerCode(p.user_id), credit_limit: p.credit_limit, terms_days: p.terms_days,
   };
 }
 
@@ -226,11 +236,17 @@ export async function adminUpdate(env, userId, body) {
   if (!(discount >= 0 && discount < 90)) return { error: "Default discount must be between 0 and 90%." };
   const kind = KINDS.includes(body.kind) ? body.kind : partner.kind;
   const note = body.note === undefined ? partner.note : clean(body.note, 500);
+  // Blank means "not set": no limit / no terms.
+  const num = (v, old) => (v === undefined ? old : v === "" || v === null ? null : Math.round(Number(v)));
+  const creditLimit = num(body.credit_limit, partner.credit_limit);
+  const terms = num(body.terms_days, partner.terms_days);
+  if (creditLimit !== null && !(creditLimit >= 0)) return { error: "Credit limit must be an amount in KES, or blank for no limit." };
+  if (terms !== null && !(terms >= 1 && terms <= 365)) return { error: "Payment terms must be between 1 and 365 days, or blank." };
   await env.DB.prepare(
-    `UPDATE partners SET status = ?2, discount = ?3, kind = ?4, note = ?5, updated_at = datetime('now'),
+    `UPDATE partners SET status = ?2, discount = ?3, kind = ?4, note = ?5, credit_limit = ?6, terms_days = ?7, updated_at = datetime('now'),
        decided_at = CASE WHEN ?2 != status THEN datetime('now') ELSE decided_at END WHERE user_id = ?1`
-  ).bind(userId, status, discount, kind, note).run();
-  return { ok: true, partner: { ...partner, status, discount, kind, note }, changed: status !== partner.status };
+  ).bind(userId, status, discount, kind, note, creditLimit, terms).run();
+  return { ok: true, partner: { ...partner, status, discount, kind, note, credit_limit: creditLimit, terms_days: terms }, changed: status !== partner.status };
 }
 
 // prices: [{ slug, price }] — a price of null or 0 removes the partner's own price.
