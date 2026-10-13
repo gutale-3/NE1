@@ -74,7 +74,10 @@
 
   $('pdf-btn').addEventListener('click', function () { window.print(); });
   var id = new URLSearchParams(location.search).get('id');
-  fetch('/api/admin/documents?id=' + encodeURIComponent(id || ''), { credentials: 'same-origin', headers: { 'x-ne-admin': '1' } })
+  // The same page serves team members at /team/doc/ (their own documents only).
+  var team = location.pathname.indexOf('/team/') === 0;
+  if (team) { var back = document.querySelector('.bar > a'); back.href = '/team/#sales'; back.textContent = '← My sales'; }
+  fetch((team ? '/api/team/doc?id=' : '/api/admin/documents?id=') + encodeURIComponent(id || ''), { credentials: 'same-origin', headers: { 'x-ne-admin': '1' } })
     .then(function (r) { return r.json().then(function (d) { if (!r.ok) throw new Error(d.error || 'Not found'); return d; }); })
     .then(function (d) { render(d.document); })
     .catch(function (e) { $('error').textContent = e.message; $('error').hidden = false; });

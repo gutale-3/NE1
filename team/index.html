@@ -94,6 +94,11 @@ th { text-align: left; font-size: 11px; text-transform: uppercase; color: #4A5B6
 td { padding: 9px 6px; border-bottom: 1px solid #EEF2F5; vertical-align: top; }
 td.n, th.n { text-align: right; white-space: nowrap; }
 .scroll { overflow-x: auto; }
+.sale.done { border-left: 5px solid #067647; }
+.sale { border-left: 5px solid #eb6834; }
+.sale .claim { font-size: 12.5px; color: #4A5B68; margin-top: 6px; }
+.docform { display: grid; gap: 12px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #E7ECF1; }
+.svc { display: grid; grid-template-columns: 1fr 110px; gap: 8px; }
 @media (max-width: 520px) { .two { grid-template-columns: 1fr; } .top .brand span { display: none; } }
 </style>
 </head>
@@ -130,6 +135,33 @@ td.n, th.n { text-align: right; white-space: nowrap; }
   </section>
 
   <!-- The app -->
+  <section id="v-home" hidden>
+    <h1 id="home-hello">Hello</h1>
+    <p class="sub">Your numbers. Tap a bar to see the amount.</p>
+    <div id="home-tiles"></div>
+    <div class="card"><h2>My sales per week</h2><p class="hint">Orders you finished, last 8 weeks</p><div id="ch-sales"></div></div>
+    <div class="card"><h2>My deliveries per week</h2><div id="ch-jobs"></div></div>
+    <div class="card"><h2>Money I collected, last 30 days</h2><div id="ch-methods"></div></div>
+    <div class="card" id="team-month-card" hidden><h2>Team sales this month</h2><div id="ch-team"></div></div>
+  </section>
+
+  <section id="v-pool" hidden>
+    <h1>Order pool</h1>
+    <p class="sub">New orders from customers who don't have a team member yet. Everyone sees them; the first to accept handles the sale.</p>
+    <div id="pool"></div>
+  </section>
+
+  <section id="v-sales" hidden>
+    <h1>My sales</h1>
+    <p class="sub">Orders you handle. Call the customer, make the invoice or receipt, deliver, then tap <b>Finished</b>: the sale counts as yours.</p>
+    <div id="sales"></div>
+    <h2>My invoices &amp; receipts</h2>
+    <div class="card" id="docs"></div>
+    <h2>My customers</h2>
+    <p class="hint" style="margin-bottom:10px">Claim a customer from one of your orders. Once the owner approves, their new orders come straight to you.</p>
+    <div class="card" id="customers"></div>
+  </section>
+
   <section id="v-jobs" hidden>
     <div class="card hold" id="hold-card"><div><small>Money with you, not yet confirmed</small><b id="hold-amt">KES 0</b></div><a class="btn ghost small" href="#mine">Details</a></div>
     <h2>My deliveries</h2>
@@ -209,6 +241,7 @@ td.n, th.n { text-align: right; white-space: nowrap; }
     <div class="card scroll" id="people"></div>
   </section>
 </main>
+<script src="/js/ne-charts.js"></script>
 <script src="/team/team.js"></script>
 </body>
 </html>

@@ -205,7 +205,8 @@
     var delivery = o.delivery === 'outside' ? 'Outside Nairobi: ' + o.town + ' (' + o.transport + ', customer pays)' : o.deliveryLabel;
     var facts = [['Phone', o.phone], ['Email', o.email], ['Delivery', delivery], ['Account', o.account_email ? o.account_email + ' (earns ' + o.earn_rate + '%)' : 'Guest – no rewards'],
       ['Discounts', [o.tech_discount ? 'technician −' + money(o.tech_discount) : '', o.reward_used ? 'reward −' + money(o.reward_used) : ''].filter(Boolean).join(', ')],
-      ['Reward earned', o.reward_earned ? money(o.reward_earned) : ''], ['Notes', o.notes], ['Placed', o.created_at + ' UTC']];
+      ['Reward earned', o.reward_earned ? money(o.reward_earned) : ''], ['Notes', o.notes], ['Placed', o.created_at + ' UTC'],
+      ['Handled by', o.handler ? o.handler + (o.finished_at ? ' — finished, counts as their sale' : ' — working on it') : (o.status === 'cancelled' ? '' : 'Nobody yet (in the team order pool)')]];
     var dl = el.querySelector('dl');
     facts.forEach(function (f) {
       if (!f[1]) return;
@@ -249,6 +250,31 @@
       b.addEventListener('click', function () { openDoc(k[0], { order: o }); });
       actions.appendChild(b);
     });
+    if (o.status !== 'cancelled') {
+      var give = document.createElement('button');
+      give.type = 'button'; give.className = 'chip'; give.textContent = o.handler ? 'Change handler' : 'Give to…';
+      give.addEventListener('click', function () {
+        var open = el.querySelector('.handler-form');
+        if (open) { open.remove(); return; }
+        teamReady().then(function (t) {
+          var f = document.createElement('form');
+          f.className = 'assign-form handler-form';
+          f.innerHTML = '<label>Who handles this sale <select name="who"></select></label><button class="primary" type="submit">Save</button>';
+          f.elements.who.appendChild(new Option('Nobody: back to the team order pool', '0'));
+          t.people.filter(function (p) { return p.status === 'approved'; }).forEach(function (p) {
+            f.elements.who.appendChild(new Option(p.username + ' (' + t.roles[p.role] + ')', p.user_id));
+          });
+          f.elements.who.value = String(o.handler_id || 0);
+          f.addEventListener('submit', function (e) {
+            e.preventDefault();
+            api('/api/admin/team', { action: 'handler', order_id: o.id, staff_id: Number(f.elements.who.value) })
+              .then(function (r) { notice(r.message); loadOrders(); }).catch(function (err) { notice(err.message, true); });
+          });
+          el.appendChild(f);
+        }).catch(function (err) { notice(err.message, true); });
+      });
+      actions.appendChild(give);
+    }
     if (['new', 'confirmed', 'paid'].indexOf(o.status) >= 0) {
       var assign = document.createElement('button');
       assign.type = 'button'; assign.className = 'chip'; assign.textContent = 'Assign delivery';
@@ -1104,6 +1130,15 @@
       var pay = $('tm-pay'); pay.textContent = '';
       t.toConfirm.forEach(function (c) { pay.appendChild(collectionRow(c)); });
       $('tm-pay-box').hidden = !t.toConfirm.length;
+      var pendingClaims = t.claims.filter(function (c) { return c.status === 'pending'; });
+      var claimsBox = $('tm-claims'); claimsBox.textContent = '';
+      pendingClaims.forEach(function (c) { claimsBox.appendChild(claimRow(c)); });
+      $('tm-claim-box').hidden = !pendingClaims.length;
+      var owned = $('tm-owned'); owned.textContent = '';
+      var approved = t.claims.filter(function (c) { return c.status === 'approved'; });
+      if (!approved.length) owned.appendChild(textEl('p', 'hint', 'None yet. Staff claim customers from orders they handle.'));
+      approved.forEach(function (c) { owned.appendChild(claimRow(c)); });
+      $('team-badge').textContent = waiting + pendingClaims.length; $('team-badge').hidden = !(waiting + pendingClaims.length);
       var list = $('tm-people'); list.textContent = '';
       t.people.forEach(function (p) { list.appendChild(staffCard(p, t.roles)); });
       var cash = $('tm-cash'); cash.textContent = '';
@@ -1128,6 +1163,23 @@
       });
       return t;
     });
+  }
+
+  function claimRow(c) {
+    var d = document.createElement('div'); d.className = 'req';
+    d.innerHTML = '<div><b></b><small></small></div><div class="row-actions"></div>';
+    d.querySelector('b').textContent = c.status === 'pending' ? c.username + ' wants ' + c.label + ' as their customer' : c.label + ' → ' + c.username;
+    d.querySelector('small').textContent = [c.phone, c.from_order ? 'from ' + c.from_order : '', 'asked ' + day(c.requested_at)].filter(Boolean).join(' · ');
+    var acts = d.querySelector('.row-actions');
+    (c.status === 'pending' ? [['Approve', 'ok', 'approve'], ['Decline', 'danger', 'reject']] : [['Remove', 'danger', 'remove']]).forEach(function (x) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = x[1]; b.textContent = x[0];
+      b.addEventListener('click', function () {
+        if (x[2] === 'remove' && !window.confirm('Stop sending ' + c.label + '\'s orders to ' + c.username + '?')) return;
+        teamApi({ action: 'claim', key: c.customer_key, decision: x[2] }, b);
+      });
+      acts.appendChild(b);
+    });
+    return d;
   }
 
   function textEl(tag, cls, text) { var e = document.createElement(tag); e.className = cls; e.textContent = text; return e; }

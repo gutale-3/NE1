@@ -120,6 +120,18 @@ export const TEMPLATES = [
     footer: "Nashnaal Electronics website",
   },
   {
+    name: "ne_order_pool",
+    body: "Hi {{1}}, a new NE order is waiting: {{2}} from {{3}}, KES {{4}}. The first team member to accept it handles the sale. Open the team page to accept it.",
+    example: ["Hassan", "NE-1005", "Mary Wanjiku", "20,150"],
+    button: { type: "URL", text: "Accept order", url: `${SITE}/team/#pool` }, footer: "Nashnaal Electronics team",
+  },
+  {
+    name: "ne_order_yours",
+    body: "Hi {{1}}, your customer {{2}} has a new NE order {{3}} for KES {{4}}. It is already yours: find it under My sales on the team page.",
+    example: ["Hassan", "Mary Wanjiku", "NE-1005", "20,150"],
+    button: { type: "URL", text: "Open My sales", url: `${SITE}/team/#sales` }, footer: "Nashnaal Electronics team",
+  },
+  {
     name: "ne_staff_applied",
     body: "New team sign-up: {{1}} (username {{2}}, phone {{3}}) asked to join the NE team as {{4}}. Approve them and choose their role in the Team tab of the NE admin.",
     example: ["Hassan Abdi", "hassan", "0712 345 678", "delivery"],
@@ -323,6 +335,17 @@ export async function staffCollection(env, c) {
   await sendTemplate(env, env.OWNER_WHATSAPP, "ne_staff_collection",
     [c.staff, kes(c.amount), c.method === "Cash" ? "cash (held by staff)" : c.method, c.reference || "none given", c.customer.slice(0, 60), what],
     { dedupe: `collection:${c.id}`, buttonParam: String(c.id) });
+}
+
+// Order pool and own-customer alerts to team members. person: a staff row; order: an orders row.
+export async function orderPool(env, person, order) {
+  return sendTemplate(env, person.phone, "ne_order_pool", [first(person.full_name), order.number, order.name.slice(0, 60), kes(order.total)],
+    { orderId: order.id, userId: person.user_id, dedupe: `pool:${order.id}:${person.user_id}` });
+}
+
+export async function orderForYou(env, person, order) {
+  return sendTemplate(env, person.phone, "ne_order_yours", [first(person.full_name), order.name.slice(0, 60), order.number, kes(order.total)],
+    { orderId: order.id, userId: person.user_id, dedupe: `yours:${order.id}:${person.user_id}` });
 }
 
 export async function staffApplied(env, s) {

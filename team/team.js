@@ -72,12 +72,13 @@
       '<label>Note <small>optional</small><input name="note" maxlength="300"></label>';
     form.appendChild(wrap);
     if (amount != null) form.elements.amount.value = amount;
+    var select = wrap.querySelector('select');
     function sync() {
-      var cash = form.elements.method.value === 'Cash';
-      form.querySelector('.ref').hidden = cash;
-      form.querySelector('.shot').hidden = cash;
+      var cash = select.value === 'Cash';
+      wrap.querySelector('.ref').hidden = cash;
+      wrap.querySelector('.shot').hidden = cash;
     }
-    form.elements.method.addEventListener('change', sync);
+    select.addEventListener('change', sync);
     sync();
   }
 
@@ -92,6 +93,7 @@
 
   // ---- loading and tabs ---------------------------------------------------------
   var TABS = [
+    ['home', 'Home', null], ['pool', 'Order pool', 'orders'], ['sales', 'My sales', null],
     ['jobs', 'My jobs', null], ['order', 'New order', 'orders'], ['collect', 'Record payment', null], ['mine', 'My payments', null],
     ['dispatch', 'Deliveries', 'dispatch'], ['confirm', 'Confirm', 'confirm'], ['team', 'Team', 'team'],
   ];
@@ -157,6 +159,11 @@
       b.type = 'button';
       b.dataset.tab = t[0];
       if (t[0] === 'confirm' && data.toConfirm && data.toConfirm.length) b.appendChild(el('span', 'badge', data.toConfirm.length));
+      if (t[0] === 'pool' && data.pool.length) b.appendChild(el('span', 'badge', data.pool.length));
+      if (t[0] === 'sales') {
+        var openSales = data.sales.filter(function (o) { return !o.finished_at; }).length;
+        if (openSales) b.appendChild(el('span', 'badge', openSales));
+      }
       if (t[0] === 'jobs') {
         var open = data.jobs.filter(function (j) { return j.status === 'assigned' || j.status === 'on_way'; }).length;
         if (open) b.appendChild(el('span', 'badge', open));
@@ -170,7 +177,7 @@
   function show() {
     var want = location.hash.slice(1);
     var allowed = Array.prototype.map.call($('tabs').querySelectorAll('button'), function (b) { return b.dataset.tab; });
-    tab = allowed.indexOf(want) >= 0 ? want : 'jobs';
+    tab = allowed.indexOf(want) >= 0 ? want : focusJob ? 'jobs' : 'home';
     Array.prototype.forEach.call($('tabs').querySelectorAll('button'), function (b) {
       b.classList.toggle('on', b.dataset.tab === tab);
       if (b.dataset.tab === tab && b.scrollIntoView) b.scrollIntoView({ inline: 'center', block: 'nearest' });
@@ -180,6 +187,9 @@
   window.addEventListener('hashchange', function () { flash(''); show(); window.scrollTo(0, 0); });
 
   function render() {
+    renderHome();
+    renderPool();
+    renderSales();
     renderJobs();
     renderMine();
     renderCollect();
@@ -193,6 +203,232 @@
       if (card) { card.classList.add('focus'); card.scrollIntoView({ block: 'center' }); }
       focusJob = null;
     }
+  }
+
+  // ---- home: my numbers ------------------------------------------------------------
+  function renderHome() {
+    var st = data.stats;
+    $('home-hello').textContent = 'Hello, ' + (data.staff ? data.staff.full_name.split(' ')[0] : (data.user.name || 'Owner').split(' ')[0]);
+    NECharts.tiles($('home-tiles'), [
+      { label: 'My sales this month', value: money(st.salesMonth), sub: st.countMonth + ' finished order' + (st.countMonth === 1 ? '' : 's'), color: 'blue' },
+      { label: 'Deliveries this month', value: String(st.jobsMonth), sub: 'delivered', color: 'orange' },
+      { label: 'Money with me', value: money(data.holding), sub: 'not yet confirmed', color: 'aqua' },
+      { label: 'Waiting in the pool', value: String(data.pool.length), sub: 'orders to accept', color: 'yellow' },
+    ]);
+    var weeks = st.salesWeeks.map(function (w) { return w.label; });
+    NECharts.columns($('ch-sales'), { labels: weeks, money: true, series: [{ name: 'My sales', color: 'blue', values: st.salesWeeks.map(function (w) { return w.value; }) }],
+      empty: 'No finished sales yet. Accept an order from the pool, then tap Finished when it is done.' });
+    NECharts.columns($('ch-jobs'), { labels: st.jobWeeks.map(function (w) { return w.label; }), series: [{ name: 'Deliveries', color: 'orange', values: st.jobWeeks.map(function (w) { return w.value; }) }],
+      empty: 'No deliveries yet.' });
+    NECharts.hbars($('ch-methods'), { rows: st.methods, money: true, color: 'aqua', empty: 'No money recorded in the last 30 days.' });
+    $('team-month-card').hidden = !st.teamMonth;
+    if (st.teamMonth) NECharts.hbars($('ch-team'), { rows: st.teamMonth, money: true, color: 'blue', empty: 'No finished sales this month yet.' });
+  }
+
+  // ---- order pool ---------------------------------------------------------------------
+  function orderHead(o, extra) {
+    var head = el('div', 'head');
+    var left = el('div');
+    left.appendChild(el('div', 'st', extra));
+    left.appendChild(el('h3', null, o.company && o.name.indexOf(o.company) < 0 ? o.company + ' (' + o.name + ')' : o.name));
+    head.appendChild(left);
+    var amt = el('div', 'amt', money(o.total));
+    amt.insertBefore(el('small', null, o.items.reduce(function (n, i) { return n + i.qty; }, 0) + ' items'), amt.firstChild);
+    head.appendChild(amt);
+    return head;
+  }
+
+  function renderPool() {
+    var box = $('pool');
+    box.innerHTML = '';
+    if (!data.pool.length) { box.appendChild(el('p', 'sub', 'No orders waiting. New ones also come to your WhatsApp.')); return; }
+    data.pool.forEach(function (o) {
+      var c = el('article', 'card job');
+      c.appendChild(orderHead(o, o.number + ' · ' + o.status + ' · ' + day(o.created_at)));
+      c.appendChild(el('div', 'where', (o.town || '') + (o.channel === 'partner' ? ' · trade partner' : o.customer === 'account' ? ' · has an account' : '')));
+      var ul = el('ul', 'items');
+      o.items.forEach(function (i) { ul.appendChild(el('li', null, i.qty + ' × ' + i.name + ' (' + i.model + ')')); });
+      c.appendChild(ul);
+      if (o.notes) c.appendChild(el('div', 'note', o.notes));
+      var a = el('div', 'actions');
+      var b = el('button', 'btn go', 'Accept: I will handle it'); b.type = 'button';
+      b.addEventListener('click', function () { act({ action: 'accept', id: o.id }, b).then(function () { if (!$('flash').classList.contains('ok')) return; location.hash = 'sales'; }); });
+      a.appendChild(b);
+      c.appendChild(a);
+      box.appendChild(c);
+    });
+  }
+
+  // ---- my sales -----------------------------------------------------------------------
+  var CLAIM = { pending: 'Your customer request is waiting for the owner', approved: 'Your customer: their orders come to you' };
+
+  function renderSales() {
+    var box = $('sales');
+    box.innerHTML = '';
+    if (!data.sales.length) box.appendChild(el('p', 'sub', 'No sales yet. Accept an order from the Order pool, or take a New order.'));
+    data.sales.filter(function (o) { return !o.finished_at; }).forEach(function (o) { box.appendChild(saleCard(o)); });
+    var finished = data.sales.filter(function (o) { return o.finished_at; });
+    if (finished.length) {
+      var card = el('div', 'card');
+      card.appendChild(el('h2', null, 'Finished, last 30 days: ' + money(finished.reduce(function (n, o) { return n + o.total; }, 0))));
+      finished.forEach(function (o) {
+        var r = el('div', 'row');
+        var left = el('div');
+        left.appendChild(el('b', null, o.number + ' · ' + o.name));
+        left.appendChild(el('small', null, 'Finished ' + day(o.finished_at) + ' · ' + o.status));
+        r.appendChild(left);
+        r.appendChild(el('div', 'r', money(o.total)));
+        card.appendChild(r);
+      });
+      box.appendChild(card);
+    }
+    var docsBox = $('docs');
+    docsBox.innerHTML = '';
+    if (!data.documents.length) docsBox.appendChild(el('p', null, 'None yet. Make them from an order above.'));
+    data.documents.forEach(function (d) {
+      var r = el('div', 'row');
+      var left = el('div');
+      var link = el('a', null, d.number); link.href = '/team/doc/?id=' + d.id; link.target = '_blank';
+      left.appendChild(link);
+      left.appendChild(el('small', null, [d.customer.name, d.against, day(d.created_at), d.status === 'void' ? 'VOID' : ''].filter(Boolean).join(' · ')));
+      r.appendChild(left);
+      r.appendChild(el('div', 'r', money(d.kind === 'receipt' ? d.paid : d.total)));
+      docsBox.appendChild(r);
+    });
+    var cust = $('customers');
+    cust.innerHTML = '';
+    if (!data.customers.length) cust.appendChild(el('p', null, 'No customers yet.'));
+    data.customers.forEach(function (c) {
+      var r = el('div', 'row');
+      var left = el('div');
+      left.appendChild(el('b', null, c.label));
+      left.appendChild(el('small', null, [c.phone, c.from_order ? 'from ' + c.from_order : ''].filter(Boolean).join(' · ')));
+      r.appendChild(left);
+      r.appendChild(el('span', 'pill ' + (c.status === 'approved' ? 'confirmed' : ''), c.status === 'approved' ? 'Yours' : 'Waiting'));
+      cust.appendChild(r);
+    });
+  }
+
+  function saleCard(o) {
+    var done = Boolean(o.finished_at);
+    var c = el('article', 'card job sale' + (done ? ' done' : ''));
+    c.appendChild(orderHead(o, (done ? 'Finished · ' : '') + o.number + ' · ' + o.status));
+    if (!done) {
+      var contact = el('div', 'contact');
+      var call = el('a', 'btn primary', 'Call'); call.href = 'tel:' + o.phone;
+      var wa = el('a', 'btn wa', 'WhatsApp'); wa.target = '_blank'; wa.rel = 'noopener';
+      wa.href = 'https://wa.me/' + digits(o.phone) + '?text=' + encodeURIComponent('Hi ' + o.name.split(' ')[0] + ', this is ' + (data.staff ? data.staff.full_name.split(' ')[0] : 'NE') + ' from Nashnaal Electronics (NE) about your order ' + o.number + '.');
+      var view = el('a', 'btn ghost', 'Order'); view.href = '/order/?n=' + encodeURIComponent(o.number) + '&k=' + encodeURIComponent(o.token); view.target = '_blank';
+      contact.appendChild(call); contact.appendChild(wa); contact.appendChild(view);
+      c.appendChild(contact);
+      c.appendChild(el('div', 'hint', 'Phone: ' + o.phone + (o.paid ? ' · payments recorded: ' + money(o.paid) : '')));
+    }
+    var ul = el('ul', 'items');
+    o.items.forEach(function (i) { ul.appendChild(el('li', null, i.qty + ' × ' + i.name + ' — ' + money(i.qty * i.price))); });
+    c.appendChild(ul);
+    if (o.notes) c.appendChild(el('div', 'note', o.notes));
+    if (o.claim && o.claim !== 'rejected') c.appendChild(el('div', 'claim', o.claim_by && data.staff && o.claim_by !== data.staff.username ? 'Customer of ' + o.claim_by : CLAIM[o.claim]));
+    if (done) { c.appendChild(el('div', 'hint', 'Finished ' + day(o.finished_at) + ': counted as your sale.')); return c; }
+
+    var a = el('div', 'actions');
+    var forms = el('div');
+    function button(label, cls, fn) {
+      var b = el('button', 'btn ' + cls + ' small', label); b.type = 'button';
+      b.addEventListener('click', function () { fn(b); });
+      a.appendChild(b);
+      return b;
+    }
+    function toggle(form) {
+      var open = forms.firstChild === form && !form.hidden;
+      forms.innerHTML = '';
+      if (!open) { forms.appendChild(form); form.hidden = false; }
+    }
+    button('Invoice', 'ghost', function () { toggle(docForm(o, 'invoice')); });
+    button('Receipt', 'ghost', function () { toggle(docForm(o, 'receipt')); });
+    if (!o.job && o.delivery !== 'pickup' && data.staff) button('I will deliver it', 'ghost', function () { toggle(selfJobForm(o)); });
+    if (!o.claim || o.claim === 'rejected') button('Make my customer', 'ghost', function (b) { act({ action: 'claim', id: o.id }, b); });
+    button('Finished', 'go', function (b) {
+      if (confirm('Is ' + o.number + ' done (paid, delivered or collected)? It will count as your sale.')) act({ action: 'finish', id: o.id }, b);
+    });
+    button('Give back', 'danger', function (b) {
+      if (confirm('Put ' + o.number + ' back in the order pool for someone else?')) act({ action: 'release', id: o.id }, b);
+    });
+    c.appendChild(a);
+    c.appendChild(forms);
+    return c;
+  }
+
+  function docForm(o, kind) {
+    var f = el('form', 'docform');
+    if (kind === 'invoice') {
+      f.appendChild(el('p', 'hint', 'The order\'s products at website prices. Add installation or other services below if needed.'));
+      var svc = el('div'); svc.style.cssText = 'display:grid;gap:8px';
+      function addLine() {
+        var row = el('div', 'svc');
+        row.innerHTML = '<input placeholder="Service, e.g. Installation" maxlength="120"><input type="number" min="0" step="1" inputmode="numeric" placeholder="KES">';
+        svc.appendChild(row);
+      }
+      addLine();
+      f.appendChild(svc);
+      var more = el('button', 'btn ghost small', '+ Another service'); more.type = 'button';
+      more.addEventListener('click', addLine);
+      f.appendChild(more);
+      f.insertAdjacentHTML('beforeend', '<div class="two"><label>Customer KRA PIN <small>optional</small><input name="pin" maxlength="20" autocapitalize="characters"></label>' +
+        '<label>Due date <small>optional</small><input name="due_date" type="date"></label></div>' +
+        '<label>Address <small>optional</small><input name="address" maxlength="200"></label><label>Notes <small>optional</small><input name="notes" maxlength="300"></label>');
+      var b = el('button', 'btn primary', 'Make invoice'); b.type = 'submit';
+      f.appendChild(b);
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var services = Array.prototype.map.call(svc.children, function (r) { var i = r.querySelectorAll('input'); return { name: i[0].value, price: Number(i[1].value) }; });
+        makeDoc({ action: 'doc', kind: 'invoice', order_id: o.id, services: services, pin: f.elements.pin.value, due_date: f.elements.due_date.value,
+          address: f.elements.address.value, notes: f.elements.notes.value }, b);
+      });
+      return f;
+    }
+    f.appendChild(el('p', 'hint', 'For money you received now. It is recorded as money with you until the office confirms it.'));
+    var pay = el('div'); pay.style.cssText = 'display:grid;gap:12px';
+    f.appendChild(pay);
+    var inner = el('form'); // paymentFields builds into a form; move its children across
+    paymentFields(inner, Math.max(0, o.total - o.paid));
+    while (inner.firstChild) pay.appendChild(inner.firstChild);
+    var rb = el('button', 'btn go', 'Make receipt'); rb.type = 'submit';
+    f.appendChild(rb);
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      rb.disabled = true;
+      paymentBody(f).then(function (body) {
+        body.action = 'doc'; body.kind = 'receipt'; body.order_id = o.id;
+        rb.disabled = false;
+        makeDoc(body, rb);
+      }).catch(function (err) { rb.disabled = false; flash(err.message); });
+    });
+    return f;
+  }
+
+  function makeDoc(body, b) {
+    b.disabled = true; flash('');
+    var win = window.open('', '_blank');
+    api(body).then(function (r) {
+      if (win) win.location = '/team/doc/?id=' + r.id; else location.href = '/team/doc/?id=' + r.id;
+      return load().then(function () { flash(r.message, true); });
+    }).catch(function (err) { if (win) win.close(); flash(err.message); b.disabled = false; });
+  }
+
+  function selfJobForm(o) {
+    var f = el('form', 'docform');
+    f.innerHTML = '<label>Delivery address<input name="address" maxlength="200" placeholder="Building, street, area"></label>' +
+      '<label>Map link <small>optional</small><input name="map_url" inputmode="url"></label>' +
+      '<label>Amount to collect<input name="collect" type="number" min="0" step="1" inputmode="numeric"></label>';
+    f.elements.address.value = o.town || '';
+    f.elements.collect.value = Math.max(0, o.total - o.paid);
+    var b = el('button', 'btn primary', 'Add to My jobs'); b.type = 'submit';
+    f.appendChild(b);
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      act({ action: 'self_job', order_id: o.id, address: f.elements.address.value, map_url: f.elements.map_url.value, collect: f.elements.collect.value }, b);
+    });
+    return f;
   }
 
   // ---- my jobs ---------------------------------------------------------------------
@@ -452,6 +688,8 @@
       var view = el('a', 'btn ghost', 'Open order / PDF'); view.href = r.viewUrl; view.target = '_blank';
       var wa = el('a', 'btn wa', 'Send to customer'); wa.target = '_blank'; wa.rel = 'noopener';
       wa.href = 'https://wa.me/' + digits(f.elements.phone.value) + '?text=' + encodeURIComponent('Hi ' + f.elements.name.value.split(' ')[0] + ', here is your Nashnaal Electronics order ' + r.number + ': ' + r.viewUrl);
+      var mySales = el('a', 'btn go', 'Invoice / receipt in My sales'); mySales.href = '#sales';
+      a.appendChild(mySales);
       var again = el('button', 'btn primary', 'New order'); again.type = 'button';
       again.addEventListener('click', function () { done.hidden = true; f.hidden = false; window.scrollTo(0, 0); });
       a.appendChild(view); a.appendChild(wa); a.appendChild(again);

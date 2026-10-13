@@ -161,6 +161,7 @@ label.check input { width: auto; }
   .entry, .sumcard { break-inside: avoid; }
 }
 </style>
+<script src="/js/ne-charts.js" defer></script>
 <script src="/partner/partner.js" defer></script>
 </head>
 <body>
@@ -262,6 +263,7 @@ label.check input { width: auto; }
     <!-- 3. Orders -->
     <div id="tab-orders" class="tabpane" hidden>
       <h1>Your orders</h1>
+      <div class="card"><h2>What you bought each month</h2><div id="ch-bought"></div></div>
       <div class="chips" id="o-filter">
         <button type="button" class="chip on" data-s="">All</button>
         <button type="button" class="chip" data-s="new">Pending</button>
@@ -276,6 +278,7 @@ label.check input { width: auto; }
     <!-- 4. Account balance and payments -->
     <div id="tab-account" class="tabpane" hidden>
       <h1>Account &amp; payments</h1>
+      <div class="card"><h2>Goods taken and payments, by month</h2><div id="ch-account"></div></div>
       <p class="sub">Your account with NE: goods taken on credit and the payments you have made. Report a payment here with its screenshot: it stays on your statement as proof, and NE is notified on WhatsApp automatically.</p>
       <div class="sums">
         <div class="sumcard due-card"><span>Amount due</span><b id="a-due">KES 0</b><small id="a-due-note"></small></div>

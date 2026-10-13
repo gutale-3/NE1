@@ -88,7 +88,13 @@ export async function ensureTables(env) {
       data TEXT NOT NULL
     )`),
   ]);
-  try { await env.DB.prepare("ALTER TABLE orders ADD COLUMN staff_id INTEGER").run(); } catch { /* already there */ }
+  // staff_id: who took the order. handler_id: who handles (and is credited with) the sale,
+  // from the order pool or because the customer is theirs; finished_at: they said it is done.
+  for (const column of ["staff_id INTEGER", "handler_id INTEGER", "handled_at TEXT", "finished_at TEXT"]) {
+    try { await env.DB.prepare(`ALTER TABLE orders ADD COLUMN ${column}`).run(); } catch { /* already there */ }
+  }
+  // Orders staff took before the order pool existed are theirs.
+  await env.DB.prepare("UPDATE orders SET handler_id = staff_id, handled_at = created_at WHERE handler_id IS NULL AND staff_id IS NOT NULL").run();
   ready = true;
 }
 
@@ -116,7 +122,7 @@ export function displayName(s) {
   return s ? `${s.username}${s.full_name ? ` (${s.full_name})` : ""}` : "";
 }
 
-async function log(env, userId, action, detail) {
+export async function log(env, userId, action, detail) {
   await env.DB.prepare("INSERT INTO audit_log (user_id, action, detail) VALUES (?1, ?2, ?3)").bind(userId, action, detail.slice(0, 500)).run();
 }
 
@@ -302,8 +308,8 @@ export async function createOrder(env, user, body, catalogue, token) {
   const notes = clean(body.notes, 500);
   const row = await env.DB.prepare(
     `INSERT INTO orders (view_token, user_id, name, phone, email, delivery, town, transport, notes, items_json,
-       subtotal, tech_discount, reward_used, total, earn_rate, channel, consent, staff_id)
-     VALUES (?1, NULL, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, 0, 0, ?10, 0, 'staff', ?11, ?12) RETURNING id`
+       subtotal, tech_discount, reward_used, total, earn_rate, channel, consent, staff_id, handler_id, handled_at)
+     VALUES (?1, NULL, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, 0, 0, ?10, 0, 'staff', ?11, ?12, ?12, datetime('now')) RETURNING id`
   ).bind(token, name, phone, email || null, delivery, town || null, delivery === "outside" ? "courier" : null,
     notes || null, JSON.stringify(items), subtotal, body.consent ? 1 : 0, user.id).first();
   const number = `NE-${1000 + row.id}`;
