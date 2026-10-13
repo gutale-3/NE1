@@ -118,6 +118,13 @@
           list.appendChild(a);
         });
         $('orders-card').hidden = false;
+        if (s.stats && window.NECharts) {
+          var earned = s.stats.earned.reduce(function (n, m) { return n + m.value; }, 0);
+          NECharts.columns($('ch-bought'), { labels: s.stats.bought.map(function (m) { return m.label; }), money: true,
+            series: [{ name: 'Orders', color: 'blue', values: s.stats.bought.map(function (m) { return m.value; }) }] });
+          if (earned) $('ch-bought').insertAdjacentHTML('beforeend', '<p class="sub" style="margin:10px 0 0">Reward credit earned in these months: <b>' + money(earned) + '</b></p>');
+          $('chart-card').hidden = false;
+        }
       }
     }).catch(function () {});
   }

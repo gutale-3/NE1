@@ -47,6 +47,7 @@ input:focus { outline: none; border-color: #086E9E; }
 .welcome { border: 2px solid #22C35E; background: #F3FCF6; }
 .perks { margin: 0 0 16px; padding-left: 20px; color: #10202E; font-size: 15px; line-height: 1.8; }
 </style>
+<script src="/js/ne-charts.js" defer></script>
 <script src="/account/account.js" defer></script>
 </head>
 <body>
@@ -72,6 +73,11 @@ input:focus { outline: none; border-color: #086E9E; }
     <h2>Reward credit</h2>
     <div class="bal" id="reward-balance">KES 0</div>
     <p id="reward-note"></p>
+  </section>
+
+  <section class="card" id="chart-card" hidden>
+    <h2>My orders by month</h2>
+    <div id="ch-bought"></div>
   </section>
 
   <section class="card" id="orders-card" hidden>

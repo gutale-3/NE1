@@ -21,6 +21,7 @@ import * as partners from "./partners.js";
 import * as docs from "./documents.js";
 import * as accounts from "./accounts.js";
 import * as team from "./team.js";
+import * as sales from "./sales.js";
 
 // Runs a side job (e.g. a WhatsApp message) after the response, without failing the request.
 function later(ctx, job) {
@@ -51,6 +52,7 @@ export default {
       if (path === "/team" || path.startsWith("/team/")) return await accountPage(request, env, url, "/team/");
       if (path === "/api/team") return await teamApi(request, env, url, ctx);
       if (path === "/api/team/proof") return await teamProof(request, env, url);
+      if (path === "/api/team/doc") return await teamDoc(request, env, url);
       if (path === "/api/account/application") return await accountApplication(request, env, url);
       if (path === "/api/account/summary") return await accountSummary(request, env);
       if (path === "/api/orders") return await createOrder(request, env, url, ctx);
@@ -297,7 +299,9 @@ async function accountPage(request, env, url, home = "/account/") {
     return Response.redirect(`${url.origin}/auth/google/login?next=${encodeURIComponent(next)}`, 302);
   }
   // Job links from WhatsApp (/team/job/12) open the team page on that job.
-  const assetPath = url.pathname === home.slice(0, -1) || /^\/team\/job\//.test(url.pathname) ? home : url.pathname;
+  let assetPath = url.pathname === home.slice(0, -1) || /^\/team\/job\//.test(url.pathname) ? home : url.pathname;
+  // Team members' invoices and receipts use the same printable page as the admin's.
+  if (/^\/team\/doc\/?$/.test(url.pathname)) assetPath = "/admin/doc/";
   const asset = await env.ASSETS.fetch(new Request(new URL(assetPath, url.origin), request));
   const response = new Response(asset.body, asset);
   response.headers.set("cache-control", "no-store");
@@ -353,6 +357,8 @@ async function accountApplication(request, env, url) {
 // ---- admin -----------------------------------------------------------------
 
 async function adminPage(request, env, url) {
+  // The printable invoice script is shared with /team/doc/ (it holds no data).
+  if (url.pathname === "/admin/doc/doc.js") return env.ASSETS.fetch(request);
   const user = await currentUser(request, env);
   if (!user) {
     return Response.redirect(`${url.origin}/auth/google/login?next=${encodeURIComponent(url.pathname)}`, 302);
@@ -780,6 +786,7 @@ async function createOrder(request, env, url, ctx) {
   later(ctx, () => wa.orderCreated(env, {
     id: row.id, number, view_token: token, name, phone, total, delivery, town, consent: body.consent ? 1 : 0, user_id: user ? user.id : null,
   }, items.reduce((n, i) => n + i.qty, 0)));
+  later(ctx, () => routeOrder(env, row.id));
   return json({ ok: true, number, token, total, viewUrl, message: orderMessage(order, items, viewUrl) });
 }
 
@@ -819,6 +826,10 @@ async function accountSummary(request, env) {
     signedIn: true, name: user.name, email: user.email, balance, next,
     rewardPercent: rewardPercent(env, tech), technician: tech, techDiscount: tech ? techDiscount(env) : 0,
     orders: orders.results.map((o) => ({ number: o.number, token: o.view_token, total: o.total, status: o.status, created_at: o.created_at, reward_earned: o.reward_earned })),
+    stats: {
+      bought: sales.buckets(orders.results.filter((o) => o.status !== "cancelled"), { by: "month", n: 6, date: "created_at", value: (o) => o.total }),
+      earned: sales.buckets(orders.results, { by: "month", n: 6, date: "created_at", value: (o) => o.reward_earned || 0 }),
+    },
   });
 }
 
@@ -881,14 +892,17 @@ async function adminOrders(request, env, url, admin, ctx) {
     const status = url.searchParams.get("status");
     const filter = ORDER_STATUSES.includes(status) ? "WHERE o.status = ?1" : "";
     const stmt = env.DB.prepare(
-      `SELECT o.*, u.email AS account_email FROM orders o LEFT JOIN users u ON u.id = o.user_id ${filter} ORDER BY o.id DESC LIMIT 100`
+      `SELECT o.*, u.email AS account_email, s.username AS handler FROM orders o LEFT JOIN users u ON u.id = o.user_id
+       LEFT JOIN staff s ON s.user_id = o.handler_id ${filter} ORDER BY o.id DESC LIMIT 100`
     );
+    await team.ensureTables(env);
     const [{ results }, counts] = await Promise.all([
       (filter ? stmt.bind(status) : stmt).all(),
       env.DB.prepare("SELECT status, count(*) AS n FROM orders GROUP BY status").all(),
     ]);
     return json({
-      orders: results.map((o) => ({ id: o.id, token: o.view_token, account_email: o.account_email, user_id: o.user_id, earn_rate: o.earn_rate, consent: o.consent, ...orderPublic(o) })),
+      orders: results.map((o) => ({ id: o.id, token: o.view_token, account_email: o.account_email, user_id: o.user_id, earn_rate: o.earn_rate, consent: o.consent,
+        handler: o.handler || null, handler_id: o.handler_id, finished_at: o.finished_at, ...orderPublic(o) })),
       counts: Object.fromEntries(counts.results.map((c) => [c.status, c.n])),
     });
   }
@@ -1014,7 +1028,19 @@ async function partnerApi(request, env, url, ctx) {
   const catalogue = await priceList(env, url.origin);
   if (request.method === "GET") {
     const out = await partners.portal(env, user, catalogue);
-    if (out.partner && out.partner.status === "approved") out.account = await accounts.account(env, user.id);
+    if (out.partner && out.partner.status === "approved") {
+      out.account = await accounts.account(env, user.id);
+      // Charts: what they bought each month, and goods taken vs paid on their account.
+      const { results } = await env.DB.prepare(
+        "SELECT total, created_at FROM orders WHERE user_id = ?1 AND status != 'cancelled' AND created_at > datetime('now', '-7 months')"
+      ).bind(user.id).all();
+      const ledger = out.account.entries.filter((e) => e.status === "confirmed");
+      out.stats = {
+        bought: sales.buckets(results, { by: "month", n: 6, date: "created_at", value: (r) => r.total }),
+        taken: sales.buckets(ledger.filter((e) => e.kind === "charge"), { by: "month", n: 6, date: "created_at", value: (e) => e.amount }),
+        paid: sales.buckets(ledger.filter((e) => e.kind === "payment"), { by: "month", n: 6, date: "created_at", value: (e) => e.amount }),
+      };
+    }
     return json(out);
   }
   if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
@@ -1070,6 +1096,7 @@ async function partnerApi(request, env, url, ctx) {
     id: row.id, number, view_token: token, name: o.name, phone: o.phone, total: o.subtotal, delivery: o.delivery,
     town: o.town, consent: 1, user_id: user.id, greet: o.partner.contact.split(" ")[0],
   }, o.items.reduce((n, i) => n + i.qty, 0)));
+  later(ctx, () => routeOrder(env, row.id));
   const requests = o.items.filter((i) => i.requested).length;
   return json({ ok: true, number, token, total: o.subtotal, requests, viewUrl: `${siteOrigin(env, url)}/order/?n=${number}&k=${token}` });
 }
@@ -1151,7 +1178,17 @@ async function teamApi(request, env, url, ctx) {
   const user = await currentUser(request, env);
   if (!user) return json({ error: "Please sign in first." }, 401);
   const owner = isAdmin(env, user);
-  if (request.method === "GET") return json(await team.portal(env, user, owner));
+  if (request.method === "GET") {
+    const out = await team.portal(env, user, owner);
+    if (out.can.length) {
+      const sells = out.can.includes("orders");
+      [out.sales, out.customers, out.documents, out.stats, out.pool] = await Promise.all([
+        sales.mine(env, user.id), sales.myCustomers(env, user.id), docs.list(env, "", user.id).then((d) => d.documents.slice(0, 40)),
+        sales.stats(env, user.id, out.can), sells ? sales.pool(env) : [],
+      ]);
+    }
+    return json(out);
+  }
   if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
   if (request.headers.get("origin") !== url.origin) return json({ error: "Bad request origin." }, 403);
   const body = await request.json();
@@ -1164,11 +1201,32 @@ async function teamApi(request, env, url, ctx) {
   const staff = await team.staffOf(env, user.id);
   const can = team.permissions(staff, owner);
   if (!can) return json({ error: "Your team account is not approved yet." }, 403);
-  const need = { order: "orders", assign: "dispatch", cancel_job: "dispatch", decide: "confirm" }[body.action];
+  const need = { order: "orders", accept: "orders", assign: "dispatch", cancel_job: "dispatch", decide: "confirm" }[body.action];
   if (need && !can.includes(need)) return json({ error: "Your role can't do this. Ask the owner if you need it." }, 403);
   const who = staff ? staff.username : "Owner";
   let out;
-  if (body.action === "record") {
+  if (body.action === "accept") {
+    out = await sales.accept(env, user, staff, body.id);
+  } else if (body.action === "release") {
+    out = await sales.release(env, user, body.id);
+  } else if (body.action === "finish") {
+    out = await sales.finish(env, user, body.id);
+  } else if (body.action === "claim") {
+    out = await sales.claim(env, user, staff, body.id);
+  } else if (body.action === "doc") {
+    out = await sales.createDoc(env, user, staff, body);
+    const { collection } = out;
+    if (collection) later(ctx, () => wa.staffCollection(env, collection));
+    delete out.collection;
+  } else if (body.action === "self_job") {
+    // Deliver an order you handle yourself.
+    const mineOrder = staff && await env.DB.prepare("SELECT id FROM orders WHERE id = ?1 AND handler_id = ?2").bind(Number(body.order_id), user.id).first();
+    if (!mineOrder) out = { error: "You can only deliver orders you handle." };
+    else {
+      const job = await team.assign(env, user, { order_id: mineOrder.id, staff_id: user.id, address: body.address, map_url: body.map_url, collect: body.collect, notes: body.notes });
+      out = job.ok ? { ok: true, message: "Added to My jobs." } : job;
+    }
+  } else if (body.action === "record") {
     out = await team.record(env, user, body);
     const { collection } = out;
     if (collection) later(ctx, () => wa.staffCollection(env, collection));
@@ -1240,6 +1298,23 @@ async function afterCollectionDecided(env, out, actor, who, ctx) {
   return out;
 }
 
+// One invoice or receipt for /team/doc/?id=N: the person who made it, or the owner.
+async function teamDoc(request, env, url) {
+  const user = await currentUser(request, env);
+  if (!user) return json({ error: "Please sign in first." }, 401);
+  const doc = await docs.get(env, Number(url.searchParams.get("id")));
+  if (!doc || (!isAdmin(env, user) && doc.staff_id !== user.id)) return json({ error: "Document not found." }, 404);
+  return json({ document: doc });
+}
+
+// After a new website or partner order: straight to the customer's own team
+// member, or to everyone in the order pool.
+async function routeOrder(env, orderId) {
+  const r = await sales.route(env, orderId);
+  if (r.owner) await wa.orderForYou(env, r.owner, r.order);
+  for (const person of r.pool || []) await wa.orderPool(env, person, r.order);
+}
+
 async function teamProof(request, env, url) {
   const user = await currentUser(request, env);
   if (!user) return json({ error: "Please sign in first." }, 401);
@@ -1250,10 +1325,21 @@ async function teamProof(request, env, url) {
 }
 
 async function adminTeam(request, env, url, admin, ctx) {
-  if (request.method === "GET") return json(await team.adminOverview(env));
+  if (request.method === "GET") {
+    const out = await team.adminOverview(env);
+    out.claims = await sales.adminClaims(env);
+    return json(out);
+  }
   const body = await request.json();
   let out;
   if (body.action === "update") out = await team.adminUpdate(env, admin, body);
+  else if (body.action === "claim") out = await sales.adminDecideClaim(env, admin, body);
+  else if (body.action === "handler") {
+    out = await sales.adminSetHandler(env, admin, body);
+    const { person, order } = out;
+    if (person) later(ctx, () => wa.orderForYou(env, person, order));
+    delete out.person; delete out.order;
+  }
   else if (body.action === "assign") {
     const job = await team.assign(env, admin, body);
     if (job.ok) later(ctx, () => wa.deliveryJob(env, job));

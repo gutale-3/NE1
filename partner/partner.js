@@ -284,7 +284,19 @@
   }
 
   // ---- 3. orders ----------------------------------------------------------------
+  function monthChart() {
+    var st = data.stats;
+    if (!st || !window.NECharts) return;
+    var labels = st.bought.map(function (m) { return m.label; });
+    NECharts.columns($('ch-bought'), { labels: labels, money: true, series: [{ name: 'Bought', color: 'blue', values: st.bought.map(function (m) { return m.value; }) }],
+      empty: 'Your monthly purchases will show here.' });
+    NECharts.columns($('ch-account'), { labels: labels, money: true, empty: 'Nothing on your account yet.', series: [
+      { name: 'Goods taken on credit', color: 'orange', values: st.taken.map(function (m) { return m.value; }) },
+      { name: 'Payments', color: 'blue', values: st.paid.map(function (m) { return m.value; }) }] });
+  }
+
   function renderOrders() {
+    monthChart();
     var box = $('orders');
     box.textContent = '';
     var orders = (data.orders || []).filter(function (o) { return !orderFilter || o.status === orderFilter; });

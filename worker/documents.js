@@ -9,7 +9,7 @@ const KINDS = { invoice: "INV", receipt: "RCT" };
 const METHODS = ["M-Pesa", "Cash", "Bank transfer", "Card", "Cheque"];
 
 let ready = false;
-async function ensureTable(env) {
+export async function ensureTable(env) {
   if (ready) return;
   await env.DB.prepare(`CREATE TABLE IF NOT EXISTS documents (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,6 +32,7 @@ async function ensureTable(env) {
     created_by TEXT,
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
   )`).run();
+  try { await env.DB.prepare("ALTER TABLE documents ADD COLUMN staff_id INTEGER").run(); } catch { /* already there */ }
   ready = true;
 }
 
@@ -45,17 +46,19 @@ function shape(row) {
     customer: JSON.parse(row.customer_json), items: JSON.parse(row.items_json), subtotal: row.subtotal,
     discount: row.discount, total: row.total, paid: row.paid, balance: Math.max(0, row.total - row.paid),
     method: row.method, reference: row.reference, due_date: row.due_date, notes: row.notes, status: row.status,
-    created_by: row.created_by, created_at: row.created_at,
+    created_by: row.created_by, staff_id: row.staff_id, created_at: row.created_at,
   };
 }
 
-export async function list(env, q) {
+// staffId: only that team member's documents (the /team page).
+export async function list(env, q, staffId = null) {
   await ensureTable(env);
   const like = `%${clean(q, 60)}%`;
   const { results } = await env.DB.prepare(
-    `SELECT * FROM documents WHERE ?1 = '%%' OR number LIKE ?1 OR customer_json LIKE ?1 OR against LIKE ?1
+    `SELECT * FROM documents WHERE (?1 = '%%' OR number LIKE ?1 OR customer_json LIKE ?1 OR against LIKE ?1)
+       AND (?2 IS NULL OR staff_id = ?2)
      ORDER BY id DESC LIMIT 200`
-  ).bind(like).all();
+  ).bind(like, staffId).all();
   return { documents: results.map(shape), methods: METHODS };
 }
 
@@ -97,11 +100,11 @@ export async function create(env, body, admin) {
   const number = `${KINDS[kind]}-${seq}`;
   const row = await env.DB.prepare(
     `INSERT INTO documents (kind, seq, number, order_id, against, customer_json, items_json, subtotal, discount, total,
-       paid, method, reference, due_date, notes, created_by)
-     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16) RETURNING *`
+       paid, method, reference, due_date, notes, created_by, staff_id)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17) RETURNING *`
   ).bind(kind, seq, number, orderId, clean(body.against, 40) || null, JSON.stringify(customer), JSON.stringify(items),
     subtotal, discount, total, paid, method, clean(body.reference, 60) || null, due, clean(body.notes, 800) || null,
-    admin.email).first();
+    admin.staffName ? `${admin.staffName} (${admin.email})` : admin.email, admin.staffId || null).first();
   return { ok: true, document: shape(row) };
 }
 
