@@ -112,12 +112,23 @@
     tr.querySelector('img').src = '/' + String(p.image || 'assets/nashnaal-favicon.png').replace(/^\//, '');
     tr.querySelector('b').textContent = p.name;
     tr.querySelector('small').textContent = p.model + ' · ' + p.category;
+    if (p.stock) {
+      var back = p.stock.back ? ' · back ~' + new Date(p.stock.back + 'T00:00:00Z').toLocaleDateString('en-KE', { day: 'numeric', month: 'short', timeZone: 'UTC' }) : '';
+      var badge = el('span', 'stock ' + p.stock.status, (p.stock.status === 'out' ? 'Out of stock' : 'Limited stock') + back + (p.stock.note ? ' · ' + p.stock.note : ''));
+      tr.querySelector('.prod div').appendChild(badge);
+    }
     tr.querySelector('.web').textContent = p.retail !== p.price ? money(p.retail) : '';
     var yours = tr.querySelector('.yours');
     yours.textContent = money(p.price);
     if (p.own) yours.appendChild(el('span', 'own', 'Your agreed price'));
     var qty = tr.querySelector('.qty'), ask = tr.querySelector('.ask'), line = tr.querySelector('.line');
     if (c.qty) qty.value = c.qty;
+    // Out of stock: can't be ordered (an old cart line is dropped).
+    if (p.stock && p.stock.status === 'out') {
+      qty.disabled = true; ask.disabled = true; qty.placeholder = '—';
+      if (cart[p.slug]) { delete cart[p.slug]; qty.value = ''; }
+      tr.className = 'oos';
+    }
     if (c.requested) ask.value = c.requested;
     function sync() {
       var n = Math.max(0, Math.min(9999, Math.floor(Number(qty.value) || 0)));

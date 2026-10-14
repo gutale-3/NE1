@@ -374,7 +374,8 @@ export async function removeOrder(env, user, can, id, reason) {
     env.DB.prepare("UPDATE deliveries SET status = 'cancelled', reason = 'Order removed', updated_at = datetime('now') WHERE order_id = ?1 AND status IN ('assigned', 'on_way')").bind(o.id),
   ]);
   await log(env, user.id, "order-removed", `Removed ${o.number} (${o.name}, ${kes(o.total)}): ${why}`);
-  return { ok: true, message: `${o.number} removed. The owner can see it and restore it if needed.` };
+  return { ok: true, removed: { number: o.number, name: o.name, total: o.total, reason: why },
+    message: `${o.number} removed. The owner can see it and restore it if needed.` };
 }
 
 // The owner restores any removed order; a team member restores the ones they removed.

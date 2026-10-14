@@ -1153,6 +1153,9 @@ async function adminPartners(request, env, url, admin) {
         .bind(admin.id, `Partner ${out.partner.company}: ${out.partner.status}, ${out.partner.discount}% default discount`).run();
       out.message = `${out.partner.company} saved (${out.partner.status}).`;
     }
+  } else if (body.action === "stock") {
+    out = await partners.adminSetStock(env, body, catalogue);
+    if (out.ok) await env.DB.prepare("INSERT INTO audit_log (user_id, action, detail) VALUES (?1, 'partner_stock', ?2)").bind(admin.id, out.message).run();
   } else if (body.action === "prices") {
     out = await partners.adminSetPrices(env, Number(body.id), body.prices, catalogue);
     if (out.ok) out.message = `${out.saved} price${out.saved === 1 ? "" : "s"} saved.`;
@@ -1205,7 +1208,7 @@ async function teamApi(request, env, url, ctx) {
   const staff = await team.staffOf(env, user.id);
   const can = team.permissions(staff, owner);
   if (!can) return json({ error: "Your team account is not approved yet." }, 403);
-  const need = { order: "orders", accept: "orders", assign: "dispatch", cancel_job: "dispatch", decide: "confirm" }[body.action];
+  const need = { order: "orders", accept: "orders", assign: "dispatch", cancel_job: "dispatch", decide: "confirm", decide_handover: "confirm" }[body.action];
   if (need && !can.includes(need)) return json({ error: "Your role can't do this. Ask the owner if you need it." }, 403);
   const who = staff ? staff.username : "Owner";
   let out;
@@ -1213,6 +1216,16 @@ async function teamApi(request, env, url, ctx) {
     out = await sales.findForPayment(env, body.q);
   } else if (body.action === "remove") {
     out = await sales.removeOrder(env, user, can, body.id, body.reason);
+    const { removed } = out;
+    if (removed) later(ctx, () => wa.orderRemoved(env, who, removed));
+    delete out.removed;
+  } else if (body.action === "hand_in") {
+    out = await team.handIn(env, user);
+    const { handover, staff: person } = out;
+    if (handover) later(ctx, () => wa.cashHandover(env, person ? person.username : who, handover));
+    delete out.handover; delete out.staff;
+  } else if (body.action === "decide_handover") {
+    out = await handoverDecided(env, await team.decideHandover(env, user, body, owner), user, who, owner, ctx);
   } else if (body.action === "restore") {
     out = await sales.restoreOrder(env, user, body.id, owner);
   } else if (body.action === "accept") {
@@ -1329,6 +1342,21 @@ async function routeOrder(env, orderId) {
   for (const person of r.pool || []) await wa.orderPool(env, person, r.order);
 }
 
+// Cash counted and received: confirm every payment in the handover.
+async function handoverDecided(env, out, actor, who, owner, ctx) {
+  if (!out.ok) return out;
+  const { ids, accept } = out;
+  delete out.ids; delete out.accept;
+  if (!accept) return out;
+  const extra = [];
+  for (const id of ids) {
+    const r = await afterCollectionDecided(env, await team.decide(env, actor, { id, accept: true }, true), actor, who, ctx);
+    if (r.ok && / is now paid\./.test(r.message)) extra.push(r.message.replace(/^C-\d+ confirmed\. /, ""));
+  }
+  if (extra.length) out.message += " " + extra.join(" ");
+  return out;
+}
+
 async function teamProof(request, env, url) {
   const user = await currentUser(request, env);
   if (!user) return json({ error: "Please sign in first." }, 401);
@@ -1349,6 +1377,7 @@ async function adminTeam(request, env, url, admin, ctx) {
   if (body.action === "update") out = await team.adminUpdate(env, admin, body);
   else if (body.action === "claim") out = await sales.adminDecideClaim(env, admin, body);
   else if (body.action === "restore") out = await sales.restoreOrder(env, admin, body.order_id, true);
+  else if (body.action === "decide_handover") out = await handoverDecided(env, await team.decideHandover(env, admin, body, true), admin, "Owner", true, ctx);
   else if (body.action === "handler") {
     out = await sales.adminSetHandler(env, admin, body);
     const { person, order } = out;

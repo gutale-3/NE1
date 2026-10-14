@@ -82,6 +82,18 @@ export async function ensureTables(env) {
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     )`),
     env.DB.prepare("CREATE INDEX IF NOT EXISTS collections_staff ON collections(staff_id, status)"),
+    // End-of-day cash handover: one person hands in all the cash they hold at once.
+    env.DB.prepare(`CREATE TABLE IF NOT EXISTS handovers (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      staff_id INTEGER NOT NULL,
+      amount INTEGER NOT NULL,
+      count INTEGER NOT NULL,
+      status TEXT NOT NULL DEFAULT 'pending',     -- pending | confirmed | rejected
+      decided_by INTEGER,
+      note TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      decided_at TEXT
+    )`),
     env.DB.prepare(`CREATE TABLE IF NOT EXISTS collection_proofs (
       collection_id INTEGER PRIMARY KEY,
       mime TEXT NOT NULL,
@@ -95,6 +107,7 @@ export async function ensureTables(env) {
     "deleted_from TEXT", "deleted_by INTEGER", "deleted_at TEXT", "delete_reason TEXT"]) {
     try { await env.DB.prepare(`ALTER TABLE orders ADD COLUMN ${column}`).run(); } catch { /* already there */ }
   }
+  try { await env.DB.prepare("ALTER TABLE collections ADD COLUMN handover_id INTEGER").run(); } catch { /* already there */ }
   // Orders staff took before the order pool existed are theirs.
   await env.DB.prepare("UPDATE orders SET handler_id = staff_id, handled_at = created_at WHERE handler_id IS NULL AND staff_id IS NOT NULL").run();
   ready = true;
@@ -174,7 +187,7 @@ function collection(c) {
     id: c.id, staff_id: c.staff_id, staff: c.username || "Owner", order: c.number || null, delivery_id: c.delivery_id,
     partner: c.company || null, customer: c.customer, phone: c.phone, amount: c.amount, method: c.method,
     reference: c.reference, note: c.note, has_proof: c.has_proof, status: c.status, decided_note: c.decided_note,
-    decided_at: c.decided_at, created_at: c.created_at,
+    decided_at: c.decided_at, created_at: c.created_at, handover_id: c.handover_id || null,
   };
 }
 
@@ -201,10 +214,61 @@ async function cashSummary(env) {
        sum(CASE WHEN c.status = 'pending' THEN c.amount ELSE 0 END) AS holding,
        sum(CASE WHEN c.status = 'pending' AND c.method = 'Cash' THEN c.amount ELSE 0 END) AS cash,
        sum(CASE WHEN c.status = 'pending' THEN 1 ELSE 0 END) AS pending,
-       sum(CASE WHEN c.status = 'confirmed' AND c.decided_at >= date('now', 'start of month') THEN c.amount ELSE 0 END) AS month
+       sum(CASE WHEN c.status = 'confirmed' AND c.decided_at >= date('now', 'start of month') THEN c.amount ELSE 0 END) AS month,
+       min(CASE WHEN c.status = 'pending' AND c.method = 'Cash' THEN c.created_at END) AS cash_since
      FROM collections c LEFT JOIN staff s ON s.user_id = c.staff_id GROUP BY c.staff_id ORDER BY holding DESC`
   ).all();
-  return results.map((r) => ({ ...r, username: r.username || "Owner" }));
+  // Cash held for more than a day is flagged.
+  const dayAgo = new Date(Date.now() - 86400000).toISOString().replace("T", " ").slice(0, 19);
+  return results.map((r) => ({ ...r, username: r.username || "Owner", late: Boolean(r.cash_since && r.cash_since < dayAgo) }));
+}
+
+// ---- cash handover ----------------------------------------------------------------------
+
+// Everything this person holds in cash (not yet confirmed, not already handed in), as one handover.
+export async function handIn(env, user) {
+  await ensureTables(env);
+  const { results } = await env.DB.prepare(
+    "SELECT id, amount FROM collections WHERE staff_id = ?1 AND status = 'pending' AND method = 'Cash' AND handover_id IS NULL"
+  ).bind(user.id).all();
+  if (!results.length) return { error: "You have no cash waiting to hand in." };
+  const amount = results.reduce((n, c) => n + c.amount, 0);
+  const row = await env.DB.prepare("INSERT INTO handovers (staff_id, amount, count) VALUES (?1, ?2, ?3) RETURNING id")
+    .bind(user.id, amount, results.length).first();
+  await env.DB.prepare(`UPDATE collections SET handover_id = ?1 WHERE id IN (${results.map(() => "?").join(",")})`)
+    .bind(row.id, ...results.map((c) => c.id)).run();
+  await log(env, user.id, "cash-handover", `Handing in ${kes(amount)} cash (${results.length} payment${results.length === 1 ? "" : "s"}) — H-${row.id}`);
+  return { ok: true, handover: { id: row.id, amount, count: results.length }, staff: await staffOf(env, user.id),
+    message: `Handing in ${kes(amount)}. Give the cash to the office; it is confirmed in one go.` };
+}
+
+const HANDOVER_SELECT = `SELECT h.*, s.username FROM handovers h LEFT JOIN staff s ON s.user_id = h.staff_id`;
+
+export async function pendingHandovers(env, staffId = null) {
+  await ensureTables(env);
+  const { results } = await env.DB.prepare(`${HANDOVER_SELECT} WHERE h.status = 'pending' AND (?1 IS NULL OR h.staff_id = ?1) ORDER BY h.id DESC`)
+    .bind(staffId).all();
+  return results.map((h) => ({ id: h.id, staff_id: h.staff_id, staff: h.username || "Owner", amount: h.amount, count: h.count, created_at: h.created_at }));
+}
+
+// Counted and received (the caller then confirms each payment in it), or not received.
+export async function decideHandover(env, actor, body, owner) {
+  await ensureTables(env);
+  const h = await env.DB.prepare(`${HANDOVER_SELECT} WHERE h.id = ?1`).bind(Number(body.id)).first();
+  if (!h) return { error: "Handover not found." };
+  if (h.status !== "pending") return { error: `This handover was already ${h.status}.` };
+  if (h.staff_id === actor.id && !owner) return { error: "Someone else must count and confirm cash you hand in." };
+  const accept = Boolean(body.accept);
+  const note = clean(body.note, 200);
+  if (!accept && !note) return { error: "Say what was wrong (e.g. the amount counted)." };
+  const { results } = await env.DB.prepare("SELECT id FROM collections WHERE handover_id = ?1 AND status = 'pending'").bind(h.id).all();
+  await env.DB.prepare("UPDATE handovers SET status = ?2, decided_by = ?3, note = ?4, decided_at = datetime('now') WHERE id = ?1")
+    .bind(h.id, accept ? "confirmed" : "rejected", actor.id, note || null).run();
+  // Not received: the payments go back to "with them" so they can hand in again.
+  if (!accept) await env.DB.prepare("UPDATE collections SET handover_id = NULL WHERE handover_id = ?1").bind(h.id).run();
+  await log(env, actor.id, "cash-handover-decided", `H-${h.id} from ${h.username}: ${kes(h.amount)} ${accept ? "received" : `not accepted (${note})`}`);
+  return { ok: true, accept, ids: results.map((c) => c.id),
+    message: accept ? `${kes(h.amount)} cash from ${h.username} received.` : `Handover from ${h.username} sent back: ${note}` };
 }
 
 async function approvedStaff(env) {
@@ -232,6 +296,7 @@ export async function portal(env, user, owner) {
   out.jobs = jobs.results.map(job);
   out.collections = mine.results.map(collection);
   out.holding = out.collections.filter((c) => c.status === "pending").reduce((n, c) => n + c.amount, 0);
+  out.myHandovers = await pendingHandovers(env, user.id);
   const { results: partnerRows } = await env.DB.prepare(
     "SELECT user_id, company FROM partners WHERE status = 'approved' ORDER BY company"
   ).all();
@@ -258,6 +323,7 @@ export async function portal(env, user, owner) {
     const { results } = await env.DB.prepare(`${COLLECTION_SELECT} WHERE c.status = 'pending' ORDER BY c.id DESC LIMIT 100`).all();
     out.toConfirm = results.map(collection);
     out.cash = await cashSummary(env);
+    out.handovers = await pendingHandovers(env);
   }
   if (can.includes("team")) out.people = await teamList(env);
   return out;
@@ -511,6 +577,7 @@ export async function adminOverview(env) {
   return {
     roles: Object.fromEntries(Object.entries(ROLES).map(([k, r]) => [k, r.label])),
     people, toConfirm: pending.results.map(collection), deliveries: active.results.map(job), cash, activity: activity.results,
+    handovers: await pendingHandovers(env),
   };
 }
 
