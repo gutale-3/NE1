@@ -792,7 +792,7 @@ async function createOrder(request, env, url, ctx) {
 
 function orderPublic(order) {
   return {
-    number: order.number, created_at: order.created_at, status: order.status, name: order.name, phone: order.phone,
+    number: order.number, created_at: order.created_at, status: order.status === "deleted" ? "cancelled" : order.status, name: order.name, phone: order.phone,
     email: order.email, delivery: order.delivery, deliveryLabel: DELIVERY[order.delivery], town: order.town,
     transport: order.transport, notes: order.notes, items: JSON.parse(order.items_json), subtotal: order.subtotal,
     tech_discount: order.tech_discount, reward_used: order.reward_used, total: order.total,
@@ -825,7 +825,7 @@ async function accountSummary(request, env) {
   return json({
     signedIn: true, name: user.name, email: user.email, balance, next,
     rewardPercent: rewardPercent(env, tech), technician: tech, techDiscount: tech ? techDiscount(env) : 0,
-    orders: orders.results.map((o) => ({ number: o.number, token: o.view_token, total: o.total, status: o.status, created_at: o.created_at, reward_earned: o.reward_earned })),
+    orders: orders.results.map((o) => ({ number: o.number, token: o.view_token, total: o.total, status: o.status === "deleted" ? "cancelled" : o.status, created_at: o.created_at, reward_earned: o.reward_earned })),
     stats: {
       bought: sales.buckets(orders.results.filter((o) => o.status !== "cancelled"), { by: "month", n: 6, date: "created_at", value: (o) => o.total }),
       earned: sales.buckets(orders.results, { by: "month", n: 6, date: "created_at", value: (o) => o.reward_earned || 0 }),
@@ -868,7 +868,7 @@ async function adminFunnel(env) {
   const stage = (since) => env.DB.prepare(
     `SELECT
        (SELECT count(*) FROM users WHERE role != 'admin' AND created_at >= datetime('now', ?1)) AS accounts,
-       (SELECT count(*) FROM orders WHERE status != 'cancelled' AND created_at >= datetime('now', ?1)) AS orders,
+       (SELECT count(*) FROM orders WHERE status NOT IN ('cancelled', 'deleted') AND created_at >= datetime('now', ?1)) AS orders,
        (SELECT count(*) FROM orders WHERE status != 'cancelled' AND user_id IS NOT NULL AND created_at >= datetime('now', ?1)) AS member_orders,
        (SELECT count(DISTINCT user_id) FROM orders WHERE status != 'cancelled' AND user_id IS NOT NULL AND created_at >= datetime('now', ?1)) AS buyers,
        (SELECT count(*) FROM orders WHERE status IN ('paid', 'delivered') AND created_at >= datetime('now', ?1)) AS paid,
@@ -890,19 +890,21 @@ const ORDER_STATUSES = ["new", "confirmed", "paid", "delivered", "cancelled"];
 async function adminOrders(request, env, url, admin, ctx) {
   if (request.method === "GET") {
     const status = url.searchParams.get("status");
-    const filter = ORDER_STATUSES.includes(status) ? "WHERE o.status = ?1" : "";
+    // Removed orders only show under their own filter.
+    const filter = ORDER_STATUSES.includes(status) || status === "deleted" ? "WHERE o.status = ?1" : "WHERE o.status != 'deleted'";
     const stmt = env.DB.prepare(
-      `SELECT o.*, u.email AS account_email, s.username AS handler FROM orders o LEFT JOIN users u ON u.id = o.user_id
-       LEFT JOIN staff s ON s.user_id = o.handler_id ${filter} ORDER BY o.id DESC LIMIT 100`
+      `SELECT o.*, u.email AS account_email, s.username AS handler, ds.username AS deleted_by_name FROM orders o LEFT JOIN users u ON u.id = o.user_id
+       LEFT JOIN staff s ON s.user_id = o.handler_id LEFT JOIN staff ds ON ds.user_id = o.deleted_by ${filter} ORDER BY o.id DESC LIMIT 100`
     );
     await team.ensureTables(env);
     const [{ results }, counts] = await Promise.all([
-      (filter ? stmt.bind(status) : stmt).all(),
+      (filter.includes("?1") ? stmt.bind(status) : stmt).all(),
       env.DB.prepare("SELECT status, count(*) AS n FROM orders GROUP BY status").all(),
     ]);
     return json({
       orders: results.map((o) => ({ id: o.id, token: o.view_token, account_email: o.account_email, user_id: o.user_id, earn_rate: o.earn_rate, consent: o.consent,
-        handler: o.handler || null, handler_id: o.handler_id, finished_at: o.finished_at, ...orderPublic(o) })),
+        handler: o.handler || null, handler_id: o.handler_id, finished_at: o.finished_at, ...orderPublic(o), status: o.status,
+        removed: o.status === "deleted" ? { by: o.deleted_by_name || "Owner", at: o.deleted_at, reason: o.delete_reason, was: o.deleted_from } : null })),
       counts: Object.fromEntries(counts.results.map((c) => [c.status, c.n])),
     });
   }
@@ -910,6 +912,7 @@ async function adminOrders(request, env, url, admin, ctx) {
   if (!Number.isInteger(id) || !ORDER_STATUSES.includes(status)) return json({ error: "Bad request." }, 400);
   const order = await env.DB.prepare("SELECT * FROM orders WHERE id = ?1").bind(id).first();
   if (!order) return json({ error: "Order not found." }, 404);
+  if (order.status === "deleted") return json({ error: `${order.number} was removed by a team member. Restore it first (Orders → Removed).` }, 400);
 
   const note = await changeOrderStatus(env, order, status, admin, ctx);
   return json({ ok: true, message: `Order ${order.number} is now ${status}.${note}` });
@@ -1032,7 +1035,7 @@ async function partnerApi(request, env, url, ctx) {
       out.account = await accounts.account(env, user.id);
       // Charts: what they bought each month, and goods taken vs paid on their account.
       const { results } = await env.DB.prepare(
-        "SELECT total, created_at FROM orders WHERE user_id = ?1 AND status != 'cancelled' AND created_at > datetime('now', '-7 months')"
+        "SELECT total, created_at FROM orders WHERE user_id = ?1 AND status NOT IN ('cancelled', 'deleted') AND created_at > datetime('now', '-7 months')"
       ).bind(user.id).all();
       const ledger = out.account.entries.filter((e) => e.status === "confirmed");
       out.stats = {
@@ -1186,6 +1189,7 @@ async function teamApi(request, env, url, ctx) {
         sales.mine(env, user.id), sales.myCustomers(env, user.id), docs.list(env, "", user.id).then((d) => d.documents.slice(0, 40)),
         sales.stats(env, user.id, out.can), sells ? sales.pool(env) : [],
       ]);
+      out.removed = await sales.removedList(env, user.id);
     }
     return json(out);
   }
@@ -1205,7 +1209,13 @@ async function teamApi(request, env, url, ctx) {
   if (need && !can.includes(need)) return json({ error: "Your role can't do this. Ask the owner if you need it." }, 403);
   const who = staff ? staff.username : "Owner";
   let out;
-  if (body.action === "accept") {
+  if (body.action === "find") {
+    out = await sales.findForPayment(env, body.q);
+  } else if (body.action === "remove") {
+    out = await sales.removeOrder(env, user, can, body.id, body.reason);
+  } else if (body.action === "restore") {
+    out = await sales.restoreOrder(env, user, body.id, owner);
+  } else if (body.action === "accept") {
     out = await sales.accept(env, user, staff, body.id);
   } else if (body.action === "release") {
     out = await sales.release(env, user, body.id);
@@ -1230,6 +1240,10 @@ async function teamApi(request, env, url, ctx) {
     out = await team.record(env, user, body);
     const { collection } = out;
     if (collection) later(ctx, () => wa.staffCollection(env, collection));
+    if (collection && body.receipt) {
+      const receipt = await sales.paymentReceipt(env, user, staff, collection);
+      if (receipt) { out.receipt_id = receipt.id; out.message += ` Receipt ${receipt.number} is ready.`; }
+    }
     delete out.collection;
   } else if (body.action === "job_status") {
     out = await team.jobStatus(env, user, body);
@@ -1334,6 +1348,7 @@ async function adminTeam(request, env, url, admin, ctx) {
   let out;
   if (body.action === "update") out = await team.adminUpdate(env, admin, body);
   else if (body.action === "claim") out = await sales.adminDecideClaim(env, admin, body);
+  else if (body.action === "restore") out = await sales.restoreOrder(env, admin, body.order_id, true);
   else if (body.action === "handler") {
     out = await sales.adminSetHandler(env, admin, body);
     const { person, order } = out;
@@ -1432,7 +1447,7 @@ async function adminCustomers(env, url) {
          sum(CASE WHEN status IN ('new', 'confirmed') THEN total ELSE 0 END) AS pending,
          count(*) AS orders, max(created_at) AS last_order,
          (SELECT phone FROM orders o2 WHERE o2.user_id = orders.user_id ORDER BY id DESC LIMIT 1) AS phone
-       FROM orders WHERE user_id IS NOT NULL AND status != 'cancelled' GROUP BY user_id`
+       FROM orders WHERE user_id IS NOT NULL AND status NOT IN ('cancelled', 'deleted') GROUP BY user_id`
     ).all(),
     env.DB.prepare(
       `SELECT phone, max(name) AS name, max(email) AS email,
@@ -1440,7 +1455,7 @@ async function adminCustomers(env, url) {
          sum(CASE WHEN status IN ${SOLD}${range} THEN 1 ELSE 0 END) AS paid_orders,
          sum(CASE WHEN status IN ('new', 'confirmed') THEN total ELSE 0 END) AS pending,
          count(*) AS orders, max(created_at) AS last_order
-       FROM orders WHERE user_id IS NULL AND status != 'cancelled' GROUP BY phone`
+       FROM orders WHERE user_id IS NULL AND status NOT IN ('cancelled', 'deleted') GROUP BY phone`
     ).all(),
     env.DB.prepare("SELECT user_id, kind, amount, expires_at, created_at FROM reward_ledger ORDER BY user_id, created_at, id").all(),
   ]);

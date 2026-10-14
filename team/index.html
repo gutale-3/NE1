@@ -206,8 +206,19 @@ td.n, th.n { text-align: right; white-space: nowrap; }
 
   <section id="v-collect" hidden>
     <h1>Record a payment</h1>
-    <p class="sub">Any money you receive: cash, M-Pesa, bank or other. The owner gets a message and confirms it. Until then it shows as money with you.</p>
+    <p class="sub">Money from any customer: cash, M-Pesa, bank or other. The owner gets a message and confirms it. Until then it shows as money with you.</p>
     <div class="card">
+      <h2>1. Find the customer</h2>
+      <form id="find-form" style="display:flex;gap:8px;grid-template-columns:none">
+        <input name="q" placeholder="Phone number or order number" inputmode="search" autocomplete="off" style="flex:1">
+        <button class="btn primary small" type="submit">Find</button>
+      </form>
+      <div id="find-results" style="margin-top:8px"></div>
+      <p class="hint" style="margin-top:8px">Or skip this and type the details below (e.g. a walk-in customer).</p>
+    </div>
+    <div class="card">
+      <h2>2. The payment</h2>
+      <div id="paying-for" class="note" hidden></div>
       <form id="collect-form"></form>
     </div>
   </section>
@@ -216,6 +227,12 @@ td.n, th.n { text-align: right; white-space: nowrap; }
     <h1>My payments</h1>
     <div class="card hold"><div><small>With you, waiting for confirmation</small><b id="hold-amt2">KES 0</b></div></div>
     <div class="card" id="mine"></div>
+  </section>
+
+  <section id="v-removed" hidden>
+    <h1>Removed orders</h1>
+    <p class="sub">Orders you removed. Nothing is erased: the owner sees every removed order, who removed it and why, and can bring it back. You can restore the ones you removed.</p>
+    <div class="card" id="removed"></div>
   </section>
 
   <section id="v-dispatch" hidden>

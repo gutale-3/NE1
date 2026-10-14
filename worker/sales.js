@@ -117,7 +117,7 @@ export async function mine(env, userId) {
      FROM orders o LEFT JOIN partners p ON p.user_id = o.user_id
        LEFT JOIN customer_owners c ON c.customer_key = 'u:' || o.user_id
        LEFT JOIN staff cs ON cs.user_id = c.staff_id
-     WHERE o.handler_id = ?1 AND o.status != 'cancelled' AND (o.finished_at IS NULL OR o.finished_at > datetime('now', '-30 days'))
+     WHERE o.handler_id = ?1 AND o.status NOT IN ('cancelled', 'deleted') AND (o.finished_at IS NULL OR o.finished_at > datetime('now', '-30 days'))
      ORDER BY CASE WHEN o.finished_at IS NULL THEN 0 ELSE 1 END, o.id DESC LIMIT 60`
   ).bind(userId).all();
   // The phone key can't be built in SQL for guests, so fill guest claims in here.
@@ -149,7 +149,7 @@ export async function accept(env, user, staff, id) {
   await ensureTables(env);
   const row = await env.DB.prepare(
     `UPDATE orders SET handler_id = ?2, handled_at = datetime('now')
-     WHERE id = ?1 AND handler_id IS NULL AND status != 'cancelled' RETURNING number, name`
+     WHERE id = ?1 AND handler_id IS NULL AND status NOT IN ('cancelled', 'deleted') RETURNING number, name`
   ).bind(Number(id), user.id).first();
   if (!row) {
     const o = await env.DB.prepare("SELECT o.number, s.username FROM orders o LEFT JOIN staff s ON s.user_id = o.handler_id WHERE o.id = ?1").bind(Number(id)).first();
@@ -281,7 +281,7 @@ export function buckets(rows, { by = "week", n = 8, date = "date", value = () =>
 export async function stats(env, userId, can) {
   await ensureTables(env);
   const [sales, jobs, money] = await Promise.all([
-    env.DB.prepare("SELECT total, finished_at FROM orders WHERE handler_id = ?1 AND finished_at > datetime('now', '-60 days') AND status != 'cancelled'").bind(userId).all(),
+    env.DB.prepare("SELECT total, finished_at FROM orders WHERE handler_id = ?1 AND finished_at > datetime('now', '-60 days') AND status NOT IN ('cancelled', 'deleted')").bind(userId).all(),
     env.DB.prepare("SELECT done_at FROM deliveries WHERE staff_id = ?1 AND status = 'delivered' AND done_at > datetime('now', '-60 days')").bind(userId).all(),
     env.DB.prepare("SELECT method, amount, status FROM collections WHERE staff_id = ?1 AND status != 'rejected' AND created_at > datetime('now', '-30 days')").bind(userId).all(),
   ]);
@@ -299,7 +299,7 @@ export async function stats(env, userId, can) {
   if (can.includes("team")) {
     const { results } = await env.DB.prepare(
       `SELECT s.username AS label, coalesce(sum(o.total), 0) AS value FROM staff s
-       LEFT JOIN orders o ON o.handler_id = s.user_id AND o.finished_at >= date('now', 'start of month') AND o.status != 'cancelled'
+       LEFT JOIN orders o ON o.handler_id = s.user_id AND o.finished_at >= date('now', 'start of month') AND o.status NOT IN ('cancelled', 'deleted')
        WHERE s.status = 'approved' GROUP BY s.user_id ORDER BY value DESC`
     ).all();
     out.teamMonth = results;
@@ -349,4 +349,103 @@ export async function adminSetHandler(env, admin, body) {
   ).bind(o.id, staffId).run();
   await log(env, admin.id, "order-handler", `${o.number} ${person ? `given to ${person.username}` : "put back in the order pool"}`);
   return { ok: true, message: person ? `${o.number} is now handled by ${person.username}.` : `${o.number} is back in the order pool.`, person, order: o };
+}
+
+// ---- removing orders (never erased: the owner sees who removed what, and can restore it) ----
+
+// A team member removes an order they handle, or one from the pool (a duplicate or a fake).
+// Orders with money already confirmed can't be removed from the team page.
+export async function removeOrder(env, user, can, id, reason) {
+  await ensureTables(env);
+  const why = clean(reason, 200);
+  if (!why) return { error: "Say why you are removing this order (e.g. duplicate, customer changed their mind)." };
+  const o = await env.DB.prepare("SELECT * FROM orders WHERE id = ?1").bind(Number(id)).first();
+  if (!o || o.status === "deleted") return { error: "Order not found." };
+  const mineOrPool = o.handler_id === user.id || (!o.handler_id && can.includes("orders"));
+  if (!mineOrPool) return { error: "You can only remove orders you handle, or orders in the pool." };
+  if (!["new", "confirmed"].includes(o.status)) return { error: `This order is ${o.status}, so only the owner can change it.` };
+  const money = await env.DB.prepare("SELECT 1 FROM collections WHERE order_id = ?1 AND status != 'rejected'").bind(o.id).first();
+  if (money) return { error: "Money was recorded on this order, so only the owner can cancel it." };
+  await env.DB.batch([
+    env.DB.prepare(
+      `UPDATE orders SET deleted_from = status, status = 'deleted', deleted_by = ?2, deleted_at = datetime('now'), delete_reason = ?3,
+         updated_at = datetime('now') WHERE id = ?1`
+    ).bind(o.id, user.id, why),
+    env.DB.prepare("UPDATE deliveries SET status = 'cancelled', reason = 'Order removed', updated_at = datetime('now') WHERE order_id = ?1 AND status IN ('assigned', 'on_way')").bind(o.id),
+  ]);
+  await log(env, user.id, "order-removed", `Removed ${o.number} (${o.name}, ${kes(o.total)}): ${why}`);
+  return { ok: true, message: `${o.number} removed. The owner can see it and restore it if needed.` };
+}
+
+// The owner restores any removed order; a team member restores the ones they removed.
+export async function restoreOrder(env, actor, id, owner) {
+  await ensureTables(env);
+  const o = await env.DB.prepare("SELECT * FROM orders WHERE id = ?1 AND status = 'deleted'").bind(Number(id)).first();
+  if (!o) return { error: "Removed order not found." };
+  if (!owner && o.deleted_by !== actor.id) return { error: "Only the owner can restore an order someone else removed." };
+  await env.DB.prepare(
+    `UPDATE orders SET status = coalesce(deleted_from, 'new'), deleted_from = NULL, deleted_by = NULL, deleted_at = NULL,
+       delete_reason = NULL, updated_at = datetime('now') WHERE id = ?1`
+  ).bind(o.id).run();
+  await log(env, actor.id, "order-restored", `Restored ${o.number} (${o.name}), removed earlier: ${o.delete_reason || ""}`);
+  return { ok: true, message: `${o.number} is back (${o.deleted_from || "new"}).` };
+}
+
+// Removed orders: everyone's for the owner, or one person's.
+export async function removedList(env, userId = null) {
+  await ensureTables(env);
+  const { results } = await env.DB.prepare(
+    `SELECT o.id, o.number, o.name, o.phone, o.total, o.items_json, o.deleted_from, o.deleted_at, o.delete_reason, o.created_at,
+       s.username AS deleted_by_name, o.deleted_by
+     FROM orders o LEFT JOIN staff s ON s.user_id = o.deleted_by
+     WHERE o.status = 'deleted' AND (?1 IS NULL OR o.deleted_by = ?1) ORDER BY o.deleted_at DESC LIMIT 100`
+  ).bind(userId).all();
+  return results.map((o) => ({
+    id: o.id, number: o.number, name: o.name, phone: o.phone, total: o.total, was: o.deleted_from, at: o.deleted_at,
+    reason: o.delete_reason, by: o.deleted_by_name || "Owner", created_at: o.created_at,
+    items: JSON.parse(o.items_json || "[]").reduce((n, i) => n + i.qty, 0),
+  }));
+}
+
+// ---- taking money from any customer -------------------------------------------------------
+
+// Find open orders by phone or order number, to take a payment. Shows only what is
+// needed to take the money: who, which order and what is still due, not what they bought.
+export async function findForPayment(env, q) {
+  await ensureTables(env);
+  const text = clean(q, 30);
+  const number = /^(ne-?)?\d{3,6}$/i.test(text) ? `NE-${text.replace(/\D/g, "")}` : null;
+  const digits = text.replace(/\D/g, "");
+  if (!number && digits.length < 6) return { error: "Type the customer's phone number (at least 6 digits) or the order number." };
+  const tail = digits.replace(/^(254|0)/, "");
+  const { results } = await env.DB.prepare(
+    `SELECT o.id, o.number, o.name, o.phone, o.total, o.status, o.created_at, p.company,
+       (SELECT coalesce(sum(amount), 0) FROM collections WHERE order_id = o.id AND status != 'rejected') AS paid
+     FROM orders o LEFT JOIN partners p ON p.user_id = o.user_id
+     WHERE o.status IN ('new', 'confirmed', 'paid', 'delivered')
+       AND (o.number = ?1 OR (?2 != '' AND replace(replace(replace(o.phone, ' ', ''), '-', ''), '+', '') LIKE '%' || ?2 || '%'))
+     ORDER BY o.id DESC LIMIT 10`
+  ).bind(number || "", number ? "" : tail).all();
+  return {
+    ok: true,
+    results: results.map((o) => ({
+      id: o.id, number: o.number, name: o.company || o.name, phone: `••• ${String(o.phone).replace(/\D/g, "").slice(-3)}`,
+      total: o.total, paid: o.paid, due: Math.max(0, o.total - o.paid), status: o.status, created_at: o.created_at,
+    })),
+  };
+}
+
+// A simple receipt for money taken: "Payment received" against the order, no product list.
+export async function paymentReceipt(env, user, staff, c) {
+  await ensureTables(env);
+  const o = c.order ? await env.DB.prepare("SELECT id, number, name, phone, email FROM orders WHERE number = ?1").bind(c.order).first() : null;
+  const out = await docs.create(env, {
+    kind: "receipt",
+    customer: { name: c.partner || c.customer, phone: c.phone || (o && o.phone) || "", email: (o && o.email) || "" },
+    items: [{ name: o ? `Payment for order ${o.number}` : "Payment received", model: "", qty: 1, price: c.amount }],
+    order_id: o ? o.id : null, against: o ? o.number : "", paid: c.amount,
+    method: ["M-Pesa", "Cash", "Bank transfer", "Card", "Cheque"].includes(c.method) ? c.method : null, reference: c.reference, notes: c.note,
+  }, { email: user.email, staffName: staff ? staff.username : null, staffId: user.id });
+  if (out.ok) await log(env, user.id, "receipt", `Made receipt ${out.document.number} for ${kes(c.amount)} (C-${c.id})`);
+  return out.ok ? out.document : null;
 }

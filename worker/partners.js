@@ -120,7 +120,7 @@ export async function portal(env, user, catalogue) {
       "SELECT number, view_token, total, status, created_at, updated_at, delivery, town, notes, items_json FROM orders WHERE user_id = ?1 AND channel = 'partner' ORDER BY id DESC LIMIT 50"
     ).bind(user.id).all();
     out.orders = results.map((o) => ({
-      number: o.number, token: o.view_token, total: o.total, status: o.status, created_at: o.created_at,
+      number: o.number, token: o.view_token, total: o.total, status: o.status === "deleted" ? "cancelled" : o.status, created_at: o.created_at,
       updated_at: o.updated_at, delivery: o.delivery, town: o.town, notes: o.notes, items: JSON.parse(o.items_json),
     }));
     const reqs = await env.DB.prepare(
