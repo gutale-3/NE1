@@ -90,7 +90,9 @@ export async function ensureTables(env) {
   ]);
   // staff_id: who took the order. handler_id: who handles (and is credited with) the sale,
   // from the order pool or because the customer is theirs; finished_at: they said it is done.
-  for (const column of ["staff_id INTEGER", "handler_id INTEGER", "handled_at TEXT", "finished_at TEXT"]) {
+  // deleted_*: an order a team member removed (status 'deleted'); the owner can restore it.
+  for (const column of ["staff_id INTEGER", "handler_id INTEGER", "handled_at TEXT", "finished_at TEXT",
+    "deleted_from TEXT", "deleted_by INTEGER", "deleted_at TEXT", "delete_reason TEXT"]) {
     try { await env.DB.prepare(`ALTER TABLE orders ADD COLUMN ${column}`).run(); } catch { /* already there */ }
   }
   // Orders staff took before the order pool existed are theirs.
@@ -267,7 +269,7 @@ async function teamList(env) {
     `SELECT s.user_id, s.username, s.full_name, s.phone, s.role, s.status, s.wanted, s.created_at, s.decided_at, u.email, u.last_login,
        (SELECT count(*) FROM deliveries d WHERE d.staff_id = s.user_id AND d.status = 'delivered' AND d.done_at > datetime('now', '-30 days')) AS delivered,
        (SELECT count(*) FROM deliveries d WHERE d.staff_id = s.user_id AND d.status IN ('assigned', 'on_way')) AS open_jobs,
-       (SELECT count(*) FROM orders o WHERE o.staff_id = s.user_id AND o.created_at > datetime('now', '-30 days')) AS orders,
+       (SELECT count(*) FROM orders o WHERE o.staff_id = s.user_id AND o.status != 'deleted' AND o.created_at > datetime('now', '-30 days')) AS orders,
        (SELECT coalesce(sum(amount), 0) FROM collections c WHERE c.staff_id = s.user_id AND c.status = 'pending') AS holding,
        (SELECT coalesce(sum(amount), 0) FROM collections c WHERE c.staff_id = s.user_id AND c.status = 'confirmed' AND c.created_at > datetime('now', '-30 days')) AS collected
      FROM staff s JOIN users u ON u.id = s.user_id
@@ -422,10 +424,10 @@ export async function record(env, user, body) {
   if (method !== "Cash" && !reference && !body.proof) return { error: "Add the transaction code or a screenshot so the office can find the payment." };
   if (method === "Other" && !note) return { error: "Say how the customer paid in the note." };
   let order = null;
-  if (body.order_id) order = await env.DB.prepare("SELECT id, number, name, phone, channel, user_id FROM orders WHERE id = ?1").bind(Number(body.order_id)).first();
+  if (body.order_id) order = await env.DB.prepare("SELECT id, number, name, phone, channel, user_id FROM orders WHERE id = ?1 AND status != 'deleted'").bind(Number(body.order_id)).first();
   else if (clean(body.order_number, 20)) {
     const n = clean(body.order_number, 20).toUpperCase().replace(/^(\d+)$/, "NE-$1");
-    order = await env.DB.prepare("SELECT id, number, name, phone, channel, user_id FROM orders WHERE number = ?1").bind(n).first();
+    order = await env.DB.prepare("SELECT id, number, name, phone, channel, user_id FROM orders WHERE number = ?1 AND status != 'deleted'").bind(n).first();
     if (!order) return { error: `Order ${n} was not found. Check the number, or leave it empty.` };
   }
   let partnerId = Number(body.partner_id) || null;

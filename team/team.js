@@ -95,7 +95,7 @@
   var TABS = [
     ['home', 'Home', null], ['pool', 'Order pool', 'orders'], ['sales', 'My sales', null],
     ['jobs', 'My jobs', null], ['order', 'New order', 'orders'], ['collect', 'Record payment', null], ['mine', 'My payments', null],
-    ['dispatch', 'Deliveries', 'dispatch'], ['confirm', 'Confirm', 'confirm'], ['team', 'Team', 'team'],
+    ['dispatch', 'Deliveries', 'dispatch'], ['confirm', 'Confirm', 'confirm'], ['team', 'Team', 'team'], ['removed', 'Removed', null],
   ];
 
   function load() {
@@ -193,6 +193,7 @@
     renderJobs();
     renderMine();
     renderCollect();
+    renderRemoved();
     if (data.can.indexOf('orders') >= 0) setupOrder();
     if (data.can.indexOf('dispatch') >= 0) renderDispatch();
     if (data.can.indexOf('confirm') >= 0) renderConfirm();
@@ -254,8 +255,34 @@
       var b = el('button', 'btn go', 'Accept: I will handle it'); b.type = 'button';
       b.addEventListener('click', function () { act({ action: 'accept', id: o.id }, b).then(function () { if (!$('flash').classList.contains('ok')) return; location.hash = 'sales'; }); });
       a.appendChild(b);
+      var rm = el('button', 'btn danger small', 'Remove (duplicate / fake)'); rm.type = 'button';
+      rm.addEventListener('click', function () { removeOrder(o, rm); });
+      a.appendChild(rm);
       c.appendChild(a);
       box.appendChild(c);
+    });
+  }
+
+  function removeOrder(o, b) {
+    var why = prompt('Why remove ' + o.number + '? (e.g. duplicate, customer cancelled, test order). The owner sees this.');
+    if (why) act({ action: 'remove', id: o.id, reason: why }, b);
+  }
+
+  function renderRemoved() {
+    var box = $('removed');
+    box.innerHTML = '';
+    if (!data.removed.length) { box.appendChild(el('p', null, 'You have not removed any orders.')); return; }
+    data.removed.forEach(function (o) {
+      var r = el('div', 'row');
+      var left = el('div');
+      left.appendChild(el('b', null, o.number + ' · ' + o.name));
+      left.appendChild(el('small', null, 'Removed ' + day(o.at) + ' · was ' + o.was + ' · ' + money(o.total)));
+      left.appendChild(el('small', null, 'Why: ' + o.reason));
+      r.appendChild(left);
+      var b = el('button', 'btn ghost small', 'Restore'); b.type = 'button';
+      b.addEventListener('click', function () { act({ action: 'restore', id: o.id }, b); });
+      r.appendChild(b);
+      box.appendChild(r);
     });
   }
 
@@ -350,6 +377,7 @@
     button('Finished', 'go', function (b) {
       if (confirm('Is ' + o.number + ' done (paid, delivered or collected)? It will count as your sale.')) act({ action: 'finish', id: o.id }, b);
     });
+    button('Remove order', 'danger', function (b) { removeOrder(o, b); });
     button('Give back', 'danger', function (b) {
       if (confirm('Put ' + o.number + ' back in the order pool for someone else?')) act({ action: 'release', id: o.id }, b);
     });
@@ -555,9 +583,44 @@
       var opts = form.elements.partner_id.options;
       data.partners.forEach(function (p, i) { opts[i + 1].textContent = p.company; });
     }
+    var rc = el('label', 'check');
+    rc.innerHTML = '<input type="checkbox" name="receipt" checked> Make a receipt for the customer';
+    form.appendChild(rc);
     var b = el('button', 'btn primary', 'Save and tell the owner'); b.type = 'submit';
     form.appendChild(b);
+    $('paying-for').hidden = true;
+    $('find-results').innerHTML = '';
   }
+
+  // Find an order to take money for: only who, which order and what is due.
+  $('find-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var box = $('find-results'), q = e.target.elements.q.value;
+    box.innerHTML = '';
+    api({ action: 'find', q: q }).then(function (r) {
+      if (!r.results.length) { box.appendChild(el('p', 'hint', 'No open order found. Check the number, or type the details below.')); return; }
+      r.results.forEach(function (o) {
+        var row = el('div', 'row');
+        var left = el('div');
+        left.appendChild(el('b', null, o.number + ' · ' + o.name));
+        left.appendChild(el('small', null, [o.phone, o.status, day(o.created_at), 'total ' + money(o.total), o.paid ? 'paid ' + money(o.paid) : ''].filter(Boolean).join(' · ')));
+        row.appendChild(left);
+        var pick = el('button', 'btn go small', o.due ? 'Take ' + money(o.due) : 'Take payment'); pick.type = 'button';
+        pick.addEventListener('click', function () {
+          var f = $('collect-form');
+          f.elements.order_number.value = o.number;
+          f.elements.customer.value = o.name;
+          f.elements.amount.value = o.due || '';
+          var p = $('paying-for');
+          p.textContent = 'Paying for ' + o.number + ' (' + o.name + '): ' + (o.due ? money(o.due) + ' still due.' : 'nothing due on record.');
+          p.hidden = false;
+          f.elements.amount.focus();
+        });
+        row.appendChild(pick);
+        box.appendChild(row);
+      });
+    }).catch(function (err) { box.appendChild(el('p', 'hint', err.message)); });
+  });
 
   $('collect-form').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -569,8 +632,10 @@
       body.phone = f.elements.phone.value;
       body.order_number = f.elements.order_number.value;
       body.partner_id = f.elements.partner_id ? f.elements.partner_id.value : '';
+      body.receipt = f.elements.receipt.checked;
       return api(body);
     }).then(function (r) {
+      if (r.receipt_id) window.open('/team/doc/?id=' + r.receipt_id, '_blank');
       return load().then(function () { location.hash = 'mine'; flash(r.message, true); });
     }).catch(function (err) { flash(err.message); }).then(function () { b.disabled = false; });
   });

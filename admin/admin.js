@@ -186,7 +186,9 @@
       var waiting = data.counts.new || 0;
       $('orders-badge').textContent = waiting;
       $('orders-badge').hidden = !waiting;
-      var total = Object.keys(data.counts).reduce(function (n, k) { return n + data.counts[k]; }, 0);
+      $('removed-badge').textContent = data.counts.deleted || 0;
+      $('removed-badge').hidden = !data.counts.deleted;
+      var total = Object.keys(data.counts).reduce(function (n, k) { return k === 'deleted' ? n : n + data.counts[k]; }, 0);
       $('orders-count').textContent = total ? data.orders.length + ' shown · ' + waiting + ' new · ' + total + ' total' : 'No orders yet. They appear here when customers check out from the cart.';
       var list = $('orders-list');
       list.textContent = '';
@@ -194,7 +196,35 @@
     });
   }
 
+  // An order a team member removed: who, when, why, and Restore.
+  function removedCard(o) {
+    var el = document.createElement('article');
+    el.className = 'tech ord cancelled';
+    el.innerHTML = '<div class="head"><div><div class="st cancelled"></div><h3></h3></div><div class="tot"></div></div><dl></dl><div class="row-actions"></div>';
+    el.querySelector('.st').textContent = 'removed by ' + o.removed.by;
+    el.querySelector('h3').textContent = o.number + ' — ' + o.name;
+    el.querySelector('.tot').textContent = money(o.total);
+    var dl = el.querySelector('dl');
+    [['Why', o.removed.reason], ['Removed', o.removed.at + ' UTC'], ['Was', o.removed.was], ['Phone', o.phone],
+      ['Items', o.items.map(function (i) { return i.qty + ' × ' + i.model; }).join(', ')], ['Placed', o.created_at + ' UTC']].forEach(function (f) {
+      if (!f[1]) return;
+      var dt = document.createElement('dt'); dt.textContent = f[0];
+      var dd = document.createElement('dd'); dd.textContent = f[1];
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'ok'; b.textContent = 'Restore';
+    b.addEventListener('click', function () {
+      b.disabled = true;
+      api('/api/admin/team', { action: 'restore', order_id: o.id }).then(function (r) { notice(r.message); loadOrders(); })
+        .catch(function (err) { b.disabled = false; notice(err.message, true); });
+    });
+    el.querySelector('.row-actions').appendChild(b);
+    return el;
+  }
+
   function orderCard(o) {
+    if (o.removed) return removedCard(o);
     var el = document.createElement('article');
     el.className = 'tech ord ' + o.status;
     el.innerHTML = '<div class="head"><div><div class="st"></div><h3></h3></div><div class="tot"></div></div><dl></dl><ul></ul><div class="row-actions"></div>';
