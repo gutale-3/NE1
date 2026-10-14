@@ -206,6 +206,25 @@ def build(monday, out):
         f.unlink()
 
     week = monday.strftime("%-d %B %Y")
+    kit = {**kit, "name": kit["name"].replace("\u2011", "-")}   # plain hyphen in captions people paste
+    kit_caption = (f"Kit of the week: {kit['name']}, {money(kit['total'])} complete.\n{kit['fam']['summary']}\n"
+                   f"Cameras, recorder{'' if not kit['fam'].get('hdd') else ', hard disk'}, power, cable and fittings, all in one price. Installation available.\n"
+                   f"Order on WhatsApp {WHATSAPP} or see every kit at {SITE}/kits\n{TAGS} #CCTVKits")
+    spot_lines = "\n".join(f"{k + 1}. {sp['name'].strip()} ({sp['model']}): {money(sp['price'])}" for k, sp in enumerate(spots))
+    posts = [
+        {"file": "1-kit.jpg", "day": "Monday", "kind": "Feed post", "where": "Instagram, Facebook", "caption": kit_caption},
+        {"file": "reel-1-kit.mp4", "day": "Tuesday", "kind": "Reel", "where": "Instagram, Facebook, TikTok, YouTube Shorts",
+         "caption": f"Complete CCTV kit, one price: {kit['name']} {money(kit['total'])}. WhatsApp {WHATSAPP} #Hikvision #CCTV #Kenya #Nairobi"},
+        {"file": "2-product.jpg", "day": "Wednesday", "kind": "Feed post", "where": "Instagram, Facebook",
+         "caption": f"Product spotlight: {spots[0]['name'].strip()} ({spots[0]['model']}), {money(spots[0]['price'])}.\nGenuine Hikvision with the manufacturer warranty, from the Authorized National Distributor.\nOrder on WhatsApp {WHATSAPP} or at {SITE}\n{TAGS}"},
+        {"file": "reel-2-products.mp4", "day": "Thursday", "kind": "Reel", "where": "Instagram, Facebook, TikTok, YouTube Shorts",
+         "caption": f"3 Hikvision picks this week, prices included. WhatsApp {WHATSAPP} #Hikvision #CCTV #Kenya\n{spot_lines}"},
+        {"file": "3-tip.jpg", "day": "Friday", "kind": "Feed post", "where": "Instagram, Facebook",
+         "caption": f"Security tip: {tip[0]}\n" + "\n".join("- " + t for t in tip[1]) + f"\nSave this post, and WhatsApp {WHATSAPP} if you want advice for your home or business.\n{TAGS} #SecurityTips"},
+        {"file": "4-why-ne.jpg", "day": "Saturday", "kind": "Feed post", "where": "Instagram, Facebook",
+         "caption": f"{why[0]}. {why[1]}\nNashnaal Electronics, BBS Mall Shop GFE 61, Eastleigh, Nairobi. WhatsApp {WHATSAPP}.\n{TAGS}"},
+    ]
+    (out / "captions.json").write_text(json.dumps({"monday": monday.isoformat(), "week": week, "posts": posts}, ensure_ascii=False, indent=1), encoding="utf-8")
     spot_lines = "\n".join(f"  {k + 1}. {sp['name'].strip()} ({sp['model']}): {money(sp['price'])}" for k, sp in enumerate(spots))
     (out / "captions.txt").write_text(f"""NE social media pack: week of {week}
 Post the feed images on Instagram and Facebook (Meta Business Suite), and the reels on Instagram Reels, Facebook Reels, TikTok and YouTube Shorts.
