@@ -132,6 +132,18 @@ export const TEMPLATES = [
     button: { type: "URL", text: "Open My sales", url: `${SITE}/team/#sales` }, footer: "Nashnaal Electronics team",
   },
   {
+    name: "ne_order_removed",
+    body: "Order removed by {{1}}: {{2}} for {{3}}, KES {{4}}. Reason given: {{5}}. You can see it and restore it in the NE admin under Orders, Removed by team.",
+    example: ["hassan", "NE-1005", "Mary Wanjiku", "20,150", "duplicate order"],
+    button: { type: "URL", text: "Open removed orders", url: `${SITE}/admin/#orders` }, footer: "Nashnaal Electronics website",
+  },
+  {
+    name: "ne_cash_handover",
+    body: "{{1}} is handing in KES {{2}} cash for {{3}} payment(s). Please count it, then confirm it in the Team tab of the NE admin.",
+    example: ["hassan", "12,500", "4"],
+    button: { type: "URL", text: "Confirm cash", url: `${SITE}/admin/#team` }, footer: "Nashnaal Electronics website",
+  },
+  {
     name: "ne_staff_applied",
     body: "New team sign-up: {{1}} (username {{2}}, phone {{3}}) asked to join the NE team as {{4}}. Approve them and choose their role in the Team tab of the NE admin.",
     example: ["Hassan Abdi", "hassan", "0712 345 678", "delivery"],
@@ -346,6 +358,16 @@ export async function orderPool(env, person, order) {
 export async function orderForYou(env, person, order) {
   return sendTemplate(env, person.phone, "ne_order_yours", [first(person.full_name), order.name.slice(0, 60), order.number, kes(order.total)],
     { orderId: order.id, userId: person.user_id, dedupe: `yours:${order.id}:${person.user_id}` });
+}
+
+export async function orderRemoved(env, who, o) {
+  if (!env.OWNER_WHATSAPP) return;
+  await sendTemplate(env, env.OWNER_WHATSAPP, "ne_order_removed", [who, o.number, o.name.slice(0, 60), kes(o.total), o.reason.slice(0, 120)], {});
+}
+
+export async function cashHandover(env, who, h) {
+  if (!env.OWNER_WHATSAPP) return;
+  await sendTemplate(env, env.OWNER_WHATSAPP, "ne_cash_handover", [who, kes(h.amount), String(h.count)], { dedupe: `handover:${h.id}` });
 }
 
 export async function staffApplied(env, s) {

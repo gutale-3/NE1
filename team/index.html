@@ -226,6 +226,7 @@ td.n, th.n { text-align: right; white-space: nowrap; }
   <section id="v-mine" hidden>
     <h1>My payments</h1>
     <div class="card hold"><div><small>With you, waiting for confirmation</small><b id="hold-amt2">KES 0</b></div></div>
+    <div class="card" id="handin"></div>
     <div class="card" id="mine"></div>
   </section>
 
@@ -247,6 +248,7 @@ td.n, th.n { text-align: right; white-space: nowrap; }
   <section id="v-confirm" hidden>
     <h1>Confirm payments</h1>
     <p class="sub">Check each payment reached NE's M-Pesa or bank (or the cash was handed in), then confirm. Nobody can confirm money they collected themselves.</p>
+    <div class="card" id="handovers-box" hidden><h2>Cash handed in</h2><p class="hint">Count the cash, then confirm. Every payment in it is confirmed at once.</p><div id="handovers"></div></div>
     <div class="card" id="to-confirm"></div>
     <h2>Money with each person</h2>
     <div class="card scroll" id="cash"></div>

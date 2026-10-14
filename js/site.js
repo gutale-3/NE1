@@ -11,7 +11,7 @@
     var grid = document.getElementById('catalog-grid');
     if (!grid) return;
     var cards = Array.prototype.slice.call(grid.querySelectorAll('.pc'));
-    var tabs = Array.prototype.slice.call(document.querySelectorAll('.ptab'));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.ptab[data-cat]'));   // the Kits tab is a normal link
     var search = document.getElementById('catalog-search');
     var more = document.getElementById('catalog-more');
     var empty = document.getElementById('catalog-empty');

@@ -654,6 +654,7 @@
     left.appendChild(el('small', null, facts.filter(Boolean).join(' · ')));
     if (c.note) left.appendChild(el('small', null, '“' + c.note + '”'));
     if (c.decided_note) left.appendChild(el('small', null, 'Office: ' + c.decided_note));
+    if (c.handover_id && c.status === 'pending') left.appendChild(el('small', null, 'Handed in (H-' + c.handover_id + '), waiting for the count'));
     if (c.has_proof) {
       var a = el('a', null, 'Screenshot'); a.href = '/api/team/proof?id=' + c.id; a.target = '_blank'; a.style.fontSize = '13px';
       left.appendChild(a);
@@ -669,6 +670,20 @@
     box.innerHTML = '';
     if (!data.collections.length) box.appendChild(el('p', null, 'Nothing recorded yet.'));
     data.collections.forEach(function (c) { box.appendChild(collectionRow(c, false)); });
+    // End of the day: hand in all the cash at once.
+    var hand = $('handin');
+    hand.innerHTML = '';
+    var cash = data.collections.filter(function (c) { return c.status === 'pending' && c.method === 'Cash' && !c.handover_id; });
+    var total = cash.reduce(function (n, c) { return n + c.amount; }, 0);
+    data.myHandovers.forEach(function (h) {
+      hand.appendChild(el('p', 'note', 'Handed in ' + money(h.amount) + ' (' + h.count + ' payment' + (h.count === 1 ? '' : 's') + ') ' + day(h.created_at) + ': waiting for the office to count it.'));
+    });
+    if (!total) { if (!data.myHandovers.length) hand.appendChild(el('p', null, 'No cash to hand in.')); return; }
+    hand.appendChild(el('h2', null, 'Cash to hand in: ' + money(total)));
+    hand.appendChild(el('p', 'hint', cash.length + ' cash payment' + (cash.length === 1 ? '' : 's') + '. At the end of the day, give the cash to the office and tap below. They count it and confirm everything at once.'));
+    var b = el('button', 'btn go', 'Hand in ' + money(total) + ' cash'); b.type = 'button';
+    b.addEventListener('click', function () { if (confirm('Hand in ' + money(total) + ' cash now?')) act({ action: 'hand_in' }, b); });
+    hand.appendChild(b);
   }
 
   // ---- new order -----------------------------------------------------------------------
@@ -826,6 +841,30 @@
 
   // ---- confirm payments (finance) ------------------------------------------------------
   function renderConfirm() {
+    var hb = $('handovers');
+    hb.innerHTML = '';
+    $('handovers-box').hidden = !data.handovers.length;
+    data.handovers.forEach(function (h) {
+      var r = el('div', 'row');
+      var left = el('div');
+      left.appendChild(el('b', null, h.staff + ' handed in ' + money(h.amount)));
+      left.appendChild(el('small', null, h.count + ' cash payment' + (h.count === 1 ? '' : 's') + ' · ' + day(h.created_at) + ' · H-' + h.id));
+      r.appendChild(left);
+      hb.appendChild(r);
+      var a = el('div', 'actions');
+      if (data.staff && h.staff_id === data.staff.user_id && !data.owner) a.appendChild(el('span', 'hint', 'Your cash: someone else counts it.'));
+      else {
+        var ok = el('button', 'btn go small', 'Counted, received'); ok.type = 'button';
+        var no = el('button', 'btn danger small', 'Not right'); no.type = 'button';
+        ok.addEventListener('click', function () { act({ action: 'decide_handover', id: h.id, accept: true }, ok); });
+        no.addEventListener('click', function () {
+          var note = prompt('What was wrong? (e.g. counted KES 11,500)');
+          if (note) act({ action: 'decide_handover', id: h.id, accept: false, note: note }, no);
+        });
+        a.appendChild(ok); a.appendChild(no);
+      }
+      hb.appendChild(a);
+    });
     var box = $('to-confirm');
     box.innerHTML = '';
     if (!data.toConfirm.length) box.appendChild(el('p', null, 'Nothing waiting. Well done.'));
@@ -858,10 +897,12 @@
     data.cash.forEach(function (r) {
       var tr = el('tr');
       [r.username, money(r.holding), money(r.cash), money(r.month)].forEach(function (v, i) { tr.appendChild(el('td', i ? 'n' : null, v)); });
+      if (r.late) { tr.children[2].style.color = '#B42318'; tr.children[2].title = 'Cash held since ' + day(r.cash_since); tr.children[2].textContent += ' ⚠'; }
       tb.appendChild(tr);
     });
     t.appendChild(tb);
     cash.appendChild(t);
+    if (data.cash.some(function (r) { return r.late; })) cash.appendChild(el('p', 'hint', '⚠ cash held for more than a day.'));
   }
 
   // ---- team (HR / management) -----------------------------------------------------------

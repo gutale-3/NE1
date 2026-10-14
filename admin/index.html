@@ -168,6 +168,13 @@
       <p class="hint">Agree at their price, or change the amount first to make a counter-offer. An agreed price becomes this partner's price for that product (and reprices the order line, for target prices typed on an order).</p>
       <div id="requests" class="tech-list"></div>
     </div>
+    <details class="req-box stock-box" id="stock-box">
+      <summary><b>Stock for partners</b> <span id="stock-summary" class="hint"></span></summary>
+      <p class="hint">Only trade partners see this, on their price list; the retail website is not affected. Out-of-stock products can't be ordered in the partner portal.</p>
+      <div id="stock-flagged" class="tech-list"></div>
+      <div class="toolbar" style="margin-top:10px"><input id="stock-q" type="search" placeholder="Find a product to mark (model or name)" autocomplete="off"></div>
+      <div id="stock-results" class="tech-list"></div>
+    </details>
     <p class="count" id="partners-count">Loading&hellip;</p>
     <div id="partners-list" class="tech-list"></div>
     <p class="hint" style="margin-top:14px">Partners apply at <b>nashnaal.com/partner</b>. Share the programme page: <b>nashnaal.com/partners</b></p>
@@ -235,6 +242,11 @@
       <h2>Money to confirm</h2>
       <p class="hint">Staff collected these. Check M-Pesa or the bank (or count the cash handed in), then confirm. Until then it counts as money that person holds.</p>
       <div id="tm-pay" class="tech-list"></div>
+    </div>
+    <div class="req-box pay-box" id="tm-hand-box" hidden>
+      <h2>Cash handed in</h2>
+      <p class="hint">Count the cash, then confirm. Every payment in the handover is confirmed at once.</p>
+      <div id="tm-hand" class="tech-list"></div>
     </div>
     <div class="req-box" id="tm-claim-box" hidden>
       <h2>Customers staff want to claim</h2>

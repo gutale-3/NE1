@@ -47,6 +47,14 @@ export async function ensureTables(env) {
       PRIMARY KEY (user_id, slug)
     )`),
     // Standing price requests ("can I always get this camera at X?"), not tied to an order.
+    // Stock notes for trade partners only (retail customers never see these).
+    env.DB.prepare(`CREATE TABLE IF NOT EXISTS partner_stock (
+      slug TEXT PRIMARY KEY,
+      status TEXT NOT NULL,                      -- out | low
+      back TEXT,                                 -- expected back in stock (YYYY-MM-DD), optional
+      note TEXT,
+      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+    )`),
     env.DB.prepare(`CREATE TABLE IF NOT EXISTS price_requests (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER NOT NULL,
@@ -94,11 +102,38 @@ function tradePrice(retail, discount) {
 // The partner's price for every product: their own price, else the website
 // price less their default discount.
 async function priceBook(env, partner, catalogue) {
-  const own = await ownPrices(env, partner.user_id);
+  const [own, stock] = await Promise.all([ownPrices(env, partner.user_id), stockMap(env)]);
   return Object.entries(catalogue).map(([slug, p]) => ({
     slug, name: p.n, model: p.m, category: p.c, image: p.i, url: p.u, retail: p.p,
     price: own[slug] ?? tradePrice(p.p, partner.discount), own: slug in own,
+    stock: stock[slug] || null,
   }));
+}
+
+// slug -> { status: 'out' | 'low', back, note }
+export async function stockMap(env) {
+  await ensureTables(env);
+  const { results } = await env.DB.prepare("SELECT slug, status, back, note, updated_at FROM partner_stock").all();
+  return Object.fromEntries(results.map((r) => [r.slug, { status: r.status, back: r.back, note: r.note, updated_at: r.updated_at }]));
+}
+
+// The owner marks a product out of stock or limited for partners, or back in stock.
+export async function adminSetStock(env, body, catalogue) {
+  await ensureTables(env);
+  const slug = String(body.slug || "");
+  if (!catalogue[slug]) return { error: "Product not found." };
+  const model = catalogue[slug].m;
+  if (body.status === "in") {
+    await env.DB.prepare("DELETE FROM partner_stock WHERE slug = ?1").bind(slug).run();
+    return { ok: true, message: `${model} is in stock for partners again.` };
+  }
+  if (!["out", "low"].includes(body.status)) return { error: "Choose in stock, limited or out of stock." };
+  const back = /^\d{4}-\d{2}-\d{2}$/.test(body.back || "") ? body.back : null;
+  await env.DB.prepare(
+    `INSERT INTO partner_stock (slug, status, back, note) VALUES (?1, ?2, ?3, ?4)
+     ON CONFLICT(slug) DO UPDATE SET status = ?2, back = ?3, note = ?4, updated_at = datetime('now')`
+  ).bind(slug, body.status, back, clean(body.note, 120) || null).run();
+  return { ok: true, message: `${model}: ${body.status === "out" ? "out of stock" : "limited stock"} for partners${back ? `, back around ${back}` : ""}.` };
 }
 
 function publicPartner(p) {
@@ -191,6 +226,9 @@ export async function order(env, user, body, catalogue) {
     const qty = Math.floor(Number(line.qty));
     if (!p || seen.has(line.slug) || !(qty >= 1 && qty <= 9999)) continue;
     seen.add(line.slug);
+    if (p.stock && p.stock.status === "out") {
+      return { error: `${p.model} is out of stock${p.stock.back ? ` (expected back around ${p.stock.back})` : ""}. Remove it from your order, or WhatsApp us to reserve it.` };
+    }
     const item = { slug: p.slug, model: p.model, name: p.name, qty, price: p.price, retail: p.retail };
     const requested = Math.round(Number(line.requested));
     if (requested > 0 && requested < p.price) item.requested = requested;
@@ -220,7 +258,11 @@ export async function adminList(env, catalogue) {
      FROM partners p JOIN users u ON u.id = p.user_id
      ORDER BY CASE p.status WHEN 'pending' THEN 0 WHEN 'approved' THEN 1 ELSE 2 END, p.company`
   ).all();
-  return { partners: results, kinds: KINDS, requests: await priceRequests(env, catalogue) };
+  const stock = await stockMap(env);
+  return {
+    partners: results, kinds: KINDS, requests: await priceRequests(env, catalogue),
+    stock: Object.entries(stock).map(([slug, st]) => ({ slug, ...st, model: catalogue[slug] ? catalogue[slug].m : slug, name: catalogue[slug] ? catalogue[slug].n : "" })),
+  };
 }
 
 export async function adminDetail(env, userId, catalogue) {

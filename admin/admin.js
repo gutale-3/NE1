@@ -693,12 +693,59 @@
       var list = $('partners-list');
       list.textContent = '';
       data.partners.forEach(function (p) { list.appendChild(partnerCard(p)); });
+      stockFlags = data.stock || [];
+      renderStock();
       var req = $('requests');
       req.textContent = '';
       data.requests.forEach(function (r) { req.appendChild(requestRow(r)); });
       $('requests-box').hidden = !data.requests.length;
     });
   }
+
+  // ---- stock notes for partners ------------------------------------------------------
+  var stockFlags = [];
+  var stockCatalogue = null;
+  function stockRow(slug, model, name, current) {
+    var d = document.createElement('div'); d.className = 'req';
+    d.innerHTML = '<div><b></b><small></small></div><div class="row-actions"><select><option value="in">In stock</option><option value="low">Limited stock</option><option value="out">Out of stock</option></select>' +
+      '<input type="date" title="Expected back (optional)"><input placeholder="Note (optional)" maxlength="120" style="width:150px"><button type="button" class="primary">Save</button></div>';
+    d.querySelector('b').textContent = model;
+    d.querySelector('small').textContent = name + (current && current.updated_at ? ' · since ' + day(current.updated_at) : '');
+    var sel = d.querySelector('select'), date = d.querySelector('input[type=date]'), note = d.querySelectorAll('input')[1];
+    sel.value = current ? current.status : 'in';
+    if (current && current.back) date.value = current.back;
+    if (current && current.note) note.value = current.note;
+    d.querySelector('button').addEventListener('click', function () {
+      var b = this; b.disabled = true;
+      api('/api/admin/partners', { action: 'stock', slug: slug, status: sel.value, back: date.value, note: note.value })
+        .then(function (r) { notice(r.message); $('stock-q').value = ''; $('stock-results').textContent = ''; return loadPartners(); })
+        .catch(function (err) { notice(err.message, true); }).then(function () { b.disabled = false; });
+    });
+    return d;
+  }
+  function renderStock() {
+    var box = $('stock-flagged'); box.textContent = '';
+    stockFlags.forEach(function (f) { box.appendChild(stockRow(f.slug, f.model, f.name, f)); });
+    var out = stockFlags.filter(function (f) { return f.status === 'out'; }).length;
+    $('stock-summary').textContent = stockFlags.length ? '· ' + out + ' out of stock, ' + (stockFlags.length - out) + ' limited' : '· everything shows as in stock';
+  }
+  $('stock-q').addEventListener('input', function () {
+    var q = this.value.trim().toLowerCase().replace(/[\s-]+/g, '');
+    var box = $('stock-results');
+    function show() {
+      box.textContent = '';
+      if (q.length < 2) return;
+      Object.keys(stockCatalogue).filter(function (slug) {
+        var p = stockCatalogue[slug];
+        return (p.m + p.n).toLowerCase().replace(/[\s-]+/g, '').indexOf(q) >= 0;
+      }).slice(0, 12).forEach(function (slug) {
+        var current = stockFlags.filter(function (f) { return f.slug === slug; })[0];
+        box.appendChild(stockRow(slug, stockCatalogue[slug].m, stockCatalogue[slug].n, current));
+      });
+    }
+    if (stockCatalogue) show();
+    else fetch('/data/prices.json').then(function (r) { return r.json(); }).then(function (c) { stockCatalogue = c; show(); });
+  });
 
   function partnerCard(p) {
     var el = document.createElement('article');
@@ -1154,12 +1201,30 @@
     return api('/api/admin/team').then(function (t) {
       teamData = t;
       var pending = t.people.filter(function (p) { return p.status === 'pending'; }).length;
-      var waiting = pending + t.toConfirm.length;
+      var waiting = pending + t.toConfirm.length + t.handovers.length;
       $('team-badge').textContent = waiting; $('team-badge').hidden = !waiting;
       $('tm-count').textContent = t.people.length ? t.people.length + ' people · ' + pending + ' waiting for approval' : 'Nobody has signed up yet. Send your staff to nashnaal.com/team.';
       var pay = $('tm-pay'); pay.textContent = '';
       t.toConfirm.forEach(function (c) { pay.appendChild(collectionRow(c)); });
       $('tm-pay-box').hidden = !t.toConfirm.length;
+      var hand = $('tm-hand'); hand.textContent = '';
+      t.handovers.forEach(function (h) {
+        var d = document.createElement('div'); d.className = 'req';
+        d.innerHTML = '<div><b></b><small></small></div><div class="row-actions"></div>';
+        d.querySelector('b').textContent = h.staff + ' handed in ' + money(h.amount) + ' cash';
+        d.querySelector('small').textContent = h.count + ' payment(s) · ' + day(h.created_at) + ' · H-' + h.id;
+        [['Counted, received', 'ok', true], ['Not right', 'danger', false]].forEach(function (x) {
+          var b = document.createElement('button'); b.type = 'button'; b.className = x[1]; b.textContent = x[0];
+          b.addEventListener('click', function () {
+            var note = '';
+            if (!x[2]) { note = window.prompt('What was wrong? (e.g. counted KES 11,500)'); if (!note) return; }
+            teamApi({ action: 'decide_handover', id: h.id, accept: x[2], note: note }, b);
+          });
+          d.querySelector('.row-actions').appendChild(b);
+        });
+        hand.appendChild(d);
+      });
+      $('tm-hand-box').hidden = !t.handovers.length;
       var pendingClaims = t.claims.filter(function (c) { return c.status === 'pending'; });
       var claimsBox = $('tm-claims'); claimsBox.textContent = '';
       pendingClaims.forEach(function (c) { claimsBox.appendChild(claimRow(c)); });
@@ -1178,6 +1243,7 @@
         d.innerHTML = '<div><b></b><small></small></div>';
         d.querySelector('b').textContent = r.username + ': ' + money(r.holding) + ' not yet confirmed';
         d.querySelector('small').textContent = 'Cash ' + money(r.cash) + ' · ' + r.pending + ' payment(s) waiting · confirmed this month ' + money(r.month);
+        if (r.late) { d.style.borderColor = '#F1B5B0'; d.querySelector('b').textContent += ' — ⚠ cash held since ' + day(r.cash_since); }
         cash.appendChild(d);
       });
       var jobs = $('tm-jobs'); jobs.textContent = '';

@@ -525,6 +525,8 @@ def controls_html(products, active=None):
     for product in products:
         counts[product["category"]] = counts.get(product["category"], 0) + 1
     tabs = [f'<a class="ptab{" on" if active is None else ""}" href="/products" data-cat="All">All ({len(products)})</a>']
+    # Ready-made CCTV kits live on their own page (/kits), so this tab is a plain link.
+    tabs.append('<a class="ptab ptab-kits" href="/kits">CCTV kits</a>')
     for name in site_layout.CATEGORIES:
         if name in counts:
             on = " on" if name == active else ""
