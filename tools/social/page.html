@@ -1,0 +1,158 @@
+<title>NE Social Media</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap">
+<style>
+/* Layout: one column of weeks; each week is a schedule of six days, image left / caption right on wide screens, stacked on phones. */
+:root {
+  --bg: #F3F6F8; --surface: #FFFFFF; --ink: #10202E; --muted: #4F6170; --line: #DDE5EB;
+  --navy: #0F2A3D; --blue: #086E9E; --orange: #EB6834; --green: #12805C; --chip: #E7F1F7;
+  --display: "Inter", "Segoe UI", Arial, sans-serif; --body: "Inter", "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0C1822; --surface: #13232F; --ink: #E8EFF4; --muted: #9DB0BE; --line: #24394A;
+  --navy: #081520; --blue: #4BA8D6; --orange: #F08155; --green: #3CC08F; --chip: #18324A; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0C1822; --surface: #13232F; --ink: #E8EFF4; --muted: #9DB0BE; --line: #24394A;
+  --navy: #081520; --blue: #4BA8D6; --orange: #F08155; --green: #3CC08F; --chip: #18324A; color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 24px 60px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header { display: grid; gap: 6px; margin-bottom: 18px; }
+.eyebrow { font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); }
+h1 { font-family: var(--display); font-size: clamp(28px, 6vw, 40px); font-weight: 900; letter-spacing: -.02em; line-height: 1.05; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 62ch; margin: 0; }
+.accounts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.accounts a { font-size: 13px; font-weight: 700; color: var(--blue); background: var(--chip); padding: 6px 12px; border-radius: 999px; text-decoration: none; }
+.weeks { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 12px; margin: 10px 0 6px; }
+.weeks button { flex: none; font: inherit; font-weight: 700; font-size: 14px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); padding: 8px 14px; border-radius: 10px; cursor: pointer; }
+.weeks button[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+.weeks button:focus-visible, .btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.day { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 18px; padding: 18px 0; border-top: 1px solid var(--line); }
+.media { width: 100%; max-width: 100%; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); display: block; }
+.info { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.when { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.when b { font-size: 20px; font-weight: 900; letter-spacing: -.01em; }
+.kind { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.where { font-size: 13px; color: var(--muted); }
+.caption { white-space: pre-wrap; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 14.5px; margin: 0; overflow-wrap: anywhere; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { font: inherit; font-weight: 800; font-size: 14px; border: 0; border-radius: 10px; padding: 10px 16px; cursor: pointer; }
+.btn.copy { background: var(--blue); color: #fff; }
+.btn.save { background: var(--surface); color: var(--ink); border: 1.5px solid var(--line); }
+.btn:disabled { opacity: .6; cursor: default; }
+.status { font-size: 13px; color: var(--green); font-weight: 700; min-height: 1em; }
+.status.err { color: var(--orange); }
+.how { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-top: 26px; color: var(--muted); font-size: 14px; }
+.how b { color: var(--ink); }
+.empty { color: var(--muted); padding: 30px 0; }
+@media (max-width: 640px) { .day { grid-template-columns: 1fr; } .media { max-width: 420px; } }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Nashnaal Electronics · weekly posts</div>
+    <h1>NE Social Media</h1>
+    <p class="lede">A new pack arrives every Friday for the week ahead: 4 feed posts and 2 short videos with captions and current prices. Save each file, copy its caption, and schedule it for the day shown.</p>
+    <div class="accounts">
+      <a href="https://www.instagram.com/nashnaalelectronics/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@nashnaalelectronics" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.youtube.com/@Nashnaal" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://business.facebook.com/latest/content_calendar" target="_blank" rel="noopener">Meta Business Suite</a>
+    </div>
+  </header>
+  <nav class="weeks" id="weeks" aria-label="Weeks"></nav>
+  <main id="days"><p class="empty">Loading this week's posts…</p></main>
+  <div class="how">
+    <b>How to post.</b> Feed posts go on Instagram and Facebook: schedule both at once in Meta Business Suite (Planner). Videos go on Instagram and Facebook Reels, TikTok and YouTube Shorts; add a trending sound in each app before posting. Best time: about 7 pm. Prices shown were the website prices when the pack was made.
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var weeks = [], current = 0, downloads = null;
+  var $ = function (id) { return document.getElementById(id); };
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  function renderTabs() {
+    var nav = $('weeks');
+    nav.textContent = '';
+    weeks.forEach(function (w, i) {
+      var b = el('button', null, i === 0 ? 'Week of ' + w.week : w.week);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(i === current));
+      b.addEventListener('click', function () { current = i; renderTabs(); renderWeek(); });
+      nav.appendChild(b);
+    });
+  }
+
+  function copy(text, status) {
+    function done() { status.textContent = 'Caption copied'; status.className = 'status'; }
+    try {
+      navigator.clipboard.writeText(text).then(done, function () { status.textContent = 'Select the caption above and copy it.'; status.className = 'status err'; });
+    } catch (e) { status.textContent = 'Select the caption above and copy it.'; status.className = 'status err'; }
+  }
+
+  function save(post, status, button) {
+    if (!downloads) { status.textContent = 'Saving isn’t available here. Long-press the picture or video to save it.'; status.className = 'status err'; return; }
+    button.disabled = true;
+    fetch(post.path).then(function (r) { if (!r.ok) throw new Error('missing'); return r.blob(); })
+      .then(function (blob) { return downloads.save({ filename: 'NE-' + post.day + '-' + post.file, data: blob }); })
+      .then(function () { status.textContent = 'Saved'; status.className = 'status'; })
+      .catch(function (err) {
+        var code = err && err.code;
+        status.textContent = code === 'declined' ? 'Not saved.' : code === 'rate_limited' ? 'One moment, then try again.' : 'Could not save. Long-press the picture or video to save it.';
+        status.className = 'status err';
+      })
+      .then(function () { button.disabled = false; });
+  }
+
+  function renderWeek() {
+    var box = $('days');
+    box.textContent = '';
+    var w = weeks[current];
+    if (!w) { box.appendChild(el('p', 'empty', 'No posts yet. The first pack arrives on Friday.')); return; }
+    w.posts.forEach(function (post) {
+      var row = el('section', 'day');
+      var media;
+      if (/\.mp4$/.test(post.file)) {
+        media = el('video', 'media');
+        media.src = post.path; media.controls = true; media.muted = true; media.playsInline = true; media.preload = 'metadata';
+      } else {
+        media = el('img', 'media');
+        media.src = post.path; media.alt = post.kind + ' for ' + post.day; media.loading = 'lazy';
+      }
+      row.appendChild(media);
+      var info = el('div', 'info');
+      var when = el('div', 'when');
+      when.appendChild(el('b', null, post.day));
+      when.appendChild(el('span', 'kind', post.kind));
+      info.appendChild(when);
+      info.appendChild(el('div', 'where', 'Post on ' + post.where));
+      var cap = el('pre', 'caption', post.caption);
+      info.appendChild(cap);
+      var actions = el('div', 'actions');
+      var status = el('div', 'status');
+      var c = el('button', 'btn copy', 'Copy caption'); c.type = 'button';
+      c.addEventListener('click', function () { copy(post.caption, status); });
+      var s = el('button', 'btn save', /\.mp4$/.test(post.file) ? 'Save video' : 'Save picture'); s.type = 'button';
+      s.addEventListener('click', function () { save(post, status, s); });
+      actions.appendChild(c); actions.appendChild(s);
+      info.appendChild(actions);
+      info.appendChild(status);
+      row.appendChild(info);
+      box.appendChild(row);
+    });
+  }
+
+  fetch('weeks.json').then(function (r) { return r.json(); }).then(function (data) {
+    weeks = data || [];
+    renderTabs(); renderWeek();
+  }).catch(function () { weeks = []; renderWeek(); });
+
+  if (window.claude && window.claude.use) {
+    window.claude.use('downloads').then(function (d) { downloads = d; }).catch(function () { downloads = null; });
+  }
+})();
+</script>
